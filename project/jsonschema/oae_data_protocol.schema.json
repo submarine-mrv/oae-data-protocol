@@ -1,0 +1,206 @@
+{
+    "$defs": {
+        "NamedThing": {
+            "additionalProperties": false,
+            "description": "A generic grouping for any identifiable entity",
+            "properties": {
+                "description": {
+                    "description": "A human-readable description for a thing",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "A unique identifier for a thing",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "A human-readable name for a thing",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "NamedThing",
+            "type": "object"
+        },
+        "PersonStatus": {
+            "description": "",
+            "enum": [
+                "ALIVE",
+                "DEAD",
+                "UNKNOWN"
+            ],
+            "title": "PersonStatus",
+            "type": "string"
+        },
+        "Project": {
+            "additionalProperties": false,
+            "description": "Represents a Project",
+            "properties": {
+                "age_in_years": {
+                    "description": "Number of years since birth",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "birth_date": {
+                    "description": "Date on which a person is born",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "A human-readable description for a thing",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "A unique identifier for a thing",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for a thing",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "primary_email": {
+                    "description": "The main email address of a person",
+                    "pattern": "^\\S+@[\\S+\\.]+\\S+",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "vital_status": {
+                    "$ref": "#/$defs/PersonStatus",
+                    "description": "living or dead status"
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Project",
+            "type": "object"
+        },
+        "ProjectCollection": {
+            "additionalProperties": false,
+            "description": "A holder for Project objects",
+            "properties": {
+                "entries": {
+                    "additionalProperties": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/Project__identifier_optional"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "type": [
+                        "object",
+                        "null"
+                    ]
+                }
+            },
+            "title": "ProjectCollection",
+            "type": "object"
+        },
+        "Project__identifier_optional": {
+            "additionalProperties": false,
+            "description": "Represents a Project",
+            "properties": {
+                "age_in_years": {
+                    "description": "Number of years since birth",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "birth_date": {
+                    "description": "Date on which a person is born",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "A human-readable description for a thing",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "A unique identifier for a thing",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A human-readable name for a thing",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "primary_email": {
+                    "description": "The main email address of a person",
+                    "pattern": "^\\S+@[\\S+\\.]+\\S+",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "vital_status": {
+                    "$ref": "#/$defs/PersonStatus",
+                    "description": "living or dead status"
+                }
+            },
+            "required": [],
+            "title": "Project",
+            "type": "object"
+        }
+    },
+    "$id": "https://w3id.org/clevinson/oae-data-protocol",
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": true,
+    "description": "A holder for Project objects",
+    "metamodel_version": "1.7.0",
+    "properties": {
+        "entries": {
+            "additionalProperties": {
+                "anyOf": [
+                    {
+                        "$ref": "#/$defs/Project__identifier_optional"
+                    },
+                    {
+                        "type": "null"
+                    }
+                ]
+            },
+            "type": [
+                "object",
+                "null"
+            ]
+        }
+    },
+    "title": "oae-data-protocol",
+    "type": "object",
+    "version": null
+}
