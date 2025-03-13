@@ -71,6 +71,7 @@ linkml:Sparqlpath xsd:string
        (  $<Experiment_tes> (  <description> @linkml:String ? ;
              <experiment_type> [ <https://example.org/oae#ExperimentType#natural>
                 <https://example.org/oae#ExperimentType#manipulated> <https://example.org/oae#ExperimentType#model_output> ] ? ;
+             <experiment_id> @linkml:String ? ;
              <project> @<OAEProject> ? ;
              <observation_type> [ <https://example.org/oae#ObservationType#profile>
                 <https://example.org/oae#ObservationType#surface_underway> <https://example.org/oae#ObservationType#time_series>
@@ -83,7 +84,7 @@ linkml:Sparqlpath xsd:string
              <datasets> @<Dataset> * ;
              <previous_research> @linkml:String *
           ) ;
-          rdf:type [ <Experiment> ]
+          rdf:type [ <Experiment> ] ?
        )
     } OR @<Intervention> OR @<ModelSimulation>
 )
@@ -103,7 +104,7 @@ linkml:Sparqlpath xsd:string
           <dosing_regimen> @linkml:String ? ;
           <dosing_location> @linkml:String ?
        ) ;
-       rdf:type [ <Intervention> ]
+       rdf:type [ <Intervention> ] ?
     )
 }
 
@@ -163,12 +164,13 @@ linkml:Sparqlpath xsd:string
           <experiment_type> [ <https://example.org/oae#ExperimentType#natural> <https://example.org/oae#ExperimentType#manipulated>
              <https://example.org/oae#ExperimentType#model_output> ] ?
        ) ;
-       rdf:type [ <ModelSimulation> ]
+       rdf:type [ <ModelSimulation> ] ?
     )
 }
 
 <OAEProject> CLOSED {
     (  $<OAEProject_tes> (  <description> @linkml:String ? ;
+          <project_id> @linkml:String ? ;
           <mcdr_pathway> [ <https://example.org/oae#MCDRPathway#ocean_alkalinity_enhancement>
              <https://example.org/oae#MCDRPathway#macroalgal_cultivation>
              <https://example.org/oae#MCDRPathway#direct_ocean_capture> <https://example.org/oae#MCDRPathway#ocean_fertilization>
@@ -178,7 +180,7 @@ linkml:Sparqlpath xsd:string
           <site_description> @linkml:String ? ;
           <permit_info> @linkml:String ?
        ) ;
-       rdf:type [ <OAEProject> ]
+       rdf:type [ <OAEProject> ] ?
     )
 }
 

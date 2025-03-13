@@ -3,6 +3,7 @@
 -- # Class: "Any" Description: ""
 --     * Slot: id Description: 
 -- # Class: "OAEProject" Description: "A project conducting OAE field trials or modeling."
+--     * Slot: id Description: 
 --     * Slot: description Description: A narrative description of the thing.
 --     * Slot: project_id Description: Unique identifier for an OAE project.
 --     * Slot: mcdr_pathway Description: The Marine Carbon Dioxide Removal (MCDR) pathway being studied.
@@ -16,17 +17,19 @@
 --     * Slot: url Description: Location of a page describing the dataset.
 --     * Slot: temporal_coverage Description: The temporal coverage of the dataset.
 --     * Slot: spatial_coverage Description: The spatial coverage of the dataset.
---     * Slot: Experiment_experiment_id Description: Autocreated FK slot
---     * Slot: Intervention_experiment_id Description: Autocreated FK slot
---     * Slot: ModelSimulation_experiment_id Description: Autocreated FK slot
+--     * Slot: Experiment_id Description: Autocreated FK slot
+--     * Slot: Intervention_id Description: Autocreated FK slot
+--     * Slot: ModelSimulation_id Description: Autocreated FK slot
 -- # Class: "Experiment" Description: "A single experiment conducted within an OAE project."
+--     * Slot: id Description: 
 --     * Slot: description Description: A narrative description of the thing.
 --     * Slot: experiment_type Description: The type of experiment being conducted.
 --     * Slot: experiment_id Description: Unique identifier for an OAE experiment.
 --     * Slot: start_date Description: Date when the experiment began.
 --     * Slot: end_date Description: Date when the experiment ended.
---     * Slot: project_project_id Description: The OAE project to which the experiment belongs.
+--     * Slot: project_id Description: The OAE project to which the experiment belongs.
 -- # Class: "Intervention" Description: "Details about an OAE intervention."
+--     * Slot: id Description: 
 --     * Slot: treatment_type Description: Type of OAE intervention.
 --     * Slot: alkalinity_feedstock_type Description: Material used for alkalinity addition.
 --     * Slot: alkalinity_feedstock_description Description: Information such as feedstock source, characteristics, concentration, impurities, dilution prior to dosing, and for feedstock other than NaOH; trace metal composition and particulate grain size.
@@ -38,8 +41,9 @@
 --     * Slot: experiment_id Description: Unique identifier for an OAE experiment.
 --     * Slot: start_date Description: Date when the experiment began.
 --     * Slot: end_date Description: Date when the experiment ended.
---     * Slot: project_project_id Description: The OAE project to which the experiment belongs.
+--     * Slot: project_id Description: The OAE project to which the experiment belongs.
 -- # Class: "ModelSimulation" Description: "A computational model run related to OAE."
+--     * Slot: id Description: 
 --     * Slot: model_type Description: Type of model simulation.
 --     * Slot: model_configurations Description: Details about the model configuration.
 --     * Slot: description Description: Foobar description
@@ -48,7 +52,7 @@
 --     * Slot: start_date Description: Date when the experiment began.
 --     * Slot: end_date Description: Date when the experiment ended.
 --     * Slot: grid_details_id Description: Details about the model grid.
---     * Slot: project_project_id Description: The OAE project to which the experiment belongs.
+--     * Slot: project_id Description: The OAE project to which the experiment belongs.
 -- # Class: "ModelGrid" Description: "Details about the model grid."
 --     * Slot: id Description: 
 --     * Slot: grid_type Description: Descriptive structure of grid (e.g. latitude-longitude grid, unstructured triangular, tripolar)
@@ -80,25 +84,25 @@
 --     * Slot: version Description: Version of the model component.
 --     * Slot: codebase Description: Link to model code repository.
 -- # Class: "Experiment_observation_type" Description: ""
---     * Slot: Experiment_experiment_id Description: Autocreated FK slot
+--     * Slot: Experiment_id Description: Autocreated FK slot
 --     * Slot: observation_type Description: The type of observation / data submitted, multiple values are allowed of mulitple datasets are being submitted for this experiment.
 -- # Class: "Experiment_previous_research" Description: ""
---     * Slot: Experiment_experiment_id Description: Autocreated FK slot
+--     * Slot: Experiment_id Description: Autocreated FK slot
 --     * Slot: previous_research Description: Previous research related to the experiment.
 -- # Class: "Intervention_observation_type" Description: ""
---     * Slot: Intervention_experiment_id Description: Autocreated FK slot
+--     * Slot: Intervention_id Description: Autocreated FK slot
 --     * Slot: observation_type Description: The type of observation / data submitted, multiple values are allowed of mulitple datasets are being submitted for this experiment.
 -- # Class: "Intervention_previous_research" Description: ""
---     * Slot: Intervention_experiment_id Description: Autocreated FK slot
+--     * Slot: Intervention_id Description: Autocreated FK slot
 --     * Slot: previous_research Description: Previous research related to the experiment.
 -- # Class: "ModelSimulation_model_components" Description: ""
---     * Slot: ModelSimulation_experiment_id Description: Autocreated FK slot
+--     * Slot: ModelSimulation_id Description: Autocreated FK slot
 --     * Slot: model_components_id Description: Components of the model.
 -- # Class: "ModelSimulation_observation_type" Description: ""
---     * Slot: ModelSimulation_experiment_id Description: Autocreated FK slot
+--     * Slot: ModelSimulation_id Description: Autocreated FK slot
 --     * Slot: observation_type Description: The type of observation / data submitted, multiple values are allowed of mulitple datasets are being submitted for this experiment.
 -- # Class: "ModelSimulation_previous_research" Description: ""
---     * Slot: ModelSimulation_experiment_id Description: Autocreated FK slot
+--     * Slot: ModelSimulation_id Description: Autocreated FK slot
 --     * Slot: previous_research Description: Previous research related to the experiment.
 -- # Class: "ModelComponent_references" Description: ""
 --     * Slot: ModelComponent_id Description: Autocreated FK slot
@@ -119,12 +123,13 @@ CREATE TABLE "Any" (
 	PRIMARY KEY (id)
 );
 CREATE TABLE "OAEProject" (
+	id INTEGER NOT NULL, 
 	description TEXT, 
-	project_id TEXT NOT NULL, 
+	project_id TEXT, 
 	mcdr_pathway VARCHAR(32), 
 	site_description TEXT, 
 	permit_info TEXT, 
-	PRIMARY KEY (project_id)
+	PRIMARY KEY (id)
 );
 CREATE TABLE "ModelGrid" (
 	id INTEGER NOT NULL, 
@@ -165,16 +170,18 @@ CREATE TABLE "ModelBGCComponent" (
 	PRIMARY KEY (id)
 );
 CREATE TABLE "Experiment" (
+	id INTEGER NOT NULL, 
 	description TEXT, 
 	experiment_type VARCHAR(12), 
-	experiment_id TEXT NOT NULL, 
+	experiment_id TEXT, 
 	start_date DATETIME, 
 	end_date DATETIME, 
-	project_project_id TEXT, 
-	PRIMARY KEY (experiment_id), 
-	FOREIGN KEY(project_project_id) REFERENCES "OAEProject" (project_id)
+	project_id INTEGER, 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(project_id) REFERENCES "OAEProject" (id)
 );
 CREATE TABLE "Intervention" (
+	id INTEGER NOT NULL, 
 	treatment_type VARCHAR(15), 
 	alkalinity_feedstock_type VARCHAR(17), 
 	alkalinity_feedstock_description TEXT, 
@@ -183,26 +190,27 @@ CREATE TABLE "Intervention" (
 	dosing_location TEXT, 
 	description TEXT, 
 	experiment_type VARCHAR(12), 
-	experiment_id TEXT NOT NULL, 
+	experiment_id TEXT, 
 	start_date DATETIME, 
 	end_date DATETIME, 
-	project_project_id TEXT, 
-	PRIMARY KEY (experiment_id), 
-	FOREIGN KEY(project_project_id) REFERENCES "OAEProject" (project_id)
+	project_id INTEGER, 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(project_id) REFERENCES "OAEProject" (id)
 );
 CREATE TABLE "ModelSimulation" (
+	id INTEGER NOT NULL, 
 	model_type VARCHAR(14), 
 	model_configurations TEXT, 
 	description TEXT, 
 	experiment_type VARCHAR(12), 
-	experiment_id TEXT NOT NULL, 
+	experiment_id TEXT, 
 	start_date DATETIME, 
 	end_date DATETIME, 
 	grid_details_id INTEGER, 
-	project_project_id TEXT, 
-	PRIMARY KEY (experiment_id), 
+	project_id INTEGER, 
+	PRIMARY KEY (id), 
 	FOREIGN KEY(grid_details_id) REFERENCES "ModelGrid" (id), 
-	FOREIGN KEY(project_project_id) REFERENCES "OAEProject" (project_id)
+	FOREIGN KEY(project_id) REFERENCES "OAEProject" (id)
 );
 CREATE TABLE "ModelComponent_references" (
 	"ModelComponent_id" INTEGER, 
@@ -230,54 +238,54 @@ CREATE TABLE "Dataset" (
 	url TEXT, 
 	temporal_coverage TEXT, 
 	spatial_coverage TEXT, 
-	"Experiment_experiment_id" TEXT, 
-	"Intervention_experiment_id" TEXT, 
-	"ModelSimulation_experiment_id" TEXT, 
+	"Experiment_id" INTEGER, 
+	"Intervention_id" INTEGER, 
+	"ModelSimulation_id" INTEGER, 
 	PRIMARY KEY (id), 
-	FOREIGN KEY("Experiment_experiment_id") REFERENCES "Experiment" (experiment_id), 
-	FOREIGN KEY("Intervention_experiment_id") REFERENCES "Intervention" (experiment_id), 
-	FOREIGN KEY("ModelSimulation_experiment_id") REFERENCES "ModelSimulation" (experiment_id)
+	FOREIGN KEY("Experiment_id") REFERENCES "Experiment" (id), 
+	FOREIGN KEY("Intervention_id") REFERENCES "Intervention" (id), 
+	FOREIGN KEY("ModelSimulation_id") REFERENCES "ModelSimulation" (id)
 );
 CREATE TABLE "Experiment_observation_type" (
-	"Experiment_experiment_id" TEXT, 
+	"Experiment_id" INTEGER, 
 	observation_type VARCHAR(22), 
-	PRIMARY KEY ("Experiment_experiment_id", observation_type), 
-	FOREIGN KEY("Experiment_experiment_id") REFERENCES "Experiment" (experiment_id)
+	PRIMARY KEY ("Experiment_id", observation_type), 
+	FOREIGN KEY("Experiment_id") REFERENCES "Experiment" (id)
 );
 CREATE TABLE "Experiment_previous_research" (
-	"Experiment_experiment_id" TEXT, 
+	"Experiment_id" INTEGER, 
 	previous_research TEXT, 
-	PRIMARY KEY ("Experiment_experiment_id", previous_research), 
-	FOREIGN KEY("Experiment_experiment_id") REFERENCES "Experiment" (experiment_id)
+	PRIMARY KEY ("Experiment_id", previous_research), 
+	FOREIGN KEY("Experiment_id") REFERENCES "Experiment" (id)
 );
 CREATE TABLE "Intervention_observation_type" (
-	"Intervention_experiment_id" TEXT, 
+	"Intervention_id" INTEGER, 
 	observation_type VARCHAR(22), 
-	PRIMARY KEY ("Intervention_experiment_id", observation_type), 
-	FOREIGN KEY("Intervention_experiment_id") REFERENCES "Intervention" (experiment_id)
+	PRIMARY KEY ("Intervention_id", observation_type), 
+	FOREIGN KEY("Intervention_id") REFERENCES "Intervention" (id)
 );
 CREATE TABLE "Intervention_previous_research" (
-	"Intervention_experiment_id" TEXT, 
+	"Intervention_id" INTEGER, 
 	previous_research TEXT, 
-	PRIMARY KEY ("Intervention_experiment_id", previous_research), 
-	FOREIGN KEY("Intervention_experiment_id") REFERENCES "Intervention" (experiment_id)
+	PRIMARY KEY ("Intervention_id", previous_research), 
+	FOREIGN KEY("Intervention_id") REFERENCES "Intervention" (id)
 );
 CREATE TABLE "ModelSimulation_model_components" (
-	"ModelSimulation_experiment_id" TEXT, 
+	"ModelSimulation_id" INTEGER, 
 	model_components_id INTEGER, 
-	PRIMARY KEY ("ModelSimulation_experiment_id", model_components_id), 
-	FOREIGN KEY("ModelSimulation_experiment_id") REFERENCES "ModelSimulation" (experiment_id), 
+	PRIMARY KEY ("ModelSimulation_id", model_components_id), 
+	FOREIGN KEY("ModelSimulation_id") REFERENCES "ModelSimulation" (id), 
 	FOREIGN KEY(model_components_id) REFERENCES "ModelComponent" (id)
 );
 CREATE TABLE "ModelSimulation_observation_type" (
-	"ModelSimulation_experiment_id" TEXT, 
+	"ModelSimulation_id" INTEGER, 
 	observation_type VARCHAR(22), 
-	PRIMARY KEY ("ModelSimulation_experiment_id", observation_type), 
-	FOREIGN KEY("ModelSimulation_experiment_id") REFERENCES "ModelSimulation" (experiment_id)
+	PRIMARY KEY ("ModelSimulation_id", observation_type), 
+	FOREIGN KEY("ModelSimulation_id") REFERENCES "ModelSimulation" (id)
 );
 CREATE TABLE "ModelSimulation_previous_research" (
-	"ModelSimulation_experiment_id" TEXT, 
+	"ModelSimulation_id" INTEGER, 
 	previous_research TEXT, 
-	PRIMARY KEY ("ModelSimulation_experiment_id", previous_research), 
-	FOREIGN KEY("ModelSimulation_experiment_id") REFERENCES "ModelSimulation" (experiment_id)
+	PRIMARY KEY ("ModelSimulation_id", previous_research), 
+	FOREIGN KEY("ModelSimulation_id") REFERENCES "ModelSimulation" (id)
 );

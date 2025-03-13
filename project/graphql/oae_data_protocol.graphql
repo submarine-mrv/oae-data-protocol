@@ -81,7 +81,7 @@ type Experiment
   {
     description: String
     experimentType: ExperimentType
-    experimentId: String!
+    experimentId: String
     project: OAEProject
     observationType: [ObservationType]
     startDate: Datetime
@@ -94,7 +94,7 @@ type Intervention
   {
     description: String
     experimentType: ExperimentType
-    experimentId: String!
+    experimentId: String
     project: OAEProject
     observationType: [ObservationType]
     startDate: Datetime
@@ -152,7 +152,7 @@ type ModelPhysicsComponent
 
 type ModelSimulation
   {
-    experimentId: String!
+    experimentId: String
     project: OAEProject
     observationType: [ObservationType]
     startDate: Datetime
@@ -170,7 +170,7 @@ type ModelSimulation
 type OAEProject
   {
     description: String
-    projectId: String!
+    projectId: String
     mcdrPathway: MCDRPathway
     siteDescription: String
     permitInfo: String

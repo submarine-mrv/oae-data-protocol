@@ -642,14 +642,12 @@
       "description": "Unique identifier for an OAE project.",
       "from_schema": "OAEProject",
       "slot_uri": "https://example.org/oae#project_id",
-      "identifier": true,
       "alias": "project_id",
       "owner": "OAEProject",
       "domain_of": [
         "OAEProject"
       ],
       "range": "string",
-      "required": true,
       "@type": "SlotDefinition"
     },
     {
@@ -744,14 +742,12 @@
       "description": "Unique identifier for an OAE experiment.",
       "from_schema": "Experiment",
       "slot_uri": "https://example.org/oae#experiment_id",
-      "identifier": true,
       "alias": "experiment_id",
       "owner": "Experiment",
       "domain_of": [
         "Experiment"
       ],
       "range": "string",
-      "required": true,
       "@type": "SlotDefinition"
     },
     {
@@ -1293,7 +1289,6 @@
         {
           "name": "project_id",
           "description": "Unique identifier for an OAE project.",
-          "identifier": true,
           "range": "string",
           "@type": "SlotDefinition"
         },
@@ -1384,7 +1379,6 @@
         {
           "name": "experiment_id",
           "description": "Unique identifier for an OAE experiment.",
-          "identifier": true,
           "range": "string",
           "@type": "SlotDefinition"
         },
@@ -1732,7 +1726,7 @@
   "source_file": "oae_data_protocol.yaml",
   "source_file_date": "2025-03-12T16:15:29",
   "source_file_size": 535,
-  "generation_date": "2025-03-12T16:45:29",
+  "generation_date": "2025-03-13T13:45:50",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/oae_data_protocol.context.jsonld",

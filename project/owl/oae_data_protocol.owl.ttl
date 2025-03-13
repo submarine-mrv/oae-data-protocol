@@ -18,6 +18,24 @@ oae:Intervention a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "Intervention" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:treatment_type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:treatment_type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:alkalinity_feedstock_type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:dosing_depth_in_m ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:dosing_location ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:dosing_location ],
+        [ a owl:Restriction ;
             owl:allValuesFrom oae:OAETreatmentType ;
             owl:onProperty oae:treatment_type ],
         [ a owl:Restriction ;
@@ -25,51 +43,33 @@ oae:Intervention a owl:Class,
             owl:onProperty oae:alkalinity_feedstock_type ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty oae:treatment_type ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oae:alkalinity_feedstock_description ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oae:dosing_location ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oae:dosing_depth_in_m ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oae:dosing_depth_in_m ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
             owl:onProperty oae:dosing_regimen ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
-            owl:onProperty oae:alkalinity_feedstock_description ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oae:treatment_type ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oae:alkalinity_feedstock_description ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
             owl:onProperty oae:dosing_regimen ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oae:dosing_location ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Decimal ;
-            owl:onProperty oae:dosing_depth_in_m ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oae:alkalinity_feedstock_type ],
         [ a owl:Restriction ;
             owl:allValuesFrom oae:FeedstockType ;
             owl:onProperty oae:alkalinity_feedstock_type ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
+            owl:onProperty oae:alkalinity_feedstock_description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oae:alkalinity_feedstock_description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
             owl:onProperty oae:dosing_regimen ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
+            owl:onProperty oae:alkalinity_feedstock_description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Decimal ;
+            owl:onProperty oae:dosing_depth_in_m ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:dosing_depth_in_m ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
             owl:onProperty oae:dosing_location ],
         oae:Experiment ;
     skos:definition "Details about an OAE intervention." ;
@@ -79,13 +79,13 @@ oae:ModelBGCComponent a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "ModelBGCComponent" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oae:air_sea_co2_flux_parameterization ],
-        [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
             owl:onProperty oae:air_sea_co2_flux_parameterization ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
+            owl:onProperty oae:air_sea_co2_flux_parameterization ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
             owl:onProperty oae:air_sea_co2_flux_parameterization ],
         oae:ModelComponent ;
     skos:definition "A biogeochemical / ecosystem component of a model" ;
@@ -102,56 +102,56 @@ oae:ModelSimulation a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "ModelSimulation" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oae:experiment_type ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oae:model_type ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty oae:model_type ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oae:description ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
             owl:onProperty oae:grid_details ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Uri ;
+            owl:onProperty oae:model_configurations ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty oae:description ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty oae:model_configurations ],
         [ a owl:Restriction ;
-            owl:allValuesFrom owl:Thing ;
-            owl:onProperty oae:experiment_type ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom oae:ModelType ;
+            owl:maxCardinality 1 ;
             owl:onProperty oae:model_type ],
         [ a owl:Restriction ;
-            owl:allValuesFrom owl:Thing ;
-            owl:onProperty oae:description ],
+            owl:minCardinality 0 ;
+            owl:onProperty oae:experiment_type ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty oae:model_components ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
+            owl:onProperty oae:experiment_type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:model_type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom oae:ModelType ;
+            owl:onProperty oae:model_type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom oae:ModelGrid ;
+            owl:onProperty oae:grid_details ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty oae:experiment_type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
             owl:onProperty oae:grid_details ],
         [ a owl:Restriction ;
             owl:allValuesFrom oae:ModelComponent ;
             owl:onProperty oae:model_components ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oae:description ],
-        [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty oae:model_configurations ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Uri ;
-            owl:onProperty oae:model_configurations ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom oae:ModelGrid ;
-            owl:onProperty oae:grid_details ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oae:experiment_type ],
         oae:Experiment ;
     skos:definition "A computational model run related to OAE." ;
     skos:inScheme <ModelSimulation> .
@@ -172,58 +172,58 @@ oae:Dataset a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "Dataset" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:temporal_coverage ],
+        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty oae:identifier ],
+            owl:onProperty oae:url ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
             owl:onProperty oae:temporal_coverage ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
+            owl:onProperty oae:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oae:description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
             owl:onProperty oae:url ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty oae:description ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oae:description ],
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:spatial_coverage ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty oae:identifier ],
+            owl:onProperty oae:description ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
-            owl:onProperty oae:description ],
+            owl:onProperty oae:url ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty oae:spatial_coverage ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
+            owl:maxCardinality 1 ;
             owl:onProperty oae:name ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oae:url ],
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:identifier ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
-            owl:onProperty oae:name ],
+            owl:onProperty oae:spatial_coverage ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:temporal_coverage ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:identifier ],
         [ a owl:Restriction ;
             owl:allValuesFrom oae:Doi ;
             owl:onProperty oae:identifier ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oae:temporal_coverage ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oae:spatial_coverage ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oae:spatial_coverage ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oae:url ],
-        [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty oae:temporal_coverage ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
             owl:onProperty oae:name ] ;
     skos:definition "A dataset related to an OAE experiment. Generally following guidelines & best practices as outlined in [science-on-schema.org](https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md)" ;
     skos:exactMatch schema1:Dataset,
@@ -235,13 +235,13 @@ oae:ModelGrid a owl:Class,
     rdfs:label "ModelGrid" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty oae:grid_type ],
+            owl:onProperty oae:horizontal_resolution_in_m ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty oae:n_x ],
+            owl:onProperty oae:region ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty oae:n_x ],
+            owl:onProperty oae:vertical_resolution_in_m ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty oae:arrangement ],
@@ -249,71 +249,71 @@ oae:ModelGrid a owl:Class,
             owl:allValuesFrom linkml:Integer ;
             owl:onProperty oae:n_y ],
         [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Integer ;
-            owl:onProperty oae:n_x ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oae:n_y ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oae:horizontal_resolution_in_m ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oae:n_z ],
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oae:arrangement ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:Integer ;
+            owl:onProperty oae:n_nodes ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
             owl:onProperty oae:n_nodes ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
             owl:onProperty oae:region ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty oae:n_y ],
+            owl:onProperty oae:n_nodes ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty oae:region ],
         [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Decimal ;
+            owl:onProperty oae:horizontal_resolution_in_m ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:vertical_resolution_in_m ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:n_y ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oae:grid_type ],
+        [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty oae:n_z ],
         [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Decimal ;
-            owl:onProperty oae:vertical_resolution_in_m ],
+            owl:minCardinality 0 ;
+            owl:onProperty oae:n_x ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:horizontal_resolution_in_m ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:arrangement ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty oae:grid_type ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty oae:region ],
+            owl:onProperty oae:n_z ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:Integer ;
             owl:onProperty oae:n_z ],
         [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oae:arrangement ],
+            owl:allValuesFrom linkml:Decimal ;
+            owl:onProperty oae:vertical_resolution_in_m ],
         [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:n_y ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:n_x ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
             owl:onProperty oae:grid_type ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oae:arrangement ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oae:vertical_resolution_in_m ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oae:vertical_resolution_in_m ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oae:n_nodes ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Decimal ;
-            owl:onProperty oae:horizontal_resolution_in_m ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oae:horizontal_resolution_in_m ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oae:n_nodes ] ;
+            owl:allValuesFrom linkml:Integer ;
+            owl:onProperty oae:n_x ] ;
     skos:definition "Details about the model grid." ;
     skos:inScheme <ModelSimulation> .
 
@@ -322,49 +322,49 @@ oae:OAEProject a owl:Class,
     rdfs:label "OAEProject" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty oae:permit_info ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oae:project_id ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oae:description ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
             owl:onProperty oae:mcdr_pathway ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oae:site_description ],
+            owl:minCardinality 0 ;
+            owl:onProperty oae:project_id ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty oae:permit_info ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
             owl:onProperty oae:description ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
-            owl:onProperty oae:site_description ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oae:project_id ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
             owl:onProperty oae:project_id ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty oae:site_description ],
+            owl:onProperty oae:permit_info ],
         [ a owl:Restriction ;
             owl:allValuesFrom oae:MCDRPathway ;
             owl:onProperty oae:mcdr_pathway ],
         [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:site_description ],
+        [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
-            owl:onProperty oae:permit_info ],
+            owl:onProperty oae:description ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty oae:mcdr_pathway ],
         [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:project_id ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:permit_info ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:description ],
+        [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
-            owl:onProperty oae:description ] ;
+            owl:onProperty oae:site_description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oae:permit_info ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:site_description ] ;
     skos:broadMatch schema1:ResearchProject ;
     skos:definition "A project conducting OAE field trials or modeling." ;
     skos:inScheme <OAEProject> .
@@ -383,77 +383,77 @@ oae:Experiment a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "Experiment" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oae:start_date ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oae:experiment_id ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oae:project ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oae:project ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oae:description ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oae:previous_research ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oae:description ],
-        [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty oae:datasets ],
         [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Datetime ;
-            owl:onProperty oae:end_date ],
+            owl:minCardinality 0 ;
+            owl:onProperty oae:observation_type ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
+            owl:onProperty oae:project ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
             owl:onProperty oae:experiment_type ],
         [ a owl:Restriction ;
-            owl:allValuesFrom oae:ExperimentType ;
-            owl:onProperty oae:experiment_type ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
+            owl:minCardinality 0 ;
             owl:onProperty oae:experiment_id ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oae:description ],
         [ a owl:Restriction ;
             owl:allValuesFrom oae:OAEProject ;
             owl:onProperty oae:project ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oae:experiment_id ],
-        [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty oae:start_date ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oae:experiment_type ],
+            owl:onProperty oae:end_date ],
         [ a owl:Restriction ;
             owl:allValuesFrom oae:ObservationType ;
             owl:onProperty oae:observation_type ],
         [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Datetime ;
-            owl:onProperty oae:start_date ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oae:end_date ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oae:observation_type ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom oae:Dataset ;
-            owl:onProperty oae:datasets ],
+            owl:allValuesFrom oae:ExperimentType ;
+            owl:onProperty oae:experiment_type ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty oae:end_date ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
-            owl:onProperty oae:previous_research ] ;
+            owl:onProperty oae:previous_research ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:start_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oae:description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:experiment_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Datetime ;
+            owl:onProperty oae:start_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom oae:Dataset ;
+            owl:onProperty oae:datasets ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oae:experiment_id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:start_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:previous_research ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Datetime ;
+            owl:onProperty oae:end_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:project ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:experiment_id ] ;
     skos:definition "A single experiment conducted within an OAE project." ;
     skos:inScheme <Experiment> .
 
@@ -686,47 +686,47 @@ oae:ModelComponent a owl:Class,
         linkml:ClassDefinition ;
     rdfs:label "ModelComponent" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom linkml:String ;
-            owl:onProperty oae:description ],
+            owl:minCardinality 0 ;
+            owl:onProperty oae:name ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:minCardinality 0 ;
             owl:onProperty oae:description ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:Uri ;
             owl:onProperty oae:references ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty oae:name ],
+            owl:onProperty oae:codebase ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
-            owl:onProperty oae:name ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oae:name ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
             owl:onProperty oae:version ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty oae:codebase ],
+            owl:onProperty oae:name ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty oae:codebase ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oae:version ],
+            owl:onProperty oae:references ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:Uri ;
             owl:onProperty oae:codebase ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
+            owl:onProperty oae:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oae:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:codebase ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
             owl:onProperty oae:version ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oae:references ],
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:description ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty oae:description ] ;
+            owl:onProperty oae:version ] ;
     skos:definition "A component of a model." ;
     skos:inScheme <ModelSimulation> .
 

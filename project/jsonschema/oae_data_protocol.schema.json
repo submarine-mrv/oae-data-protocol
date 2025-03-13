@@ -142,9 +142,6 @@
                     ]
                 }
             },
-            "required": [
-                "experiment_id"
-            ],
             "title": "Experiment",
             "type": "object"
         },
@@ -241,7 +238,10 @@
                 },
                 "experiment_id": {
                     "description": "Unique identifier for an OAE experiment.",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "experiment_type": {
                     "$ref": "#/$defs/ExperimentType",
@@ -291,9 +291,6 @@
                     "description": "Type of OAE intervention."
                 }
             },
-            "required": [
-                "experiment_id"
-            ],
             "title": "Intervention",
             "type": "object"
         },
@@ -558,7 +555,10 @@
                 },
                 "experiment_id": {
                     "description": "Unique identifier for an OAE experiment.",
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "experiment_type": {
                     "$ref": "#/$defs/ExperimentType",
@@ -636,9 +636,6 @@
                     ]
                 }
             },
-            "required": [
-                "experiment_id"
-            ],
             "title": "ModelSimulation",
             "type": "object"
         },
@@ -688,9 +685,6 @@
                     ]
                 }
             },
-            "required": [
-                "project_id"
-            ],
             "title": "OAEProject",
             "type": "object"
         },

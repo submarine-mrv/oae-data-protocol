@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-03-12T16:45:29
+# Generation date: 2025-03-13T13:45:50
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -87,20 +87,7 @@ class Doi(str):
 
 
 # Class references
-class OAEProjectProjectId(extended_str):
-    pass
 
-
-class ExperimentExperimentId(extended_str):
-    pass
-
-
-class InterventionExperimentId(ExperimentExperimentId):
-    pass
-
-
-class ModelSimulationExperimentId(ExperimentExperimentId):
-    pass
 
 
 class PropertyValue(YAMLRoot):
@@ -126,20 +113,18 @@ class OAEProject(YAMLRoot):
     class_name: ClassVar[str] = "OAEProject"
     class_model_uri: ClassVar[URIRef] = OAE.OAEProject
 
-    project_id: Union[str, OAEProjectProjectId] = None
     description: Optional[str] = None
+    project_id: Optional[str] = None
     mcdr_pathway: Optional[Union[str, "MCDRPathway"]] = None
     site_description: Optional[str] = None
     permit_info: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.project_id):
-            self.MissingRequiredField("project_id")
-        if not isinstance(self.project_id, OAEProjectProjectId):
-            self.project_id = OAEProjectProjectId(self.project_id)
-
         if self.description is not None and not isinstance(self.description, str):
             self.description = str(self.description)
+
+        if self.project_id is not None and not isinstance(self.project_id, str):
+            self.project_id = str(self.project_id)
 
         if self.mcdr_pathway is not None and not isinstance(self.mcdr_pathway, MCDRPathway):
             self.mcdr_pathway = MCDRPathway(self.mcdr_pathway)
@@ -207,9 +192,9 @@ class Experiment(YAMLRoot):
     class_name: ClassVar[str] = "Experiment"
     class_model_uri: ClassVar[URIRef] = OAE.Experiment
 
-    experiment_id: Union[str, ExperimentExperimentId] = None
     description: Optional[str] = None
     experiment_type: Optional[Union[str, "ExperimentType"]] = None
+    experiment_id: Optional[str] = None
     project: Optional[Union[dict, OAEProject]] = None
     observation_type: Optional[Union[Union[str, "ObservationType"], List[Union[str, "ObservationType"]]]] = empty_list()
     start_date: Optional[Union[str, XSDDateTime]] = None
@@ -218,16 +203,14 @@ class Experiment(YAMLRoot):
     previous_research: Optional[Union[str, List[str]]] = empty_list()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.experiment_id):
-            self.MissingRequiredField("experiment_id")
-        if not isinstance(self.experiment_id, ExperimentExperimentId):
-            self.experiment_id = ExperimentExperimentId(self.experiment_id)
-
         if self.description is not None and not isinstance(self.description, str):
             self.description = str(self.description)
 
         if self.experiment_type is not None and not isinstance(self.experiment_type, ExperimentType):
             self.experiment_type = ExperimentType(self.experiment_type)
+
+        if self.experiment_id is not None and not isinstance(self.experiment_id, str):
+            self.experiment_id = str(self.experiment_id)
 
         if self.project is not None and not isinstance(self.project, OAEProject):
             self.project = OAEProject(**as_dict(self.project))
@@ -265,7 +248,6 @@ class Intervention(Experiment):
     class_name: ClassVar[str] = "Intervention"
     class_model_uri: ClassVar[URIRef] = OAE.Intervention
 
-    experiment_id: Union[str, InterventionExperimentId] = None
     treatment_type: Optional[Union[str, "OAETreatmentType"]] = None
     alkalinity_feedstock_type: Optional[Union[str, "FeedstockType"]] = None
     alkalinity_feedstock_description: Optional[str] = None
@@ -274,11 +256,6 @@ class Intervention(Experiment):
     dosing_location: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.experiment_id):
-            self.MissingRequiredField("experiment_id")
-        if not isinstance(self.experiment_id, InterventionExperimentId):
-            self.experiment_id = InterventionExperimentId(self.experiment_id)
-
         if self.treatment_type is not None and not isinstance(self.treatment_type, OAETreatmentType):
             self.treatment_type = OAETreatmentType(self.treatment_type)
 
@@ -312,7 +289,6 @@ class ModelSimulation(Experiment):
     class_name: ClassVar[str] = "ModelSimulation"
     class_model_uri: ClassVar[URIRef] = OAE.ModelSimulation
 
-    experiment_id: Union[str, ModelSimulationExperimentId] = None
     model_type: Optional[Union[str, "ModelType"]] = None
     model_configurations: Optional[Union[str, URI]] = None
     model_components: Optional[Union[Union[dict, "ModelComponent"], List[Union[dict, "ModelComponent"]]]] = empty_list()
@@ -321,11 +297,6 @@ class ModelSimulation(Experiment):
     experiment_type: Optional[Union[str, "ExperimentType"]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.experiment_id):
-            self.MissingRequiredField("experiment_id")
-        if not isinstance(self.experiment_id, ModelSimulationExperimentId):
-            self.experiment_id = ModelSimulationExperimentId(self.experiment_id)
-
         if self.model_type is not None and not isinstance(self.model_type, ModelType):
             self.model_type = ModelType(self.model_type)
 
@@ -683,7 +654,7 @@ slots.experiment_type = Slot(uri=OAE.experiment_type, name="experiment_type", cu
                    model_uri=OAE.experiment_type, domain=None, range=Optional[Union[str, "ExperimentType"]])
 
 slots.oAEProject__project_id = Slot(uri=OAE.project_id, name="oAEProject__project_id", curie=OAE.curie('project_id'),
-                   model_uri=OAE.oAEProject__project_id, domain=None, range=URIRef)
+                   model_uri=OAE.oAEProject__project_id, domain=None, range=Optional[str])
 
 slots.oAEProject__mcdr_pathway = Slot(uri=OAE.mcdr_pathway, name="oAEProject__mcdr_pathway", curie=OAE.curie('mcdr_pathway'),
                    model_uri=OAE.oAEProject__mcdr_pathway, domain=None, range=Optional[Union[str, "MCDRPathway"]])
@@ -704,7 +675,7 @@ slots.dataset__spatial_coverage = Slot(uri=SCHEMA.spatialCoverage, name="dataset
                    model_uri=OAE.dataset__spatial_coverage, domain=None, range=Optional[str])
 
 slots.experiment__experiment_id = Slot(uri=OAE.experiment_id, name="experiment__experiment_id", curie=OAE.curie('experiment_id'),
-                   model_uri=OAE.experiment__experiment_id, domain=None, range=URIRef)
+                   model_uri=OAE.experiment__experiment_id, domain=None, range=Optional[str])
 
 slots.experiment__project = Slot(uri=OAE.project, name="experiment__project", curie=OAE.curie('project'),
                    model_uri=OAE.experiment__project, domain=None, range=Optional[Union[dict, OAEProject]])

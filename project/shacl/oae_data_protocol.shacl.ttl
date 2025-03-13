@@ -14,34 +14,13 @@ schema1:PropertyValue a sh:NodeShape ;
 oae:Experiment a sh:NodeShape ;
     sh:closed true ;
     sh:description "A single experiment conducted within an OAE project." ;
-    sh:ignoredProperties ( oae:model_configurations oae:alkalinity_feedstock_type oae:alkalinity_feedstock_description oae:dosing_regimen oae:model_type oae:treatment_type oae:grid_details oae:dosing_depth_in_m oae:dosing_location rdf:type oae:model_components ) ;
+    sh:ignoredProperties ( oae:treatment_type rdf:type oae:model_components oae:alkalinity_feedstock_description oae:model_configurations oae:grid_details oae:alkalinity_feedstock_type oae:dosing_regimen oae:dosing_location oae:model_type oae:dosing_depth_in_m ) ;
     sh:property [ sh:datatype xsd:string ;
-            sh:description "Previous research related to the experiment." ;
-            sh:nodeKind sh:Literal ;
-            sh:order 8 ;
-            sh:path oae:previous_research ],
-        [ sh:description "The type of experiment being conducted." ;
-            sh:in ( "natural" "manipulated" "model_output" ) ;
-            sh:maxCount 1 ;
-            sh:order 1 ;
-            sh:path oae:experiment_type ],
-        [ sh:datatype xsd:string ;
             sh:description "Unique identifier for an OAE experiment." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 2 ;
             sh:path oae:experiment_id ],
-        [ sh:datatype xsd:dateTime ;
-            sh:description "Date when the experiment began." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 5 ;
-            sh:path oae:start_date ],
-        [ sh:class oae:Dataset ;
-            sh:description "The dataset(s) associated with the experiment." ;
-            sh:nodeKind sh:BlankNodeOrIRI ;
-            sh:order 7 ;
-            sh:path oae:datasets ],
         [ sh:description "The type of observation / data submitted, multiple values are allowed of mulitple datasets are being submitted for this experiment." ;
             sh:in ( "profile" "surface_underway" "time_series" "laboratory_experiments" "mesocosms" "field_experiments" "natural_analogues" "model_outputs" ) ;
             sh:order 4 ;
@@ -52,10 +31,31 @@ oae:Experiment a sh:NodeShape ;
             sh:nodeKind sh:Literal ;
             sh:order 0 ;
             sh:path oae:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "Previous research related to the experiment." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path oae:previous_research ],
+        [ sh:class oae:Dataset ;
+            sh:description "The dataset(s) associated with the experiment." ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 7 ;
+            sh:path oae:datasets ],
+        [ sh:datatype xsd:dateTime ;
+            sh:description "Date when the experiment began." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path oae:start_date ],
+        [ sh:description "The type of experiment being conducted." ;
+            sh:in ( "natural" "manipulated" "model_output" ) ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path oae:experiment_type ],
         [ sh:class oae:OAEProject ;
             sh:description "The OAE project to which the experiment belongs." ;
             sh:maxCount 1 ;
-            sh:nodeKind sh:IRI ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
             sh:order 3 ;
             sh:path oae:project ],
         [ sh:datatype xsd:dateTime ;
@@ -71,6 +71,46 @@ oae:Intervention a sh:NodeShape ;
     sh:description "Details about an OAE intervention." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
+            sh:description "Information such as feedstock source, characteristics, concentration, impurities, dilution prior to dosing, and for feedstock other than NaOH; trace metal composition and particulate grain size." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path oae:alkalinity_feedstock_description ],
+        [ sh:description "Type of OAE intervention." ;
+            sh:in ( "electrochemical" "mineral" "dissolved" "river" "coastal" "preequilibrated" ) ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path oae:treatment_type ],
+        [ sh:class oae:OAEProject ;
+            sh:description "The OAE project to which the experiment belongs." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 9 ;
+            sh:path oae:project ],
+        [ sh:datatype xsd:dateTime ;
+            sh:description "Date when the experiment began." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 11 ;
+            sh:path oae:start_date ],
+        [ sh:datatype xsd:dateTime ;
+            sh:description "Date when the experiment ended." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path oae:end_date ],
+        [ sh:description "Material used for alkalinity addition." ;
+            sh:in ( PUBCHEM:14778 PUBCHEM:Portlandite PUBCHEM:10112 PUBCHEM:56843091 PUBCHEM:61833 PUBCHEM:6850729 PUBCHEM:14791 PUBCHEM:11029 PUBCHEM:517737 PUBCHEM:71586774 PUBCHEM:14798 PUBCHEM:10340 PUBCHEM:516892 ) ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path oae:alkalinity_feedstock_type ],
+        [ sh:datatype xsd:string ;
+            sh:description "A narrative description of the thing." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path oae:description ],
+        [ sh:datatype xsd:string ;
             sh:description "Previous research related to the experiment." ;
             sh:nodeKind sh:Literal ;
             sh:order 14 ;
@@ -78,37 +118,30 @@ oae:Intervention a sh:NodeShape ;
         [ sh:datatype xsd:string ;
             sh:description "Unique identifier for an OAE experiment." ;
             sh:maxCount 1 ;
-            sh:minCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 8 ;
             sh:path oae:experiment_id ],
-        [ sh:description "The type of observation / data submitted, multiple values are allowed of mulitple datasets are being submitted for this experiment." ;
-            sh:in ( "profile" "surface_underway" "time_series" "laboratory_experiments" "mesocosms" "field_experiments" "natural_analogues" "model_outputs" ) ;
-            sh:order 10 ;
-            sh:path oae:observation_type ],
-        [ sh:datatype xsd:string ;
-            sh:description "A narrative description of the thing." ;
+        [ sh:datatype xsd:decimal ;
+            sh:description "Depth at which alkalinity is added." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 6 ;
-            sh:path oae:description ],
+            sh:order 3 ;
+            sh:path oae:dosing_depth_in_m ],
         [ sh:class oae:Dataset ;
             sh:description "The dataset(s) associated with the experiment." ;
             sh:nodeKind sh:BlankNodeOrIRI ;
             sh:order 13 ;
             sh:path oae:datasets ],
+        [ sh:description "The type of observation / data submitted, multiple values are allowed of mulitple datasets are being submitted for this experiment." ;
+            sh:in ( "profile" "surface_underway" "time_series" "laboratory_experiments" "mesocosms" "field_experiments" "natural_analogues" "model_outputs" ) ;
+            sh:order 10 ;
+            sh:path oae:observation_type ],
         [ sh:datatype xsd:string ;
             sh:description "Geospatial coordinates of dosing activity." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 5 ;
             sh:path oae:dosing_location ],
-        [ sh:datatype xsd:string ;
-            sh:description "Information such as feedstock source, characteristics, concentration, impurities, dilution prior to dosing, and for feedstock other than NaOH; trace metal composition and particulate grain size." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path oae:alkalinity_feedstock_description ],
         [ sh:description "The type of experiment being conducted." ;
             sh:in ( "natural" "manipulated" "model_output" ) ;
             sh:maxCount 1 ;
@@ -119,54 +152,14 @@ oae:Intervention a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 4 ;
-            sh:path oae:dosing_regimen ],
-        [ sh:datatype xsd:decimal ;
-            sh:description "Depth at which alkalinity is added." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path oae:dosing_depth_in_m ],
-        [ sh:class oae:OAEProject ;
-            sh:description "The OAE project to which the experiment belongs." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:IRI ;
-            sh:order 9 ;
-            sh:path oae:project ],
-        [ sh:datatype xsd:dateTime ;
-            sh:description "Date when the experiment began." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 11 ;
-            sh:path oae:start_date ],
-        [ sh:description "Type of OAE intervention." ;
-            sh:in ( "electrochemical" "mineral" "dissolved" "river" "coastal" "preequilibrated" ) ;
-            sh:maxCount 1 ;
-            sh:order 0 ;
-            sh:path oae:treatment_type ],
-        [ sh:description "Material used for alkalinity addition." ;
-            sh:in ( PUBCHEM:14778 PUBCHEM:Portlandite PUBCHEM:10112 PUBCHEM:56843091 PUBCHEM:61833 PUBCHEM:6850729 PUBCHEM:14791 PUBCHEM:11029 PUBCHEM:517737 PUBCHEM:71586774 PUBCHEM:14798 PUBCHEM:10340 PUBCHEM:516892 ) ;
-            sh:maxCount 1 ;
-            sh:order 1 ;
-            sh:path oae:alkalinity_feedstock_type ],
-        [ sh:datatype xsd:dateTime ;
-            sh:description "Date when the experiment ended." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 12 ;
-            sh:path oae:end_date ] ;
+            sh:path oae:dosing_regimen ] ;
     sh:targetClass oae:Intervention .
 
 oae:ModelBGCComponent a sh:NodeShape ;
     sh:closed true ;
     sh:description "A biogeochemical / ecosystem component of a model" ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype xsd:anyURI ;
-            sh:description "Link to model code repository." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 4 ;
-            sh:path oae:codebase ],
-        [ sh:datatype xsd:string ;
+    sh:property [ sh:datatype xsd:string ;
             sh:description "Name of the model (e.g. ROMS, Oceanaigans)" ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
@@ -179,22 +172,28 @@ oae:ModelBGCComponent a sh:NodeShape ;
             sh:order 0 ;
             sh:path oae:air_sea_co2_flux_parameterization ],
         [ sh:datatype xsd:string ;
-            sh:description "A description of the physical model characteristics, including version of equations being solved (hydrostatic vs non-hydrostatic), tracer advection scheme, how bottom drag is represented, mixed layer parameterizations, sub-grid mixing parameterizations if applicable, etc. Associated links to data, DOIs, or publications can be noted here, but should be supplemental." ;
+            sh:description "Version of the model component." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path oae:description ],
+            sh:order 3 ;
+            sh:path oae:version ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Link to model code repository." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path oae:codebase ],
         [ sh:datatype xsd:anyURI ;
             sh:description "Reference for model physics." ;
             sh:nodeKind sh:Literal ;
             sh:order 5 ;
             sh:path oae:references ],
         [ sh:datatype xsd:string ;
-            sh:description "Version of the model component." ;
+            sh:description "A description of the physical model characteristics, including version of equations being solved (hydrostatic vs non-hydrostatic), tracer advection scheme, how bottom drag is represented, mixed layer parameterizations, sub-grid mixing parameterizations if applicable, etc. Associated links to data, DOIs, or publications can be noted here, but should be supplemental." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path oae:version ] ;
+            sh:order 1 ;
+            sh:path oae:description ] ;
     sh:targetClass oae:ModelBGCComponent .
 
 oae:ModelPhysicsComponent a sh:NodeShape ;
@@ -202,12 +201,6 @@ oae:ModelPhysicsComponent a sh:NodeShape ;
     sh:description "A physical component of a model." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:anyURI ;
-            sh:description "Link to model code repository." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path oae:codebase ],
-        [ sh:datatype xsd:anyURI ;
             sh:description "Reference for model physics." ;
             sh:nodeKind sh:Literal ;
             sh:order 4 ;
@@ -224,6 +217,12 @@ oae:ModelPhysicsComponent a sh:NodeShape ;
             sh:nodeKind sh:Literal ;
             sh:order 1 ;
             sh:path oae:name ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Link to model code repository." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path oae:codebase ],
         [ sh:datatype xsd:string ;
             sh:description "Version of the model component." ;
             sh:maxCount 1 ;
@@ -236,78 +235,77 @@ oae:ModelSimulation a sh:NodeShape ;
     sh:closed true ;
     sh:description "A computational model run related to OAE." ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:class oae:ModelGrid ;
-            sh:description "Details about the model grid." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:BlankNodeOrIRI ;
-            sh:order 3 ;
-            sh:path oae:grid_details ],
-        [ sh:datatype xsd:string ;
-            sh:description "Unique identifier for an OAE experiment." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 6 ;
-            sh:path oae:experiment_id ],
-        [ sh:datatype xsd:string ;
-            sh:description "Previous research related to the experiment." ;
-            sh:nodeKind sh:Literal ;
-            sh:order 12 ;
-            sh:path oae:previous_research ],
-        [ sh:datatype xsd:dateTime ;
-            sh:description "Date when the experiment began." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 9 ;
-            sh:path oae:start_date ],
-        [ sh:class oae:OAEProject ;
-            sh:description "The OAE project to which the experiment belongs." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:IRI ;
-            sh:order 7 ;
-            sh:path oae:project ],
-        [ sh:datatype xsd:anyURI ;
-            sh:description "Details about the model configuration." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path oae:model_configurations ],
-        [ sh:description "Type of model simulation." ;
-            sh:in ( "counterfactual" "perturbation" ) ;
-            sh:maxCount 1 ;
-            sh:order 0 ;
-            sh:path oae:model_type ],
-        [ sh:description "The type of experiment being conducted (must be 'model_output' for ModelSimulation class)." ;
-            sh:in ( "natural" "manipulated" "model_output" ) ;
-            sh:maxCount 1 ;
-            sh:order 5 ;
-            sh:path oae:experiment_type ],
+    sh:property [ sh:description "The type of observation / data submitted, multiple values are allowed of mulitple datasets are being submitted for this experiment." ;
+            sh:in ( "profile" "surface_underway" "time_series" "laboratory_experiments" "mesocosms" "field_experiments" "natural_analogues" "model_outputs" ) ;
+            sh:order 8 ;
+            sh:path oae:observation_type ],
         [ sh:class oae:ModelComponent ;
             sh:description "Components of the model." ;
             sh:nodeKind sh:BlankNodeOrIRI ;
             sh:order 2 ;
             sh:path oae:model_components ],
-        [ sh:class oae:Dataset ;
-            sh:description "The dataset(s) associated with the experiment." ;
+        [ sh:class oae:OAEProject ;
+            sh:description "The OAE project to which the experiment belongs." ;
+            sh:maxCount 1 ;
             sh:nodeKind sh:BlankNodeOrIRI ;
-            sh:order 11 ;
-            sh:path oae:datasets ],
+            sh:order 7 ;
+            sh:path oae:project ],
         [ sh:datatype xsd:string ;
             sh:description "Foobar description" ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 4 ;
             sh:path oae:description ],
-        [ sh:description "The type of observation / data submitted, multiple values are allowed of mulitple datasets are being submitted for this experiment." ;
-            sh:in ( "profile" "surface_underway" "time_series" "laboratory_experiments" "mesocosms" "field_experiments" "natural_analogues" "model_outputs" ) ;
-            sh:order 8 ;
-            sh:path oae:observation_type ],
         [ sh:datatype xsd:dateTime ;
             sh:description "Date when the experiment ended." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 10 ;
-            sh:path oae:end_date ] ;
+            sh:path oae:end_date ],
+        [ sh:datatype xsd:string ;
+            sh:description "Previous research related to the experiment." ;
+            sh:nodeKind sh:Literal ;
+            sh:order 12 ;
+            sh:path oae:previous_research ],
+        [ sh:description "The type of experiment being conducted (must be 'model_output' for ModelSimulation class)." ;
+            sh:in ( "natural" "manipulated" "model_output" ) ;
+            sh:maxCount 1 ;
+            sh:order 5 ;
+            sh:path oae:experiment_type ],
+        [ sh:description "Type of model simulation." ;
+            sh:in ( "counterfactual" "perturbation" ) ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path oae:model_type ],
+        [ sh:datatype xsd:string ;
+            sh:description "Unique identifier for an OAE experiment." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path oae:experiment_id ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Details about the model configuration." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path oae:model_configurations ],
+        [ sh:class oae:Dataset ;
+            sh:description "The dataset(s) associated with the experiment." ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 11 ;
+            sh:path oae:datasets ],
+        [ sh:datatype xsd:dateTime ;
+            sh:description "Date when the experiment began." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path oae:start_date ],
+        [ sh:class oae:ModelGrid ;
+            sh:description "Details about the model grid." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:BlankNodeOrIRI ;
+            sh:order 3 ;
+            sh:path oae:grid_details ] ;
     sh:targetClass oae:ModelSimulation .
 
 linkml:Any a sh:NodeShape ;
@@ -318,36 +316,36 @@ linkml:Any a sh:NodeShape ;
 oae:ModelComponent a sh:NodeShape ;
     sh:closed true ;
     sh:description "A component of a model." ;
-    sh:ignoredProperties ( rdf:type oae:air_sea_co2_flux_parameterization ) ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:description "Version of the model component." ;
-            sh:maxCount 1 ;
+    sh:ignoredProperties ( oae:air_sea_co2_flux_parameterization rdf:type ) ;
+    sh:property [ sh:datatype xsd:anyURI ;
+            sh:description "Reference for model physics." ;
             sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path oae:version ],
+            sh:order 4 ;
+            sh:path oae:references ],
         [ sh:datatype xsd:string ;
             sh:description "Name of the model (e.g. ROMS, Oceanaigans)" ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 1 ;
             sh:path oae:name ],
-        [ sh:datatype xsd:anyURI ;
-            sh:description "Reference for model physics." ;
-            sh:nodeKind sh:Literal ;
-            sh:order 4 ;
-            sh:path oae:references ],
-        [ sh:datatype xsd:anyURI ;
-            sh:description "Link to model code repository." ;
+        [ sh:datatype xsd:string ;
+            sh:description "Version of the model component." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path oae:codebase ],
+            sh:order 2 ;
+            sh:path oae:version ],
         [ sh:datatype xsd:string ;
             sh:description "A description of the physical model characteristics, including version of equations being solved (hydrostatic vs non-hydrostatic), tracer advection scheme, how bottom drag is represented, mixed layer parameterizations, sub-grid mixing parameterizations if applicable, etc. Associated links to data, DOIs, or publications can be noted here, but should be supplemental." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 0 ;
-            sh:path oae:description ] ;
+            sh:path oae:description ],
+        [ sh:datatype xsd:anyURI ;
+            sh:description "Link to model code repository." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path oae:codebase ] ;
     sh:targetClass oae:ModelComponent .
 
 oae:ModelGrid a sh:NodeShape ;
@@ -355,42 +353,6 @@ oae:ModelGrid a sh:NodeShape ;
     sh:description "Details about the model grid." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
-            sh:description "The grid arrangement of orthogonal physical quantities (e.g. Arakawa A, Arakawa B, Arakawa C)" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path oae:arrangement ],
-        [ sh:datatype xsd:integer ;
-            sh:description "Number of grid points in the x-direction." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path oae:n_x ],
-        [ sh:datatype xsd:string ;
-            sh:description "Descriptive structure of grid (e.g. latitude-longitude grid, unstructured triangular, tripolar)" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 0 ;
-            sh:path oae:grid_type ],
-        [ sh:datatype xsd:decimal ;
-            sh:description "Horizontal resolution of the grid." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 7 ;
-            sh:path oae:horizontal_resolution_in_m ],
-        [ sh:datatype xsd:integer ;
-            sh:description "Number of nodes in the grid if using an unstructured grids" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 6 ;
-            sh:path oae:n_nodes ],
-        [ sh:datatype xsd:integer ;
-            sh:description "Number of grid points in the y-direction." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 4 ;
-            sh:path oae:n_y ],
-        [ sh:datatype xsd:string ;
             sh:description "Region covered by the grid. LOOK FOR IMPORTS" ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
@@ -407,7 +369,43 @@ oae:ModelGrid a sh:NodeShape ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 5 ;
-            sh:path oae:n_z ] ;
+            sh:path oae:n_z ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Number of nodes in the grid if using an unstructured grids" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path oae:n_nodes ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Number of grid points in the y-direction." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path oae:n_y ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Number of grid points in the x-direction." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path oae:n_x ],
+        [ sh:datatype xsd:string ;
+            sh:description "The grid arrangement of orthogonal physical quantities (e.g. Arakawa A, Arakawa B, Arakawa C)" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path oae:arrangement ],
+        [ sh:datatype xsd:string ;
+            sh:description "Descriptive structure of grid (e.g. latitude-longitude grid, unstructured triangular, tripolar)" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path oae:grid_type ],
+        [ sh:datatype xsd:decimal ;
+            sh:description "Horizontal resolution of the grid." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path oae:horizontal_resolution_in_m ] ;
     sh:targetClass oae:ModelGrid .
 
 oae:Dataset a sh:NodeShape ;
@@ -415,6 +413,24 @@ oae:Dataset a sh:NodeShape ;
     sh:description "A dataset related to an OAE experiment. Generally following guidelines & best practices as outlined in [science-on-schema.org](https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md)" ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
+            sh:description "The temporal coverage of the dataset." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path schema1:temporalCoverage ],
+        [ sh:datatype xsd:string ;
+            sh:description "A unique identifier for the thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path oae:identifier ],
+        [ sh:datatype xsd:string ;
+            sh:description "Location of a page describing the dataset." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path schema1:url ],
+        [ sh:datatype xsd:string ;
             sh:description "A human-readable name for the thing." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
@@ -426,24 +442,6 @@ oae:Dataset a sh:NodeShape ;
             sh:nodeKind sh:Literal ;
             sh:order 0 ;
             sh:path oae:description ],
-        [ sh:datatype xsd:string ;
-            sh:description "A unique identifier for the thing" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path oae:identifier ],
-        [ sh:datatype xsd:string ;
-            sh:description "The temporal coverage of the dataset." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 4 ;
-            sh:path schema1:temporalCoverage ],
-        [ sh:datatype xsd:string ;
-            sh:description "Location of a page describing the dataset." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path schema1:url ],
         [ sh:datatype xsd:string ;
             sh:description "The spatial coverage of the dataset." ;
             sh:maxCount 1 ;
@@ -457,33 +455,33 @@ oae:OAEProject a sh:NodeShape ;
     sh:description "A project conducting OAE field trials or modeling." ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:datatype xsd:string ;
-            sh:description "Details about the project site, including location and conditions." ;
+            sh:description "Unique identifier for an OAE project." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path oae:site_description ],
-        [ sh:datatype xsd:string ;
-            sh:description "Regulatory details for the project." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 4 ;
-            sh:path oae:permit_info ],
+            sh:order 1 ;
+            sh:path oae:project_id ],
         [ sh:description "The Marine Carbon Dioxide Removal (MCDR) pathway being studied." ;
             sh:in ( "ocean_alkalinity_enhancement" "macroalgal_cultivation" "direct_ocean_capture" "ocean_fertilization" "artificial_upwelling_downwelling" "coastal_blue_carbon" "marine_ecosystem_recovery" ) ;
             sh:maxCount 1 ;
             sh:order 2 ;
             sh:path oae:mcdr_pathway ],
         [ sh:datatype xsd:string ;
+            sh:description "Regulatory details for the project." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path oae:permit_info ],
+        [ sh:datatype xsd:string ;
+            sh:description "Details about the project site, including location and conditions." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path oae:site_description ],
+        [ sh:datatype xsd:string ;
             sh:description "A narrative description of the thing." ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 0 ;
-            sh:path oae:description ],
-        [ sh:datatype xsd:string ;
-            sh:description "Unique identifier for an OAE project." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path oae:project_id ] ;
+            sh:path oae:description ] ;
     sh:targetClass oae:OAEProject .
 
