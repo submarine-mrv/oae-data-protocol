@@ -1,4 +1,4 @@
-# oae-data-protocol
+# oae-data-protocol (⚠️ work in progress ⚠️)
 
 Base ontology and data schemas for ocean alkalinity enhancement projects, experiments, and field trails. This project aims to be a technical complement to Submarine Scientific's OAE Data Protocol, developed in conjunction with Carbon To Sea and NOAA.
 
@@ -8,15 +8,15 @@ Base ontology and data schemas for ocean alkalinity enhancement projects, experi
 
 ## Repository Structure
 
-* [examples/](examples/) - example data
-* [project/](project/) - project files (do not edit these)
-* [src/](src/) - source files (edit these)
-  * [oae_data_protocol](src/oae_data_protocol)
-    * [schema](src/oae_data_protocol/schema) -- LinkML schema
+- [examples/](examples/) - example data
+- [project/](project/) - project files (do not edit these)
+- [src/](src/) - source files (edit these)
+  - [oae_data_protocol](src/oae_data_protocol)
+    - [schema](src/oae_data_protocol/schema) -- LinkML schema
       (edit this)
-    * [datamodel](src/oae_data_protocol/datamodel) -- generated
+    - [datamodel](src/oae_data_protocol/datamodel) -- generated
       Python datamodel
-* [tests/](tests/) - Python tests
+- [tests/](tests/) - Python tests
 
 ## Developer Documentation
 

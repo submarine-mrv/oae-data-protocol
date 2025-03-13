@@ -1,0 +1,27 @@
+id: OAEProject
+name: OAEProject
+
+prefixes:
+  oae: "https://example.org/oae#"
+
+default_prefix: oae
+
+classes:
+  OAEProject:
+    description: "A project conducting OAE field trials or modeling."
+    slots:
+      - description
+    attributes:
+      project_id:
+        description: "Unique identifier for an OAE project."
+        range: string
+      mcdr_pathway:
+        description: "The Marine Carbon Dioxide Removal (MCDR) pathway being studied."
+        range: MCDRPathway
+      site_description:
+        description: "Details about the project site, including location and conditions."
+        range: string
+      permit_info:
+        description: "Regulatory details for the project."
+        range: string
+    broad_mappings: "schema:ResearchProject"

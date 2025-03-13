@@ -1,0 +1,35 @@
+id: Core
+name: Core
+
+prefixes:
+  schema: "http://schema.org/"
+  oae: "https://example.org/oae#"
+
+default_prefix: oae
+
+slots:
+  description:
+    #slot_uri: schema:description
+    description: "A narrative description of the thing."
+    range: string
+  name:
+    #slot_uri: schema:name
+    description: "A human-readable name for the thing."
+    range: string
+  identifier:
+    #slot_uri: schema:identifier
+    description: "A unique identifier for the thing"
+    range: Any
+
+classes:
+  PropertyValue:
+    class_uri: schema:PropertyValue
+  Any:
+    class_uri: linkml:Any
+
+types:
+  Doi:
+    title: DOI
+    uri: xsd:string
+    base: str
+    description: "A Digital Object Identifier (DOI) for a digital object such as a document, dataset, or software package."

@@ -1,0 +1,45 @@
+id: Experiment
+name: Experiment
+prefixes:
+  oae: "https://example.org/oae#"
+
+default_prefix: oae
+
+classes:
+  Experiment:
+    description: "A single experiment conducted within an OAE project."
+    slots:
+      - description
+      - experiment_type
+    attributes:
+      experiment_id:
+        description: "Unique identifier for an OAE experiment."
+        range: string
+      project:
+        description: "The OAE project to which the experiment belongs."
+        range: OAEProject
+        inlined: true
+      observation_type:
+        description: "The type of observation / data submitted, multiple values are allowed of mulitple datasets are being submitted for this experiment."
+        range: ObservationType
+        multivalued: true
+      start_date:
+        description: "Date when the experiment began."
+        range: datetime
+      end_date:
+        description: "Date when the experiment ended."
+        range: datetime
+      datasets:
+        description: "The dataset(s) associated with the experiment."
+        range: Dataset
+        inlined: true
+        multivalued: true
+      previous_research:
+        description: "Previous research related to the experiment."
+        range: string
+        multivalued: true
+
+slots:
+  experiment_type:
+    range: ExperimentType
+    description: "The type of experiment being conducted."

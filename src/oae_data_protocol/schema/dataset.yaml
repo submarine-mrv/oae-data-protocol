@@ -1,0 +1,31 @@
+id: Dataset
+name: Dataset
+
+default_prefix: oae
+
+classes:
+  Dataset:
+    description: "A dataset related to an OAE experiment. Generally following guidelines & best practices as outlined in [science-on-schema.org](https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md)"
+    attributes:
+      url:
+        slot_uri: schema:url
+        description: "Location of a page describing the dataset."
+        range: string
+      temporal_coverage:
+        slot_uri: schema:temporalCoverage
+        description: "The temporal coverage of the dataset."
+        range: string
+      spatial_coverage:
+        slot_uri: schema:spatialCoverage
+        description: "The spatial coverage of the dataset."
+        range: string
+    slots:
+      - description
+      - name
+      - identifier
+    slot_usage:
+      identifier:
+        range: Doi
+    exact_mappings:
+      - "schema:Dataset"
+      - "dcat:Dataset"

@@ -1,0 +1,27 @@
+{
+  "experiment_id": "OAEPC001",
+  "description": "A study of ocean alkalinity enhancement along the Pacific Coast.",
+  "experiment_type": "natural",
+  "project": {
+    "project_id": "PacificCoastOAEProject",
+    "description": "A project focused on enhancing ocean alkalinity along the Pacific Coast."
+  },
+  "observation_type": [
+    "surface_underway",
+    "time_series"
+  ],
+  "start_date": "2025-03-01T00:00:00+00:00",
+  "end_date": "2025-03-15T00:00:00+00:00",
+  "datasets": [
+    {
+      "description": "Measurements of ocean alkalinity along the Pacific Coast for the project.",
+      "name": "Alkalinity Measurements",
+      "identifier": "http://oaedataprotocol.org/OAEPC001/DatasetAlkalinity"
+    }
+  ],
+  "previous_research": [
+    "http://oaeprotocolrepository.org/AlkalinityStudy2024",
+    "http://oaeprotocolrepository.org/MarineLifeImpact2023"
+  ],
+  "@type": "Experiment"
+}

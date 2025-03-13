@@ -1,11 +1,14 @@
 {
-   "PATO": "http://purl.obolibrary.org/obo/PATO_",
-   "biolink": "https://w3id.org/biolink/",
-   "example": "https://example.org/",
+   "PUBCHEM": "https://pubchem.ncbi.nlm.nih.gov/compound/",
+   "dcat": "http://www.w3.org/ns/dcat#",
+   "envthes": "https://w3id.org/envthes/",
    "linkml": "https://w3id.org/linkml/",
-   "oae_data_protocol": "https://w3id.org/clevinson/oae-data-protocol/",
+   "oae": "https://example.org/oae#",
    "schema": "http://schema.org/",
-   "NamedThing": {
-      "@id": "schema:Thing"
+   "Any": {
+      "@id": "linkml:Any"
+   },
+   "PropertyValue": {
+      "@id": "schema:PropertyValue"
    }
 }

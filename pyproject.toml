@@ -39,3 +39,7 @@ mkdocs-mermaid2-plugin = ">=1.1.1"
 schemasheets = ">=0.1.14"
 jupyter = ">=1.0.0"
 mknotebooks = ">= 0.8.0"
+
+[tool.pytest.ini_options]
+log_cli = true
+log_cli_level = "INFO"

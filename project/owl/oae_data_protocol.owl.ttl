@@ -1,182 +1,1017 @@
-@prefix PATO: <http://purl.obolibrary.org/obo/PATO_> .
-@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix PUBCHEM: <https://pubchem.ncbi.nlm.nih.gov/compound/> .
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
 @prefix linkml: <https://w3id.org/linkml/> .
-@prefix oae_data_protocol: <https://w3id.org/clevinson/oae-data-protocol/> .
+@prefix oae: <https://example.org/oae#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix pav: <http://purl.org/pav/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema1: <http://schema.org/> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-oae_data_protocol:ProjectCollection a owl:Class,
-        linkml:ClassDefinition ;
-    rdfs:label "ProjectCollection" ;
-    rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oae_data_protocol:entries ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom oae_data_protocol:Project ;
-            owl:onProperty oae_data_protocol:entries ] ;
-    skos:definition "A holder for Project objects" ;
-    skos:inScheme <https://w3id.org/clevinson/oae-data-protocol> .
+<OAEDataManagementProtocol> a owl:Ontology ;
+    rdfs:label "OAEDataManagementProtocol" ;
+    pav:version "0.1.0" .
 
-oae_data_protocol:NamedThing a owl:Class,
+oae:Intervention a owl:Class,
         linkml:ClassDefinition ;
-    rdfs:label "NamedThing" ;
+    rdfs:label "Intervention" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oae_data_protocol:id ],
+            owl:allValuesFrom oae:OAETreatmentType ;
+            owl:onProperty oae:treatment_type ],
         [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty oae_data_protocol:id ],
+            owl:minCardinality 0 ;
+            owl:onProperty oae:alkalinity_feedstock_type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:treatment_type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:alkalinity_feedstock_description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:dosing_location ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:dosing_depth_in_m ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:dosing_depth_in_m ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
-            owl:onProperty oae_data_protocol:description ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oae_data_protocol:name ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty oae_data_protocol:description ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Uriorcurie ;
-            owl:onProperty oae_data_protocol:id ],
+            owl:onProperty oae:dosing_regimen ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:String ;
-            owl:onProperty oae_data_protocol:name ],
+            owl:onProperty oae:alkalinity_feedstock_description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:treatment_type ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty oae_data_protocol:description ],
+            owl:onProperty oae:alkalinity_feedstock_description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:dosing_regimen ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oae:dosing_location ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Decimal ;
+            owl:onProperty oae:dosing_depth_in_m ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:alkalinity_feedstock_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom oae:FeedstockType ;
+            owl:onProperty oae:alkalinity_feedstock_type ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty oae_data_protocol:name ] ;
-    skos:definition "A generic grouping for any identifiable entity" ;
-    skos:exactMatch schema1:Thing ;
-    skos:inScheme <https://w3id.org/clevinson/oae-data-protocol> .
+            owl:onProperty oae:dosing_regimen ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:dosing_location ],
+        oae:Experiment ;
+    skos:definition "Details about an OAE intervention." ;
+    skos:inScheme <Intervention> .
 
-oae_data_protocol:Project a owl:Class,
+oae:ModelBGCComponent a owl:Class,
         linkml:ClassDefinition ;
-    rdfs:label "Project" ;
+    rdfs:label "ModelBGCComponent" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:air_sea_co2_flux_parameterization ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oae:air_sea_co2_flux_parameterization ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:air_sea_co2_flux_parameterization ],
+        oae:ModelComponent ;
+    skos:definition "A biogeochemical / ecosystem component of a model" ;
+    skos:inScheme <ModelSimulation> .
+
+oae:ModelPhysicsComponent a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "ModelPhysicsComponent" ;
+    rdfs:subClassOf oae:ModelComponent ;
+    skos:definition "A physical component of a model." ;
+    skos:inScheme <ModelSimulation> .
+
+oae:ModelSimulation a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "ModelSimulation" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:experiment_type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:model_type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:model_type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:grid_details ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:model_configurations ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty oae:experiment_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom oae:ModelType ;
+            owl:onProperty oae:model_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom owl:Thing ;
+            owl:onProperty oae:description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:model_components ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:grid_details ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom oae:ModelComponent ;
+            owl:onProperty oae:model_components ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:model_configurations ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Uri ;
+            owl:onProperty oae:model_configurations ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom oae:ModelGrid ;
+            owl:onProperty oae:grid_details ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:experiment_type ],
+        oae:Experiment ;
+    skos:definition "A computational model run related to OAE." ;
+    skos:inScheme <ModelSimulation> .
+
+oae:PropertyValue a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "PropertyValue" ;
+    skos:exactMatch schema1:PropertyValue ;
+    skos:inScheme <Core> .
+
+oae:Any a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Any" ;
+    skos:exactMatch linkml:Any ;
+    skos:inScheme <Core> .
+
+oae:Dataset a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Dataset" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty oae_data_protocol:primary_email ],
+            owl:onProperty oae:identifier ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oae:temporal_coverage ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oae:url ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty oae_data_protocol:age_in_years ],
+            owl:onProperty oae:description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:identifier ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oae:description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:spatial_coverage ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:url ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oae:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom oae:Doi ;
+            owl:onProperty oae:identifier ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty oae_data_protocol:birth_date ],
+            owl:onProperty oae:temporal_coverage ],
         [ a owl:Restriction ;
-            owl:allValuesFrom linkml:Date ;
-            owl:onProperty oae_data_protocol:birth_date ],
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oae:spatial_coverage ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:spatial_coverage ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:url ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty oae_data_protocol:vital_status ],
+            owl:onProperty oae:temporal_coverage ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:name ] ;
+    skos:definition "A dataset related to an OAE experiment. Generally following guidelines & best practices as outlined in [science-on-schema.org](https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md)" ;
+    skos:exactMatch schema1:Dataset,
+        dcat:Dataset ;
+    skos:inScheme <Dataset> .
+
+oae:ModelGrid a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "ModelGrid" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:grid_type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:n_x ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty oae_data_protocol:primary_email ],
+            owl:onProperty oae:n_x ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:arrangement ],
         [ a owl:Restriction ;
             owl:allValuesFrom linkml:Integer ;
-            owl:onProperty oae_data_protocol:age_in_years ],
+            owl:onProperty oae:n_y ],
         [ a owl:Restriction ;
-            owl:allValuesFrom [ a rdfs:Datatype ;
-                    owl:onDatatype xsd:string ;
-                    owl:withRestrictions ( [ xsd:pattern "^\\S+@[\\S+\\.]+\\S+" ] ) ] ;
-            owl:onProperty oae_data_protocol:primary_email ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oae_data_protocol:age_in_years ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty oae_data_protocol:birth_date ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom oae_data_protocol:PersonStatus ;
-            owl:onProperty oae_data_protocol:vital_status ],
+            owl:allValuesFrom linkml:Integer ;
+            owl:onProperty oae:n_x ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty oae_data_protocol:vital_status ],
-        oae_data_protocol:NamedThing ;
-    skos:definition "Represents a Project" ;
-    skos:inScheme <https://w3id.org/clevinson/oae-data-protocol> .
+            owl:onProperty oae:n_y ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:horizontal_resolution_in_m ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:n_z ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Integer ;
+            owl:onProperty oae:n_nodes ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oae:region ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:n_y ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:region ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:n_z ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Decimal ;
+            owl:onProperty oae:vertical_resolution_in_m ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:grid_type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:region ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Integer ;
+            owl:onProperty oae:n_z ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oae:arrangement ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oae:grid_type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:arrangement ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:vertical_resolution_in_m ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:vertical_resolution_in_m ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:n_nodes ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Decimal ;
+            owl:onProperty oae:horizontal_resolution_in_m ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:horizontal_resolution_in_m ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:n_nodes ] ;
+    skos:definition "Details about the model grid." ;
+    skos:inScheme <ModelSimulation> .
 
-PATO:0001421 a owl:Class,
-        oae_data_protocol:PersonStatus ;
-    rdfs:label "ALIVE" ;
-    rdfs:subClassOf oae_data_protocol:PersonStatus .
+oae:OAEProject a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "OAEProject" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:permit_info ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oae:project_id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:mcdr_pathway ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:site_description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:permit_info ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oae:site_description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty oae:project_id ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:project_id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:site_description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom oae:MCDRPathway ;
+            owl:onProperty oae:mcdr_pathway ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oae:permit_info ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:mcdr_pathway ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oae:description ] ;
+    skos:broadMatch schema1:ResearchProject ;
+    skos:definition "A project conducting OAE field trials or modeling." ;
+    skos:inScheme <OAEProject> .
 
-PATO:0001422 a owl:Class,
-        oae_data_protocol:PersonStatus ;
-    rdfs:label "DEAD" ;
-    rdfs:subClassOf oae_data_protocol:PersonStatus .
+linkml:topValue a owl:DatatypeProperty ;
+    rdfs:label "value" .
 
-<https://w3id.org/clevinson/oae-data-protocol/PersonStatus#UNKNOWN> a owl:Class,
-        oae_data_protocol:PersonStatus ;
-    rdfs:label "UNKNOWN" ;
-    rdfs:subClassOf oae_data_protocol:PersonStatus .
+oae:Doi a owl:Class,
+        linkml:TypeDefinition ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onDataRange oae:Doi ;
+            owl:onProperty linkml:topValue ;
+            owl:qualifiedCardinality 1 ] .
 
-oae_data_protocol:entries a owl:ObjectProperty,
+oae:Experiment a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "Experiment" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:start_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty oae:experiment_id ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:project ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:project ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:previous_research ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:datasets ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Datetime ;
+            owl:onProperty oae:end_date ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:experiment_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom oae:ExperimentType ;
+            owl:onProperty oae:experiment_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oae:experiment_id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oae:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom oae:OAEProject ;
+            owl:onProperty oae:project ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:experiment_id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:start_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:experiment_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom oae:ObservationType ;
+            owl:onProperty oae:observation_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Datetime ;
+            owl:onProperty oae:start_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:end_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:observation_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom oae:Dataset ;
+            owl:onProperty oae:datasets ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:end_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oae:previous_research ] ;
+    skos:definition "A single experiment conducted within an OAE project." ;
+    skos:inScheme <Experiment> .
+
+<https://example.org/oae#ExperimentType#manipulated> a owl:Class,
+        oae:ExperimentType ;
+    rdfs:label "manipulated" ;
+    rdfs:subClassOf oae:ExperimentType .
+
+<https://example.org/oae#ExperimentType#model_output> a owl:Class,
+        oae:ExperimentType ;
+    rdfs:label "model_output" ;
+    rdfs:subClassOf oae:ExperimentType .
+
+<https://example.org/oae#ExperimentType#natural> a owl:Class,
+        oae:ExperimentType ;
+    rdfs:label "natural" ;
+    rdfs:subClassOf oae:ExperimentType .
+
+<https://example.org/oae#MCDRPathway#artificial_upwelling_downwelling> a owl:Class,
+        oae:MCDRPathway ;
+    rdfs:label "artificial_upwelling_downwelling" ;
+    rdfs:subClassOf oae:MCDRPathway .
+
+<https://example.org/oae#MCDRPathway#coastal_blue_carbon> a owl:Class,
+        oae:MCDRPathway ;
+    rdfs:label "coastal_blue_carbon" ;
+    rdfs:subClassOf oae:MCDRPathway .
+
+<https://example.org/oae#MCDRPathway#direct_ocean_capture> a owl:Class,
+        oae:MCDRPathway ;
+    rdfs:label "direct_ocean_capture" ;
+    rdfs:subClassOf oae:MCDRPathway .
+
+<https://example.org/oae#MCDRPathway#macroalgal_cultivation> a owl:Class,
+        oae:MCDRPathway ;
+    rdfs:label "macroalgal_cultivation" ;
+    rdfs:subClassOf oae:MCDRPathway .
+
+<https://example.org/oae#MCDRPathway#marine_ecosystem_recovery> a owl:Class,
+        oae:MCDRPathway ;
+    rdfs:label "marine_ecosystem_recovery" ;
+    rdfs:subClassOf oae:MCDRPathway .
+
+<https://example.org/oae#MCDRPathway#ocean_alkalinity_enhancement> a owl:Class,
+        oae:MCDRPathway ;
+    rdfs:label "ocean_alkalinity_enhancement" ;
+    rdfs:subClassOf oae:MCDRPathway .
+
+<https://example.org/oae#MCDRPathway#ocean_fertilization> a owl:Class,
+        oae:MCDRPathway ;
+    rdfs:label "ocean_fertilization" ;
+    rdfs:subClassOf oae:MCDRPathway .
+
+<https://example.org/oae#ModelType#counterfactual> a owl:Class,
+        oae:ModelType ;
+    rdfs:label "counterfactual" ;
+    rdfs:subClassOf oae:ModelType .
+
+<https://example.org/oae#ModelType#perturbation> a owl:Class,
+        oae:ModelType ;
+    rdfs:label "perturbation" ;
+    rdfs:subClassOf oae:ModelType .
+
+<https://example.org/oae#OAETreatmentType#coastal> a owl:Class,
+        oae:OAETreatmentType ;
+    rdfs:label "coastal" ;
+    rdfs:subClassOf oae:OAETreatmentType .
+
+<https://example.org/oae#OAETreatmentType#dissolved> a owl:Class,
+        oae:OAETreatmentType ;
+    rdfs:label "dissolved" ;
+    rdfs:subClassOf oae:OAETreatmentType .
+
+<https://example.org/oae#OAETreatmentType#electrochemical> a owl:Class,
+        oae:OAETreatmentType ;
+    rdfs:label "electrochemical" ;
+    rdfs:subClassOf oae:OAETreatmentType .
+
+<https://example.org/oae#OAETreatmentType#mineral> a owl:Class,
+        oae:OAETreatmentType ;
+    rdfs:label "mineral" ;
+    rdfs:subClassOf oae:OAETreatmentType .
+
+<https://example.org/oae#OAETreatmentType#preequilibrated> a owl:Class,
+        oae:OAETreatmentType ;
+    rdfs:label "preequilibrated" ;
+    rdfs:subClassOf oae:OAETreatmentType .
+
+<https://example.org/oae#OAETreatmentType#river> a owl:Class,
+        oae:OAETreatmentType ;
+    rdfs:label "river" ;
+    rdfs:subClassOf oae:OAETreatmentType .
+
+<https://example.org/oae#ObservationType#field_experiments> a owl:Class,
+        oae:ObservationType ;
+    rdfs:label "field_experiments" ;
+    rdfs:subClassOf oae:ObservationType .
+
+<https://example.org/oae#ObservationType#laboratory_experiments> a owl:Class,
+        oae:ObservationType ;
+    rdfs:label "laboratory_experiments" ;
+    rdfs:subClassOf oae:ObservationType .
+
+<https://example.org/oae#ObservationType#mesocosms> a owl:Class,
+        oae:ObservationType ;
+    rdfs:label "mesocosms" ;
+    rdfs:subClassOf oae:ObservationType .
+
+<https://example.org/oae#ObservationType#model_outputs> a owl:Class,
+        oae:ObservationType ;
+    rdfs:label "model_outputs" ;
+    rdfs:subClassOf oae:ObservationType .
+
+<https://example.org/oae#ObservationType#natural_analogues> a owl:Class,
+        oae:ObservationType ;
+    rdfs:label "natural_analogues" ;
+    rdfs:subClassOf oae:ObservationType .
+
+<https://example.org/oae#ObservationType#profile> a owl:Class,
+        oae:ObservationType ;
+    rdfs:label "profile" ;
+    rdfs:subClassOf oae:ObservationType .
+
+<https://example.org/oae#ObservationType#surface_underway> a owl:Class,
+        oae:ObservationType ;
+    rdfs:label "surface_underway" ;
+    rdfs:subClassOf oae:ObservationType .
+
+<https://example.org/oae#ObservationType#time_series> a owl:Class,
+        oae:ObservationType ;
+    rdfs:label "time_series" ;
+    rdfs:subClassOf oae:ObservationType .
+
+oae:datasets a owl:ObjectProperty,
         linkml:SlotDefinition ;
-    rdfs:label "entries" ;
-    skos:inScheme <https://w3id.org/clevinson/oae-data-protocol> .
+    rdfs:label "datasets" ;
+    skos:definition "The dataset(s) associated with the experiment." ;
+    skos:inScheme <Experiment> .
 
-oae_data_protocol:age_in_years a owl:ObjectProperty,
+oae:model_components a owl:ObjectProperty,
         linkml:SlotDefinition ;
-    rdfs:label "age_in_years" ;
-    rdfs:range linkml:Integer ;
-    skos:definition "Number of years since birth" ;
-    skos:inScheme <https://w3id.org/clevinson/oae-data-protocol> .
+    rdfs:label "model_components" ;
+    skos:definition "Components of the model." ;
+    skos:inScheme <ModelSimulation> .
 
-oae_data_protocol:birth_date a owl:ObjectProperty,
+oae:observation_type a owl:ObjectProperty,
         linkml:SlotDefinition ;
-    rdfs:label "birth_date" ;
-    rdfs:range linkml:Date ;
-    skos:definition "Date on which a person is born" ;
-    skos:inScheme <https://w3id.org/clevinson/oae-data-protocol> .
+    rdfs:label "observation_type" ;
+    skos:definition "The type of observation / data submitted, multiple values are allowed of mulitple datasets are being submitted for this experiment." ;
+    skos:inScheme <Experiment> .
 
-oae_data_protocol:description a owl:ObjectProperty,
+oae:previous_research a owl:ObjectProperty,
         linkml:SlotDefinition ;
-    rdfs:label "description" ;
-    skos:definition "A human-readable description for a thing" ;
-    skos:inScheme <https://w3id.org/clevinson/oae-data-protocol> .
+    rdfs:label "previous_research" ;
+    skos:definition "Previous research related to the experiment." ;
+    skos:inScheme <Experiment> .
 
-oae_data_protocol:id a owl:ObjectProperty,
+oae:references a owl:ObjectProperty,
         linkml:SlotDefinition ;
-    rdfs:label "id" ;
-    rdfs:range linkml:Uriorcurie ;
-    skos:definition "A unique identifier for a thing" ;
-    skos:inScheme <https://w3id.org/clevinson/oae-data-protocol> .
+    rdfs:label "references" ;
+    skos:definition "Reference for model physics." ;
+    skos:inScheme <ModelSimulation> .
 
-oae_data_protocol:name a owl:ObjectProperty,
+PUBCHEM:10112 a owl:Class,
+        oae:FeedstockType ;
+    rdfs:label "calcium_carbonate" ;
+    rdfs:subClassOf oae:FeedstockType .
+
+PUBCHEM:10340 a owl:Class,
+        oae:FeedstockType ;
+    rdfs:label "natrite" ;
+    rdfs:subClassOf oae:FeedstockType .
+
+PUBCHEM:11029 a owl:Class,
+        oae:FeedstockType ;
+    rdfs:label "magnesite" ;
+    rdfs:subClassOf oae:FeedstockType .
+
+PUBCHEM:14778 a owl:Class,
+        oae:FeedstockType ;
+    rdfs:label "lime" ;
+    rdfs:subClassOf oae:FeedstockType .
+
+PUBCHEM:14791 a owl:Class,
+        oae:FeedstockType ;
+    rdfs:label "brucite" ;
+    rdfs:subClassOf oae:FeedstockType .
+
+PUBCHEM:14798 a owl:Class,
+        oae:FeedstockType ;
+    rdfs:label "sodium_hydroxide" ;
+    rdfs:subClassOf oae:FeedstockType .
+
+PUBCHEM:516892 a owl:Class,
+        oae:FeedstockType ;
+    rdfs:label "nahcolite" ;
+    rdfs:subClassOf oae:FeedstockType .
+
+PUBCHEM:517737 a owl:Class,
+        oae:FeedstockType ;
+    rdfs:label "forsterite" ;
+    rdfs:subClassOf oae:FeedstockType .
+
+PUBCHEM:56843091 a owl:Class,
+        oae:FeedstockType ;
+    rdfs:label "anorthite" ;
+    rdfs:subClassOf oae:FeedstockType .
+
+PUBCHEM:61833 a owl:Class,
+        oae:FeedstockType ;
+    rdfs:label "dolomite" ;
+    rdfs:subClassOf oae:FeedstockType .
+
+PUBCHEM:6850729 a owl:Class,
+        oae:FeedstockType ;
+    rdfs:label "periclase" ;
+    rdfs:subClassOf oae:FeedstockType .
+
+PUBCHEM:71586774 a owl:Class,
+        oae:FeedstockType ;
+    rdfs:label "mg_rich_olivine" ;
+    rdfs:subClassOf oae:FeedstockType .
+
+PUBCHEM:Portlandite a owl:Class,
+        oae:FeedstockType ;
+    rdfs:label "portlandite" ;
+    rdfs:subClassOf oae:FeedstockType .
+
+oae:ModelComponent a owl:Class,
+        linkml:ClassDefinition ;
+    rdfs:label "ModelComponent" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oae:description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Uri ;
+            owl:onProperty oae:references ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oae:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:version ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty oae:codebase ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:codebase ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:version ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:Uri ;
+            owl:onProperty oae:codebase ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom linkml:String ;
+            owl:onProperty oae:version ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:references ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty oae:description ] ;
+    skos:definition "A component of a model." ;
+    skos:inScheme <ModelSimulation> .
+
+oae:air_sea_co2_flux_parameterization a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "air_sea_co2_flux_parameterization" ;
+    skos:definition "Description and/or references of air-sea CO2 flux parameterization used, gas transfer velocity formulation and atmospheric CO2 details (e.g., fixed or time varying, and if time varying which data were used)." ;
+    skos:inScheme <ModelSimulation> .
+
+oae:alkalinity_feedstock_description a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "alkalinity_feedstock_description" ;
+    skos:definition "Information such as feedstock source, characteristics, concentration, impurities, dilution prior to dosing, and for feedstock other than NaOH; trace metal composition and particulate grain size." ;
+    skos:inScheme <Intervention> .
+
+oae:alkalinity_feedstock_type a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "alkalinity_feedstock_type" ;
+    skos:definition "Material used for alkalinity addition." ;
+    skos:inScheme <Intervention> .
+
+oae:arrangement a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "arrangement" ;
+    skos:definition "The grid arrangement of orthogonal physical quantities (e.g. Arakawa A, Arakawa B, Arakawa C)" ;
+    skos:inScheme <ModelSimulation> .
+
+oae:codebase a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "codebase" ;
+    skos:definition "Link to model code repository." ;
+    skos:inScheme <ModelSimulation> .
+
+oae:dosing_depth_in_m a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "dosing_depth_in_m" ;
+    skos:definition "Depth at which alkalinity is added." ;
+    skos:inScheme <Intervention> .
+
+oae:dosing_location a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "dosing_location" ;
+    skos:definition "Geospatial coordinates of dosing activity." ;
+    skos:inScheme <Intervention> .
+
+oae:dosing_regimen a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "dosing_regimen" ;
+    skos:definition "Schedule and amount of added alkalinity." ;
+    skos:inScheme <Intervention> .
+
+oae:end_date a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "end_date" ;
+    skos:definition "Date when the experiment ended." ;
+    skos:inScheme <Experiment> .
+
+oae:experiment_id a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "experiment_id" ;
+    skos:definition "Unique identifier for an OAE experiment." ;
+    skos:inScheme <Experiment> .
+
+oae:grid_details a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "grid_details" ;
+    skos:definition "Details about the model grid." ;
+    skos:inScheme <ModelSimulation> .
+
+oae:grid_type a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "grid_type" ;
+    skos:definition "Descriptive structure of grid (e.g. latitude-longitude grid, unstructured triangular, tripolar)" ;
+    skos:inScheme <ModelSimulation> .
+
+oae:horizontal_resolution_in_m a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "horizontal_resolution_in_m" ;
+    skos:definition "Horizontal resolution of the grid." ;
+    skos:inScheme <ModelSimulation> .
+
+oae:identifier a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "identifier" ;
+    rdfs:range oae:Any ;
+    skos:definition "A unique identifier for the thing" ;
+    skos:inScheme <Core> .
+
+oae:mcdr_pathway a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "mcdr_pathway" ;
+    skos:definition "The Marine Carbon Dioxide Removal (MCDR) pathway being studied." ;
+    skos:inScheme <OAEProject> .
+
+oae:model_configurations a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "model_configurations" ;
+    skos:definition "Details about the model configuration." ;
+    skos:inScheme <ModelSimulation> .
+
+oae:model_type a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "model_type" ;
+    skos:definition "Type of model simulation." ;
+    skos:inScheme <ModelSimulation> .
+
+oae:n_nodes a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "n_nodes" ;
+    skos:definition "Number of nodes in the grid if using an unstructured grids" ;
+    skos:inScheme <ModelSimulation> .
+
+oae:n_x a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "n_x" ;
+    skos:definition "Number of grid points in the x-direction." ;
+    skos:inScheme <ModelSimulation> .
+
+oae:n_y a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "n_y" ;
+    skos:definition "Number of grid points in the y-direction." ;
+    skos:inScheme <ModelSimulation> .
+
+oae:n_z a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "n_z" ;
+    skos:definition "Number of vertical coordinate levels." ;
+    skos:inScheme <ModelSimulation> .
+
+oae:permit_info a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "permit_info" ;
+    skos:definition "Regulatory details for the project." ;
+    skos:inScheme <OAEProject> .
+
+oae:project a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "project" ;
+    skos:definition "The OAE project to which the experiment belongs." ;
+    skos:inScheme <Experiment> .
+
+oae:project_id a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "project_id" ;
+    skos:definition "Unique identifier for an OAE project." ;
+    skos:inScheme <OAEProject> .
+
+oae:region a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "region" ;
+    skos:definition "Region covered by the grid. LOOK FOR IMPORTS" ;
+    skos:inScheme <ModelSimulation> .
+
+oae:site_description a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "site_description" ;
+    skos:definition "Details about the project site, including location and conditions." ;
+    skos:inScheme <OAEProject> .
+
+oae:spatial_coverage a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "spatial_coverage" ;
+    skos:definition "The spatial coverage of the dataset." ;
+    skos:inScheme <Dataset> .
+
+oae:start_date a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "start_date" ;
+    skos:definition "Date when the experiment began." ;
+    skos:inScheme <Experiment> .
+
+oae:temporal_coverage a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "temporal_coverage" ;
+    skos:definition "The temporal coverage of the dataset." ;
+    skos:inScheme <Dataset> .
+
+oae:treatment_type a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "treatment_type" ;
+    skos:definition "Type of OAE intervention." ;
+    skos:inScheme <Intervention> .
+
+oae:url a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "url" ;
+    skos:definition "Location of a page describing the dataset." ;
+    skos:inScheme <Dataset> .
+
+oae:version a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "version" ;
+    skos:definition "Version of the model component." ;
+    skos:inScheme <ModelSimulation> .
+
+oae:vertical_resolution_in_m a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "vertical_resolution_in_m" ;
+    skos:definition "Vertical resolution of the grid." ;
+    skos:inScheme <ModelSimulation> .
+
+oae:ModelType a owl:Class,
+        linkml:EnumDefinition ;
+    owl:unionOf ( <https://example.org/oae#ModelType#counterfactual> <https://example.org/oae#ModelType#perturbation> ) ;
+    linkml:permissible_values <https://example.org/oae#ModelType#counterfactual>,
+        <https://example.org/oae#ModelType#perturbation> .
+
+oae:experiment_type a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "experiment_type" ;
+    rdfs:range oae:ExperimentType ;
+    skos:definition "The type of experiment being conducted." ;
+    skos:inScheme <Experiment> .
+
+oae:name a owl:ObjectProperty,
         linkml:SlotDefinition ;
     rdfs:label "name" ;
-    skos:definition "A human-readable name for a thing" ;
-    skos:inScheme <https://w3id.org/clevinson/oae-data-protocol> .
+    rdfs:range linkml:String ;
+    skos:definition "A human-readable name for the thing.",
+        "Name of the model (e.g. ROMS, Oceanaigans)" ;
+    skos:inScheme <Core>,
+        <ModelSimulation> .
 
-oae_data_protocol:primary_email a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "primary_email" ;
-    skos:definition "The main email address of a person" ;
-    skos:inScheme <https://w3id.org/clevinson/oae-data-protocol> .
-
-oae_data_protocol:vital_status a owl:ObjectProperty,
-        linkml:SlotDefinition ;
-    rdfs:label "vital_status" ;
-    rdfs:range oae_data_protocol:PersonStatus ;
-    skos:definition "living or dead status" ;
-    skos:inScheme <https://w3id.org/clevinson/oae-data-protocol> .
-
-oae_data_protocol:PersonStatus a owl:Class,
+oae:ExperimentType a owl:Class,
         linkml:EnumDefinition ;
-    owl:unionOf ( PATO:0001421 PATO:0001422 <https://w3id.org/clevinson/oae-data-protocol/PersonStatus#UNKNOWN> ) ;
-    linkml:permissible_values PATO:0001421,
-        PATO:0001422,
-        <https://w3id.org/clevinson/oae-data-protocol/PersonStatus#UNKNOWN> .
+    owl:unionOf ( <https://example.org/oae#ExperimentType#natural> <https://example.org/oae#ExperimentType#manipulated> <https://example.org/oae#ExperimentType#model_output> ) ;
+    linkml:permissible_values <https://example.org/oae#ExperimentType#manipulated>,
+        <https://example.org/oae#ExperimentType#model_output>,
+        <https://example.org/oae#ExperimentType#natural> .
 
-<https://w3id.org/clevinson/oae-data-protocol> a owl:Ontology ;
-    rdfs:label "oae-data-protocol" ;
-    dcterms:license "Apache Software License 2.0" ;
-    dcterms:title "oae-data-protocol" ;
-    rdfs:seeAlso <https://clevinson.github.io/oae-data-protocol> ;
-    skos:definition "Base ontology and data schemas for ocean alkalinity enhancement projects, experiments, and field trails. This project aims to be a technical complement to Submarine Scientific's OAE Data Protocol, developed in conjunction with Carbon To Sea and NOAA." .
+oae:OAETreatmentType a owl:Class,
+        linkml:EnumDefinition ;
+    owl:unionOf ( <https://example.org/oae#OAETreatmentType#electrochemical> <https://example.org/oae#OAETreatmentType#mineral> <https://example.org/oae#OAETreatmentType#dissolved> <https://example.org/oae#OAETreatmentType#river> <https://example.org/oae#OAETreatmentType#coastal> <https://example.org/oae#OAETreatmentType#preequilibrated> ) ;
+    linkml:permissible_values <https://example.org/oae#OAETreatmentType#coastal>,
+        <https://example.org/oae#OAETreatmentType#dissolved>,
+        <https://example.org/oae#OAETreatmentType#electrochemical>,
+        <https://example.org/oae#OAETreatmentType#mineral>,
+        <https://example.org/oae#OAETreatmentType#preequilibrated>,
+        <https://example.org/oae#OAETreatmentType#river> .
+
+oae:MCDRPathway a owl:Class,
+        linkml:EnumDefinition ;
+    owl:unionOf ( <https://example.org/oae#MCDRPathway#ocean_alkalinity_enhancement> <https://example.org/oae#MCDRPathway#macroalgal_cultivation> <https://example.org/oae#MCDRPathway#direct_ocean_capture> <https://example.org/oae#MCDRPathway#ocean_fertilization> <https://example.org/oae#MCDRPathway#artificial_upwelling_downwelling> <https://example.org/oae#MCDRPathway#coastal_blue_carbon> <https://example.org/oae#MCDRPathway#marine_ecosystem_recovery> ) ;
+    linkml:permissible_values <https://example.org/oae#MCDRPathway#artificial_upwelling_downwelling>,
+        <https://example.org/oae#MCDRPathway#coastal_blue_carbon>,
+        <https://example.org/oae#MCDRPathway#direct_ocean_capture>,
+        <https://example.org/oae#MCDRPathway#macroalgal_cultivation>,
+        <https://example.org/oae#MCDRPathway#marine_ecosystem_recovery>,
+        <https://example.org/oae#MCDRPathway#ocean_alkalinity_enhancement>,
+        <https://example.org/oae#MCDRPathway#ocean_fertilization> .
+
+oae:description a owl:ObjectProperty,
+        linkml:SlotDefinition ;
+    rdfs:label "description" ;
+    rdfs:range linkml:String ;
+    skos:definition "A narrative description of the thing." ;
+    skos:inScheme <Core> .
+
+oae:ObservationType a owl:Class,
+        linkml:EnumDefinition ;
+    owl:unionOf ( <https://example.org/oae#ObservationType#profile> <https://example.org/oae#ObservationType#surface_underway> <https://example.org/oae#ObservationType#time_series> <https://example.org/oae#ObservationType#laboratory_experiments> <https://example.org/oae#ObservationType#mesocosms> <https://example.org/oae#ObservationType#field_experiments> <https://example.org/oae#ObservationType#natural_analogues> <https://example.org/oae#ObservationType#model_outputs> ) ;
+    linkml:permissible_values <https://example.org/oae#ObservationType#field_experiments>,
+        <https://example.org/oae#ObservationType#laboratory_experiments>,
+        <https://example.org/oae#ObservationType#mesocosms>,
+        <https://example.org/oae#ObservationType#model_outputs>,
+        <https://example.org/oae#ObservationType#natural_analogues>,
+        <https://example.org/oae#ObservationType#profile>,
+        <https://example.org/oae#ObservationType#surface_underway>,
+        <https://example.org/oae#ObservationType#time_series> .
+
+oae:FeedstockType a owl:Class,
+        linkml:EnumDefinition ;
+    owl:unionOf ( PUBCHEM:14778 PUBCHEM:Portlandite PUBCHEM:10112 PUBCHEM:56843091 PUBCHEM:61833 PUBCHEM:6850729 PUBCHEM:14791 PUBCHEM:11029 PUBCHEM:517737 PUBCHEM:71586774 PUBCHEM:14798 PUBCHEM:10340 PUBCHEM:516892 ) ;
+    linkml:permissible_values PUBCHEM:10112,
+        PUBCHEM:10340,
+        PUBCHEM:11029,
+        PUBCHEM:14778,
+        PUBCHEM:14791,
+        PUBCHEM:14798,
+        PUBCHEM:516892,
+        PUBCHEM:517737,
+        PUBCHEM:56843091,
+        PUBCHEM:61833,
+        PUBCHEM:6850729,
+        PUBCHEM:71586774,
+        PUBCHEM:Portlandite .
 

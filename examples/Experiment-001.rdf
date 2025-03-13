@@ -1,0 +1,21 @@
+@prefix oae: <http://oaedataprotocol.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+[] a oae:Experiment ;
+    oae:datasets [ a oae:Dataset ;
+            oae:description "Measurements of ocean alkalinity along the Pacific Coast for the project." ;
+            oae:identifier "http://oaedataprotocol.org/OAEPC001/DatasetAlkalinity" ;
+            oae:name "Alkalinity Measurements" ] ;
+    oae:description "A study of ocean alkalinity enhancement along the Pacific Coast." ;
+    oae:end_date "2025-03-15T00:00:00+00:00"^^xsd:dateTime ;
+    oae:experiment_id "OAEPC001" ;
+    oae:experiment_type "natural" ;
+    oae:observation_type "surface_underway",
+        "time_series" ;
+    oae:previous_research "http://oaeprotocolrepository.org/AlkalinityStudy2024",
+        "http://oaeprotocolrepository.org/MarineLifeImpact2023" ;
+    oae:project [ a oae:OAEProject ;
+            oae:description "A project focused on enhancing ocean alkalinity along the Pacific Coast." ;
+            oae:project_id "PacificCoastOAEProject" ] ;
+    oae:start_date "2025-03-01T00:00:00+00:00"^^xsd:dateTime .
+

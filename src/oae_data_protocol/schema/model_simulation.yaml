@@ -1,0 +1,102 @@
+id: ModelSimulation
+name: ModelSimulation
+prefixes:
+  oae: "https://example.org/oae#"
+  schema: "http://schema.org/"
+
+default_prefix: oae
+
+classes:
+  ModelSimulation:
+    description: "A computational model run related to OAE."
+    is_a: Experiment
+    slot_usage:
+      description:
+        description: "Foobar description"
+      experiment_type:
+        description: "The type of experiment being conducted (must be 'model_output' for ModelSimulation class)."
+        enum_range:
+          permissible_values:
+            - "model_output"
+    attributes:
+      model_type:
+        description: "Type of model simulation."
+        range: ModelType
+      model_configurations:
+        range: uri
+        description: "Details about the model configuration."
+      model_components:
+        range: ModelComponent
+        multivalued: true
+        description: "Components of the model."
+      grid_details:
+        description: "Details about the model grid."
+        range: ModelGrid
+  ModelGrid:
+    description: "Details about the model grid."
+    attributes:
+      grid_type:
+        description: "Descriptive structure of grid (e.g. latitude-longitude grid, unstructured triangular, tripolar)"
+        range: string
+      region:
+        description: "Region covered by the grid. LOOK FOR IMPORTS"
+        range: string
+      arrangement:
+        description: "The grid arrangement of orthogonal physical quantities (e.g. Arakawa A, Arakawa B, Arakawa C)"
+        range: string
+      n_x:
+        description: "Number of grid points in the x-direction."
+        range: integer
+      n_y:
+        description: "Number of grid points in the y-direction."
+        range: integer
+      n_z:
+        description: "Number of vertical coordinate levels."
+        range: integer
+      n_nodes:
+        description: "Number of nodes in the grid if using an unstructured grids"
+        range: integer
+      horizontal_resolution_in_m:
+        description: "Horizontal resolution of the grid."
+        range: decimal
+        unit:
+          ucum_code: m
+          has_quantity_kind: distance
+      vertical_resolution_in_m:
+        description: "Vertical resolution of the grid."
+        range: decimal
+        unit:
+          ucum_code: m
+          has_quantity_kind: distance
+  ModelComponent:
+    description: "A component of a model."
+    slots:
+      - description
+    slot_usage:
+      description:
+        description: "A description of the physical model characteristics, including version of equations being solved (hydrostatic vs non-hydrostatic), tracer advection scheme, how bottom drag is represented, mixed layer parameterizations, sub-grid mixing parameterizations if applicable, etc. Associated links to data, DOIs, or publications can be noted here, but should be supplemental."
+    attributes:
+      name:
+        description: "Name of the model (e.g. ROMS, Oceanaigans)"
+        range: string
+      version:
+        description: "Version of the model component."
+        range: string
+      codebase:
+        description: "Link to model code repository."
+        range: uri
+      references:
+        multivalued: true
+        description: "Reference for model physics."
+        range: uri
+
+  ModelPhysicsComponent:
+    description: "A physical component of a model."
+    is_a: ModelComponent
+  ModelBGCComponent:
+    description: "A biogeochemical / ecosystem component of a model"
+    is_a: ModelComponent
+    attributes:
+      air_sea_co2_flux_parameterization:
+        description: "Description and/or references of air-sea CO2 flux parameterization used, gas transfer velocity formulation and atmospheric CO2 details (e.g., fixed or time varying, and if time varying which data were used)."
+        range: string

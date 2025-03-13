@@ -1,0 +1,31 @@
+id: OAEProject
+name: OAEProject
+version: 0.1.0
+prefixes:
+  oae: "https://example.org/oae#"
+
+default_prefix: oae
+
+classes:
+  Measurement:
+    description: "A single recorded measurement related to an OAE experiment."
+    attributes:
+      sensor_id:
+        identifier: true
+        description: "Unique identifier for the sensor."
+        range: string
+      measurement_type:
+        description: "The type of parameter being measured."
+        range: MeasurementType
+      measurement_value:
+        description: "The numerical value recorded."
+        range: float
+      unit:
+        description: "Unit of measurement."
+        range: string
+      timestamp:
+        description: "Time when measurement was taken."
+        range: datetime
+      qc_flag:
+        description: "Quality control flag for the measurement."
+        range: string

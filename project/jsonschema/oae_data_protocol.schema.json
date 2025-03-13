@@ -1,25 +1,141 @@
 {
     "$defs": {
-        "NamedThing": {
+        "Any": {
+            "additionalProperties": true,
+            "description": "",
+            "title": "Any",
+            "type": [
+                "null",
+                "boolean",
+                "object",
+                "number",
+                "string"
+            ]
+        },
+        "Dataset": {
             "additionalProperties": false,
-            "description": "A generic grouping for any identifiable entity",
+            "description": "A dataset related to an OAE experiment. Generally following guidelines & best practices as outlined in [science-on-schema.org](https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md)",
             "properties": {
                 "description": {
-                    "description": "A human-readable description for a thing",
+                    "description": "A narrative description of the thing.",
                     "type": [
                         "string",
                         "null"
                     ]
                 },
-                "id": {
-                    "description": "A unique identifier for a thing",
+                "identifier": {
+                    "description": "A unique identifier for the thing",
                     "type": [
                         "string",
                         "null"
                     ]
                 },
                 "name": {
-                    "description": "A human-readable name for a thing",
+                    "description": "A human-readable name for the thing.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "spatial_coverage": {
+                    "description": "The spatial coverage of the dataset.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "temporal_coverage": {
+                    "description": "The temporal coverage of the dataset.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "url": {
+                    "description": "Location of a page describing the dataset.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "title": "Dataset",
+            "type": "object"
+        },
+        "Experiment": {
+            "additionalProperties": false,
+            "description": "A single experiment conducted within an OAE project.",
+            "properties": {
+                "datasets": {
+                    "description": "The dataset(s) associated with the experiment.",
+                    "items": {
+                        "$ref": "#/$defs/Dataset"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "A narrative description of the thing.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "end_date": {
+                    "description": "Date when the experiment ended.",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "experiment_id": {
+                    "description": "Unique identifier for an OAE experiment.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "experiment_type": {
+                    "$ref": "#/$defs/ExperimentType",
+                    "description": "The type of experiment being conducted."
+                },
+                "observation_type": {
+                    "description": "The type of observation / data submitted, multiple values are allowed of mulitple datasets are being submitted for this experiment.",
+                    "items": {
+                        "$ref": "#/$defs/ObservationType"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "previous_research": {
+                    "description": "Previous research related to the experiment.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "project": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/OAEProject"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The OAE project to which the experiment belongs."
+                },
+                "start_date": {
+                    "description": "Date when the experiment began.",
+                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
@@ -27,180 +143,597 @@
                 }
             },
             "required": [
-                "id"
+                "experiment_id"
             ],
-            "title": "NamedThing",
+            "title": "Experiment",
             "type": "object"
         },
-        "PersonStatus": {
-            "description": "",
+        "ExperimentType": {
+            "description": "The type of experiment conducted in an OAE project.",
             "enum": [
-                "ALIVE",
-                "DEAD",
-                "UNKNOWN"
+                "natural",
+                "manipulated",
+                "model_output"
             ],
-            "title": "PersonStatus",
+            "title": "ExperimentType",
             "type": "string"
         },
-        "Project": {
+        "FeedstockType": {
+            "description": "Types of materials used for alkalinity addition, as sourced from NCEI's OCADS controlled vocabulary: https://www.ncei.noaa.gov/access/ocean-carbon-acidification-data-system/vocabularies/alkalinization-types.html",
+            "enum": [
+                "lime",
+                "portlandite",
+                "calcium_carbonate",
+                "anorthite",
+                "dolomite",
+                "periclase",
+                "brucite",
+                "magnesite",
+                "forsterite",
+                "mg_rich_olivine",
+                "sodium_hydroxide",
+                "natrite",
+                "nahcolite"
+            ],
+            "title": "FeedstockType",
+            "type": "string"
+        },
+        "Intervention": {
             "additionalProperties": false,
-            "description": "Represents a Project",
+            "description": "Details about an OAE intervention.",
             "properties": {
-                "age_in_years": {
-                    "description": "Number of years since birth",
+                "alkalinity_feedstock_description": {
+                    "description": "Information such as feedstock source, characteristics, concentration, impurities, dilution prior to dosing, and for feedstock other than NaOH; trace metal composition and particulate grain size.",
                     "type": [
-                        "integer",
+                        "string",
                         "null"
                     ]
                 },
-                "birth_date": {
-                    "description": "Date on which a person is born",
-                    "format": "date",
+                "alkalinity_feedstock_type": {
+                    "$ref": "#/$defs/FeedstockType",
+                    "description": "Material used for alkalinity addition."
+                },
+                "datasets": {
+                    "description": "The dataset(s) associated with the experiment.",
+                    "items": {
+                        "$ref": "#/$defs/Dataset"
+                    },
                     "type": [
-                        "string",
+                        "array",
                         "null"
                     ]
                 },
                 "description": {
-                    "description": "A human-readable description for a thing",
+                    "description": "A narrative description of the thing.",
                     "type": [
                         "string",
                         "null"
                     ]
                 },
-                "id": {
-                    "description": "A unique identifier for a thing",
+                "dosing_depth_in_m": {
+                    "description": "Depth at which alkalinity is added.",
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "dosing_location": {
+                    "description": "Geospatial coordinates of dosing activity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "dosing_regimen": {
+                    "description": "Schedule and amount of added alkalinity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "end_date": {
+                    "description": "Date when the experiment ended.",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "experiment_id": {
+                    "description": "Unique identifier for an OAE experiment.",
                     "type": "string"
                 },
-                "name": {
-                    "description": "A human-readable name for a thing",
+                "experiment_type": {
+                    "$ref": "#/$defs/ExperimentType",
+                    "description": "The type of experiment being conducted."
+                },
+                "observation_type": {
+                    "description": "The type of observation / data submitted, multiple values are allowed of mulitple datasets are being submitted for this experiment.",
+                    "items": {
+                        "$ref": "#/$defs/ObservationType"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "previous_research": {
+                    "description": "Previous research related to the experiment.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "project": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/OAEProject"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The OAE project to which the experiment belongs."
+                },
+                "start_date": {
+                    "description": "Date when the experiment began.",
+                    "format": "date-time",
                     "type": [
                         "string",
                         "null"
                     ]
                 },
-                "primary_email": {
-                    "description": "The main email address of a person",
-                    "pattern": "^\\S+@[\\S+\\.]+\\S+",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "vital_status": {
-                    "$ref": "#/$defs/PersonStatus",
-                    "description": "living or dead status"
+                "treatment_type": {
+                    "$ref": "#/$defs/OAETreatmentType",
+                    "description": "Type of OAE intervention."
                 }
             },
             "required": [
-                "id"
+                "experiment_id"
             ],
-            "title": "Project",
+            "title": "Intervention",
             "type": "object"
         },
-        "ProjectCollection": {
-            "additionalProperties": false,
-            "description": "A holder for Project objects",
-            "properties": {
-                "entries": {
-                    "additionalProperties": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/$defs/Project__identifier_optional"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ]
-                    },
-                    "type": [
-                        "object",
-                        "null"
-                    ]
-                }
-            },
-            "title": "ProjectCollection",
-            "type": "object"
+        "MCDRPathway": {
+            "description": "Type of marine Carbon Dioxide Removal (mCDR) pathways.",
+            "enum": [
+                "ocean_alkalinity_enhancement",
+                "macroalgal_cultivation",
+                "direct_ocean_capture",
+                "ocean_fertilization",
+                "artificial_upwelling_downwelling",
+                "coastal_blue_carbon",
+                "marine_ecosystem_recovery"
+            ],
+            "title": "MCDRPathway",
+            "type": "string"
         },
-        "Project__identifier_optional": {
+        "ModelBGCComponent": {
             "additionalProperties": false,
-            "description": "Represents a Project",
+            "description": "A biogeochemical / ecosystem component of a model",
             "properties": {
-                "age_in_years": {
-                    "description": "Number of years since birth",
+                "air_sea_co2_flux_parameterization": {
+                    "description": "Description and/or references of air-sea CO2 flux parameterization used, gas transfer velocity formulation and atmospheric CO2 details (e.g., fixed or time varying, and if time varying which data were used).",
                     "type": [
-                        "integer",
+                        "string",
                         "null"
                     ]
                 },
-                "birth_date": {
-                    "description": "Date on which a person is born",
-                    "format": "date",
+                "codebase": {
+                    "description": "Link to model code repository.",
                     "type": [
                         "string",
                         "null"
                     ]
                 },
                 "description": {
-                    "description": "A human-readable description for a thing",
+                    "description": "A description of the physical model characteristics, including version of equations being solved (hydrostatic vs non-hydrostatic), tracer advection scheme, how bottom drag is represented, mixed layer parameterizations, sub-grid mixing parameterizations if applicable, etc. Associated links to data, DOIs, or publications can be noted here, but should be supplemental.",
                     "type": [
                         "string",
                         "null"
                     ]
-                },
-                "id": {
-                    "description": "A unique identifier for a thing",
-                    "type": "string"
                 },
                 "name": {
-                    "description": "A human-readable name for a thing",
+                    "description": "Name of the model (e.g. ROMS, Oceanaigans)",
                     "type": [
                         "string",
                         "null"
                     ]
                 },
-                "primary_email": {
-                    "description": "The main email address of a person",
-                    "pattern": "^\\S+@[\\S+\\.]+\\S+",
+                "references": {
+                    "description": "Reference for model physics.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "version": {
+                    "description": "Version of the model component.",
                     "type": [
                         "string",
                         "null"
                     ]
-                },
-                "vital_status": {
-                    "$ref": "#/$defs/PersonStatus",
-                    "description": "living or dead status"
                 }
             },
-            "required": [],
-            "title": "Project",
+            "title": "ModelBGCComponent",
+            "type": "object"
+        },
+        "ModelComponent": {
+            "additionalProperties": false,
+            "description": "A component of a model.",
+            "properties": {
+                "codebase": {
+                    "description": "Link to model code repository.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "A description of the physical model characteristics, including version of equations being solved (hydrostatic vs non-hydrostatic), tracer advection scheme, how bottom drag is represented, mixed layer parameterizations, sub-grid mixing parameterizations if applicable, etc. Associated links to data, DOIs, or publications can be noted here, but should be supplemental.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Name of the model (e.g. ROMS, Oceanaigans)",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "references": {
+                    "description": "Reference for model physics.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "version": {
+                    "description": "Version of the model component.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "title": "ModelComponent",
+            "type": "object"
+        },
+        "ModelGrid": {
+            "additionalProperties": false,
+            "description": "Details about the model grid.",
+            "properties": {
+                "arrangement": {
+                    "description": "The grid arrangement of orthogonal physical quantities (e.g. Arakawa A, Arakawa B, Arakawa C)",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "grid_type": {
+                    "description": "Descriptive structure of grid (e.g. latitude-longitude grid, unstructured triangular, tripolar)",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "horizontal_resolution_in_m": {
+                    "description": "Horizontal resolution of the grid.",
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "n_nodes": {
+                    "description": "Number of nodes in the grid if using an unstructured grids",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "n_x": {
+                    "description": "Number of grid points in the x-direction.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "n_y": {
+                    "description": "Number of grid points in the y-direction.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "n_z": {
+                    "description": "Number of vertical coordinate levels.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "region": {
+                    "description": "Region covered by the grid. LOOK FOR IMPORTS",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "vertical_resolution_in_m": {
+                    "description": "Vertical resolution of the grid.",
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                }
+            },
+            "title": "ModelGrid",
+            "type": "object"
+        },
+        "ModelPhysicsComponent": {
+            "additionalProperties": false,
+            "description": "A physical component of a model.",
+            "properties": {
+                "codebase": {
+                    "description": "Link to model code repository.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "A description of the physical model characteristics, including version of equations being solved (hydrostatic vs non-hydrostatic), tracer advection scheme, how bottom drag is represented, mixed layer parameterizations, sub-grid mixing parameterizations if applicable, etc. Associated links to data, DOIs, or publications can be noted here, but should be supplemental.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Name of the model (e.g. ROMS, Oceanaigans)",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "references": {
+                    "description": "Reference for model physics.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "version": {
+                    "description": "Version of the model component.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "title": "ModelPhysicsComponent",
+            "type": "object"
+        },
+        "ModelSimulation": {
+            "additionalProperties": false,
+            "description": "A computational model run related to OAE.",
+            "properties": {
+                "datasets": {
+                    "description": "The dataset(s) associated with the experiment.",
+                    "items": {
+                        "$ref": "#/$defs/Dataset"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Foobar description",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "end_date": {
+                    "description": "Date when the experiment ended.",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "experiment_id": {
+                    "description": "Unique identifier for an OAE experiment.",
+                    "type": "string"
+                },
+                "experiment_type": {
+                    "$ref": "#/$defs/ExperimentType",
+                    "description": "The type of experiment being conducted (must be 'model_output' for ModelSimulation class)."
+                },
+                "grid_details": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ModelGrid"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Details about the model grid."
+                },
+                "model_components": {
+                    "description": "Components of the model.",
+                    "items": {
+                        "$ref": "#/$defs/ModelComponent"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "model_configurations": {
+                    "description": "Details about the model configuration.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "model_type": {
+                    "$ref": "#/$defs/ModelType",
+                    "description": "Type of model simulation."
+                },
+                "observation_type": {
+                    "description": "The type of observation / data submitted, multiple values are allowed of mulitple datasets are being submitted for this experiment.",
+                    "items": {
+                        "$ref": "#/$defs/ObservationType"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "previous_research": {
+                    "description": "Previous research related to the experiment.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "project": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/OAEProject"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The OAE project to which the experiment belongs."
+                },
+                "start_date": {
+                    "description": "Date when the experiment began.",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "experiment_id"
+            ],
+            "title": "ModelSimulation",
+            "type": "object"
+        },
+        "ModelType": {
+            "description": "Categories of computational modeling approaches used in OAE research.",
+            "enum": [
+                "counterfactual",
+                "perturbation"
+            ],
+            "title": "ModelType",
+            "type": "string"
+        },
+        "OAEProject": {
+            "additionalProperties": false,
+            "description": "A project conducting OAE field trials or modeling.",
+            "properties": {
+                "description": {
+                    "description": "A narrative description of the thing.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "mcdr_pathway": {
+                    "$ref": "#/$defs/MCDRPathway",
+                    "description": "The Marine Carbon Dioxide Removal (MCDR) pathway being studied."
+                },
+                "permit_info": {
+                    "description": "Regulatory details for the project.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "project_id": {
+                    "description": "Unique identifier for an OAE project.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "site_description": {
+                    "description": "Details about the project site, including location and conditions.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "project_id"
+            ],
+            "title": "OAEProject",
+            "type": "object"
+        },
+        "OAETreatmentType": {
+            "description": "Different types of alkalinity enhancement interventions.",
+            "enum": [
+                "electrochemical",
+                "mineral",
+                "dissolved",
+                "river",
+                "coastal",
+                "preequilibrated"
+            ],
+            "title": "OAETreatmentType",
+            "type": "string"
+        },
+        "ObservationType": {
+            "description": "Types of observational data collected in ocean carbon and acidification studies, as defined in OCADS controlled vocabulary hosted at https://www.ncei.noaa.gov/access/ocean-carbon-acidification-data-system/vocabularies/observation-types.html",
+            "enum": [
+                "profile",
+                "surface_underway",
+                "time_series",
+                "laboratory_experiments",
+                "mesocosms",
+                "field_experiments",
+                "natural_analogues",
+                "model_outputs"
+            ],
+            "title": "ObservationType",
+            "type": "string"
+        },
+        "PropertyValue": {
+            "additionalProperties": false,
+            "description": "",
+            "title": "PropertyValue",
             "type": "object"
         }
     },
-    "$id": "https://w3id.org/clevinson/oae-data-protocol",
+    "$id": "OAEDataManagementProtocol",
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": true,
-    "description": "A holder for Project objects",
     "metamodel_version": "1.7.0",
-    "properties": {
-        "entries": {
-            "additionalProperties": {
-                "anyOf": [
-                    {
-                        "$ref": "#/$defs/Project__identifier_optional"
-                    },
-                    {
-                        "type": "null"
-                    }
-                ]
-            },
-            "type": [
-                "object",
-                "null"
-            ]
-        }
-    },
-    "title": "oae-data-protocol",
+    "title": "OAEDataManagementProtocol",
     "type": "object",
-    "version": null
+    "version": "0.1.0"
 }
