@@ -1,0 +1,2325 @@
+PREFIX cpm:    <http://purl.org/voc/cpm#>
+PREFIX dc:     <http://purl.org/dc/terms/>
+PREFIX dcat:   <http://www.w3.org/ns/dcat#>
+PREFIX dce:    <http://purl.org/dc/elements/1.1/>
+PREFIX dct:    <http://purl.org/dc/terms/>
+PREFIX grg:    <http://www.isotc211.org/schemas/grg/>
+PREFIX iop:    <https://w3id.org/iadopt/ont#>
+PREFIX ns0:    <http://www.w3.org/ns/dx/conneg/altr#>
+PREFIX ns1:    <http://www.w3.org/ns/dx/prof/>
+PREFIX owl:    <http://www.w3.org/2002/07/owl#>
+PREFIX pav:    <http://purl.org/pav/>
+PREFIX prov:   <https://www.w3.org/ns/prov#>
+PREFIX puv:    <https://w3id.org/env/puv#>
+PREFIX qudt:   <https://qudt.org/2.1/schema/qudt#>
+PREFIX rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX reg:    <http://purl.org/linked-data/registry#>
+PREFIX semapv: <http://w3id.org/semapv/vocab/>
+PREFIX skos:   <http://www.w3.org/2004/02/skos/core#>
+PREFIX sssom:  <https://w3id.org/sssom/schema/>
+PREFIX void:   <http://rdfs.org/ns/void#>
+
+<http://vocab.nerc.ac.uk/collection/C16/current/ZZ/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::ZZ";
+        dc:date                "2008-06-23 12:39:51.0";
+        dc:identifier          "SDN:C16::ZZ";
+        pav:authoredOn         "2008-06-23 12:39:51.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/ZZ/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/ZZ/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "The correct value is not known to and not computable by the creator of this information. However a correct value probably exists."@en;
+        skos:notation          "SDN:C16::ZZ";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Unknown"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/IJM/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::IJM";
+        dc:date                "2010-10-04 08:51:35.0";
+        dc:identifier          "SDN:C16::IJM";
+        pav:authoredOn         "2010-10-04 08:51:35.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/IJM/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/IJM/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "Dutch freshwater lake with artificial dam boundaries between it and the Wadden Sea to the North and Markermeer to the South."@en;
+        skos:notation          "SDN:C16::IJM";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "IJsselmeer"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/MKM/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::MKM";
+        dc:date                "2010-10-04 08:52:39.0";
+        dc:identifier          "SDN:C16::MKM";
+        pav:authoredOn         "2010-10-04 08:52:39.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/MKM/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/MKM/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "Dutch freshwater lake with an artificial dam boundaries between it and IJsselmeer."@en;
+        skos:notation          "SDN:C16::MKM";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Markermeer"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/IRM/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::IRM";
+        dc:date                "2010-03-12 09:48:28.0";
+        dc:identifier          "SDN:C16::IRM";
+        pav:authoredOn         "2010-03-12 09:48:28.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/IRM/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/IRM/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "The sea area confined between Greenland and Iceland south of the Denmark Strait (the ridge) and bounded to the south by a line from Cape Farewell to the southern tip of the 2000m isobath on the Reykjanes Ridge and a line following the top of the ridge to Iceland."@en;
+        skos:notation          "SDN:C16::IRM";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Irminger Sea"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/10/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::10";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::10";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/10/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/9_2/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::10";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Laptev Sea (or Nordenskjold Sea)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/62a/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::62a";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::62a";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/62a/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/8_4_1/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::62a";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Bass Strait (Great Australian Bight)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/04/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::04";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::04";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/04/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/1_2/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::04";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "North Sea"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/01c/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::01c";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::01c";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/01c/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/2_5/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::01c";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Gulf of Riga (Baltic Sea)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/25/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::25";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::25";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/25/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/1_13/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::25";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Bay of Fundy"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/SOC/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::SOC";
+        dc:date                "2008-07-01 09:20:07.0";
+        dc:identifier          "SDN:C16::SOC";
+        pav:authoredOn         "2008-07-01 09:20:07.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/SOC/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/10/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "Waters south of 60S"@en;
+        skos:notation          "SDN:C16::SOC";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Southern Ocean"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/33/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::33";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::33";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/33/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/4_1/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::33";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Rio de La Plata"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/16a/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::16a";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::16a";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/16a/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/9_10/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::16a";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Hudson Strait"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/28Ab/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::28Ab";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::28Ab";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/28Ab/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/3_1_1_2/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::28Ab";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Alboran Sea (Mediterranean Sea)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/48/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::48";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::48";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/48/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/6/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::48";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "East Indian Archipelago (Indonesia)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/48o/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::48o";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::48o";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/48o/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/6_13/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::48o";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Savu Sea (East Indian Archipelago)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/ESC/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::ESC";
+        dc:date                "2010-05-24 16:26:39.0";
+        dc:identifier          "SDN:C16::ESC";
+        pav:authoredOn         "2010-05-24 16:26:39.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/ESC/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/NSL02/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "The more northerly branch of the Scheldt Estuary.  Northern boundary is a man-made dam"@en;
+        skos:notation          "SDN:C16::ESC";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Eastern Scheldt"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/39/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::39";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::39";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/39/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/5_9/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::39";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Arabian Sea"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/57b/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::57b";
+        dc:date                "1982-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::57b";
+        pav:authoredOn         "1982-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/57b/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/SVX00018/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "Not a valid IHB Code - created for ROSCOP compatibility"@en;
+        skos:notation          "SDN:C16::57b";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "North West Pacific Ocean (limit 180W)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/ICS/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::ICS";
+        dc:date                "2010-03-12 09:58:25.0";
+        dc:identifier          "SDN:C16::ICS";
+        pav:authoredOn         "2010-03-12 09:58:25.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/ICS/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/9_8/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "Part of the Arctic Ocean to the North of Iceland between Greenland and the Norwegian Sea"@en;
+        skos:notation          "SDN:C16::ICS";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Iceland Sea"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/53/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::53";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::53";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/53/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/7_5/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::53";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Seto Naikai or Inland Sea"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/35/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::35";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::35";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/35/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/5_2/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::35";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Gulf of Suez"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/200/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::200";
+        dc:date                "2009-01-08 15:35:09.0";
+        dc:identifier          "SDN:C16::200";
+        pav:authoredOn         "2009-01-08 15:35:09.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/200/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/SVX00005/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "Aggregation of North and South Atlantic Ocean areas"@en;
+        skos:notation          "SDN:C16::200";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Atlantic Ocean"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/61b/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::61b";
+        dc:date                "1982-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::61b";
+        pav:authoredOn         "1982-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/61b/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/SVX00024/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "Not a valid IHB Code - created for ROSCOP compatibility"@en;
+        skos:notation          "SDN:C16::61b";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "South West Pacific Ocean (limit 140W)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/22/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::22";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::22";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/22/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/1_8/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::22";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Bay of Biscay"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/28Bf/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::28Bf";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::28Bf";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/28Bf/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/3_1_2_3/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::28Bf";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Ionian Sea (Mediterranean Sea)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/11/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::11";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::11";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/11/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/9_1/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::11";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "East Siberian Sea"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/63/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::63";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::63";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/63/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/8_4_/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::63";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Tasman Sea"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/03/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::03";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::03";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/03/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/1_1/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::03";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Skagerrak"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/12/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::12";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::12";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/12/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/9_16/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::12";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Chukchi Sea"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/28B/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::28B";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::28B";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/28B/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/3_1_2/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::28B";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Mediterranean Sea - Eastern basin"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/48e/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::48e";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::48e";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/48e/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/6_19/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::48e";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Halmahera Sea (East Indian Archipelago)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/47/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::47";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::47";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/47/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/6_3/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::47";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Gulf of Thailand (Siam)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/28Aa/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::28Aa";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::28Aa";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/28Aa/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/3_1_1_1/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::28Aa";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Strait of Gibraltar (Mediterranean Sea)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/45/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::45";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::45";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/45/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/5/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::45";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Indian Ocean"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/WSC/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::WSC";
+        dc:date                "2010-05-24 16:27:34.0";
+        dc:identifier          "SDN:C16::WSC";
+        pav:authoredOn         "2010-05-24 16:27:34.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/WSC/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/NSL01/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "The more southerly branch of the Scheldt Estuary."@en;
+        skos:notation          "SDN:C16::WSC";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Western Scheldt"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/62/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::62";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::62";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/62/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/5_17/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::62";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Great Australian Bight"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/40/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::40";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::40";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/40/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/5_8/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::40";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Gulf of Oman"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/23b/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::23b";
+        dc:date                "1982-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::23b";
+        pav:authoredOn         "1982-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/23b/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/SVX00017/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "Not a valid IHB Code - created for ROSCOP compatibility"@en;
+        skos:notation          "SDN:C16::23b";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "North West Atlantic Ocean (limit 40W)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/06/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::06";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::06";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/06/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/9_7/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::06";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Norwegian Sea"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/42/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::42";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::42";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/42/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/5_10/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::42";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Laccadive Sea"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/51/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::51";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::51";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/51/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/7_4/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::51";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Yellow Sea (Hwang Hai)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/45a/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::45a";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::45a";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/45a/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/5_1/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::45a";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Mozambique Channel (Indian Ocean)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/32b/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::32b";
+        dc:date                "1982-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::32b";
+        pav:authoredOn         "1982-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/32b/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/SVX00023/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "Not a valid IHB Code - created for ROSCOP compatibility"@en;
+        skos:notation          "SDN:C16::32b";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "South West Atlantic Ocean (limit 20W)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/21/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::21";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::21";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/21/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/1_7/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::21";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "English Channel"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/28C/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::28C";
+        dc:date                "2009-01-08 15:40:22.0";
+        dc:identifier          "SDN:C16::28C";
+        pav:authoredOn         "2009-01-08 15:40:22.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/28C/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/3_1_2_2/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "The region of the Mediterranean Sea between Sicily and Tunisia"@en;
+        skos:notation          "SDN:C16::28C";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Strait of Sicily"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/48m/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::48m";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::48m";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/48m/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/6_9/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::48m";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Makassar Strait (East Indian Archipelago)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/01b/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::01b";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::01b";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/01b/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/2_3/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::01b";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Gulf of Finland (Baltic Sea)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/26/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::26";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::26";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/26/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/1_11/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::26";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Gulf of Mexico"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/13/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::13";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::13";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/13/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/9_15/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::13";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Beaufort Sea"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/28A/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::28A";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::28A";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/28A/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/3_1_1/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::28A";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Mediterranean Sea - Western basin"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/32/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::32";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::32";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/32/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/4/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::32";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "South Atlantic Ocean"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/48j/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::48j";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::48j";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/48j/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/6_11/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::48j";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Flores Sea (East Indian Archipelago)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/48h/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::48h";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::48h";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/48h/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/5_16/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::48h";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Arafura Sea (East Indian Archipelago)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/31/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::31";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::31";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/31/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/3_4/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::31";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Sea of Azov"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/57a/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::57a";
+        dc:date                "1982-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::57a";
+        pav:authoredOn         "1982-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/57a/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/SVX00016/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "Not a valid IHB Code - created for ROSCOP compatibility"@en;
+        skos:notation          "SDN:C16::57a";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "North East Pacific Ocean (limit 180W)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/05/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::05";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::05";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/05/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/9_6/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::05";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Greenland Sea"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/50/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::50";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::50";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/50/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/7_3/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::50";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Eastern China Sea (Tung Hai)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/ARA/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::ARA";
+        dc:date                "2008-12-08 08:00:07.0";
+        dc:identifier          "SDN:C16::ARA";
+        pav:authoredOn         "2008-12-08 08:00:07.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/ARA/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/SVX00003/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "Large inland water body comprising three lakes (North Aral Sea, eastern and western basins of the South Aral Sea) having coastlines in Kazakhstan and Uzbekistan."@en;
+        skos:notation          "SDN:C16::ARA";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Aral Sea"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/61a/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::61a";
+        dc:date                "1982-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::61a";
+        pav:authoredOn         "1982-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/61a/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/SVX00022/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "Not a valid IHB Code - created for ROSCOP compatibility"@en;
+        skos:notation          "SDN:C16::61a";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "South East Pacific Ocean (limit 140W)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/21a/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::21a";
+        dc:date                "2009-08-07 10:08:25.0";
+        dc:identifier          "SDN:C16::21a";
+        pav:authoredOn         "2009-08-07 10:08:25.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/21a/2/>;
+        pav:hasVersion         <http://vocab.nerc.ac.uk/collection/C16/current/21a/1/>;
+        pav:version            "2";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/1_6/>;
+        owl:versionInfo        "2";
+        skos:altLabel          "";
+        skos:definition        "Formally accepted and defined by IHO as an S23(1953) extension."@en;
+        skos:notation          "SDN:C16::21a";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Celtic Sea"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/28Bg/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::28Bg";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::28Bg";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/28Bg/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/3_1_2_1/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::28Bg";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Adriatic Sea (Mediterranean Sea)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/48n/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::48n";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::48n";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/48n/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/6_8/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::48n";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Java Sea (East Indian Archipelago)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/01a/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::01a";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::01a";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/01a/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/2_2/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::01a";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Gulf of Bothnia (Baltic Sea)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/27/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::27";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::27";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/27/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/1_10/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::27";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Caribbean Sea"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/14/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::14";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::14";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/14/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/9_14/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::14";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "The Northwestern Passages"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/60/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::60";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::60";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/60/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/7_12/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::60";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Gulf of California"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/48f/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::48f";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::48f";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/48f/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/6_17/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::48f";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Ceram Sea (East Indian Archipelago)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/49/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::49";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::49";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/49/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/6_1/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::49";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "South China Sea (Nan Hai)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/48a/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::48a";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::48a";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/48a/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/6_23/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::48a";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Sulu Sea (East Indian Archipelago)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/48l/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::48l";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::48l";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/48l/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/6_10/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::48l";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Bali Sea (East Indian Archipelago)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/48i/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::48i";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::48i";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/48i/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/5_15/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::48i";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Timor Sea (East Indian Archipelago)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/41/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::41";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::41";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/41/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/5_6/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::41";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Gulf of Iran (Persian Gulf)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/30/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::30";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::30";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/30/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/3_3/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::30";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Black Sea"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/23a/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::23a";
+        dc:date                "1982-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::23a";
+        pav:authoredOn         "1982-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/23a/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/SVX00015/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "Not a valid IHB Code - created for ROSCOP compatibility"@en;
+        skos:notation          "SDN:C16::23a";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "North East Atlantic Ocean (limit 40W)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/08/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::08";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::08";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/08/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/9_5/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::08";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "White Sea"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/32a/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::32a";
+        dc:date                "1982-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::32a";
+        pav:authoredOn         "1982-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/32a/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/SVX00021/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "Not a valid IHB Code - created for ROSCOP compatibility"@en;
+        skos:notation          "SDN:C16::32a";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "South East Atlantic Ocean (limit 20W)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/20/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::20";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::20";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/20/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/1_5/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::20";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Bristol Channel"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/17a/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::17a";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::17a";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/17a/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/9_13/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::17a";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Arctic Ocean - Lincoln Sea"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/28Ae/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::28Ae";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::28Ae";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/28Ae/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/3_1_1_5/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::28Ae";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Tyrrhenian Sea (Mediterranean Sea)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/17/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::17";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::17";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/17/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/9/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::17";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Arctic Ocean"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/59/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::59";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::59";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/59/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/7_11/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::59";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Coastal Waters of SE Alaska and British Columbia"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/64/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::64";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::64";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/64/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/8_3/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::64";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Coral Sea"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/48k/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::48k";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::48k";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/48k/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/6_16/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::48k";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Gulf of Boni (East Indian Archipelago)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/48b/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::48b";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::48b";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/48b/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/6_22/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::48b";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Celebes Sea (East Indian Archipelago)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/01/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::01";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::01";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/01/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/2/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::01";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Baltic Sea"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/44/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::44";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::44";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/44/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/5_14/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::44";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Andaman or Burma Sea"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/55/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::55";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::55";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/55/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/7_8/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::55";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Bering Sea"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/38/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::38";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::38";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/38/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/5_5/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::38";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Gulf of Aden"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/29/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::29";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::29";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/29/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/3_2/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::29";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Sea of Marmara"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/07/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::07";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::07";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/07/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/9_4/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::07";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Barents Sea"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/56/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::56";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::56";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/56/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/7_1/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::56";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Philippine Sea"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/19/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::19";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::19";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/19/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/1_4/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::19";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Irish Sea and St. George's Channel"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/15a/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::15a";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::15a";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/15a/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/1_15/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::15a";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Labrador Sea (Davis Strait)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/46b/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::46b";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::46b";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/46b/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/6_6/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::46b";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Singapore Strait"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/14a/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::14a";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::14a";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/14a/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/9_12/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::14a";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "The Northwestern Passages - Baffin Bay"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/28Ad/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::28Ad";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::28Ad";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/28Ad/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/3_1_1_4/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::28Ad";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Ligurian Sea (Mediterranean Sea)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/61/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::61";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::61";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/61/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/8/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::61";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "South Pacific Ocean"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/58/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::58";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::58";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/58/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/7_10/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::58";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Gulf of Alaska"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/65/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::65";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::65";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/65/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/8_2/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::65";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Solomon Sea"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/48g/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::48g";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::48g";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/48g/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/6_15/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::48g";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Banda Sea (East Indian Archipelago)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/48d/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::48d";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::48d";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/48d/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/6_21/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::48d";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Gulf of Tomini (East Indian Archipelago)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/23/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::23";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::23";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/23/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/1/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::23";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "North Atlantic Ocean"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/43/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::43";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::43";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/43/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/5_13/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::43";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Bay of Bengal"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/54/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::54";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::54";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/54/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/7_7/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::54";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Sea of Okhotsk"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/37/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::37";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::37";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/37/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/5_4/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::37";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Red Sea"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/CAS/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::CAS";
+        dc:date                "2008-12-08 07:55:28.0";
+        dc:identifier          "SDN:C16::CAS";
+        pav:authoredOn         "2008-12-08 07:55:28.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/CAS/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/SVX00007/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "Large brackish inland water body having coastlines in Azerbaijan, Iran, Kazakhstan, Russia, and Turkmenistan."@en;
+        skos:notation          "SDN:C16::CAS";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Caspian Sea"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/28/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::28";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::28";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/28/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/3_1/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::28";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Mediterranean Sea"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/09/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::09";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::09";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/09/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/9_3/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::09";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Kara Sea"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/18/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::18";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::18";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/18/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/1_3/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::18";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Inner Seas off the West Coast of Scotland"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/02/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::02";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::02";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/02/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:narrower          <http://vocab.nerc.ac.uk/collection/C19/current/2_6/> , <http://vocab.nerc.ac.uk/collection/C19/current/2_7/> , <http://vocab.nerc.ac.uk/collection/C19/current/2_9/> , <http://vocab.nerc.ac.uk/collection/C19/current/2_8/>;
+        skos:notation          "SDN:C16::02";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Kattegat, Sound and Belts"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/24/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::24";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::24";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/24/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/1_14/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::24";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Gulf of St. Lawrence"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/46/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::46";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::46";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/46/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:narrower          <http://vocab.nerc.ac.uk/collection/C19/current/6_5/> , <http://vocab.nerc.ac.uk/collection/C19/current/6_6/>;
+        skos:notation          "SDN:C16::46";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Malacca and Singapore Straits"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/46a/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::46a";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::46a";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/46a/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/6_5/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::46a";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Malacca Strait"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/16/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::16";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::16";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/16/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/9_11/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::16";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Hudson Bay"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/28Ac/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::28Ac";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::28Ac";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/28Ac/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/3_1_1_3/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::28Ac";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Balearic (Iberian) Sea (Mediterranean Sea)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/57/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::57";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::57";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/57/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/7/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::57";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "North Pacific Ocean"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/66/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::66";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::66";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/66/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/8_1/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::66";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Bismarck Sea"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/WAS/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::WAS";
+        dc:date                "2010-03-12 10:02:28.0";
+        dc:identifier          "SDN:C16::WAS";
+        pav:authoredOn         "2010-03-12 10:02:28.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/WAS/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/NSL03/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "Part of the North Sea between the Dutch, German and Danish coasts and the Frisian islands."@en;
+        skos:notation          "SDN:C16::WAS";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Wadden Sea"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/48c/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::48c";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::48c";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/48c/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/6_20/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::48c";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Molukka Sea (East Indian Archipelago)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/FRM/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::FRM";
+        dc:date                "2012-11-06 09:10:22.0";
+        dc:identifier          "SDN:C16::FRM";
+        pav:authoredOn         "2012-11-06 09:10:22.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/FRM/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/FRAM/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "Body of water between Greenland and Svalbard"@en;
+        skos:notation          "SDN:C16::FRM";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Fram Strait"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/500/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::500";
+        dc:date                "2009-01-08 15:36:19.0";
+        dc:identifier          "SDN:C16::500";
+        pav:authoredOn         "2009-01-08 15:36:19.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/500/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/SVX00019/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "Aggregation of North and South Pacific Ocean areas"@en;
+        skos:notation          "SDN:C16::500";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Pacific Ocean"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/15/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::15";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::15";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/15/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/9_9/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::15";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Davis Strait"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/52/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::52";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::52";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/52/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/7_6/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::52";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Japan Sea"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/36/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::36";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::36";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/36/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/5_3/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::36";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Gulf of Aqaba"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/GLO/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::GLO";
+        dc:date                "2008-07-01 09:21:05.0";
+        dc:identifier          "SDN:C16::GLO";
+        pav:authoredOn         "2008-07-01 09:21:05.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/GLO/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/SVX00025/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "Global coverage from 90S to 90N and 180E to 180W"@en;
+        skos:notation          "SDN:C16::GLO";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Worldwide"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/34/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::34";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::34";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/34/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/1_9/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::34";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Gulf of Guinea"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/28Bh/>
+        rdf:type               skos:Concept;
+        dce:identifier         "SDN:C16::28Bh";
+        dc:date                "1954-01-01 12:00:00.0";
+        dc:identifier          "SDN:C16::28Bh";
+        pav:authoredOn         "1954-01-01 12:00:00.0";
+        pav:hasCurrentVersion  <http://vocab.nerc.ac.uk/collection/C16/current/28Bh/1/>;
+        pav:version            "1";
+        void:inDataset         <http://vocab.nerc.ac.uk/.well-known/void>;
+        owl:deprecated         "false";
+        owl:sameAs             <http://vocab.nerc.ac.uk/collection/C19/current/3_1_2_4/>;
+        owl:versionInfo        "1";
+        skos:altLabel          "";
+        skos:definition        "";
+        skos:notation          "SDN:C16::28Bh";
+        skos:note              "accepted"@en;
+        skos:prefLabel         "Aegean Sea (The Archipelago) (Mediterranean Sea)"@en .
+
+<http://vocab.nerc.ac.uk/collection/C16/current/>
+        rdf:type                skos:Collection;
+        rdfs:comment            "Governance for vocabularies used in the EU SeaDataNet project implemented as consultation between BODC and the members of the SeaDataNet Technical Task Team";
+        dc:alternative          "SDN sea areas";
+        dc:creator              "SeaDataNet";
+        dc:date                 "2012-11-07 02:00:06.0";
+        dc:description          "Sea area terms from the IHB(1953) list plus additional terms added under SeaDataNet governance.";
+        dc:license              <https://creativecommons.org/licenses/by/4.0/>;
+        dc:publisher            "Natural Environment Research Council";
+        dc:title                "SeaDataNet sea areas";
+        grg:RE_RegisterManager  "British Oceanographic Data Centre";
+        grg:RE_RegisterOwner    "SeaDataNet";
+        owl:versionInfo         "9";
+        skos:altLabel           "SDN sea areas";
+        skos:member             <http://vocab.nerc.ac.uk/collection/C16/current/ZZ/> , <http://vocab.nerc.ac.uk/collection/C16/current/IJM/> , <http://vocab.nerc.ac.uk/collection/C16/current/MKM/> , <http://vocab.nerc.ac.uk/collection/C16/current/IRM/> , <http://vocab.nerc.ac.uk/collection/C16/current/10/> , <http://vocab.nerc.ac.uk/collection/C16/current/62a/> , <http://vocab.nerc.ac.uk/collection/C16/current/04/> , <http://vocab.nerc.ac.uk/collection/C16/current/01c/> , <http://vocab.nerc.ac.uk/collection/C16/current/25/> , <http://vocab.nerc.ac.uk/collection/C16/current/SOC/> , <http://vocab.nerc.ac.uk/collection/C16/current/33/> , <http://vocab.nerc.ac.uk/collection/C16/current/16a/> , <http://vocab.nerc.ac.uk/collection/C16/current/28Ab/> , <http://vocab.nerc.ac.uk/collection/C16/current/48/> , <http://vocab.nerc.ac.uk/collection/C16/current/48o/> , <http://vocab.nerc.ac.uk/collection/C16/current/ESC/> , <http://vocab.nerc.ac.uk/collection/C16/current/39/> , <http://vocab.nerc.ac.uk/collection/C16/current/57b/> , <http://vocab.nerc.ac.uk/collection/C16/current/ICS/> , <http://vocab.nerc.ac.uk/collection/C16/current/53/> , <http://vocab.nerc.ac.uk/collection/C16/current/35/> , <http://vocab.nerc.ac.uk/collection/C16/current/200/> , <http://vocab.nerc.ac.uk/collection/C16/current/61b/> , <http://vocab.nerc.ac.uk/collection/C16/current/22/> , <http://vocab.nerc.ac.uk/collection/C16/current/28Bf/> , <http://vocab.nerc.ac.uk/collection/C16/current/11/> , <http://vocab.nerc.ac.uk/collection/C16/current/63/> , <http://vocab.nerc.ac.uk/collection/C16/current/03/> , <http://vocab.nerc.ac.uk/collection/C16/current/12/> , <http://vocab.nerc.ac.uk/collection/C16/current/28B/> , <http://vocab.nerc.ac.uk/collection/C16/current/48e/> , <http://vocab.nerc.ac.uk/collection/C16/current/47/> , <http://vocab.nerc.ac.uk/collection/C16/current/28Aa/> , <http://vocab.nerc.ac.uk/collection/C16/current/45/> , <http://vocab.nerc.ac.uk/collection/C16/current/WSC/> , <http://vocab.nerc.ac.uk/collection/C16/current/62/> , <http://vocab.nerc.ac.uk/collection/C16/current/40/> , <http://vocab.nerc.ac.uk/collection/C16/current/23b/> , <http://vocab.nerc.ac.uk/collection/C16/current/06/> , <http://vocab.nerc.ac.uk/collection/C16/current/42/> , <http://vocab.nerc.ac.uk/collection/C16/current/51/> , <http://vocab.nerc.ac.uk/collection/C16/current/45a/> , <http://vocab.nerc.ac.uk/collection/C16/current/32b/> , <http://vocab.nerc.ac.uk/collection/C16/current/21/> , <http://vocab.nerc.ac.uk/collection/C16/current/28C/> , <http://vocab.nerc.ac.uk/collection/C16/current/48m/> , <http://vocab.nerc.ac.uk/collection/C16/current/01b/> , <http://vocab.nerc.ac.uk/collection/C16/current/26/> , <http://vocab.nerc.ac.uk/collection/C16/current/13/> , <http://vocab.nerc.ac.uk/collection/C16/current/28A/> , <http://vocab.nerc.ac.uk/collection/C16/current/32/> , <http://vocab.nerc.ac.uk/collection/C16/current/48j/> , <http://vocab.nerc.ac.uk/collection/C16/current/48h/> , <http://vocab.nerc.ac.uk/collection/C16/current/31/> , <http://vocab.nerc.ac.uk/collection/C16/current/57a/> , <http://vocab.nerc.ac.uk/collection/C16/current/05/> , <http://vocab.nerc.ac.uk/collection/C16/current/50/> , <http://vocab.nerc.ac.uk/collection/C16/current/ARA/> , <http://vocab.nerc.ac.uk/collection/C16/current/61a/> , <http://vocab.nerc.ac.uk/collection/C16/current/21a/> , <http://vocab.nerc.ac.uk/collection/C16/current/28Bg/> , <http://vocab.nerc.ac.uk/collection/C16/current/48n/> , <http://vocab.nerc.ac.uk/collection/C16/current/01a/> , <http://vocab.nerc.ac.uk/collection/C16/current/27/> , <http://vocab.nerc.ac.uk/collection/C16/current/14/> , <http://vocab.nerc.ac.uk/collection/C16/current/60/> , <http://vocab.nerc.ac.uk/collection/C16/current/48f/> , <http://vocab.nerc.ac.uk/collection/C16/current/49/> , <http://vocab.nerc.ac.uk/collection/C16/current/48a/> , <http://vocab.nerc.ac.uk/collection/C16/current/48l/> , <http://vocab.nerc.ac.uk/collection/C16/current/48i/> , <http://vocab.nerc.ac.uk/collection/C16/current/41/> , <http://vocab.nerc.ac.uk/collection/C16/current/30/> , <http://vocab.nerc.ac.uk/collection/C16/current/23a/> , <http://vocab.nerc.ac.uk/collection/C16/current/08/> , <http://vocab.nerc.ac.uk/collection/C16/current/32a/> , <http://vocab.nerc.ac.uk/collection/C16/current/20/> , <http://vocab.nerc.ac.uk/collection/C16/current/17a/> , <http://vocab.nerc.ac.uk/collection/C16/current/28Ae/> , <http://vocab.nerc.ac.uk/collection/C16/current/17/> , <http://vocab.nerc.ac.uk/collection/C16/current/59/> , <http://vocab.nerc.ac.uk/collection/C16/current/64/> , <http://vocab.nerc.ac.uk/collection/C16/current/48k/> , <http://vocab.nerc.ac.uk/collection/C16/current/48b/> , <http://vocab.nerc.ac.uk/collection/C16/current/01/> , <http://vocab.nerc.ac.uk/collection/C16/current/44/> , <http://vocab.nerc.ac.uk/collection/C16/current/55/> , <http://vocab.nerc.ac.uk/collection/C16/current/38/> , <http://vocab.nerc.ac.uk/collection/C16/current/29/> , <http://vocab.nerc.ac.uk/collection/C16/current/07/> , <http://vocab.nerc.ac.uk/collection/C16/current/56/> , <http://vocab.nerc.ac.uk/collection/C16/current/19/> , <http://vocab.nerc.ac.uk/collection/C16/current/15a/> , <http://vocab.nerc.ac.uk/collection/C16/current/46b/> , <http://vocab.nerc.ac.uk/collection/C16/current/14a/> , <http://vocab.nerc.ac.uk/collection/C16/current/28Ad/> , <http://vocab.nerc.ac.uk/collection/C16/current/61/> , <http://vocab.nerc.ac.uk/collection/C16/current/58/> , <http://vocab.nerc.ac.uk/collection/C16/current/65/> , <http://vocab.nerc.ac.uk/collection/C16/current/48g/> , <http://vocab.nerc.ac.uk/collection/C16/current/48d/> , <http://vocab.nerc.ac.uk/collection/C16/current/23/> , <http://vocab.nerc.ac.uk/collection/C16/current/43/> , <http://vocab.nerc.ac.uk/collection/C16/current/54/> , <http://vocab.nerc.ac.uk/collection/C16/current/37/> , <http://vocab.nerc.ac.uk/collection/C16/current/CAS/> , <http://vocab.nerc.ac.uk/collection/C16/current/28/> , <http://vocab.nerc.ac.uk/collection/C16/current/09/> , <http://vocab.nerc.ac.uk/collection/C16/current/18/> , <http://vocab.nerc.ac.uk/collection/C16/current/02/> , <http://vocab.nerc.ac.uk/collection/C16/current/24/> , <http://vocab.nerc.ac.uk/collection/C16/current/46/> , <http://vocab.nerc.ac.uk/collection/C16/current/46a/> , <http://vocab.nerc.ac.uk/collection/C16/current/16/> , <http://vocab.nerc.ac.uk/collection/C16/current/28Ac/> , <http://vocab.nerc.ac.uk/collection/C16/current/57/> , <http://vocab.nerc.ac.uk/collection/C16/current/66/> , <http://vocab.nerc.ac.uk/collection/C16/current/WAS/> , <http://vocab.nerc.ac.uk/collection/C16/current/48c/> , <http://vocab.nerc.ac.uk/collection/C16/current/FRM/> , <http://vocab.nerc.ac.uk/collection/C16/current/500/> , <http://vocab.nerc.ac.uk/collection/C16/current/15/> , <http://vocab.nerc.ac.uk/collection/C16/current/52/> , <http://vocab.nerc.ac.uk/collection/C16/current/36/> , <http://vocab.nerc.ac.uk/collection/C16/current/GLO/> , <http://vocab.nerc.ac.uk/collection/C16/current/28Bh/> , <http://vocab.nerc.ac.uk/collection/C16/current/34/>;
+        skos:prefLabel          "SeaDataNet sea areas" .

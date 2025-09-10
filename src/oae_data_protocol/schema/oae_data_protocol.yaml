@@ -16,8 +16,9 @@ imports:
   - linkml:types
   - core
   - enums
+  - dynamic_enums_expanded
   - oae_project
-  - dataset
-  - experiment
-  - intervention
-  - model_simulation
+#   - dataset
+#   - experiment
+#   - intervention
+#   - model_simulation

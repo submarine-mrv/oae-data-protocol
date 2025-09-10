@@ -1,0 +1,12 @@
+id: DynamicEnums
+name: DynamicEnums
+
+prefixes:
+  oae: "https://example.org/oae#"
+
+default_prefix: oae
+enums:
+  SeaNames:
+    matches:
+      source_ontology: "SDN:C16"
+      identifier_pattern: "http://vocab.nerc.ac.uk/collection/C16/current/.+/"
