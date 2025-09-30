@@ -28,6 +28,7 @@ SHEET_MODULE = $(LINKML_SCHEMA_GOOGLE_SHEET_MODULE)
 SHEET_ID = $(LINKML_SCHEMA_GOOGLE_SHEET_ID)
 SHEET_TABS = $(LINKML_SCHEMA_GOOGLE_SHEET_TABS)
 SHEET_MODULE_PATH = $(SOURCE_SCHEMA_DIR)/$(SHEET_MODULE).yaml
+JSON_SCHEMA_OUT = ../oae-form/schemas/schema.json
 
 # Use += to append variables from the variables file
 CONFIG_YAML =
@@ -202,6 +203,8 @@ ontologies/sea_names.ttl:
 enums: ontologies/sea_names.ttl
 	vskit expand -s src/oae_data_protocol/schema/dynamic_enums.yaml -o src/oae_data_protocol/schema/dynamic_enums_expanded.yaml --config vskit-config.yaml
 
+json-schema:
+	gen-json-schema src/oae_data_protocol/schema/oae_data_protocol.yaml -t OAEProject --title-from title > $(JSON_SCHEMA_OUT)
 
 
 # Python datamodel

@@ -32,19 +32,26 @@ enums:
       model_outputs:
         description: "Outputs from mathematical models that simulate Earth system processes, used to replicate real-world scenarios and assess the impacts of different policies related to ocean carbon and alkalinity."
   MCDRPathway:
+    title: MCDR Pathway
     description: "Type of marine Carbon Dioxide Removal (mCDR) pathways."
     permissible_values:
       ocean_alkalinity_enhancement:
+        title: Ocean Alkalinity Enhancement
         description: "Ocean Alkalinity Enhancement (OAE) is a method to help mitigate climate change by increasing the alkalinity of seawater to enhance its capacity to absorb and store atmospheric carbon dioxide (CO₂)."
       biomass_sinking:
+        title: Biomass Sinking
         description: "Biomass Sinking is a method that involves taking terrestrial or ocean biomass and sinking it into the deep ocean surface, subsurface, or anoxic basins, where it is sequestered. This can be accomplished by large-scale seaweed farming or macroalgae cultivation, which incorporates atmospheric CO2 as it grows, and then is sunk to the ocean floor. Alternatively, terrestrial plant biomass can be sunk to the ocean floor."
       direct_ocean_capture:
+        title: Direct Ocean Capture
         description: "Direct Ocean Capture (DOC) is a method that uses electrochemical processes to remove dissolved carbon dioxide (CO₂) directly from seawater for carbon storage or reuse."
       ocean_nutrient_fertilization:
+        title: Ocean Nutrient Fertilization
         description: "Ocean Fertilization is a method that involves adding nutrients, such as iron, nitrogen, or phosphorus, to the ocean to stimulate the growth of phytoplankton or other microscopic plants that absorb carbon dioxide (CO₂) through photosynthesis."
       artificial_upwelling_downwelling:
+        title: Artificial Upwelling and Downwelling
         description: "Artificial Upwelling and Downwelling are mCDR methods that involve manipulating ocean water movement to enhance natural carbon sequestration processes."
       marine_ecosystem_recovery:
+        title: Marine Ecosystem Recovery
         description: "Marine Ecosystem Recovery refers to the restoration and protection of marine ecosystems to enhance their natural ability to capture and store carbon dioxide (CO₂). This method leverages the natural carbon-sequestering processes of marine habitats such as salt marshes, mangrove forests, coral reefs, kelp forests, seagrass meadows, oyster beds, and deep-sea ecosystems, aiming to rebuild biodiversity, ecosystem functions, and carbon storage capacity."
 
   OAETreatmentType:

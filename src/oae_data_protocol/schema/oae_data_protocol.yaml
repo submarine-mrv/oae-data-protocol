@@ -18,6 +18,7 @@ imports:
   - enums
   - dynamic_enums_expanded
   - oae_project
+  - external_project
 #   - dataset
 #   - experiment
 #   - intervention
