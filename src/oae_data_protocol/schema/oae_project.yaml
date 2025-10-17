@@ -39,8 +39,7 @@ classes:
         recommended: true
         range: SeaNames
         multivalued: true
-        inlined_as_list: true
-      project_description:
+      roject_description:
         title: Project Description
         description: >-
           A narrative description of the project. For example, what were the goals of the project? What were the research questions? What were the processes to achieve these goals and answer these questions? Who were the key stakeholders, organizers, project leaders? Was this building off a previous or ongoing project, or is this a new region/experiment/mechanistic study?
