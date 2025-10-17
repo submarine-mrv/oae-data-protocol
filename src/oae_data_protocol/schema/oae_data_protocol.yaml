@@ -19,6 +19,8 @@ imports:
   - dynamic_enums_expanded
   - oae_project
   - external_project
+#   The following were early experimental schemas and have not been
+#   udated to the v1.0 version of the protocol yet
 #   - dataset
 #   - experiment
 #   - intervention
