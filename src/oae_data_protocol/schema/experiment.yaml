@@ -104,12 +104,6 @@ classes:
           General Guidelines for Your Data for relevant sections of your data. Additional informational files, such
           as digitized laboratory notebooks, blogs, etc., may be linked here.
         range: string
-      intervention_metadata:
-        title: OAE Intervention Metadata
-        description: >-
-          OAE Intervention Metadata are additional Experiment Metadata that apply to experiments where an intervention,
-          such as an alkalinity addition, was conducted.
-        range: InterventionMetadata
 
   Investigator:
     description: "Information about a researcher or investigator involved in the experiment."
@@ -154,13 +148,13 @@ classes:
       alkalinity_feedstock_processing:
         title: Alkalinity Feedstock Processing
         description: "Method(s) used to process the alkalinity feedstock. See Controlled Vocabularies section for definitions."
-        range: FeedstockProcessing
+        range: AlkalinityFeedstockProcessing
         multivalued: true
         required: true
       alkalinity_feedstock_form:
         title: Alkalinity Feedstock Form
         description: "The phase upon delivery to the ocean. See Controlled Vocabularies section for definitions."
-        range: FeedstockForm
+        range: AlkalinityFeedstockForm
         required: true
       alkalinity_feedstock:
         title: Alkalinity Feedstock
@@ -250,88 +244,3 @@ classes:
         required: true
 
 enums:
-  ExperimentType:
-    description: "Types of mCDR experiments"
-    permissible_values:
-      baseline:
-        description: "Baseline measurements taken before any intervention"
-      control:
-        description: "Control experiment without intervention for comparison"
-      intervention:
-        description: "Experiment with active OAE intervention"
-      model:
-        description: "Model-based experiment or simulation"
-      other:
-        description: "Other experiment type not covered by standard categories"
-
-  AlkalinityFeedstockProcessing:
-    description: "Methods used to process alkalinity feedstock"
-    permissible_values:
-      electrochemistry:
-        description: "Alkalinity generated via electrochemical processes (e.g., seawater electrolysis)."
-      synthetically_derived:
-        description: "Intentionally industrially manufactured chemical compounds (e.g., Ca(OH)2 via lime kilns)."
-      mineral_mining:
-        description: "Mined geological material, including purified mineral or natural rock."
-      blended:
-        description: "A mix of multiple sources."
-      other:
-        description: "Unclassified or novel; include a description in Experiment Description."
-
-  AlkalinityFeedstockForm:
-    description: "Physical form of the alkalinity feedstock upon ocean delivery"
-    permissible_values:
-      solid:
-        description: >-
-          Involves adding alkaline minerals or particulate slurry (such as MgOH2, MgO, or CaO) to seawater or river
-          systems either directly, through coastal outfalls (such as wastewater), or at breaking shorelines to increase
-          its alkalinity.
-      aqueous:
-        description: >-
-          Aqueous alkalinity addition may use electrochemistry or fully dissolved mineral feedstock to
-          increase seawater alkalinity.
-      slurry:
-        description: >- 
-          Slurry alkalinity additions include a mix of solid and aqueous alkalinity forms, where the solid
-          alkaline particulates are suspended in a solution.
-
-  EquilibrationStatus:
-    description: "Equilibration status of the alkalinity feedstock"
-    permissible_values:
-      pre_equilibrated:
-        description: "Pre-equilibrated with atmosphere before dosing"
-        title: "Pre-equilibrated"
-      unequilibrated:
-        description: "Not pre-equilibrated before dosing"
-
-  HydrologicLocation:
-    description: "Hydrologic location types for dosing"
-    permissible_values:
-      coastal_surface:
-        description: "Surface waters in coastal areas"
-        title: "Coastal Surface"
-      offshore_surface:
-        description: "Surface waters in offshore areas"
-        title: "Offshore Surface"
-      river:
-        description: "River systems"
-      wetland:
-        description: "Wetland areas"
-      seafloor:
-        description: "Seafloor or benthic zone"
-
-  DosingDeliveryType:
-    description: "Types of dosing delivery methods"
-    permissible_values:
-      static_point_source:
-        description: "Fixed location single point of dosing"
-        title: "Static Point Source"
-      variable_point_source:
-        description: "Moving or changing single point of dosing"
-        title: "Variable Point Source"
-      static_distributed:
-        description: "Fixed locations with multiple dosing points"
-        title: "Static Distributed"
-      variable_distributed:
-        description: "Moving or changing multiple dosing points"
-        title: "Variable Distributed"
