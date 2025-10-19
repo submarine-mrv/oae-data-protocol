@@ -17,15 +17,6 @@ classes:
       - spatial_coverage
       - vertical_coverage
     slot_usage:
-      name:
-        title: Experiment ID
-        description: >-
-          The experiment to which the data belong. Any naming convention that produces a unique ID is usable.
-          The recommended naming convention is:
-          
-          Project ID + Experiment type + Optional numerical indicator to differentiate between various experiments of
-          the same type for a project. A two digit consecutive number beginning with 01
-        required: true
       description:
         title: Experiment Description
         description: >-
@@ -44,6 +35,15 @@ classes:
         description: Minimum and maximum depths of observations in meters.
         required: true
     attributes:
+      experiment_id:
+        title: Experiment ID
+        description: >-
+          The experiment to which the data belong. Any naming convention that produces a unique ID is usable.
+          The recommended naming convention is:
+          
+          Project ID + Experiment type + Optional numerical indicator to differentiate between various experiments of
+          the same type for a project. A two digit consecutive number beginning with 01
+        required: true
       project_id:
         title: Project ID
         description: >-
@@ -59,7 +59,6 @@ classes:
           Any method that creates a unique ID that will link all project data (e.g., a project's baseline data to
           intervention data, and various data submissions within an experiment type) is acceptable.
         range: string
-        required: true
       experiment_type:
         title: mCDR Experiment Type
         description: "The type of mCDR experiment conducted. See Controlled Vocabularies section for definitions."
@@ -104,7 +103,6 @@ classes:
           General Guidelines for Your Data for relevant sections of your data. Additional informational files, such
           as digitized laboratory notebooks, blogs, etc., may be linked here.
         range: string
-
   Investigator:
     description: "Information about a researcher or investigator involved in the experiment."
     attributes:

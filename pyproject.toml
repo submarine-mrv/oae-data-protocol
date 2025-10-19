@@ -12,7 +12,7 @@ license = "Apache Software License 2.0"
 readme = "README.md"
 include = ["README.md", "src/oae_data_protocol/schema", "project"]
 
-requires-python = ">=3.9,<4.0"
+requires-python = ">=3.9,<3.13"
 
 dynamic = ["version"]
 

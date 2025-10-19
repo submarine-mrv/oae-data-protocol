@@ -33,6 +33,11 @@ classes:
 
           Any method that creates a unique ID that will link all project data (e.g., a project's baseline data to intervention data, and various data submissions within an experiment type) is acceptable.
         range: string
+      experiments:
+        title: Related Experiments
+        range: Experiment
+        multivalued: true
+        recommended: true
       sea_names:
         title: Sea Names
         description: "Names of the seas where the data collection takes place, See Controlled Vocabularies section for definitions."
