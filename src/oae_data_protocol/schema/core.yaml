@@ -9,17 +9,19 @@ default_prefix: oae
 
 slots:
   description:
+    title: Description
     #slot_uri: schema:description
     description: "A narrative description of the thing."
     range: string
   name:
+    title: Name
     #slot_uri: schema:name
     description: "A human-readable name for the thing."
     range: string
   identifier:
-    #slot_uri: schema:identifier
+    slot_uri: schema:identifier
     description: "A unique identifier for the thing"
-    range: Any
+    range: string
   temporal_coverage:
     title: Temporal Coverage
     slot_uri: schema:temporalCoverage

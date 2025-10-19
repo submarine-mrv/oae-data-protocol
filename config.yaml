@@ -1,5 +1,8 @@
 # Configuration of generators (defaults illustrated)
 ---
+includes:
+  - jsonschema
+  - python
 generator_args:
   excel:
     mergeimports: true
@@ -20,6 +23,9 @@ generator_args:
     mergeimports: true
   jsonschema:
     mergeimports: true
+    include_null: false
+    top_class: OAEProject
+    title_from: title
   jsonldcontext:
     mergeimports: true
   python:

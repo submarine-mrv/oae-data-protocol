@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-03-13T13:45:50
+# Generation date: 2025-10-18T19:41:30
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -57,8 +57,8 @@ from rdflib import (
     URIRef
 )
 
-from linkml_runtime.linkml_model.types import Datetime, Decimal, Integer, String, Uri
-from linkml_runtime.utils.metamodelcore import Decimal, URI, XSDDateTime
+from linkml_runtime.linkml_model.types import Date, Float, String, Uri
+from linkml_runtime.utils.metamodelcore import URI, XSDDate
 
 metamodel_version = "1.7.0"
 version = "0.1.0"
@@ -102,6 +102,83 @@ class PropertyValue(YAMLRoot):
 Any = Any
 
 @dataclass(repr=False)
+class Place(YAMLRoot):
+    """
+    A bounding box defined by latitude and longitude coordinates.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = SCHEMA["Place"]
+    class_class_curie: ClassVar[str] = "schema:Place"
+    class_name: ClassVar[str] = "Place"
+    class_model_uri: ClassVar[URIRef] = OAE.Place
+
+    geo: Union[dict, "GeoShape"] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.geo):
+            self.MissingRequiredField("geo")
+        if not isinstance(self.geo, GeoShape):
+            self.geo = GeoShape(**as_dict(self.geo))
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class GeoShape(YAMLRoot):
+    """
+    The geographic shape of a place. A GeoShape can be described using several properties whose values are based on
+    latitude/longitude pairs. Either whitespace or commas can be used to separate latitude and longitude; whitespace
+    should be used when writing a list of several such points. (imported from schema.org)
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = SCHEMA["GeoShape"]
+    class_class_curie: ClassVar[str] = "schema:GeoShape"
+    class_name: ClassVar[str] = "GeoShape"
+    class_model_uri: ClassVar[URIRef] = OAE.GeoShape
+
+    box: str = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.box):
+            self.MissingRequiredField("box")
+        if not isinstance(self.box, str):
+            self.box = str(self.box)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class VerticalExtent(YAMLRoot):
+    """
+    The vertical extent of a place or structure in meters.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["VerticalExtent"]
+    class_class_curie: ClassVar[str] = "oae:VerticalExtent"
+    class_name: ClassVar[str] = "VerticalExtent"
+    class_model_uri: ClassVar[URIRef] = OAE.VerticalExtent
+
+    min_depth_in_m: float = None
+    max_depth_in_m: float = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.min_depth_in_m):
+            self.MissingRequiredField("min_depth_in_m")
+        if not isinstance(self.min_depth_in_m, float):
+            self.min_depth_in_m = float(self.min_depth_in_m)
+
+        if self._is_empty(self.max_depth_in_m):
+            self.MissingRequiredField("max_depth_in_m")
+        if not isinstance(self.max_depth_in_m, float):
+            self.max_depth_in_m = float(self.max_depth_in_m)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
 class OAEProject(YAMLRoot):
     """
     A project conducting OAE field trials or modeling.
@@ -113,332 +190,258 @@ class OAEProject(YAMLRoot):
     class_name: ClassVar[str] = "OAEProject"
     class_model_uri: ClassVar[URIRef] = OAE.OAEProject
 
-    description: Optional[str] = None
-    project_id: Optional[str] = None
+    temporal_coverage: str = None
+    spatial_coverage: Union[dict, Place] = None
+    vertical_coverage: Union[dict, VerticalExtent] = None
+    project_id: str = None
+    sea_names: Optional[Union[Union[str, "SeaNames"], List[Union[str, "SeaNames"]]]] = empty_list()
+    project_description: Optional[str] = None
+    physical_site_description: Optional[str] = None
+    social_context_site_description: Optional[str] = None
+    social_research_conducted_to_date: Optional[str] = None
     mcdr_pathway: Optional[Union[str, "MCDRPathway"]] = None
-    site_description: Optional[str] = None
-    permit_info: Optional[str] = None
+    previous_or_ongoing_colocated_research: Optional[Union[Union[dict, "ExternalProject"], List[Union[dict, "ExternalProject"]]]] = empty_list()
+    colocated_operations: Optional[str] = None
+    permits: Optional[Union[Union[dict, "Permit"], List[Union[dict, "Permit"]]]] = empty_list()
+    public_comments: Optional[Union[Union[dict, "NamedLink"], List[Union[dict, "NamedLink"]]]] = empty_list()
+    research_project: Optional[str] = None
+    funding: Optional[Union[dict, "MonetaryGrant"]] = None
+    additional_details: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.description is not None and not isinstance(self.description, str):
-            self.description = str(self.description)
+        if self._is_empty(self.temporal_coverage):
+            self.MissingRequiredField("temporal_coverage")
+        if not isinstance(self.temporal_coverage, str):
+            self.temporal_coverage = str(self.temporal_coverage)
 
-        if self.project_id is not None and not isinstance(self.project_id, str):
+        if self._is_empty(self.spatial_coverage):
+            self.MissingRequiredField("spatial_coverage")
+        if not isinstance(self.spatial_coverage, Place):
+            self.spatial_coverage = Place(**as_dict(self.spatial_coverage))
+
+        if self._is_empty(self.vertical_coverage):
+            self.MissingRequiredField("vertical_coverage")
+        if not isinstance(self.vertical_coverage, VerticalExtent):
+            self.vertical_coverage = VerticalExtent(**as_dict(self.vertical_coverage))
+
+        if self._is_empty(self.project_id):
+            self.MissingRequiredField("project_id")
+        if not isinstance(self.project_id, str):
             self.project_id = str(self.project_id)
+
+        if not isinstance(self.sea_names, list):
+            self.sea_names = [self.sea_names] if self.sea_names is not None else []
+        self.sea_names = [v if isinstance(v, SeaNames) else SeaNames(v) for v in self.sea_names]
+
+        if self.project_description is not None and not isinstance(self.project_description, str):
+            self.project_description = str(self.project_description)
+
+        if self.physical_site_description is not None and not isinstance(self.physical_site_description, str):
+            self.physical_site_description = str(self.physical_site_description)
+
+        if self.social_context_site_description is not None and not isinstance(self.social_context_site_description, str):
+            self.social_context_site_description = str(self.social_context_site_description)
+
+        if self.social_research_conducted_to_date is not None and not isinstance(self.social_research_conducted_to_date, str):
+            self.social_research_conducted_to_date = str(self.social_research_conducted_to_date)
 
         if self.mcdr_pathway is not None and not isinstance(self.mcdr_pathway, MCDRPathway):
             self.mcdr_pathway = MCDRPathway(self.mcdr_pathway)
 
-        if self.site_description is not None and not isinstance(self.site_description, str):
-            self.site_description = str(self.site_description)
+        self._normalize_inlined_as_dict(slot_name="previous_or_ongoing_colocated_research", slot_type=ExternalProject, key_name="temporal_coverage", keyed=False)
 
-        if self.permit_info is not None and not isinstance(self.permit_info, str):
-            self.permit_info = str(self.permit_info)
+        if self.colocated_operations is not None and not isinstance(self.colocated_operations, str):
+            self.colocated_operations = str(self.colocated_operations)
+
+        if not isinstance(self.permits, list):
+            self.permits = [self.permits] if self.permits is not None else []
+        self.permits = [v if isinstance(v, Permit) else Permit(**as_dict(v)) for v in self.permits]
+
+        self._normalize_inlined_as_dict(slot_name="public_comments", slot_type=NamedLink, key_name="name", keyed=False)
+
+        if self.research_project is not None and not isinstance(self.research_project, str):
+            self.research_project = str(self.research_project)
+
+        if self.funding is not None and not isinstance(self.funding, MonetaryGrant):
+            self.funding = MonetaryGrant(**as_dict(self.funding))
+
+        if self.additional_details is not None and not isinstance(self.additional_details, str):
+            self.additional_details = str(self.additional_details)
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class Dataset(YAMLRoot):
+class Permit(YAMLRoot):
     """
-    A dataset related to an OAE experiment. Generally following guidelines & best practices as outlined in
-    [science-on-schema.org](https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md)
+    A permit associated with the project.
     """
     _inherited_slots: ClassVar[List[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = OAE["Dataset"]
-    class_class_curie: ClassVar[str] = "oae:Dataset"
-    class_name: ClassVar[str] = "Dataset"
-    class_model_uri: ClassVar[URIRef] = OAE.Dataset
+    class_class_uri: ClassVar[URIRef] = OAE["Permit"]
+    class_class_curie: ClassVar[str] = "oae:Permit"
+    class_name: ClassVar[str] = "Permit"
+    class_model_uri: ClassVar[URIRef] = OAE.Permit
 
-    description: Optional[str] = None
-    name: Optional[str] = None
-    identifier: Optional[str] = None
-    url: Optional[str] = None
-    temporal_coverage: Optional[str] = None
-    spatial_coverage: Optional[str] = None
+    permit_id: str = None
+    permitting_authority: str = None
+    permit_status: Union[str, "PermitStatus"] = None
+    approval_document: Union[str, URI] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.permit_id):
+            self.MissingRequiredField("permit_id")
+        if not isinstance(self.permit_id, str):
+            self.permit_id = str(self.permit_id)
+
+        if self._is_empty(self.permitting_authority):
+            self.MissingRequiredField("permitting_authority")
+        if not isinstance(self.permitting_authority, str):
+            self.permitting_authority = str(self.permitting_authority)
+
+        if self._is_empty(self.permit_status):
+            self.MissingRequiredField("permit_status")
+        if not isinstance(self.permit_status, PermitStatus):
+            self.permit_status = PermitStatus(self.permit_status)
+
+        if self._is_empty(self.approval_document):
+            self.MissingRequiredField("approval_document")
+        if not isinstance(self.approval_document, URI):
+            self.approval_document = URI(self.approval_document)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class NamedLink(YAMLRoot):
+    """
+    A link to a resource with a name and URL.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["NamedLink"]
+    class_class_curie: ClassVar[str] = "oae:NamedLink"
+    class_name: ClassVar[str] = "NamedLink"
+    class_model_uri: ClassVar[URIRef] = OAE.NamedLink
+
+    name: str = None
+    url: Union[str, URI] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.name):
+            self.MissingRequiredField("name")
+        if not isinstance(self.name, str):
+            self.name = str(self.name)
+
+        if self._is_empty(self.url):
+            self.MissingRequiredField("url")
+        if not isinstance(self.url, URI):
+            self.url = URI(self.url)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class ExternalProject(YAMLRoot):
+    """
+    A research project that is not directly managed by the OAE project, but whose location is proximal to the OAE
+    project and whose data may be relevant to understanding the context or impacts of OAE activities.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["ExternalProject"]
+    class_class_curie: ClassVar[str] = "oae:ExternalProject"
+    class_name: ClassVar[str] = "ExternalProject"
+    class_model_uri: ClassVar[URIRef] = OAE.ExternalProject
+
+    temporal_coverage: str = None
+    spatial_coverage: Union[dict, Place] = None
+    name: str = None
+    description: Optional[str] = None
+    related_links: Optional[Union[Union[str, URI], List[Union[str, URI]]]] = empty_list()
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.temporal_coverage):
+            self.MissingRequiredField("temporal_coverage")
+        if not isinstance(self.temporal_coverage, str):
+            self.temporal_coverage = str(self.temporal_coverage)
+
+        if self._is_empty(self.spatial_coverage):
+            self.MissingRequiredField("spatial_coverage")
+        if not isinstance(self.spatial_coverage, Place):
+            self.spatial_coverage = Place(**as_dict(self.spatial_coverage))
+
+        if self._is_empty(self.name):
+            self.MissingRequiredField("name")
+        if not isinstance(self.name, str):
+            self.name = str(self.name)
+
         if self.description is not None and not isinstance(self.description, str):
             self.description = str(self.description)
 
+        if not isinstance(self.related_links, list):
+            self.related_links = [self.related_links] if self.related_links is not None else []
+        self.related_links = [v if isinstance(v, URI) else URI(v) for v in self.related_links]
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class MonetaryGrant(YAMLRoot):
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = SCHEMA["MonetaryGrant"]
+    class_class_curie: ClassVar[str] = "schema:MonetaryGrant"
+    class_name: ClassVar[str] = "MonetaryGrant"
+    class_model_uri: ClassVar[URIRef] = OAE.MonetaryGrant
+
+    name: Optional[str] = None
+    identifier: Optional[str] = None
+    start_date: Optional[Union[str, XSDDate]] = None
+    end_date: Optional[Union[str, XSDDate]] = None
+    funder: Optional[Union[dict, "Organization"]] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self.name is not None and not isinstance(self.name, str):
             self.name = str(self.name)
 
         if self.identifier is not None and not isinstance(self.identifier, str):
             self.identifier = str(self.identifier)
 
-        if self.url is not None and not isinstance(self.url, str):
-            self.url = str(self.url)
+        if self.start_date is not None and not isinstance(self.start_date, XSDDate):
+            self.start_date = XSDDate(self.start_date)
 
-        if self.temporal_coverage is not None and not isinstance(self.temporal_coverage, str):
-            self.temporal_coverage = str(self.temporal_coverage)
+        if self.end_date is not None and not isinstance(self.end_date, XSDDate):
+            self.end_date = XSDDate(self.end_date)
 
-        if self.spatial_coverage is not None and not isinstance(self.spatial_coverage, str):
-            self.spatial_coverage = str(self.spatial_coverage)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class Experiment(YAMLRoot):
-    """
-    A single experiment conducted within an OAE project.
-    """
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OAE["Experiment"]
-    class_class_curie: ClassVar[str] = "oae:Experiment"
-    class_name: ClassVar[str] = "Experiment"
-    class_model_uri: ClassVar[URIRef] = OAE.Experiment
-
-    description: Optional[str] = None
-    experiment_type: Optional[Union[str, "ExperimentType"]] = None
-    experiment_id: Optional[str] = None
-    project: Optional[Union[dict, OAEProject]] = None
-    observation_type: Optional[Union[Union[str, "ObservationType"], List[Union[str, "ObservationType"]]]] = empty_list()
-    start_date: Optional[Union[str, XSDDateTime]] = None
-    end_date: Optional[Union[str, XSDDateTime]] = None
-    datasets: Optional[Union[Union[dict, Dataset], List[Union[dict, Dataset]]]] = empty_list()
-    previous_research: Optional[Union[str, List[str]]] = empty_list()
-
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.description is not None and not isinstance(self.description, str):
-            self.description = str(self.description)
-
-        if self.experiment_type is not None and not isinstance(self.experiment_type, ExperimentType):
-            self.experiment_type = ExperimentType(self.experiment_type)
-
-        if self.experiment_id is not None and not isinstance(self.experiment_id, str):
-            self.experiment_id = str(self.experiment_id)
-
-        if self.project is not None and not isinstance(self.project, OAEProject):
-            self.project = OAEProject(**as_dict(self.project))
-
-        if not isinstance(self.observation_type, list):
-            self.observation_type = [self.observation_type] if self.observation_type is not None else []
-        self.observation_type = [v if isinstance(v, ObservationType) else ObservationType(v) for v in self.observation_type]
-
-        if self.start_date is not None and not isinstance(self.start_date, XSDDateTime):
-            self.start_date = XSDDateTime(self.start_date)
-
-        if self.end_date is not None and not isinstance(self.end_date, XSDDateTime):
-            self.end_date = XSDDateTime(self.end_date)
-
-        if not isinstance(self.datasets, list):
-            self.datasets = [self.datasets] if self.datasets is not None else []
-        self.datasets = [v if isinstance(v, Dataset) else Dataset(**as_dict(v)) for v in self.datasets]
-
-        if not isinstance(self.previous_research, list):
-            self.previous_research = [self.previous_research] if self.previous_research is not None else []
-        self.previous_research = [v if isinstance(v, str) else str(v) for v in self.previous_research]
+        if self.funder is not None and not isinstance(self.funder, Organization):
+            self.funder = Organization(**as_dict(self.funder))
 
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class Intervention(Experiment):
-    """
-    Details about an OAE intervention.
-    """
+class Organization(YAMLRoot):
     _inherited_slots: ClassVar[List[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = OAE["Intervention"]
-    class_class_curie: ClassVar[str] = "oae:Intervention"
-    class_name: ClassVar[str] = "Intervention"
-    class_model_uri: ClassVar[URIRef] = OAE.Intervention
+    class_class_uri: ClassVar[URIRef] = SCHEMA["Organization"]
+    class_class_curie: ClassVar[str] = "schema:Organization"
+    class_name: ClassVar[str] = "Organization"
+    class_model_uri: ClassVar[URIRef] = OAE.Organization
 
-    treatment_type: Optional[Union[str, "OAETreatmentType"]] = None
-    alkalinity_feedstock_type: Optional[Union[str, "FeedstockType"]] = None
-    alkalinity_feedstock_description: Optional[str] = None
-    dosing_depth_in_m: Optional[Decimal] = None
-    dosing_regimen: Optional[str] = None
-    dosing_location: Optional[str] = None
-
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.treatment_type is not None and not isinstance(self.treatment_type, OAETreatmentType):
-            self.treatment_type = OAETreatmentType(self.treatment_type)
-
-        if self.alkalinity_feedstock_type is not None and not isinstance(self.alkalinity_feedstock_type, FeedstockType):
-            self.alkalinity_feedstock_type = FeedstockType(self.alkalinity_feedstock_type)
-
-        if self.alkalinity_feedstock_description is not None and not isinstance(self.alkalinity_feedstock_description, str):
-            self.alkalinity_feedstock_description = str(self.alkalinity_feedstock_description)
-
-        if self.dosing_depth_in_m is not None and not isinstance(self.dosing_depth_in_m, Decimal):
-            self.dosing_depth_in_m = Decimal(self.dosing_depth_in_m)
-
-        if self.dosing_regimen is not None and not isinstance(self.dosing_regimen, str):
-            self.dosing_regimen = str(self.dosing_regimen)
-
-        if self.dosing_location is not None and not isinstance(self.dosing_location, str):
-            self.dosing_location = str(self.dosing_location)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class ModelSimulation(Experiment):
-    """
-    A computational model run related to OAE.
-    """
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OAE["ModelSimulation"]
-    class_class_curie: ClassVar[str] = "oae:ModelSimulation"
-    class_name: ClassVar[str] = "ModelSimulation"
-    class_model_uri: ClassVar[URIRef] = OAE.ModelSimulation
-
-    model_type: Optional[Union[str, "ModelType"]] = None
-    model_configurations: Optional[Union[str, URI]] = None
-    model_components: Optional[Union[Union[dict, "ModelComponent"], List[Union[dict, "ModelComponent"]]]] = empty_list()
-    grid_details: Optional[Union[dict, "ModelGrid"]] = None
-    description: Optional[str] = None
-    experiment_type: Optional[Union[str, "ExperimentType"]] = None
-
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.model_type is not None and not isinstance(self.model_type, ModelType):
-            self.model_type = ModelType(self.model_type)
-
-        if self.model_configurations is not None and not isinstance(self.model_configurations, URI):
-            self.model_configurations = URI(self.model_configurations)
-
-        if not isinstance(self.model_components, list):
-            self.model_components = [self.model_components] if self.model_components is not None else []
-        self.model_components = [v if isinstance(v, ModelComponent) else ModelComponent(**as_dict(v)) for v in self.model_components]
-
-        if self.grid_details is not None and not isinstance(self.grid_details, ModelGrid):
-            self.grid_details = ModelGrid(**as_dict(self.grid_details))
-
-        if self.description is not None and not isinstance(self.description, str):
-            self.description = str(self.description)
-
-        if self.experiment_type is not None and not isinstance(self.experiment_type, ExperimentType):
-            self.experiment_type = ExperimentType(self.experiment_type)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class ModelGrid(YAMLRoot):
-    """
-    Details about the model grid.
-    """
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OAE["ModelGrid"]
-    class_class_curie: ClassVar[str] = "oae:ModelGrid"
-    class_name: ClassVar[str] = "ModelGrid"
-    class_model_uri: ClassVar[URIRef] = OAE.ModelGrid
-
-    grid_type: Optional[str] = None
-    region: Optional[str] = None
-    arrangement: Optional[str] = None
-    n_x: Optional[int] = None
-    n_y: Optional[int] = None
-    n_z: Optional[int] = None
-    n_nodes: Optional[int] = None
-    horizontal_resolution_in_m: Optional[Decimal] = None
-    vertical_resolution_in_m: Optional[Decimal] = None
-
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.grid_type is not None and not isinstance(self.grid_type, str):
-            self.grid_type = str(self.grid_type)
-
-        if self.region is not None and not isinstance(self.region, str):
-            self.region = str(self.region)
-
-        if self.arrangement is not None and not isinstance(self.arrangement, str):
-            self.arrangement = str(self.arrangement)
-
-        if self.n_x is not None and not isinstance(self.n_x, int):
-            self.n_x = int(self.n_x)
-
-        if self.n_y is not None and not isinstance(self.n_y, int):
-            self.n_y = int(self.n_y)
-
-        if self.n_z is not None and not isinstance(self.n_z, int):
-            self.n_z = int(self.n_z)
-
-        if self.n_nodes is not None and not isinstance(self.n_nodes, int):
-            self.n_nodes = int(self.n_nodes)
-
-        if self.horizontal_resolution_in_m is not None and not isinstance(self.horizontal_resolution_in_m, Decimal):
-            self.horizontal_resolution_in_m = Decimal(self.horizontal_resolution_in_m)
-
-        if self.vertical_resolution_in_m is not None and not isinstance(self.vertical_resolution_in_m, Decimal):
-            self.vertical_resolution_in_m = Decimal(self.vertical_resolution_in_m)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class ModelComponent(YAMLRoot):
-    """
-    A component of a model.
-    """
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OAE["ModelComponent"]
-    class_class_curie: ClassVar[str] = "oae:ModelComponent"
-    class_name: ClassVar[str] = "ModelComponent"
-    class_model_uri: ClassVar[URIRef] = OAE.ModelComponent
-
-    description: Optional[str] = None
+    identifier: Optional[str] = None
     name: Optional[str] = None
-    version: Optional[str] = None
-    codebase: Optional[Union[str, URI]] = None
-    references: Optional[Union[Union[str, URI], List[Union[str, URI]]]] = empty_list()
+    country: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.description is not None and not isinstance(self.description, str):
-            self.description = str(self.description)
+        if self.identifier is not None and not isinstance(self.identifier, str):
+            self.identifier = str(self.identifier)
 
         if self.name is not None and not isinstance(self.name, str):
             self.name = str(self.name)
 
-        if self.version is not None and not isinstance(self.version, str):
-            self.version = str(self.version)
-
-        if self.codebase is not None and not isinstance(self.codebase, URI):
-            self.codebase = URI(self.codebase)
-
-        if not isinstance(self.references, list):
-            self.references = [self.references] if self.references is not None else []
-        self.references = [v if isinstance(v, URI) else URI(v) for v in self.references]
-
-        super().__post_init__(**kwargs)
-
-
-class ModelPhysicsComponent(ModelComponent):
-    """
-    A physical component of a model.
-    """
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OAE["ModelPhysicsComponent"]
-    class_class_curie: ClassVar[str] = "oae:ModelPhysicsComponent"
-    class_name: ClassVar[str] = "ModelPhysicsComponent"
-    class_model_uri: ClassVar[URIRef] = OAE.ModelPhysicsComponent
-
-
-@dataclass(repr=False)
-class ModelBGCComponent(ModelComponent):
-    """
-    A biogeochemical / ecosystem component of a model
-    """
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OAE["ModelBGCComponent"]
-    class_class_curie: ClassVar[str] = "oae:ModelBGCComponent"
-    class_name: ClassVar[str] = "ModelBGCComponent"
-    class_model_uri: ClassVar[URIRef] = OAE.ModelBGCComponent
-
-    air_sea_co2_flux_parameterization: Optional[str] = None
-
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.air_sea_co2_flux_parameterization is not None and not isinstance(self.air_sea_co2_flux_parameterization, str):
-            self.air_sea_co2_flux_parameterization = str(self.air_sea_co2_flux_parameterization)
+        if self.country is not None and not isinstance(self.country, str):
+            self.country = str(self.country)
 
         super().__post_init__(**kwargs)
 
@@ -506,24 +509,21 @@ class MCDRPathway(EnumDefinitionImpl):
     ocean_alkalinity_enhancement = PermissibleValue(
         text="ocean_alkalinity_enhancement",
         description="""Ocean Alkalinity Enhancement (OAE) is a method to help mitigate climate change by increasing the alkalinity of seawater to enhance its capacity to absorb and store atmospheric carbon dioxide (CO₂).""")
-    macroalgal_cultivation = PermissibleValue(
-        text="macroalgal_cultivation",
-        description="""Macroalgal Cultivation refers to the process of farming large seaweeds (macroalgae) such as kelp, sargassum, or other marine plants to absorb atmospheric carbon dioxide (CO₂) and potentially sequester it over the long term.""")
+    biomass_sinking = PermissibleValue(
+        text="biomass_sinking",
+        description="""Biomass Sinking is a method that involves taking terrestrial or ocean biomass and sinking it into the deep ocean surface, subsurface, or anoxic basins, where it is sequestered. This can be accomplished by large-scale seaweed farming or macroalgae cultivation, which incorporates atmospheric CO2 as it grows, and then is sunk to the ocean floor. Alternatively, terrestrial plant biomass can be sunk to the ocean floor.""")
     direct_ocean_capture = PermissibleValue(
         text="direct_ocean_capture",
-        description="""Direct Ocean Capture (DOC) is a technology-driven approach to extract carbon dioxide (CO₂) directly from seawater.""")
-    ocean_fertilization = PermissibleValue(
-        text="ocean_fertilization",
-        description="""Ocean Fertilization is a mCDR strategy that involves adding nutrients, such as iron, nitrogen, or phosphorus, to the ocean to stimulate the growth of phytoplankton or other microscopic plants that absorb carbon dioxide (CO₂) through photosynthesis.""")
+        description="""Direct Ocean Capture (DOC) is a method that uses electrochemical processes to remove dissolved carbon dioxide (CO₂) directly from seawater for carbon storage or reuse.""")
+    ocean_nutrient_fertilization = PermissibleValue(
+        text="ocean_nutrient_fertilization",
+        description="""Ocean Fertilization is a method that involves adding nutrients, such as iron, nitrogen, or phosphorus, to the ocean to stimulate the growth of phytoplankton or other microscopic plants that absorb carbon dioxide (CO₂) through photosynthesis.""")
     artificial_upwelling_downwelling = PermissibleValue(
         text="artificial_upwelling_downwelling",
-        description="""Artificial Upwelling and Downwelling are mCDR strategies that involve manipulating ocean water movement to enhance natural carbon sequestration processes.""")
-    coastal_blue_carbon = PermissibleValue(
-        text="coastal_blue_carbon",
-        description="""Coastal Blue Carbon refers to the carbon captured and stored by coastal ecosystems, such as mangroves, salt marshes, and seagrasses. These ecosystems absorb carbon dioxide (CO₂) from the atmosphere and store it in their biomass (leaves, roots, stems) and sediments, making them natural and effective solutions for mCDR.""")
+        description="""Artificial Upwelling and Downwelling are mCDR methods that involve manipulating ocean water movement to enhance natural carbon sequestration processes.""")
     marine_ecosystem_recovery = PermissibleValue(
         text="marine_ecosystem_recovery",
-        description="""Marine Ecosystem Recovery refers to the restoration and protection of marine ecosystems to enhance their natural ability to capture and store carbon dioxide (CO₂). This approach leverages the natural carbon-sequestering processes of marine habitats like coral reefs, kelp forests, seagrass meadows, oyster beds, and deep-sea ecosystems, aiming to rebuild biodiversity, ecosystem functions, and carbon storage capacity.""")
+        description="""Marine Ecosystem Recovery refers to the restoration and protection of marine ecosystems to enhance their natural ability to capture and store carbon dioxide (CO₂). This method leverages the natural carbon-sequestering processes of marine habitats such as salt marshes, mangrove forests, coral reefs, kelp forests, seagrass meadows, oyster beds, and deep-sea ecosystems, aiming to rebuild biodiversity, ecosystem functions, and carbon storage capacity.""")
 
     _defn = EnumDefinition(
         name="MCDRPathway",
@@ -637,6 +637,537 @@ class ModelType(EnumDefinitionImpl):
         description="Categories of computational modeling approaches used in OAE research.",
     )
 
+class SeaNames(EnumDefinitionImpl):
+
+    _defn = EnumDefinition(
+        name="SeaNames",
+    )
+
+    @classmethod
+    def _addvals(cls):
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/ZZ/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/ZZ/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/IJM/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/IJM/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/MKM/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/MKM/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/IRM/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/IRM/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/10/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/10/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/62a/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/62a/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/04/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/04/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/01c/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/01c/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/25/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/25/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/SOC/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/SOC/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/33/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/33/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/16a/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/16a/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/28Ab/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/28Ab/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/48/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/48/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/48o/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/48o/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/ESC/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/ESC/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/39/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/39/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/57b/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/57b/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/ICS/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/ICS/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/53/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/53/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/35/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/35/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/200/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/200/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/61b/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/61b/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/22/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/22/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/28Bf/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/28Bf/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/11/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/11/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/63/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/63/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/03/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/03/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/12/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/12/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/28B/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/28B/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/48e/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/48e/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/47/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/47/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/28Aa/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/28Aa/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/45/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/45/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/WSC/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/WSC/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/62/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/62/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/40/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/40/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/23b/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/23b/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/06/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/06/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/42/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/42/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/51/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/51/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/45a/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/45a/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/32b/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/32b/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/21/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/21/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/28C/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/28C/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/48m/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/48m/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/01b/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/01b/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/26/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/26/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/13/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/13/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/28A/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/28A/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/32/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/32/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/48j/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/48j/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/48h/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/48h/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/31/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/31/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/57a/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/57a/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/05/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/05/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/50/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/50/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/ARA/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/ARA/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/61a/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/61a/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/21a/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/21a/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/28Bg/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/28Bg/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/48n/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/48n/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/01a/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/01a/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/27/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/27/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/14/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/14/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/60/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/60/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/48f/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/48f/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/49/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/49/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/48a/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/48a/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/48l/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/48l/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/48i/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/48i/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/41/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/41/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/30/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/30/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/23a/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/23a/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/08/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/08/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/32a/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/32a/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/20/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/20/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/17a/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/17a/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/28Ae/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/28Ae/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/17/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/17/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/59/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/59/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/64/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/64/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/48k/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/48k/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/48b/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/48b/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/01/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/01/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/44/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/44/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/55/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/55/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/38/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/38/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/29/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/29/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/07/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/07/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/56/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/56/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/19/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/19/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/15a/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/15a/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/46b/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/46b/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/14a/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/14a/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/28Ad/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/28Ad/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/61/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/61/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/58/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/58/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/65/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/65/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/48g/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/48g/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/48d/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/48d/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/23/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/23/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/43/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/43/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/54/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/54/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/37/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/37/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/CAS/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/CAS/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/28/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/28/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/09/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/09/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/18/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/18/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/02/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/02/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/24/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/24/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/46/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/46/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/46a/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/46a/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/16/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/16/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/28Ac/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/28Ac/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/57/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/57/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/66/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/66/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/WAS/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/WAS/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/48c/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/48c/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/FRM/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/FRM/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/500/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/500/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/15/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/15/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/52/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/52/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/36/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/36/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/GLO/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/GLO/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/34/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/34/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/C16/current/28Bh/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/C16/current/28Bh/",
+                meaning=None))
+
+class PermitStatus(EnumDefinitionImpl):
+    """
+    The status of a permit.
+    """
+    pending = PermissibleValue(text="pending")
+    active = PermissibleValue(text="active")
+    expired = PermissibleValue(text="expired")
+    revoked = PermissibleValue(text="revoked")
+
+    _defn = EnumDefinition(
+        name="PermitStatus",
+        description="The status of a permit.",
+    )
+
 # Slots
 class slots:
     pass
@@ -647,134 +1178,131 @@ slots.description = Slot(uri=OAE.description, name="description", curie=OAE.curi
 slots.name = Slot(uri=OAE.name, name="name", curie=OAE.curie('name'),
                    model_uri=OAE.name, domain=None, range=Optional[str])
 
-slots.identifier = Slot(uri=OAE.identifier, name="identifier", curie=OAE.curie('identifier'),
-                   model_uri=OAE.identifier, domain=None, range=Optional[Union[dict, Any]])
+slots.identifier = Slot(uri=SCHEMA.identifier, name="identifier", curie=SCHEMA.curie('identifier'),
+                   model_uri=OAE.identifier, domain=None, range=Optional[str])
 
-slots.experiment_type = Slot(uri=OAE.experiment_type, name="experiment_type", curie=OAE.curie('experiment_type'),
-                   model_uri=OAE.experiment_type, domain=None, range=Optional[Union[str, "ExperimentType"]])
+slots.temporal_coverage = Slot(uri=SCHEMA.temporalCoverage, name="temporal_coverage", curie=SCHEMA.curie('temporalCoverage'),
+                   model_uri=OAE.temporal_coverage, domain=None, range=str,
+                   pattern=re.compile(r'^\d{4}-\d{2}-\d{2}/(\d{4}-\d{2}-\d{2}|\.\.)$'))
+
+slots.spatial_coverage = Slot(uri=SCHEMA.spatialCoverage, name="spatial_coverage", curie=SCHEMA.curie('spatialCoverage'),
+                   model_uri=OAE.spatial_coverage, domain=None, range=Union[dict, Place])
+
+slots.vertical_coverage = Slot(uri=OAE.vertical_coverage, name="vertical_coverage", curie=OAE.curie('vertical_coverage'),
+                   model_uri=OAE.vertical_coverage, domain=None, range=Union[dict, VerticalExtent])
+
+slots.place__geo = Slot(uri=OAE.geo, name="place__geo", curie=OAE.curie('geo'),
+                   model_uri=OAE.place__geo, domain=None, range=Union[dict, GeoShape])
+
+slots.geoShape__box = Slot(uri=SCHEMA.box, name="geoShape__box", curie=SCHEMA.curie('box'),
+                   model_uri=OAE.geoShape__box, domain=None, range=str)
+
+slots.verticalExtent__min_depth_in_m = Slot(uri=OAE.min_depth_in_m, name="verticalExtent__min_depth_in_m", curie=OAE.curie('min_depth_in_m'),
+                   model_uri=OAE.verticalExtent__min_depth_in_m, domain=None, range=float)
+
+slots.verticalExtent__max_depth_in_m = Slot(uri=OAE.max_depth_in_m, name="verticalExtent__max_depth_in_m", curie=OAE.curie('max_depth_in_m'),
+                   model_uri=OAE.verticalExtent__max_depth_in_m, domain=None, range=float)
 
 slots.oAEProject__project_id = Slot(uri=OAE.project_id, name="oAEProject__project_id", curie=OAE.curie('project_id'),
-                   model_uri=OAE.oAEProject__project_id, domain=None, range=Optional[str])
+                   model_uri=OAE.oAEProject__project_id, domain=None, range=str)
+
+slots.oAEProject__sea_names = Slot(uri=OAE.sea_names, name="oAEProject__sea_names", curie=OAE.curie('sea_names'),
+                   model_uri=OAE.oAEProject__sea_names, domain=None, range=Optional[Union[Union[str, "SeaNames"], List[Union[str, "SeaNames"]]]])
+
+slots.oAEProject__project_description = Slot(uri=OAE.project_description, name="oAEProject__project_description", curie=OAE.curie('project_description'),
+                   model_uri=OAE.oAEProject__project_description, domain=None, range=Optional[str])
+
+slots.oAEProject__physical_site_description = Slot(uri=OAE.physical_site_description, name="oAEProject__physical_site_description", curie=OAE.curie('physical_site_description'),
+                   model_uri=OAE.oAEProject__physical_site_description, domain=None, range=Optional[str])
+
+slots.oAEProject__social_context_site_description = Slot(uri=OAE.social_context_site_description, name="oAEProject__social_context_site_description", curie=OAE.curie('social_context_site_description'),
+                   model_uri=OAE.oAEProject__social_context_site_description, domain=None, range=Optional[str])
+
+slots.oAEProject__social_research_conducted_to_date = Slot(uri=OAE.social_research_conducted_to_date, name="oAEProject__social_research_conducted_to_date", curie=OAE.curie('social_research_conducted_to_date'),
+                   model_uri=OAE.oAEProject__social_research_conducted_to_date, domain=None, range=Optional[str])
 
 slots.oAEProject__mcdr_pathway = Slot(uri=OAE.mcdr_pathway, name="oAEProject__mcdr_pathway", curie=OAE.curie('mcdr_pathway'),
                    model_uri=OAE.oAEProject__mcdr_pathway, domain=None, range=Optional[Union[str, "MCDRPathway"]])
 
-slots.oAEProject__site_description = Slot(uri=OAE.site_description, name="oAEProject__site_description", curie=OAE.curie('site_description'),
-                   model_uri=OAE.oAEProject__site_description, domain=None, range=Optional[str])
+slots.oAEProject__previous_or_ongoing_colocated_research = Slot(uri=OAE.previous_or_ongoing_colocated_research, name="oAEProject__previous_or_ongoing_colocated_research", curie=OAE.curie('previous_or_ongoing_colocated_research'),
+                   model_uri=OAE.oAEProject__previous_or_ongoing_colocated_research, domain=None, range=Optional[Union[Union[dict, ExternalProject], List[Union[dict, ExternalProject]]]])
 
-slots.oAEProject__permit_info = Slot(uri=OAE.permit_info, name="oAEProject__permit_info", curie=OAE.curie('permit_info'),
-                   model_uri=OAE.oAEProject__permit_info, domain=None, range=Optional[str])
+slots.oAEProject__colocated_operations = Slot(uri=OAE.colocated_operations, name="oAEProject__colocated_operations", curie=OAE.curie('colocated_operations'),
+                   model_uri=OAE.oAEProject__colocated_operations, domain=None, range=Optional[str])
 
-slots.dataset__url = Slot(uri=SCHEMA.url, name="dataset__url", curie=SCHEMA.curie('url'),
-                   model_uri=OAE.dataset__url, domain=None, range=Optional[str])
+slots.oAEProject__permits = Slot(uri=OAE.permits, name="oAEProject__permits", curie=OAE.curie('permits'),
+                   model_uri=OAE.oAEProject__permits, domain=None, range=Optional[Union[Union[dict, Permit], List[Union[dict, Permit]]]])
 
-slots.dataset__temporal_coverage = Slot(uri=SCHEMA.temporalCoverage, name="dataset__temporal_coverage", curie=SCHEMA.curie('temporalCoverage'),
-                   model_uri=OAE.dataset__temporal_coverage, domain=None, range=Optional[str])
+slots.oAEProject__public_comments = Slot(uri=OAE.public_comments, name="oAEProject__public_comments", curie=OAE.curie('public_comments'),
+                   model_uri=OAE.oAEProject__public_comments, domain=None, range=Optional[Union[Union[dict, NamedLink], List[Union[dict, NamedLink]]]])
 
-slots.dataset__spatial_coverage = Slot(uri=SCHEMA.spatialCoverage, name="dataset__spatial_coverage", curie=SCHEMA.curie('spatialCoverage'),
-                   model_uri=OAE.dataset__spatial_coverage, domain=None, range=Optional[str])
+slots.oAEProject__research_project = Slot(uri=OAE.research_project, name="oAEProject__research_project", curie=OAE.curie('research_project'),
+                   model_uri=OAE.oAEProject__research_project, domain=None, range=Optional[str])
 
-slots.experiment__experiment_id = Slot(uri=OAE.experiment_id, name="experiment__experiment_id", curie=OAE.curie('experiment_id'),
-                   model_uri=OAE.experiment__experiment_id, domain=None, range=Optional[str])
+slots.oAEProject__funding = Slot(uri=SCHEMA.funding, name="oAEProject__funding", curie=SCHEMA.curie('funding'),
+                   model_uri=OAE.oAEProject__funding, domain=None, range=Optional[Union[dict, MonetaryGrant]])
 
-slots.experiment__project = Slot(uri=OAE.project, name="experiment__project", curie=OAE.curie('project'),
-                   model_uri=OAE.experiment__project, domain=None, range=Optional[Union[dict, OAEProject]])
+slots.oAEProject__additional_details = Slot(uri=OAE.additional_details, name="oAEProject__additional_details", curie=OAE.curie('additional_details'),
+                   model_uri=OAE.oAEProject__additional_details, domain=None, range=Optional[str])
 
-slots.experiment__observation_type = Slot(uri=OAE.observation_type, name="experiment__observation_type", curie=OAE.curie('observation_type'),
-                   model_uri=OAE.experiment__observation_type, domain=None, range=Optional[Union[Union[str, "ObservationType"], List[Union[str, "ObservationType"]]]])
+slots.permit__permit_id = Slot(uri=OAE.permit_id, name="permit__permit_id", curie=OAE.curie('permit_id'),
+                   model_uri=OAE.permit__permit_id, domain=None, range=str)
 
-slots.experiment__start_date = Slot(uri=OAE.start_date, name="experiment__start_date", curie=OAE.curie('start_date'),
-                   model_uri=OAE.experiment__start_date, domain=None, range=Optional[Union[str, XSDDateTime]])
+slots.permit__permitting_authority = Slot(uri=OAE.permitting_authority, name="permit__permitting_authority", curie=OAE.curie('permitting_authority'),
+                   model_uri=OAE.permit__permitting_authority, domain=None, range=str)
 
-slots.experiment__end_date = Slot(uri=OAE.end_date, name="experiment__end_date", curie=OAE.curie('end_date'),
-                   model_uri=OAE.experiment__end_date, domain=None, range=Optional[Union[str, XSDDateTime]])
+slots.permit__permit_status = Slot(uri=OAE.permit_status, name="permit__permit_status", curie=OAE.curie('permit_status'),
+                   model_uri=OAE.permit__permit_status, domain=None, range=Union[str, "PermitStatus"])
 
-slots.experiment__datasets = Slot(uri=OAE.datasets, name="experiment__datasets", curie=OAE.curie('datasets'),
-                   model_uri=OAE.experiment__datasets, domain=None, range=Optional[Union[Union[dict, Dataset], List[Union[dict, Dataset]]]])
+slots.permit__approval_document = Slot(uri=OAE.approval_document, name="permit__approval_document", curie=OAE.curie('approval_document'),
+                   model_uri=OAE.permit__approval_document, domain=None, range=Union[str, URI])
 
-slots.experiment__previous_research = Slot(uri=OAE.previous_research, name="experiment__previous_research", curie=OAE.curie('previous_research'),
-                   model_uri=OAE.experiment__previous_research, domain=None, range=Optional[Union[str, List[str]]])
+slots.namedLink__name = Slot(uri=OAE.name, name="namedLink__name", curie=OAE.curie('name'),
+                   model_uri=OAE.namedLink__name, domain=None, range=str)
 
-slots.intervention__treatment_type = Slot(uri=OAE.treatment_type, name="intervention__treatment_type", curie=OAE.curie('treatment_type'),
-                   model_uri=OAE.intervention__treatment_type, domain=None, range=Optional[Union[str, "OAETreatmentType"]])
+slots.namedLink__url = Slot(uri=OAE.url, name="namedLink__url", curie=OAE.curie('url'),
+                   model_uri=OAE.namedLink__url, domain=None, range=Union[str, URI])
 
-slots.intervention__alkalinity_feedstock_type = Slot(uri=OAE.alkalinity_feedstock_type, name="intervention__alkalinity_feedstock_type", curie=OAE.curie('alkalinity_feedstock_type'),
-                   model_uri=OAE.intervention__alkalinity_feedstock_type, domain=None, range=Optional[Union[str, "FeedstockType"]])
+slots.externalProject__name = Slot(uri=OAE.name, name="externalProject__name", curie=OAE.curie('name'),
+                   model_uri=OAE.externalProject__name, domain=None, range=str)
 
-slots.intervention__alkalinity_feedstock_description = Slot(uri=OAE.alkalinity_feedstock_description, name="intervention__alkalinity_feedstock_description", curie=OAE.curie('alkalinity_feedstock_description'),
-                   model_uri=OAE.intervention__alkalinity_feedstock_description, domain=None, range=Optional[str])
+slots.externalProject__description = Slot(uri=OAE.description, name="externalProject__description", curie=OAE.curie('description'),
+                   model_uri=OAE.externalProject__description, domain=None, range=Optional[str])
 
-slots.intervention__dosing_depth_in_m = Slot(uri=OAE.dosing_depth_in_m, name="intervention__dosing_depth_in_m", curie=OAE.curie('dosing_depth_in_m'),
-                   model_uri=OAE.intervention__dosing_depth_in_m, domain=None, range=Optional[Decimal])
+slots.externalProject__related_links = Slot(uri=OAE.related_links, name="externalProject__related_links", curie=OAE.curie('related_links'),
+                   model_uri=OAE.externalProject__related_links, domain=None, range=Optional[Union[Union[str, URI], List[Union[str, URI]]]])
 
-slots.intervention__dosing_regimen = Slot(uri=OAE.dosing_regimen, name="intervention__dosing_regimen", curie=OAE.curie('dosing_regimen'),
-                   model_uri=OAE.intervention__dosing_regimen, domain=None, range=Optional[str])
+slots.monetaryGrant__start_date = Slot(uri=OAE.start_date, name="monetaryGrant__start_date", curie=OAE.curie('start_date'),
+                   model_uri=OAE.monetaryGrant__start_date, domain=None, range=Optional[Union[str, XSDDate]])
 
-slots.intervention__dosing_location = Slot(uri=OAE.dosing_location, name="intervention__dosing_location", curie=OAE.curie('dosing_location'),
-                   model_uri=OAE.intervention__dosing_location, domain=None, range=Optional[str])
+slots.monetaryGrant__end_date = Slot(uri=OAE.end_date, name="monetaryGrant__end_date", curie=OAE.curie('end_date'),
+                   model_uri=OAE.monetaryGrant__end_date, domain=None, range=Optional[Union[str, XSDDate]])
 
-slots.modelSimulation__model_type = Slot(uri=OAE.model_type, name="modelSimulation__model_type", curie=OAE.curie('model_type'),
-                   model_uri=OAE.modelSimulation__model_type, domain=None, range=Optional[Union[str, "ModelType"]])
+slots.monetaryGrant__funder = Slot(uri=OAE.funder, name="monetaryGrant__funder", curie=OAE.curie('funder'),
+                   model_uri=OAE.monetaryGrant__funder, domain=None, range=Optional[Union[dict, Organization]])
 
-slots.modelSimulation__model_configurations = Slot(uri=OAE.model_configurations, name="modelSimulation__model_configurations", curie=OAE.curie('model_configurations'),
-                   model_uri=OAE.modelSimulation__model_configurations, domain=None, range=Optional[Union[str, URI]])
+slots.organization__country = Slot(uri=OAE.country, name="organization__country", curie=OAE.curie('country'),
+                   model_uri=OAE.organization__country, domain=None, range=Optional[str],
+                   pattern=re.compile(r'^[A-Z]{2}$'))
 
-slots.modelSimulation__model_components = Slot(uri=OAE.model_components, name="modelSimulation__model_components", curie=OAE.curie('model_components'),
-                   model_uri=OAE.modelSimulation__model_components, domain=None, range=Optional[Union[Union[dict, ModelComponent], List[Union[dict, ModelComponent]]]])
+slots.OAEProject_temporal_coverage = Slot(uri=SCHEMA.temporalCoverage, name="OAEProject_temporal_coverage", curie=SCHEMA.curie('temporalCoverage'),
+                   model_uri=OAE.OAEProject_temporal_coverage, domain=OAEProject, range=str,
+                   pattern=re.compile(r'^\d{4}-\d{2}-\d{2}/(\d{4}-\d{2}-\d{2}|\.\.)$'))
 
-slots.modelSimulation__grid_details = Slot(uri=OAE.grid_details, name="modelSimulation__grid_details", curie=OAE.curie('grid_details'),
-                   model_uri=OAE.modelSimulation__grid_details, domain=None, range=Optional[Union[dict, ModelGrid]])
+slots.OAEProject_spatial_coverage = Slot(uri=SCHEMA.spatialCoverage, name="OAEProject_spatial_coverage", curie=SCHEMA.curie('spatialCoverage'),
+                   model_uri=OAE.OAEProject_spatial_coverage, domain=OAEProject, range=Union[dict, Place])
 
-slots.modelGrid__grid_type = Slot(uri=OAE.grid_type, name="modelGrid__grid_type", curie=OAE.curie('grid_type'),
-                   model_uri=OAE.modelGrid__grid_type, domain=None, range=Optional[str])
+slots.OAEProject_vertical_coverage = Slot(uri=OAE.vertical_coverage, name="OAEProject_vertical_coverage", curie=OAE.curie('vertical_coverage'),
+                   model_uri=OAE.OAEProject_vertical_coverage, domain=OAEProject, range=Union[dict, VerticalExtent])
 
-slots.modelGrid__region = Slot(uri=OAE.region, name="modelGrid__region", curie=OAE.curie('region'),
-                   model_uri=OAE.modelGrid__region, domain=None, range=Optional[str])
+slots.MonetaryGrant_name = Slot(uri=OAE.name, name="MonetaryGrant_name", curie=OAE.curie('name'),
+                   model_uri=OAE.MonetaryGrant_name, domain=MonetaryGrant, range=Optional[str])
 
-slots.modelGrid__arrangement = Slot(uri=OAE.arrangement, name="modelGrid__arrangement", curie=OAE.curie('arrangement'),
-                   model_uri=OAE.modelGrid__arrangement, domain=None, range=Optional[str])
+slots.MonetaryGrant_identifier = Slot(uri=SCHEMA.identifier, name="MonetaryGrant_identifier", curie=SCHEMA.curie('identifier'),
+                   model_uri=OAE.MonetaryGrant_identifier, domain=MonetaryGrant, range=Optional[str])
 
-slots.modelGrid__n_x = Slot(uri=OAE.n_x, name="modelGrid__n_x", curie=OAE.curie('n_x'),
-                   model_uri=OAE.modelGrid__n_x, domain=None, range=Optional[int])
+slots.Organization_identifier = Slot(uri=SCHEMA.identifier, name="Organization_identifier", curie=SCHEMA.curie('identifier'),
+                   model_uri=OAE.Organization_identifier, domain=Organization, range=Optional[str])
 
-slots.modelGrid__n_y = Slot(uri=OAE.n_y, name="modelGrid__n_y", curie=OAE.curie('n_y'),
-                   model_uri=OAE.modelGrid__n_y, domain=None, range=Optional[int])
-
-slots.modelGrid__n_z = Slot(uri=OAE.n_z, name="modelGrid__n_z", curie=OAE.curie('n_z'),
-                   model_uri=OAE.modelGrid__n_z, domain=None, range=Optional[int])
-
-slots.modelGrid__n_nodes = Slot(uri=OAE.n_nodes, name="modelGrid__n_nodes", curie=OAE.curie('n_nodes'),
-                   model_uri=OAE.modelGrid__n_nodes, domain=None, range=Optional[int])
-
-slots.modelGrid__horizontal_resolution_in_m = Slot(uri=OAE.horizontal_resolution_in_m, name="modelGrid__horizontal_resolution_in_m", curie=OAE.curie('horizontal_resolution_in_m'),
-                   model_uri=OAE.modelGrid__horizontal_resolution_in_m, domain=None, range=Optional[Decimal])
-
-slots.modelGrid__vertical_resolution_in_m = Slot(uri=OAE.vertical_resolution_in_m, name="modelGrid__vertical_resolution_in_m", curie=OAE.curie('vertical_resolution_in_m'),
-                   model_uri=OAE.modelGrid__vertical_resolution_in_m, domain=None, range=Optional[Decimal])
-
-slots.modelComponent__name = Slot(uri=OAE.name, name="modelComponent__name", curie=OAE.curie('name'),
-                   model_uri=OAE.modelComponent__name, domain=None, range=Optional[str])
-
-slots.modelComponent__version = Slot(uri=OAE.version, name="modelComponent__version", curie=OAE.curie('version'),
-                   model_uri=OAE.modelComponent__version, domain=None, range=Optional[str])
-
-slots.modelComponent__codebase = Slot(uri=OAE.codebase, name="modelComponent__codebase", curie=OAE.curie('codebase'),
-                   model_uri=OAE.modelComponent__codebase, domain=None, range=Optional[Union[str, URI]])
-
-slots.modelComponent__references = Slot(uri=OAE.references, name="modelComponent__references", curie=OAE.curie('references'),
-                   model_uri=OAE.modelComponent__references, domain=None, range=Optional[Union[Union[str, URI], List[Union[str, URI]]]])
-
-slots.modelBGCComponent__air_sea_co2_flux_parameterization = Slot(uri=OAE.air_sea_co2_flux_parameterization, name="modelBGCComponent__air_sea_co2_flux_parameterization", curie=OAE.curie('air_sea_co2_flux_parameterization'),
-                   model_uri=OAE.modelBGCComponent__air_sea_co2_flux_parameterization, domain=None, range=Optional[str])
-
-slots.Dataset_identifier = Slot(uri=OAE.identifier, name="Dataset_identifier", curie=OAE.curie('identifier'),
-                   model_uri=OAE.Dataset_identifier, domain=Dataset, range=Optional[str])
-
-slots.ModelSimulation_description = Slot(uri=OAE.description, name="ModelSimulation_description", curie=OAE.curie('description'),
-                   model_uri=OAE.ModelSimulation_description, domain=ModelSimulation, range=Optional[str])
-
-slots.ModelSimulation_experiment_type = Slot(uri=OAE.experiment_type, name="ModelSimulation_experiment_type", curie=OAE.curie('experiment_type'),
-                   model_uri=OAE.ModelSimulation_experiment_type, domain=ModelSimulation, range=Optional[Union[str, "ExperimentType"]])
-
-slots.ModelComponent_description = Slot(uri=OAE.description, name="ModelComponent_description", curie=OAE.curie('description'),
-                   model_uri=OAE.ModelComponent_description, domain=ModelComponent, range=Optional[str])
+slots.Organization_name = Slot(uri=OAE.name, name="Organization_name", curie=OAE.curie('name'),
+                   model_uri=OAE.Organization_name, domain=Organization, range=Optional[str])
