@@ -195,18 +195,6 @@ examples/output: src/$(SCHEMA_NAME)/schema/$(SCHEMA_NAME).yaml
 serve: mkd-serve
 
 
-# Generate dyanmic enums
-
-ontologies/sea_names.ttl:
-	rm -rf ontologies/sea_names.ttl
-	curl 'https://vocab.nerc.ac.uk/collection/C16/current/' -H "Accept: text/turtle" > ontologies/sea_names.ttl
-
-enums: ontologies/sea_names.ttl
-	vskit expand -s src/oae_data_protocol/schema/dynamic_enums.yaml -o src/oae_data_protocol/schema/dynamic_enums_expanded.yaml --config vskit-config.yaml
-
-json-schema:
-	gen-json-schema src/oae_data_protocol/schema/oae_data_protocol.yaml -t OAEProject --title-from title > $(JSON_SCHEMA_OUT)
-
 
 # Python datamodel
 $(PYMODEL):
