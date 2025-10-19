@@ -449,12 +449,28 @@
 <td>None</td>
 </tr>
 <tr>
+<td><a href="Experiment/">Experiment</a></td>
+<td>Experiment metadata applies to a specific study but remains consistent across datasets.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Intervention/">Intervention</a></td>
+<td>Additional metadata that applies to experiments where an intervention, such as an alkalinity addition, was conducted.</td>
+</tr>
+<tr>
 <td><a href="ExternalProject/">ExternalProject</a></td>
 <td>A research project that is not directly managed by the OAE project, but whose location is proximal to the OAE project and whose data may be relevant to understanding the context or impacts of OAE activities.</td>
 </tr>
 <tr>
+<td><a href="GeoCoordinate/">GeoCoordinate</a></td>
+<td>A geographic coordinate in decimal degrees.</td>
+</tr>
+<tr>
 <td><a href="GeoShape/">GeoShape</a></td>
 <td>The geographic shape of a place. A GeoShape can be described using several properties whose values are based on latitude/longitude pairs. Either whitespace or commas can be used to separate latitude and longitude; whitespace should be used when writing a list of several such points. (imported from schema.org)</td>
+</tr>
+<tr>
+<td><a href="Investigator/">Investigator</a></td>
+<td>Information about a researcher or investigator involved in the experiment.</td>
 </tr>
 <tr>
 <td><a href="MonetaryGrant/">MonetaryGrant</a></td>
@@ -504,6 +520,34 @@
 <td>Open text area to include additional information</td>
 </tr>
 <tr>
+<td><a href="affiliation/">affiliation</a></td>
+<td>Institutional affiliation of the investigator</td>
+</tr>
+<tr>
+<td><a href="alkalinity_dosing_effluent_density/">alkalinity_dosing_effluent_density</a></td>
+<td>Fixed density or provide link/source to effluent density data if applicable</td>
+</tr>
+<tr>
+<td><a href="alkalinity_feedstock/">alkalinity_feedstock</a></td>
+<td>Examples may include: olivine, potassium hydroxide, magnesium hydroxide, lime...</td>
+</tr>
+<tr>
+<td><a href="alkalinity_feedstock_co2_removal_potential/">alkalinity_feedstock_co2_removal_potential</a></td>
+<td>Maximum CO₂ removal potential of a feedstock material</td>
+</tr>
+<tr>
+<td><a href="alkalinity_feedstock_description/">alkalinity_feedstock_description</a></td>
+<td>Information such as feedstock source, characteristics, impurities, dilution p...</td>
+</tr>
+<tr>
+<td><a href="alkalinity_feedstock_form/">alkalinity_feedstock_form</a></td>
+<td>The phase upon delivery to the ocean</td>
+</tr>
+<tr>
+<td><a href="alkalinity_feedstock_processing/">alkalinity_feedstock_processing</a></td>
+<td>Method(s) used to process the alkalinity feedstock</td>
+</tr>
+<tr>
 <td><a href="approval_document/">approval_document</a></td>
 <td>Links to documentation related to the permit</td>
 </tr>
@@ -520,12 +564,60 @@
 <td>The country in which the organization belongs (formatted as ISO 3166-1 alpha-...</td>
 </tr>
 <tr>
+<td><a href="data_conflicts_and_unreported_data/">data_conflicts_and_unreported_data</a></td>
+<td>If data exist that are or have been used by the project but are not provided ...</td>
+</tr>
+<tr>
 <td><a href="description/">description</a></td>
 <td>A narrative description of the thing</td>
 </tr>
 <tr>
+<td><a href="dosing_data/">dosing_data</a></td>
+<td>Dosing data include: flow rate, dosing rate, and mineral mass addition rate</td>
+</tr>
+<tr>
+<td><a href="dosing_delivery_type/">dosing_delivery_type</a></td>
+<td>Type of dosing delivery method</td>
+</tr>
+<tr>
+<td><a href="dosing_depth/">dosing_depth</a></td>
+<td>Depth(s) in meters</td>
+</tr>
+<tr>
+<td><a href="dosing_description/">dosing_description</a></td>
+<td>Please be descriptive</td>
+</tr>
+<tr>
+<td><a href="dosing_dispersal_hydrologic_location/">dosing_dispersal_hydrologic_location</a></td>
+<td>Descriptive dosing location</td>
+</tr>
+<tr>
+<td><a href="dosing_location/">dosing_location</a></td>
+<td>Provide latitude and longitude in decimal degrees</td>
+</tr>
+<tr>
+<td><a href="dosing_regimen/">dosing_regimen</a></td>
+<td>At a minimum, please provide the schedule and timeline of dosing, including t...</td>
+</tr>
+<tr>
+<td><a href="email/">email</a></td>
+<td>Contact email address</td>
+</tr>
+<tr>
 <td><a href="end_date/">end_date</a></td>
 <td></td>
+</tr>
+<tr>
+<td><a href="end_datetime/">end_datetime</a></td>
+<td>End date and time of experiment in UTC ISO-8601</td>
+</tr>
+<tr>
+<td><a href="equilibration/">equilibration</a></td>
+<td>Whether the feedstock was pre-equilibrated or unequilibrated</td>
+</tr>
+<tr>
+<td><a href="experiment_type/">experiment_type</a></td>
+<td>The type of mCDR experiment conducted</td>
 </tr>
 <tr>
 <td><a href="funder/">funder</a></td>
@@ -544,12 +636,32 @@
 <td>A unique identifier for the thing</td>
 </tr>
 <tr>
+<td><a href="identifier_type/">identifier_type</a></td>
+<td>Type of researcher identifier (e</td>
+</tr>
+<tr>
+<td><a href="investigators/">investigators</a></td>
+<td>Provide details for each investigator including: Name, institutional informat...</td>
+</tr>
+<tr>
+<td><a href="latitude/">latitude</a></td>
+<td>Latitude in decimal degrees</td>
+</tr>
+<tr>
+<td><a href="longitude/">longitude</a></td>
+<td>Longitude in decimal degrees</td>
+</tr>
+<tr>
 <td><a href="max_depth_in_m/">max_depth_in_m</a></td>
 <td>Maximum depth of observation in meters</td>
 </tr>
 <tr>
 <td><a href="mcdr_pathway/">mcdr_pathway</a></td>
 <td>The Marine Carbon Dioxide Removal (MCDR) pathway being studied</td>
+</tr>
+<tr>
+<td><a href="meteorological_and_tidal_data/">meteorological_and_tidal_data</a></td>
+<td>Include links to relevant open datasets if referenced in the experiment but n...</td>
 </tr>
 <tr>
 <td><a href="min_depth_in_m/">min_depth_in_m</a></td>
@@ -574,6 +686,10 @@
 <tr>
 <td><a href="permitting_authority/">permitting_authority</a></td>
 <td>The group that issued the permit</td>
+</tr>
+<tr>
+<td><a href="phone/">phone</a></td>
+<td>Contact phone number</td>
 </tr>
 <tr>
 <td><a href="physical_site_description/">physical_site_description</a></td>
@@ -604,6 +720,10 @@
 <td>Project, which the data collection is part of</td>
 </tr>
 <tr>
+<td><a href="role/">role</a></td>
+<td>Role of the investigator in the experiment (e</td>
+</tr>
+<tr>
 <td><a href="sea_names/">sea_names</a></td>
 <td>Names of the seas where the data collection takes place, See Controlled Vocab...</td>
 </tr>
@@ -622,6 +742,10 @@
 <tr>
 <td><a href="start_date/">start_date</a></td>
 <td></td>
+</tr>
+<tr>
+<td><a href="start_datetime/">start_datetime</a></td>
+<td>Start date and time of experiment in UTC ISO-8601</td>
 </tr>
 <tr>
 <td><a href="temporal_coverage/">temporal_coverage</a></td>
@@ -647,24 +771,36 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="AlkalinityFeedstockForm/">AlkalinityFeedstockForm</a></td>
+<td>Physical form of the alkalinity feedstock upon ocean delivery</td>
+</tr>
+<tr>
+<td><a href="AlkalinityFeedstockProcessing/">AlkalinityFeedstockProcessing</a></td>
+<td>Methods used to process alkalinity feedstock</td>
+</tr>
+<tr>
+<td><a href="DosingDeliveryType/">DosingDeliveryType</a></td>
+<td>Types of dosing delivery methods</td>
+</tr>
+<tr>
+<td><a href="EquilibrationStatus/">EquilibrationStatus</a></td>
+<td>Equilibration status of the alkalinity feedstock</td>
+</tr>
+<tr>
 <td><a href="ExperimentType/">ExperimentType</a></td>
-<td>The type of experiment conducted in an OAE project</td>
+<td>Types of mCDR experiments</td>
 </tr>
 <tr>
 <td><a href="FeedstockType/">FeedstockType</a></td>
 <td>Types of materials used for alkalinity addition, as sourced from NCEI's OCADS...</td>
 </tr>
 <tr>
+<td><a href="HydrologicLocation/">HydrologicLocation</a></td>
+<td>Hydrologic location types for dosing</td>
+</tr>
+<tr>
 <td><a href="MCDRPathway/">MCDRPathway</a></td>
 <td>Type of marine Carbon Dioxide Removal (mCDR) pathways</td>
-</tr>
-<tr>
-<td><a href="ModelType/">ModelType</a></td>
-<td>Categories of computational modeling approaches used in OAE research</td>
-</tr>
-<tr>
-<td><a href="OAETreatmentType/">OAETreatmentType</a></td>
-<td>Different types of alkalinity enhancement interventions</td>
 </tr>
 <tr>
 <td><a href="ObservationType/">ObservationType</a></td>

@@ -5,6 +5,14 @@
          <lastmod>2025-10-19</lastmod>
     </url>
     <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/AlkalinityFeedstockForm/</loc>
+         <lastmod>2025-10-19</lastmod>
+    </url>
+    <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/AlkalinityFeedstockProcessing/</loc>
+         <lastmod>2025-10-19</lastmod>
+    </url>
+    <url>
          <loc>https://clevinson.github.io/oae-data-protocol/Any/</loc>
          <lastmod>2025-10-19</lastmod>
     </url>
@@ -37,7 +45,19 @@
          <lastmod>2025-10-19</lastmod>
     </url>
     <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/DosingDeliveryType/</loc>
+         <lastmod>2025-10-19</lastmod>
+    </url>
+    <url>
          <loc>https://clevinson.github.io/oae-data-protocol/Double/</loc>
+         <lastmod>2025-10-19</lastmod>
+    </url>
+    <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/EquilibrationStatus/</loc>
+         <lastmod>2025-10-19</lastmod>
+    </url>
+    <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/Experiment/</loc>
          <lastmod>2025-10-19</lastmod>
     </url>
     <url>
@@ -57,11 +77,27 @@
          <lastmod>2025-10-19</lastmod>
     </url>
     <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/GeoCoordinate/</loc>
+         <lastmod>2025-10-19</lastmod>
+    </url>
+    <url>
          <loc>https://clevinson.github.io/oae-data-protocol/GeoShape/</loc>
          <lastmod>2025-10-19</lastmod>
     </url>
     <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/HydrologicLocation/</loc>
+         <lastmod>2025-10-19</lastmod>
+    </url>
+    <url>
          <loc>https://clevinson.github.io/oae-data-protocol/Integer/</loc>
+         <lastmod>2025-10-19</lastmod>
+    </url>
+    <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/Intervention/</loc>
+         <lastmod>2025-10-19</lastmod>
+    </url>
+    <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/Investigator/</loc>
          <lastmod>2025-10-19</lastmod>
     </url>
     <url>
@@ -74,10 +110,6 @@
     </url>
     <url>
          <loc>https://clevinson.github.io/oae-data-protocol/MCDRPathway/</loc>
-         <lastmod>2025-10-19</lastmod>
-    </url>
-    <url>
-         <loc>https://clevinson.github.io/oae-data-protocol/ModelType/</loc>
          <lastmod>2025-10-19</lastmod>
     </url>
     <url>
@@ -102,10 +134,6 @@
     </url>
     <url>
          <loc>https://clevinson.github.io/oae-data-protocol/OAEProject/</loc>
-         <lastmod>2025-10-19</lastmod>
-    </url>
-    <url>
-         <loc>https://clevinson.github.io/oae-data-protocol/OAETreatmentType/</loc>
          <lastmod>2025-10-19</lastmod>
     </url>
     <url>
@@ -173,6 +201,34 @@
          <lastmod>2025-10-19</lastmod>
     </url>
     <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/affiliation/</loc>
+         <lastmod>2025-10-19</lastmod>
+    </url>
+    <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/alkalinity_dosing_effluent_density/</loc>
+         <lastmod>2025-10-19</lastmod>
+    </url>
+    <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/alkalinity_feedstock/</loc>
+         <lastmod>2025-10-19</lastmod>
+    </url>
+    <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/alkalinity_feedstock_co2_removal_potential/</loc>
+         <lastmod>2025-10-19</lastmod>
+    </url>
+    <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/alkalinity_feedstock_description/</loc>
+         <lastmod>2025-10-19</lastmod>
+    </url>
+    <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/alkalinity_feedstock_form/</loc>
+         <lastmod>2025-10-19</lastmod>
+    </url>
+    <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/alkalinity_feedstock_processing/</loc>
+         <lastmod>2025-10-19</lastmod>
+    </url>
+    <url>
          <loc>https://clevinson.github.io/oae-data-protocol/approval_document/</loc>
          <lastmod>2025-10-19</lastmod>
     </url>
@@ -189,11 +245,59 @@
          <lastmod>2025-10-19</lastmod>
     </url>
     <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/data_conflicts_and_unreported_data/</loc>
+         <lastmod>2025-10-19</lastmod>
+    </url>
+    <url>
          <loc>https://clevinson.github.io/oae-data-protocol/description/</loc>
          <lastmod>2025-10-19</lastmod>
     </url>
     <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/dosing_data/</loc>
+         <lastmod>2025-10-19</lastmod>
+    </url>
+    <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/dosing_delivery_type/</loc>
+         <lastmod>2025-10-19</lastmod>
+    </url>
+    <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/dosing_depth/</loc>
+         <lastmod>2025-10-19</lastmod>
+    </url>
+    <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/dosing_description/</loc>
+         <lastmod>2025-10-19</lastmod>
+    </url>
+    <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/dosing_dispersal_hydrologic_location/</loc>
+         <lastmod>2025-10-19</lastmod>
+    </url>
+    <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/dosing_location/</loc>
+         <lastmod>2025-10-19</lastmod>
+    </url>
+    <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/dosing_regimen/</loc>
+         <lastmod>2025-10-19</lastmod>
+    </url>
+    <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/email/</loc>
+         <lastmod>2025-10-19</lastmod>
+    </url>
+    <url>
          <loc>https://clevinson.github.io/oae-data-protocol/end_date/</loc>
+         <lastmod>2025-10-19</lastmod>
+    </url>
+    <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/end_datetime/</loc>
+         <lastmod>2025-10-19</lastmod>
+    </url>
+    <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/equilibration/</loc>
+         <lastmod>2025-10-19</lastmod>
+    </url>
+    <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/experiment_type/</loc>
          <lastmod>2025-10-19</lastmod>
     </url>
     <url>
@@ -213,11 +317,31 @@
          <lastmod>2025-10-19</lastmod>
     </url>
     <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/identifier_type/</loc>
+         <lastmod>2025-10-19</lastmod>
+    </url>
+    <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/investigators/</loc>
+         <lastmod>2025-10-19</lastmod>
+    </url>
+    <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/latitude/</loc>
+         <lastmod>2025-10-19</lastmod>
+    </url>
+    <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/longitude/</loc>
+         <lastmod>2025-10-19</lastmod>
+    </url>
+    <url>
          <loc>https://clevinson.github.io/oae-data-protocol/max_depth_in_m/</loc>
          <lastmod>2025-10-19</lastmod>
     </url>
     <url>
          <loc>https://clevinson.github.io/oae-data-protocol/mcdr_pathway/</loc>
+         <lastmod>2025-10-19</lastmod>
+    </url>
+    <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/meteorological_and_tidal_data/</loc>
          <lastmod>2025-10-19</lastmod>
     </url>
     <url>
@@ -242,6 +366,10 @@
     </url>
     <url>
          <loc>https://clevinson.github.io/oae-data-protocol/permitting_authority/</loc>
+         <lastmod>2025-10-19</lastmod>
+    </url>
+    <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/phone/</loc>
          <lastmod>2025-10-19</lastmod>
     </url>
     <url>
@@ -273,6 +401,10 @@
          <lastmod>2025-10-19</lastmod>
     </url>
     <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/role/</loc>
+         <lastmod>2025-10-19</lastmod>
+    </url>
+    <url>
          <loc>https://clevinson.github.io/oae-data-protocol/sea_names/</loc>
          <lastmod>2025-10-19</lastmod>
     </url>
@@ -290,6 +422,10 @@
     </url>
     <url>
          <loc>https://clevinson.github.io/oae-data-protocol/start_date/</loc>
+         <lastmod>2025-10-19</lastmod>
+    </url>
+    <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/start_datetime/</loc>
          <lastmod>2025-10-19</lastmod>
     </url>
     <url>

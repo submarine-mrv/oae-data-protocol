@@ -375,12 +375,17 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../MonetaryGrant/">MonetaryGrant</a></td>
-<td></td>
+<td><a href="../Investigator/">Investigator</a></td>
+<td>Information about a researcher or investigator involved in the experiment</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Experiment/">Experiment</a></td>
+<td>Experiment metadata applies to a specific study but remains consistent across...</td>
 <td>yes</td>
 </tr>
 <tr>
-<td><a href="../Organization/">Organization</a></td>
+<td><a href="../MonetaryGrant/">MonetaryGrant</a></td>
 <td></td>
 <td>yes</td>
 </tr>
@@ -393,6 +398,16 @@
 <td><a href="../ExternalProject/">ExternalProject</a></td>
 <td>A research project that is not directly managed by the OAE project, but whose...</td>
 <td>no</td>
+</tr>
+<tr>
+<td><a href="../Intervention/">Intervention</a></td>
+<td>Additional metadata that applies to experiments where an intervention, such a...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Organization/">Organization</a></td>
+<td></td>
+<td>yes</td>
 </tr>
 </tbody>
 </table>
@@ -438,6 +453,8 @@ domain_of:
 - NamedLink
 - ExternalProject
 - MonetaryGrant
+- Experiment
+- Investigator
 range: string
 
 </code></pre>

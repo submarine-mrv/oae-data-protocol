@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://clevinson.github.io/oae-data-protocol/OAETreatmentType/">
+        <link rel="canonical" href="https://clevinson.github.io/oae-data-protocol/alkalinity_feedstock_processing/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Enum: OAETreatmentType - oae-data-protocol</title>
+        <title>Slot: Alkalinity Feedstock Processing (alkalinity_feedstock_processing) - oae-data-protocol</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#enum-oaetreatmenttype" class="md-skip">
+        <a href="#slot-alkalinity-feedstock-processing-alkalinity_feedstock_processing" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Enum: OAETreatmentType
+              Slot: Alkalinity Feedstock Processing (alkalinity_feedstock_processing)
             
           </span>
         </div>
@@ -281,9 +281,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#permissible-values" class="md-nav__link">
+  <a href="#applicable-classes" class="md-nav__link">
     <span class="md-ellipsis">
-      Permissible Values
+      Applicable Classes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      Properties
     </span>
   </a>
   
@@ -310,6 +319,15 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mappings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mappings
+    </span>
+  </a>
   
 </li>
       
@@ -341,95 +359,80 @@
   
 
 
-<h1 id="enum-oaetreatmenttype">Enum: OAETreatmentType</h1>
-<p><em>Different types of alkalinity enhancement interventions.</em></p>
-<p>URI: <a href="./">OAETreatmentType</a></p>
-<h2 id="permissible-values">Permissible Values</h2>
+<h1 id="slot-alkalinity-feedstock-processing-alkalinity_feedstock_processing">Slot: Alkalinity Feedstock Processing (alkalinity_feedstock_processing)</h1>
+<p><em>Method(s) used to process the alkalinity feedstock. See Controlled Vocabularies section for definitions.</em></p>
+<p>URI: <a href="https://example.org/oae#alkalinity_feedstock_processing">oae:alkalinity_feedstock_processing</a></p>
+<!-- no inheritance hierarchy -->
+
+<h2 id="applicable-classes">Applicable Classes</h2>
 <table>
 <thead>
 <tr>
-<th>Value</th>
-<th>Meaning</th>
+<th>Name</th>
 <th>Description</th>
+<th>Modifies Slot</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>electrochemical</td>
-<td>None</td>
-<td>Uses electrochemistry to increase seawater alkalinity</td>
-</tr>
-<tr>
-<td>mineral</td>
-<td>None</td>
-<td>Involves adding alkaline minerals or particulate slurry (such as MgOH2, MgO, ...</td>
-</tr>
-<tr>
-<td>dissolved</td>
-<td>None</td>
-<td>Involves the addition of dissolved or aqueous alkaline feedstocks (e</td>
-</tr>
-<tr>
-<td>river</td>
-<td>None</td>
-<td>Involves adding alkaline substances (such as limestone) in rivers before they...</td>
-</tr>
-<tr>
-<td>coastal</td>
-<td>None</td>
-<td>Introduces alkaline mineral sand (e</td>
-</tr>
-<tr>
-<td>preequilibrated</td>
-<td>None</td>
-<td>Involves pre-treating seawater with alkalinity in a controlled setting, allow...</td>
+<td><a href="../Intervention/">Intervention</a></td>
+<td>Additional metadata that applies to experiments where an intervention, such a...</td>
+<td>no</td>
 </tr>
 </tbody>
 </table>
+<h2 id="properties">Properties</h2>
+<ul>
+<li>
+<p>Range: <a href="../AlkalinityFeedstockProcessing/">AlkalinityFeedstockProcessing</a></p>
+</li>
+<li>
+<p>Multivalued: True</p>
+</li>
+<li>
+<p>Required: True</p>
+</li>
+</ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
 <li>from schema: OAEDataManagementProtocol</li>
 </ul>
+<h2 id="mappings">Mappings</h2>
+<table>
+<thead>
+<tr>
+<th>Mapping Type</th>
+<th>Mapped Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>self</td>
+<td>oae:alkalinity_feedstock_processing</td>
+</tr>
+<tr>
+<td>native</td>
+<td>oae:alkalinity_feedstock_processing</td>
+</tr>
+</tbody>
+</table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: OAETreatmentType
-description: Different types of alkalinity enhancement interventions.
+<pre><code class="language-yaml">name: alkalinity_feedstock_processing
+description: Method(s) used to process the alkalinity feedstock. See Controlled Vocabularies
+  section for definitions.
+title: Alkalinity Feedstock Processing
 from_schema: OAEDataManagementProtocol
 rank: 1000
-permissible_values:
-  electrochemical:
-    text: electrochemical
-    description: Uses electrochemistry to increase seawater alkalinity. This process
-      typically involves separating seawater into acidic and alkaline streams, with
-      the alkaline stream being released into the ocean to enhance carbon sequestration,
-      with the acidic stream neutralized on land or used as a byproduct.
-  mineral:
-    text: mineral
-    description: Involves adding alkaline minerals or particulate slurry (such as
-      MgOH2, MgO, or CaO) to seawater either directly or through coastal outfalls
-      (such as wastewater) to increase its alkalinity.
-  dissolved:
-    text: dissolved
-    description: Involves the addition of dissolved or aqueous alkaline feedstocks
-      (e.g. NaOH solution) into seawater either directly in coastal waters, through
-      coastal outfalls or in the open ocean.
-  river:
-    text: river
-    description: Involves adding alkaline substances (such as limestone) in rivers
-      before they flow into the ocean for the purposes of carbon removal or emission
-      reduction.
-  coastal:
-    text: coastal
-    description: Introduces alkaline mineral sand (e.g. olivine), boulders or berms
-      in coastal areas to promote the absorption of CO₂ from the atmosphere into carbonate
-      minerals (e.g., calcium carbonate, CaCO₃).
-  preequilibrated:
-    text: preequilibrated
-    description: Involves pre-treating seawater with alkalinity in a controlled setting,
-      allowing equilibration with the atmosphere before returning into the marine
-      system.
+alias: alkalinity_feedstock_processing
+owner: Intervention
+domain_of:
+- Intervention
+range: AlkalinityFeedstockProcessing
+required: true
+multivalued: true
 
 </code></pre>
 

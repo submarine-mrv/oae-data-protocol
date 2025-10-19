@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://clevinson.github.io/oae-data-protocol/ModelType/">
+        <link rel="canonical" href="https://clevinson.github.io/oae-data-protocol/identifier_type/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Enum: ModelType - oae-data-protocol</title>
+        <title>Slot: Identifier Type (identifier_type) - oae-data-protocol</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#enum-modeltype" class="md-skip">
+        <a href="#slot-identifier-type-identifier_type" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Enum: ModelType
+              Slot: Identifier Type (identifier_type)
             
           </span>
         </div>
@@ -281,9 +281,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#permissible-values" class="md-nav__link">
+  <a href="#applicable-classes" class="md-nav__link">
     <span class="md-ellipsis">
-      Permissible Values
+      Applicable Classes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      Properties
     </span>
   </a>
   
@@ -310,6 +319,15 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mappings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mappings
+    </span>
+  </a>
   
 </li>
       
@@ -341,52 +359,69 @@
   
 
 
-<h1 id="enum-modeltype">Enum: ModelType</h1>
-<p><em>Categories of computational modeling approaches used in OAE research.</em></p>
-<p>URI: <a href="./">ModelType</a></p>
-<h2 id="permissible-values">Permissible Values</h2>
+<h1 id="slot-identifier-type-identifier_type">Slot: Identifier Type (identifier_type)</h1>
+<p><em>Type of researcher identifier (e.g., ORCID, ResearcherID).</em></p>
+<p>URI: <a href="https://example.org/oae#identifier_type">oae:identifier_type</a></p>
+<!-- no inheritance hierarchy -->
+
+<h2 id="applicable-classes">Applicable Classes</h2>
 <table>
 <thead>
 <tr>
-<th>Value</th>
-<th>Meaning</th>
+<th>Name</th>
 <th>Description</th>
+<th>Modifies Slot</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>counterfactual</td>
-<td>None</td>
-<td>A counterfactual model experiment describes a simulation created to mimic cur...</td>
-</tr>
-<tr>
-<td>perturbation</td>
-<td>None</td>
-<td>A perturbed model experiment describes a simulation created to mimic an inter...</td>
+<td><a href="../Investigator/">Investigator</a></td>
+<td>Information about a researcher or investigator involved in the experiment</td>
+<td>no</td>
 </tr>
 </tbody>
 </table>
+<h2 id="properties">Properties</h2>
+<ul>
+<li>Range: <a href="../String/">String</a></li>
+</ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
 <li>from schema: OAEDataManagementProtocol</li>
 </ul>
+<h2 id="mappings">Mappings</h2>
+<table>
+<thead>
+<tr>
+<th>Mapping Type</th>
+<th>Mapped Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>self</td>
+<td>oae:identifier_type</td>
+</tr>
+<tr>
+<td>native</td>
+<td>oae:identifier_type</td>
+</tr>
+</tbody>
+</table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: ModelType
-description: Categories of computational modeling approaches used in OAE research.
+<pre><code class="language-yaml">name: identifier_type
+description: Type of researcher identifier (e.g., ORCID, ResearcherID).
+title: Identifier Type
 from_schema: OAEDataManagementProtocol
 rank: 1000
-permissible_values:
-  counterfactual:
-    text: counterfactual
-    description: A counterfactual model experiment describes a simulation created
-      to mimic current oceanic conditions without interventions, such as mCDR treatment.
-  perturbation:
-    text: perturbation
-    description: A perturbed model experiment describes a simulation created to mimic
-      an intervention or change from the natural ocean conditions.
+alias: identifier_type
+owner: Investigator
+domain_of:
+- Investigator
+range: string
 
 </code></pre>
 
