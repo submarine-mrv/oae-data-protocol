@@ -1,47 +1,20 @@
-# Configuration of generators (defaults illustrated)
+# Configuration of generators
 ---
 includes:
   - jsonschema
   - python
+
 generator_args:
-  excel:
-    mergeimports: true
-  owl:
-    mergeimports: true
-    metaclasses: true
-    type_objects: true
-    # throws 'Cannot handle metadata profile: rdfs'
-    # metadata_profile: rdfs
-  markdown:
-    mergeimports: true
-  graphql:
-    mergeimports: true
-  java:
-    mergeimports: true
-    metadata: true
-  jsonld:
-    mergeimports: true
   jsonschema:
     mergeimports: true
     include_null: false
     top_class: OAEProject
     title_from: title
-  jsonldcontext:
-    mergeimports: true
   python:
     mergeimports: true
-  prefixmap:
-    mergeimports: true
-  proto:
-    mergeimports: true
-  shacl:
-    mergeimports: true
-  shex:
-    mergeimports: true
-  sqlddl:
-    mergeimports: true
-  typescript:
-    mergeimports: true
-    metadata: true
+
+# Unused generators (can be re-enabled as needed):
+# excel, owl, markdown, graphql, java, jsonld, jsonldcontext,
+# prefixmap, proto, shacl, shex, sqlddl, typescript
 
 ...
