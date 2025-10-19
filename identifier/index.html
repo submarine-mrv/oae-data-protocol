@@ -361,7 +361,7 @@
 
 <h1 id="slot-identifier">Slot: identifier</h1>
 <p><em>A unique identifier for the thing</em></p>
-<p>URI: <a href="https://example.org/oae#identifier">oae:identifier</a></p>
+<p>URI: <a href="http://schema.org/identifier">schema:identifier</a></p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -375,15 +375,20 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Dataset/">Dataset</a></td>
-<td>A dataset related to an OAE experiment</td>
+<td><a href="../MonetaryGrant/">MonetaryGrant</a></td>
+<td></td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../Organization/">Organization</a></td>
+<td></td>
 <td>yes</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../Any/">Any</a></li>
+<li>Range: <a href="../String/">String</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -401,7 +406,7 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>oae:identifier</td>
+<td>schema:identifier</td>
 </tr>
 <tr>
 <td>native</td>
@@ -416,10 +421,12 @@
 description: A unique identifier for the thing
 from_schema: OAEDataManagementProtocol
 rank: 1000
+slot_uri: schema:identifier
 alias: identifier
 domain_of:
-- Dataset
-range: Any
+- MonetaryGrant
+- Organization
+range: string
 
 </code></pre>
 

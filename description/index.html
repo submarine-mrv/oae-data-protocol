@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: description - oae-data-protocol</title>
+        <title>Slot: Description (description) - oae-data-protocol</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-description" class="md-skip">
+        <a href="#slot-description-description" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: description
+              Slot: Description (description)
             
           </span>
         </div>
@@ -359,7 +359,7 @@
   
 
 
-<h1 id="slot-description">Slot: description</h1>
+<h1 id="slot-description-description">Slot: Description (description)</h1>
 <p><em>A narrative description of the thing.</em></p>
 <p>URI: <a href="https://example.org/oae#description">oae:description</a></p>
 <!-- no inheritance hierarchy -->
@@ -375,43 +375,8 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../ModelPhysicsComponent/">ModelPhysicsComponent</a></td>
-<td>A physical component of a model</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ModelSimulation/">ModelSimulation</a></td>
-<td>A computational model run related to OAE</td>
-<td>yes</td>
-</tr>
-<tr>
-<td><a href="../OAEProject/">OAEProject</a></td>
-<td>A project conducting OAE field trials or modeling</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Intervention/">Intervention</a></td>
-<td>Details about an OAE intervention</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Experiment/">Experiment</a></td>
-<td>A single experiment conducted within an OAE project</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ModelBGCComponent/">ModelBGCComponent</a></td>
-<td>A biogeochemical / ecosystem component of a model</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ModelComponent/">ModelComponent</a></td>
-<td>A component of a model</td>
-<td>yes</td>
-</tr>
-<tr>
-<td><a href="../Dataset/">Dataset</a></td>
-<td>A dataset related to an OAE experiment</td>
+<td><a href="../ExternalProject/">ExternalProject</a></td>
+<td>A research project that is not directly managed by the OAE project, but whose...</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -449,14 +414,12 @@
 
 <pre><code class="language-yaml">name: description
 description: A narrative description of the thing.
+title: Description
 from_schema: OAEDataManagementProtocol
 rank: 1000
 alias: description
 domain_of:
-- OAEProject
-- Dataset
-- Experiment
-- ModelComponent
+- ExternalProject
 range: string
 
 </code></pre>

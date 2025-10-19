@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: spatial_coverage - oae-data-protocol</title>
+        <title>Slot: Spatial Coverage (spatial_coverage) - oae-data-protocol</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-spatial_coverage" class="md-skip">
+        <a href="#slot-spatial-coverage-spatial_coverage" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: spatial_coverage
+              Slot: Spatial Coverage (spatial_coverage)
             
           </span>
         </div>
@@ -359,8 +359,8 @@
   
 
 
-<h1 id="slot-spatial_coverage">Slot: spatial_coverage</h1>
-<p><em>The spatial coverage of the dataset.</em></p>
+<h1 id="slot-spatial-coverage-spatial_coverage">Slot: Spatial Coverage (spatial_coverage)</h1>
+<p><em>Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities) provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]</em></p>
 <p>URI: <a href="http://schema.org/spatialCoverage">schema:spatialCoverage</a></p>
 <!-- no inheritance hierarchy -->
 
@@ -375,15 +375,25 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Dataset/">Dataset</a></td>
-<td>A dataset related to an OAE experiment</td>
+<td><a href="../OAEProject/">OAEProject</a></td>
+<td>A project conducting OAE field trials or modeling</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../ExternalProject/">ExternalProject</a></td>
+<td>A research project that is not directly managed by the OAE project, but whose...</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../String/">String</a></li>
+<li>
+<p>Range: <a href="../Place/">Place</a></p>
+</li>
+<li>
+<p>Required: True</p>
+</li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -413,15 +423,19 @@
 <details>
 
 <pre><code class="language-yaml">name: spatial_coverage
-description: The spatial coverage of the dataset.
+description: Latitude/longitude bounds of project site (e.g., boundary domain of observations
+  or relevant activities) provided in decimal degrees as westernmost longitude, southernmost
+  latitude, easternmost longitude, northernmost latitude. [S, W, N, E]
+title: Spatial Coverage
 from_schema: OAEDataManagementProtocol
 rank: 1000
 slot_uri: schema:spatialCoverage
 alias: spatial_coverage
-owner: Dataset
 domain_of:
-- Dataset
-range: string
+- OAEProject
+- ExternalProject
+range: Place
+required: true
 
 </code></pre>
 

@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: temporal_coverage - oae-data-protocol</title>
+        <title>Slot: Temporal Coverage (temporal_coverage) - oae-data-protocol</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-temporal_coverage" class="md-skip">
+        <a href="#slot-temporal-coverage-temporal_coverage" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: temporal_coverage
+              Slot: Temporal Coverage (temporal_coverage)
             
           </span>
         </div>
@@ -359,8 +359,8 @@
   
 
 
-<h1 id="slot-temporal_coverage">Slot: temporal_coverage</h1>
-<p><em>The temporal coverage of the dataset.</em></p>
+<h1 id="slot-temporal-coverage-temporal_coverage">Slot: Temporal Coverage (temporal_coverage)</h1>
+<p><em>Start date and end date (if known) of the project in ISO-8601 interval format (YYYY-MM-DD/YYY-MM-DD). If the end date is not known, use open-ended format YYYY-MM-DD/..</em></p>
 <p>URI: <a href="http://schema.org/temporalCoverage">schema:temporalCoverage</a></p>
 <!-- no inheritance hierarchy -->
 
@@ -375,15 +375,28 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Dataset/">Dataset</a></td>
-<td>A dataset related to an OAE experiment</td>
+<td><a href="../OAEProject/">OAEProject</a></td>
+<td>A project conducting OAE field trials or modeling</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../ExternalProject/">ExternalProject</a></td>
+<td>A research project that is not directly managed by the OAE project, but whose...</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../String/">String</a></li>
+<li>
+<p>Range: <a href="../String/">String</a></p>
+</li>
+<li>
+<p>Required: True</p>
+</li>
+<li>
+<p>Regex pattern: <code>^\d{4}-\d{2}-\d{2}/(\d{4}-\d{2}-\d{2}|\.\.)$</code></p>
+</li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -413,15 +426,20 @@
 <details>
 
 <pre><code class="language-yaml">name: temporal_coverage
-description: The temporal coverage of the dataset.
+description: Start date and end date (if known) of the project in ISO-8601 interval
+  format (YYYY-MM-DD/YYY-MM-DD). If the end date is not known, use open-ended format
+  YYYY-MM-DD/..
+title: Temporal Coverage
 from_schema: OAEDataManagementProtocol
 rank: 1000
 slot_uri: schema:temporalCoverage
 alias: temporal_coverage
-owner: Dataset
 domain_of:
-- Dataset
+- OAEProject
+- ExternalProject
 range: string
+required: true
+pattern: ^\d{4}-\d{2}-\d{2}/(\d{4}-\d{2}-\d{2}|\.\.)$
 
 </code></pre>
 

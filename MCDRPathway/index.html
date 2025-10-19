@@ -369,29 +369,24 @@
 <td>Ocean Alkalinity Enhancement (OAE) is a method to help mitigate climate chang...</td>
 </tr>
 <tr>
-<td>macroalgal_cultivation</td>
+<td>biomass_sinking</td>
 <td>None</td>
-<td>Macroalgal Cultivation refers to the process of farming large seaweeds (macro...</td>
+<td>Biomass Sinking is a method that involves taking terrestrial or ocean biomass...</td>
 </tr>
 <tr>
 <td>direct_ocean_capture</td>
 <td>None</td>
-<td>Direct Ocean Capture (DOC) is a technology-driven approach to extract carbon ...</td>
+<td>Direct Ocean Capture (DOC) is a method that uses electrochemical processes to...</td>
 </tr>
 <tr>
-<td>ocean_fertilization</td>
+<td>ocean_nutrient_fertilization</td>
 <td>None</td>
-<td>Ocean Fertilization is a mCDR strategy that involves adding nutrients, such a...</td>
+<td>Ocean Fertilization is a method that involves adding nutrients, such as iron,...</td>
 </tr>
 <tr>
 <td>artificial_upwelling_downwelling</td>
 <td>None</td>
-<td>Artificial Upwelling and Downwelling are mCDR strategies that involve manipul...</td>
-</tr>
-<tr>
-<td>coastal_blue_carbon</td>
-<td>None</td>
-<td>Coastal Blue Carbon refers to the carbon captured and stored by coastal ecosy...</td>
+<td>Artificial Upwelling and Downwelling are mCDR methods that involve manipulati...</td>
 </tr>
 <tr>
 <td>marine_ecosystem_recovery</td>
@@ -425,6 +420,7 @@
 
 <pre><code class="language-yaml">name: MCDRPathway
 description: Type of marine Carbon Dioxide Removal (mCDR) pathways.
+title: MCDR Pathway
 from_schema: OAEDataManagementProtocol
 rank: 1000
 permissible_values:
@@ -433,40 +429,42 @@ permissible_values:
     description: Ocean Alkalinity Enhancement (OAE) is a method to help mitigate climate
       change by increasing the alkalinity of seawater to enhance its capacity to absorb
       and store atmospheric carbon dioxide (CO₂).
-  macroalgal_cultivation:
-    text: macroalgal_cultivation
-    description: Macroalgal Cultivation refers to the process of farming large seaweeds
-      (macroalgae) such as kelp, sargassum, or other marine plants to absorb atmospheric
-      carbon dioxide (CO₂) and potentially sequester it over the long term.
+    title: Ocean Alkalinity Enhancement
+  biomass_sinking:
+    text: biomass_sinking
+    description: Biomass Sinking is a method that involves taking terrestrial or ocean
+      biomass and sinking it into the deep ocean surface, subsurface, or anoxic basins,
+      where it is sequestered. This can be accomplished by large-scale seaweed farming
+      or macroalgae cultivation, which incorporates atmospheric CO2 as it grows, and
+      then is sunk to the ocean floor. Alternatively, terrestrial plant biomass can
+      be sunk to the ocean floor.
+    title: Biomass Sinking
   direct_ocean_capture:
     text: direct_ocean_capture
-    description: Direct Ocean Capture (DOC) is a technology-driven approach to extract
-      carbon dioxide (CO₂) directly from seawater.
-  ocean_fertilization:
-    text: ocean_fertilization
-    description: Ocean Fertilization is a mCDR strategy that involves adding nutrients,
-      such as iron, nitrogen, or phosphorus, to the ocean to stimulate the growth
-      of phytoplankton or other microscopic plants that absorb carbon dioxide (CO₂)
-      through photosynthesis.
+    description: Direct Ocean Capture (DOC) is a method that uses electrochemical
+      processes to remove dissolved carbon dioxide (CO₂) directly from seawater for
+      carbon storage or reuse.
+    title: Direct Ocean Capture
+  ocean_nutrient_fertilization:
+    text: ocean_nutrient_fertilization
+    description: Ocean Fertilization is a method that involves adding nutrients, such
+      as iron, nitrogen, or phosphorus, to the ocean to stimulate the growth of phytoplankton
+      or other microscopic plants that absorb carbon dioxide (CO₂) through photosynthesis.
+    title: Ocean Nutrient Fertilization
   artificial_upwelling_downwelling:
     text: artificial_upwelling_downwelling
-    description: Artificial Upwelling and Downwelling are mCDR strategies that involve
+    description: Artificial Upwelling and Downwelling are mCDR methods that involve
       manipulating ocean water movement to enhance natural carbon sequestration processes.
-  coastal_blue_carbon:
-    text: coastal_blue_carbon
-    description: Coastal Blue Carbon refers to the carbon captured and stored by coastal
-      ecosystems, such as mangroves, salt marshes, and seagrasses. These ecosystems
-      absorb carbon dioxide (CO₂) from the atmosphere and store it in their biomass
-      (leaves, roots, stems) and sediments, making them natural and effective solutions
-      for mCDR.
+    title: Artificial Upwelling and Downwelling
   marine_ecosystem_recovery:
     text: marine_ecosystem_recovery
     description: Marine Ecosystem Recovery refers to the restoration and protection
       of marine ecosystems to enhance their natural ability to capture and store carbon
-      dioxide (CO₂). This approach leverages the natural carbon-sequestering processes
-      of marine habitats like coral reefs, kelp forests, seagrass meadows, oyster
-      beds, and deep-sea ecosystems, aiming to rebuild biodiversity, ecosystem functions,
-      and carbon storage capacity.
+      dioxide (CO₂). This method leverages the natural carbon-sequestering processes
+      of marine habitats such as salt marshes, mangrove forests, coral reefs, kelp
+      forests, seagrass meadows, oyster beds, and deep-sea ecosystems, aiming to rebuild
+      biodiversity, ecosystem functions, and carbon storage capacity.
+    title: Marine Ecosystem Recovery
 
 </code></pre>
 

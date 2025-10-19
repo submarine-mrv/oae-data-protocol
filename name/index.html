@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: name - oae-data-protocol</title>
+        <title>Slot: Name (name) - oae-data-protocol</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-name" class="md-skip">
+        <a href="#slot-name-name" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: name
+              Slot: Name (name)
             
           </span>
         </div>
@@ -359,7 +359,7 @@
   
 
 
-<h1 id="slot-name">Slot: name</h1>
+<h1 id="slot-name-name">Slot: Name (name)</h1>
 <p><em>A human-readable name for the thing.</em></p>
 <p>URI: <a href="https://example.org/oae#name">oae:name</a></p>
 <!-- no inheritance hierarchy -->
@@ -375,23 +375,23 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../ModelPhysicsComponent/">ModelPhysicsComponent</a></td>
-<td>A physical component of a model</td>
+<td><a href="../MonetaryGrant/">MonetaryGrant</a></td>
+<td></td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../ExternalProject/">ExternalProject</a></td>
+<td>A research project that is not directly managed by the OAE project, but whose...</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../ModelBGCComponent/">ModelBGCComponent</a></td>
-<td>A biogeochemical / ecosystem component of a model</td>
-<td>no</td>
+<td><a href="../Organization/">Organization</a></td>
+<td></td>
+<td>yes</td>
 </tr>
 <tr>
-<td><a href="../ModelComponent/">ModelComponent</a></td>
-<td>A component of a model</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Dataset/">Dataset</a></td>
-<td>A dataset related to an OAE experiment</td>
+<td><a href="../NamedLink/">NamedLink</a></td>
+<td>A link to a resource with a name and URL</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -429,12 +429,15 @@
 
 <pre><code class="language-yaml">name: name
 description: A human-readable name for the thing.
+title: Name
 from_schema: OAEDataManagementProtocol
 rank: 1000
 alias: name
 domain_of:
-- Dataset
-- ModelComponent
+- NamedLink
+- ExternalProject
+- MonetaryGrant
+- Organization
 range: string
 
 </code></pre>

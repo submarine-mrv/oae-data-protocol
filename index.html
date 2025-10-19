@@ -449,44 +449,44 @@
 <td>None</td>
 </tr>
 <tr>
-<td><a href="Dataset/">Dataset</a></td>
-<td>A dataset related to an OAE experiment. Generally following guidelines &amp; best practices as outlined in <a href="https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md">science-on-schema.org</a></td>
+<td><a href="ExternalProject/">ExternalProject</a></td>
+<td>A research project that is not directly managed by the OAE project, but whose location is proximal to the OAE project and whose data may be relevant to understanding the context or impacts of OAE activities.</td>
 </tr>
 <tr>
-<td><a href="Experiment/">Experiment</a></td>
-<td>A single experiment conducted within an OAE project.</td>
+<td><a href="GeoShape/">GeoShape</a></td>
+<td>The geographic shape of a place. A GeoShape can be described using several properties whose values are based on latitude/longitude pairs. Either whitespace or commas can be used to separate latitude and longitude; whitespace should be used when writing a list of several such points. (imported from schema.org)</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Intervention/">Intervention</a></td>
-<td>Details about an OAE intervention.</td>
+<td><a href="MonetaryGrant/">MonetaryGrant</a></td>
+<td>None</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ModelSimulation/">ModelSimulation</a></td>
-<td>A computational model run related to OAE.</td>
-</tr>
-<tr>
-<td><a href="ModelComponent/">ModelComponent</a></td>
-<td>A component of a model.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ModelBGCComponent/">ModelBGCComponent</a></td>
-<td>A biogeochemical / ecosystem component of a model</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ModelPhysicsComponent/">ModelPhysicsComponent</a></td>
-<td>A physical component of a model.</td>
-</tr>
-<tr>
-<td><a href="ModelGrid/">ModelGrid</a></td>
-<td>Details about the model grid.</td>
+<td><a href="NamedLink/">NamedLink</a></td>
+<td>A link to a resource with a name and URL.</td>
 </tr>
 <tr>
 <td><a href="OAEProject/">OAEProject</a></td>
 <td>A project conducting OAE field trials or modeling.</td>
 </tr>
 <tr>
+<td><a href="Organization/">Organization</a></td>
+<td>None</td>
+</tr>
+<tr>
+<td><a href="Permit/">Permit</a></td>
+<td>A permit associated with the project.</td>
+</tr>
+<tr>
+<td><a href="Place/">Place</a></td>
+<td>A bounding box defined by latitude and longitude coordinates.</td>
+</tr>
+<tr>
 <td><a href="PropertyValue/">PropertyValue</a></td>
 <td>None</td>
+</tr>
+<tr>
+<td><a href="VerticalExtent/">VerticalExtent</a></td>
+<td>The vertical extent of a place or structure in meters.</td>
 </tr>
 </tbody>
 </table>
@@ -500,168 +500,140 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="air_sea_co2_flux_parameterization/">air_sea_co2_flux_parameterization</a></td>
-<td>Description and/or references of air-sea CO2 flux parameterization used, gas ...</td>
+<td><a href="additional_details/">additional_details</a></td>
+<td>Open text area to include additional information</td>
 </tr>
 <tr>
-<td><a href="alkalinity_feedstock_description/">alkalinity_feedstock_description</a></td>
-<td>Information such as feedstock source, characteristics, concentration, impurit...</td>
+<td><a href="approval_document/">approval_document</a></td>
+<td>Links to documentation related to the permit</td>
 </tr>
 <tr>
-<td><a href="alkalinity_feedstock_type/">alkalinity_feedstock_type</a></td>
-<td>Material used for alkalinity addition</td>
+<td><a href="box/">box</a></td>
+<td>A box defined by two latitude-longitude points, southwest and northeast</td>
 </tr>
 <tr>
-<td><a href="arrangement/">arrangement</a></td>
-<td>The grid arrangement of orthogonal physical quantities (e</td>
+<td><a href="colocated_operations/">colocated_operations</a></td>
+<td>A description is required if any nearby operations exist that may influence t...</td>
 </tr>
 <tr>
-<td><a href="codebase/">codebase</a></td>
-<td>Link to model code repository</td>
-</tr>
-<tr>
-<td><a href="datasets/">datasets</a></td>
-<td>The dataset(s) associated with the experiment</td>
+<td><a href="country/">country</a></td>
+<td>The country in which the organization belongs (formatted as ISO 3166-1 alpha-...</td>
 </tr>
 <tr>
 <td><a href="description/">description</a></td>
 <td>A narrative description of the thing</td>
 </tr>
 <tr>
-<td><a href="dosing_depth_in_m/">dosing_depth_in_m</a></td>
-<td>Depth at which alkalinity is added</td>
-</tr>
-<tr>
-<td><a href="dosing_location/">dosing_location</a></td>
-<td>Geospatial coordinates of dosing activity</td>
-</tr>
-<tr>
-<td><a href="dosing_regimen/">dosing_regimen</a></td>
-<td>Schedule and amount of added alkalinity</td>
-</tr>
-<tr>
 <td><a href="end_date/">end_date</a></td>
-<td>Date when the experiment ended</td>
+<td></td>
 </tr>
 <tr>
-<td><a href="experiment_id/">experiment_id</a></td>
-<td>Unique identifier for an OAE experiment</td>
+<td><a href="funder/">funder</a></td>
+<td></td>
 </tr>
 <tr>
-<td><a href="experiment_type/">experiment_type</a></td>
-<td>The type of experiment being conducted</td>
+<td><a href="funding/">funding</a></td>
+<td></td>
 </tr>
 <tr>
-<td><a href="grid_details/">grid_details</a></td>
-<td>Details about the model grid</td>
-</tr>
-<tr>
-<td><a href="grid_type/">grid_type</a></td>
-<td>Descriptive structure of grid (e</td>
-</tr>
-<tr>
-<td><a href="horizontal_resolution_in_m/">horizontal_resolution_in_m</a></td>
-<td>Horizontal resolution of the grid</td>
+<td><a href="geo/">geo</a></td>
+<td>Entities that have a somewhat fixed, physical extension</td>
 </tr>
 <tr>
 <td><a href="identifier/">identifier</a></td>
 <td>A unique identifier for the thing</td>
 </tr>
 <tr>
+<td><a href="max_depth_in_m/">max_depth_in_m</a></td>
+<td>Maximum depth of observation in meters</td>
+</tr>
+<tr>
 <td><a href="mcdr_pathway/">mcdr_pathway</a></td>
 <td>The Marine Carbon Dioxide Removal (MCDR) pathway being studied</td>
 </tr>
 <tr>
-<td><a href="model_components/">model_components</a></td>
-<td>Components of the model</td>
-</tr>
-<tr>
-<td><a href="model_configurations/">model_configurations</a></td>
-<td>Details about the model configuration</td>
-</tr>
-<tr>
-<td><a href="model_type/">model_type</a></td>
-<td>Type of model simulation</td>
-</tr>
-<tr>
-<td><a href="n_nodes/">n_nodes</a></td>
-<td>Number of nodes in the grid if using an unstructured grids</td>
-</tr>
-<tr>
-<td><a href="n_x/">n_x</a></td>
-<td>Number of grid points in the x-direction</td>
-</tr>
-<tr>
-<td><a href="n_y/">n_y</a></td>
-<td>Number of grid points in the y-direction</td>
-</tr>
-<tr>
-<td><a href="n_z/">n_z</a></td>
-<td>Number of vertical coordinate levels</td>
+<td><a href="min_depth_in_m/">min_depth_in_m</a></td>
+<td>Minimum depth of observation in meters</td>
 </tr>
 <tr>
 <td><a href="name/">name</a></td>
 <td>A human-readable name for the thing</td>
 </tr>
 <tr>
-<td><a href="observation_type/">observation_type</a></td>
-<td>The type of observation / data submitted, multiple values are allowed of muli...</td>
+<td><a href="permit_id/">permit_id</a></td>
+<td>The unique identifier or number associated with this permit</td>
 </tr>
 <tr>
-<td><a href="permit_info/">permit_info</a></td>
-<td>Regulatory details for the project</td>
+<td><a href="permit_status/">permit_status</a></td>
+<td>The current status of the permit (e</td>
 </tr>
 <tr>
-<td><a href="previous_research/">previous_research</a></td>
-<td>Previous research related to the experiment</td>
+<td><a href="permits/">permits</a></td>
+<td>Associated permit number(s)</td>
 </tr>
 <tr>
-<td><a href="project/">project</a></td>
-<td>The OAE project to which the experiment belongs</td>
+<td><a href="permitting_authority/">permitting_authority</a></td>
+<td>The group that issued the permit</td>
+</tr>
+<tr>
+<td><a href="physical_site_description/">physical_site_description</a></td>
+<td>Provide information to help characterize the field site and provide context w...</td>
+</tr>
+<tr>
+<td><a href="previous_or_ongoing_colocated_research/">previous_or_ongoing_colocated_research</a></td>
+<td>This field is required for co-located operations that potentially impact the ...</td>
+</tr>
+<tr>
+<td><a href="project_description/">project_description</a></td>
+<td>A narrative description of the project</td>
 </tr>
 <tr>
 <td><a href="project_id/">project_id</a></td>
-<td>Unique identifier for an OAE project</td>
+<td>The project to which the submitted data belong</td>
 </tr>
 <tr>
-<td><a href="references/">references</a></td>
-<td>Reference for model physics</td>
+<td><a href="public_comments/">public_comments</a></td>
+<td>Links to public comments or concerns about the project</td>
 </tr>
 <tr>
-<td><a href="region/">region</a></td>
-<td>Region covered by the grid</td>
+<td><a href="related_links/">related_links</a></td>
+<td>Links to websites or documents related to the external research project</td>
 </tr>
 <tr>
-<td><a href="site_description/">site_description</a></td>
-<td>Details about the project site, including location and conditions</td>
+<td><a href="research_project/">research_project</a></td>
+<td>Project, which the data collection is part of</td>
+</tr>
+<tr>
+<td><a href="sea_names/">sea_names</a></td>
+<td>Names of the seas where the data collection takes place, See Controlled Vocab...</td>
+</tr>
+<tr>
+<td><a href="social_context_site_description/">social_context_site_description</a></td>
+<td>Details may include:</td>
+</tr>
+<tr>
+<td><a href="social_research_conducted_to_date/">social_research_conducted_to_date</a></td>
+<td>A description of any social research conducted to date</td>
 </tr>
 <tr>
 <td><a href="spatial_coverage/">spatial_coverage</a></td>
-<td>The spatial coverage of the dataset</td>
+<td>Latitude/longitude bounds of project site (e</td>
 </tr>
 <tr>
 <td><a href="start_date/">start_date</a></td>
-<td>Date when the experiment began</td>
+<td></td>
 </tr>
 <tr>
 <td><a href="temporal_coverage/">temporal_coverage</a></td>
-<td>The temporal coverage of the dataset</td>
-</tr>
-<tr>
-<td><a href="treatment_type/">treatment_type</a></td>
-<td>Type of OAE intervention</td>
+<td>Start date and end date (if known) of the project in ISO-8601 interval format...</td>
 </tr>
 <tr>
 <td><a href="url/">url</a></td>
-<td>Location of a page describing the dataset</td>
+<td>The URL of the linked resource</td>
 </tr>
 <tr>
-<td><a href="version/">version</a></td>
-<td>Version of the model component</td>
-</tr>
-<tr>
-<td><a href="vertical_resolution_in_m/">vertical_resolution_in_m</a></td>
-<td>Vertical resolution of the grid</td>
+<td><a href="vertical_coverage/">vertical_coverage</a></td>
+<td>Minimum and maximum depths of observation in meters</td>
 </tr>
 </tbody>
 </table>
@@ -697,6 +669,14 @@
 <tr>
 <td><a href="ObservationType/">ObservationType</a></td>
 <td>Types of observational data collected in ocean carbon and acidification studi...</td>
+</tr>
+<tr>
+<td><a href="PermitStatus/">PermitStatus</a></td>
+<td>The status of a permit</td>
+</tr>
+<tr>
+<td><a href="SeaNames/">SeaNames</a></td>
+<td></td>
 </tr>
 </tbody>
 </table>

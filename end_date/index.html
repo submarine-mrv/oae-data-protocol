@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: end_date - oae-data-protocol</title>
+        <title>Slot: End Date (end_date) - oae-data-protocol</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-end_date" class="md-skip">
+        <a href="#slot-end-date-end_date" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: end_date
+              Slot: End Date (end_date)
             
           </span>
         </div>
@@ -359,8 +359,7 @@
   
 
 
-<h1 id="slot-end_date">Slot: end_date</h1>
-<p><em>Date when the experiment ended.</em></p>
+<h1 id="slot-end-date-end_date">Slot: End Date (end_date)</h1>
 <p>URI: <a href="https://example.org/oae#end_date">oae:end_date</a></p>
 <!-- no inheritance hierarchy -->
 
@@ -375,25 +374,15 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Intervention/">Intervention</a></td>
-<td>Details about an OAE intervention</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Experiment/">Experiment</a></td>
-<td>A single experiment conducted within an OAE project</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ModelSimulation/">ModelSimulation</a></td>
-<td>A computational model run related to OAE</td>
+<td><a href="../MonetaryGrant/">MonetaryGrant</a></td>
+<td></td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../Datetime/">Datetime</a></li>
+<li>Range: <a href="../Date/">Date</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -423,14 +412,14 @@
 <details>
 
 <pre><code class="language-yaml">name: end_date
-description: Date when the experiment ended.
+title: End Date
 from_schema: OAEDataManagementProtocol
 rank: 1000
 alias: end_date
-owner: Experiment
+owner: MonetaryGrant
 domain_of:
-- Experiment
-range: datetime
+- MonetaryGrant
+range: date
 
 </code></pre>
 
