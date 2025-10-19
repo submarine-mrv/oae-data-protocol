@@ -16,8 +16,13 @@ imports:
   - linkml:types
   - core
   - enums
+  - dynamic_enums_expanded
   - oae_project
-  - dataset
-  - experiment
-  - intervention
-  - model_simulation
+  - external_project
+  - monetary_grant
+#   The following were early experimental schemas and have not been
+#   udated to the v1.0 version of the protocol yet
+#   - dataset
+#   - experiment
+#   - intervention
+#   - model_simulation

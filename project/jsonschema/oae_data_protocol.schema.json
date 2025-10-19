@@ -12,139 +12,6 @@
                 "string"
             ]
         },
-        "Dataset": {
-            "additionalProperties": false,
-            "description": "A dataset related to an OAE experiment. Generally following guidelines & best practices as outlined in [science-on-schema.org](https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md)",
-            "properties": {
-                "description": {
-                    "description": "A narrative description of the thing.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "identifier": {
-                    "description": "A unique identifier for the thing",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "name": {
-                    "description": "A human-readable name for the thing.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "spatial_coverage": {
-                    "description": "The spatial coverage of the dataset.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "temporal_coverage": {
-                    "description": "The temporal coverage of the dataset.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "url": {
-                    "description": "Location of a page describing the dataset.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                }
-            },
-            "title": "Dataset",
-            "type": "object"
-        },
-        "Experiment": {
-            "additionalProperties": false,
-            "description": "A single experiment conducted within an OAE project.",
-            "properties": {
-                "datasets": {
-                    "description": "The dataset(s) associated with the experiment.",
-                    "items": {
-                        "$ref": "#/$defs/Dataset"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "description": {
-                    "description": "A narrative description of the thing.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "end_date": {
-                    "description": "Date when the experiment ended.",
-                    "format": "date-time",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "experiment_id": {
-                    "description": "Unique identifier for an OAE experiment.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "experiment_type": {
-                    "$ref": "#/$defs/ExperimentType",
-                    "description": "The type of experiment being conducted."
-                },
-                "observation_type": {
-                    "description": "The type of observation / data submitted, multiple values are allowed of mulitple datasets are being submitted for this experiment.",
-                    "items": {
-                        "$ref": "#/$defs/ObservationType"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "previous_research": {
-                    "description": "Previous research related to the experiment.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "project": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/OAEProject"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "The OAE project to which the experiment belongs."
-                },
-                "start_date": {
-                    "description": "Date when the experiment began.",
-                    "format": "date-time",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                }
-            },
-            "title": "Experiment",
-            "type": "object"
-        },
         "ExperimentType": {
             "description": "The type of experiment conducted in an OAE project.",
             "enum": [
@@ -154,6 +21,51 @@
             ],
             "title": "ExperimentType",
             "type": "string"
+        },
+        "ExternalProject": {
+            "additionalProperties": false,
+            "description": "A research project that is not directly managed by the OAE project, but whose location is proximal to the OAE project and whose data may be relevant to understanding the context or impacts of OAE activities.",
+            "properties": {
+                "description": {
+                    "description": "A brief description of the external research project.",
+                    "title": "Description",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "The name of the external research project.",
+                    "title": "Name",
+                    "type": "string"
+                },
+                "related_links": {
+                    "description": "Links to websites or documents related to the external research project.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "Related Links",
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "spatial_coverage": {
+                    "$ref": "#/$defs/Place",
+                    "description": "Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities) provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]",
+                    "title": "Spatial Coverage"
+                },
+                "temporal_coverage": {
+                    "description": "Start date and end date (if known) of the project in ISO-8601 interval format (YYYY-MM-DD/YYY-MM-DD). If the end date is not known, use open-ended format YYYY-MM-DD/..",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}/(\\d{4}-\\d{2}-\\d{2}|\\.\\.)$",
+                    "title": "Temporal Coverage",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "temporal_coverage",
+                "spatial_coverage",
+                "name"
+            ],
+            "title": "ExternalProject",
+            "type": "object"
         },
         "FeedstockType": {
             "description": "Types of materials used for alkalinity addition, as sourced from NCEI's OCADS controlled vocabulary: https://www.ncei.noaa.gov/access/ocean-carbon-acidification-data-system/vocabularies/alkalinization-types.html",
@@ -175,469 +87,33 @@
             "title": "FeedstockType",
             "type": "string"
         },
-        "Intervention": {
+        "GeoShape": {
             "additionalProperties": false,
-            "description": "Details about an OAE intervention.",
+            "description": "The geographic shape of a place. A GeoShape can be described using several properties whose values are based on latitude/longitude pairs. Either whitespace or commas can be used to separate latitude and longitude; whitespace should be used when writing a list of several such points. (imported from schema.org)",
             "properties": {
-                "alkalinity_feedstock_description": {
-                    "description": "Information such as feedstock source, characteristics, concentration, impurities, dilution prior to dosing, and for feedstock other than NaOH; trace metal composition and particulate grain size.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "alkalinity_feedstock_type": {
-                    "$ref": "#/$defs/FeedstockType",
-                    "description": "Material used for alkalinity addition."
-                },
-                "datasets": {
-                    "description": "The dataset(s) associated with the experiment.",
-                    "items": {
-                        "$ref": "#/$defs/Dataset"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "description": {
-                    "description": "A narrative description of the thing.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "dosing_depth_in_m": {
-                    "description": "Depth at which alkalinity is added.",
-                    "type": [
-                        "number",
-                        "null"
-                    ]
-                },
-                "dosing_location": {
-                    "description": "Geospatial coordinates of dosing activity.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "dosing_regimen": {
-                    "description": "Schedule and amount of added alkalinity.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "end_date": {
-                    "description": "Date when the experiment ended.",
-                    "format": "date-time",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "experiment_id": {
-                    "description": "Unique identifier for an OAE experiment.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "experiment_type": {
-                    "$ref": "#/$defs/ExperimentType",
-                    "description": "The type of experiment being conducted."
-                },
-                "observation_type": {
-                    "description": "The type of observation / data submitted, multiple values are allowed of mulitple datasets are being submitted for this experiment.",
-                    "items": {
-                        "$ref": "#/$defs/ObservationType"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "previous_research": {
-                    "description": "Previous research related to the experiment.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "project": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/OAEProject"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "The OAE project to which the experiment belongs."
-                },
-                "start_date": {
-                    "description": "Date when the experiment began.",
-                    "format": "date-time",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "treatment_type": {
-                    "$ref": "#/$defs/OAETreatmentType",
-                    "description": "Type of OAE intervention."
+                "box": {
+                    "description": "A box defined by two latitude-longitude points, southwest and northeast.",
+                    "type": "string"
                 }
             },
-            "title": "Intervention",
+            "required": [
+                "box"
+            ],
+            "title": "GeoShape",
             "type": "object"
         },
         "MCDRPathway": {
             "description": "Type of marine Carbon Dioxide Removal (mCDR) pathways.",
             "enum": [
                 "ocean_alkalinity_enhancement",
-                "macroalgal_cultivation",
+                "biomass_sinking",
                 "direct_ocean_capture",
-                "ocean_fertilization",
+                "ocean_nutrient_fertilization",
                 "artificial_upwelling_downwelling",
-                "coastal_blue_carbon",
                 "marine_ecosystem_recovery"
             ],
-            "title": "MCDRPathway",
+            "title": "MCDR Pathway",
             "type": "string"
-        },
-        "ModelBGCComponent": {
-            "additionalProperties": false,
-            "description": "A biogeochemical / ecosystem component of a model",
-            "properties": {
-                "air_sea_co2_flux_parameterization": {
-                    "description": "Description and/or references of air-sea CO2 flux parameterization used, gas transfer velocity formulation and atmospheric CO2 details (e.g., fixed or time varying, and if time varying which data were used).",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "codebase": {
-                    "description": "Link to model code repository.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "description": {
-                    "description": "A description of the physical model characteristics, including version of equations being solved (hydrostatic vs non-hydrostatic), tracer advection scheme, how bottom drag is represented, mixed layer parameterizations, sub-grid mixing parameterizations if applicable, etc. Associated links to data, DOIs, or publications can be noted here, but should be supplemental.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "name": {
-                    "description": "Name of the model (e.g. ROMS, Oceanaigans)",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "references": {
-                    "description": "Reference for model physics.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "version": {
-                    "description": "Version of the model component.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                }
-            },
-            "title": "ModelBGCComponent",
-            "type": "object"
-        },
-        "ModelComponent": {
-            "additionalProperties": false,
-            "description": "A component of a model.",
-            "properties": {
-                "codebase": {
-                    "description": "Link to model code repository.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "description": {
-                    "description": "A description of the physical model characteristics, including version of equations being solved (hydrostatic vs non-hydrostatic), tracer advection scheme, how bottom drag is represented, mixed layer parameterizations, sub-grid mixing parameterizations if applicable, etc. Associated links to data, DOIs, or publications can be noted here, but should be supplemental.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "name": {
-                    "description": "Name of the model (e.g. ROMS, Oceanaigans)",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "references": {
-                    "description": "Reference for model physics.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "version": {
-                    "description": "Version of the model component.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                }
-            },
-            "title": "ModelComponent",
-            "type": "object"
-        },
-        "ModelGrid": {
-            "additionalProperties": false,
-            "description": "Details about the model grid.",
-            "properties": {
-                "arrangement": {
-                    "description": "The grid arrangement of orthogonal physical quantities (e.g. Arakawa A, Arakawa B, Arakawa C)",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "grid_type": {
-                    "description": "Descriptive structure of grid (e.g. latitude-longitude grid, unstructured triangular, tripolar)",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "horizontal_resolution_in_m": {
-                    "description": "Horizontal resolution of the grid.",
-                    "type": [
-                        "number",
-                        "null"
-                    ]
-                },
-                "n_nodes": {
-                    "description": "Number of nodes in the grid if using an unstructured grids",
-                    "type": [
-                        "integer",
-                        "null"
-                    ]
-                },
-                "n_x": {
-                    "description": "Number of grid points in the x-direction.",
-                    "type": [
-                        "integer",
-                        "null"
-                    ]
-                },
-                "n_y": {
-                    "description": "Number of grid points in the y-direction.",
-                    "type": [
-                        "integer",
-                        "null"
-                    ]
-                },
-                "n_z": {
-                    "description": "Number of vertical coordinate levels.",
-                    "type": [
-                        "integer",
-                        "null"
-                    ]
-                },
-                "region": {
-                    "description": "Region covered by the grid. LOOK FOR IMPORTS",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "vertical_resolution_in_m": {
-                    "description": "Vertical resolution of the grid.",
-                    "type": [
-                        "number",
-                        "null"
-                    ]
-                }
-            },
-            "title": "ModelGrid",
-            "type": "object"
-        },
-        "ModelPhysicsComponent": {
-            "additionalProperties": false,
-            "description": "A physical component of a model.",
-            "properties": {
-                "codebase": {
-                    "description": "Link to model code repository.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "description": {
-                    "description": "A description of the physical model characteristics, including version of equations being solved (hydrostatic vs non-hydrostatic), tracer advection scheme, how bottom drag is represented, mixed layer parameterizations, sub-grid mixing parameterizations if applicable, etc. Associated links to data, DOIs, or publications can be noted here, but should be supplemental.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "name": {
-                    "description": "Name of the model (e.g. ROMS, Oceanaigans)",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "references": {
-                    "description": "Reference for model physics.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "version": {
-                    "description": "Version of the model component.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                }
-            },
-            "title": "ModelPhysicsComponent",
-            "type": "object"
-        },
-        "ModelSimulation": {
-            "additionalProperties": false,
-            "description": "A computational model run related to OAE.",
-            "properties": {
-                "datasets": {
-                    "description": "The dataset(s) associated with the experiment.",
-                    "items": {
-                        "$ref": "#/$defs/Dataset"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "description": {
-                    "description": "Foobar description",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "end_date": {
-                    "description": "Date when the experiment ended.",
-                    "format": "date-time",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "experiment_id": {
-                    "description": "Unique identifier for an OAE experiment.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "experiment_type": {
-                    "$ref": "#/$defs/ExperimentType",
-                    "description": "The type of experiment being conducted (must be 'model_output' for ModelSimulation class)."
-                },
-                "grid_details": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/ModelGrid"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "Details about the model grid."
-                },
-                "model_components": {
-                    "description": "Components of the model.",
-                    "items": {
-                        "$ref": "#/$defs/ModelComponent"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "model_configurations": {
-                    "description": "Details about the model configuration.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "model_type": {
-                    "$ref": "#/$defs/ModelType",
-                    "description": "Type of model simulation."
-                },
-                "observation_type": {
-                    "description": "The type of observation / data submitted, multiple values are allowed of mulitple datasets are being submitted for this experiment.",
-                    "items": {
-                        "$ref": "#/$defs/ObservationType"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "previous_research": {
-                    "description": "Previous research related to the experiment.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "project": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/OAEProject"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "The OAE project to which the experiment belongs."
-                },
-                "start_date": {
-                    "description": "Date when the experiment began.",
-                    "format": "date-time",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                }
-            },
-            "title": "ModelSimulation",
-            "type": "object"
         },
         "ModelType": {
             "description": "Categories of computational modeling approaches used in OAE research.",
@@ -648,43 +124,179 @@
             "title": "ModelType",
             "type": "string"
         },
+        "MonetaryGrant": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "end_date": {
+                    "format": "date",
+                    "title": "End Date",
+                    "type": "string"
+                },
+                "funder": {
+                    "$ref": "#/$defs/Organization",
+                    "title": "Funder"
+                },
+                "identifier": {
+                    "description": "Unique identifier of the grant. Should be be URL or project id used by the funder",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the grant",
+                    "title": "Name",
+                    "type": "string"
+                },
+                "start_date": {
+                    "format": "date",
+                    "title": "Start Date",
+                    "type": "string"
+                }
+            },
+            "title": "MonetaryGrant",
+            "type": "object"
+        },
+        "NamedLink": {
+            "additionalProperties": false,
+            "description": "A link to a resource with a name and URL.",
+            "properties": {
+                "name": {
+                    "description": "The name of the linked resource.",
+                    "title": "Name",
+                    "type": "string"
+                },
+                "url": {
+                    "description": "The URL of the linked resource.",
+                    "title": "URL",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name",
+                "url"
+            ],
+            "title": "NamedLink",
+            "type": "object"
+        },
         "OAEProject": {
             "additionalProperties": false,
             "description": "A project conducting OAE field trials or modeling.",
             "properties": {
-                "description": {
-                    "description": "A narrative description of the thing.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                "additional_details": {
+                    "description": "Open text area to include additional information. These may include information for sediment processes data, biological data, or any other required information if not included in the main metadata or data files.\nSee [General Guidelines for Your Data](https://www.carbontosea.org/oae-data-protocol/1-0-0/#general-guidelines-for-your-data) for relevant sections of your data. Additional informational files, such as digitized laboratory notebooks, blogs, etc., may be linked here.",
+                    "title": "Additional Details",
+                    "type": "string"
+                },
+                "colocated_operations": {
+                    "description": "A description is required if any nearby operations exist that may influence the waters over the time period covered by this data. This might be a nearby mCDR project, a facility that discharges water with different characteristics than the inflow (e.g., a desalination plant), frequent boating operations, etc.",
+                    "title": "Co-located Operations",
+                    "type": "string"
+                },
+                "funding": {
+                    "$ref": "#/$defs/MonetaryGrant",
+                    "title": "Funding Info"
                 },
                 "mcdr_pathway": {
                     "$ref": "#/$defs/MCDRPathway",
-                    "description": "The Marine Carbon Dioxide Removal (MCDR) pathway being studied."
+                    "description": "The Marine Carbon Dioxide Removal (MCDR) pathway being studied.",
+                    "title": "MCDR Pathway"
                 },
-                "permit_info": {
-                    "description": "Regulatory details for the project.",
+                "permits": {
+                    "description": "Associated permit number(s).",
+                    "items": {
+                        "$ref": "#/$defs/Permit"
+                    },
+                    "title": "Permits",
                     "type": [
-                        "string",
+                        "array",
                         "null"
                     ]
+                },
+                "physical_site_description": {
+                    "description": "Provide information to help characterize the field site and provide context when interpreting the data. For example, descriptions of tidal patterns, climatological conditions, notable geological characteristics, the geographical and marine setting (coastal, intertidal, island region, sheltered environment), and characteristic meteorological events. If possible based on the file type of this submission, please include useful maps or figures here.\nLinks to relevant datasets, cruise reports, etc may be provided here.",
+                    "title": "Physical Site Description",
+                    "type": "string"
+                },
+                "previous_or_ongoing_colocated_research": {
+                    "description": "This field is required for co-located operations that potentially impact the project results. If previous or on-going mCDR field operations have occurred in the study domain by any project developer, they may be mentioned here either as a description, and/or if a reference to the study exists in the form of a data set, publication, etc, the DOI or other identifying information should be provided. Please provide direct links to data when available.",
+                    "items": {
+                        "$ref": "#/$defs/ExternalProject"
+                    },
+                    "title": "Previous or Ongoing Co-located Research",
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "project_description": {
+                    "description": "A narrative description of the project. For example, what were the goals of the project? What were the research questions? What were the processes to achieve these goals and answer these questions? Who were the key stakeholders, organizers, project leaders? Was this building off a previous or ongoing project, or is this a new region/experiment/mechanistic study?\nIf there are relevant regulatory parameters and/or limits to dosing trials at this location, these may be described here.",
+                    "title": "Project Description",
+                    "type": "string"
                 },
                 "project_id": {
-                    "description": "Unique identifier for an OAE project.",
+                    "description": "The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.\nIf no Project ID has been assigned, one may be generated by combining the following fields, as described in Cross-linking Data Sets with Common Identifiers.\nAny method that creates a unique ID that will link all project data (e.g., a project's baseline data to intervention data, and various data submissions within an experiment type) is acceptable.",
+                    "title": "Project ID",
+                    "type": "string"
+                },
+                "public_comments": {
+                    "description": "Links to public comments or concerns about the project.",
+                    "items": {
+                        "$ref": "#/$defs/NamedLink"
+                    },
+                    "title": "Public Comments",
                     "type": [
-                        "string",
+                        "array",
                         "null"
                     ]
                 },
-                "site_description": {
-                    "description": "Details about the project site, including location and conditions.",
+                "research_project": {
+                    "description": "Project, which the data collection is part of. For example, West Coast Ocean Acidification (WCOA) Project.",
+                    "title": "Research Project",
+                    "type": "string"
+                },
+                "sea_names": {
+                    "description": "Names of the seas where the data collection takes place, See Controlled Vocabularies section for definitions.",
+                    "items": {
+                        "$ref": "#/$defs/SeaNames"
+                    },
+                    "title": "Sea Names",
                     "type": [
-                        "string",
+                        "array",
                         "null"
                     ]
+                },
+                "social_context_site_description": {
+                    "description": "Details may include:\n  - Commercial, recreational, ecological, and cultural uses of study site\n  - Industrial site history\n  - Demographics of site area\n  - Notable events that may impact local sentiment to mCDR (for example: site had significant toxic spill in past decade, local positive support for offshore wind farming, frequent HAB site) -Ecologically protected species, economically significant operations in the marine environment\n  - In study areas with nearby state or federal jurisdiction borders, potential conflicts with other countries or permits from foreign governments should be described.\n  - Links to relevant social science surveys, engaged community groups, etc.",
+                    "title": "Social Context Site Description",
+                    "type": "string"
+                },
+                "social_research_conducted_to_date": {
+                    "description": "A description of any social research conducted to date. If provided as a separate file, list filename here. Information may include:\n  - Description of Community engagement research approach conducted and results\n  - Stakeholder mapping method and link to output",
+                    "title": "Social Research Conducted to Date",
+                    "type": "string"
+                },
+                "spatial_coverage": {
+                    "$ref": "#/$defs/Place",
+                    "description": "Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities) provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]",
+                    "title": "Spatial Coverage"
+                },
+                "temporal_coverage": {
+                    "description": "The start and end date (optional) of the project",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}/(\\d{4}-\\d{2}-\\d{2}|\\.\\.)$",
+                    "title": "Temporal Coverage",
+                    "type": "string"
+                },
+                "vertical_coverage": {
+                    "$ref": "#/$defs/VerticalExtent",
+                    "description": "Minimum and maximum depths of observation in meters.",
+                    "title": "Vertical Coverage"
                 }
             },
+            "required": [
+                "temporal_coverage",
+                "spatial_coverage",
+                "vertical_coverage",
+                "project_id"
+            ],
             "title": "OAEProject",
             "type": "object"
         },
@@ -716,17 +328,374 @@
             "title": "ObservationType",
             "type": "string"
         },
+        "Organization": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "country": {
+                    "description": "The country in which the organization belongs (formatted as ISO 3166-1 alpha-2 code)",
+                    "pattern": "^[A-Z]{2}$",
+                    "title": "Country",
+                    "type": "string"
+                },
+                "identifier": {
+                    "description": "Organization identifier, preferably a ROR URL (e.g., https://ror.org/02mhbdp94)",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the organization",
+                    "title": "Name",
+                    "type": "string"
+                }
+            },
+            "title": "Organization",
+            "type": "object"
+        },
+        "Permit": {
+            "additionalProperties": false,
+            "description": "A permit associated with the project.",
+            "properties": {
+                "approval_document": {
+                    "description": "Links to documentation related to the permit.",
+                    "title": "Permit Document",
+                    "type": "string"
+                },
+                "permit_id": {
+                    "description": "The unique identifier or number associated with this permit.",
+                    "title": "Permit ID or Number",
+                    "type": "string"
+                },
+                "permit_status": {
+                    "$ref": "#/$defs/PermitStatus",
+                    "description": "The current status of the permit (e.g., active, expired).",
+                    "title": "Permit Status"
+                },
+                "permitting_authority": {
+                    "description": "The group that issued the permit.",
+                    "title": "Permitting Authority",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "permit_id",
+                "permitting_authority",
+                "permit_status",
+                "approval_document"
+            ],
+            "title": "Permit",
+            "type": "object"
+        },
+        "PermitStatus": {
+            "description": "The status of a permit.",
+            "enum": [
+                "pending",
+                "active",
+                "expired",
+                "revoked"
+            ],
+            "title": "PermitStatus",
+            "type": "string"
+        },
+        "Place": {
+            "additionalProperties": false,
+            "description": "A bounding box defined by latitude and longitude coordinates.",
+            "properties": {
+                "geo": {
+                    "$ref": "#/$defs/GeoShape",
+                    "description": "Entities that have a somewhat fixed, physical extension. (imported from schema.org)"
+                }
+            },
+            "required": [
+                "geo"
+            ],
+            "title": "Place",
+            "type": "object"
+        },
         "PropertyValue": {
             "additionalProperties": false,
             "description": "",
             "title": "PropertyValue",
+            "type": "object"
+        },
+        "SeaNames": {
+            "description": "",
+            "enum": [
+                "http://vocab.nerc.ac.uk/collection/C16/current/ZZ/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/IJM/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/MKM/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/IRM/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/10/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/62a/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/04/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/01c/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/25/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/SOC/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/33/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/16a/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/28Ab/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/48/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/48o/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/ESC/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/39/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/57b/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/ICS/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/53/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/35/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/200/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/61b/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/22/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/28Bf/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/11/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/63/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/03/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/12/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/28B/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/48e/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/47/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/28Aa/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/45/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/WSC/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/62/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/40/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/23b/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/06/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/42/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/51/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/45a/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/32b/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/21/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/28C/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/48m/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/01b/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/26/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/13/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/28A/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/32/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/48j/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/48h/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/31/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/57a/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/05/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/50/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/ARA/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/61a/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/21a/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/28Bg/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/48n/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/01a/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/27/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/14/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/60/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/48f/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/49/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/48a/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/48l/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/48i/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/41/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/30/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/23a/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/08/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/32a/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/20/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/17a/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/28Ae/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/17/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/59/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/64/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/48k/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/48b/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/01/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/44/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/55/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/38/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/29/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/07/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/56/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/19/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/15a/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/46b/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/14a/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/28Ad/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/61/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/58/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/65/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/48g/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/48d/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/23/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/43/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/54/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/37/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/CAS/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/28/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/09/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/18/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/02/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/24/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/46/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/46a/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/16/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/28Ac/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/57/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/66/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/WAS/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/48c/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/FRM/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/500/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/15/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/52/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/36/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/GLO/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/34/",
+                "http://vocab.nerc.ac.uk/collection/C16/current/28Bh/"
+            ],
+            "title": "SeaNames",
+            "type": "string"
+        },
+        "VerticalExtent": {
+            "additionalProperties": false,
+            "description": "The vertical extent of a place or structure in meters.",
+            "properties": {
+                "max_depth_in_m": {
+                    "description": "Maximum depth of observation in meters. Use negative numbers for depths below sea level, and positive numbers for above sea level.",
+                    "title": "Maximum Depth (in meters)",
+                    "type": "number"
+                },
+                "min_depth_in_m": {
+                    "description": "Minimum depth of observation in meters. Use negative numbers for depths below sea level, and positive numbers for above sea level.",
+                    "title": "Minimum Depth (in meters)",
+                    "type": "number"
+                }
+            },
+            "required": [
+                "min_depth_in_m",
+                "max_depth_in_m"
+            ],
+            "title": "VerticalExtent",
             "type": "object"
         }
     },
     "$id": "OAEDataManagementProtocol",
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": true,
+    "description": "A project conducting OAE field trials or modeling.",
     "metamodel_version": "1.7.0",
+    "properties": {
+        "additional_details": {
+            "description": "Open text area to include additional information. These may include information for sediment processes data, biological data, or any other required information if not included in the main metadata or data files.\nSee [General Guidelines for Your Data](https://www.carbontosea.org/oae-data-protocol/1-0-0/#general-guidelines-for-your-data) for relevant sections of your data. Additional informational files, such as digitized laboratory notebooks, blogs, etc., may be linked here.",
+            "title": "Additional Details",
+            "type": "string"
+        },
+        "colocated_operations": {
+            "description": "A description is required if any nearby operations exist that may influence the waters over the time period covered by this data. This might be a nearby mCDR project, a facility that discharges water with different characteristics than the inflow (e.g., a desalination plant), frequent boating operations, etc.",
+            "title": "Co-located Operations",
+            "type": "string"
+        },
+        "funding": {
+            "$ref": "#/$defs/MonetaryGrant",
+            "title": "Funding Info"
+        },
+        "mcdr_pathway": {
+            "$ref": "#/$defs/MCDRPathway",
+            "description": "The Marine Carbon Dioxide Removal (MCDR) pathway being studied.",
+            "title": "MCDR Pathway"
+        },
+        "permits": {
+            "description": "Associated permit number(s).",
+            "items": {
+                "$ref": "#/$defs/Permit"
+            },
+            "title": "Permits",
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "physical_site_description": {
+            "description": "Provide information to help characterize the field site and provide context when interpreting the data. For example, descriptions of tidal patterns, climatological conditions, notable geological characteristics, the geographical and marine setting (coastal, intertidal, island region, sheltered environment), and characteristic meteorological events. If possible based on the file type of this submission, please include useful maps or figures here.\nLinks to relevant datasets, cruise reports, etc may be provided here.",
+            "title": "Physical Site Description",
+            "type": "string"
+        },
+        "previous_or_ongoing_colocated_research": {
+            "description": "This field is required for co-located operations that potentially impact the project results. If previous or on-going mCDR field operations have occurred in the study domain by any project developer, they may be mentioned here either as a description, and/or if a reference to the study exists in the form of a data set, publication, etc, the DOI or other identifying information should be provided. Please provide direct links to data when available.",
+            "items": {
+                "$ref": "#/$defs/ExternalProject"
+            },
+            "title": "Previous or Ongoing Co-located Research",
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "project_description": {
+            "description": "A narrative description of the project. For example, what were the goals of the project? What were the research questions? What were the processes to achieve these goals and answer these questions? Who were the key stakeholders, organizers, project leaders? Was this building off a previous or ongoing project, or is this a new region/experiment/mechanistic study?\nIf there are relevant regulatory parameters and/or limits to dosing trials at this location, these may be described here.",
+            "title": "Project Description",
+            "type": "string"
+        },
+        "project_id": {
+            "description": "The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.\nIf no Project ID has been assigned, one may be generated by combining the following fields, as described in Cross-linking Data Sets with Common Identifiers.\nAny method that creates a unique ID that will link all project data (e.g., a project's baseline data to intervention data, and various data submissions within an experiment type) is acceptable.",
+            "title": "Project ID",
+            "type": "string"
+        },
+        "public_comments": {
+            "description": "Links to public comments or concerns about the project.",
+            "items": {
+                "$ref": "#/$defs/NamedLink"
+            },
+            "title": "Public Comments",
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "research_project": {
+            "description": "Project, which the data collection is part of. For example, West Coast Ocean Acidification (WCOA) Project.",
+            "title": "Research Project",
+            "type": "string"
+        },
+        "sea_names": {
+            "description": "Names of the seas where the data collection takes place, See Controlled Vocabularies section for definitions.",
+            "items": {
+                "$ref": "#/$defs/SeaNames"
+            },
+            "title": "Sea Names",
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "social_context_site_description": {
+            "description": "Details may include:\n  - Commercial, recreational, ecological, and cultural uses of study site\n  - Industrial site history\n  - Demographics of site area\n  - Notable events that may impact local sentiment to mCDR (for example: site had significant toxic spill in past decade, local positive support for offshore wind farming, frequent HAB site) -Ecologically protected species, economically significant operations in the marine environment\n  - In study areas with nearby state or federal jurisdiction borders, potential conflicts with other countries or permits from foreign governments should be described.\n  - Links to relevant social science surveys, engaged community groups, etc.",
+            "title": "Social Context Site Description",
+            "type": "string"
+        },
+        "social_research_conducted_to_date": {
+            "description": "A description of any social research conducted to date. If provided as a separate file, list filename here. Information may include:\n  - Description of Community engagement research approach conducted and results\n  - Stakeholder mapping method and link to output",
+            "title": "Social Research Conducted to Date",
+            "type": "string"
+        },
+        "spatial_coverage": {
+            "$ref": "#/$defs/Place",
+            "description": "Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities) provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]",
+            "title": "Spatial Coverage"
+        },
+        "temporal_coverage": {
+            "description": "The start and end date (optional) of the project",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}/(\\d{4}-\\d{2}-\\d{2}|\\.\\.)$",
+            "title": "Temporal Coverage",
+            "type": "string"
+        },
+        "vertical_coverage": {
+            "$ref": "#/$defs/VerticalExtent",
+            "description": "Minimum and maximum depths of observation in meters.",
+            "title": "Vertical Coverage"
+        }
+    },
+    "required": [
+        "temporal_coverage",
+        "spatial_coverage",
+        "vertical_coverage",
+        "project_id"
+    ],
     "title": "OAEDataManagementProtocol",
     "type": "object",
     "version": "0.1.0"

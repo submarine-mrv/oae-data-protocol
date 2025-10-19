@@ -9,23 +9,77 @@ default_prefix: oae
 
 slots:
   description:
+    title: Description
     #slot_uri: schema:description
     description: "A narrative description of the thing."
     range: string
   name:
+    title: Name
     #slot_uri: schema:name
     description: "A human-readable name for the thing."
     range: string
   identifier:
-    #slot_uri: schema:identifier
+    slot_uri: schema:identifier
     description: "A unique identifier for the thing"
-    range: Any
+    range: string
+  temporal_coverage:
+    title: Temporal Coverage
+    slot_uri: schema:temporalCoverage
+    description: >-
+      Start date and end date (if known) of the project in ISO-8601 interval format (YYYY-MM-DD/YYY-MM-DD). If the end date is not known, use open-ended format YYYY-MM-DD/..
+    range: string
+    pattern: "^\\d{4}-\\d{2}-\\d{2}/(\\d{4}-\\d{2}-\\d{2}|\\.\\.)$"
+    required: true
+  spatial_coverage:
+    title: Spatial Coverage
+    slot_uri: schema:spatialCoverage
+    description: >-
+      Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities) provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost
+      longitude, northernmost latitude. [S, W, N, E]
+    range: Place
+    required: true
+  vertical_coverage:
+    title: Vertical Coverage
+    description: >-
+      Minimum and maximum depths of observation in meters.
+    range: VerticalExtent
+    required: true
 
 classes:
   PropertyValue:
     class_uri: schema:PropertyValue
   Any:
     class_uri: linkml:Any
+  Place:
+    description: "A bounding box defined by latitude and longitude coordinates."
+    attributes:
+      geo:
+        description: "Entities that have a somewhat fixed, physical extension. (imported from schema.org)"
+        range: GeoShape
+        required: true
+    class_uri: "schema:Place"
+  GeoShape:
+    description: "The geographic shape of a place. A GeoShape can be described using several properties whose values are based on latitude/longitude pairs. Either whitespace or commas can be used to separate latitude and longitude; whitespace should be used when writing a list of several such points. (imported from schema.org)"
+    attributes:
+      box:
+        description: "A box defined by two latitude-longitude points, southwest and northeast."
+        range: string
+        slot_uri: schema:box
+        required: true
+    class_uri: "schema:GeoShape"
+  VerticalExtent:
+    description: "The vertical extent of a place or structure in meters."
+    attributes:
+      min_depth_in_m:
+        title: Minimum Depth (in meters)
+        description: "Minimum depth of observation in meters. Use negative numbers for depths below sea level, and positive numbers for above sea level."
+        range: float
+        required: true
+      max_depth_in_m:
+        title: Maximum Depth (in meters)
+        description: "Maximum depth of observation in meters. Use negative numbers for depths below sea level, and positive numbers for above sea level."
+        range: float
+        required: true
 
 types:
   Doi:

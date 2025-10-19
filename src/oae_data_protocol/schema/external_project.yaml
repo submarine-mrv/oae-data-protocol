@@ -1,0 +1,29 @@
+id: ExternalProject
+name: ExternalProject
+
+prefixes:
+  oae: "https://example.org/oae#"
+
+default_prefix: oae
+
+classes:
+  ExternalProject:
+    description: "A research project that is not directly managed by the OAE project, but whose location is proximal to the OAE project and whose data may be relevant to understanding the context or impacts of OAE activities."
+    slots:
+      - temporal_coverage
+      - spatial_coverage
+    attributes:
+      name:
+        title: Name
+        description: "The name of the external research project."
+        range: string
+        required: true
+      description:
+        title: Description
+        description: "A brief description of the external research project."
+        range: string
+      related_links:
+        title: Related Links
+        description: "Links to websites or documents related to the external research project."
+        range: uri
+        multivalued: true

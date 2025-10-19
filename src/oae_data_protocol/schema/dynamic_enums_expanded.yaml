@@ -1,0 +1,394 @@
+id: DynamicEnums
+name: DynamicEnums
+
+prefixes:
+  oae: https://example.org/oae#
+
+default_prefix: oae
+enums:
+  SeaNames:
+    matches:
+      source_ontology: SDN:C16
+      identifier_pattern: http://vocab.nerc.ac.uk/collection/C16/current/.+/
+    permissible_values:
+      http://vocab.nerc.ac.uk/collection/C16/current/ZZ/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/ZZ/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/ZZ/
+      http://vocab.nerc.ac.uk/collection/C16/current/IJM/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/IJM/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/IJM/
+      http://vocab.nerc.ac.uk/collection/C16/current/MKM/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/MKM/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/MKM/
+      http://vocab.nerc.ac.uk/collection/C16/current/IRM/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/IRM/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/IRM/
+      http://vocab.nerc.ac.uk/collection/C16/current/10/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/10/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/10/
+      http://vocab.nerc.ac.uk/collection/C16/current/62a/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/62a/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/62a/
+      http://vocab.nerc.ac.uk/collection/C16/current/04/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/04/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/04/
+      http://vocab.nerc.ac.uk/collection/C16/current/01c/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/01c/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/01c/
+      http://vocab.nerc.ac.uk/collection/C16/current/25/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/25/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/25/
+      http://vocab.nerc.ac.uk/collection/C16/current/SOC/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/SOC/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/SOC/
+      http://vocab.nerc.ac.uk/collection/C16/current/33/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/33/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/33/
+      http://vocab.nerc.ac.uk/collection/C16/current/16a/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/16a/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/16a/
+      http://vocab.nerc.ac.uk/collection/C16/current/28Ab/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/28Ab/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/28Ab/
+      http://vocab.nerc.ac.uk/collection/C16/current/48/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/48/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/48/
+      http://vocab.nerc.ac.uk/collection/C16/current/48o/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/48o/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/48o/
+      http://vocab.nerc.ac.uk/collection/C16/current/ESC/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/ESC/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/ESC/
+      http://vocab.nerc.ac.uk/collection/C16/current/39/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/39/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/39/
+      http://vocab.nerc.ac.uk/collection/C16/current/57b/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/57b/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/57b/
+      http://vocab.nerc.ac.uk/collection/C16/current/ICS/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/ICS/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/ICS/
+      http://vocab.nerc.ac.uk/collection/C16/current/53/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/53/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/53/
+      http://vocab.nerc.ac.uk/collection/C16/current/35/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/35/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/35/
+      http://vocab.nerc.ac.uk/collection/C16/current/200/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/200/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/200/
+      http://vocab.nerc.ac.uk/collection/C16/current/61b/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/61b/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/61b/
+      http://vocab.nerc.ac.uk/collection/C16/current/22/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/22/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/22/
+      http://vocab.nerc.ac.uk/collection/C16/current/28Bf/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/28Bf/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/28Bf/
+      http://vocab.nerc.ac.uk/collection/C16/current/11/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/11/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/11/
+      http://vocab.nerc.ac.uk/collection/C16/current/63/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/63/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/63/
+      http://vocab.nerc.ac.uk/collection/C16/current/03/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/03/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/03/
+      http://vocab.nerc.ac.uk/collection/C16/current/12/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/12/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/12/
+      http://vocab.nerc.ac.uk/collection/C16/current/28B/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/28B/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/28B/
+      http://vocab.nerc.ac.uk/collection/C16/current/48e/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/48e/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/48e/
+      http://vocab.nerc.ac.uk/collection/C16/current/47/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/47/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/47/
+      http://vocab.nerc.ac.uk/collection/C16/current/28Aa/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/28Aa/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/28Aa/
+      http://vocab.nerc.ac.uk/collection/C16/current/45/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/45/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/45/
+      http://vocab.nerc.ac.uk/collection/C16/current/WSC/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/WSC/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/WSC/
+      http://vocab.nerc.ac.uk/collection/C16/current/62/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/62/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/62/
+      http://vocab.nerc.ac.uk/collection/C16/current/40/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/40/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/40/
+      http://vocab.nerc.ac.uk/collection/C16/current/23b/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/23b/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/23b/
+      http://vocab.nerc.ac.uk/collection/C16/current/06/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/06/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/06/
+      http://vocab.nerc.ac.uk/collection/C16/current/42/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/42/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/42/
+      http://vocab.nerc.ac.uk/collection/C16/current/51/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/51/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/51/
+      http://vocab.nerc.ac.uk/collection/C16/current/45a/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/45a/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/45a/
+      http://vocab.nerc.ac.uk/collection/C16/current/32b/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/32b/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/32b/
+      http://vocab.nerc.ac.uk/collection/C16/current/21/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/21/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/21/
+      http://vocab.nerc.ac.uk/collection/C16/current/28C/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/28C/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/28C/
+      http://vocab.nerc.ac.uk/collection/C16/current/48m/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/48m/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/48m/
+      http://vocab.nerc.ac.uk/collection/C16/current/01b/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/01b/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/01b/
+      http://vocab.nerc.ac.uk/collection/C16/current/26/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/26/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/26/
+      http://vocab.nerc.ac.uk/collection/C16/current/13/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/13/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/13/
+      http://vocab.nerc.ac.uk/collection/C16/current/28A/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/28A/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/28A/
+      http://vocab.nerc.ac.uk/collection/C16/current/32/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/32/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/32/
+      http://vocab.nerc.ac.uk/collection/C16/current/48j/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/48j/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/48j/
+      http://vocab.nerc.ac.uk/collection/C16/current/48h/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/48h/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/48h/
+      http://vocab.nerc.ac.uk/collection/C16/current/31/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/31/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/31/
+      http://vocab.nerc.ac.uk/collection/C16/current/57a/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/57a/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/57a/
+      http://vocab.nerc.ac.uk/collection/C16/current/05/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/05/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/05/
+      http://vocab.nerc.ac.uk/collection/C16/current/50/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/50/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/50/
+      http://vocab.nerc.ac.uk/collection/C16/current/ARA/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/ARA/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/ARA/
+      http://vocab.nerc.ac.uk/collection/C16/current/61a/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/61a/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/61a/
+      http://vocab.nerc.ac.uk/collection/C16/current/21a/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/21a/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/21a/
+      http://vocab.nerc.ac.uk/collection/C16/current/28Bg/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/28Bg/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/28Bg/
+      http://vocab.nerc.ac.uk/collection/C16/current/48n/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/48n/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/48n/
+      http://vocab.nerc.ac.uk/collection/C16/current/01a/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/01a/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/01a/
+      http://vocab.nerc.ac.uk/collection/C16/current/27/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/27/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/27/
+      http://vocab.nerc.ac.uk/collection/C16/current/14/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/14/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/14/
+      http://vocab.nerc.ac.uk/collection/C16/current/60/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/60/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/60/
+      http://vocab.nerc.ac.uk/collection/C16/current/48f/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/48f/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/48f/
+      http://vocab.nerc.ac.uk/collection/C16/current/49/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/49/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/49/
+      http://vocab.nerc.ac.uk/collection/C16/current/48a/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/48a/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/48a/
+      http://vocab.nerc.ac.uk/collection/C16/current/48l/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/48l/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/48l/
+      http://vocab.nerc.ac.uk/collection/C16/current/48i/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/48i/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/48i/
+      http://vocab.nerc.ac.uk/collection/C16/current/41/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/41/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/41/
+      http://vocab.nerc.ac.uk/collection/C16/current/30/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/30/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/30/
+      http://vocab.nerc.ac.uk/collection/C16/current/23a/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/23a/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/23a/
+      http://vocab.nerc.ac.uk/collection/C16/current/08/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/08/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/08/
+      http://vocab.nerc.ac.uk/collection/C16/current/32a/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/32a/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/32a/
+      http://vocab.nerc.ac.uk/collection/C16/current/20/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/20/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/20/
+      http://vocab.nerc.ac.uk/collection/C16/current/17a/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/17a/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/17a/
+      http://vocab.nerc.ac.uk/collection/C16/current/28Ae/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/28Ae/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/28Ae/
+      http://vocab.nerc.ac.uk/collection/C16/current/17/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/17/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/17/
+      http://vocab.nerc.ac.uk/collection/C16/current/59/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/59/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/59/
+      http://vocab.nerc.ac.uk/collection/C16/current/64/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/64/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/64/
+      http://vocab.nerc.ac.uk/collection/C16/current/48k/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/48k/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/48k/
+      http://vocab.nerc.ac.uk/collection/C16/current/48b/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/48b/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/48b/
+      http://vocab.nerc.ac.uk/collection/C16/current/01/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/01/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/01/
+      http://vocab.nerc.ac.uk/collection/C16/current/44/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/44/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/44/
+      http://vocab.nerc.ac.uk/collection/C16/current/55/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/55/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/55/
+      http://vocab.nerc.ac.uk/collection/C16/current/38/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/38/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/38/
+      http://vocab.nerc.ac.uk/collection/C16/current/29/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/29/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/29/
+      http://vocab.nerc.ac.uk/collection/C16/current/07/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/07/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/07/
+      http://vocab.nerc.ac.uk/collection/C16/current/56/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/56/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/56/
+      http://vocab.nerc.ac.uk/collection/C16/current/19/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/19/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/19/
+      http://vocab.nerc.ac.uk/collection/C16/current/15a/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/15a/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/15a/
+      http://vocab.nerc.ac.uk/collection/C16/current/46b/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/46b/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/46b/
+      http://vocab.nerc.ac.uk/collection/C16/current/14a/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/14a/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/14a/
+      http://vocab.nerc.ac.uk/collection/C16/current/28Ad/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/28Ad/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/28Ad/
+      http://vocab.nerc.ac.uk/collection/C16/current/61/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/61/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/61/
+      http://vocab.nerc.ac.uk/collection/C16/current/58/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/58/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/58/
+      http://vocab.nerc.ac.uk/collection/C16/current/65/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/65/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/65/
+      http://vocab.nerc.ac.uk/collection/C16/current/48g/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/48g/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/48g/
+      http://vocab.nerc.ac.uk/collection/C16/current/48d/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/48d/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/48d/
+      http://vocab.nerc.ac.uk/collection/C16/current/23/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/23/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/23/
+      http://vocab.nerc.ac.uk/collection/C16/current/43/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/43/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/43/
+      http://vocab.nerc.ac.uk/collection/C16/current/54/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/54/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/54/
+      http://vocab.nerc.ac.uk/collection/C16/current/37/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/37/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/37/
+      http://vocab.nerc.ac.uk/collection/C16/current/CAS/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/CAS/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/CAS/
+      http://vocab.nerc.ac.uk/collection/C16/current/28/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/28/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/28/
+      http://vocab.nerc.ac.uk/collection/C16/current/09/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/09/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/09/
+      http://vocab.nerc.ac.uk/collection/C16/current/18/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/18/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/18/
+      http://vocab.nerc.ac.uk/collection/C16/current/02/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/02/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/02/
+      http://vocab.nerc.ac.uk/collection/C16/current/24/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/24/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/24/
+      http://vocab.nerc.ac.uk/collection/C16/current/46/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/46/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/46/
+      http://vocab.nerc.ac.uk/collection/C16/current/46a/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/46a/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/46a/
+      http://vocab.nerc.ac.uk/collection/C16/current/16/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/16/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/16/
+      http://vocab.nerc.ac.uk/collection/C16/current/28Ac/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/28Ac/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/28Ac/
+      http://vocab.nerc.ac.uk/collection/C16/current/57/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/57/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/57/
+      http://vocab.nerc.ac.uk/collection/C16/current/66/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/66/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/66/
+      http://vocab.nerc.ac.uk/collection/C16/current/WAS/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/WAS/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/WAS/
+      http://vocab.nerc.ac.uk/collection/C16/current/48c/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/48c/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/48c/
+      http://vocab.nerc.ac.uk/collection/C16/current/FRM/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/FRM/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/FRM/
+      http://vocab.nerc.ac.uk/collection/C16/current/500/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/500/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/500/
+      http://vocab.nerc.ac.uk/collection/C16/current/15/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/15/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/15/
+      http://vocab.nerc.ac.uk/collection/C16/current/52/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/52/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/52/
+      http://vocab.nerc.ac.uk/collection/C16/current/36/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/36/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/36/
+      http://vocab.nerc.ac.uk/collection/C16/current/GLO/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/GLO/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/GLO/
+      http://vocab.nerc.ac.uk/collection/C16/current/34/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/34/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/34/
+      http://vocab.nerc.ac.uk/collection/C16/current/28Bh/:
+        text: http://vocab.nerc.ac.uk/collection/C16/current/28Bh/
+        meaning: http://vocab.nerc.ac.uk/collection/C16/current/28Bh/
