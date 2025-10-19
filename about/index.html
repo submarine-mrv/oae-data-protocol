@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#hello" class="md-skip">
+        <a href="#about-the-oae-data-protocol" class="md-skip">
           Skip to content
         </a>
       
@@ -251,6 +251,18 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -261,6 +273,79 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-this" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is this?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#built-with-linkml" class="md-nav__link">
+    <span class="md-ellipsis">
+      Built with LinkML
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scope-of-these-schemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scope of These Schemas
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting Started
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#questions-or-feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      Questions or Feedback?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#funding-acknowledgment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Funding Acknowledgment
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -286,6 +371,68 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-this" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is this?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#built-with-linkml" class="md-nav__link">
+    <span class="md-ellipsis">
+      Built with LinkML
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scope-of-these-schemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scope of These Schemas
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting Started
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#questions-or-feedback" class="md-nav__link">
+    <span class="md-ellipsis">
+      Questions or Feedback?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#funding-acknowledgment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Funding Acknowledgment
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -303,8 +450,52 @@
   
 
 
-<h1 id="hello">Hello</h1>
-<p>Testing</p>
+<h1 id="about-the-oae-data-protocol">About the OAE Data Protocol</h1>
+<p>This documentation site provides technical schemas and data models for
+Carbon To Sea's <a href="http://carbontosea.org/oae-data-protocol/1-0-0/">OAE Data Management Protocol</a>.</p>
+<h2 id="what-is-this">What is this?</h2>
+<p>The OAE Data Protocol is a structured approach to collecting, documenting,
+and sharing data from ocean alkalinity enhancement field trials and related
+experiments. This repository contains machine-readable schema definitions
+that support the
+<a href="http://carbontosea.org/oae-data-protocol/1-0-0/">OAE Data Protocol v1.0.0</a>
+developed by <a href="https://carbontosea.org">Carbon To Sea</a> in collaboration with <a href="https://submarine.earth">Submarine Scientific</a>, NOAA and the broader OAE research community.</p>
+<h2 id="built-with-linkml">Built with LinkML</h2>
+<p>These schemas are defined using <a href="https://linkml.io">LinkML</a> (Linked Data Modeling Language), a flexible framework for defining data models that can be used to:</p>
+<ul>
+<li>Generate JSON Schema for data validation</li>
+<li>Create Python data classes for programmatic access</li>
+<li>Produce documentation automatically</li>
+<li>Enable semantic web compatibility</li>
+<li>Support multiple serialization formats</li>
+</ul>
+<p>LinkML makes it easy to maintain complex data models while keeping them interoperable with modern data tools and scientific workflows.</p>
+<h2 id="scope-of-these-schemas">Scope of These Schemas</h2>
+<p>The schemas defined in this repository primarily correspond to the metadata components of the OAE Data Protocol:</p>
+<ul>
+<li><strong>Project metadata</strong> - Information about OAE field trials and initiatives</li>
+<li><strong>Experiment metadata</strong> - Details about specific experiments and interventions within a project</li>
+<li><strong>Dataset metadata</strong> - Metadata pertaining to specific datasets within a project or experiment</li>
+<li><strong>Model metadata</strong> - Information about relevant computational models and simulations used within the context
+of an OAE project</li>
+</ul>
+<p>For protocol requirements pertaining to dataset formatting, column header names, and data file structure, please refer to the <a href="http://carbontosea.org/oae-data-protocol/1-0-0/">published protocol documentation</a> on Carbon To Sea's website, which serves as the primary resource for dataset formatting requirements.</p>
+<h2 id="getting-started">Getting Started</h2>
+<p>Browse the schema documentation using the navigation menu to explore:</p>
+<ul>
+<li><strong>Classes</strong>: Core data structures like <code>OAEProject</code>, <code>Experiment</code>, and <code>Dataset</code></li>
+<li><strong>Enums</strong>: Controlled vocabularies and valid value sets</li>
+</ul>
+<p>This documentation serves primarily as a way to navigate and explore the data model of the various metadata used in the protocol.</p>
+<p>Published schemas and artifacts can be found on GitHub:
+- <a href="https://github.com/submarine-mrv/oae-data-protocol/blob/main/project/jsonschema/oae_data_protocol.schema.json">JSON Schema</a>
+- <a href="https://github.com/submarine-mrv/oae-data-protocol/blob/main/project/jsonschema/oae_data_protocol.schema.json">Python Dataclasses</a>
+- <a href="https://github.com/submarine-mrv/oae-data-protocol/tree/main/src/oae_data_protocol/schema">LinkML Schema</a></p>
+<h2 id="questions-or-feedback">Questions or Feedback?</h2>
+<p>This is an evolving project. If you have questions, find issues, or want to contribute, please visit the <a href="https://github.com/submarine-mrv/oae-data-protocol">GitHub repository</a>.</p>
+<h2 id="funding-acknowledgment">Funding Acknowledgment</h2>
+<p>Development of the OAE Data Protocol and its corresponding technical tooling has been made possible with
+funding and steering support from <a href="https://carbontosea.org">Carbon To Sea</a>.</p>
 
 
 
