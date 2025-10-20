@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://clevinson.github.io/oae-data-protocol/identifier/">
+        <link rel="canonical" href="https://clevinson.github.io/oae-data-protocol/meteorological_and_tidal_data/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: identifier - oae-data-protocol</title>
+        <title>Slot: Meteorological and Tidal Data (meteorological_and_tidal_data) - oae-data-protocol</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-identifier" class="md-skip">
+        <a href="#slot-meteorological-and-tidal-data-meteorological_and_tidal_data" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: identifier
+              Slot: Meteorological and Tidal Data (meteorological_and_tidal_data)
             
           </span>
         </div>
@@ -359,9 +359,9 @@
   
 
 
-<h1 id="slot-identifier">Slot: identifier</h1>
-<p><em>A unique identifier for the thing</em></p>
-<p>URI: <a href="http://schema.org/identifier">schema:identifier</a></p>
+<h1 id="slot-meteorological-and-tidal-data-meteorological_and_tidal_data">Slot: Meteorological and Tidal Data (meteorological_and_tidal_data)</h1>
+<p><em>Include links to relevant open datasets if referenced in the experiment but not provided in the submission.</em></p>
+<p>URI: <a href="https://example.org/oae#meteorological_and_tidal_data">oae:meteorological_and_tidal_data</a></p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -375,25 +375,25 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Organization/">Organization</a></td>
-<td></td>
-<td>yes</td>
+<td><a href="../Experiment/">Experiment</a></td>
+<td>Experiment metadata applies to a specific study but remains consistent across...</td>
+<td>no</td>
 </tr>
 <tr>
-<td><a href="../MonetaryGrant/">MonetaryGrant</a></td>
-<td></td>
-<td>yes</td>
-</tr>
-<tr>
-<td><a href="../Investigator/">Investigator</a></td>
-<td>Information about a researcher or investigator involved in the experiment</td>
+<td><a href="../Intervention/">Intervention</a></td>
+<td>Additional metadata that applies to experiments where an intervention, such a...</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../String/">String</a></li>
+<li>
+<p>Range: <a href="../NamedLink/">NamedLink</a></p>
+</li>
+<li>
+<p>Multivalued: True</p>
+</li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -411,28 +411,31 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>schema:identifier</td>
+<td>oae:meteorological_and_tidal_data</td>
 </tr>
 <tr>
 <td>native</td>
-<td>oae:identifier</td>
+<td>oae:meteorological_and_tidal_data</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: identifier
-description: A unique identifier for the thing
+<pre><code class="language-yaml">name: meteorological_and_tidal_data
+description: Include links to relevant open datasets if referenced in the experiment
+  but not provided in the submission.
+title: Meteorological and Tidal Data
 from_schema: OAEDataManagementProtocol
 rank: 1000
-slot_uri: schema:identifier
-alias: identifier
+alias: meteorological_and_tidal_data
+owner: Experiment
 domain_of:
-- Organization
-- MonetaryGrant
-- Investigator
-range: string
+- Experiment
+range: NamedLink
+multivalued: true
+inlined: true
+inlined_as_list: true
 
 </code></pre>
 

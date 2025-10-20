@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://clevinson.github.io/oae-data-protocol/identifier/">
+        <link rel="canonical" href="https://clevinson.github.io/oae-data-protocol/investigators/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: identifier - oae-data-protocol</title>
+        <title>Slot: Investigators (investigators) - oae-data-protocol</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-identifier" class="md-skip">
+        <a href="#slot-investigators-investigators" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: identifier
+              Slot: Investigators (investigators)
             
           </span>
         </div>
@@ -359,9 +359,9 @@
   
 
 
-<h1 id="slot-identifier">Slot: identifier</h1>
-<p><em>A unique identifier for the thing</em></p>
-<p>URI: <a href="http://schema.org/identifier">schema:identifier</a></p>
+<h1 id="slot-investigators-investigators">Slot: Investigators (investigators)</h1>
+<p><em>Provide details for each investigator including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.</em></p>
+<p>URI: <a href="https://example.org/oae#investigators">oae:investigators</a></p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -375,25 +375,28 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Organization/">Organization</a></td>
-<td></td>
-<td>yes</td>
+<td><a href="../Experiment/">Experiment</a></td>
+<td>Experiment metadata applies to a specific study but remains consistent across...</td>
+<td>no</td>
 </tr>
 <tr>
-<td><a href="../MonetaryGrant/">MonetaryGrant</a></td>
-<td></td>
-<td>yes</td>
-</tr>
-<tr>
-<td><a href="../Investigator/">Investigator</a></td>
-<td>Information about a researcher or investigator involved in the experiment</td>
+<td><a href="../Intervention/">Intervention</a></td>
+<td>Additional metadata that applies to experiments where an intervention, such a...</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../String/">String</a></li>
+<li>
+<p>Range: <a href="../Investigator/">Investigator</a></p>
+</li>
+<li>
+<p>Multivalued: True</p>
+</li>
+<li>
+<p>Required: True</p>
+</li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -411,28 +414,33 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>schema:identifier</td>
+<td>oae:investigators</td>
 </tr>
 <tr>
 <td>native</td>
-<td>oae:identifier</td>
+<td>oae:investigators</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: identifier
-description: A unique identifier for the thing
+<pre><code class="language-yaml">name: investigators
+description: 'Provide details for each investigator including: Name, institutional
+  information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher
+  ID, and role.'
+title: Investigators
 from_schema: OAEDataManagementProtocol
 rank: 1000
-slot_uri: schema:identifier
-alias: identifier
+alias: investigators
+owner: Experiment
 domain_of:
-- Organization
-- MonetaryGrant
-- Investigator
-range: string
+- Experiment
+range: Investigator
+required: true
+multivalued: true
+inlined: true
+inlined_as_list: true
 
 </code></pre>
 

@@ -430,10 +430,12 @@ attributes:
     alias: name
     owner: MonetaryGrant
     domain_of:
+    - Organization
     - NamedLink
     - ExternalProject
     - MonetaryGrant
-    - Organization
+    - Experiment
+    - Investigator
     range: string
   identifier:
     name: identifier
@@ -445,8 +447,9 @@ attributes:
     alias: identifier
     owner: MonetaryGrant
     domain_of:
-    - MonetaryGrant
     - Organization
+    - MonetaryGrant
+    - Investigator
     range: string
 class_uri: schema:MonetaryGrant
 

@@ -276,6 +276,18 @@
 <td>range</td>
 <td><a href="./">NamedLink</a></td>
 </tr>
+<tr>
+<td><a href="../Experiment/">Experiment</a></td>
+<td><a href="../meteorological_and_tidal_data/">meteorological_and_tidal_data</a></td>
+<td>range</td>
+<td><a href="./">NamedLink</a></td>
+</tr>
+<tr>
+<td><a href="../Intervention/">Intervention</a></td>
+<td><a href="../meteorological_and_tidal_data/">meteorological_and_tidal_data</a></td>
+<td>range</td>
+<td><a href="./">NamedLink</a></td>
+</tr>
 </tbody>
 </table>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
@@ -316,10 +328,12 @@ attributes:
     title: Name
     from_schema: OAEProject
     domain_of:
+    - Organization
     - NamedLink
     - ExternalProject
     - MonetaryGrant
-    - Organization
+    - Experiment
+    - Investigator
     range: string
     required: true
   url:
@@ -349,10 +363,12 @@ attributes:
     alias: name
     owner: NamedLink
     domain_of:
+    - Organization
     - NamedLink
     - ExternalProject
     - MonetaryGrant
-    - Organization
+    - Experiment
+    - Investigator
     range: string
     required: true
   url:

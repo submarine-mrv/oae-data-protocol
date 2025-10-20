@@ -375,14 +375,24 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="../OAEProject/">OAEProject</a></td>
+<td>A project conducting OAE field trials or modeling</td>
+<td>yes</td>
+</tr>
+<tr>
 <td><a href="../ExternalProject/">ExternalProject</a></td>
 <td>A research project that is not directly managed by the OAE project, but whose...</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../OAEProject/">OAEProject</a></td>
-<td>A project conducting OAE field trials or modeling</td>
+<td><a href="../Experiment/">Experiment</a></td>
+<td>Experiment metadata applies to a specific study but remains consistent across...</td>
 <td>yes</td>
+</tr>
+<tr>
+<td><a href="../Intervention/">Intervention</a></td>
+<td>Additional metadata that applies to experiments where an intervention, such a...</td>
+<td>no</td>
 </tr>
 </tbody>
 </table>
@@ -434,6 +444,7 @@ alias: spatial_coverage
 domain_of:
 - OAEProject
 - ExternalProject
+- Experiment
 range: Place
 required: true
 

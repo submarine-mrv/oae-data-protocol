@@ -352,10 +352,12 @@ attributes:
     title: Name
     from_schema: ExternalProject
     domain_of:
+    - Organization
     - NamedLink
     - ExternalProject
     - MonetaryGrant
-    - Organization
+    - Experiment
+    - Investigator
     range: string
     required: true
   description:
@@ -365,6 +367,7 @@ attributes:
     from_schema: ExternalProject
     domain_of:
     - ExternalProject
+    - Experiment
     range: string
   related_links:
     name: related_links
@@ -395,10 +398,12 @@ attributes:
     alias: name
     owner: ExternalProject
     domain_of:
+    - Organization
     - NamedLink
     - ExternalProject
     - MonetaryGrant
-    - Organization
+    - Experiment
+    - Investigator
     range: string
     required: true
   description:
@@ -410,6 +415,7 @@ attributes:
     owner: ExternalProject
     domain_of:
     - ExternalProject
+    - Experiment
     range: string
   related_links:
     name: related_links
@@ -455,6 +461,7 @@ attributes:
     domain_of:
     - OAEProject
     - ExternalProject
+    - Experiment
     range: Place
     required: true
 
