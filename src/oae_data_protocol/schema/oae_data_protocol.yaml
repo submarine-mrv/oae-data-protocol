@@ -20,9 +20,9 @@ imports:
   - oae_project
   - external_project
   - monetary_grant
+  - experiment
 #   The following were early experimental schemas and have not been
 #   udated to the v1.0 version of the protocol yet
 #   - dataset
-#   - experiment
 #   - intervention
 #   - model_simulation

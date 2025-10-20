@@ -80,6 +80,24 @@ classes:
         description: "Maximum depth of observation in meters. Use negative numbers for depths below sea level, and positive numbers for above sea level."
         range: float
         required: true
+  Organization:
+    class_uri: schema:Organization
+    slots:
+      - identifier
+      - name
+    slot_usage:
+      identifier:
+        description: >-
+          Organization identifier in the form of an ROR URL (e.g., https://ror.org/02mhbdp94). Please visit
+          [https://ror.org](https://ror.org) to search for the organization and find the appropriate ROR URL.
+      name:
+        description: "Name of the organization"
+    attributes:
+      country:
+        title: Country
+        description: "The country in which the organization belongs (formatted as ISO 3166-1 alpha-2 code)"
+        range: string
+        pattern: '^[A-Z]{2}$'
 
 types:
   Doi:

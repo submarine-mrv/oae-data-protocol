@@ -1,5 +1,27 @@
 {
     "$defs": {
+        "AlkalinityFeedstockForm": {
+            "description": "Physical form of the alkalinity feedstock upon ocean delivery",
+            "enum": [
+                "solid",
+                "aqueous",
+                "slurry"
+            ],
+            "title": "AlkalinityFeedstockForm",
+            "type": "string"
+        },
+        "AlkalinityFeedstockProcessing": {
+            "description": "Methods used to process alkalinity feedstock",
+            "enum": [
+                "electrochemistry",
+                "synthetically_derived",
+                "mineral_mining",
+                "blended",
+                "other"
+            ],
+            "title": "AlkalinityFeedstockProcessing",
+            "type": "string"
+        },
         "Any": {
             "additionalProperties": true,
             "description": "",
@@ -12,12 +34,128 @@
                 "string"
             ]
         },
-        "ExperimentType": {
-            "description": "The type of experiment conducted in an OAE project.",
+        "DosingDeliveryType": {
+            "description": "Types of dosing delivery methods",
             "enum": [
-                "natural",
-                "manipulated",
-                "model_output"
+                "static_point_source",
+                "variable_point_source",
+                "static_distributed",
+                "variable_distributed"
+            ],
+            "title": "DosingDeliveryType",
+            "type": "string"
+        },
+        "EquilibrationStatus": {
+            "description": "Equilibration status of the alkalinity feedstock",
+            "enum": [
+                "pre_equilibrated",
+                "unequilibrated"
+            ],
+            "title": "EquilibrationStatus",
+            "type": "string"
+        },
+        "Experiment": {
+            "additionalProperties": false,
+            "description": "Experiment metadata applies to a specific study but remains consistent across datasets.",
+            "properties": {
+                "additional_details": {
+                    "description": "Open text area to include additional information. These may include information for sediment processes data, biological data, or any other required information if not included in the main metadata or data files; see General Guidelines for Your Data for relevant sections of your data. Additional informational files, such as digitized laboratory notebooks, blogs, etc., may be linked here.",
+                    "title": "Additional Details",
+                    "type": "string"
+                },
+                "data_conflicts_and_unreported_data": {
+                    "description": "If data exist that are or have been used by the project but are not provided due to conflicts (e.g., geopolitical or other), data availability (e.g., a dataset is no longer available), it may be noted here.",
+                    "title": "Data Conflicts and Unreported Data",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "A narrative description of the experiment. For example, what part of the project do these data represent (e.g., baseline, intervention, control) and what do they contribute to the overall project? Are all project research questions listed in Project description relevant? What were the processes to achieve these goals and answer these questions? Data submitters are encouraged to note any significant changes to the original experimental plan due to unforeseen circumstances here.",
+                    "title": "Experiment Description",
+                    "type": "string"
+                },
+                "end_datetime": {
+                    "description": "End date and time of experiment in UTC ISO-8601",
+                    "format": "date-time",
+                    "title": "End Date and Time",
+                    "type": "string"
+                },
+                "experiment_id": {
+                    "description": "The experiment to which the data belong. Any naming convention that produces a unique ID is usable. The recommended naming convention is:\nProject ID + Experiment type + Optional numerical indicator to differentiate between various experiments of the same type for a project. A two digit consecutive number beginning with 01",
+                    "title": "Experiment ID",
+                    "type": "string"
+                },
+                "experiment_type": {
+                    "$ref": "#/$defs/ExperimentType",
+                    "description": "The type of mCDR experiment conducted. See Controlled Vocabularies section for definitions.",
+                    "title": "mCDR Experiment Type"
+                },
+                "investigators": {
+                    "description": "Provide details for each investigator including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.",
+                    "items": {
+                        "$ref": "#/$defs/Investigator"
+                    },
+                    "title": "Investigators",
+                    "type": "array"
+                },
+                "meteorological_and_tidal_data": {
+                    "description": "Include links to relevant open datasets if referenced in the experiment but not provided in the submission.",
+                    "items": {
+                        "$ref": "#/$defs/NamedLink"
+                    },
+                    "title": "Meteorological and Tidal Data",
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "A human-readable name for the thing.",
+                    "title": "Name",
+                    "type": "string"
+                },
+                "project_id": {
+                    "description": "Project ID must be included in the Experiment-level metadata in order to link all experiments to the main project.\nThe project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.\nIf no Project ID has been assigned, one may be generated by combining the following fields, as described in Cross-linking Data Sets with Common Identifiers.\nAny method that creates a unique ID that will link all project data (e.g., a project's baseline data to intervention data, and various data submissions within an experiment type) is acceptable.",
+                    "title": "Project ID",
+                    "type": "string"
+                },
+                "spatial_coverage": {
+                    "$ref": "#/$defs/Place",
+                    "description": "Latitude/longitude bounds of observed data in experiment, provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]",
+                    "title": "Spatial Coverage"
+                },
+                "start_datetime": {
+                    "description": "Start date and time of experiment in UTC ISO-8601",
+                    "format": "date-time",
+                    "title": "Start Date and Time",
+                    "type": "string"
+                },
+                "vertical_coverage": {
+                    "$ref": "#/$defs/VerticalExtent",
+                    "description": "Minimum and maximum depths of observations in meters.",
+                    "title": "Vertical Coverage"
+                }
+            },
+            "required": [
+                "description",
+                "spatial_coverage",
+                "vertical_coverage",
+                "experiment_id",
+                "experiment_type",
+                "investigators",
+                "start_datetime",
+                "end_datetime"
+            ],
+            "title": "Experiment",
+            "type": "object"
+        },
+        "ExperimentType": {
+            "description": "Types of mCDR experiments",
+            "enum": [
+                "baseline",
+                "control",
+                "intervention",
+                "model",
+                "other"
             ],
             "title": "ExperimentType",
             "type": "string"
@@ -87,6 +225,28 @@
             "title": "FeedstockType",
             "type": "string"
         },
+        "GeoCoordinate": {
+            "additionalProperties": false,
+            "description": "A geographic coordinate in decimal degrees.",
+            "properties": {
+                "latitude": {
+                    "description": "Latitude in decimal degrees",
+                    "title": "Latitude",
+                    "type": "number"
+                },
+                "longitude": {
+                    "description": "Longitude in decimal degrees",
+                    "title": "Longitude",
+                    "type": "number"
+                }
+            },
+            "required": [
+                "latitude",
+                "longitude"
+            ],
+            "title": "GeoCoordinate",
+            "type": "object"
+        },
         "GeoShape": {
             "additionalProperties": false,
             "description": "The geographic shape of a place. A GeoShape can be described using several properties whose values are based on latitude/longitude pairs. Either whitespace or commas can be used to separate latitude and longitude; whitespace should be used when writing a list of several such points. (imported from schema.org)",
@@ -102,6 +262,246 @@
             "title": "GeoShape",
             "type": "object"
         },
+        "HydrologicLocation": {
+            "description": "Hydrologic location types for dosing",
+            "enum": [
+                "coastal_surface",
+                "offshore_surface",
+                "river",
+                "wetland",
+                "seafloor"
+            ],
+            "title": "HydrologicLocation",
+            "type": "string"
+        },
+        "Intervention": {
+            "additionalProperties": false,
+            "description": "Additional metadata that applies to experiments where an intervention, such as an alkalinity addition, was conducted.",
+            "properties": {
+                "additional_details": {
+                    "description": "Open text area to include additional information. These may include information for sediment processes data, biological data, or any other required information if not included in the main metadata or data files; see General Guidelines for Your Data for relevant sections of your data. Additional informational files, such as digitized laboratory notebooks, blogs, etc., may be linked here.",
+                    "title": "Additional Details",
+                    "type": "string"
+                },
+                "alkalinity_dosing_effluent_density": {
+                    "description": "Fixed density or provide link/source to effluent density data if applicable. Please include whether density is directly measured or a derived value. If this is a variable included with your data, please note so here as 'alkalinity dosing effluent density is provided as a variable' and use 'dosing_effluent_density' for your column header name.",
+                    "title": "Alkalinity Dosing Effluent Density",
+                    "type": "string"
+                },
+                "alkalinity_feedstock": {
+                    "$ref": "#/$defs/FeedstockType",
+                    "description": "Examples may include: olivine, potassium hydroxide, magnesium hydroxide, lime, portlandite, calcium carbonate, anorthite, dolomite, periclase, brucite, magnesite, forsterite, sodium hydroxide, natrite, nahcolite, akermanite, akermanite, alunoakermanite, etc.\nSee Controlled Vocabularies section for selected examples (this list is not exhaustive, you may need to include your unique feedstock).",
+                    "title": "Alkalinity Feedstock"
+                },
+                "alkalinity_feedstock_co2_removal_potential": {
+                    "description": "Maximum CO\u2082 removal potential of a feedstock material. We recommend using an adjusted version of the Steinour equation (Gunning et al., 2010), which uses bulk elemental oxide composition to estimate the maximum CO\u2082 removal potential of a feedstock material. The calculation output is in the form of kg of CO\u2082 per tonne of feedstock and represents the quantitative hypothetical potential of the material to capture CO\u2082 as bicarbonate or carbonate. See Isometric's CO2 removal potential module for details.",
+                    "title": "Alkalinity Feedstock CO\u2082 Removal Potential",
+                    "type": "number"
+                },
+                "alkalinity_feedstock_description": {
+                    "description": "Information such as feedstock source, characteristics, impurities, dilution prior to dosing, and concentration. For feedstock other than NaOH: trace metal composition and particulate grain size. Any variable information must be provided in the dosing data file, in this case include the data file and column header names here provided as variables. See Intervention Data for details.",
+                    "title": "Alkalinity Feedstock Description",
+                    "type": "string"
+                },
+                "alkalinity_feedstock_form": {
+                    "$ref": "#/$defs/AlkalinityFeedstockForm",
+                    "description": "The phase upon delivery to the ocean. See Controlled Vocabularies section for definitions.",
+                    "title": "Alkalinity Feedstock Form"
+                },
+                "alkalinity_feedstock_processing": {
+                    "description": "Method(s) used to process the alkalinity feedstock. See Controlled Vocabularies section for definitions.",
+                    "items": {
+                        "$ref": "#/$defs/AlkalinityFeedstockProcessing"
+                    },
+                    "title": "Alkalinity Feedstock Processing",
+                    "type": "array"
+                },
+                "data_conflicts_and_unreported_data": {
+                    "description": "If data exist that are or have been used by the project but are not provided due to conflicts (e.g., geopolitical or other), data availability (e.g., a dataset is no longer available), it may be noted here.",
+                    "title": "Data Conflicts and Unreported Data",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "A narrative description of the experiment. For example, what part of the project do these data represent (e.g., baseline, intervention, control) and what do they contribute to the overall project? Are all project research questions listed in Project description relevant? What were the processes to achieve these goals and answer these questions? Data submitters are encouraged to note any significant changes to the original experimental plan due to unforeseen circumstances here.",
+                    "title": "Experiment Description",
+                    "type": "string"
+                },
+                "dosing_data": {
+                    "description": "Dosing data include: flow rate, dosing rate, and mineral mass addition rate. If any of these are constant, values may be given here rather than in the dosing data file. To link dosing data that have been provided as vector data provide the source or filename. See Intervention Data for details. Provide a description of the units for dosing rate provided as this will vary depending on the method.",
+                    "title": "Dosing Data",
+                    "type": "string"
+                },
+                "dosing_delivery_type": {
+                    "$ref": "#/$defs/DosingDeliveryType",
+                    "description": "Type of dosing delivery method. See Controlled Vocabularies for definitions.",
+                    "title": "Dosing Delivery Type"
+                },
+                "dosing_depth": {
+                    "description": "Depth(s) in meters. If this is variable, please include the schedule of depth changes and depths, or as a vector in meters with the data, named 'dosing_depth'. Please note here that 'dosing depth is provided as a variable'.",
+                    "title": "Dosing Depth(s)",
+                    "type": "string"
+                },
+                "dosing_description": {
+                    "description": "Please be descriptive. Information about the dosing mechanism must be included (e.g., outflow from pipe, diffuser, doser, manual placement) E.g., outflow from existing facility pipe directly to ocean, manual riverine introduction, coastal distribution at three separate 30 meter long sections, pier-based diffuser to intercoastal bay, distributed from stationary barge 10 miles offshore.",
+                    "title": "Dosing Description",
+                    "type": "string"
+                },
+                "dosing_dispersal_hydrologic_location": {
+                    "$ref": "#/$defs/HydrologicLocation",
+                    "description": "Descriptive dosing location",
+                    "title": "Dosing Dispersal Hydrologic Location"
+                },
+                "dosing_location": {
+                    "$ref": "#/$defs/GeoCoordinate",
+                    "description": "Provide latitude and longitude in decimal degrees. Depending on your method of dispersal, this information may be provided as a point source, vector, or bounding box. If provided as a vector, the latitude and longitude values should be included in the dosing data file.",
+                    "title": "Dosing Location"
+                },
+                "dosing_regimen": {
+                    "description": "At a minimum, please provide the schedule and timeline of dosing, including the time between doses, the duration of treatment and the amount used each time. More optimally, this information would be provided as a vector of binary data in the data file where 1 = dosing 'on' 0 = dosing 'off', using the column header name 'dosing_onoff'. If provided as a vector state here as 'dosing regimen is provided as a variable' and include the file name. See Intervention Data for details.",
+                    "title": "Dosing Regimen",
+                    "type": "string"
+                },
+                "end_datetime": {
+                    "description": "End date and time of experiment in UTC ISO-8601",
+                    "format": "date-time",
+                    "title": "End Date and Time",
+                    "type": "string"
+                },
+                "equilibration": {
+                    "$ref": "#/$defs/EquilibrationStatus",
+                    "description": "Whether the feedstock was pre-equilibrated or unequilibrated",
+                    "title": "Equilibration"
+                },
+                "experiment_id": {
+                    "description": "The experiment to which the data belong. Any naming convention that produces a unique ID is usable. The recommended naming convention is:\nProject ID + Experiment type + Optional numerical indicator to differentiate between various experiments of the same type for a project. A two digit consecutive number beginning with 01",
+                    "title": "Experiment ID",
+                    "type": "string"
+                },
+                "experiment_type": {
+                    "$ref": "#/$defs/ExperimentType",
+                    "description": "The type of mCDR experiment conducted. See Controlled Vocabularies section for definitions.",
+                    "title": "mCDR Experiment Type"
+                },
+                "investigators": {
+                    "description": "Provide details for each investigator including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.",
+                    "items": {
+                        "$ref": "#/$defs/Investigator"
+                    },
+                    "title": "Investigators",
+                    "type": "array"
+                },
+                "meteorological_and_tidal_data": {
+                    "description": "Include links to relevant open datasets if referenced in the experiment but not provided in the submission.",
+                    "items": {
+                        "$ref": "#/$defs/NamedLink"
+                    },
+                    "title": "Meteorological and Tidal Data",
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "A human-readable name for the thing.",
+                    "title": "Name",
+                    "type": "string"
+                },
+                "project_id": {
+                    "description": "Project ID must be included in the Experiment-level metadata in order to link all experiments to the main project.\nThe project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.\nIf no Project ID has been assigned, one may be generated by combining the following fields, as described in Cross-linking Data Sets with Common Identifiers.\nAny method that creates a unique ID that will link all project data (e.g., a project's baseline data to intervention data, and various data submissions within an experiment type) is acceptable.",
+                    "title": "Project ID",
+                    "type": "string"
+                },
+                "spatial_coverage": {
+                    "$ref": "#/$defs/Place",
+                    "description": "Latitude/longitude bounds of observed data in experiment, provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]",
+                    "title": "Spatial Coverage"
+                },
+                "start_datetime": {
+                    "description": "Start date and time of experiment in UTC ISO-8601",
+                    "format": "date-time",
+                    "title": "Start Date and Time",
+                    "type": "string"
+                },
+                "vertical_coverage": {
+                    "$ref": "#/$defs/VerticalExtent",
+                    "description": "Minimum and maximum depths of observations in meters.",
+                    "title": "Vertical Coverage"
+                }
+            },
+            "required": [
+                "alkalinity_feedstock_processing",
+                "alkalinity_feedstock_form",
+                "alkalinity_feedstock",
+                "alkalinity_feedstock_description",
+                "equilibration",
+                "dosing_location",
+                "dosing_dispersal_hydrologic_location",
+                "dosing_delivery_type",
+                "alkalinity_dosing_effluent_density",
+                "dosing_depth",
+                "dosing_description",
+                "dosing_regimen",
+                "dosing_data",
+                "description",
+                "spatial_coverage",
+                "vertical_coverage",
+                "experiment_id",
+                "experiment_type",
+                "investigators",
+                "start_datetime",
+                "end_datetime"
+            ],
+            "title": "Intervention",
+            "type": "object"
+        },
+        "Investigator": {
+            "additionalProperties": false,
+            "description": "Information about a researcher or investigator involved in the experiment.",
+            "properties": {
+                "affiliation": {
+                    "$ref": "#/$defs/Organization",
+                    "description": "Institutional affiliation of the investigator.",
+                    "title": "Affiliation"
+                },
+                "email": {
+                    "description": "Contact email address.",
+                    "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+                    "title": "Email",
+                    "type": "string"
+                },
+                "identifier": {
+                    "description": "Unique researcher identifier value.",
+                    "title": "Researcher ID",
+                    "type": "string"
+                },
+                "identifier_type": {
+                    "description": "Type of researcher identifier (e.g., ORCID, ResearcherID).",
+                    "title": "Identifier Type",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Full name of the investigator.",
+                    "title": "Name",
+                    "type": "string"
+                },
+                "phone": {
+                    "description": "Contact phone number.",
+                    "pattern": "^\\+?[0-9\\s\\-\\(\\)]+$",
+                    "title": "Phone",
+                    "type": "string"
+                },
+                "role": {
+                    "description": "Role of the investigator in the experiment (e.g., chief scientist, data submitter).",
+                    "title": "Role",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "title": "Investigator",
+            "type": "object"
+        },
         "MCDRPathway": {
             "description": "Type of marine Carbon Dioxide Removal (mCDR) pathways.",
             "enum": [
@@ -113,15 +513,6 @@
                 "marine_ecosystem_recovery"
             ],
             "title": "MCDR Pathway",
-            "type": "string"
-        },
-        "ModelType": {
-            "description": "Categories of computational modeling approaches used in OAE research.",
-            "enum": [
-                "counterfactual",
-                "perturbation"
-            ],
-            "title": "ModelType",
             "type": "string"
         },
         "MonetaryGrant": {
@@ -191,9 +582,25 @@
                     "title": "Co-located Operations",
                     "type": "string"
                 },
+                "experiments": {
+                    "items": {
+                        "$ref": "#/$defs/Experiment"
+                    },
+                    "title": "Related Experiments",
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "funding": {
-                    "$ref": "#/$defs/MonetaryGrant",
-                    "title": "Funding Info"
+                    "items": {
+                        "$ref": "#/$defs/MonetaryGrant"
+                    },
+                    "title": "Funding Info",
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "mcdr_pathway": {
                     "$ref": "#/$defs/MCDRPathway",
@@ -300,19 +707,6 @@
             "title": "OAEProject",
             "type": "object"
         },
-        "OAETreatmentType": {
-            "description": "Different types of alkalinity enhancement interventions.",
-            "enum": [
-                "electrochemical",
-                "mineral",
-                "dissolved",
-                "river",
-                "coastal",
-                "preequilibrated"
-            ],
-            "title": "OAETreatmentType",
-            "type": "string"
-        },
         "ObservationType": {
             "description": "Types of observational data collected in ocean carbon and acidification studies, as defined in OCADS controlled vocabulary hosted at https://www.ncei.noaa.gov/access/ocean-carbon-acidification-data-system/vocabularies/observation-types.html",
             "enum": [
@@ -339,7 +733,7 @@
                     "type": "string"
                 },
                 "identifier": {
-                    "description": "Organization identifier, preferably a ROR URL (e.g., https://ror.org/02mhbdp94)",
+                    "description": "Organization identifier in the form of an ROR URL (e.g., https://ror.org/02mhbdp94). Please visit [https://ror.org](https://ror.org) to search for the organization and find the appropriate ROR URL.",
                     "type": "string"
                 },
                 "name": {
@@ -590,9 +984,25 @@
             "title": "Co-located Operations",
             "type": "string"
         },
+        "experiments": {
+            "items": {
+                "$ref": "#/$defs/Experiment"
+            },
+            "title": "Related Experiments",
+            "type": [
+                "array",
+                "null"
+            ]
+        },
         "funding": {
-            "$ref": "#/$defs/MonetaryGrant",
-            "title": "Funding Info"
+            "items": {
+                "$ref": "#/$defs/MonetaryGrant"
+            },
+            "title": "Funding Info",
+            "type": [
+                "array",
+                "null"
+            ]
         },
         "mcdr_pathway": {
             "$ref": "#/$defs/MCDRPathway",
