@@ -81,7 +81,8 @@
                 },
                 "experiment_id": {
                     "description": "The experiment to which the data belong. Any naming convention that produces a unique ID is usable. The recommended naming convention is:\nProject ID + Experiment type + Optional numerical indicator to differentiate between various experiments of the same type for a project. A two digit consecutive number beginning with 01",
-                    "title": "Experiment ID"
+                    "title": "Experiment ID",
+                    "type": "string"
                 },
                 "experiment_type": {
                     "$ref": "#/$defs/ExperimentType",
@@ -373,7 +374,8 @@
                 },
                 "experiment_id": {
                     "description": "The experiment to which the data belong. Any naming convention that produces a unique ID is usable. The recommended naming convention is:\nProject ID + Experiment type + Optional numerical indicator to differentiate between various experiments of the same type for a project. A two digit consecutive number beginning with 01",
-                    "title": "Experiment ID"
+                    "title": "Experiment ID",
+                    "type": "string"
                 },
                 "experiment_type": {
                     "$ref": "#/$defs/ExperimentType",
@@ -591,8 +593,14 @@
                     ]
                 },
                 "funding": {
-                    "$ref": "#/$defs/MonetaryGrant",
-                    "title": "Funding Info"
+                    "items": {
+                        "$ref": "#/$defs/MonetaryGrant"
+                    },
+                    "title": "Funding Info",
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "mcdr_pathway": {
                     "$ref": "#/$defs/MCDRPathway",
@@ -725,7 +733,7 @@
                     "type": "string"
                 },
                 "identifier": {
-                    "description": "Organization identifier, preferably a ROR URL (e.g., https://ror.org/02mhbdp94)",
+                    "description": "Organization identifier in the form of an ROR URL (e.g., https://ror.org/02mhbdp94). Please visit [https://ror.org](https://ror.org) to search for the organization and find the appropriate ROR URL.",
                     "type": "string"
                 },
                 "name": {
@@ -987,8 +995,14 @@
             ]
         },
         "funding": {
-            "$ref": "#/$defs/MonetaryGrant",
-            "title": "Funding Info"
+            "items": {
+                "$ref": "#/$defs/MonetaryGrant"
+            },
+            "title": "Funding Info",
+            "type": [
+                "array",
+                "null"
+            ]
         },
         "mcdr_pathway": {
             "$ref": "#/$defs/MCDRPathway",

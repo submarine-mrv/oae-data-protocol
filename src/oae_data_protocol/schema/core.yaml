@@ -87,7 +87,9 @@ classes:
       - name
     slot_usage:
       identifier:
-        description: "Organization identifier, preferably a ROR URL (e.g., https://ror.org/02mhbdp94)"
+        description: >-
+          Organization identifier in the form of an ROR URL (e.g., https://ror.org/02mhbdp94). Please visit
+          [https://ror.org](https://ror.org) to search for the organization and find the appropriate ROR URL.
       name:
         description: "Name of the organization"
     attributes:

@@ -43,6 +43,7 @@ classes:
           
           Project ID + Experiment type + Optional numerical indicator to differentiate between various experiments of
           the same type for a project. A two digit consecutive number beginning with 01
+        range: string
         required: true
       project_id:
         title: Project ID
@@ -240,5 +241,3 @@ classes:
         description: "Longitude in decimal degrees"
         range: float
         required: true
-
-enums:

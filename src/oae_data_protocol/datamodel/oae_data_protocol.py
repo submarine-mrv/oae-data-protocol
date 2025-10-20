@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-10-19T16:11:04
+# Generation date: 2025-10-19T18:22:36
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -232,7 +232,7 @@ class OAEProject(YAMLRoot):
     permits: Optional[Union[Union[dict, "Permit"], List[Union[dict, "Permit"]]]] = empty_list()
     public_comments: Optional[Union[Union[dict, "NamedLink"], List[Union[dict, "NamedLink"]]]] = empty_list()
     research_project: Optional[str] = None
-    funding: Optional[Union[dict, "MonetaryGrant"]] = None
+    funding: Optional[Union[Union[dict, "MonetaryGrant"], List[Union[dict, "MonetaryGrant"]]]] = empty_list()
     additional_details: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
@@ -291,8 +291,9 @@ class OAEProject(YAMLRoot):
         if self.research_project is not None and not isinstance(self.research_project, str):
             self.research_project = str(self.research_project)
 
-        if self.funding is not None and not isinstance(self.funding, MonetaryGrant):
-            self.funding = MonetaryGrant(**as_dict(self.funding))
+        if not isinstance(self.funding, list):
+            self.funding = [self.funding] if self.funding is not None else []
+        self.funding = [v if isinstance(v, MonetaryGrant) else MonetaryGrant(**as_dict(v)) for v in self.funding]
 
         if self.additional_details is not None and not isinstance(self.additional_details, str):
             self.additional_details = str(self.additional_details)
@@ -1591,7 +1592,7 @@ slots.oAEProject__research_project = Slot(uri=OAE.research_project, name="oAEPro
                    model_uri=OAE.oAEProject__research_project, domain=None, range=Optional[str])
 
 slots.oAEProject__funding = Slot(uri=SCHEMA.funding, name="oAEProject__funding", curie=SCHEMA.curie('funding'),
-                   model_uri=OAE.oAEProject__funding, domain=None, range=Optional[Union[dict, MonetaryGrant]])
+                   model_uri=OAE.oAEProject__funding, domain=None, range=Optional[Union[Union[dict, MonetaryGrant], List[Union[dict, MonetaryGrant]]]])
 
 slots.oAEProject__additional_details = Slot(uri=OAE.additional_details, name="oAEProject__additional_details", curie=OAE.curie('additional_details'),
                    model_uri=OAE.oAEProject__additional_details, domain=None, range=Optional[str])

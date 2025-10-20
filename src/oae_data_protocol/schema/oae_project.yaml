@@ -112,6 +112,7 @@ classes:
         title: Funding Info
         slot_uri: schema:funding
         range: MonetaryGrant
+        multivalued: true
       additional_details:
         title: Additional Details
         description: >-
