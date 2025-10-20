@@ -224,12 +224,21 @@
 
       OAEProject : colocated_operations
 
+      OAEProject : experiments
+
+
+
+
+    OAEProject --&gt; "* _recommended_" Experiment : experiments
+    click Experiment href "../Experiment"
+
+
       OAEProject : funding
 
 
 
 
-    OAEProject --&gt; "0..1" MonetaryGrant : funding
+    OAEProject --&gt; "*" MonetaryGrant : funding
     click MonetaryGrant href "../MonetaryGrant"
 
 
@@ -349,6 +358,12 @@
 <td>direct</td>
 </tr>
 <tr>
+<td><a href="../experiments/">experiments</a></td>
+<td>* <em>recommended</em> <br/> <a href="../Experiment/">Experiment</a></td>
+<td></td>
+<td>direct</td>
+</tr>
+<tr>
 <td><a href="../sea_names/">sea_names</a></td>
 <td>* <em>recommended</em> <br/> <a href="../SeaNames/">SeaNames</a></td>
 <td>Names of the seas where the data collection takes place, See Controlled Vocab...</td>
@@ -416,7 +431,7 @@
 </tr>
 <tr>
 <td><a href="../funding/">funding</a></td>
-<td>0..1 <br/> <a href="../MonetaryGrant/">MonetaryGrant</a></td>
+<td>* <br/> <a href="../MonetaryGrant/">MonetaryGrant</a></td>
 <td></td>
 <td>direct</td>
 </tr>
@@ -501,6 +516,16 @@ attributes:
     - Experiment
     range: string
     required: true
+  experiments:
+    name: experiments
+    title: Related Experiments
+    from_schema: OAEProject
+    rank: 1000
+    domain_of:
+    - OAEProject
+    range: Experiment
+    recommended: true
+    multivalued: true
   sea_names:
     name: sea_names
     description: Names of the seas where the data collection takes place, See Controlled
@@ -652,6 +677,7 @@ attributes:
     domain_of:
     - OAEProject
     range: MonetaryGrant
+    multivalued: true
   additional_details:
     name: additional_details
     description: 'Open text area to include additional information. These may include
@@ -712,6 +738,18 @@ attributes:
     - Experiment
     range: string
     required: true
+  experiments:
+    name: experiments
+    title: Related Experiments
+    from_schema: OAEProject
+    rank: 1000
+    alias: experiments
+    owner: OAEProject
+    domain_of:
+    - OAEProject
+    range: Experiment
+    recommended: true
+    multivalued: true
   sea_names:
     name: sea_names
     description: Names of the seas where the data collection takes place, See Controlled
@@ -887,6 +925,7 @@ attributes:
     domain_of:
     - OAEProject
     range: MonetaryGrant
+    multivalued: true
   additional_details:
     name: additional_details
     description: 'Open text area to include additional information. These may include

@@ -165,6 +165,13 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#usages">
+<span class="md-ellipsis">
+      Usages
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#identifier-and-mapping-information">
 <span class="md-ellipsis">
       Identifier and Mapping Information
@@ -237,6 +244,8 @@
       Experiment : description
 
       Experiment : end_datetime
+
+      Experiment : experiment_id
 
       Experiment : experiment_type
 
@@ -311,8 +320,8 @@
 <tbody>
 <tr>
 <td><a href="../name/">name</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>The experiment to which the data belong</td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>A human-readable name for the thing</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -334,8 +343,14 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../project_id/">project_id</a></td>
+<td><a href="../experiment_id/">experiment_id</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
+<td>The experiment to which the data belong</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../project_id/">project_id</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Project ID must be included in the Experiment-level metadata in order to link...</td>
 <td>direct</td>
 </tr>
@@ -383,6 +398,25 @@
 </tr>
 </tbody>
 </table>
+<h2 id="usages">Usages</h2>
+<table>
+<thead>
+<tr>
+<th>used by</th>
+<th>used in</th>
+<th>type</th>
+<th>used</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../OAEProject/">OAEProject</a></td>
+<td><a href="../experiments/">experiments</a></td>
+<td>range</td>
+<td><a href="./">Experiment</a></td>
+</tr>
+</tbody>
+</table>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
@@ -421,16 +455,6 @@ slots:
 - spatial_coverage
 - vertical_coverage
 slot_usage:
-  name:
-    name: name
-    description: 'The experiment to which the data belong. Any naming convention that
-      produces a unique ID is usable. The recommended naming convention is:
-
-      Project ID + Experiment type + Optional numerical indicator to differentiate
-      between various experiments of the same type for a project. A two digit consecutive
-      number beginning with 01'
-    title: Experiment ID
-    required: true
   description:
     name: description
     description: A narrative description of the experiment. For example, what part
@@ -453,6 +477,21 @@ slot_usage:
     description: Minimum and maximum depths of observations in meters.
     required: true
 attributes:
+  experiment_id:
+    name: experiment_id
+    description: 'The experiment to which the data belong. Any naming convention that
+      produces a unique ID is usable. The recommended naming convention is:
+
+      Project ID + Experiment type + Optional numerical indicator to differentiate
+      between various experiments of the same type for a project. A two digit consecutive
+      number beginning with 01'
+    title: Experiment ID
+    from_schema: Experiment
+    rank: 1000
+    domain_of:
+    - Experiment
+    range: string
+    required: true
   project_id:
     name: project_id
     description: 'Project ID must be included in the Experiment-level metadata in
@@ -474,7 +513,6 @@ attributes:
     - OAEProject
     - Experiment
     range: string
-    required: true
   experiment_type:
     name: experiment_type
     description: The type of mCDR experiment conducted. See Controlled Vocabularies
@@ -568,16 +606,6 @@ description: Experiment metadata applies to a specific study but remains consist
   across datasets.
 from_schema: OAEDataManagementProtocol
 slot_usage:
-  name:
-    name: name
-    description: 'The experiment to which the data belong. Any naming convention that
-      produces a unique ID is usable. The recommended naming convention is:
-
-      Project ID + Experiment type + Optional numerical indicator to differentiate
-      between various experiments of the same type for a project. A two digit consecutive
-      number beginning with 01'
-    title: Experiment ID
-    required: true
   description:
     name: description
     description: A narrative description of the experiment. For example, what part
@@ -600,6 +628,23 @@ slot_usage:
     description: Minimum and maximum depths of observations in meters.
     required: true
 attributes:
+  experiment_id:
+    name: experiment_id
+    description: 'The experiment to which the data belong. Any naming convention that
+      produces a unique ID is usable. The recommended naming convention is:
+
+      Project ID + Experiment type + Optional numerical indicator to differentiate
+      between various experiments of the same type for a project. A two digit consecutive
+      number beginning with 01'
+    title: Experiment ID
+    from_schema: Experiment
+    rank: 1000
+    alias: experiment_id
+    owner: Experiment
+    domain_of:
+    - Experiment
+    range: string
+    required: true
   project_id:
     name: project_id
     description: 'Project ID must be included in the Experiment-level metadata in
@@ -623,7 +668,6 @@ attributes:
     - OAEProject
     - Experiment
     range: string
-    required: true
   experiment_type:
     name: experiment_type
     description: The type of mCDR experiment conducted. See Controlled Vocabularies
@@ -723,13 +767,8 @@ attributes:
     range: string
   name:
     name: name
-    description: 'The experiment to which the data belong. Any naming convention that
-      produces a unique ID is usable. The recommended naming convention is:
-
-      Project ID + Experiment type + Optional numerical indicator to differentiate
-      between various experiments of the same type for a project. A two digit consecutive
-      number beginning with 01'
-    title: Experiment ID
+    description: A human-readable name for the thing.
+    title: Name
     from_schema: OAEDataManagementProtocol
     rank: 1000
     alias: name
@@ -742,7 +781,6 @@ attributes:
     - Experiment
     - Investigator
     range: string
-    required: true
   description:
     name: description
     description: A narrative description of the experiment. For example, what part

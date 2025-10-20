@@ -249,7 +249,7 @@
 <tr>
 <td><a href="../identifier/">identifier</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Organization identifier, preferably a ROR URL (e</td>
+<td>Organization identifier in the form of an ROR URL (e</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -327,7 +327,9 @@ slots:
 slot_usage:
   identifier:
     name: identifier
-    description: Organization identifier, preferably a ROR URL (e.g., https://ror.org/02mhbdp94)
+    description: Organization identifier in the form of an ROR URL (e.g., https://ror.org/02mhbdp94).
+      Please visit [https://ror.org](https://ror.org) to search for the organization
+      and find the appropriate ROR URL.
   name:
     name: name
     description: Name of the organization
@@ -354,7 +356,9 @@ from_schema: OAEDataManagementProtocol
 slot_usage:
   identifier:
     name: identifier
-    description: Organization identifier, preferably a ROR URL (e.g., https://ror.org/02mhbdp94)
+    description: Organization identifier in the form of an ROR URL (e.g., https://ror.org/02mhbdp94).
+      Please visit [https://ror.org](https://ror.org) to search for the organization
+      and find the appropriate ROR URL.
   name:
     name: name
     description: Name of the organization
@@ -374,7 +378,9 @@ attributes:
     pattern: ^[A-Z]{2}$
   identifier:
     name: identifier
-    description: Organization identifier, preferably a ROR URL (e.g., https://ror.org/02mhbdp94)
+    description: Organization identifier in the form of an ROR URL (e.g., https://ror.org/02mhbdp94).
+      Please visit [https://ror.org](https://ror.org) to search for the organization
+      and find the appropriate ROR URL.
     from_schema: OAEDataManagementProtocol
     rank: 1000
     slot_uri: schema:identifier
