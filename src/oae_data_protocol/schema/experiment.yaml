@@ -87,7 +87,8 @@ classes:
       data_conflicts_and_unreported_data:
         title: Data Conflicts and Unreported Data
         description: >-
-          If data exist that are or have been used by the project but are not provided due to conflicts (e.g., geopolitical or other), data availability (e.g., a dataset is no longer available), it may be noted here.
+          If data exist that are or have been used by the project but are not provided due to conflicts (e.g.,
+          geopolitical or other), data availability (e.g., a dataset is no longer available), it may be noted here.
         range: string
       meteorological_and_tidal_data:
         title: Meteorological and Tidal Data
@@ -142,14 +143,22 @@ classes:
   Intervention:
     is_a: Experiment
     description: >-
-      Additional metadata that applies to experiments where an intervention, such as an alkalinity addition, was conducted.
+      Additional metadata that applies to experiments where an intervention, such as an alkalinity addition, was
+      conducted.
     attributes:
       alkalinity_feedstock_processing:
         title: Alkalinity Feedstock Processing
-        description: "Method(s) used to process the alkalinity feedstock. See Controlled Vocabularies section for definitions."
+        description: >-
+          Method(s) used to process the alkalinity feedstock. See Controlled Vocabularies section for definitions.
         range: AlkalinityFeedstockProcessing
         multivalued: true
         required: true
+      alkalinity_feedstock_processing_other:
+        title: Alkalinity Feedstock Processing (Other)
+        description: >-
+          Custom description of alkalinity feedstock processing method when 'other' is selected in
+          alkalinity_feedstock_processing.
+        range: string
       alkalinity_feedstock_form:
         title: Alkalinity Feedstock Form
         description: "The phase upon delivery to the ocean. See Controlled Vocabularies section for definitions."
@@ -158,20 +167,36 @@ classes:
       alkalinity_feedstock:
         title: Alkalinity Feedstock
         description: >-
-          Examples may include: olivine, potassium hydroxide, magnesium hydroxide, lime, portlandite, calcium carbonate, anorthite, dolomite, periclase, brucite, magnesite, forsterite, sodium hydroxide, natrite, nahcolite, akermanite, akermanite, alunoakermanite, etc.
+          Examples may include: olivine, potassium hydroxide, magnesium hydroxide, lime, portlandite, calcium carbonate,
+          anorthite, dolomite, periclase, brucite, magnesite, forsterite, sodium hydroxide, natrite, nahcolite,
+          akermanite, akermanite, alunoakermanite, etc.
 
-          See Controlled Vocabularies section for selected examples (this list is not exhaustive, you may need to include your unique feedstock).
+          See Controlled Vocabularies section for selected examples (this list is not exhaustive, you may need to
+          include your unique feedstock).
         range: FeedstockType
         required: true
+      alkalinity_feedstock_other:
+        title: Alkalinity Feedstock (Other)
+        description: >-
+          Custom description of alkalinity feedstock when using a feedstock type not listed in the controlled
+          vocabulary.
+        range: string
       alkalinity_feedstock_co2_removal_potential:
         title: Alkalinity Feedstock CO₂ Removal Potential
         description: >-
-          Maximum CO₂ removal potential of a feedstock material. We recommend using an adjusted version of the Steinour equation (Gunning et al., 2010), which uses bulk elemental oxide composition to estimate the maximum CO₂ removal potential of a feedstock material. The calculation output is in the form of kg of CO₂ per tonne of feedstock and represents the quantitative hypothetical potential of the material to capture CO₂ as bicarbonate or carbonate. See Isometric's CO2 removal potential module for details.
+          Maximum CO₂ removal potential of a feedstock material. We recommend using an adjusted version of the Steinour
+          equation (Gunning et al., 2010), which uses bulk elemental oxide composition to estimate the maximum CO₂
+          removal potential of a feedstock material. The calculation output is in the form of kg of CO₂ per tonne of
+          feedstock and represents the quantitative hypothetical potential of the material to capture CO₂ as bicarbonate
+          or carbonate. See Isometric's CO2 removal potential module for details.
         range: float
       alkalinity_feedstock_description:
         title: Alkalinity Feedstock Description
         description: >-
-          Information such as feedstock source, characteristics, impurities, dilution prior to dosing, and concentration. For feedstock other than NaOH: trace metal composition and particulate grain size. Any variable information must be provided in the dosing data file, in this case include the data file and column header names here provided as variables. See Intervention Data for details.
+          Information such as feedstock source, characteristics, impurities, dilution prior to dosing, and
+          concentration. For feedstock other than NaOH: trace metal composition and particulate grain size. Any variable
+          information must be provided in the dosing data file, in this case include the data file and column header
+          names here provided as variables. See Intervention Data for details.
         range: string
         required: true
       equilibration:
@@ -179,65 +204,86 @@ classes:
         description: "Whether the feedstock was pre-equilibrated or unequilibrated"
         range: EquilibrationStatus
         required: true
-      dosing_location:
-        title: Dosing Location
-        description: >-
-          Provide latitude and longitude in decimal degrees. Depending on your method of dispersal, this information may be provided as a point source, vector, or bounding box. If provided as a vector, the latitude and longitude values should be included in the dosing data file.
-        range: GeoCoordinate
-        required: true
-      dosing_dispersal_hydrologic_location:
-        title: Dosing Dispersal Hydrologic Location
-        description: "Descriptive dosing location"
-        range: HydrologicLocation
-        required: true
-      dosing_delivery_type:
-        title: Dosing Delivery Type
-        description: "Type of dosing delivery method. See Controlled Vocabularies for definitions."
-        range: DosingDeliveryType
-        required: true
       alkalinity_dosing_effluent_density:
         title: Alkalinity Dosing Effluent Density
         description: >-
-          Fixed density or provide link/source to effluent density data if applicable. Please include whether density is directly measured or a derived value. If this is a variable included with your data, please note so here as 'alkalinity dosing effluent density is provided as a variable' and use 'dosing_effluent_density' for your column header name.
+          Fixed density or provide link/source to effluent density data if applicable. Please include whether density is
+          directly measured or a derived value. If this is a variable included with your data, please note so here as
+          'alkalinity dosing effluent density is provided as a variable' and use 'dosing_effluent_density' for your
+          column header name.
         range: string
         required: true
-      dosing_depth:
-        title: Dosing Depth(s)
-        description: >-
-          Depth(s) in meters. If this is variable, please include the schedule of depth changes and depths, or as a vector in meters with the data, named 'dosing_depth'. Please note here that 'dosing depth is provided as a variable'.
-        range: string
-        required: true
-      dosing_description:
-        title: Dosing Description
-        description: >-
-          Please be descriptive. Information about the dosing mechanism must be included (e.g., outflow from pipe, diffuser, doser, manual placement)
-          E.g., outflow from existing facility pipe directly to ocean, manual riverine introduction, coastal distribution at three separate 30 meter long sections, pier-based diffuser to intercoastal bay, distributed from stationary barge 10 miles offshore.
-        range: string
-        required: true
-      dosing_regimen:
+      dosing_regimen_description:
         title: Dosing Regimen
+        # TODO: Would be nice to add an example to this description (e.g. hourly, continuous rampup over 24-hour period...)
         description: >-
-          At a minimum, please provide the schedule and timeline of dosing, including the time between doses, the duration of treatment and the amount used each time. More optimally, this information would be provided as a vector of binary data in the data file where 1 = dosing 'on' 0 = dosing 'off', using the column header name 'dosing_onoff'. If provided as a vector state here as 'dosing regimen is provided as a variable' and include the file name. See Intervention Data for details.
+          A human readable summary description of the dosing regimen / frequency. Exact details must be provided
+          in the corresponding dosing file with exact timestamps for dosing on/off schedule.
         range: string
         required: true
-      dosing_data:
-        title: Dosing Data
-        description: >-
-          Dosing data include: flow rate, dosing rate, and mineral mass addition rate. If any of these are constant, values may be given here rather than in the dosing data file. To link dosing data that have been provided as vector data provide the source or filename. See Intervention Data for details.
-          Provide a description of the units for dosing rate provided as this will vary depending on the method.
-        range: string
-        required: true
-
-  GeoCoordinate:
-    description: "A geographic coordinate in decimal degrees."
+  Tracer:
+    is_a: Experiment
+    description: "Additional metadata that applies to experiments where a tracer study was conducted"
+    slots:
+      - dosing_location
+      - dosing_dispersal_hydrologic_location
+      - dosing_delivery_type
+      - dosing_description
     attributes:
-      latitude:
-        title: Latitude
-        description: "Latitude in decimal degrees"
-        range: float
+      tracer_form:
+        description: "The form of tracer upon delivery to the ocean (e.g. gas or dye-release)"
+        range: TracerForm
         required: true
-      longitude:
-        title: Longitude
-        description: "Longitude in decimal degrees"
-        range: float
+      tracer_details:
+        description: "state the kind of tracer used (e.g. rhodamine, or a specific gas)"
+        range: string
         required: true
+      tracer_concentration:
+        # todo: update to number & unit. along with effluent density
+        range: string
+
+# the following slots are used only by classes in this file
+# it's primarily used for slots that are common to Intervention and Tracer experiment types
+slots:
+  dosing_delivery_type:
+    title: Dosing Delivery Type
+    description: "Type of dosing delivery method. See Controlled Vocabularies for definitions."
+    range: DosingDeliveryType
+    required: true
+  dosing_location:
+    title: Dosing Location
+    description: >-
+      Provide latitude and longitude in decimal degrees. Depending on your method of dispersal, this information may be
+      provided as a point source, vector, or bounding box. If provided as a vector, the latitude and longitude values
+      should be included in the dosing data file.
+
+      NOTE: This field needs to be upgraded to support either a point, line, or bounding box geometry type. In the case
+      of a bounding box, a file name should be provided referencing the dosing data file.
+    range: Place
+    required: true
+  dosing_location_provided_as_file:
+    range: boolean
+    required: true
+  dosing_dispersal_hydrologic_location:
+    title: Dosing Dispersal Hydrologic Location
+    description: "Descriptive dosing location"
+    range: HydrologicLocation
+    required: true
+  dosing_depth:
+    title: Dosing Depth
+    description: >-
+      Depth in meters. If this is variable, please include the schedule of depth changes and depths, or as a vector
+      in meters with the data.
+    range: string
+    required: true
+  dosing_description:
+    title: Dosing Description
+    description: >-
+      Please be descriptive. Information about the dosing mechanism must be included (outflow from pipe,
+      diffuser, doser, manual placement)
+      
+      E.g., outflow from existing facility pipe directly to ocean, manual riverine introduction, coastal
+      distribution at three separate 30 meter long sections, pier-based diffuser to intercoastal bay, distributed
+      from stationary barge 10 miles offshore.
+    range: string
+    required: true

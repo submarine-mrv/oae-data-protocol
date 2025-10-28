@@ -57,6 +57,8 @@ enums:
         description: "Control experiment without intervention for comparison"
       intervention:
         description: "Experiment with active OAE intervention"
+      tracer:
+        description: "Tracer study experiment (e.g., dye or gas tracer study)"
       model:
         description: "Model-based experiment or simulation"
       other:
@@ -139,6 +141,16 @@ enums:
         description: >-
           A distributed dosing area that varies in time, such as manually placed alkaline material over different areas
           at different times.
+
+  TracerForm:
+    description: "Forms of tracer used in tracer studies"
+    permissible_values:
+      gas:
+        description: "Gas tracer"
+      dye:
+        description: "Dye tracer (e.g., rhodamine)"
+      other:
+        description: "Other tracer form not covered by standard categories"
 
   FeedstockType:
     description: "Types of materials used for alkalinity addition, as sourced from NCEI's OCADS controlled vocabulary: https://www.ncei.noaa.gov/access/ocean-carbon-acidification-data-system/vocabularies/alkalinization-types.html"

@@ -36,6 +36,8 @@ slots:
     description: >-
       Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities) provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost
       longitude, northernmost latitude. [S, W, N, E]
+    # Could update this to be a more restrictive range (e.g. SpatialCoverage, which inherits from Place and only
+    # allows GeoShapes, not GeoCoordinates)
     range: Place
     required: true
   vertical_coverage:
@@ -44,6 +46,12 @@ slots:
       Minimum and maximum depths of observation in meters.
     range: VerticalExtent
     required: true
+  geo:
+    description: "Entities that have a somewhat fixed, physical extension. (imported from schema.org)"
+    range: Any
+    any_of:
+      - range: GeoShape
+      - range: GeoCoordinates
 
 classes:
   PropertyValue:
@@ -52,10 +60,10 @@ classes:
     class_uri: linkml:Any
   Place:
     description: "A bounding box defined by latitude and longitude coordinates."
-    attributes:
+    slots:
+      - geo
+    slot_usage:
       geo:
-        description: "Entities that have a somewhat fixed, physical extension. (imported from schema.org)"
-        range: GeoShape
         required: true
     class_uri: "schema:Place"
   GeoShape:
@@ -67,6 +75,22 @@ classes:
         slot_uri: schema:box
         required: true
     class_uri: "schema:GeoShape"
+  GeoCoordinates:
+    class_uri: "schema:GeoCoordinates"
+    description: "A geographic coordinate in decimal degrees."
+    attributes:
+      latitude:
+        title: Latitude
+        slot_uri: schema:latitude
+        description: "Latitude in decimal degrees of a location. For example 37.42242 (WGS 84)."
+        range: float
+        required: true
+      longitude:
+        title: Longitude
+        slot_uri: schema:longitude
+        description: "Longitude in decimal degrees of a location. For example -122.08585 (WGS 84)."
+        range: float
+        required: true
   VerticalExtent:
     description: "The vertical extent of a place or structure in meters."
     attributes:
