@@ -5,10 +5,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://clevinson.github.io/oae-data-protocol/Investigator/" rel="canonical"/>
+<link href="https://clevinson.github.io/oae-data-protocol/Person/" rel="canonical"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.6.7" name="generator"/>
-<title>Class: Investigator - oae-data-protocol</title>
+<title>Class: Person - oae-data-protocol</title>
 <link href="../assets/stylesheets/main.8608ea7d.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
@@ -23,7 +23,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#class-investigator">
+<a class="md-skip" href="#class-person">
           Skip to content
         </a>
 </div>
@@ -47,7 +47,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Class: Investigator
+              Class: Person
             
           </span>
 </div>
@@ -221,32 +221,39 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="class-investigator">Class: Investigator</h1>
+<h1 id="class-person">Class: Person</h1>
 <p><em>Information about a researcher or investigator involved in the experiment.</em></p>
-<p>URI: <a href="https://example.org/oae#Investigator">oae:Investigator</a></p>
+<p>URI: <a href="http://schema.org/Person">schema:Person</a></p>
 <div class="mermaid"> classDiagram
-    class Investigator
-    click Investigator href "../Investigator"
-      Investigator : affiliation
+    class Person
+    click Person href "../Person"
+      Person : affiliation
 
 
 
 
-    Investigator --&gt; "0..1" Organization : affiliation
+    Person --&gt; "0..1" Organization : affiliation
     click Organization href "../Organization"
 
 
-      Investigator : email
+      Person : email
 
-      Investigator : identifier
+      Person : identifier
 
-      Investigator : identifier_type
+      Person : identifier_type
 
-      Investigator : name
 
-      Investigator : phone
 
-      Investigator : role
+
+    Person --&gt; "0..1" ResearcherIDType : identifier_type
+    click ResearcherIDType href "../ResearcherIDType"
+
+
+      Person : name
+
+      Person : phone
+
+      Person : role
 
 
 </div>
@@ -265,7 +272,7 @@
 <tr>
 <td><a href="../name/">name</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
-<td>Full name of the investigator</td>
+<td>Full name of the person</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -288,8 +295,8 @@
 </tr>
 <tr>
 <td><a href="../identifier_type/">identifier_type</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Type of researcher identifier (e</td>
+<td>0..1 <br/> <a href="../ResearcherIDType/">ResearcherIDType</a></td>
+<td>Type of Researcher ID (e</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -321,25 +328,25 @@
 <td><a href="../Experiment/">Experiment</a></td>
 <td><a href="../investigators/">investigators</a></td>
 <td>range</td>
-<td><a href="./">Investigator</a></td>
+<td><a href="./">Person</a></td>
 </tr>
 <tr>
 <td><a href="../Intervention/">Intervention</a></td>
 <td><a href="../investigators/">investigators</a></td>
 <td>range</td>
-<td><a href="./">Investigator</a></td>
+<td><a href="./">Person</a></td>
 </tr>
 <tr>
 <td><a href="../Tracer/">Tracer</a></td>
 <td><a href="../investigators/">investigators</a></td>
 <td>range</td>
-<td><a href="./">Investigator</a></td>
+<td><a href="./">Person</a></td>
 </tr>
 <tr>
 <td><a href="../InterventionWithTracer/">InterventionWithTracer</a></td>
 <td><a href="../investigators/">investigators</a></td>
 <td>range</td>
-<td><a href="./">Investigator</a></td>
+<td><a href="./">Person</a></td>
 </tr>
 </tbody>
 </table>
@@ -359,11 +366,11 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>oae:Investigator</td>
+<td>schema:Person</td>
 </tr>
 <tr>
 <td>native</td>
-<td>oae:Investigator</td>
+<td>oae:Person</td>
 </tr>
 </tbody>
 </table>
@@ -371,177 +378,179 @@
 <!-- TODO: investigate https://stackoverflow.com/questions/37606292/how-to-create-tabbed-code-blocks-in-mkdocs-or-sphinx -->
 <h3 id="direct">Direct</h3>
 <details>
-<pre><code class="language-yaml">name: Investigator
+<pre><code class="language-yaml">name: Person
 description: Information about a researcher or investigator involved in the experiment.
 from_schema: OAEDataManagementProtocol
 attributes:
   name:
     name: name
-    description: Full name of the investigator.
+    description: Full name of the person.
     title: Name
-    from_schema: Experiment
+    from_schema: Person
     domain_of:
     - Organization
     - NamedLink
     - ExternalProject
     - MonetaryGrant
     - Experiment
-    - Investigator
+    - Person
     range: string
     required: true
   affiliation:
     name: affiliation
     description: Institutional affiliation of the investigator.
     title: Affiliation
-    from_schema: Experiment
+    from_schema: Person
     rank: 1000
     domain_of:
-    - Investigator
+    - Person
     range: Organization
   phone:
     name: phone
     description: Contact phone number.
     title: Phone
-    from_schema: Experiment
+    from_schema: Person
     rank: 1000
     domain_of:
-    - Investigator
+    - Person
     range: string
     pattern: ^\+?[0-9\s\-\(\)]+$
   email:
     name: email
     description: Contact email address.
     title: Email
-    from_schema: Experiment
+    from_schema: Person
     rank: 1000
     domain_of:
-    - Investigator
+    - Person
     range: string
     pattern: ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$
   identifier_type:
     name: identifier_type
-    description: Type of researcher identifier (e.g., ORCID, ResearcherID).
-    title: Identifier Type
-    from_schema: Experiment
+    description: Type of Researcher ID (e.g., ORCID, ResearcherID).
+    title: Researcher ID Type
+    from_schema: Person
     rank: 1000
     domain_of:
-    - Investigator
-    range: string
+    - Person
+    range: ResearcherIDType
   identifier:
     name: identifier
     description: Unique researcher identifier value.
     title: Researcher ID
-    from_schema: Experiment
+    from_schema: Person
     domain_of:
     - Organization
     - MonetaryGrant
-    - Investigator
+    - Person
     range: string
   role:
     name: role
     description: Role of the investigator in the experiment (e.g., chief scientist,
       data submitter).
     title: Role
-    from_schema: Experiment
+    from_schema: Person
     rank: 1000
     domain_of:
-    - Investigator
+    - Person
     range: string
+class_uri: schema:Person
 
 </code></pre>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
-<pre><code class="language-yaml">name: Investigator
+<pre><code class="language-yaml">name: Person
 description: Information about a researcher or investigator involved in the experiment.
 from_schema: OAEDataManagementProtocol
 attributes:
   name:
     name: name
-    description: Full name of the investigator.
+    description: Full name of the person.
     title: Name
-    from_schema: Experiment
+    from_schema: Person
     alias: name
-    owner: Investigator
+    owner: Person
     domain_of:
     - Organization
     - NamedLink
     - ExternalProject
     - MonetaryGrant
     - Experiment
-    - Investigator
+    - Person
     range: string
     required: true
   affiliation:
     name: affiliation
     description: Institutional affiliation of the investigator.
     title: Affiliation
-    from_schema: Experiment
+    from_schema: Person
     rank: 1000
     alias: affiliation
-    owner: Investigator
+    owner: Person
     domain_of:
-    - Investigator
+    - Person
     range: Organization
   phone:
     name: phone
     description: Contact phone number.
     title: Phone
-    from_schema: Experiment
+    from_schema: Person
     rank: 1000
     alias: phone
-    owner: Investigator
+    owner: Person
     domain_of:
-    - Investigator
+    - Person
     range: string
     pattern: ^\+?[0-9\s\-\(\)]+$
   email:
     name: email
     description: Contact email address.
     title: Email
-    from_schema: Experiment
+    from_schema: Person
     rank: 1000
     alias: email
-    owner: Investigator
+    owner: Person
     domain_of:
-    - Investigator
+    - Person
     range: string
     pattern: ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$
   identifier_type:
     name: identifier_type
-    description: Type of researcher identifier (e.g., ORCID, ResearcherID).
-    title: Identifier Type
-    from_schema: Experiment
+    description: Type of Researcher ID (e.g., ORCID, ResearcherID).
+    title: Researcher ID Type
+    from_schema: Person
     rank: 1000
     alias: identifier_type
-    owner: Investigator
+    owner: Person
     domain_of:
-    - Investigator
-    range: string
+    - Person
+    range: ResearcherIDType
   identifier:
     name: identifier
     description: Unique researcher identifier value.
     title: Researcher ID
-    from_schema: Experiment
+    from_schema: Person
     alias: identifier
-    owner: Investigator
+    owner: Person
     domain_of:
     - Organization
     - MonetaryGrant
-    - Investigator
+    - Person
     range: string
   role:
     name: role
     description: Role of the investigator in the experiment (e.g., chief scientist,
       data submitter).
     title: Role
-    from_schema: Experiment
+    from_schema: Person
     rank: 1000
     alias: role
-    owner: Investigator
+    owner: Person
     domain_of:
-    - Investigator
+    - Person
     range: string
+class_uri: schema:Person
 
 </code></pre>
 </details>

@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://clevinson.github.io/oae-data-protocol/alkalinity_feedstock_processing_custom/">
+        <link rel="canonical" href="https://clevinson.github.io/oae-data-protocol/ResearcherIDType/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: Alkalinity Feedstock Processing (Custom) (alkalinity_feedstock_processing_custom) - oae-data-protocol</title>
+        <title>Enum: ResearcherIDType - oae-data-protocol</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-alkalinity-feedstock-processing-custom-alkalinity_feedstock_processing_custom" class="md-skip">
+        <a href="#enum-researcheridtype" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: Alkalinity Feedstock Processing (Custom) (alkalinity_feedstock_processing_custom)
+              Enum: ResearcherIDType
             
           </span>
         </div>
@@ -281,18 +281,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#applicable-classes" class="md-nav__link">
+  <a href="#permissible-values" class="md-nav__link">
     <span class="md-ellipsis">
-      Applicable Classes
+      Permissible Values
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#properties" class="md-nav__link">
+  <a href="#slots" class="md-nav__link">
     <span class="md-ellipsis">
-      Properties
+      Slots
     </span>
   </a>
   
@@ -319,15 +319,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#mappings" class="md-nav__link">
-    <span class="md-ellipsis">
-      Mappings
-    </span>
-  </a>
   
 </li>
       
@@ -359,80 +350,68 @@
   
 
 
-<h1 id="slot-alkalinity-feedstock-processing-custom-alkalinity_feedstock_processing_custom">Slot: Alkalinity Feedstock Processing (Custom) (alkalinity_feedstock_processing_custom)</h1>
-<p><em>Custom description of alkalinity feedstock processing method when 'other' is selected in alkalinity_feedstock_processing.</em></p>
-<p>URI: <a href="https://example.org/oae#alkalinity_feedstock_processing_custom">oae:alkalinity_feedstock_processing_custom</a></p>
-<!-- no inheritance hierarchy -->
-
-<h2 id="applicable-classes">Applicable Classes</h2>
+<h1 id="enum-researcheridtype">Enum: ResearcherIDType</h1>
+<p>URI: <a href="./">ResearcherIDType</a></p>
+<h2 id="permissible-values">Permissible Values</h2>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Meaning</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>orcid</td>
+<td>None</td>
+<td></td>
+</tr>
+<tr>
+<td>researcher_id</td>
+<td>None</td>
+<td></td>
+</tr>
+<tr>
+<td>ocean_expert</td>
+<td>None</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="slots">Slots</h2>
 <table>
 <thead>
 <tr>
 <th>Name</th>
 <th>Description</th>
-<th>Modifies Slot</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="../Intervention/">Intervention</a></td>
-<td>Additional metadata that applies to experiments where an intervention, such a...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../InterventionDetails/">InterventionDetails</a></td>
-<td>An abstract class (used as a mixin, not implemented directly) for detailing t...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../InterventionWithTracer/">InterventionWithTracer</a></td>
-<td>Additional metadata that applies to hybrid experiments where an intervention ...</td>
-<td>no</td>
+<td><a href="../identifier_type/">identifier_type</a></td>
+<td>Type of Researcher ID (e</td>
 </tr>
 </tbody>
 </table>
-<h2 id="properties">Properties</h2>
-<ul>
-<li>Range: <a href="../String/">String</a></li>
-</ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
 <li>from schema: OAEDataManagementProtocol</li>
 </ul>
-<h2 id="mappings">Mappings</h2>
-<table>
-<thead>
-<tr>
-<th>Mapping Type</th>
-<th>Mapped Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>self</td>
-<td>oae:alkalinity_feedstock_processing_custom</td>
-</tr>
-<tr>
-<td>native</td>
-<td>oae:alkalinity_feedstock_processing_custom</td>
-</tr>
-</tbody>
-</table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: alkalinity_feedstock_processing_custom
-description: Custom description of alkalinity feedstock processing method when 'other'
-  is selected in alkalinity_feedstock_processing.
-title: Alkalinity Feedstock Processing (Custom)
+<pre><code class="language-yaml">name: ResearcherIDType
 from_schema: OAEDataManagementProtocol
 rank: 1000
-alias: alkalinity_feedstock_processing_custom
-owner: InterventionDetails
-domain_of:
-- InterventionDetails
-range: string
+permissible_values:
+  orcid:
+    text: orcid
+  researcher_id:
+    text: researcher_id
+  ocean_expert:
+    text: ocean_expert
 
 </code></pre>
 

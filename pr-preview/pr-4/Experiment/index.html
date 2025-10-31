@@ -263,8 +263,8 @@
 
 
 
-    Experiment --&gt; "1..*" Investigator : investigators
-    click Investigator href "../Investigator"
+    Experiment --&gt; "1..*" Person : investigators
+    click Person href "../Person"
 
 
       Experiment : meteorological_and_tidal_data
@@ -365,7 +365,7 @@
 </tr>
 <tr>
 <td><a href="../investigators/">investigators</a></td>
-<td>1..* <br/> <a href="../Investigator/">Investigator</a></td>
+<td>1..* <br/> <a href="../Person/">Person</a></td>
 <td>Provide details for each investigator including: Name, institutional informat...</td>
 <td>direct</td>
 </tr>
@@ -537,7 +537,7 @@ attributes:
     rank: 1000
     domain_of:
     - Experiment
-    range: Investigator
+    range: Person
     required: true
     multivalued: true
     inlined: true
@@ -696,7 +696,7 @@ attributes:
     owner: Experiment
     domain_of:
     - Experiment
-    range: Investigator
+    range: Person
     required: true
     multivalued: true
     inlined: true
@@ -782,7 +782,7 @@ attributes:
     - ExternalProject
     - MonetaryGrant
     - Experiment
-    - Investigator
+    - Person
     range: string
   description:
     name: description
