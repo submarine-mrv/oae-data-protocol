@@ -119,7 +119,7 @@
                 "investigators": {
                     "description": "Provide details for each investigator including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.",
                     "items": {
-                        "$ref": "#/$defs/Investigator"
+                        "$ref": "#/$defs/Person"
                     },
                     "title": "Investigators",
                     "type": "array"
@@ -462,7 +462,7 @@
                 "investigators": {
                     "description": "Provide details for each investigator including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.",
                     "items": {
-                        "$ref": "#/$defs/Investigator"
+                        "$ref": "#/$defs/Person"
                     },
                     "title": "Investigators",
                     "type": "array"
@@ -689,7 +689,7 @@
                 "investigators": {
                     "description": "Provide details for each investigator including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.",
                     "items": {
-                        "$ref": "#/$defs/Investigator"
+                        "$ref": "#/$defs/Person"
                     },
                     "title": "Investigators",
                     "type": "array"
@@ -774,54 +774,6 @@
                 "end_datetime"
             ],
             "title": "InterventionWithTracer",
-            "type": "object"
-        },
-        "Investigator": {
-            "additionalProperties": false,
-            "description": "Information about a researcher or investigator involved in the experiment.",
-            "properties": {
-                "affiliation": {
-                    "$ref": "#/$defs/Organization",
-                    "description": "Institutional affiliation of the investigator.",
-                    "title": "Affiliation"
-                },
-                "email": {
-                    "description": "Contact email address.",
-                    "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
-                    "title": "Email",
-                    "type": "string"
-                },
-                "identifier": {
-                    "description": "Unique researcher identifier value.",
-                    "title": "Researcher ID",
-                    "type": "string"
-                },
-                "identifier_type": {
-                    "description": "Type of researcher identifier (e.g., ORCID, ResearcherID).",
-                    "title": "Identifier Type",
-                    "type": "string"
-                },
-                "name": {
-                    "description": "Full name of the investigator.",
-                    "title": "Name",
-                    "type": "string"
-                },
-                "phone": {
-                    "description": "Contact phone number.",
-                    "pattern": "^\\+?[0-9\\s\\-\\(\\)]+$",
-                    "title": "Phone",
-                    "type": "string"
-                },
-                "role": {
-                    "description": "Role of the investigator in the experiment (e.g., chief scientist, data submitter).",
-                    "title": "Role",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "name"
-            ],
-            "title": "Investigator",
             "type": "object"
         },
         "MCDRPathway": {
@@ -1112,6 +1064,54 @@
             "title": "PermitStatus",
             "type": "string"
         },
+        "Person": {
+            "additionalProperties": false,
+            "description": "Information about a researcher or investigator involved in the experiment.",
+            "properties": {
+                "affiliation": {
+                    "$ref": "#/$defs/Organization",
+                    "description": "Institutional affiliation of the investigator.",
+                    "title": "Affiliation"
+                },
+                "email": {
+                    "description": "Contact email address.",
+                    "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+                    "title": "Email",
+                    "type": "string"
+                },
+                "identifier": {
+                    "description": "Unique researcher identifier value.",
+                    "title": "Researcher ID",
+                    "type": "string"
+                },
+                "identifier_type": {
+                    "$ref": "#/$defs/ResearcherIDType",
+                    "description": "Type of Researcher ID (e.g., ORCID, ResearcherID).",
+                    "title": "Researcher ID Type"
+                },
+                "name": {
+                    "description": "Full name of the person.",
+                    "title": "Name",
+                    "type": "string"
+                },
+                "phone": {
+                    "description": "Contact phone number.",
+                    "pattern": "^\\+?[0-9\\s\\-\\(\\)]+$",
+                    "title": "Phone",
+                    "type": "string"
+                },
+                "role": {
+                    "description": "Role of the investigator in the experiment (e.g., chief scientist, data submitter).",
+                    "title": "Role",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ],
+            "title": "Person",
+            "type": "object"
+        },
         "Place": {
             "additionalProperties": false,
             "description": "A bounding box defined by latitude and longitude coordinates.",
@@ -1140,6 +1140,16 @@
             "description": "",
             "title": "PropertyValue",
             "type": "object"
+        },
+        "ResearcherIDType": {
+            "description": "",
+            "enum": [
+                "orcid",
+                "researcher_id",
+                "ocean_expert"
+            ],
+            "title": "ResearcherIDType",
+            "type": "string"
         },
         "SeaNames": {
             "description": "",
@@ -1346,7 +1356,7 @@
                 "investigators": {
                     "description": "Provide details for each investigator including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.",
                     "items": {
-                        "$ref": "#/$defs/Investigator"
+                        "$ref": "#/$defs/Person"
                     },
                     "title": "Investigators",
                     "type": "array"

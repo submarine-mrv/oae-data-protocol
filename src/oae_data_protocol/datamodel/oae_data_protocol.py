@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-10-30T20:33:03
+# Generation date: 2025-10-31T10:37:52
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -489,7 +489,7 @@ class Experiment(YAMLRoot):
     vertical_coverage: Union[dict, VerticalExtent] = None
     experiment_id: str = None
     experiment_type: Union[str, "ExperimentType"] = None
-    investigators: Union[Union[dict, "Investigator"], List[Union[dict, "Investigator"]]] = None
+    investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     end_datetime: Union[str, XSDDateTime] = None
     name: Optional[str] = None
@@ -528,7 +528,7 @@ class Experiment(YAMLRoot):
             self.MissingRequiredField("investigators")
         if not isinstance(self.investigators, list):
             self.investigators = [self.investigators] if self.investigators is not None else []
-        self.investigators = [v if isinstance(v, Investigator) else Investigator(**as_dict(v)) for v in self.investigators]
+        self.investigators = [v if isinstance(v, Person) else Person(**as_dict(v)) for v in self.investigators]
 
         if self._is_empty(self.start_datetime):
             self.MissingRequiredField("start_datetime")
@@ -560,53 +560,6 @@ class Experiment(YAMLRoot):
 
 
 @dataclass(repr=False)
-class Investigator(YAMLRoot):
-    """
-    Information about a researcher or investigator involved in the experiment.
-    """
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OAE["Investigator"]
-    class_class_curie: ClassVar[str] = "oae:Investigator"
-    class_name: ClassVar[str] = "Investigator"
-    class_model_uri: ClassVar[URIRef] = OAE.Investigator
-
-    name: str = None
-    affiliation: Optional[Union[dict, Organization]] = None
-    phone: Optional[str] = None
-    email: Optional[str] = None
-    identifier_type: Optional[str] = None
-    identifier: Optional[str] = None
-    role: Optional[str] = None
-
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.name):
-            self.MissingRequiredField("name")
-        if not isinstance(self.name, str):
-            self.name = str(self.name)
-
-        if self.affiliation is not None and not isinstance(self.affiliation, Organization):
-            self.affiliation = Organization(**as_dict(self.affiliation))
-
-        if self.phone is not None and not isinstance(self.phone, str):
-            self.phone = str(self.phone)
-
-        if self.email is not None and not isinstance(self.email, str):
-            self.email = str(self.email)
-
-        if self.identifier_type is not None and not isinstance(self.identifier_type, str):
-            self.identifier_type = str(self.identifier_type)
-
-        if self.identifier is not None and not isinstance(self.identifier, str):
-            self.identifier = str(self.identifier)
-
-        if self.role is not None and not isinstance(self.role, str):
-            self.role = str(self.role)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
 class Intervention(Experiment):
     """
     Additional metadata that applies to experiments where an intervention, such as an alkalinity addition, was
@@ -624,7 +577,7 @@ class Intervention(Experiment):
     vertical_coverage: Union[dict, VerticalExtent] = None
     experiment_id: str = None
     experiment_type: Union[str, "ExperimentType"] = None
-    investigators: Union[Union[dict, Investigator], List[Union[dict, Investigator]]] = None
+    investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     end_datetime: Union[str, XSDDateTime] = None
     alkalinity_feedstock_processing: Union[str, "AlkalinityFeedstockProcessing"] = None
@@ -739,7 +692,7 @@ class Tracer(Experiment):
     vertical_coverage: Union[dict, VerticalExtent] = None
     experiment_id: str = None
     experiment_type: Union[str, "ExperimentType"] = None
-    investigators: Union[Union[dict, Investigator], List[Union[dict, Investigator]]] = None
+    investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     end_datetime: Union[str, XSDDateTime] = None
     tracer_form: Union[str, "TracerForm"] = None
@@ -825,7 +778,7 @@ class InterventionWithTracer(Intervention):
     vertical_coverage: Union[dict, VerticalExtent] = None
     experiment_id: str = None
     experiment_type: Union[str, "ExperimentType"] = None
-    investigators: Union[Union[dict, Investigator], List[Union[dict, Investigator]]] = None
+    investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     end_datetime: Union[str, XSDDateTime] = None
     alkalinity_feedstock_processing: Union[str, "AlkalinityFeedstockProcessing"] = None
@@ -1085,6 +1038,53 @@ class DosingDetails(YAMLRoot):
             self.MissingRequiredField("dosing_description")
         if not isinstance(self.dosing_description, str):
             self.dosing_description = str(self.dosing_description)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class Person(YAMLRoot):
+    """
+    Information about a researcher or investigator involved in the experiment.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = SCHEMA["Person"]
+    class_class_curie: ClassVar[str] = "schema:Person"
+    class_name: ClassVar[str] = "Person"
+    class_model_uri: ClassVar[URIRef] = OAE.Person
+
+    name: str = None
+    affiliation: Optional[Union[dict, Organization]] = None
+    phone: Optional[str] = None
+    email: Optional[str] = None
+    identifier_type: Optional[Union[str, "ResearcherIDType"]] = None
+    identifier: Optional[str] = None
+    role: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.name):
+            self.MissingRequiredField("name")
+        if not isinstance(self.name, str):
+            self.name = str(self.name)
+
+        if self.affiliation is not None and not isinstance(self.affiliation, Organization):
+            self.affiliation = Organization(**as_dict(self.affiliation))
+
+        if self.phone is not None and not isinstance(self.phone, str):
+            self.phone = str(self.phone)
+
+        if self.email is not None and not isinstance(self.email, str):
+            self.email = str(self.email)
+
+        if self.identifier_type is not None and not isinstance(self.identifier_type, ResearcherIDType):
+            self.identifier_type = ResearcherIDType(self.identifier_type)
+
+        if self.identifier is not None and not isinstance(self.identifier, str):
+            self.identifier = str(self.identifier)
+
+        if self.role is not None and not isinstance(self.role, str):
+            self.role = str(self.role)
 
         super().__post_init__(**kwargs)
 
@@ -1905,6 +1905,16 @@ class PermitStatus(EnumDefinitionImpl):
         description="The status of a permit.",
     )
 
+class ResearcherIDType(EnumDefinitionImpl):
+
+    orcid = PermissibleValue(text="orcid")
+    researcher_id = PermissibleValue(text="researcher_id")
+    ocean_expert = PermissibleValue(text="ocean_expert")
+
+    _defn = EnumDefinition(
+        name="ResearcherIDType",
+    )
+
 # Slots
 class slots:
     pass
@@ -2050,7 +2060,7 @@ slots.experiment__experiment_type = Slot(uri=OAE.experiment_type, name="experime
                    model_uri=OAE.experiment__experiment_type, domain=None, range=Union[str, "ExperimentType"])
 
 slots.experiment__investigators = Slot(uri=OAE.investigators, name="experiment__investigators", curie=OAE.curie('investigators'),
-                   model_uri=OAE.experiment__investigators, domain=None, range=Union[Union[dict, Investigator], List[Union[dict, Investigator]]])
+                   model_uri=OAE.experiment__investigators, domain=None, range=Union[Union[dict, Person], List[Union[dict, Person]]])
 
 slots.experiment__start_datetime = Slot(uri=OAE.start_datetime, name="experiment__start_datetime", curie=OAE.curie('start_datetime'),
                    model_uri=OAE.experiment__start_datetime, domain=None, range=Union[str, XSDDateTime])
@@ -2066,29 +2076,6 @@ slots.experiment__meteorological_and_tidal_data = Slot(uri=OAE.meteorological_an
 
 slots.experiment__additional_details = Slot(uri=OAE.additional_details, name="experiment__additional_details", curie=OAE.curie('additional_details'),
                    model_uri=OAE.experiment__additional_details, domain=None, range=Optional[str])
-
-slots.investigator__name = Slot(uri=OAE.name, name="investigator__name", curie=OAE.curie('name'),
-                   model_uri=OAE.investigator__name, domain=None, range=str)
-
-slots.investigator__affiliation = Slot(uri=OAE.affiliation, name="investigator__affiliation", curie=OAE.curie('affiliation'),
-                   model_uri=OAE.investigator__affiliation, domain=None, range=Optional[Union[dict, Organization]])
-
-slots.investigator__phone = Slot(uri=OAE.phone, name="investigator__phone", curie=OAE.curie('phone'),
-                   model_uri=OAE.investigator__phone, domain=None, range=Optional[str],
-                   pattern=re.compile(r'^\+?[0-9\s\-\(\)]+$'))
-
-slots.investigator__email = Slot(uri=OAE.email, name="investigator__email", curie=OAE.curie('email'),
-                   model_uri=OAE.investigator__email, domain=None, range=Optional[str],
-                   pattern=re.compile(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'))
-
-slots.investigator__identifier_type = Slot(uri=OAE.identifier_type, name="investigator__identifier_type", curie=OAE.curie('identifier_type'),
-                   model_uri=OAE.investigator__identifier_type, domain=None, range=Optional[str])
-
-slots.investigator__identifier = Slot(uri=OAE.identifier, name="investigator__identifier", curie=OAE.curie('identifier'),
-                   model_uri=OAE.investigator__identifier, domain=None, range=Optional[str])
-
-slots.investigator__role = Slot(uri=OAE.role, name="investigator__role", curie=OAE.curie('role'),
-                   model_uri=OAE.investigator__role, domain=None, range=Optional[str])
 
 slots.interventionDetails__alkalinity_feedstock_processing = Slot(uri=OAE.alkalinity_feedstock_processing, name="interventionDetails__alkalinity_feedstock_processing", curie=OAE.curie('alkalinity_feedstock_processing'),
                    model_uri=OAE.interventionDetails__alkalinity_feedstock_processing, domain=None, range=Union[str, "AlkalinityFeedstockProcessing"])
@@ -2152,6 +2139,29 @@ slots.dosingDetails__dosing_regimen = Slot(uri=OAE.dosing_regimen, name="dosingD
 
 slots.dosingDetails__dosing_description = Slot(uri=OAE.dosing_description, name="dosingDetails__dosing_description", curie=OAE.curie('dosing_description'),
                    model_uri=OAE.dosingDetails__dosing_description, domain=None, range=str)
+
+slots.person__name = Slot(uri=OAE.name, name="person__name", curie=OAE.curie('name'),
+                   model_uri=OAE.person__name, domain=None, range=str)
+
+slots.person__affiliation = Slot(uri=OAE.affiliation, name="person__affiliation", curie=OAE.curie('affiliation'),
+                   model_uri=OAE.person__affiliation, domain=None, range=Optional[Union[dict, Organization]])
+
+slots.person__phone = Slot(uri=OAE.phone, name="person__phone", curie=OAE.curie('phone'),
+                   model_uri=OAE.person__phone, domain=None, range=Optional[str],
+                   pattern=re.compile(r'^\+?[0-9\s\-\(\)]+$'))
+
+slots.person__email = Slot(uri=OAE.email, name="person__email", curie=OAE.curie('email'),
+                   model_uri=OAE.person__email, domain=None, range=Optional[str],
+                   pattern=re.compile(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'))
+
+slots.person__identifier_type = Slot(uri=OAE.identifier_type, name="person__identifier_type", curie=OAE.curie('identifier_type'),
+                   model_uri=OAE.person__identifier_type, domain=None, range=Optional[Union[str, "ResearcherIDType"]])
+
+slots.person__identifier = Slot(uri=OAE.identifier, name="person__identifier", curie=OAE.curie('identifier'),
+                   model_uri=OAE.person__identifier, domain=None, range=Optional[str])
+
+slots.person__role = Slot(uri=OAE.role, name="person__role", curie=OAE.curie('role'),
+                   model_uri=OAE.person__role, domain=None, range=Optional[str])
 
 slots.Place_geo = Slot(uri=OAE.geo, name="Place_geo", curie=OAE.curie('geo'),
                    model_uri=OAE.Place_geo, domain=Place, range=Union[dict, Any])

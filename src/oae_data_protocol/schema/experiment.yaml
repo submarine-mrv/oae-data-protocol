@@ -72,7 +72,7 @@ classes:
         description: >-
           Provide details for each investigator including: Name, institutional information (name, address),
           phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.
-        range: Investigator
+        range: Person
         multivalued: true
         inlined_as_list: true
         required: true
@@ -107,40 +107,6 @@ classes:
           General Guidelines for Your Data for relevant sections of your data. Additional informational files, such
           as digitized laboratory notebooks, blogs, etc., may be linked here.
         range: string
-  Investigator:
-    description: "Information about a researcher or investigator involved in the experiment."
-    attributes:
-      name:
-        title: Name
-        description: "Full name of the investigator."
-        range: string
-        required: true
-      affiliation:
-        title: Affiliation
-        description: "Institutional affiliation of the investigator."
-        range: Organization
-      phone:
-        title: Phone
-        description: "Contact phone number."
-        range: string
-        pattern: '^\+?[0-9\s\-\(\)]+$'
-      email:
-        title: Email
-        description: "Contact email address."
-        range: string
-        pattern: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
-      identifier_type:
-        title: Identifier Type
-        description: "Type of researcher identifier (e.g., ORCID, ResearcherID)."
-        range: string
-      identifier:
-        title: Researcher ID
-        description: "Unique researcher identifier value."
-        range: string
-      role:
-        title: Role
-        description: "Role of the investigator in the experiment (e.g., chief scientist, data submitter)."
-        range: string
   Intervention:
     is_a: Experiment
     mixins:
@@ -166,6 +132,7 @@ classes:
           slot_conditions:
             alkalinity_feedstock_processing_custom:
               required: true
+
 
   Tracer:
     is_a: Experiment
