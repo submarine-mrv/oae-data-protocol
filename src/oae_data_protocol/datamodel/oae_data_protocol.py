@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-10-28T13:32:26
+# Generation date: 2025-10-30T20:33:03
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -129,13 +129,15 @@ class GeoShape(YAMLRoot):
     class_name: ClassVar[str] = "GeoShape"
     class_model_uri: ClassVar[URIRef] = OAE.GeoShape
 
-    box: str = None
+    box: Optional[str] = None
+    line: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.box):
-            self.MissingRequiredField("box")
-        if not isinstance(self.box, str):
+        if self.box is not None and not isinstance(self.box, str):
             self.box = str(self.box)
+
+        if self.line is not None and not isinstance(self.line, str):
+            self.line = str(self.line)
 
         super().__post_init__(**kwargs)
 
@@ -625,23 +627,28 @@ class Intervention(Experiment):
     investigators: Union[Union[dict, Investigator], List[Union[dict, Investigator]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     end_datetime: Union[str, XSDDateTime] = None
-    alkalinity_feedstock_processing: Union[Union[str, "AlkalinityFeedstockProcessing"], List[Union[str, "AlkalinityFeedstockProcessing"]]] = None
+    alkalinity_feedstock_processing: Union[str, "AlkalinityFeedstockProcessing"] = None
     alkalinity_feedstock_form: Union[str, "AlkalinityFeedstockForm"] = None
     alkalinity_feedstock: Union[str, "FeedstockType"] = None
     alkalinity_feedstock_description: str = None
     equilibration: Union[str, "EquilibrationStatus"] = None
-    alkalinity_dosing_effluent_density: str = None
-    dosing_regimen_description: str = None
-    alkalinity_feedstock_processing_other: Optional[str] = None
-    alkalinity_feedstock_other: Optional[str] = None
+    alkalinity_dosing_effluent_density: Union[dict, "DosingConcentration"] = None
+    dosing_delivery_type: Union[str, "DosingDeliveryType"] = None
+    dosing_location: Union[dict, Place] = None
+    dosing_location_provided_as_file: Union[bool, Bool] = None
+    dosing_dispersal_hydrologic_location: Union[str, "HydrologicLocation"] = None
+    dosing_depth: str = None
+    dosing_regimen: str = None
+    dosing_description: str = None
+    alkalinity_feedstock_processing_custom: Optional[str] = None
+    alkalinity_feedstock_custom: Optional[str] = None
     alkalinity_feedstock_co2_removal_potential: Optional[float] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.alkalinity_feedstock_processing):
             self.MissingRequiredField("alkalinity_feedstock_processing")
-        if not isinstance(self.alkalinity_feedstock_processing, list):
-            self.alkalinity_feedstock_processing = [self.alkalinity_feedstock_processing] if self.alkalinity_feedstock_processing is not None else []
-        self.alkalinity_feedstock_processing = [v if isinstance(v, AlkalinityFeedstockProcessing) else AlkalinityFeedstockProcessing(v) for v in self.alkalinity_feedstock_processing]
+        if not isinstance(self.alkalinity_feedstock_processing, AlkalinityFeedstockProcessing):
+            self.alkalinity_feedstock_processing = AlkalinityFeedstockProcessing(self.alkalinity_feedstock_processing)
 
         if self._is_empty(self.alkalinity_feedstock_form):
             self.MissingRequiredField("alkalinity_feedstock_form")
@@ -665,19 +672,49 @@ class Intervention(Experiment):
 
         if self._is_empty(self.alkalinity_dosing_effluent_density):
             self.MissingRequiredField("alkalinity_dosing_effluent_density")
-        if not isinstance(self.alkalinity_dosing_effluent_density, str):
-            self.alkalinity_dosing_effluent_density = str(self.alkalinity_dosing_effluent_density)
+        if not isinstance(self.alkalinity_dosing_effluent_density, DosingConcentration):
+            self.alkalinity_dosing_effluent_density = DosingConcentration(**as_dict(self.alkalinity_dosing_effluent_density))
 
-        if self._is_empty(self.dosing_regimen_description):
-            self.MissingRequiredField("dosing_regimen_description")
-        if not isinstance(self.dosing_regimen_description, str):
-            self.dosing_regimen_description = str(self.dosing_regimen_description)
+        if self._is_empty(self.dosing_delivery_type):
+            self.MissingRequiredField("dosing_delivery_type")
+        if not isinstance(self.dosing_delivery_type, DosingDeliveryType):
+            self.dosing_delivery_type = DosingDeliveryType(self.dosing_delivery_type)
 
-        if self.alkalinity_feedstock_processing_other is not None and not isinstance(self.alkalinity_feedstock_processing_other, str):
-            self.alkalinity_feedstock_processing_other = str(self.alkalinity_feedstock_processing_other)
+        if self._is_empty(self.dosing_location):
+            self.MissingRequiredField("dosing_location")
+        if not isinstance(self.dosing_location, Place):
+            self.dosing_location = Place(**as_dict(self.dosing_location))
 
-        if self.alkalinity_feedstock_other is not None and not isinstance(self.alkalinity_feedstock_other, str):
-            self.alkalinity_feedstock_other = str(self.alkalinity_feedstock_other)
+        if self._is_empty(self.dosing_location_provided_as_file):
+            self.MissingRequiredField("dosing_location_provided_as_file")
+        if not isinstance(self.dosing_location_provided_as_file, Bool):
+            self.dosing_location_provided_as_file = Bool(self.dosing_location_provided_as_file)
+
+        if self._is_empty(self.dosing_dispersal_hydrologic_location):
+            self.MissingRequiredField("dosing_dispersal_hydrologic_location")
+        if not isinstance(self.dosing_dispersal_hydrologic_location, HydrologicLocation):
+            self.dosing_dispersal_hydrologic_location = HydrologicLocation(self.dosing_dispersal_hydrologic_location)
+
+        if self._is_empty(self.dosing_depth):
+            self.MissingRequiredField("dosing_depth")
+        if not isinstance(self.dosing_depth, str):
+            self.dosing_depth = str(self.dosing_depth)
+
+        if self._is_empty(self.dosing_regimen):
+            self.MissingRequiredField("dosing_regimen")
+        if not isinstance(self.dosing_regimen, str):
+            self.dosing_regimen = str(self.dosing_regimen)
+
+        if self._is_empty(self.dosing_description):
+            self.MissingRequiredField("dosing_description")
+        if not isinstance(self.dosing_description, str):
+            self.dosing_description = str(self.dosing_description)
+
+        if self.alkalinity_feedstock_processing_custom is not None and not isinstance(self.alkalinity_feedstock_processing_custom, str):
+            self.alkalinity_feedstock_processing_custom = str(self.alkalinity_feedstock_processing_custom)
+
+        if self.alkalinity_feedstock_custom is not None and not isinstance(self.alkalinity_feedstock_custom, str):
+            self.alkalinity_feedstock_custom = str(self.alkalinity_feedstock_custom)
 
         if self.alkalinity_feedstock_co2_removal_potential is not None and not isinstance(self.alkalinity_feedstock_co2_removal_potential, float):
             self.alkalinity_feedstock_co2_removal_potential = float(self.alkalinity_feedstock_co2_removal_potential)
@@ -705,35 +742,18 @@ class Tracer(Experiment):
     investigators: Union[Union[dict, Investigator], List[Union[dict, Investigator]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     end_datetime: Union[str, XSDDateTime] = None
-    dosing_location: Union[dict, Place] = None
-    dosing_dispersal_hydrologic_location: Union[str, "HydrologicLocation"] = None
-    dosing_delivery_type: Union[str, "DosingDeliveryType"] = None
-    dosing_description: str = None
     tracer_form: Union[str, "TracerForm"] = None
     tracer_details: str = None
-    tracer_concentration: Optional[str] = None
+    tracer_concentration: Union[dict, "DosingConcentration"] = None
+    dosing_delivery_type: Union[str, "DosingDeliveryType"] = None
+    dosing_location: Union[dict, Place] = None
+    dosing_location_provided_as_file: Union[bool, Bool] = None
+    dosing_dispersal_hydrologic_location: Union[str, "HydrologicLocation"] = None
+    dosing_depth: str = None
+    dosing_regimen: str = None
+    dosing_description: str = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.dosing_location):
-            self.MissingRequiredField("dosing_location")
-        if not isinstance(self.dosing_location, Place):
-            self.dosing_location = Place(**as_dict(self.dosing_location))
-
-        if self._is_empty(self.dosing_dispersal_hydrologic_location):
-            self.MissingRequiredField("dosing_dispersal_hydrologic_location")
-        if not isinstance(self.dosing_dispersal_hydrologic_location, HydrologicLocation):
-            self.dosing_dispersal_hydrologic_location = HydrologicLocation(self.dosing_dispersal_hydrologic_location)
-
-        if self._is_empty(self.dosing_delivery_type):
-            self.MissingRequiredField("dosing_delivery_type")
-        if not isinstance(self.dosing_delivery_type, DosingDeliveryType):
-            self.dosing_delivery_type = DosingDeliveryType(self.dosing_delivery_type)
-
-        if self._is_empty(self.dosing_description):
-            self.MissingRequiredField("dosing_description")
-        if not isinstance(self.dosing_description, str):
-            self.dosing_description = str(self.dosing_description)
-
         if self._is_empty(self.tracer_form):
             self.MissingRequiredField("tracer_form")
         if not isinstance(self.tracer_form, TracerForm):
@@ -744,8 +764,327 @@ class Tracer(Experiment):
         if not isinstance(self.tracer_details, str):
             self.tracer_details = str(self.tracer_details)
 
-        if self.tracer_concentration is not None and not isinstance(self.tracer_concentration, str):
-            self.tracer_concentration = str(self.tracer_concentration)
+        if self._is_empty(self.tracer_concentration):
+            self.MissingRequiredField("tracer_concentration")
+        if not isinstance(self.tracer_concentration, DosingConcentration):
+            self.tracer_concentration = DosingConcentration(**as_dict(self.tracer_concentration))
+
+        if self._is_empty(self.dosing_delivery_type):
+            self.MissingRequiredField("dosing_delivery_type")
+        if not isinstance(self.dosing_delivery_type, DosingDeliveryType):
+            self.dosing_delivery_type = DosingDeliveryType(self.dosing_delivery_type)
+
+        if self._is_empty(self.dosing_location):
+            self.MissingRequiredField("dosing_location")
+        if not isinstance(self.dosing_location, Place):
+            self.dosing_location = Place(**as_dict(self.dosing_location))
+
+        if self._is_empty(self.dosing_location_provided_as_file):
+            self.MissingRequiredField("dosing_location_provided_as_file")
+        if not isinstance(self.dosing_location_provided_as_file, Bool):
+            self.dosing_location_provided_as_file = Bool(self.dosing_location_provided_as_file)
+
+        if self._is_empty(self.dosing_dispersal_hydrologic_location):
+            self.MissingRequiredField("dosing_dispersal_hydrologic_location")
+        if not isinstance(self.dosing_dispersal_hydrologic_location, HydrologicLocation):
+            self.dosing_dispersal_hydrologic_location = HydrologicLocation(self.dosing_dispersal_hydrologic_location)
+
+        if self._is_empty(self.dosing_depth):
+            self.MissingRequiredField("dosing_depth")
+        if not isinstance(self.dosing_depth, str):
+            self.dosing_depth = str(self.dosing_depth)
+
+        if self._is_empty(self.dosing_regimen):
+            self.MissingRequiredField("dosing_regimen")
+        if not isinstance(self.dosing_regimen, str):
+            self.dosing_regimen = str(self.dosing_regimen)
+
+        if self._is_empty(self.dosing_description):
+            self.MissingRequiredField("dosing_description")
+        if not isinstance(self.dosing_description, str):
+            self.dosing_description = str(self.dosing_description)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class InterventionWithTracer(Intervention):
+    """
+    Additional metadata that applies to hybrid experiments where an intervention was conducted simultaneously
+    alongside a tracer study, using the same instrumentation.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["InterventionWithTracer"]
+    class_class_curie: ClassVar[str] = "oae:InterventionWithTracer"
+    class_name: ClassVar[str] = "InterventionWithTracer"
+    class_model_uri: ClassVar[URIRef] = OAE.InterventionWithTracer
+
+    description: str = None
+    spatial_coverage: Union[dict, Place] = None
+    vertical_coverage: Union[dict, VerticalExtent] = None
+    experiment_id: str = None
+    experiment_type: Union[str, "ExperimentType"] = None
+    investigators: Union[Union[dict, Investigator], List[Union[dict, Investigator]]] = None
+    start_datetime: Union[str, XSDDateTime] = None
+    end_datetime: Union[str, XSDDateTime] = None
+    alkalinity_feedstock_processing: Union[str, "AlkalinityFeedstockProcessing"] = None
+    alkalinity_feedstock_form: Union[str, "AlkalinityFeedstockForm"] = None
+    alkalinity_feedstock: Union[str, "FeedstockType"] = None
+    alkalinity_feedstock_description: str = None
+    equilibration: Union[str, "EquilibrationStatus"] = None
+    alkalinity_dosing_effluent_density: Union[dict, "DosingConcentration"] = None
+    dosing_delivery_type: Union[str, "DosingDeliveryType"] = None
+    dosing_location: Union[dict, Place] = None
+    dosing_location_provided_as_file: Union[bool, Bool] = None
+    dosing_dispersal_hydrologic_location: Union[str, "HydrologicLocation"] = None
+    dosing_depth: str = None
+    dosing_regimen: str = None
+    dosing_description: str = None
+    tracer_form: Union[str, "TracerForm"] = None
+    tracer_details: str = None
+    tracer_concentration: Union[dict, "DosingConcentration"] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.tracer_form):
+            self.MissingRequiredField("tracer_form")
+        if not isinstance(self.tracer_form, TracerForm):
+            self.tracer_form = TracerForm(self.tracer_form)
+
+        if self._is_empty(self.tracer_details):
+            self.MissingRequiredField("tracer_details")
+        if not isinstance(self.tracer_details, str):
+            self.tracer_details = str(self.tracer_details)
+
+        if self._is_empty(self.tracer_concentration):
+            self.MissingRequiredField("tracer_concentration")
+        if not isinstance(self.tracer_concentration, DosingConcentration):
+            self.tracer_concentration = DosingConcentration(**as_dict(self.tracer_concentration))
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class InterventionDetails(YAMLRoot):
+    """
+    An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are specific
+    to an Experiment with type "Intervention"
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["InterventionDetails"]
+    class_class_curie: ClassVar[str] = "oae:InterventionDetails"
+    class_name: ClassVar[str] = "InterventionDetails"
+    class_model_uri: ClassVar[URIRef] = OAE.InterventionDetails
+
+    alkalinity_feedstock_processing: Union[str, "AlkalinityFeedstockProcessing"] = None
+    alkalinity_feedstock_form: Union[str, "AlkalinityFeedstockForm"] = None
+    alkalinity_feedstock: Union[str, "FeedstockType"] = None
+    alkalinity_feedstock_description: str = None
+    equilibration: Union[str, "EquilibrationStatus"] = None
+    alkalinity_dosing_effluent_density: Union[dict, "DosingConcentration"] = None
+    alkalinity_feedstock_processing_custom: Optional[str] = None
+    alkalinity_feedstock_custom: Optional[str] = None
+    alkalinity_feedstock_co2_removal_potential: Optional[float] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.alkalinity_feedstock_processing):
+            self.MissingRequiredField("alkalinity_feedstock_processing")
+        if not isinstance(self.alkalinity_feedstock_processing, AlkalinityFeedstockProcessing):
+            self.alkalinity_feedstock_processing = AlkalinityFeedstockProcessing(self.alkalinity_feedstock_processing)
+
+        if self._is_empty(self.alkalinity_feedstock_form):
+            self.MissingRequiredField("alkalinity_feedstock_form")
+        if not isinstance(self.alkalinity_feedstock_form, AlkalinityFeedstockForm):
+            self.alkalinity_feedstock_form = AlkalinityFeedstockForm(self.alkalinity_feedstock_form)
+
+        if self._is_empty(self.alkalinity_feedstock):
+            self.MissingRequiredField("alkalinity_feedstock")
+        if not isinstance(self.alkalinity_feedstock, FeedstockType):
+            self.alkalinity_feedstock = FeedstockType(self.alkalinity_feedstock)
+
+        if self._is_empty(self.alkalinity_feedstock_description):
+            self.MissingRequiredField("alkalinity_feedstock_description")
+        if not isinstance(self.alkalinity_feedstock_description, str):
+            self.alkalinity_feedstock_description = str(self.alkalinity_feedstock_description)
+
+        if self._is_empty(self.equilibration):
+            self.MissingRequiredField("equilibration")
+        if not isinstance(self.equilibration, EquilibrationStatus):
+            self.equilibration = EquilibrationStatus(self.equilibration)
+
+        if self._is_empty(self.alkalinity_dosing_effluent_density):
+            self.MissingRequiredField("alkalinity_dosing_effluent_density")
+        if not isinstance(self.alkalinity_dosing_effluent_density, DosingConcentration):
+            self.alkalinity_dosing_effluent_density = DosingConcentration(**as_dict(self.alkalinity_dosing_effluent_density))
+
+        if self.alkalinity_feedstock_processing_custom is not None and not isinstance(self.alkalinity_feedstock_processing_custom, str):
+            self.alkalinity_feedstock_processing_custom = str(self.alkalinity_feedstock_processing_custom)
+
+        if self.alkalinity_feedstock_custom is not None and not isinstance(self.alkalinity_feedstock_custom, str):
+            self.alkalinity_feedstock_custom = str(self.alkalinity_feedstock_custom)
+
+        if self.alkalinity_feedstock_co2_removal_potential is not None and not isinstance(self.alkalinity_feedstock_co2_removal_potential, float):
+            self.alkalinity_feedstock_co2_removal_potential = float(self.alkalinity_feedstock_co2_removal_potential)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class TracerDetails(YAMLRoot):
+    """
+    An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are specific
+    to an Experiment with type "Tracer"
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["TracerDetails"]
+    class_class_curie: ClassVar[str] = "oae:TracerDetails"
+    class_name: ClassVar[str] = "TracerDetails"
+    class_model_uri: ClassVar[URIRef] = OAE.TracerDetails
+
+    tracer_form: Union[str, "TracerForm"] = None
+    tracer_details: str = None
+    tracer_concentration: Union[dict, "DosingConcentration"] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.tracer_form):
+            self.MissingRequiredField("tracer_form")
+        if not isinstance(self.tracer_form, TracerForm):
+            self.tracer_form = TracerForm(self.tracer_form)
+
+        if self._is_empty(self.tracer_details):
+            self.MissingRequiredField("tracer_details")
+        if not isinstance(self.tracer_details, str):
+            self.tracer_details = str(self.tracer_details)
+
+        if self._is_empty(self.tracer_concentration):
+            self.MissingRequiredField("tracer_concentration")
+        if not isinstance(self.tracer_concentration, DosingConcentration):
+            self.tracer_concentration = DosingConcentration(**as_dict(self.tracer_concentration))
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class QuantityWithUnit(YAMLRoot):
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["QuantityWithUnit"]
+    class_class_curie: ClassVar[str] = "oae:QuantityWithUnit"
+    class_name: ClassVar[str] = "QuantityWithUnit"
+    class_model_uri: ClassVar[URIRef] = OAE.QuantityWithUnit
+
+    unit: str = None
+    amount: Optional[float] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.unit):
+            self.MissingRequiredField("unit")
+        if not isinstance(self.unit, str):
+            self.unit = str(self.unit)
+
+        if self.amount is not None and not isinstance(self.amount, float):
+            self.amount = float(self.amount)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class DosingConcentration(YAMLRoot):
+    """
+    Details of tracer concentration information
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["DosingConcentration"]
+    class_class_curie: ClassVar[str] = "oae:DosingConcentration"
+    class_name: ClassVar[str] = "DosingConcentration"
+    class_model_uri: ClassVar[URIRef] = OAE.DosingConcentration
+
+    is_derived_value: Union[bool, Bool] = None
+    is_provided_as_a_file: Union[bool, Bool] = None
+    unit: str = None
+    amount: Optional[float] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.is_derived_value):
+            self.MissingRequiredField("is_derived_value")
+        if not isinstance(self.is_derived_value, Bool):
+            self.is_derived_value = Bool(self.is_derived_value)
+
+        if self._is_empty(self.is_provided_as_a_file):
+            self.MissingRequiredField("is_provided_as_a_file")
+        if not isinstance(self.is_provided_as_a_file, Bool):
+            self.is_provided_as_a_file = Bool(self.is_provided_as_a_file)
+
+        if self._is_empty(self.unit):
+            self.MissingRequiredField("unit")
+        if not isinstance(self.unit, str):
+            self.unit = str(self.unit)
+
+        if self.amount is not None and not isinstance(self.amount, float):
+            self.amount = float(self.amount)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class DosingDetails(YAMLRoot):
+    """
+    An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are specific
+    to an Experiment with active dosing (e.g. type "Tracer", "Intervention", or "InterventionWithDosing")
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["DosingDetails"]
+    class_class_curie: ClassVar[str] = "oae:DosingDetails"
+    class_name: ClassVar[str] = "DosingDetails"
+    class_model_uri: ClassVar[URIRef] = OAE.DosingDetails
+
+    dosing_delivery_type: Union[str, "DosingDeliveryType"] = None
+    dosing_location: Union[dict, Place] = None
+    dosing_location_provided_as_file: Union[bool, Bool] = None
+    dosing_dispersal_hydrologic_location: Union[str, "HydrologicLocation"] = None
+    dosing_depth: str = None
+    dosing_regimen: str = None
+    dosing_description: str = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.dosing_delivery_type):
+            self.MissingRequiredField("dosing_delivery_type")
+        if not isinstance(self.dosing_delivery_type, DosingDeliveryType):
+            self.dosing_delivery_type = DosingDeliveryType(self.dosing_delivery_type)
+
+        if self._is_empty(self.dosing_location):
+            self.MissingRequiredField("dosing_location")
+        if not isinstance(self.dosing_location, Place):
+            self.dosing_location = Place(**as_dict(self.dosing_location))
+
+        if self._is_empty(self.dosing_location_provided_as_file):
+            self.MissingRequiredField("dosing_location_provided_as_file")
+        if not isinstance(self.dosing_location_provided_as_file, Bool):
+            self.dosing_location_provided_as_file = Bool(self.dosing_location_provided_as_file)
+
+        if self._is_empty(self.dosing_dispersal_hydrologic_location):
+            self.MissingRequiredField("dosing_dispersal_hydrologic_location")
+        if not isinstance(self.dosing_dispersal_hydrologic_location, HydrologicLocation):
+            self.dosing_dispersal_hydrologic_location = HydrologicLocation(self.dosing_dispersal_hydrologic_location)
+
+        if self._is_empty(self.dosing_depth):
+            self.MissingRequiredField("dosing_depth")
+        if not isinstance(self.dosing_depth, str):
+            self.dosing_depth = str(self.dosing_depth)
+
+        if self._is_empty(self.dosing_regimen):
+            self.MissingRequiredField("dosing_regimen")
+        if not isinstance(self.dosing_regimen, str):
+            self.dosing_regimen = str(self.dosing_regimen)
+
+        if self._is_empty(self.dosing_description):
+            self.MissingRequiredField("dosing_description")
+        if not isinstance(self.dosing_description, str):
+            self.dosing_description = str(self.dosing_description)
 
         super().__post_init__(**kwargs)
 
@@ -765,7 +1104,7 @@ class ObservationType(EnumDefinitionImpl):
         description="""Continuous measurements of oceanographic variables at the ocean surface using sensors, often in flow-through systems onboard research vessels or ships of opportunity, to obtain real-time information about the ocean's physical and chemical conditions, such as temperature, salinity, and fCO₂.""")
     time_series = PermissibleValue(
         text="time_series",
-        description="""Continuous measurements of oceanographic variables using autonomous or remotely operated platforms, including time-series moorings, uncrewed surface vehicles (USVs, e.g., Saildrones), profiling floats (e.g., Argo), and autonomous underwater vehicles (AUVs, e.g., gliders).""")
+        description="""Continuous measurements of oceanographic variables using autonomous or remotely operated platforms, including time-series moorings, uncrewed surface vehicles (USVs, eg- Saildrones), profiling floats (eg- Argo), and autonomous underwater vehicles (AUVs, eg- gliders).""")
     laboratory_experiments = PermissibleValue(
         text="laboratory_experiments",
         description="""Scientific investigations where researchers manipulate parameters of the carbonate system in laboratory aquariums to simulate future ocean alkalinity enhancement (OAE) conditions and observe the responses of selected marine organisms.""")
@@ -828,9 +1167,9 @@ class ExperimentType(EnumDefinitionImpl):
     intervention = PermissibleValue(
         text="intervention",
         description="Experiment with active OAE intervention")
-    tracer = PermissibleValue(
-        text="tracer",
-        description="Tracer study experiment (e.g., dye or gas tracer study)")
+    tracer_study = PermissibleValue(
+        text="tracer_study",
+        description="Tracer study experiment (eg- dye or gas tracer study)")
     model = PermissibleValue(
         text="model",
         description="Model-based experiment or simulation")
@@ -959,7 +1298,7 @@ class TracerForm(EnumDefinitionImpl):
         description="Gas tracer")
     dye = PermissibleValue(
         text="dye",
-        description="Dye tracer (e.g., rhodamine)")
+        description="Dye tracer (eg- rhodamine)")
     other = PermissibleValue(
         text="other",
         description="Other tracer form not covered by standard categories")
@@ -1026,6 +1365,9 @@ class FeedstockType(EnumDefinitionImpl):
         text="nahcolite",
         description="Nahcolite (NaHCO₃) used as an alkalinity source.",
         meaning=PUBCHEM["516892"])
+    other = PermissibleValue(
+        text="other",
+        description="Enter a custom value in the field provided")
 
     _defn = EnumDefinition(
         name="FeedstockType",
@@ -1589,26 +1931,17 @@ slots.vertical_coverage = Slot(uri=OAE.vertical_coverage, name="vertical_coverag
 slots.geo = Slot(uri=OAE.geo, name="geo", curie=OAE.curie('geo'),
                    model_uri=OAE.geo, domain=None, range=Optional[Union[dict, Any]])
 
-slots.dosing_delivery_type = Slot(uri=OAE.dosing_delivery_type, name="dosing_delivery_type", curie=OAE.curie('dosing_delivery_type'),
-                   model_uri=OAE.dosing_delivery_type, domain=None, range=Union[str, "DosingDeliveryType"])
+slots.is_provided_as_a_file = Slot(uri=OAE.is_provided_as_a_file, name="is_provided_as_a_file", curie=OAE.curie('is_provided_as_a_file'),
+                   model_uri=OAE.is_provided_as_a_file, domain=None, range=Union[bool, Bool])
 
-slots.dosing_location = Slot(uri=OAE.dosing_location, name="dosing_location", curie=OAE.curie('dosing_location'),
-                   model_uri=OAE.dosing_location, domain=None, range=Union[dict, Place])
-
-slots.dosing_location_provided_as_file = Slot(uri=OAE.dosing_location_provided_as_file, name="dosing_location_provided_as_file", curie=OAE.curie('dosing_location_provided_as_file'),
-                   model_uri=OAE.dosing_location_provided_as_file, domain=None, range=Union[bool, Bool])
-
-slots.dosing_dispersal_hydrologic_location = Slot(uri=OAE.dosing_dispersal_hydrologic_location, name="dosing_dispersal_hydrologic_location", curie=OAE.curie('dosing_dispersal_hydrologic_location'),
-                   model_uri=OAE.dosing_dispersal_hydrologic_location, domain=None, range=Union[str, "HydrologicLocation"])
-
-slots.dosing_depth = Slot(uri=OAE.dosing_depth, name="dosing_depth", curie=OAE.curie('dosing_depth'),
-                   model_uri=OAE.dosing_depth, domain=None, range=str)
-
-slots.dosing_description = Slot(uri=OAE.dosing_description, name="dosing_description", curie=OAE.curie('dosing_description'),
-                   model_uri=OAE.dosing_description, domain=None, range=str)
+slots.is_derived_value = Slot(uri=OAE.is_derived_value, name="is_derived_value", curie=OAE.curie('is_derived_value'),
+                   model_uri=OAE.is_derived_value, domain=None, range=Union[bool, Bool])
 
 slots.geoShape__box = Slot(uri=SCHEMA.box, name="geoShape__box", curie=SCHEMA.curie('box'),
-                   model_uri=OAE.geoShape__box, domain=None, range=str)
+                   model_uri=OAE.geoShape__box, domain=None, range=Optional[str])
+
+slots.geoShape__line = Slot(uri=SCHEMA.line, name="geoShape__line", curie=SCHEMA.curie('line'),
+                   model_uri=OAE.geoShape__line, domain=None, range=Optional[str])
 
 slots.geoCoordinates__latitude = Slot(uri=SCHEMA.latitude, name="geoCoordinates__latitude", curie=SCHEMA.curie('latitude'),
                    model_uri=OAE.geoCoordinates__latitude, domain=None, range=float)
@@ -1757,44 +2090,68 @@ slots.investigator__identifier = Slot(uri=OAE.identifier, name="investigator__id
 slots.investigator__role = Slot(uri=OAE.role, name="investigator__role", curie=OAE.curie('role'),
                    model_uri=OAE.investigator__role, domain=None, range=Optional[str])
 
-slots.intervention__alkalinity_feedstock_processing = Slot(uri=OAE.alkalinity_feedstock_processing, name="intervention__alkalinity_feedstock_processing", curie=OAE.curie('alkalinity_feedstock_processing'),
-                   model_uri=OAE.intervention__alkalinity_feedstock_processing, domain=None, range=Union[Union[str, "AlkalinityFeedstockProcessing"], List[Union[str, "AlkalinityFeedstockProcessing"]]])
+slots.interventionDetails__alkalinity_feedstock_processing = Slot(uri=OAE.alkalinity_feedstock_processing, name="interventionDetails__alkalinity_feedstock_processing", curie=OAE.curie('alkalinity_feedstock_processing'),
+                   model_uri=OAE.interventionDetails__alkalinity_feedstock_processing, domain=None, range=Union[str, "AlkalinityFeedstockProcessing"])
 
-slots.intervention__alkalinity_feedstock_processing_other = Slot(uri=OAE.alkalinity_feedstock_processing_other, name="intervention__alkalinity_feedstock_processing_other", curie=OAE.curie('alkalinity_feedstock_processing_other'),
-                   model_uri=OAE.intervention__alkalinity_feedstock_processing_other, domain=None, range=Optional[str])
+slots.interventionDetails__alkalinity_feedstock_processing_custom = Slot(uri=OAE.alkalinity_feedstock_processing_custom, name="interventionDetails__alkalinity_feedstock_processing_custom", curie=OAE.curie('alkalinity_feedstock_processing_custom'),
+                   model_uri=OAE.interventionDetails__alkalinity_feedstock_processing_custom, domain=None, range=Optional[str])
 
-slots.intervention__alkalinity_feedstock_form = Slot(uri=OAE.alkalinity_feedstock_form, name="intervention__alkalinity_feedstock_form", curie=OAE.curie('alkalinity_feedstock_form'),
-                   model_uri=OAE.intervention__alkalinity_feedstock_form, domain=None, range=Union[str, "AlkalinityFeedstockForm"])
+slots.interventionDetails__alkalinity_feedstock_form = Slot(uri=OAE.alkalinity_feedstock_form, name="interventionDetails__alkalinity_feedstock_form", curie=OAE.curie('alkalinity_feedstock_form'),
+                   model_uri=OAE.interventionDetails__alkalinity_feedstock_form, domain=None, range=Union[str, "AlkalinityFeedstockForm"])
 
-slots.intervention__alkalinity_feedstock = Slot(uri=OAE.alkalinity_feedstock, name="intervention__alkalinity_feedstock", curie=OAE.curie('alkalinity_feedstock'),
-                   model_uri=OAE.intervention__alkalinity_feedstock, domain=None, range=Union[str, "FeedstockType"])
+slots.interventionDetails__alkalinity_feedstock = Slot(uri=OAE.alkalinity_feedstock, name="interventionDetails__alkalinity_feedstock", curie=OAE.curie('alkalinity_feedstock'),
+                   model_uri=OAE.interventionDetails__alkalinity_feedstock, domain=None, range=Union[str, "FeedstockType"])
 
-slots.intervention__alkalinity_feedstock_other = Slot(uri=OAE.alkalinity_feedstock_other, name="intervention__alkalinity_feedstock_other", curie=OAE.curie('alkalinity_feedstock_other'),
-                   model_uri=OAE.intervention__alkalinity_feedstock_other, domain=None, range=Optional[str])
+slots.interventionDetails__alkalinity_feedstock_custom = Slot(uri=OAE.alkalinity_feedstock_custom, name="interventionDetails__alkalinity_feedstock_custom", curie=OAE.curie('alkalinity_feedstock_custom'),
+                   model_uri=OAE.interventionDetails__alkalinity_feedstock_custom, domain=None, range=Optional[str])
 
-slots.intervention__alkalinity_feedstock_co2_removal_potential = Slot(uri=OAE.alkalinity_feedstock_co2_removal_potential, name="intervention__alkalinity_feedstock_co2_removal_potential", curie=OAE.curie('alkalinity_feedstock_co2_removal_potential'),
-                   model_uri=OAE.intervention__alkalinity_feedstock_co2_removal_potential, domain=None, range=Optional[float])
+slots.interventionDetails__alkalinity_feedstock_co2_removal_potential = Slot(uri=OAE.alkalinity_feedstock_co2_removal_potential, name="interventionDetails__alkalinity_feedstock_co2_removal_potential", curie=OAE.curie('alkalinity_feedstock_co2_removal_potential'),
+                   model_uri=OAE.interventionDetails__alkalinity_feedstock_co2_removal_potential, domain=None, range=Optional[float])
 
-slots.intervention__alkalinity_feedstock_description = Slot(uri=OAE.alkalinity_feedstock_description, name="intervention__alkalinity_feedstock_description", curie=OAE.curie('alkalinity_feedstock_description'),
-                   model_uri=OAE.intervention__alkalinity_feedstock_description, domain=None, range=str)
+slots.interventionDetails__alkalinity_feedstock_description = Slot(uri=OAE.alkalinity_feedstock_description, name="interventionDetails__alkalinity_feedstock_description", curie=OAE.curie('alkalinity_feedstock_description'),
+                   model_uri=OAE.interventionDetails__alkalinity_feedstock_description, domain=None, range=str)
 
-slots.intervention__equilibration = Slot(uri=OAE.equilibration, name="intervention__equilibration", curie=OAE.curie('equilibration'),
-                   model_uri=OAE.intervention__equilibration, domain=None, range=Union[str, "EquilibrationStatus"])
+slots.interventionDetails__equilibration = Slot(uri=OAE.equilibration, name="interventionDetails__equilibration", curie=OAE.curie('equilibration'),
+                   model_uri=OAE.interventionDetails__equilibration, domain=None, range=Union[str, "EquilibrationStatus"])
 
-slots.intervention__alkalinity_dosing_effluent_density = Slot(uri=OAE.alkalinity_dosing_effluent_density, name="intervention__alkalinity_dosing_effluent_density", curie=OAE.curie('alkalinity_dosing_effluent_density'),
-                   model_uri=OAE.intervention__alkalinity_dosing_effluent_density, domain=None, range=str)
+slots.interventionDetails__alkalinity_dosing_effluent_density = Slot(uri=OAE.alkalinity_dosing_effluent_density, name="interventionDetails__alkalinity_dosing_effluent_density", curie=OAE.curie('alkalinity_dosing_effluent_density'),
+                   model_uri=OAE.interventionDetails__alkalinity_dosing_effluent_density, domain=None, range=Union[dict, DosingConcentration])
 
-slots.intervention__dosing_regimen_description = Slot(uri=OAE.dosing_regimen_description, name="intervention__dosing_regimen_description", curie=OAE.curie('dosing_regimen_description'),
-                   model_uri=OAE.intervention__dosing_regimen_description, domain=None, range=str)
+slots.tracerDetails__tracer_form = Slot(uri=OAE.tracer_form, name="tracerDetails__tracer_form", curie=OAE.curie('tracer_form'),
+                   model_uri=OAE.tracerDetails__tracer_form, domain=None, range=Union[str, "TracerForm"])
 
-slots.tracer__tracer_form = Slot(uri=OAE.tracer_form, name="tracer__tracer_form", curie=OAE.curie('tracer_form'),
-                   model_uri=OAE.tracer__tracer_form, domain=None, range=Union[str, "TracerForm"])
+slots.tracerDetails__tracer_details = Slot(uri=OAE.tracer_details, name="tracerDetails__tracer_details", curie=OAE.curie('tracer_details'),
+                   model_uri=OAE.tracerDetails__tracer_details, domain=None, range=str)
 
-slots.tracer__tracer_details = Slot(uri=OAE.tracer_details, name="tracer__tracer_details", curie=OAE.curie('tracer_details'),
-                   model_uri=OAE.tracer__tracer_details, domain=None, range=str)
+slots.tracerDetails__tracer_concentration = Slot(uri=OAE.tracer_concentration, name="tracerDetails__tracer_concentration", curie=OAE.curie('tracer_concentration'),
+                   model_uri=OAE.tracerDetails__tracer_concentration, domain=None, range=Union[dict, DosingConcentration])
 
-slots.tracer__tracer_concentration = Slot(uri=OAE.tracer_concentration, name="tracer__tracer_concentration", curie=OAE.curie('tracer_concentration'),
-                   model_uri=OAE.tracer__tracer_concentration, domain=None, range=Optional[str])
+slots.quantityWithUnit__amount = Slot(uri=OAE.amount, name="quantityWithUnit__amount", curie=OAE.curie('amount'),
+                   model_uri=OAE.quantityWithUnit__amount, domain=None, range=Optional[float])
+
+slots.quantityWithUnit__unit = Slot(uri=OAE.unit, name="quantityWithUnit__unit", curie=OAE.curie('unit'),
+                   model_uri=OAE.quantityWithUnit__unit, domain=None, range=str)
+
+slots.dosingDetails__dosing_delivery_type = Slot(uri=OAE.dosing_delivery_type, name="dosingDetails__dosing_delivery_type", curie=OAE.curie('dosing_delivery_type'),
+                   model_uri=OAE.dosingDetails__dosing_delivery_type, domain=None, range=Union[str, "DosingDeliveryType"])
+
+slots.dosingDetails__dosing_location = Slot(uri=OAE.dosing_location, name="dosingDetails__dosing_location", curie=OAE.curie('dosing_location'),
+                   model_uri=OAE.dosingDetails__dosing_location, domain=None, range=Union[dict, Place])
+
+slots.dosingDetails__dosing_location_provided_as_file = Slot(uri=OAE.dosing_location_provided_as_file, name="dosingDetails__dosing_location_provided_as_file", curie=OAE.curie('dosing_location_provided_as_file'),
+                   model_uri=OAE.dosingDetails__dosing_location_provided_as_file, domain=None, range=Union[bool, Bool])
+
+slots.dosingDetails__dosing_dispersal_hydrologic_location = Slot(uri=OAE.dosing_dispersal_hydrologic_location, name="dosingDetails__dosing_dispersal_hydrologic_location", curie=OAE.curie('dosing_dispersal_hydrologic_location'),
+                   model_uri=OAE.dosingDetails__dosing_dispersal_hydrologic_location, domain=None, range=Union[str, "HydrologicLocation"])
+
+slots.dosingDetails__dosing_depth = Slot(uri=OAE.dosing_depth, name="dosingDetails__dosing_depth", curie=OAE.curie('dosing_depth'),
+                   model_uri=OAE.dosingDetails__dosing_depth, domain=None, range=str)
+
+slots.dosingDetails__dosing_regimen = Slot(uri=OAE.dosing_regimen, name="dosingDetails__dosing_regimen", curie=OAE.curie('dosing_regimen'),
+                   model_uri=OAE.dosingDetails__dosing_regimen, domain=None, range=str)
+
+slots.dosingDetails__dosing_description = Slot(uri=OAE.dosing_description, name="dosingDetails__dosing_description", curie=OAE.curie('dosing_description'),
+                   model_uri=OAE.dosingDetails__dosing_description, domain=None, range=str)
 
 slots.Place_geo = Slot(uri=OAE.geo, name="Place_geo", curie=OAE.curie('geo'),
                    model_uri=OAE.Place_geo, domain=Place, range=Union[dict, Any])
