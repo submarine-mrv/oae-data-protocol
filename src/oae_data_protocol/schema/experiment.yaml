@@ -64,6 +64,8 @@ classes:
         title: mCDR Experiment Type
         description: "The type of mCDR experiment conducted. See Controlled Vocabularies section for definitions."
         range: ExperimentType
+        # TODO: Make sure this gets handled correctly -- we want multiple options
+        # multivalued: true
         required: true
       investigators:
         title: Investigators
@@ -139,22 +141,61 @@ classes:
         title: Role
         description: "Role of the investigator in the experiment (e.g., chief scientist, data submitter)."
         range: string
-
   Intervention:
     is_a: Experiment
+    mixins:
+      - InterventionDetails
+      - DosingDetails
     description: >-
       Additional metadata that applies to experiments where an intervention, such as an alkalinity addition, was
       conducted.
+    rules:
+      - preconditions:
+          slot_conditions:
+            alkalinity_feedstock:
+              equals_string: "other"
+        postconditions:
+          slot_conditions:
+            alkalinity_feedstock_custom:
+              required: true
+      - preconditions:
+          slot_conditions:
+            alkalinity_feedstock_processing:
+              equals_string: "other"
+        postconditions:
+          slot_conditions:
+            alkalinity_feedstock_processing_custom:
+              required: true
+
+  Tracer:
+    is_a: Experiment
+    description: "Additional metadata that applies to experiments where a tracer study was conducted"
+    mixins:
+      - TracerDetails
+      - DosingDetails
+
+  InterventionWithTracer:
+    is_a: Intervention
+    mixins:
+      - TracerDetails
+    description: >-
+      Additional metadata that applies to hybrid experiments where an intervention was conducted simultaneously
+      alongside a tracer study, using the same instrumentation.
+
+  InterventionDetails:
+    description: >- 
+      An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are 
+      specific to an Experiment with type "Intervention"
+    mixin: true
     attributes:
       alkalinity_feedstock_processing:
         title: Alkalinity Feedstock Processing
         description: >-
           Method(s) used to process the alkalinity feedstock. See Controlled Vocabularies section for definitions.
         range: AlkalinityFeedstockProcessing
-        multivalued: true
         required: true
-      alkalinity_feedstock_processing_other:
-        title: Alkalinity Feedstock Processing (Other)
+      alkalinity_feedstock_processing_custom:
+        title: Alkalinity Feedstock Processing (Custom)
         description: >-
           Custom description of alkalinity feedstock processing method when 'other' is selected in
           alkalinity_feedstock_processing.
@@ -175,8 +216,8 @@ classes:
           include your unique feedstock).
         range: FeedstockType
         required: true
-      alkalinity_feedstock_other:
-        title: Alkalinity Feedstock (Other)
+      alkalinity_feedstock_custom:
+        title: Alkalinity Feedstock (Custom)
         description: >-
           Custom description of alkalinity feedstock when using a feedstock type not listed in the controlled
           vocabulary.
@@ -211,9 +252,87 @@ classes:
           directly measured or a derived value. If this is a variable included with your data, please note so here as
           'alkalinity dosing effluent density is provided as a variable' and use 'dosing_effluent_density' for your
           column header name.
+        range: DosingConcentration
+        required: true
+  TracerDetails:
+    description: >-
+      An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are 
+      specific to an Experiment with type "Tracer"
+    mixin: true
+    attributes:
+      tracer_form:
+        title: Tracer Form
+        description: "The form of tracer upon delivery to the ocean (e.g. gas or dye-release)"
+        range: TracerForm
+        required: true
+      tracer_details:
+        title: Tracer Details
+        description: "state the kind of tracer used (e.g. rhodamine, or a specific gas)"
         range: string
         required: true
-      dosing_regimen_description:
+      tracer_concentration:
+        title: Tracer Concentration
+        # todo: update to number & unit. along with effluent density
+        description: >-
+          Fixed concentration or provide link/source to tracer concentration separately in the dosing file. Please
+          include whether concentration is directly measured or a derived value. If this is a variable included with 
+          your data, please note so here as 'tracer concentration provided as a variable' and use
+          'tracer_concentration' for your column header name.
+        range: DosingConcentration
+        required: true
+  QuantityWithUnit:
+    mixin: true
+    attributes:
+      amount:
+        range: float
+      # TODO: update unit to be semantic type (units-of-measure, or qudt)
+      unit:
+        range: string
+        required: true
+  DosingConcentration:
+    # TODO: Add a `rules` block to require `amount` and `unit` to be empty if `provided_as_a_file` is true
+    description: Details of tracer concentration information
+    mixins:
+      - QuantityWithUnit
+    slots:
+      - is_derived_value
+      - is_provided_as_a_file
+
+  DosingDetails:
+    mixin: true
+    description: >-
+      An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are 
+      specific to an Experiment with active dosing (e.g. type "Tracer", "Intervention", or "InterventionWithDosing")
+    attributes:
+      dosing_delivery_type:
+        title: Dosing Delivery Type
+        description: "Type of dosing delivery method. See Controlled Vocabularies for definitions."
+        range: DosingDeliveryType
+        required: true
+      dosing_location:
+        title: Dosing Location
+        description: >-
+          Provide latitude and longitude in decimal degrees. Depending on your method of dispersal, this information may
+          be provided as a point source, vector, or bounding box. If provided as a vector, the latitude and longitude
+          values should be included in the dosing data file.
+        range: Place
+        required: true
+      dosing_location_provided_as_file:
+        range: boolean
+        required: true
+      dosing_dispersal_hydrologic_location:
+        title: Dosing Dispersal Hydrologic Location
+        description: "Descriptive dosing location"
+        range: HydrologicLocation
+        required: true
+      dosing_depth:
+        title: Dosing Depth
+        description: >-
+          Depth in meters. If this is variable, please include the schedule of depth changes and depths, or as a vector
+          in meters with the data.
+        range: string
+        required: true
+      dosing_regimen:
         title: Dosing Regimen
         # TODO: Would be nice to add an example to this description (e.g. hourly, continuous rampup over 24-hour period...)
         description: >-
@@ -221,69 +340,26 @@ classes:
           in the corresponding dosing file with exact timestamps for dosing on/off schedule.
         range: string
         required: true
-  Tracer:
-    is_a: Experiment
-    description: "Additional metadata that applies to experiments where a tracer study was conducted"
-    slots:
-      - dosing_location
-      - dosing_dispersal_hydrologic_location
-      - dosing_delivery_type
-      - dosing_description
-    attributes:
-      tracer_form:
-        description: "The form of tracer upon delivery to the ocean (e.g. gas or dye-release)"
-        range: TracerForm
-        required: true
-      tracer_details:
-        description: "state the kind of tracer used (e.g. rhodamine, or a specific gas)"
+      dosing_description:
+        title: Dosing Description
+        description: >-
+          Please be descriptive. Information about the dosing mechanism must be included (outflow from pipe,
+          diffuser, doser, manual placement)
+          
+          E.g., outflow from existing facility pipe directly to ocean, manual riverine introduction, coastal
+          distribution at three separate 30 meter long sections, pier-based diffuser to intercoastal bay, distributed
+          from stationary barge 10 miles offshore.
         range: string
         required: true
-      tracer_concentration:
-        # todo: update to number & unit. along with effluent density
-        range: string
 
-# the following slots are used only by classes in this file
-# it's primarily used for slots that are common to Intervention and Tracer experiment types
 slots:
-  dosing_delivery_type:
-    title: Dosing Delivery Type
-    description: "Type of dosing delivery method. See Controlled Vocabularies for definitions."
-    range: DosingDeliveryType
-    required: true
-  dosing_location:
-    title: Dosing Location
+  is_provided_as_a_file:
     description: >-
-      Provide latitude and longitude in decimal degrees. Depending on your method of dispersal, this information may be
-      provided as a point source, vector, or bounding box. If provided as a vector, the latitude and longitude values
-      should be included in the dosing data file.
-
-      NOTE: This field needs to be upgraded to support either a point, line, or bounding box geometry type. In the case
-      of a bounding box, a file name should be provided referencing the dosing data file.
-    range: Place
-    required: true
-  dosing_location_provided_as_file:
+      Indicates that the field in question is provided as a file. The value used here is intended to be a summary range
+      or general area of coverage.
     range: boolean
     required: true
-  dosing_dispersal_hydrologic_location:
-    title: Dosing Dispersal Hydrologic Location
-    description: "Descriptive dosing location"
-    range: HydrologicLocation
-    required: true
-  dosing_depth:
-    title: Dosing Depth
-    description: >-
-      Depth in meters. If this is variable, please include the schedule of depth changes and depths, or as a vector
-      in meters with the data.
-    range: string
-    required: true
-  dosing_description:
-    title: Dosing Description
-    description: >-
-      Please be descriptive. Information about the dosing mechanism must be included (outflow from pipe,
-      diffuser, doser, manual placement)
-      
-      E.g., outflow from existing facility pipe directly to ocean, manual riverine introduction, coastal
-      distribution at three separate 30 meter long sections, pier-based diffuser to intercoastal bay, distributed
-      from stationary barge 10 miles offshore.
-    range: string
+  is_derived_value:
+    description: Indicates that the field in question is a derived value as opposed to one measured directly.
+    range: boolean
     required: true
