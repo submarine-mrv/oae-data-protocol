@@ -67,13 +67,21 @@ classes:
         required: true
     class_uri: "schema:Place"
   GeoShape:
-    description: "The geographic shape of a place. A GeoShape can be described using several properties whose values are based on latitude/longitude pairs. Either whitespace or commas can be used to separate latitude and longitude; whitespace should be used when writing a list of several such points. (imported from schema.org)"
+    description: >-
+      The geographic shape of a place. A GeoShape can be described using several properties whose values are based on
+      latitude/longitude pairs. Either whitespace or commas can be used to separate latitude and longitude; whitespace
+      should be used when writing a list of several such points. (imported from schema.org)
     attributes:
       box:
         description: "A box defined by two latitude-longitude points, southwest and northeast."
         range: string
         slot_uri: schema:box
-        required: true
+      line:
+        description: >-
+          A line is a point-to-point path consisting of two or more points. A line is expressed as a series of two or
+          more point objects separated by space.
+        range: string
+        slot_uri: schema:line
     class_uri: "schema:GeoShape"
   GeoCoordinates:
     class_uri: "schema:GeoCoordinates"
