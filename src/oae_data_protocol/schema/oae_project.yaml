@@ -13,14 +13,11 @@ classes:
     slots:
       - temporal_coverage
       - spatial_coverage
-      - vertical_coverage
     slot_usage:
       - temporal_coverage:
           required: true
           description: "The start and end date (optional) of the project"
       - spatial_coverage:
-          required: true
-      - vertical_coverage:
           required: true
     attributes:
       project_id:
@@ -80,6 +77,7 @@ classes:
         title: MCDR Pathway
         description: "The Marine Carbon Dioxide Removal (MCDR) pathway being studied."
         range: MCDRPathway
+        required: true
       previous_or_ongoing_colocated_research:
         title: Previous or Ongoing Co-located Research
         description: >-
