@@ -59,13 +59,31 @@ classes:
   Any:
     class_uri: linkml:Any
   Place:
-    description: "A bounding box defined by latitude and longitude coordinates."
+    description: >-
+      A geospatial area of interest, defined by a bounding box, polygon/line, or a point designated as a 
+      pair of geo-coordinates.
     slots:
       - geo
+    class_uri: "schema:Place"
+  SpatialCoverage:
+    is_a: Place
+    description: "A bounding box defined by latitude and longitude coordinates."
     slot_usage:
       geo:
         required: true
-    class_uri: "schema:Place"
+        range: GeoShape
+  DosingLocation:
+    is_a: Place
+    description: >-
+      A specific location of dosing for an OAE intervention and/or tracer study. Can be a point, line, or bounding box
+    attributes:
+      dosing_location_file:
+        # TODO: Add rules so that dosing_location_file is required IFF dosing_location is a bounding box
+        description: >-
+          Exact path and filename for the location file (relative to root path of project), attached separately.
+          Format should be one of GeoJSON or Shapefile.
+        range: string
+
   GeoShape:
     description: >-
       The geographic shape of a place. A GeoShape can be described using several properties whose values are based on
