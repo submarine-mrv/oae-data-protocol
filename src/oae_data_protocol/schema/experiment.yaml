@@ -16,6 +16,7 @@ classes:
       - description
       - spatial_coverage
       - vertical_coverage
+      - permits
     slot_usage:
       description:
         title: Experiment Description

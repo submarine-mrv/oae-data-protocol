@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-11-05T01:03:45
+# Generation date: 2025-11-06T17:47:21
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -285,7 +285,6 @@ class OAEProject(YAMLRoot):
 
     temporal_coverage: str = None
     spatial_coverage: Union[dict, Place] = None
-    vertical_coverage: Union[dict, VerticalExtent] = None
     project_id: str = None
     mcdr_pathway: Union[str, "MCDRPathway"] = None
     experiments: Optional[Union[Union[dict, "Experiment"], List[Union[dict, "Experiment"]]]] = empty_list()
@@ -296,7 +295,6 @@ class OAEProject(YAMLRoot):
     social_research_conducted_to_date: Optional[str] = None
     previous_or_ongoing_colocated_research: Optional[Union[Union[dict, "ExternalProject"], List[Union[dict, "ExternalProject"]]]] = empty_list()
     colocated_operations: Optional[str] = None
-    permits: Optional[Union[Union[dict, "Permit"], List[Union[dict, "Permit"]]]] = empty_list()
     public_comments: Optional[Union[Union[dict, "NamedLink"], List[Union[dict, "NamedLink"]]]] = empty_list()
     research_project: Optional[str] = None
     funding: Optional[Union[Union[dict, "MonetaryGrant"], List[Union[dict, "MonetaryGrant"]]]] = empty_list()
@@ -312,11 +310,6 @@ class OAEProject(YAMLRoot):
             self.MissingRequiredField("spatial_coverage")
         if not isinstance(self.spatial_coverage, Place):
             self.spatial_coverage = Place(**as_dict(self.spatial_coverage))
-
-        if self._is_empty(self.vertical_coverage):
-            self.MissingRequiredField("vertical_coverage")
-        if not isinstance(self.vertical_coverage, VerticalExtent):
-            self.vertical_coverage = VerticalExtent(**as_dict(self.vertical_coverage))
 
         if self._is_empty(self.project_id):
             self.MissingRequiredField("project_id")
@@ -351,10 +344,6 @@ class OAEProject(YAMLRoot):
         if self.colocated_operations is not None and not isinstance(self.colocated_operations, str):
             self.colocated_operations = str(self.colocated_operations)
 
-        if not isinstance(self.permits, list):
-            self.permits = [self.permits] if self.permits is not None else []
-        self.permits = [v if isinstance(v, Permit) else Permit(**as_dict(v)) for v in self.permits]
-
         self._normalize_inlined_as_dict(slot_name="public_comments", slot_type=NamedLink, key_name="name", keyed=False)
 
         if self.research_project is not None and not isinstance(self.research_project, str):
@@ -366,47 +355,6 @@ class OAEProject(YAMLRoot):
 
         if self.additional_details is not None and not isinstance(self.additional_details, str):
             self.additional_details = str(self.additional_details)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class Permit(YAMLRoot):
-    """
-    A permit associated with the project.
-    """
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OAE["Permit"]
-    class_class_curie: ClassVar[str] = "oae:Permit"
-    class_name: ClassVar[str] = "Permit"
-    class_model_uri: ClassVar[URIRef] = OAE.Permit
-
-    permit_id: str = None
-    permitting_authority: str = None
-    permit_status: Union[str, "PermitStatus"] = None
-    approval_document: Union[str, URI] = None
-
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.permit_id):
-            self.MissingRequiredField("permit_id")
-        if not isinstance(self.permit_id, str):
-            self.permit_id = str(self.permit_id)
-
-        if self._is_empty(self.permitting_authority):
-            self.MissingRequiredField("permitting_authority")
-        if not isinstance(self.permitting_authority, str):
-            self.permitting_authority = str(self.permitting_authority)
-
-        if self._is_empty(self.permit_status):
-            self.MissingRequiredField("permit_status")
-        if not isinstance(self.permit_status, PermitStatus):
-            self.permit_status = PermitStatus(self.permit_status)
-
-        if self._is_empty(self.approval_document):
-            self.MissingRequiredField("approval_document")
-        if not isinstance(self.approval_document, URI):
-            self.approval_document = URI(self.approval_document)
 
         super().__post_init__(**kwargs)
 
@@ -540,6 +488,7 @@ class Experiment(YAMLRoot):
     start_datetime: Union[str, XSDDateTime] = None
     end_datetime: Union[str, XSDDateTime] = None
     name: Optional[str] = None
+    permits: Optional[Union[Union[dict, "Permit"], List[Union[dict, "Permit"]]]] = empty_list()
     project_id: Optional[str] = None
     data_conflicts_and_unreported_data: Optional[str] = None
     meteorological_and_tidal_data: Optional[Union[Union[dict, NamedLink], List[Union[dict, NamedLink]]]] = empty_list()
@@ -590,6 +539,10 @@ class Experiment(YAMLRoot):
         if self.name is not None and not isinstance(self.name, str):
             self.name = str(self.name)
 
+        if not isinstance(self.permits, list):
+            self.permits = [self.permits] if self.permits is not None else []
+        self.permits = [v if isinstance(v, Permit) else Permit(**as_dict(v)) for v in self.permits]
+
         if self.project_id is not None and not isinstance(self.project_id, str):
             self.project_id = str(self.project_id)
 
@@ -630,6 +583,7 @@ class Intervention(Experiment):
     alkalinity_feedstock_processing: Union[str, "AlkalinityFeedstockProcessing"] = None
     alkalinity_feedstock_form: Union[str, "AlkalinityFeedstockForm"] = None
     alkalinity_feedstock: Union[str, "FeedstockType"] = None
+    alkalinity_feedstock_co2_removal_potential: float = None
     alkalinity_feedstock_description: str = None
     equilibration: Union[str, "EquilibrationStatus"] = None
     alkalinity_dosing_effluent_density: Union[dict, "DosingConcentration"] = None
@@ -641,7 +595,6 @@ class Intervention(Experiment):
     dosing_description: str = None
     alkalinity_feedstock_processing_custom: Optional[str] = None
     alkalinity_feedstock_custom: Optional[str] = None
-    alkalinity_feedstock_co2_removal_potential: Optional[float] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.alkalinity_feedstock_processing):
@@ -658,6 +611,11 @@ class Intervention(Experiment):
             self.MissingRequiredField("alkalinity_feedstock")
         if not isinstance(self.alkalinity_feedstock, FeedstockType):
             self.alkalinity_feedstock = FeedstockType(self.alkalinity_feedstock)
+
+        if self._is_empty(self.alkalinity_feedstock_co2_removal_potential):
+            self.MissingRequiredField("alkalinity_feedstock_co2_removal_potential")
+        if not isinstance(self.alkalinity_feedstock_co2_removal_potential, float):
+            self.alkalinity_feedstock_co2_removal_potential = float(self.alkalinity_feedstock_co2_removal_potential)
 
         if self._is_empty(self.alkalinity_feedstock_description):
             self.MissingRequiredField("alkalinity_feedstock_description")
@@ -709,9 +667,6 @@ class Intervention(Experiment):
 
         if self.alkalinity_feedstock_custom is not None and not isinstance(self.alkalinity_feedstock_custom, str):
             self.alkalinity_feedstock_custom = str(self.alkalinity_feedstock_custom)
-
-        if self.alkalinity_feedstock_co2_removal_potential is not None and not isinstance(self.alkalinity_feedstock_co2_removal_potential, float):
-            self.alkalinity_feedstock_co2_removal_potential = float(self.alkalinity_feedstock_co2_removal_potential)
 
         super().__post_init__(**kwargs)
 
@@ -819,6 +774,7 @@ class InterventionWithTracer(Intervention):
     alkalinity_feedstock_processing: Union[str, "AlkalinityFeedstockProcessing"] = None
     alkalinity_feedstock_form: Union[str, "AlkalinityFeedstockForm"] = None
     alkalinity_feedstock: Union[str, "FeedstockType"] = None
+    alkalinity_feedstock_co2_removal_potential: float = None
     alkalinity_feedstock_description: str = None
     equilibration: Union[str, "EquilibrationStatus"] = None
     alkalinity_dosing_effluent_density: Union[dict, "DosingConcentration"] = None
@@ -867,12 +823,12 @@ class InterventionDetails(YAMLRoot):
     alkalinity_feedstock_processing: Union[str, "AlkalinityFeedstockProcessing"] = None
     alkalinity_feedstock_form: Union[str, "AlkalinityFeedstockForm"] = None
     alkalinity_feedstock: Union[str, "FeedstockType"] = None
+    alkalinity_feedstock_co2_removal_potential: float = None
     alkalinity_feedstock_description: str = None
     equilibration: Union[str, "EquilibrationStatus"] = None
     alkalinity_dosing_effluent_density: Union[dict, "DosingConcentration"] = None
     alkalinity_feedstock_processing_custom: Optional[str] = None
     alkalinity_feedstock_custom: Optional[str] = None
-    alkalinity_feedstock_co2_removal_potential: Optional[float] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.alkalinity_feedstock_processing):
@@ -889,6 +845,11 @@ class InterventionDetails(YAMLRoot):
             self.MissingRequiredField("alkalinity_feedstock")
         if not isinstance(self.alkalinity_feedstock, FeedstockType):
             self.alkalinity_feedstock = FeedstockType(self.alkalinity_feedstock)
+
+        if self._is_empty(self.alkalinity_feedstock_co2_removal_potential):
+            self.MissingRequiredField("alkalinity_feedstock_co2_removal_potential")
+        if not isinstance(self.alkalinity_feedstock_co2_removal_potential, float):
+            self.alkalinity_feedstock_co2_removal_potential = float(self.alkalinity_feedstock_co2_removal_potential)
 
         if self._is_empty(self.alkalinity_feedstock_description):
             self.MissingRequiredField("alkalinity_feedstock_description")
@@ -910,9 +871,6 @@ class InterventionDetails(YAMLRoot):
 
         if self.alkalinity_feedstock_custom is not None and not isinstance(self.alkalinity_feedstock_custom, str):
             self.alkalinity_feedstock_custom = str(self.alkalinity_feedstock_custom)
-
-        if self.alkalinity_feedstock_co2_removal_potential is not None and not isinstance(self.alkalinity_feedstock_co2_removal_potential, float):
-            self.alkalinity_feedstock_co2_removal_potential = float(self.alkalinity_feedstock_co2_removal_potential)
 
         super().__post_init__(**kwargs)
 
@@ -1087,6 +1045,57 @@ class Person(YAMLRoot):
 
         if self.role is not None and not isinstance(self.role, str):
             self.role = str(self.role)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class Permit(YAMLRoot):
+    """
+    A permit associated with the project.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["Permit"]
+    class_class_curie: ClassVar[str] = "oae:Permit"
+    class_name: ClassVar[str] = "Permit"
+    class_model_uri: ClassVar[URIRef] = OAE.Permit
+
+    permit_id: str = None
+    permitting_authority: str = None
+    approval_document: str = None
+    agency_contact: Optional[str] = None
+    changes_to_evolution_of_permit_criteria: Optional[str] = None
+    permit_type: Optional[str] = None
+    time_period: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.permit_id):
+            self.MissingRequiredField("permit_id")
+        if not isinstance(self.permit_id, str):
+            self.permit_id = str(self.permit_id)
+
+        if self._is_empty(self.permitting_authority):
+            self.MissingRequiredField("permitting_authority")
+        if not isinstance(self.permitting_authority, str):
+            self.permitting_authority = str(self.permitting_authority)
+
+        if self._is_empty(self.approval_document):
+            self.MissingRequiredField("approval_document")
+        if not isinstance(self.approval_document, str):
+            self.approval_document = str(self.approval_document)
+
+        if self.agency_contact is not None and not isinstance(self.agency_contact, str):
+            self.agency_contact = str(self.agency_contact)
+
+        if self.changes_to_evolution_of_permit_criteria is not None and not isinstance(self.changes_to_evolution_of_permit_criteria, str):
+            self.changes_to_evolution_of_permit_criteria = str(self.changes_to_evolution_of_permit_criteria)
+
+        if self.permit_type is not None and not isinstance(self.permit_type, str):
+            self.permit_type = str(self.permit_type)
+
+        if self.time_period is not None and not isinstance(self.time_period, str):
+            self.time_period = str(self.time_period)
 
         super().__post_init__(**kwargs)
 
@@ -1942,20 +1951,6 @@ class MassConcentrationUnit(EnumDefinitionImpl):
                 text="unit:PicoGM-PER-MilliL",
                 meaning=UNIT["PicoGM-PER-MilliL"]))
 
-class PermitStatus(EnumDefinitionImpl):
-    """
-    The status of a permit.
-    """
-    pending = PermissibleValue(text="pending")
-    active = PermissibleValue(text="active")
-    expired = PermissibleValue(text="expired")
-    revoked = PermissibleValue(text="revoked")
-
-    _defn = EnumDefinition(
-        name="PermitStatus",
-        description="The status of a permit.",
-    )
-
 class ResearcherIDType(EnumDefinitionImpl):
 
     orcid = PermissibleValue(text="orcid")
@@ -1988,6 +1983,9 @@ slots.spatial_coverage = Slot(uri=SCHEMA.spatialCoverage, name="spatial_coverage
 
 slots.vertical_coverage = Slot(uri=OAE.vertical_coverage, name="vertical_coverage", curie=OAE.curie('vertical_coverage'),
                    model_uri=OAE.vertical_coverage, domain=None, range=Union[dict, VerticalExtent])
+
+slots.permits = Slot(uri=OAE.permits, name="permits", curie=OAE.curie('permits'),
+                   model_uri=OAE.permits, domain=None, range=Optional[Union[Union[dict, Permit], List[Union[dict, Permit]]]])
 
 slots.geo = Slot(uri=OAE.geo, name="geo", curie=OAE.curie('geo'),
                    model_uri=OAE.geo, domain=None, range=Optional[Union[dict, Any]])
@@ -2053,9 +2051,6 @@ slots.oAEProject__previous_or_ongoing_colocated_research = Slot(uri=OAE.previous
 slots.oAEProject__colocated_operations = Slot(uri=OAE.colocated_operations, name="oAEProject__colocated_operations", curie=OAE.curie('colocated_operations'),
                    model_uri=OAE.oAEProject__colocated_operations, domain=None, range=Optional[str])
 
-slots.oAEProject__permits = Slot(uri=OAE.permits, name="oAEProject__permits", curie=OAE.curie('permits'),
-                   model_uri=OAE.oAEProject__permits, domain=None, range=Optional[Union[Union[dict, Permit], List[Union[dict, Permit]]]])
-
 slots.oAEProject__public_comments = Slot(uri=OAE.public_comments, name="oAEProject__public_comments", curie=OAE.curie('public_comments'),
                    model_uri=OAE.oAEProject__public_comments, domain=None, range=Optional[Union[Union[dict, NamedLink], List[Union[dict, NamedLink]]]])
 
@@ -2067,18 +2062,6 @@ slots.oAEProject__funding = Slot(uri=SCHEMA.funding, name="oAEProject__funding",
 
 slots.oAEProject__additional_details = Slot(uri=OAE.additional_details, name="oAEProject__additional_details", curie=OAE.curie('additional_details'),
                    model_uri=OAE.oAEProject__additional_details, domain=None, range=Optional[str])
-
-slots.permit__permit_id = Slot(uri=OAE.permit_id, name="permit__permit_id", curie=OAE.curie('permit_id'),
-                   model_uri=OAE.permit__permit_id, domain=None, range=str)
-
-slots.permit__permitting_authority = Slot(uri=OAE.permitting_authority, name="permit__permitting_authority", curie=OAE.curie('permitting_authority'),
-                   model_uri=OAE.permit__permitting_authority, domain=None, range=str)
-
-slots.permit__permit_status = Slot(uri=OAE.permit_status, name="permit__permit_status", curie=OAE.curie('permit_status'),
-                   model_uri=OAE.permit__permit_status, domain=None, range=Union[str, "PermitStatus"])
-
-slots.permit__approval_document = Slot(uri=OAE.approval_document, name="permit__approval_document", curie=OAE.curie('approval_document'),
-                   model_uri=OAE.permit__approval_document, domain=None, range=Union[str, URI])
 
 slots.namedLink__name = Slot(uri=OAE.name, name="namedLink__name", curie=OAE.curie('name'),
                    model_uri=OAE.namedLink__name, domain=None, range=str)
@@ -2147,7 +2130,7 @@ slots.interventionDetails__alkalinity_feedstock_custom = Slot(uri=OAE.alkalinity
                    model_uri=OAE.interventionDetails__alkalinity_feedstock_custom, domain=None, range=Optional[str])
 
 slots.interventionDetails__alkalinity_feedstock_co2_removal_potential = Slot(uri=OAE.alkalinity_feedstock_co2_removal_potential, name="interventionDetails__alkalinity_feedstock_co2_removal_potential", curie=OAE.curie('alkalinity_feedstock_co2_removal_potential'),
-                   model_uri=OAE.interventionDetails__alkalinity_feedstock_co2_removal_potential, domain=None, range=Optional[float])
+                   model_uri=OAE.interventionDetails__alkalinity_feedstock_co2_removal_potential, domain=None, range=float)
 
 slots.interventionDetails__alkalinity_feedstock_description = Slot(uri=OAE.alkalinity_feedstock_description, name="interventionDetails__alkalinity_feedstock_description", curie=OAE.curie('alkalinity_feedstock_description'),
                    model_uri=OAE.interventionDetails__alkalinity_feedstock_description, domain=None, range=str)
@@ -2214,6 +2197,27 @@ slots.person__identifier = Slot(uri=OAE.identifier, name="person__identifier", c
 slots.person__role = Slot(uri=OAE.role, name="person__role", curie=OAE.curie('role'),
                    model_uri=OAE.person__role, domain=None, range=Optional[str])
 
+slots.permit__permit_id = Slot(uri=OAE.permit_id, name="permit__permit_id", curie=OAE.curie('permit_id'),
+                   model_uri=OAE.permit__permit_id, domain=None, range=str)
+
+slots.permit__permitting_authority = Slot(uri=OAE.permitting_authority, name="permit__permitting_authority", curie=OAE.curie('permitting_authority'),
+                   model_uri=OAE.permit__permitting_authority, domain=None, range=str)
+
+slots.permit__agency_contact = Slot(uri=OAE.agency_contact, name="permit__agency_contact", curie=OAE.curie('agency_contact'),
+                   model_uri=OAE.permit__agency_contact, domain=None, range=Optional[str])
+
+slots.permit__changes_to_evolution_of_permit_criteria = Slot(uri=OAE.changes_to_evolution_of_permit_criteria, name="permit__changes_to_evolution_of_permit_criteria", curie=OAE.curie('changes_to_evolution_of_permit_criteria'),
+                   model_uri=OAE.permit__changes_to_evolution_of_permit_criteria, domain=None, range=Optional[str])
+
+slots.permit__permit_type = Slot(uri=OAE.permit_type, name="permit__permit_type", curie=OAE.curie('permit_type'),
+                   model_uri=OAE.permit__permit_type, domain=None, range=Optional[str])
+
+slots.permit__time_period = Slot(uri=OAE.time_period, name="permit__time_period", curie=OAE.curie('time_period'),
+                   model_uri=OAE.permit__time_period, domain=None, range=Optional[str])
+
+slots.permit__approval_document = Slot(uri=OAE.approval_document, name="permit__approval_document", curie=OAE.curie('approval_document'),
+                   model_uri=OAE.permit__approval_document, domain=None, range=str)
+
 slots.SpatialCoverage_geo = Slot(uri=OAE.geo, name="SpatialCoverage_geo", curie=OAE.curie('geo'),
                    model_uri=OAE.SpatialCoverage_geo, domain=SpatialCoverage, range=Union[dict, "GeoShape"])
 
@@ -2229,9 +2233,6 @@ slots.OAEProject_temporal_coverage = Slot(uri=SCHEMA.temporalCoverage, name="OAE
 
 slots.OAEProject_spatial_coverage = Slot(uri=SCHEMA.spatialCoverage, name="OAEProject_spatial_coverage", curie=SCHEMA.curie('spatialCoverage'),
                    model_uri=OAE.OAEProject_spatial_coverage, domain=OAEProject, range=Union[dict, Place])
-
-slots.OAEProject_vertical_coverage = Slot(uri=OAE.vertical_coverage, name="OAEProject_vertical_coverage", curie=OAE.curie('vertical_coverage'),
-                   model_uri=OAE.OAEProject_vertical_coverage, domain=OAEProject, range=Union[dict, VerticalExtent])
 
 slots.MonetaryGrant_name = Slot(uri=OAE.name, name="MonetaryGrant_name", curie=OAE.curie('name'),
                    model_uri=OAE.MonetaryGrant_name, domain=MonetaryGrant, range=Optional[str])

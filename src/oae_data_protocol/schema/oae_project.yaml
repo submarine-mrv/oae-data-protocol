@@ -89,12 +89,6 @@ classes:
         description: >-
           A description is required if any nearby operations exist that may influence the waters over the time period covered by this data. This might be a nearby mCDR project, a facility that discharges water with different characteristics than the inflow (e.g., a desalination plant), frequent boating operations, etc.
         range: string
-      permits:
-        title: Permits
-        description: Associated permit number(s).
-        range: Permit
-        multivalued: true
-        inlined_as_list: true
       public_comments:
         title: Public Comments
         description: "Links to public comments or concerns about the project."
@@ -123,30 +117,6 @@ classes:
         range: string
 
     broad_mappings: "schema:ResearchProject"
-
-  Permit:
-    description: "A permit associated with the project."
-    attributes:
-      permit_id:
-        title: Permit ID or Number
-        description: "The unique identifier or number associated with this permit."
-        range: string
-        required: true
-      permitting_authority:
-        title: Permitting Authority
-        description: "The group that issued the permit."
-        range: string
-        required: true
-      permit_status:
-        title: Permit Status
-        description: "The current status of the permit (e.g., active, expired)."
-        range: PermitStatus
-        required: true
-      approval_document:
-        title: Permit Document
-        description: "Links to documentation related to the permit."
-        range: uri
-        required: true
   NamedLink:
     description: "A link to a resource with a name and URL."
     attributes:
@@ -160,11 +130,3 @@ classes:
         description: "The URL of the linked resource."
         range: uri
         required: true
-enums:
-  PermitStatus:
-    description: "The status of a permit."
-    permissible_values:
-      - "pending"
-      - "active"
-      - "expired"
-      - "revoked"

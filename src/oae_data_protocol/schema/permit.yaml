@@ -1,0 +1,44 @@
+id: Permit
+name: Permit
+
+prefixes:
+  oae: "https://example.org/oae#"
+  schema: "http://schema.org/"
+
+default_prefix: oae
+
+classes:
+  Permit:
+    description: "A permit associated with the project."
+    attributes:
+      permit_id:
+        title: Permit ID or Number
+        description: "The unique identifier or number associated with this permit."
+        range: string
+        required: true
+      permitting_authority:
+        title: Permitting Authority
+        description: "The group that issued the permit."
+        range: string
+        required: true
+      agency_contact:
+        title: Agency Contact
+        description: "The point of contact at the permitting agency."
+        range: string
+      changes_to_evolution_of_permit_criteria:
+        title: Changes to evolution of permit criteria
+        description: "e.g., changes of discharge pH and basis for changes"
+        range: string
+      permit_type:
+        title: Permit Type
+        description: "The category of permit (E.g., experimental permit, commercial permit)"
+        range: string
+      time_period:
+        title: Permit Time Period
+        description: "The time period during which the permit will be applicable, or expected duration of the permit."
+        range: string
+      approval_document:
+        title: Permit Document
+        description: "Filename(s) of permitting documents included, separated by commas"
+        range: string
+        required: true

@@ -46,6 +46,12 @@ slots:
       Minimum and maximum depths of observation in meters.
     range: VerticalExtent
     required: true
+  permits:
+    title: Permits
+    description: Associated permit number(s).
+    range: Permit
+    multivalued: true
+    inlined_as_list: true
   geo:
     description: "Entities that have a somewhat fixed, physical extension. (imported from schema.org)"
     range: Any

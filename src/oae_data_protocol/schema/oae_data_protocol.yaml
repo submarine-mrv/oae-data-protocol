@@ -22,6 +22,7 @@ imports:
   - monetary_grant
   - experiment
   - person
+  - permit
 #   The following were early experimental schemas and have not been
 #   udated to the v1.0 version of the protocol yet
 #   - dataset
