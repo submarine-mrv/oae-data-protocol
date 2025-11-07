@@ -5,10 +5,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://clevinson.github.io/oae-data-protocol/QuantityWithUnit/" rel="canonical"/>
+<link href="https://clevinson.github.io/oae-data-protocol/SpatialCoverage/" rel="canonical"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.6.7" name="generator"/>
-<title>Class: QuantityWithUnit - oae-data-protocol</title>
+<title>Class: SpatialCoverage - oae-data-protocol</title>
 <link href="../assets/stylesheets/main.8608ea7d.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
@@ -23,7 +23,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#class-quantitywithunit">
+<a class="md-skip" href="#class-spatialcoverage">
           Skip to content
         </a>
 </div>
@@ -47,7 +47,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Class: QuantityWithUnit
+              Class: SpatialCoverage
             
           </span>
 </div>
@@ -151,16 +151,16 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#slots">
+<a class="md-nav__link" href="#inheritance">
 <span class="md-ellipsis">
-      Slots
+      Inheritance
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#mixin-usage">
+<a class="md-nav__link" href="#slots">
 <span class="md-ellipsis">
-      Mixin Usage
+      Slots
     </span>
 </a>
 </li>
@@ -221,21 +221,33 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="class-quantitywithunit">Class: QuantityWithUnit</h1>
-<p>URI: <a href="https://example.org/oae#QuantityWithUnit">oae:QuantityWithUnit</a></p>
+<h1 id="class-spatialcoverage">Class: SpatialCoverage</h1>
+<p><em>A bounding box defined by latitude and longitude coordinates.</em></p>
+<p>URI: <a href="https://example.org/oae#SpatialCoverage">oae:SpatialCoverage</a></p>
 <div class="mermaid"> classDiagram
-    class QuantityWithUnit
-    click QuantityWithUnit href "../QuantityWithUnit"
-      QuantityWithUnit &lt;|-- DosingConcentration
-        click DosingConcentration href "../DosingConcentration"
+    class SpatialCoverage
+    click SpatialCoverage href "../SpatialCoverage"
+      Place &lt;|-- SpatialCoverage
+        click Place href "../Place"
 
-      QuantityWithUnit : amount
+      SpatialCoverage : geo
 
-      QuantityWithUnit : unit
+
+
+
+    SpatialCoverage --&gt; "1" GeoShape : geo
+    click GeoShape href "../GeoShape"
+
 
 
 </div>
-<!-- no inheritance hierarchy -->
+<h2 id="inheritance">Inheritance</h2>
+<ul>
+<li><a href="../Place/">Place</a><ul>
+<li><strong>SpatialCoverage</strong></li>
+</ul>
+</li>
+</ul>
 <h2 id="slots">Slots</h2>
 <table>
 <thead>
@@ -248,31 +260,10 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../amount/">amount</a></td>
-<td>0..1 <br/> <a href="../Float/">Float</a></td>
-<td></td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../unit/">unit</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td></td>
-<td>direct</td>
-</tr>
-</tbody>
-</table>
-<h2 id="mixin-usage">Mixin Usage</h2>
-<table>
-<thead>
-<tr>
-<th>mixed into</th>
-<th>description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="../DosingConcentration/">DosingConcentration</a></td>
-<td>Details of tracer concentration information</td>
+<td><a href="../geo/">geo</a></td>
+<td>1 <br/> <a href="../GeoShape/">GeoShape</a> or <br/><a href="../GeoShape/">GeoShape</a> or <br/><a href="../GeoCoordinates/">GeoCoordinates</a></td>
+<td>Entities that have a somewhat fixed, physical extension</td>
+<td><a href="../Place/">Place</a></td>
 </tr>
 </tbody>
 </table>
@@ -292,11 +283,11 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>oae:QuantityWithUnit</td>
+<td>oae:SpatialCoverage</td>
 </tr>
 <tr>
 <td>native</td>
-<td>oae:QuantityWithUnit</td>
+<td>oae:SpatialCoverage</td>
 </tr>
 </tbody>
 </table>
@@ -304,53 +295,45 @@
 <!-- TODO: investigate https://stackoverflow.com/questions/37606292/how-to-create-tabbed-code-blocks-in-mkdocs-or-sphinx -->
 <h3 id="direct">Direct</h3>
 <details>
-<pre><code class="language-yaml">name: QuantityWithUnit
+<pre><code class="language-yaml">name: SpatialCoverage
+description: A bounding box defined by latitude and longitude coordinates.
 from_schema: OAEDataManagementProtocol
-mixin: true
-attributes:
-  amount:
-    name: amount
-    from_schema: Experiment
-    rank: 1000
-    domain_of:
-    - QuantityWithUnit
-    range: float
-  unit:
-    name: unit
-    from_schema: Experiment
-    rank: 1000
-    domain_of:
-    - QuantityWithUnit
-    range: string
+is_a: Place
+slot_usage:
+  geo:
+    name: geo
+    range: GeoShape
     required: true
 
 </code></pre>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
-<pre><code class="language-yaml">name: QuantityWithUnit
+<pre><code class="language-yaml">name: SpatialCoverage
+description: A bounding box defined by latitude and longitude coordinates.
 from_schema: OAEDataManagementProtocol
-mixin: true
-attributes:
-  amount:
-    name: amount
-    from_schema: Experiment
-    rank: 1000
-    alias: amount
-    owner: QuantityWithUnit
-    domain_of:
-    - QuantityWithUnit
-    range: float
-  unit:
-    name: unit
-    from_schema: Experiment
-    rank: 1000
-    alias: unit
-    owner: QuantityWithUnit
-    domain_of:
-    - QuantityWithUnit
-    range: string
+is_a: Place
+slot_usage:
+  geo:
+    name: geo
+    range: GeoShape
     required: true
+attributes:
+  geo:
+    name: geo
+    description: Entities that have a somewhat fixed, physical extension. (imported
+      from schema.org)
+    from_schema: OAEDataManagementProtocol
+    rank: 1000
+    alias: geo
+    owner: SpatialCoverage
+    domain_of:
+    - Place
+    range: GeoShape
+    required: true
+    any_of:
+    - range: GeoShape
+    - range: GeoCoordinates
 
 </code></pre>
 </details>

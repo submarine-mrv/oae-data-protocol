@@ -316,11 +316,9 @@
 
 
 
-    Intervention --&gt; "1" Place : dosing_location
-    click Place href "../Place"
+    Intervention --&gt; "1" DosingLocation : dosing_location
+    click DosingLocation href "../DosingLocation"
 
-
-      Intervention : dosing_location_provided_as_file
 
       Intervention : dosing_regimen
 
@@ -443,7 +441,7 @@
 </tr>
 <tr>
 <td><a href="../alkalinity_feedstock_co2_removal_potential/">alkalinity_feedstock_co2_removal_potential</a></td>
-<td>0..1 <br/> <a href="../Float/">Float</a></td>
+<td>1 <br/> <a href="../Float/">Float</a></td>
 <td>Maximum CO₂ removal potential of a feedstock material</td>
 <td><a href="../InterventionDetails/">InterventionDetails</a></td>
 </tr>
@@ -473,14 +471,8 @@
 </tr>
 <tr>
 <td><a href="../dosing_location/">dosing_location</a></td>
-<td>1 <br/> <a href="../Place/">Place</a></td>
+<td>1 <br/> <a href="../DosingLocation/">DosingLocation</a></td>
 <td>Provide latitude and longitude in decimal degrees</td>
-<td><a href="../DosingDetails/">DosingDetails</a></td>
-</tr>
-<tr>
-<td><a href="../dosing_location_provided_as_file/">dosing_location_provided_as_file</a></td>
-<td>1 <br/> <a href="../Boolean/">Boolean</a></td>
-<td></td>
 <td><a href="../DosingDetails/">DosingDetails</a></td>
 </tr>
 <tr>
@@ -743,6 +735,7 @@ attributes:
     domain_of:
     - InterventionDetails
     range: float
+    required: true
   alkalinity_feedstock_description:
     name: alkalinity_feedstock_description
     description: 'Information such as feedstock source, characteristics, impurities,
@@ -813,17 +806,7 @@ attributes:
     owner: Intervention
     domain_of:
     - DosingDetails
-    range: Place
-    required: true
-  dosing_location_provided_as_file:
-    name: dosing_location_provided_as_file
-    from_schema: Experiment
-    rank: 1000
-    alias: dosing_location_provided_as_file
-    owner: Intervention
-    domain_of:
-    - DosingDetails
-    range: boolean
+    range: DosingLocation
     required: true
   dosing_dispersal_hydrologic_location:
     name: dosing_dispersal_hydrologic_location
@@ -943,7 +926,6 @@ attributes:
     alias: vertical_coverage
     owner: Intervention
     domain_of:
-    - OAEProject
     - Experiment
     range: VerticalExtent
     required: true

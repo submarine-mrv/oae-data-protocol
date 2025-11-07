@@ -259,11 +259,9 @@
 
 
 
-    DosingDetails --&gt; "1" Place : dosing_location
-    click Place href "../Place"
+    DosingDetails --&gt; "1" DosingLocation : dosing_location
+    click DosingLocation href "../DosingLocation"
 
-
-      DosingDetails : dosing_location_provided_as_file
 
       DosingDetails : dosing_regimen
 
@@ -289,14 +287,8 @@
 </tr>
 <tr>
 <td><a href="../dosing_location/">dosing_location</a></td>
-<td>1 <br/> <a href="../Place/">Place</a></td>
+<td>1 <br/> <a href="../DosingLocation/">DosingLocation</a></td>
 <td>Provide latitude and longitude in decimal degrees</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../dosing_location_provided_as_file/">dosing_location_provided_as_file</a></td>
-<td>1 <br/> <a href="../Boolean/">Boolean</a></td>
-<td></td>
 <td>direct</td>
 </tr>
 <tr>
@@ -400,15 +392,7 @@ attributes:
     rank: 1000
     domain_of:
     - DosingDetails
-    range: Place
-    required: true
-  dosing_location_provided_as_file:
-    name: dosing_location_provided_as_file
-    from_schema: Experiment
-    rank: 1000
-    domain_of:
-    - DosingDetails
-    range: boolean
+    range: DosingLocation
     required: true
   dosing_dispersal_hydrologic_location:
     name: dosing_dispersal_hydrologic_location
@@ -496,17 +480,7 @@ attributes:
     owner: DosingDetails
     domain_of:
     - DosingDetails
-    range: Place
-    required: true
-  dosing_location_provided_as_file:
-    name: dosing_location_provided_as_file
-    from_schema: Experiment
-    rank: 1000
-    alias: dosing_location_provided_as_file
-    owner: DosingDetails
-    domain_of:
-    - DosingDetails
-    range: boolean
+    range: DosingLocation
     required: true
   dosing_dispersal_hydrologic_location:
     name: dosing_dispersal_hydrologic_location

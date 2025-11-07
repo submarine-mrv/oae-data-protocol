@@ -5,10 +5,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://clevinson.github.io/oae-data-protocol/Any/" rel="canonical"/>
+<link href="https://clevinson.github.io/oae-data-protocol/DosingLocation/" rel="canonical"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.6.7" name="generator"/>
-<title>Class: Any - oae-data-protocol</title>
+<title>Class: DosingLocation - oae-data-protocol</title>
 <link href="../assets/stylesheets/main.8608ea7d.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
@@ -23,7 +23,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#class-any">
+<a class="md-skip" href="#class-dosinglocation">
           Skip to content
         </a>
 </div>
@@ -47,7 +47,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Class: Any
+              Class: DosingLocation
             
           </span>
 </div>
@@ -151,6 +151,13 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
+<a class="md-nav__link" href="#inheritance">
+<span class="md-ellipsis">
+      Inheritance
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#slots">
 <span class="md-ellipsis">
       Slots
@@ -221,14 +228,35 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="class-any">Class: Any</h1>
-<p>URI: <a href="https://w3id.org/linkml/Any">linkml:Any</a></p>
+<h1 id="class-dosinglocation">Class: DosingLocation</h1>
+<p><em>A specific location of dosing for an OAE intervention and/or tracer study. Can be a point, line, or bounding box</em></p>
+<p>URI: <a href="https://example.org/oae#DosingLocation">oae:DosingLocation</a></p>
 <div class="mermaid"> classDiagram
-    class Any
+    class DosingLocation
+    click DosingLocation href "../DosingLocation"
+      Place &lt;|-- DosingLocation
+        click Place href "../Place"
+
+      DosingLocation : dosing_location_file
+
+      DosingLocation : geo
+
+
+
+
+    DosingLocation --&gt; "0..1" Any : geo
     click Any href "../Any"
 
+
+
 </div>
-<!-- no inheritance hierarchy -->
+<h2 id="inheritance">Inheritance</h2>
+<ul>
+<li><a href="../Place/">Place</a><ul>
+<li><strong>DosingLocation</strong></li>
+</ul>
+</li>
+</ul>
 <h2 id="slots">Slots</h2>
 <table>
 <thead>
@@ -241,10 +269,16 @@
 </thead>
 <tbody>
 <tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td><a href="../dosing_location_file/">dosing_location_file</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Exact path and filename for the location file (relative to root path of proje...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../geo/">geo</a></td>
+<td>0..1 <br/> <a href="../Any/">Any</a> or <br/><a href="../GeoShape/">GeoShape</a> or <br/><a href="../GeoCoordinates/">GeoCoordinates</a></td>
+<td>Entities that have a somewhat fixed, physical extension</td>
+<td><a href="../Place/">Place</a></td>
 </tr>
 </tbody>
 </table>
@@ -260,16 +294,28 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Place/">Place</a></td>
-<td><a href="../geo/">geo</a></td>
+<td><a href="../Intervention/">Intervention</a></td>
+<td><a href="../dosing_location/">dosing_location</a></td>
 <td>range</td>
-<td><a href="./">Any</a></td>
+<td><a href="./">DosingLocation</a></td>
 </tr>
 <tr>
-<td><a href="../DosingLocation/">DosingLocation</a></td>
-<td><a href="../geo/">geo</a></td>
+<td><a href="../Tracer/">Tracer</a></td>
+<td><a href="../dosing_location/">dosing_location</a></td>
 <td>range</td>
-<td><a href="./">Any</a></td>
+<td><a href="./">DosingLocation</a></td>
+</tr>
+<tr>
+<td><a href="../InterventionWithTracer/">InterventionWithTracer</a></td>
+<td><a href="../dosing_location/">dosing_location</a></td>
+<td>range</td>
+<td><a href="./">DosingLocation</a></td>
+</tr>
+<tr>
+<td><a href="../DosingDetails/">DosingDetails</a></td>
+<td><a href="../dosing_location/">dosing_location</a></td>
+<td>range</td>
+<td><a href="./">DosingLocation</a></td>
 </tr>
 </tbody>
 </table>
@@ -289,11 +335,11 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>linkml:Any</td>
+<td>oae:DosingLocation</td>
 </tr>
 <tr>
 <td>native</td>
-<td>oae:Any</td>
+<td>oae:DosingLocation</td>
 </tr>
 </tbody>
 </table>
@@ -301,17 +347,57 @@
 <!-- TODO: investigate https://stackoverflow.com/questions/37606292/how-to-create-tabbed-code-blocks-in-mkdocs-or-sphinx -->
 <h3 id="direct">Direct</h3>
 <details>
-<pre><code class="language-yaml">name: Any
+<pre><code class="language-yaml">name: DosingLocation
+description: A specific location of dosing for an OAE intervention and/or tracer study.
+  Can be a point, line, or bounding box
 from_schema: OAEDataManagementProtocol
-class_uri: linkml:Any
+is_a: Place
+attributes:
+  dosing_location_file:
+    name: dosing_location_file
+    description: Exact path and filename for the location file (relative to root path
+      of project), attached separately. Format should be one of GeoJSON or Shapefile.
+    from_schema: Core
+    rank: 1000
+    domain_of:
+    - DosingLocation
+    range: string
 
 </code></pre>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
-<pre><code class="language-yaml">name: Any
+<pre><code class="language-yaml">name: DosingLocation
+description: A specific location of dosing for an OAE intervention and/or tracer study.
+  Can be a point, line, or bounding box
 from_schema: OAEDataManagementProtocol
-class_uri: linkml:Any
+is_a: Place
+attributes:
+  dosing_location_file:
+    name: dosing_location_file
+    description: Exact path and filename for the location file (relative to root path
+      of project), attached separately. Format should be one of GeoJSON or Shapefile.
+    from_schema: Core
+    rank: 1000
+    alias: dosing_location_file
+    owner: DosingLocation
+    domain_of:
+    - DosingLocation
+    range: string
+  geo:
+    name: geo
+    description: Entities that have a somewhat fixed, physical extension. (imported
+      from schema.org)
+    from_schema: OAEDataManagementProtocol
+    rank: 1000
+    alias: geo
+    owner: DosingLocation
+    domain_of:
+    - Place
+    range: Any
+    any_of:
+    - range: GeoShape
+    - range: GeoCoordinates
 
 </code></pre>
 </details>

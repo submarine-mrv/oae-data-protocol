@@ -247,7 +247,7 @@
 
 
 
-    OAEProject --&gt; "0..1" MCDRPathway : mcdr_pathway
+    OAEProject --&gt; "1" MCDRPathway : mcdr_pathway
     click MCDRPathway href "../MCDRPathway"
 
 
@@ -310,15 +310,6 @@
 
       OAEProject : temporal_coverage
 
-      OAEProject : vertical_coverage
-
-
-
-
-    OAEProject --&gt; "1" VerticalExtent : vertical_coverage
-    click VerticalExtent href "../VerticalExtent"
-
-
 
 </div>
 <!-- no inheritance hierarchy -->
@@ -343,12 +334,6 @@
 <td><a href="../spatial_coverage/">spatial_coverage</a></td>
 <td>1 <br/> <a href="../Place/">Place</a></td>
 <td>Latitude/longitude bounds of project site (e</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../vertical_coverage/">vertical_coverage</a></td>
-<td>1 <br/> <a href="../VerticalExtent/">VerticalExtent</a></td>
-<td>Minimum and maximum depths of observation in meters</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -395,7 +380,7 @@
 </tr>
 <tr>
 <td><a href="../mcdr_pathway/">mcdr_pathway</a></td>
-<td>0..1 <br/> <a href="../MCDRPathway/">MCDRPathway</a></td>
+<td>1 <br/> <a href="../MCDRPathway/">MCDRPathway</a></td>
 <td>The Marine Carbon Dioxide Removal (MCDR) pathway being studied</td>
 <td>direct</td>
 </tr>
@@ -483,7 +468,6 @@ broad_mappings:
 slots:
 - temporal_coverage
 - spatial_coverage
-- vertical_coverage
 slot_usage:
   temporal_coverage:
     name: temporal_coverage
@@ -491,9 +475,6 @@ slot_usage:
     required: true
   spatial_coverage:
     name: spatial_coverage
-    required: true
-  vertical_coverage:
-    name: vertical_coverage
     required: true
 attributes:
   project_id:
@@ -608,6 +589,7 @@ attributes:
     domain_of:
     - OAEProject
     range: MCDRPathway
+    required: true
   previous_or_ongoing_colocated_research:
     name: previous_or_ongoing_colocated_research
     description: This field is required for co-located operations that potentially
@@ -711,9 +693,6 @@ slot_usage:
     required: true
   spatial_coverage:
     name: spatial_coverage
-    required: true
-  vertical_coverage:
-    name: vertical_coverage
     required: true
 attributes:
   project_id:
@@ -844,6 +823,7 @@ attributes:
     domain_of:
     - OAEProject
     range: MCDRPathway
+    required: true
   previous_or_ongoing_colocated_research:
     name: previous_or_ongoing_colocated_research
     description: This field is required for co-located operations that potentially
@@ -976,19 +956,6 @@ attributes:
     - ExternalProject
     - Experiment
     range: Place
-    required: true
-  vertical_coverage:
-    name: vertical_coverage
-    description: Minimum and maximum depths of observation in meters.
-    title: Vertical Coverage
-    from_schema: OAEDataManagementProtocol
-    rank: 1000
-    alias: vertical_coverage
-    owner: OAEProject
-    domain_of:
-    - OAEProject
-    - Experiment
-    range: VerticalExtent
     required: true
 
 </code></pre>

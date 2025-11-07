@@ -151,13 +151,6 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#inheritance">
-<span class="md-ellipsis">
-      Inheritance
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
 <a class="md-nav__link" href="#slots">
 <span class="md-ellipsis">
       Slots
@@ -234,9 +227,6 @@
 <div class="mermaid"> classDiagram
     class DosingConcentration
     click DosingConcentration href "../DosingConcentration"
-      QuantityWithUnit &lt;|-- DosingConcentration
-        click QuantityWithUnit href "../QuantityWithUnit"
-
       DosingConcentration : amount
 
       DosingConcentration : is_derived_value
@@ -246,11 +236,15 @@
       DosingConcentration : unit
 
 
+
+
+    DosingConcentration --&gt; "0..1" MassConcentrationUnit : unit
+    click MassConcentrationUnit href "../MassConcentrationUnit"
+
+
+
 </div>
-<h2 id="inheritance">Inheritance</h2>
-<ul>
-<li><strong>DosingConcentration</strong> [ <a href="../QuantityWithUnit/">QuantityWithUnit</a>]</li>
-</ul>
+<!-- no inheritance hierarchy -->
 <h2 id="slots">Slots</h2>
 <table>
 <thead>
@@ -278,13 +272,13 @@
 <td><a href="../amount/">amount</a></td>
 <td>0..1 <br/> <a href="../Float/">Float</a></td>
 <td></td>
-<td><a href="../QuantityWithUnit/">QuantityWithUnit</a></td>
+<td>direct</td>
 </tr>
 <tr>
 <td><a href="../unit/">unit</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
+<td>0..1 <br/> <a href="../MassConcentrationUnit/">MassConcentrationUnit</a></td>
 <td></td>
-<td><a href="../QuantityWithUnit/">QuantityWithUnit</a></td>
+<td>direct</td>
 </tr>
 </tbody>
 </table>
@@ -368,11 +362,24 @@
 <pre><code class="language-yaml">name: DosingConcentration
 description: Details of tracer concentration information
 from_schema: OAEDataManagementProtocol
-mixins:
-- QuantityWithUnit
 slots:
 - is_derived_value
 - is_provided_as_a_file
+attributes:
+  amount:
+    name: amount
+    from_schema: Experiment
+    rank: 1000
+    domain_of:
+    - DosingConcentration
+    range: float
+  unit:
+    name: unit
+    from_schema: Experiment
+    rank: 1000
+    domain_of:
+    - DosingConcentration
+    range: MassConcentrationUnit
 
 </code></pre>
 </details>
@@ -381,9 +388,25 @@ slots:
 <pre><code class="language-yaml">name: DosingConcentration
 description: Details of tracer concentration information
 from_schema: OAEDataManagementProtocol
-mixins:
-- QuantityWithUnit
 attributes:
+  amount:
+    name: amount
+    from_schema: Experiment
+    rank: 1000
+    alias: amount
+    owner: DosingConcentration
+    domain_of:
+    - DosingConcentration
+    range: float
+  unit:
+    name: unit
+    from_schema: Experiment
+    rank: 1000
+    alias: unit
+    owner: DosingConcentration
+    domain_of:
+    - DosingConcentration
+    range: MassConcentrationUnit
   is_derived_value:
     name: is_derived_value
     description: Indicates that the field in question is a derived value as opposed
@@ -407,25 +430,6 @@ attributes:
     domain_of:
     - DosingConcentration
     range: boolean
-    required: true
-  amount:
-    name: amount
-    from_schema: Experiment
-    rank: 1000
-    alias: amount
-    owner: DosingConcentration
-    domain_of:
-    - QuantityWithUnit
-    range: float
-  unit:
-    name: unit
-    from_schema: Experiment
-    rank: 1000
-    alias: unit
-    owner: DosingConcentration
-    domain_of:
-    - QuantityWithUnit
-    range: string
     required: true
 
 </code></pre>

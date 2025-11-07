@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://clevinson.github.io/oae-data-protocol/dosing_location_provided_as_file/">
+        <link rel="canonical" href="https://clevinson.github.io/oae-data-protocol/dosing_location_file/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: dosing_location_provided_as_file - oae-data-protocol</title>
+        <title>Slot: dosing_location_file - oae-data-protocol</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-dosing_location_provided_as_file" class="md-skip">
+        <a href="#slot-dosing_location_file" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: dosing_location_provided_as_file
+              Slot: dosing_location_file
             
           </span>
         </div>
@@ -359,8 +359,9 @@
   
 
 
-<h1 id="slot-dosing_location_provided_as_file">Slot: dosing_location_provided_as_file</h1>
-<p>URI: <a href="https://example.org/oae#dosing_location_provided_as_file">oae:dosing_location_provided_as_file</a></p>
+<h1 id="slot-dosing_location_file">Slot: dosing_location_file</h1>
+<p><em>Exact path and filename for the location file (relative to root path of project), attached separately. Format should be one of GeoJSON or Shapefile.</em></p>
+<p>URI: <a href="https://example.org/oae#dosing_location_file">oae:dosing_location_file</a></p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -374,35 +375,15 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Intervention/">Intervention</a></td>
-<td>Additional metadata that applies to experiments where an intervention, such a...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../DosingDetails/">DosingDetails</a></td>
-<td>An abstract class (used as a mixin, not implemented directly) for detailing t...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../InterventionWithTracer/">InterventionWithTracer</a></td>
-<td>Additional metadata that applies to hybrid experiments where an intervention ...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Tracer/">Tracer</a></td>
-<td>Additional metadata that applies to experiments where a tracer study was cond...</td>
+<td><a href="../DosingLocation/">DosingLocation</a></td>
+<td>A specific location of dosing for an OAE intervention and/or tracer study</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>
-<p>Range: <a href="../Boolean/">Boolean</a></p>
-</li>
-<li>
-<p>Required: True</p>
-</li>
+<li>Range: <a href="../String/">String</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -420,26 +401,27 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>oae:dosing_location_provided_as_file</td>
+<td>oae:dosing_location_file</td>
 </tr>
 <tr>
 <td>native</td>
-<td>oae:dosing_location_provided_as_file</td>
+<td>oae:dosing_location_file</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: dosing_location_provided_as_file
+<pre><code class="language-yaml">name: dosing_location_file
+description: Exact path and filename for the location file (relative to root path
+  of project), attached separately. Format should be one of GeoJSON or Shapefile.
 from_schema: OAEDataManagementProtocol
 rank: 1000
-alias: dosing_location_provided_as_file
-owner: DosingDetails
+alias: dosing_location_file
+owner: DosingLocation
 domain_of:
-- DosingDetails
-range: boolean
-required: true
+- DosingLocation
+range: string
 
 </code></pre>
 
