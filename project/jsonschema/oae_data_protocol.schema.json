@@ -50,13 +50,12 @@
                     "type": "boolean"
                 },
                 "unit": {
-                    "type": "string"
+                    "$ref": "#/$defs/MassConcentrationUnit"
                 }
             },
             "required": [
                 "is_derived_value",
-                "is_provided_as_a_file",
-                "unit"
+                "is_provided_as_a_file"
             ],
             "title": "DosingConcentration",
             "type": "object"
@@ -71,6 +70,30 @@
             ],
             "title": "DosingDeliveryType",
             "type": "string"
+        },
+        "DosingLocation": {
+            "additionalProperties": false,
+            "description": "A specific location of dosing for an OAE intervention and/or tracer study. Can be a point, line, or bounding box",
+            "properties": {
+                "dosing_location_file": {
+                    "description": "Exact path and filename for the location file (relative to root path of project), attached separately. Format should be one of GeoJSON or Shapefile.",
+                    "type": "string"
+                },
+                "geo": {
+                    "$ref": "#/$defs/Any",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/GeoShape"
+                        },
+                        {
+                            "$ref": "#/$defs/GeoCoordinates"
+                        }
+                    ],
+                    "description": "Entities that have a somewhat fixed, physical extension. (imported from schema.org)"
+                }
+            },
+            "title": "DosingLocation",
+            "type": "object"
         },
         "EquilibrationStatus": {
             "description": "Equilibration status of the alkalinity feedstock",
@@ -426,12 +449,9 @@
                     "title": "Dosing Dispersal Hydrologic Location"
                 },
                 "dosing_location": {
-                    "$ref": "#/$defs/Place",
+                    "$ref": "#/$defs/DosingLocation",
                     "description": "Provide latitude and longitude in decimal degrees. Depending on your method of dispersal, this information may be provided as a point source, vector, or bounding box. If provided as a vector, the latitude and longitude values should be included in the dosing data file.",
                     "title": "Dosing Location"
-                },
-                "dosing_location_provided_as_file": {
-                    "type": "boolean"
                 },
                 "dosing_regimen": {
                     "description": "A human readable summary description of the dosing regimen / frequency. Exact details must be provided in the corresponding dosing file with exact timestamps for dosing on/off schedule.",
@@ -514,7 +534,6 @@
                 "alkalinity_dosing_effluent_density",
                 "dosing_delivery_type",
                 "dosing_location",
-                "dosing_location_provided_as_file",
                 "dosing_dispersal_hydrologic_location",
                 "dosing_depth",
                 "dosing_regimen",
@@ -653,12 +672,9 @@
                     "title": "Dosing Dispersal Hydrologic Location"
                 },
                 "dosing_location": {
-                    "$ref": "#/$defs/Place",
+                    "$ref": "#/$defs/DosingLocation",
                     "description": "Provide latitude and longitude in decimal degrees. Depending on your method of dispersal, this information may be provided as a point source, vector, or bounding box. If provided as a vector, the latitude and longitude values should be included in the dosing data file.",
                     "title": "Dosing Location"
-                },
-                "dosing_location_provided_as_file": {
-                    "type": "boolean"
                 },
                 "dosing_regimen": {
                     "description": "A human readable summary description of the dosing regimen / frequency. Exact details must be provided in the corresponding dosing file with exact timestamps for dosing on/off schedule.",
@@ -759,7 +775,6 @@
                 "alkalinity_dosing_effluent_density",
                 "dosing_delivery_type",
                 "dosing_location",
-                "dosing_location_provided_as_file",
                 "dosing_dispersal_hydrologic_location",
                 "dosing_depth",
                 "dosing_regimen",
@@ -787,6 +802,23 @@
                 "marine_ecosystem_recovery"
             ],
             "title": "MCDR Pathway",
+            "type": "string"
+        },
+        "MassConcentrationUnit": {
+            "description": "",
+            "enum": [
+                "unit:KiloGM-PER-M3",
+                "unit:MicroGM-PER-L",
+                "unit:MicroGM-PER-L-DAY",
+                "unit:MicroGM-PER-MilliL",
+                "unit:MilliGM-PER-L",
+                "unit:MilliGM-PER-M3",
+                "unit:MilliGM-PER-MilliL",
+                "unit:NanoGM-PER-L",
+                "unit:NanoGM-PER-MilliL",
+                "unit:PicoGM-PER-MilliL"
+            ],
+            "title": "MassConcentrationUnit",
             "type": "string"
         },
         "MonetaryGrant": {
@@ -976,7 +1008,8 @@
                 "temporal_coverage",
                 "spatial_coverage",
                 "vertical_coverage",
-                "project_id"
+                "project_id",
+                "mcdr_pathway"
             ],
             "title": "OAEProject",
             "type": "object"
@@ -1114,7 +1147,7 @@
         },
         "Place": {
             "additionalProperties": false,
-            "description": "A bounding box defined by latitude and longitude coordinates.",
+            "description": "A geospatial area of interest, defined by a bounding box, polygon/line, or a point designated as a  pair of geo-coordinates.",
             "properties": {
                 "geo": {
                     "$ref": "#/$defs/Any",
@@ -1129,9 +1162,6 @@
                     "description": "Entities that have a somewhat fixed, physical extension. (imported from schema.org)"
                 }
             },
-            "required": [
-                "geo"
-            ],
             "title": "Place",
             "type": "object"
         },
@@ -1285,6 +1315,29 @@
             "title": "SeaNames",
             "type": "string"
         },
+        "SpatialCoverage": {
+            "additionalProperties": false,
+            "description": "A bounding box defined by latitude and longitude coordinates.",
+            "properties": {
+                "geo": {
+                    "$ref": "#/$defs/GeoShape",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/GeoShape"
+                        },
+                        {
+                            "$ref": "#/$defs/GeoCoordinates"
+                        }
+                    ],
+                    "description": "Entities that have a somewhat fixed, physical extension. (imported from schema.org)"
+                }
+            },
+            "required": [
+                "geo"
+            ],
+            "title": "SpatialCoverage",
+            "type": "object"
+        },
         "Tracer": {
             "additionalProperties": false,
             "description": "Additional metadata that applies to experiments where a tracer study was conducted",
@@ -1325,12 +1378,9 @@
                     "title": "Dosing Dispersal Hydrologic Location"
                 },
                 "dosing_location": {
-                    "$ref": "#/$defs/Place",
+                    "$ref": "#/$defs/DosingLocation",
                     "description": "Provide latitude and longitude in decimal degrees. Depending on your method of dispersal, this information may be provided as a point source, vector, or bounding box. If provided as a vector, the latitude and longitude values should be included in the dosing data file.",
                     "title": "Dosing Location"
-                },
-                "dosing_location_provided_as_file": {
-                    "type": "boolean"
                 },
                 "dosing_regimen": {
                     "description": "A human readable summary description of the dosing regimen / frequency. Exact details must be provided in the corresponding dosing file with exact timestamps for dosing on/off schedule.",
@@ -1420,7 +1470,6 @@
                 "tracer_concentration",
                 "dosing_delivery_type",
                 "dosing_location",
-                "dosing_location_provided_as_file",
                 "dosing_dispersal_hydrologic_location",
                 "dosing_depth",
                 "dosing_regimen",
@@ -1606,7 +1655,8 @@
         "temporal_coverage",
         "spatial_coverage",
         "vertical_coverage",
-        "project_id"
+        "project_id",
+        "mcdr_pathway"
     ],
     "title": "OAEDataManagementProtocol",
     "type": "object",

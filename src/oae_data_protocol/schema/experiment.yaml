@@ -198,6 +198,7 @@ classes:
           feedstock and represents the quantitative hypothetical potential of the material to capture CO₂ as bicarbonate
           or carbonate. See Isometric's CO2 removal potential module for details.
         range: float
+        required: true
       alkalinity_feedstock_description:
         title: Alkalinity Feedstock Description
         description: >-
@@ -247,20 +248,15 @@ classes:
           'tracer_concentration' for your column header name.
         range: DosingConcentration
         required: true
-  QuantityWithUnit:
-    mixin: true
+  DosingConcentration:
+    # TODO: Add a `rules` block to require `amount` and `unit` to be empty if `provided_as_a_file` is true
+    description: Details of tracer concentration information
     attributes:
       amount:
         range: float
       # TODO: update unit to be semantic type (units-of-measure, or qudt)
       unit:
-        range: string
-        required: true
-  DosingConcentration:
-    # TODO: Add a `rules` block to require `amount` and `unit` to be empty if `provided_as_a_file` is true
-    description: Details of tracer concentration information
-    mixins:
-      - QuantityWithUnit
+        range: MassConcentrationUnit
     slots:
       - is_derived_value
       - is_provided_as_a_file
@@ -282,10 +278,7 @@ classes:
           Provide latitude and longitude in decimal degrees. Depending on your method of dispersal, this information may
           be provided as a point source, vector, or bounding box. If provided as a vector, the latitude and longitude
           values should be included in the dosing data file.
-        range: Place
-        required: true
-      dosing_location_provided_as_file:
-        range: boolean
+        range: DosingLocation
         required: true
       dosing_dispersal_hydrologic_location:
         title: Dosing Dispersal Hydrologic Location

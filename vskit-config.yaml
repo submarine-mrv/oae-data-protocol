@@ -1,3 +1,6 @@
 resource_resolvers:
   SDN:C16:
     shorthand: ontologies/sea_names.ttl
+
+  qudt:unit:
+    shorthand: ontologies/unit.ttl

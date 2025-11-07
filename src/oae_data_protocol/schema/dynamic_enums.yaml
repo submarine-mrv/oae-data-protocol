@@ -3,6 +3,7 @@ name: DynamicEnums
 
 prefixes:
   oae: "https://example.org/oae#"
+  unit: "https://qudt.org/vocab/unit/"
 
 default_prefix: oae
 enums:
@@ -10,3 +11,10 @@ enums:
     matches:
       source_ontology: "SDN:C16"
       identifier_pattern: "http://vocab.nerc.ac.uk/collection/C16/current/.+/"
+  MassConcentration:
+    reachable_from:
+      source_ontology: qudt:unit
+      source_nodes:
+        - quantitykind:MassConcentration
+      relationship_types:
+        - qudt:hasQuantityKind
