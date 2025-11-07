@@ -357,6 +357,15 @@
 
       InterventionWithTracer : name
 
+      InterventionWithTracer : permits
+
+
+
+
+    InterventionWithTracer --&gt; "*" Permit : permits
+    click Permit href "../Permit"
+
+
       InterventionWithTracer : project_id
 
       InterventionWithTracer : spatial_coverage
@@ -552,6 +561,12 @@
 <td><a href="../vertical_coverage/">vertical_coverage</a></td>
 <td>1 <br/> <a href="../VerticalExtent/">VerticalExtent</a></td>
 <td>Minimum and maximum depths of observations in meters</td>
+<td><a href="../Experiment/">Experiment</a></td>
+</tr>
+<tr>
+<td><a href="../permits/">permits</a></td>
+<td>* <br/> <a href="../Permit/">Permit</a></td>
+<td>Associated permit number(s)</td>
 <td><a href="../Experiment/">Experiment</a></td>
 </tr>
 <tr>
@@ -977,6 +992,20 @@ attributes:
     - Experiment
     range: VerticalExtent
     required: true
+  permits:
+    name: permits
+    description: Associated permit number(s).
+    title: Permits
+    from_schema: OAEDataManagementProtocol
+    rank: 1000
+    alias: permits
+    owner: InterventionWithTracer
+    domain_of:
+    - Experiment
+    range: Permit
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
   experiment_id:
     name: experiment_id
     description: 'The experiment to which the data belong. Any naming convention that

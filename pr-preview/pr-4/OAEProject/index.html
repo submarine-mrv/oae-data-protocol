@@ -251,15 +251,6 @@
     click MCDRPathway href "../MCDRPathway"
 
 
-      OAEProject : permits
-
-
-
-
-    OAEProject --&gt; "*" Permit : permits
-    click Permit href "../Permit"
-
-
       OAEProject : physical_site_description
 
       OAEProject : previous_or_ongoing_colocated_research
@@ -394,12 +385,6 @@
 <td><a href="../colocated_operations/">colocated_operations</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>A description is required if any nearby operations exist that may influence t...</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../permits/">permits</a></td>
-<td>* <br/> <a href="../Permit/">Permit</a></td>
-<td>Associated permit number(s)</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -617,18 +602,6 @@ attributes:
     domain_of:
     - OAEProject
     range: string
-  permits:
-    name: permits
-    description: Associated permit number(s).
-    title: Permits
-    from_schema: OAEProject
-    rank: 1000
-    domain_of:
-    - OAEProject
-    range: Permit
-    multivalued: true
-    inlined: true
-    inlined_as_list: true
   public_comments:
     name: public_comments
     description: Links to public comments or concerns about the project.
@@ -855,20 +828,6 @@ attributes:
     domain_of:
     - OAEProject
     range: string
-  permits:
-    name: permits
-    description: Associated permit number(s).
-    title: Permits
-    from_schema: OAEProject
-    rank: 1000
-    alias: permits
-    owner: OAEProject
-    domain_of:
-    - OAEProject
-    range: Permit
-    multivalued: true
-    inlined: true
-    inlined_as_list: true
   public_comments:
     name: public_comments
     description: Links to public comments or concerns about the project.

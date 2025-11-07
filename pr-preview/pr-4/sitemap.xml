@@ -173,10 +173,6 @@
          <lastmod>2025-11-07</lastmod>
     </url>
     <url>
-         <loc>https://clevinson.github.io/oae-data-protocol/PermitStatus/</loc>
-         <lastmod>2025-11-07</lastmod>
-    </url>
-    <url>
          <loc>https://clevinson.github.io/oae-data-protocol/Person/</loc>
          <lastmod>2025-11-07</lastmod>
     </url>
@@ -249,6 +245,10 @@
          <lastmod>2025-11-07</lastmod>
     </url>
     <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/agency_contact/</loc>
+         <lastmod>2025-11-07</lastmod>
+    </url>
+    <url>
          <loc>https://clevinson.github.io/oae-data-protocol/alkalinity_dosing_effluent_density/</loc>
          <lastmod>2025-11-07</lastmod>
     </url>
@@ -290,6 +290,10 @@
     </url>
     <url>
          <loc>https://clevinson.github.io/oae-data-protocol/box/</loc>
+         <lastmod>2025-11-07</lastmod>
+    </url>
+    <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/changes_to_evolution_of_permit_criteria/</loc>
          <lastmod>2025-11-07</lastmod>
     </url>
     <url>
@@ -433,7 +437,7 @@
          <lastmod>2025-11-07</lastmod>
     </url>
     <url>
-         <loc>https://clevinson.github.io/oae-data-protocol/permit_status/</loc>
+         <loc>https://clevinson.github.io/oae-data-protocol/permit_type/</loc>
          <lastmod>2025-11-07</lastmod>
     </url>
     <url>
@@ -506,6 +510,10 @@
     </url>
     <url>
          <loc>https://clevinson.github.io/oae-data-protocol/temporal_coverage/</loc>
+         <lastmod>2025-11-07</lastmod>
+    </url>
+    <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/time_period/</loc>
          <lastmod>2025-11-07</lastmod>
     </url>
     <url>

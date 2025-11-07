@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://clevinson.github.io/oae-data-protocol/permit_status/">
+        <link rel="canonical" href="https://clevinson.github.io/oae-data-protocol/time_period/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: Permit Status (permit_status) - oae-data-protocol</title>
+        <title>Slot: Permit Time Period (time_period) - oae-data-protocol</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-permit-status-permit_status" class="md-skip">
+        <a href="#slot-permit-time-period-time_period" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: Permit Status (permit_status)
+              Slot: Permit Time Period (time_period)
             
           </span>
         </div>
@@ -359,9 +359,9 @@
   
 
 
-<h1 id="slot-permit-status-permit_status">Slot: Permit Status (permit_status)</h1>
-<p><em>The current status of the permit (e.g., active, expired).</em></p>
-<p>URI: <a href="https://example.org/oae#permit_status">oae:permit_status</a></p>
+<h1 id="slot-permit-time-period-time_period">Slot: Permit Time Period (time_period)</h1>
+<p><em>The time period during which the permit will be applicable, or expected duration of the permit.</em></p>
+<p>URI: <a href="https://example.org/oae#time_period">oae:time_period</a></p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -383,12 +383,7 @@
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>
-<p>Range: <a href="../PermitStatus/">PermitStatus</a></p>
-</li>
-<li>
-<p>Required: True</p>
-</li>
+<li>Range: <a href="../String/">String</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -406,28 +401,28 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>oae:permit_status</td>
+<td>oae:time_period</td>
 </tr>
 <tr>
 <td>native</td>
-<td>oae:permit_status</td>
+<td>oae:time_period</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: permit_status
-description: The current status of the permit (e.g., active, expired).
-title: Permit Status
+<pre><code class="language-yaml">name: time_period
+description: The time period during which the permit will be applicable, or expected
+  duration of the permit.
+title: Permit Time Period
 from_schema: OAEDataManagementProtocol
 rank: 1000
-alias: permit_status
+alias: time_period
 owner: Permit
 domain_of:
 - Permit
-range: PermitStatus
-required: true
+range: string
 
 </code></pre>
 

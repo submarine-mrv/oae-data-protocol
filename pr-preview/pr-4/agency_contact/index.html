@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://clevinson.github.io/oae-data-protocol/PermitStatus/">
+        <link rel="canonical" href="https://clevinson.github.io/oae-data-protocol/agency_contact/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Enum: PermitStatus - oae-data-protocol</title>
+        <title>Slot: Agency Contact (agency_contact) - oae-data-protocol</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#enum-permitstatus" class="md-skip">
+        <a href="#slot-agency-contact-agency_contact" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Enum: PermitStatus
+              Slot: Agency Contact (agency_contact)
             
           </span>
         </div>
@@ -281,18 +281,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#permissible-values" class="md-nav__link">
+  <a href="#applicable-classes" class="md-nav__link">
     <span class="md-ellipsis">
-      Permissible Values
+      Applicable Classes
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#slots" class="md-nav__link">
+  <a href="#properties" class="md-nav__link">
     <span class="md-ellipsis">
-      Slots
+      Properties
     </span>
   </a>
   
@@ -319,6 +319,15 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mappings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mappings
+    </span>
+  </a>
   
 </li>
       
@@ -350,77 +359,69 @@
   
 
 
-<h1 id="enum-permitstatus">Enum: PermitStatus</h1>
-<p><em>The status of a permit.</em></p>
-<p>URI: <a href="./">PermitStatus</a></p>
-<h2 id="permissible-values">Permissible Values</h2>
-<table>
-<thead>
-<tr>
-<th>Value</th>
-<th>Meaning</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>pending</td>
-<td>None</td>
-<td></td>
-</tr>
-<tr>
-<td>active</td>
-<td>None</td>
-<td></td>
-</tr>
-<tr>
-<td>expired</td>
-<td>None</td>
-<td></td>
-</tr>
-<tr>
-<td>revoked</td>
-<td>None</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h2 id="slots">Slots</h2>
+<h1 id="slot-agency-contact-agency_contact">Slot: Agency Contact (agency_contact)</h1>
+<p><em>The point of contact at the permitting agency.</em></p>
+<p>URI: <a href="https://example.org/oae#agency_contact">oae:agency_contact</a></p>
+<!-- no inheritance hierarchy -->
+
+<h2 id="applicable-classes">Applicable Classes</h2>
 <table>
 <thead>
 <tr>
 <th>Name</th>
 <th>Description</th>
+<th>Modifies Slot</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="../permit_status/">permit_status</a></td>
-<td>The current status of the permit (e</td>
+<td><a href="../Permit/">Permit</a></td>
+<td>A permit associated with the project</td>
+<td>no</td>
 </tr>
 </tbody>
 </table>
+<h2 id="properties">Properties</h2>
+<ul>
+<li>Range: <a href="../String/">String</a></li>
+</ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
 <li>from schema: OAEDataManagementProtocol</li>
 </ul>
+<h2 id="mappings">Mappings</h2>
+<table>
+<thead>
+<tr>
+<th>Mapping Type</th>
+<th>Mapped Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>self</td>
+<td>oae:agency_contact</td>
+</tr>
+<tr>
+<td>native</td>
+<td>oae:agency_contact</td>
+</tr>
+</tbody>
+</table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: PermitStatus
-description: The status of a permit.
+<pre><code class="language-yaml">name: agency_contact
+description: The point of contact at the permitting agency.
+title: Agency Contact
 from_schema: OAEDataManagementProtocol
 rank: 1000
-permissible_values:
-  pending:
-    text: pending
-  active:
-    text: active
-  expired:
-    text: expired
-  revoked:
-    text: revoked
+alias: agency_contact
+owner: Permit
+domain_of:
+- Permit
+range: string
 
 </code></pre>
 

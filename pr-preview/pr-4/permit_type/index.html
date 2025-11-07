@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://clevinson.github.io/oae-data-protocol/dosing_delivery_type/">
+        <link rel="canonical" href="https://clevinson.github.io/oae-data-protocol/permit_type/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: Dosing Delivery Type (dosing_delivery_type) - oae-data-protocol</title>
+        <title>Slot: Permit Type (permit_type) - oae-data-protocol</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-dosing-delivery-type-dosing_delivery_type" class="md-skip">
+        <a href="#slot-permit-type-permit_type" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: Dosing Delivery Type (dosing_delivery_type)
+              Slot: Permit Type (permit_type)
             
           </span>
         </div>
@@ -359,9 +359,9 @@
   
 
 
-<h1 id="slot-dosing-delivery-type-dosing_delivery_type">Slot: Dosing Delivery Type (dosing_delivery_type)</h1>
-<p><em>Type of dosing delivery method. See Controlled Vocabularies for definitions.</em></p>
-<p>URI: <a href="https://example.org/oae#dosing_delivery_type">oae:dosing_delivery_type</a></p>
+<h1 id="slot-permit-type-permit_type">Slot: Permit Type (permit_type)</h1>
+<p><em>The category of permit (E.g., experimental permit, commercial permit)</em></p>
+<p>URI: <a href="https://example.org/oae#permit_type">oae:permit_type</a></p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -375,35 +375,15 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Tracer/">Tracer</a></td>
-<td>Additional metadata that applies to experiments where a tracer study was cond...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../DosingDetails/">DosingDetails</a></td>
-<td>An abstract class (used as a mixin, not implemented directly) for detailing t...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Intervention/">Intervention</a></td>
-<td>Additional metadata that applies to experiments where an intervention, such a...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../InterventionWithTracer/">InterventionWithTracer</a></td>
-<td>Additional metadata that applies to hybrid experiments where an intervention ...</td>
+<td><a href="../Permit/">Permit</a></td>
+<td>A permit associated with the project</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>
-<p>Range: <a href="../DosingDeliveryType/">DosingDeliveryType</a></p>
-</li>
-<li>
-<p>Required: True</p>
-</li>
+<li>Range: <a href="../String/">String</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -421,28 +401,27 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>oae:dosing_delivery_type</td>
+<td>oae:permit_type</td>
 </tr>
 <tr>
 <td>native</td>
-<td>oae:dosing_delivery_type</td>
+<td>oae:permit_type</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: dosing_delivery_type
-description: Type of dosing delivery method. See Controlled Vocabularies for definitions.
-title: Dosing Delivery Type
+<pre><code class="language-yaml">name: permit_type
+description: The category of permit (E.g., experimental permit, commercial permit)
+title: Permit Type
 from_schema: OAEDataManagementProtocol
 rank: 1000
-alias: dosing_delivery_type
-owner: DosingDetails
+alias: permit_type
+owner: Permit
 domain_of:
-- DosingDetails
-range: DosingDeliveryType
-required: true
+- Permit
+range: string
 
 </code></pre>
 
