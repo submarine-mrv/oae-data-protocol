@@ -360,7 +360,7 @@
 
 
 <h1 id="slot-public-comments-public_comments">Slot: Public Comments (public_comments)</h1>
-<p><em>Links to public comments or concerns about the project.</em></p>
+<p><em>If possible, please provide public comments concatenated into a single pdf</em></p>
 <p>URI: <a href="https://example.org/oae#public_comments">oae:public_comments</a></p>
 <!-- no inheritance hierarchy -->
 
@@ -384,10 +384,7 @@
 <h2 id="properties">Properties</h2>
 <ul>
 <li>
-<p>Range: <a href="../NamedLink/">NamedLink</a></p>
-</li>
-<li>
-<p>Multivalued: True</p>
+<p>Range: <a href="../String/">String</a></p>
 </li>
 <li>
 <p>Recommended: True</p>
@@ -421,7 +418,8 @@
 <details>
 
 <pre><code class="language-yaml">name: public_comments
-description: Links to public comments or concerns about the project.
+description: If possible, please provide public comments concatenated into a single
+  pdf
 title: Public Comments
 from_schema: OAEDataManagementProtocol
 rank: 1000
@@ -429,9 +427,8 @@ alias: public_comments
 owner: OAEProject
 domain_of:
 - OAEProject
-range: NamedLink
+range: string
 recommended: true
-multivalued: true
 
 </code></pre>
 

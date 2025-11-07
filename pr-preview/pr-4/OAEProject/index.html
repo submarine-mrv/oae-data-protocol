@@ -268,13 +268,6 @@
 
       OAEProject : public_comments
 
-
-
-
-    OAEProject --&gt; "* _recommended_" NamedLink : public_comments
-    click NamedLink href "../NamedLink"
-
-
       OAEProject : research_project
 
       OAEProject : sea_names
@@ -389,8 +382,8 @@
 </tr>
 <tr>
 <td><a href="../public_comments/">public_comments</a></td>
-<td>* <em>recommended</em> <br/> <a href="../NamedLink/">NamedLink</a></td>
-<td>Links to public comments or concerns about the project</td>
+<td>0..1 <em>recommended</em> <br/> <a href="../String/">String</a></td>
+<td>If possible, please provide public comments concatenated into a single pdf</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -604,15 +597,15 @@ attributes:
     range: string
   public_comments:
     name: public_comments
-    description: Links to public comments or concerns about the project.
+    description: If possible, please provide public comments concatenated into a single
+      pdf
     title: Public Comments
     from_schema: OAEProject
     rank: 1000
     domain_of:
     - OAEProject
-    range: NamedLink
+    range: string
     recommended: true
-    multivalued: true
   research_project:
     name: research_project
     description: Project, which the data collection is part of. For example, West
@@ -830,7 +823,8 @@ attributes:
     range: string
   public_comments:
     name: public_comments
-    description: Links to public comments or concerns about the project.
+    description: If possible, please provide public comments concatenated into a single
+      pdf
     title: Public Comments
     from_schema: OAEProject
     rank: 1000
@@ -838,9 +832,8 @@ attributes:
     owner: OAEProject
     domain_of:
     - OAEProject
-    range: NamedLink
+    range: string
     recommended: true
-    multivalued: true
   research_project:
     name: research_project
     description: Project, which the data collection is part of. For example, West
