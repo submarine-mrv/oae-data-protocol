@@ -91,10 +91,9 @@ classes:
         range: string
       public_comments:
         title: Public Comments
-        description: "Links to public comments or concerns about the project."
-        range: NamedLink
+        description: "If possible, please provide public comments concatenated into a single pdf"
+        range: string
         recommended: true
-        multivalued: true
       research_project:
         title: Research Project
         description: >-

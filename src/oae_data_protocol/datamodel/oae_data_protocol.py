@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-11-06T17:56:13
+# Generation date: 2025-11-06T18:03:34
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -295,7 +295,7 @@ class OAEProject(YAMLRoot):
     social_research_conducted_to_date: Optional[str] = None
     previous_or_ongoing_colocated_research: Optional[Union[Union[dict, "ExternalProject"], List[Union[dict, "ExternalProject"]]]] = empty_list()
     colocated_operations: Optional[str] = None
-    public_comments: Optional[Union[Union[dict, "NamedLink"], List[Union[dict, "NamedLink"]]]] = empty_list()
+    public_comments: Optional[str] = None
     research_project: Optional[str] = None
     funding: Optional[Union[Union[dict, "MonetaryGrant"], List[Union[dict, "MonetaryGrant"]]]] = empty_list()
     additional_details: Optional[str] = None
@@ -344,7 +344,8 @@ class OAEProject(YAMLRoot):
         if self.colocated_operations is not None and not isinstance(self.colocated_operations, str):
             self.colocated_operations = str(self.colocated_operations)
 
-        self._normalize_inlined_as_dict(slot_name="public_comments", slot_type=NamedLink, key_name="name", keyed=False)
+        if self.public_comments is not None and not isinstance(self.public_comments, str):
+            self.public_comments = str(self.public_comments)
 
         if self.research_project is not None and not isinstance(self.research_project, str):
             self.research_project = str(self.research_project)
@@ -2052,7 +2053,7 @@ slots.oAEProject__colocated_operations = Slot(uri=OAE.colocated_operations, name
                    model_uri=OAE.oAEProject__colocated_operations, domain=None, range=Optional[str])
 
 slots.oAEProject__public_comments = Slot(uri=OAE.public_comments, name="oAEProject__public_comments", curie=OAE.curie('public_comments'),
-                   model_uri=OAE.oAEProject__public_comments, domain=None, range=Optional[Union[Union[dict, NamedLink], List[Union[dict, NamedLink]]]])
+                   model_uri=OAE.oAEProject__public_comments, domain=None, range=Optional[str])
 
 slots.oAEProject__research_project = Slot(uri=OAE.research_project, name="oAEProject__research_project", curie=OAE.curie('research_project'),
                    model_uri=OAE.oAEProject__research_project, domain=None, range=Optional[str])
