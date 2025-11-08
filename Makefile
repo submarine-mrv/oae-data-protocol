@@ -128,6 +128,7 @@ gen-examples:
 gen-project: $(PYMODEL)
 	$(RUN) gen-project ${CONFIG_YAML} -d $(DEST) $(SOURCE_SCHEMA_PATH)
 	mv $(DEST)/*.py $(PYMODEL)
+	$(RUN) python scripts/inject_version_metadata.py
 
 
 # non-empty arg triggers owl (workaround https://github.com/linkml/linkml/issues/1453)

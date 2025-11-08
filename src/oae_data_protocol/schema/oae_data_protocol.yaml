@@ -28,3 +28,23 @@ imports:
 #   - dataset
 #   - intervention
 #   - model_simulation
+
+classes:
+  Container:
+    tree_root: true
+    attributes:
+      project:
+        range: Project
+      # TODO: Decide if version & git hashes should be required
+      version:
+        range: string
+        description: "Version of the oae-data-protocol"
+        required: false
+      protocol_git_hash:
+        range: string
+        description: "Git commit hash of the oae-data-protocol"
+        required: false
+      metadata_builder_git_hash:
+        range: string
+        description: "Git commit hash of the metadata-builder UI"
+        required: false

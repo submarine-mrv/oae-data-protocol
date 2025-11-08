@@ -34,6 +34,29 @@
                 "string"
             ]
         },
+        "Container": {
+            "additionalProperties": false,
+            "description": "",
+            "properties": {
+                "metadata_builder_git_hash": {
+                    "description": "Git commit hash of the metadata-builder UI",
+                    "type": "string"
+                },
+                "project": {
+                    "$ref": "#/$defs/Project"
+                },
+                "protocol_git_hash": {
+                    "description": "Git commit hash of the oae-data-protocol",
+                    "type": "string"
+                },
+                "version": {
+                    "description": "Version of the oae-data-protocol",
+                    "type": "string"
+                }
+            },
+            "title": "Container",
+            "type": "object"
+        },
         "DosingConcentration": {
             "additionalProperties": false,
             "description": "Details of tracer concentration information",
@@ -909,123 +932,6 @@
             "title": "NamedLink",
             "type": "object"
         },
-        "OAEProject": {
-            "additionalProperties": false,
-            "description": "A project conducting OAE field trials or modeling.",
-            "properties": {
-                "additional_details": {
-                    "description": "Open text area to include additional information. These may include information for sediment processes data, biological data, or any other required information if not included in the main metadata or data files.\nSee [General Guidelines for Your Data](https://www.carbontosea.org/oae-data-protocol/1-0-0/#general-guidelines-for-your-data) for relevant sections of your data. Additional informational files, such as digitized laboratory notebooks, blogs, etc., may be linked here.",
-                    "title": "Additional Details",
-                    "type": "string"
-                },
-                "colocated_operations": {
-                    "description": "A description is required if any nearby operations exist that may influence the waters over the time period covered by this data. This might be a nearby mCDR project, a facility that discharges water with different characteristics than the inflow (e.g., a desalination plant), frequent boating operations, etc.",
-                    "title": "Co-located Operations",
-                    "type": "string"
-                },
-                "experiments": {
-                    "items": {
-                        "$ref": "#/$defs/Experiment"
-                    },
-                    "title": "Related Experiments",
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "funding": {
-                    "items": {
-                        "$ref": "#/$defs/MonetaryGrant"
-                    },
-                    "title": "Funding Info",
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "mcdr_pathway": {
-                    "$ref": "#/$defs/MCDRPathway",
-                    "description": "The Marine Carbon Dioxide Removal (MCDR) pathway being studied.",
-                    "title": "MCDR Pathway"
-                },
-                "physical_site_description": {
-                    "description": "Provide information to help characterize the field site and provide context when interpreting the data. For example, descriptions of tidal patterns, climatological conditions, notable geological characteristics, the geographical and marine setting (coastal, intertidal, island region, sheltered environment), and characteristic meteorological events. If possible based on the file type of this submission, please include useful maps or figures here.\nLinks to relevant datasets, cruise reports, etc may be provided here.",
-                    "title": "Physical Site Description",
-                    "type": "string"
-                },
-                "previous_or_ongoing_colocated_research": {
-                    "description": "This field is required for co-located operations that potentially impact the project results. If previous or on-going mCDR field operations have occurred in the study domain by any project developer, they may be mentioned here either as a description, and/or if a reference to the study exists in the form of a data set, publication, etc, the DOI or other identifying information should be provided. Please provide direct links to data when available.",
-                    "items": {
-                        "$ref": "#/$defs/ExternalProject"
-                    },
-                    "title": "Previous or Ongoing Co-located Research",
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "project_description": {
-                    "description": "A narrative description of the project. For example, what were the goals of the project? What were the research questions? What were the processes to achieve these goals and answer these questions? Who were the key stakeholders, organizers, project leaders? Was this building off a previous or ongoing project, or is this a new region/experiment/mechanistic study?\nIf there are relevant regulatory parameters and/or limits to dosing trials at this location, these may be described here.",
-                    "title": "Project Description",
-                    "type": "string"
-                },
-                "project_id": {
-                    "description": "The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.\nIf no Project ID has been assigned, one may be generated by combining the following fields, as described in Cross-linking Data Sets with Common Identifiers.\nAny method that creates a unique ID that will link all project data (e.g., a project's baseline data to intervention data, and various data submissions within an experiment type) is acceptable.",
-                    "title": "Project ID",
-                    "type": "string"
-                },
-                "public_comments": {
-                    "description": "If possible, please provide public comments concatenated into a single pdf",
-                    "title": "Public Comments",
-                    "type": "string"
-                },
-                "research_project": {
-                    "description": "Project, which the data collection is part of. For example, West Coast Ocean Acidification (WCOA) Project.",
-                    "title": "Research Project",
-                    "type": "string"
-                },
-                "sea_names": {
-                    "description": "Names of the seas where the data collection takes place, See Controlled Vocabularies section for definitions.",
-                    "items": {
-                        "$ref": "#/$defs/SeaNames"
-                    },
-                    "title": "Sea Names",
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "social_context_site_description": {
-                    "description": "Details may include:\n  - Commercial, recreational, ecological, and cultural uses of study site\n  - Industrial site history\n  - Demographics of site area\n  - Notable events that may impact local sentiment to mCDR (for example: site had significant toxic spill in past decade, local positive support for offshore wind farming, frequent HAB site) -Ecologically protected species, economically significant operations in the marine environment\n  - In study areas with nearby state or federal jurisdiction borders, potential conflicts with other countries or permits from foreign governments should be described.\n  - Links to relevant social science surveys, engaged community groups, etc.",
-                    "title": "Social Context Site Description",
-                    "type": "string"
-                },
-                "social_research_conducted_to_date": {
-                    "description": "A description of any social research conducted to date. If provided as a separate file, list filename here. Information may include:\n  - Description of Community engagement research approach conducted and results\n  - Stakeholder mapping method and link to output",
-                    "title": "Social Research Conducted to Date",
-                    "type": "string"
-                },
-                "spatial_coverage": {
-                    "$ref": "#/$defs/Place",
-                    "description": "Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities) provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]",
-                    "title": "Spatial Coverage"
-                },
-                "temporal_coverage": {
-                    "description": "The start and end date (optional) of the project",
-                    "pattern": "^\\d{4}-\\d{2}-\\d{2}/(\\d{4}-\\d{2}-\\d{2}|\\.\\.)$",
-                    "title": "Temporal Coverage",
-                    "type": "string"
-                }
-            },
-            "required": [
-                "temporal_coverage",
-                "spatial_coverage",
-                "project_id",
-                "mcdr_pathway"
-            ],
-            "title": "OAEProject",
-            "type": "object"
-        },
         "ObservationType": {
             "description": "Types of observational data collected in ocean carbon and acidification studies, as defined in OCADS controlled vocabulary hosted at https://www.ncei.noaa.gov/access/ocean-carbon-acidification-data-system/vocabularies/observation-types.html",
             "enum": [
@@ -1178,6 +1084,123 @@
                 }
             },
             "title": "Place",
+            "type": "object"
+        },
+        "Project": {
+            "additionalProperties": false,
+            "description": "A project conducting OAE field trials or modeling.",
+            "properties": {
+                "additional_details": {
+                    "description": "Open text area to include additional information. These may include information for sediment processes data, biological data, or any other required information if not included in the main metadata or data files.\nSee [General Guidelines for Your Data](https://www.carbontosea.org/oae-data-protocol/1-0-0/#general-guidelines-for-your-data) for relevant sections of your data. Additional informational files, such as digitized laboratory notebooks, blogs, etc., may be linked here.",
+                    "title": "Additional Details",
+                    "type": "string"
+                },
+                "colocated_operations": {
+                    "description": "A description is required if any nearby operations exist that may influence the waters over the time period covered by this data. This might be a nearby mCDR project, a facility that discharges water with different characteristics than the inflow (e.g., a desalination plant), frequent boating operations, etc.",
+                    "title": "Co-located Operations",
+                    "type": "string"
+                },
+                "experiments": {
+                    "items": {
+                        "$ref": "#/$defs/Experiment"
+                    },
+                    "title": "Related Experiments",
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "funding": {
+                    "items": {
+                        "$ref": "#/$defs/MonetaryGrant"
+                    },
+                    "title": "Funding Info",
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "mcdr_pathway": {
+                    "$ref": "#/$defs/MCDRPathway",
+                    "description": "The Marine Carbon Dioxide Removal (MCDR) pathway being studied.",
+                    "title": "MCDR Pathway"
+                },
+                "physical_site_description": {
+                    "description": "Provide information to help characterize the field site and provide context when interpreting the data. For example, descriptions of tidal patterns, climatological conditions, notable geological characteristics, the geographical and marine setting (coastal, intertidal, island region, sheltered environment), and characteristic meteorological events. If possible based on the file type of this submission, please include useful maps or figures here.\nLinks to relevant datasets, cruise reports, etc may be provided here.",
+                    "title": "Physical Site Description",
+                    "type": "string"
+                },
+                "previous_or_ongoing_colocated_research": {
+                    "description": "This field is required for co-located operations that potentially impact the project results. If previous or on-going mCDR field operations have occurred in the study domain by any project developer, they may be mentioned here either as a description, and/or if a reference to the study exists in the form of a data set, publication, etc, the DOI or other identifying information should be provided. Please provide direct links to data when available.",
+                    "items": {
+                        "$ref": "#/$defs/ExternalProject"
+                    },
+                    "title": "Previous or Ongoing Co-located Research",
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "project_description": {
+                    "description": "A narrative description of the project. For example, what were the goals of the project? What were the research questions? What were the processes to achieve these goals and answer these questions? Who were the key stakeholders, organizers, project leaders? Was this building off a previous or ongoing project, or is this a new region/experiment/mechanistic study?\nIf there are relevant regulatory parameters and/or limits to dosing trials at this location, these may be described here.",
+                    "title": "Project Description",
+                    "type": "string"
+                },
+                "project_id": {
+                    "description": "The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.\nIf no Project ID has been assigned, one may be generated by combining the following fields, as described in Cross-linking Data Sets with Common Identifiers.\nAny method that creates a unique ID that will link all project data (e.g., a project's baseline data to intervention data, and various data submissions within an experiment type) is acceptable.",
+                    "title": "Project ID",
+                    "type": "string"
+                },
+                "public_comments": {
+                    "description": "If possible, please provide public comments concatenated into a single pdf",
+                    "title": "Public Comments",
+                    "type": "string"
+                },
+                "research_project": {
+                    "description": "Project, which the data collection is part of. For example, West Coast Ocean Acidification (WCOA) Project.",
+                    "title": "Research Project",
+                    "type": "string"
+                },
+                "sea_names": {
+                    "description": "Names of the seas where the data collection takes place, See Controlled Vocabularies section for definitions.",
+                    "items": {
+                        "$ref": "#/$defs/SeaNames"
+                    },
+                    "title": "Sea Names",
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "social_context_site_description": {
+                    "description": "Details may include:\n  - Commercial, recreational, ecological, and cultural uses of study site\n  - Industrial site history\n  - Demographics of site area\n  - Notable events that may impact local sentiment to mCDR (for example: site had significant toxic spill in past decade, local positive support for offshore wind farming, frequent HAB site) -Ecologically protected species, economically significant operations in the marine environment\n  - In study areas with nearby state or federal jurisdiction borders, potential conflicts with other countries or permits from foreign governments should be described.\n  - Links to relevant social science surveys, engaged community groups, etc.",
+                    "title": "Social Context Site Description",
+                    "type": "string"
+                },
+                "social_research_conducted_to_date": {
+                    "description": "A description of any social research conducted to date. If provided as a separate file, list filename here. Information may include:\n  - Description of Community engagement research approach conducted and results\n  - Stakeholder mapping method and link to output",
+                    "title": "Social Research Conducted to Date",
+                    "type": "string"
+                },
+                "spatial_coverage": {
+                    "$ref": "#/$defs/Place",
+                    "description": "Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities) provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]",
+                    "title": "Spatial Coverage"
+                },
+                "temporal_coverage": {
+                    "description": "The start and end date (optional) of the project",
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}/(\\d{4}-\\d{2}-\\d{2}|\\.\\.)$",
+                    "title": "Temporal Coverage",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "temporal_coverage",
+                "spatial_coverage",
+                "project_id",
+                "mcdr_pathway"
+            ],
+            "title": "Project",
             "type": "object"
         },
         "PropertyValue": {
@@ -1548,120 +1571,27 @@
     "$id": "OAEDataManagementProtocol",
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": true,
-    "description": "A project conducting OAE field trials or modeling.",
+    "description": "",
     "metamodel_version": "1.7.0",
     "properties": {
-        "additional_details": {
-            "description": "Open text area to include additional information. These may include information for sediment processes data, biological data, or any other required information if not included in the main metadata or data files.\nSee [General Guidelines for Your Data](https://www.carbontosea.org/oae-data-protocol/1-0-0/#general-guidelines-for-your-data) for relevant sections of your data. Additional informational files, such as digitized laboratory notebooks, blogs, etc., may be linked here.",
-            "title": "Additional Details",
+        "metadata_builder_git_hash": {
+            "description": "Git commit hash of the metadata-builder UI",
             "type": "string"
         },
-        "colocated_operations": {
-            "description": "A description is required if any nearby operations exist that may influence the waters over the time period covered by this data. This might be a nearby mCDR project, a facility that discharges water with different characteristics than the inflow (e.g., a desalination plant), frequent boating operations, etc.",
-            "title": "Co-located Operations",
+        "project": {
+            "$ref": "#/$defs/Project"
+        },
+        "protocol_git_hash": {
+            "description": "Git commit hash of the oae-data-protocol",
             "type": "string"
         },
-        "experiments": {
-            "items": {
-                "$ref": "#/$defs/Experiment"
-            },
-            "title": "Related Experiments",
-            "type": [
-                "array",
-                "null"
-            ]
-        },
-        "funding": {
-            "items": {
-                "$ref": "#/$defs/MonetaryGrant"
-            },
-            "title": "Funding Info",
-            "type": [
-                "array",
-                "null"
-            ]
-        },
-        "mcdr_pathway": {
-            "$ref": "#/$defs/MCDRPathway",
-            "description": "The Marine Carbon Dioxide Removal (MCDR) pathway being studied.",
-            "title": "MCDR Pathway"
-        },
-        "physical_site_description": {
-            "description": "Provide information to help characterize the field site and provide context when interpreting the data. For example, descriptions of tidal patterns, climatological conditions, notable geological characteristics, the geographical and marine setting (coastal, intertidal, island region, sheltered environment), and characteristic meteorological events. If possible based on the file type of this submission, please include useful maps or figures here.\nLinks to relevant datasets, cruise reports, etc may be provided here.",
-            "title": "Physical Site Description",
-            "type": "string"
-        },
-        "previous_or_ongoing_colocated_research": {
-            "description": "This field is required for co-located operations that potentially impact the project results. If previous or on-going mCDR field operations have occurred in the study domain by any project developer, they may be mentioned here either as a description, and/or if a reference to the study exists in the form of a data set, publication, etc, the DOI or other identifying information should be provided. Please provide direct links to data when available.",
-            "items": {
-                "$ref": "#/$defs/ExternalProject"
-            },
-            "title": "Previous or Ongoing Co-located Research",
-            "type": [
-                "array",
-                "null"
-            ]
-        },
-        "project_description": {
-            "description": "A narrative description of the project. For example, what were the goals of the project? What were the research questions? What were the processes to achieve these goals and answer these questions? Who were the key stakeholders, organizers, project leaders? Was this building off a previous or ongoing project, or is this a new region/experiment/mechanistic study?\nIf there are relevant regulatory parameters and/or limits to dosing trials at this location, these may be described here.",
-            "title": "Project Description",
-            "type": "string"
-        },
-        "project_id": {
-            "description": "The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.\nIf no Project ID has been assigned, one may be generated by combining the following fields, as described in Cross-linking Data Sets with Common Identifiers.\nAny method that creates a unique ID that will link all project data (e.g., a project's baseline data to intervention data, and various data submissions within an experiment type) is acceptable.",
-            "title": "Project ID",
-            "type": "string"
-        },
-        "public_comments": {
-            "description": "If possible, please provide public comments concatenated into a single pdf",
-            "title": "Public Comments",
-            "type": "string"
-        },
-        "research_project": {
-            "description": "Project, which the data collection is part of. For example, West Coast Ocean Acidification (WCOA) Project.",
-            "title": "Research Project",
-            "type": "string"
-        },
-        "sea_names": {
-            "description": "Names of the seas where the data collection takes place, See Controlled Vocabularies section for definitions.",
-            "items": {
-                "$ref": "#/$defs/SeaNames"
-            },
-            "title": "Sea Names",
-            "type": [
-                "array",
-                "null"
-            ]
-        },
-        "social_context_site_description": {
-            "description": "Details may include:\n  - Commercial, recreational, ecological, and cultural uses of study site\n  - Industrial site history\n  - Demographics of site area\n  - Notable events that may impact local sentiment to mCDR (for example: site had significant toxic spill in past decade, local positive support for offshore wind farming, frequent HAB site) -Ecologically protected species, economically significant operations in the marine environment\n  - In study areas with nearby state or federal jurisdiction borders, potential conflicts with other countries or permits from foreign governments should be described.\n  - Links to relevant social science surveys, engaged community groups, etc.",
-            "title": "Social Context Site Description",
-            "type": "string"
-        },
-        "social_research_conducted_to_date": {
-            "description": "A description of any social research conducted to date. If provided as a separate file, list filename here. Information may include:\n  - Description of Community engagement research approach conducted and results\n  - Stakeholder mapping method and link to output",
-            "title": "Social Research Conducted to Date",
-            "type": "string"
-        },
-        "spatial_coverage": {
-            "$ref": "#/$defs/Place",
-            "description": "Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities) provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]",
-            "title": "Spatial Coverage"
-        },
-        "temporal_coverage": {
-            "description": "The start and end date (optional) of the project",
-            "pattern": "^\\d{4}-\\d{2}-\\d{2}/(\\d{4}-\\d{2}-\\d{2}|\\.\\.)$",
-            "title": "Temporal Coverage",
+        "version": {
+            "description": "Version of the oae-data-protocol",
             "type": "string"
         }
     },
-    "required": [
-        "temporal_coverage",
-        "spatial_coverage",
-        "project_id",
-        "mcdr_pathway"
-    ],
     "title": "OAEDataManagementProtocol",
     "type": "object",
-    "version": "0.1.0"
+    "version": "0.1.0",
+    "x-protocol-version": "0.0.0-prerelease"
 }

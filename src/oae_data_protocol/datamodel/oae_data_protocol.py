@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-11-06T18:03:34
+# Generation date: 2025-11-08T04:33:34
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -88,6 +88,36 @@ class Doi(str):
 
 # Class references
 
+
+
+@dataclass(repr=False)
+class Container(YAMLRoot):
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["Container"]
+    class_class_curie: ClassVar[str] = "oae:Container"
+    class_name: ClassVar[str] = "Container"
+    class_model_uri: ClassVar[URIRef] = OAE.Container
+
+    project: Optional[Union[dict, "Project"]] = None
+    version: Optional[str] = None
+    protocol_git_hash: Optional[str] = None
+    metadata_builder_git_hash: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self.project is not None and not isinstance(self.project, Project):
+            self.project = Project(**as_dict(self.project))
+
+        if self.version is not None and not isinstance(self.version, str):
+            self.version = str(self.version)
+
+        if self.protocol_git_hash is not None and not isinstance(self.protocol_git_hash, str):
+            self.protocol_git_hash = str(self.protocol_git_hash)
+
+        if self.metadata_builder_git_hash is not None and not isinstance(self.metadata_builder_git_hash, str):
+            self.metadata_builder_git_hash = str(self.metadata_builder_git_hash)
+
+        super().__post_init__(**kwargs)
 
 
 class PropertyValue(YAMLRoot):
@@ -272,16 +302,16 @@ class Organization(YAMLRoot):
 
 
 @dataclass(repr=False)
-class OAEProject(YAMLRoot):
+class Project(YAMLRoot):
     """
     A project conducting OAE field trials or modeling.
     """
     _inherited_slots: ClassVar[List[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = OAE["OAEProject"]
-    class_class_curie: ClassVar[str] = "oae:OAEProject"
-    class_name: ClassVar[str] = "OAEProject"
-    class_model_uri: ClassVar[URIRef] = OAE.OAEProject
+    class_class_uri: ClassVar[URIRef] = OAE["Project"]
+    class_class_curie: ClassVar[str] = "oae:Project"
+    class_name: ClassVar[str] = "Project"
+    class_model_uri: ClassVar[URIRef] = OAE.Project
 
     temporal_coverage: str = None
     spatial_coverage: Union[dict, Place] = None
@@ -1997,6 +2027,18 @@ slots.is_provided_as_a_file = Slot(uri=OAE.is_provided_as_a_file, name="is_provi
 slots.is_derived_value = Slot(uri=OAE.is_derived_value, name="is_derived_value", curie=OAE.curie('is_derived_value'),
                    model_uri=OAE.is_derived_value, domain=None, range=Union[bool, Bool])
 
+slots.container__project = Slot(uri=OAE.project, name="container__project", curie=OAE.curie('project'),
+                   model_uri=OAE.container__project, domain=None, range=Optional[Union[dict, Project]])
+
+slots.container__version = Slot(uri=OAE.version, name="container__version", curie=OAE.curie('version'),
+                   model_uri=OAE.container__version, domain=None, range=Optional[str])
+
+slots.container__protocol_git_hash = Slot(uri=OAE.protocol_git_hash, name="container__protocol_git_hash", curie=OAE.curie('protocol_git_hash'),
+                   model_uri=OAE.container__protocol_git_hash, domain=None, range=Optional[str])
+
+slots.container__metadata_builder_git_hash = Slot(uri=OAE.metadata_builder_git_hash, name="container__metadata_builder_git_hash", curie=OAE.curie('metadata_builder_git_hash'),
+                   model_uri=OAE.container__metadata_builder_git_hash, domain=None, range=Optional[str])
+
 slots.dosingLocation__dosing_location_file = Slot(uri=OAE.dosing_location_file, name="dosingLocation__dosing_location_file", curie=OAE.curie('dosing_location_file'),
                    model_uri=OAE.dosingLocation__dosing_location_file, domain=None, range=Optional[str])
 
@@ -2022,47 +2064,47 @@ slots.organization__country = Slot(uri=OAE.country, name="organization__country"
                    model_uri=OAE.organization__country, domain=None, range=Optional[str],
                    pattern=re.compile(r'^[A-Z]{2}$'))
 
-slots.oAEProject__project_id = Slot(uri=OAE.project_id, name="oAEProject__project_id", curie=OAE.curie('project_id'),
-                   model_uri=OAE.oAEProject__project_id, domain=None, range=str)
+slots.project__project_id = Slot(uri=OAE.project_id, name="project__project_id", curie=OAE.curie('project_id'),
+                   model_uri=OAE.project__project_id, domain=None, range=str)
 
-slots.oAEProject__experiments = Slot(uri=OAE.experiments, name="oAEProject__experiments", curie=OAE.curie('experiments'),
-                   model_uri=OAE.oAEProject__experiments, domain=None, range=Optional[Union[Union[dict, Experiment], List[Union[dict, Experiment]]]])
+slots.project__experiments = Slot(uri=OAE.experiments, name="project__experiments", curie=OAE.curie('experiments'),
+                   model_uri=OAE.project__experiments, domain=None, range=Optional[Union[Union[dict, Experiment], List[Union[dict, Experiment]]]])
 
-slots.oAEProject__sea_names = Slot(uri=OAE.sea_names, name="oAEProject__sea_names", curie=OAE.curie('sea_names'),
-                   model_uri=OAE.oAEProject__sea_names, domain=None, range=Optional[Union[Union[str, "SeaNames"], List[Union[str, "SeaNames"]]]])
+slots.project__sea_names = Slot(uri=OAE.sea_names, name="project__sea_names", curie=OAE.curie('sea_names'),
+                   model_uri=OAE.project__sea_names, domain=None, range=Optional[Union[Union[str, "SeaNames"], List[Union[str, "SeaNames"]]]])
 
-slots.oAEProject__project_description = Slot(uri=OAE.project_description, name="oAEProject__project_description", curie=OAE.curie('project_description'),
-                   model_uri=OAE.oAEProject__project_description, domain=None, range=Optional[str])
+slots.project__project_description = Slot(uri=OAE.project_description, name="project__project_description", curie=OAE.curie('project_description'),
+                   model_uri=OAE.project__project_description, domain=None, range=Optional[str])
 
-slots.oAEProject__physical_site_description = Slot(uri=OAE.physical_site_description, name="oAEProject__physical_site_description", curie=OAE.curie('physical_site_description'),
-                   model_uri=OAE.oAEProject__physical_site_description, domain=None, range=Optional[str])
+slots.project__physical_site_description = Slot(uri=OAE.physical_site_description, name="project__physical_site_description", curie=OAE.curie('physical_site_description'),
+                   model_uri=OAE.project__physical_site_description, domain=None, range=Optional[str])
 
-slots.oAEProject__social_context_site_description = Slot(uri=OAE.social_context_site_description, name="oAEProject__social_context_site_description", curie=OAE.curie('social_context_site_description'),
-                   model_uri=OAE.oAEProject__social_context_site_description, domain=None, range=Optional[str])
+slots.project__social_context_site_description = Slot(uri=OAE.social_context_site_description, name="project__social_context_site_description", curie=OAE.curie('social_context_site_description'),
+                   model_uri=OAE.project__social_context_site_description, domain=None, range=Optional[str])
 
-slots.oAEProject__social_research_conducted_to_date = Slot(uri=OAE.social_research_conducted_to_date, name="oAEProject__social_research_conducted_to_date", curie=OAE.curie('social_research_conducted_to_date'),
-                   model_uri=OAE.oAEProject__social_research_conducted_to_date, domain=None, range=Optional[str])
+slots.project__social_research_conducted_to_date = Slot(uri=OAE.social_research_conducted_to_date, name="project__social_research_conducted_to_date", curie=OAE.curie('social_research_conducted_to_date'),
+                   model_uri=OAE.project__social_research_conducted_to_date, domain=None, range=Optional[str])
 
-slots.oAEProject__mcdr_pathway = Slot(uri=OAE.mcdr_pathway, name="oAEProject__mcdr_pathway", curie=OAE.curie('mcdr_pathway'),
-                   model_uri=OAE.oAEProject__mcdr_pathway, domain=None, range=Union[str, "MCDRPathway"])
+slots.project__mcdr_pathway = Slot(uri=OAE.mcdr_pathway, name="project__mcdr_pathway", curie=OAE.curie('mcdr_pathway'),
+                   model_uri=OAE.project__mcdr_pathway, domain=None, range=Union[str, "MCDRPathway"])
 
-slots.oAEProject__previous_or_ongoing_colocated_research = Slot(uri=OAE.previous_or_ongoing_colocated_research, name="oAEProject__previous_or_ongoing_colocated_research", curie=OAE.curie('previous_or_ongoing_colocated_research'),
-                   model_uri=OAE.oAEProject__previous_or_ongoing_colocated_research, domain=None, range=Optional[Union[Union[dict, ExternalProject], List[Union[dict, ExternalProject]]]])
+slots.project__previous_or_ongoing_colocated_research = Slot(uri=OAE.previous_or_ongoing_colocated_research, name="project__previous_or_ongoing_colocated_research", curie=OAE.curie('previous_or_ongoing_colocated_research'),
+                   model_uri=OAE.project__previous_or_ongoing_colocated_research, domain=None, range=Optional[Union[Union[dict, ExternalProject], List[Union[dict, ExternalProject]]]])
 
-slots.oAEProject__colocated_operations = Slot(uri=OAE.colocated_operations, name="oAEProject__colocated_operations", curie=OAE.curie('colocated_operations'),
-                   model_uri=OAE.oAEProject__colocated_operations, domain=None, range=Optional[str])
+slots.project__colocated_operations = Slot(uri=OAE.colocated_operations, name="project__colocated_operations", curie=OAE.curie('colocated_operations'),
+                   model_uri=OAE.project__colocated_operations, domain=None, range=Optional[str])
 
-slots.oAEProject__public_comments = Slot(uri=OAE.public_comments, name="oAEProject__public_comments", curie=OAE.curie('public_comments'),
-                   model_uri=OAE.oAEProject__public_comments, domain=None, range=Optional[str])
+slots.project__public_comments = Slot(uri=OAE.public_comments, name="project__public_comments", curie=OAE.curie('public_comments'),
+                   model_uri=OAE.project__public_comments, domain=None, range=Optional[str])
 
-slots.oAEProject__research_project = Slot(uri=OAE.research_project, name="oAEProject__research_project", curie=OAE.curie('research_project'),
-                   model_uri=OAE.oAEProject__research_project, domain=None, range=Optional[str])
+slots.project__research_project = Slot(uri=OAE.research_project, name="project__research_project", curie=OAE.curie('research_project'),
+                   model_uri=OAE.project__research_project, domain=None, range=Optional[str])
 
-slots.oAEProject__funding = Slot(uri=SCHEMA.funding, name="oAEProject__funding", curie=SCHEMA.curie('funding'),
-                   model_uri=OAE.oAEProject__funding, domain=None, range=Optional[Union[Union[dict, MonetaryGrant], List[Union[dict, MonetaryGrant]]]])
+slots.project__funding = Slot(uri=SCHEMA.funding, name="project__funding", curie=SCHEMA.curie('funding'),
+                   model_uri=OAE.project__funding, domain=None, range=Optional[Union[Union[dict, MonetaryGrant], List[Union[dict, MonetaryGrant]]]])
 
-slots.oAEProject__additional_details = Slot(uri=OAE.additional_details, name="oAEProject__additional_details", curie=OAE.curie('additional_details'),
-                   model_uri=OAE.oAEProject__additional_details, domain=None, range=Optional[str])
+slots.project__additional_details = Slot(uri=OAE.additional_details, name="project__additional_details", curie=OAE.curie('additional_details'),
+                   model_uri=OAE.project__additional_details, domain=None, range=Optional[str])
 
 slots.namedLink__name = Slot(uri=OAE.name, name="namedLink__name", curie=OAE.curie('name'),
                    model_uri=OAE.namedLink__name, domain=None, range=str)
@@ -2228,12 +2270,12 @@ slots.Organization_identifier = Slot(uri=SCHEMA.identifier, name="Organization_i
 slots.Organization_name = Slot(uri=OAE.name, name="Organization_name", curie=OAE.curie('name'),
                    model_uri=OAE.Organization_name, domain=Organization, range=Optional[str])
 
-slots.OAEProject_temporal_coverage = Slot(uri=SCHEMA.temporalCoverage, name="OAEProject_temporal_coverage", curie=SCHEMA.curie('temporalCoverage'),
-                   model_uri=OAE.OAEProject_temporal_coverage, domain=OAEProject, range=str,
+slots.Project_temporal_coverage = Slot(uri=SCHEMA.temporalCoverage, name="Project_temporal_coverage", curie=SCHEMA.curie('temporalCoverage'),
+                   model_uri=OAE.Project_temporal_coverage, domain=Project, range=str,
                    pattern=re.compile(r'^\d{4}-\d{2}-\d{2}/(\d{4}-\d{2}-\d{2}|\.\.)$'))
 
-slots.OAEProject_spatial_coverage = Slot(uri=SCHEMA.spatialCoverage, name="OAEProject_spatial_coverage", curie=SCHEMA.curie('spatialCoverage'),
-                   model_uri=OAE.OAEProject_spatial_coverage, domain=OAEProject, range=Union[dict, Place])
+slots.Project_spatial_coverage = Slot(uri=SCHEMA.spatialCoverage, name="Project_spatial_coverage", curie=SCHEMA.curie('spatialCoverage'),
+                   model_uri=OAE.Project_spatial_coverage, domain=Project, range=Union[dict, Place])
 
 slots.MonetaryGrant_name = Slot(uri=OAE.name, name="MonetaryGrant_name", curie=OAE.curie('name'),
                    model_uri=OAE.MonetaryGrant_name, domain=MonetaryGrant, range=Optional[str])

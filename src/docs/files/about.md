@@ -41,7 +41,7 @@ For protocol requirements pertaining to dataset formatting, column header names,
 
 Browse the schema documentation using the navigation menu to explore:
 
-- **Classes**: Core data structures like `OAEProject`, `Experiment`, and `Dataset`
+- **Classes**: Core data structures like `Project`, `Experiment`, and `Dataset`
 - **Enums**: Controlled vocabularies and valid value sets
 
 This documentation serves primarily as a way to navigate and explore the data model of the various metadata used in the protocol.
