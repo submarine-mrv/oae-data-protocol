@@ -130,12 +130,10 @@ classes:
         title: Minimum Depth (in meters)
         description: "Minimum depth of observation in meters. Use negative numbers for depths below sea level, and positive numbers for above sea level."
         range: float
-        required: true
       max_depth_in_m:
         title: Maximum Depth (in meters)
         description: "Maximum depth of observation in meters. Use negative numbers for depths below sea level, and positive numbers for above sea level."
         range: float
-        required: true
   Organization:
     class_uri: schema:Organization
     slots:
