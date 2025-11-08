@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://clevinson.github.io/oae-data-protocol/vertical_coverage/">
+        <link rel="canonical" href="https://clevinson.github.io/oae-data-protocol/protocol_git_hash/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: Vertical Coverage (vertical_coverage) - oae-data-protocol</title>
+        <title>Slot: protocol_git_hash - oae-data-protocol</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-vertical-coverage-vertical_coverage" class="md-skip">
+        <a href="#slot-protocol_git_hash" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: Vertical Coverage (vertical_coverage)
+              Slot: protocol_git_hash
             
           </span>
         </div>
@@ -359,9 +359,9 @@
   
 
 
-<h1 id="slot-vertical-coverage-vertical_coverage">Slot: Vertical Coverage (vertical_coverage)</h1>
-<p><em>Minimum and maximum depths of observation in meters.</em></p>
-<p>URI: <a href="https://example.org/oae#vertical_coverage">oae:vertical_coverage</a></p>
+<h1 id="slot-protocol_git_hash">Slot: protocol_git_hash</h1>
+<p><em>Git commit hash of the oae-data-protocol</em></p>
+<p>URI: <a href="https://example.org/oae#protocol_git_hash">oae:protocol_git_hash</a></p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -375,30 +375,15 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Project/">Project</a></td>
-<td>A project conducting OAE field trials or modeling</td>
-<td>yes</td>
-</tr>
-<tr>
-<td><a href="../Experiment/">Experiment</a></td>
-<td>Experiment metadata applies to a specific study but remains consistent across...</td>
-<td>yes</td>
-</tr>
-<tr>
-<td><a href="../Intervention/">Intervention</a></td>
-<td>Additional metadata that applies to experiments where an intervention, such a...</td>
+<td><a href="../Container/">Container</a></td>
+<td></td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>
-<p>Range: <a href="../VerticalExtent/">VerticalExtent</a></p>
-</li>
-<li>
-<p>Required: True</p>
-</li>
+<li>Range: <a href="../String/">String</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -416,28 +401,27 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>oae:vertical_coverage</td>
+<td>oae:protocol_git_hash</td>
 </tr>
 <tr>
 <td>native</td>
-<td>oae:vertical_coverage</td>
+<td>oae:protocol_git_hash</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: vertical_coverage
-description: Minimum and maximum depths of observation in meters.
-title: Vertical Coverage
+<pre><code class="language-yaml">name: protocol_git_hash
+description: Git commit hash of the oae-data-protocol
 from_schema: OAEDataManagementProtocol
 rank: 1000
-alias: vertical_coverage
+alias: protocol_git_hash
+owner: Container
 domain_of:
-- Project
-- Experiment
-range: VerticalExtent
-required: true
+- Container
+range: string
+required: false
 
 </code></pre>
 
