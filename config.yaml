@@ -9,7 +9,6 @@ generator_args:
   jsonschema:
     mergeimports: true
     include_null: false
-    top_class: OAEProject
     title_from: title
   python:
     mergeimports: true

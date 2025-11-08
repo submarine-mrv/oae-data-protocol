@@ -1,8 +1,8 @@
 # The following was an early experimental schema and has not been
 # updated to the v1.0 version of the protocol yet
 
-id: OAEProject
-name: OAEProject
+id: Measurement
+name: Measurement
 version: 0.1.0
 prefixes:
   oae: "https://example.org/oae#"

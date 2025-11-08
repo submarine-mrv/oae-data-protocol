@@ -1,5 +1,5 @@
-id: OAEProject
-name: OAEProject
+id: Project
+name: Project
 
 prefixes:
   oae: "https://example.org/oae#"
@@ -8,7 +8,7 @@ prefixes:
 default_prefix: oae
 
 classes:
-  OAEProject:
+  Project:
     description: "A project conducting OAE field trials or modeling."
     slots:
       - temporal_coverage
