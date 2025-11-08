@@ -27,6 +27,8 @@ classes:
           answer these questions? Data submitters are encouraged to note any significant changes to the original
           experimental plan due to unforeseen circumstances here.
         required: true
+      name:
+        description: Optional common name for experiment.
       spatial_coverage:
         description: >-
           Latitude/longitude bounds of observed data in experiment, provided in decimal degrees as westernmost
@@ -34,7 +36,6 @@ classes:
         required: true
       vertical_coverage:
         description: Minimum and maximum depths of observations in meters.
-        required: true
     attributes:
       experiment_id:
         title: Experiment ID

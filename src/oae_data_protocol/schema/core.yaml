@@ -151,9 +151,8 @@ classes:
     attributes:
       country:
         title: Country
-        description: "The country in which the organization belongs (formatted as ISO 3166-1 alpha-2 code)"
+        description: "The country in which the organization belongs."
         range: string
-        pattern: '^[A-Z]{2}$'
 
 types:
   Doi:

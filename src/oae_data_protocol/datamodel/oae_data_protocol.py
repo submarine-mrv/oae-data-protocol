@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-11-08T04:33:34
+# Generation date: 2025-11-08T07:32:40
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -2061,8 +2061,7 @@ slots.verticalExtent__max_depth_in_m = Slot(uri=OAE.max_depth_in_m, name="vertic
                    model_uri=OAE.verticalExtent__max_depth_in_m, domain=None, range=float)
 
 slots.organization__country = Slot(uri=OAE.country, name="organization__country", curie=OAE.curie('country'),
-                   model_uri=OAE.organization__country, domain=None, range=Optional[str],
-                   pattern=re.compile(r'^[A-Z]{2}$'))
+                   model_uri=OAE.organization__country, domain=None, range=Optional[str])
 
 slots.project__project_id = Slot(uri=OAE.project_id, name="project__project_id", curie=OAE.curie('project_id'),
                    model_uri=OAE.project__project_id, domain=None, range=str)
@@ -2285,6 +2284,9 @@ slots.MonetaryGrant_identifier = Slot(uri=SCHEMA.identifier, name="MonetaryGrant
 
 slots.Experiment_description = Slot(uri=OAE.description, name="Experiment_description", curie=OAE.curie('description'),
                    model_uri=OAE.Experiment_description, domain=Experiment, range=str)
+
+slots.Experiment_name = Slot(uri=OAE.name, name="Experiment_name", curie=OAE.curie('name'),
+                   model_uri=OAE.Experiment_name, domain=Experiment, range=Optional[str])
 
 slots.Experiment_spatial_coverage = Slot(uri=SCHEMA.spatialCoverage, name="Experiment_spatial_coverage", curie=SCHEMA.curie('spatialCoverage'),
                    model_uri=OAE.Experiment_spatial_coverage, domain=Experiment, range=Union[dict, Place])
