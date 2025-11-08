@@ -333,7 +333,7 @@
 <tr>
 <td><a href="../name/">name</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>A human-readable name for the thing</td>
+<td>Optional common name for experiment</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -485,6 +485,9 @@ slot_usage:
       circumstances here.
     title: Experiment Description
     required: true
+  name:
+    name: name
+    description: Optional common name for experiment.
   spatial_coverage:
     name: spatial_coverage
     description: Latitude/longitude bounds of observed data in experiment, provided
@@ -494,7 +497,6 @@ slot_usage:
   vertical_coverage:
     name: vertical_coverage
     description: Minimum and maximum depths of observations in meters.
-    required: true
 attributes:
   experiment_id:
     name: experiment_id
@@ -631,6 +633,9 @@ slot_usage:
       circumstances here.
     title: Experiment Description
     required: true
+  name:
+    name: name
+    description: Optional common name for experiment.
   spatial_coverage:
     name: spatial_coverage
     description: Latitude/longitude bounds of observed data in experiment, provided
@@ -640,7 +645,6 @@ slot_usage:
   vertical_coverage:
     name: vertical_coverage
     description: Minimum and maximum depths of observations in meters.
-    required: true
 attributes:
   experiment_id:
     name: experiment_id
@@ -776,7 +780,7 @@ attributes:
     range: string
   name:
     name: name
-    description: A human-readable name for the thing.
+    description: Optional common name for experiment.
     title: Name
     from_schema: OAEDataManagementProtocol
     rank: 1000
