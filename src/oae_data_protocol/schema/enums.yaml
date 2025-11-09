@@ -14,7 +14,7 @@ enums:
       surface_underway:
         description: "Continuous measurements of oceanographic variables at the ocean surface using sensors, often in flow-through systems onboard research vessels or ships of opportunity, to obtain real-time information about the ocean's physical and chemical conditions, such as temperature, salinity, and fCO₂."
       time_series:
-        description: "Continuous measurements of oceanographic variables using autonomous or remotely operated platforms, including time-series moorings, uncrewed surface vehicles (USVs, e.g., Saildrones), profiling floats (e.g., Argo), and autonomous underwater vehicles (AUVs, e.g., gliders)."
+        description: "Continuous measurements of oceanographic variables using autonomous or remotely operated platforms, including time-series moorings, uncrewed surface vehicles (USVs, eg- Saildrones), profiling floats (eg- Argo), and autonomous underwater vehicles (AUVs, eg- gliders)."
       laboratory_experiments:
         description: "Scientific investigations where researchers manipulate parameters of the carbonate system in laboratory aquariums to simulate future ocean alkalinity enhancement (OAE) conditions and observe the responses of selected marine organisms."
       mesocosms:
@@ -57,6 +57,8 @@ enums:
         description: "Control experiment without intervention for comparison"
       intervention:
         description: "Experiment with active OAE intervention"
+      tracer_study:
+        description: "Tracer study experiment (eg- dye or gas tracer study)"
       model:
         description: "Model-based experiment or simulation"
       other:
@@ -140,6 +142,16 @@ enums:
           A distributed dosing area that varies in time, such as manually placed alkaline material over different areas
           at different times.
 
+  TracerForm:
+    description: "Forms of tracer used in tracer studies"
+    permissible_values:
+      gas:
+        description: "Gas tracer"
+      dye:
+        description: "Dye tracer (eg- rhodamine)"
+      other:
+        description: "Other tracer form not covered by standard categories"
+
   FeedstockType:
     description: "Types of materials used for alkalinity addition, as sourced from NCEI's OCADS controlled vocabulary: https://www.ncei.noaa.gov/access/ocean-carbon-acidification-data-system/vocabularies/alkalinization-types.html"
     permissible_values:
@@ -182,3 +194,5 @@ enums:
       nahcolite:
         meaning: PUBCHEM:516892
         description: "Nahcolite (NaHCO₃) used as an alkalinity source."
+      other:
+        description: "Enter a custom value in the field provided"

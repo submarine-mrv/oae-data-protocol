@@ -18,6 +18,7 @@ dynamic = ["version"]
 
 dependencies = [
   "linkml-runtime >=1.1.24",
+  "oaklib (>=0.6.23,<0.7.0)",
 ]
 
 [tool.poetry]

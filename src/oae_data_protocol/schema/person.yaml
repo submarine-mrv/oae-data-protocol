@@ -1,0 +1,51 @@
+id: Person
+name: Person
+
+prefixes:
+  oae: "https://example.org/oae#"
+  schema: "http://schema.org/"
+
+default_prefix: oae
+
+classes:
+  Person:
+    description: "Information about a researcher or investigator involved in the experiment."
+    class_uri: schema:Person
+    attributes:
+      name:
+        title: Name
+        description: "Full name of the person."
+        range: string
+        required: true
+      affiliation:
+        title: Affiliation
+        description: "Institutional affiliation of the investigator."
+        range: Organization
+      phone:
+        title: Phone
+        description: "Contact phone number."
+        range: string
+        pattern: '^\+?[0-9\s\-\(\)]+$'
+      email:
+        title: Email
+        description: "Contact email address."
+        range: string
+        pattern: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+      identifier_type:
+        title: Researcher ID Type
+        description: "Type of Researcher ID (e.g., ORCID, ResearcherID)."
+        range: ResearcherIDType
+      identifier:
+        title: Researcher ID
+        description: "Unique researcher identifier value."
+        range: string
+      role:
+        title: Role
+        description: "Role of the investigator in the experiment (e.g., chief scientist, data submitter)."
+        range: string
+enums:
+  ResearcherIDType:
+    permissible_values:
+      - "orcid"
+      - "researcher_id"
+      - "ocean_expert"

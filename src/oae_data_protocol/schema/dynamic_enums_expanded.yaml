@@ -3,6 +3,7 @@ name: DynamicEnums
 
 prefixes:
   oae: https://example.org/oae#
+  unit: https://qudt.org/vocab/unit/
 
 default_prefix: oae
 enums:
@@ -392,3 +393,31 @@ enums:
       http://vocab.nerc.ac.uk/collection/C16/current/28Bh/:
         text: http://vocab.nerc.ac.uk/collection/C16/current/28Bh/
         meaning: http://vocab.nerc.ac.uk/collection/C16/current/28Bh/
+  MassConcentrationUnit:
+    reachable_from:
+      source_ontology: qudt:unit
+      source_nodes:
+      - quantitykind:MassConcentration
+      relationship_types:
+      - qudt:hasQuantityKind
+    permissible_values:
+      unit:KiloGM-PER-M3:
+        meaning: unit:KiloGM-PER-M3
+      unit:MicroGM-PER-L:
+        meaning: unit:MicroGM-PER-L
+      unit:MicroGM-PER-L-DAY:
+        meaning: unit:MicroGM-PER-L-DAY
+      unit:MicroGM-PER-MilliL:
+        meaning: unit:MicroGM-PER-MilliL
+      unit:MilliGM-PER-L:
+        meaning: unit:MilliGM-PER-L
+      unit:MilliGM-PER-M3:
+        meaning: unit:MilliGM-PER-M3
+      unit:MilliGM-PER-MilliL:
+        meaning: unit:MilliGM-PER-MilliL
+      unit:NanoGM-PER-L:
+        meaning: unit:NanoGM-PER-L
+      unit:NanoGM-PER-MilliL:
+        meaning: unit:NanoGM-PER-MilliL
+      unit:PicoGM-PER-MilliL:
+        meaning: unit:PicoGM-PER-MilliL

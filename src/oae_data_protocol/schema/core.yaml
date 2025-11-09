@@ -36,6 +36,8 @@ slots:
     description: >-
       Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities) provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost
       longitude, northernmost latitude. [S, W, N, E]
+    # Could update this to be a more restrictive range (e.g. SpatialCoverage, which inherits from Place and only
+    # allows GeoShapes, not GeoCoordinates)
     range: Place
     required: true
   vertical_coverage:
@@ -44,6 +46,18 @@ slots:
       Minimum and maximum depths of observation in meters.
     range: VerticalExtent
     required: true
+  permits:
+    title: Permits
+    description: Associated permit number(s).
+    range: Permit
+    multivalued: true
+    inlined_as_list: true
+  geo:
+    description: "Entities that have a somewhat fixed, physical extension. (imported from schema.org)"
+    range: Any
+    any_of:
+      - range: GeoShape
+      - range: GeoCoordinates
 
 classes:
   PropertyValue:
@@ -51,22 +65,64 @@ classes:
   Any:
     class_uri: linkml:Any
   Place:
-    description: "A bounding box defined by latitude and longitude coordinates."
-    attributes:
-      geo:
-        description: "Entities that have a somewhat fixed, physical extension. (imported from schema.org)"
-        range: GeoShape
-        required: true
+    description: >-
+      A geospatial area of interest, defined by a bounding box, polygon/line, or a point designated as a 
+      pair of geo-coordinates.
+    slots:
+      - geo
     class_uri: "schema:Place"
+  SpatialCoverage:
+    is_a: Place
+    description: "A bounding box defined by latitude and longitude coordinates."
+    slot_usage:
+      geo:
+        required: true
+        range: GeoShape
+  DosingLocation:
+    is_a: Place
+    description: >-
+      A specific location of dosing for an OAE intervention and/or tracer study. Can be a point, line, or bounding box
+    attributes:
+      dosing_location_file:
+        # TODO: Add rules so that dosing_location_file is required IFF dosing_location is a bounding box
+        description: >-
+          Exact path and filename for the location file (relative to root path of project), attached separately.
+          Format should be one of GeoJSON or Shapefile.
+        range: string
+
   GeoShape:
-    description: "The geographic shape of a place. A GeoShape can be described using several properties whose values are based on latitude/longitude pairs. Either whitespace or commas can be used to separate latitude and longitude; whitespace should be used when writing a list of several such points. (imported from schema.org)"
+    description: >-
+      The geographic shape of a place. A GeoShape can be described using several properties whose values are based on
+      latitude/longitude pairs. Either whitespace or commas can be used to separate latitude and longitude; whitespace
+      should be used when writing a list of several such points. (imported from schema.org)
     attributes:
       box:
         description: "A box defined by two latitude-longitude points, southwest and northeast."
         range: string
         slot_uri: schema:box
-        required: true
+      line:
+        description: >-
+          A line is a point-to-point path consisting of two or more points. A line is expressed as a series of two or
+          more point objects separated by space.
+        range: string
+        slot_uri: schema:line
     class_uri: "schema:GeoShape"
+  GeoCoordinates:
+    class_uri: "schema:GeoCoordinates"
+    description: "A geographic coordinate in decimal degrees."
+    attributes:
+      latitude:
+        title: Latitude
+        slot_uri: schema:latitude
+        description: "Latitude in decimal degrees of a location. For example 37.42242 (WGS 84)."
+        range: float
+        required: true
+      longitude:
+        title: Longitude
+        slot_uri: schema:longitude
+        description: "Longitude in decimal degrees of a location. For example -122.08585 (WGS 84)."
+        range: float
+        required: true
   VerticalExtent:
     description: "The vertical extent of a place or structure in meters."
     attributes:
@@ -74,12 +130,10 @@ classes:
         title: Minimum Depth (in meters)
         description: "Minimum depth of observation in meters. Use negative numbers for depths below sea level, and positive numbers for above sea level."
         range: float
-        required: true
       max_depth_in_m:
         title: Maximum Depth (in meters)
         description: "Maximum depth of observation in meters. Use negative numbers for depths below sea level, and positive numbers for above sea level."
         range: float
-        required: true
   Organization:
     class_uri: schema:Organization
     slots:
@@ -95,9 +149,8 @@ classes:
     attributes:
       country:
         title: Country
-        description: "The country in which the organization belongs (formatted as ISO 3166-1 alpha-2 code)"
+        description: "The country in which the organization belongs."
         range: string
-        pattern: '^[A-Z]{2}$'
 
 types:
   Doi:
