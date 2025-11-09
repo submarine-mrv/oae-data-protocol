@@ -151,6 +151,13 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
+<a class="md-nav__link" href="#inheritance">
+<span class="md-ellipsis">
+      Inheritance
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#slots">
 <span class="md-ellipsis">
       Slots
@@ -222,23 +229,35 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="class-place">Class: Place</h1>
-<p><em>A bounding box defined by latitude and longitude coordinates.</em></p>
+<p><em>A geospatial area of interest, defined by a bounding box, polygon/line, or a point designated as a  pair of geo-coordinates.</em></p>
 <p>URI: <a href="http://schema.org/Place">schema:Place</a></p>
 <div class="mermaid"> classDiagram
     class Place
     click Place href "../Place"
+      Place &lt;|-- SpatialCoverage
+        click SpatialCoverage href "../SpatialCoverage"
+      Place &lt;|-- DosingLocation
+        click DosingLocation href "../DosingLocation"
+
       Place : geo
 
 
 
 
-    Place --&gt; "1" GeoShape : geo
-    click GeoShape href "../GeoShape"
+    Place --&gt; "0..1" Any : geo
+    click Any href "../Any"
 
 
 
 </div>
-<!-- no inheritance hierarchy -->
+<h2 id="inheritance">Inheritance</h2>
+<ul>
+<li><strong>Place</strong><ul>
+<li><a href="../SpatialCoverage/">SpatialCoverage</a></li>
+<li><a href="../DosingLocation/">DosingLocation</a></li>
+</ul>
+</li>
+</ul>
 <h2 id="slots">Slots</h2>
 <table>
 <thead>
@@ -252,7 +271,7 @@
 <tbody>
 <tr>
 <td><a href="../geo/">geo</a></td>
-<td>1 <br/> <a href="../GeoShape/">GeoShape</a></td>
+<td>0..1 <br/> <a href="../Any/">Any</a> or <br/><a href="../GeoShape/">GeoShape</a> or <br/><a href="../GeoCoordinates/">GeoCoordinates</a></td>
 <td>Entities that have a somewhat fixed, physical extension</td>
 <td>direct</td>
 </tr>
@@ -293,6 +312,18 @@
 <td>range</td>
 <td><a href="./">Place</a></td>
 </tr>
+<tr>
+<td><a href="../Tracer/">Tracer</a></td>
+<td><a href="../spatial_coverage/">spatial_coverage</a></td>
+<td>range</td>
+<td><a href="./">Place</a></td>
+</tr>
+<tr>
+<td><a href="../InterventionWithTracer/">InterventionWithTracer</a></td>
+<td><a href="../spatial_coverage/">spatial_coverage</a></td>
+<td>range</td>
+<td><a href="./">Place</a></td>
+</tr>
 </tbody>
 </table>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
@@ -324,19 +355,11 @@
 <h3 id="direct">Direct</h3>
 <details>
 <pre><code class="language-yaml">name: Place
-description: A bounding box defined by latitude and longitude coordinates.
+description: A geospatial area of interest, defined by a bounding box, polygon/line,
+  or a point designated as a  pair of geo-coordinates.
 from_schema: OAEDataManagementProtocol
-attributes:
-  geo:
-    name: geo
-    description: Entities that have a somewhat fixed, physical extension. (imported
-      from schema.org)
-    from_schema: Core
-    rank: 1000
-    domain_of:
-    - Place
-    range: GeoShape
-    required: true
+slots:
+- geo
 class_uri: schema:Place
 
 </code></pre>
@@ -344,21 +367,24 @@ class_uri: schema:Place
 <h3 id="induced">Induced</h3>
 <details>
 <pre><code class="language-yaml">name: Place
-description: A bounding box defined by latitude and longitude coordinates.
+description: A geospatial area of interest, defined by a bounding box, polygon/line,
+  or a point designated as a  pair of geo-coordinates.
 from_schema: OAEDataManagementProtocol
 attributes:
   geo:
     name: geo
     description: Entities that have a somewhat fixed, physical extension. (imported
       from schema.org)
-    from_schema: Core
+    from_schema: OAEDataManagementProtocol
     rank: 1000
     alias: geo
     owner: Place
     domain_of:
     - Place
-    range: GeoShape
-    required: true
+    range: Any
+    any_of:
+    - range: GeoShape
+    - range: GeoCoordinates
 class_uri: schema:Place
 
 </code></pre>

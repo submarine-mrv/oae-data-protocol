@@ -254,17 +254,8 @@
 
 
 
-    Project --&gt; "0..1" MCDRPathway : mcdr_pathway
+    Project --&gt; "1" MCDRPathway : mcdr_pathway
     click MCDRPathway href "../MCDRPathway"
-
-
-      Project : permits
-
-
-
-
-    Project --&gt; "*" Permit : permits
-    click Permit href "../Permit"
 
 
       Project : physical_site_description
@@ -283,13 +274,6 @@
       Project : project_id
 
       Project : public_comments
-
-
-
-
-    Project --&gt; "* _recommended_" NamedLink : public_comments
-    click NamedLink href "../NamedLink"
-
 
       Project : research_project
 
@@ -317,15 +301,6 @@
 
       Project : temporal_coverage
 
-      Project : vertical_coverage
-
-
-
-
-    Project --&gt; "1" VerticalExtent : vertical_coverage
-    click VerticalExtent href "../VerticalExtent"
-
-
 
 </div>
 <!-- no inheritance hierarchy -->
@@ -350,12 +325,6 @@
 <td><a href="../spatial_coverage/">spatial_coverage</a></td>
 <td>1 <br/> <a href="../Place/">Place</a></td>
 <td>Latitude/longitude bounds of project site (e</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../vertical_coverage/">vertical_coverage</a></td>
-<td>1 <br/> <a href="../VerticalExtent/">VerticalExtent</a></td>
-<td>Minimum and maximum depths of observation in meters</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -402,7 +371,7 @@
 </tr>
 <tr>
 <td><a href="../mcdr_pathway/">mcdr_pathway</a></td>
-<td>0..1 <br/> <a href="../MCDRPathway/">MCDRPathway</a></td>
+<td>1 <br/> <a href="../MCDRPathway/">MCDRPathway</a></td>
 <td>The Marine Carbon Dioxide Removal (MCDR) pathway being studied</td>
 <td>direct</td>
 </tr>
@@ -419,15 +388,9 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../permits/">permits</a></td>
-<td>* <br/> <a href="../Permit/">Permit</a></td>
-<td>Associated permit number(s)</td>
-<td>direct</td>
-</tr>
-<tr>
 <td><a href="../public_comments/">public_comments</a></td>
-<td>* <em>recommended</em> <br/> <a href="../NamedLink/">NamedLink</a></td>
-<td>Links to public comments or concerns about the project</td>
+<td>0..1 <em>recommended</em> <br/> <a href="../String/">String</a></td>
+<td>If possible, please provide public comments concatenated into a single pdf</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -509,7 +472,6 @@ broad_mappings:
 slots:
 - temporal_coverage
 - spatial_coverage
-- vertical_coverage
 slot_usage:
   temporal_coverage:
     name: temporal_coverage
@@ -517,9 +479,6 @@ slot_usage:
     required: true
   spatial_coverage:
     name: spatial_coverage
-    required: true
-  vertical_coverage:
-    name: vertical_coverage
     required: true
 attributes:
   project_id:
@@ -634,6 +593,7 @@ attributes:
     domain_of:
     - Project
     range: MCDRPathway
+    required: true
   previous_or_ongoing_colocated_research:
     name: previous_or_ongoing_colocated_research
     description: This field is required for co-located operations that potentially
@@ -661,29 +621,17 @@ attributes:
     domain_of:
     - Project
     range: string
-  permits:
-    name: permits
-    description: Associated permit number(s).
-    title: Permits
-    from_schema: Project
-    rank: 1000
-    domain_of:
-    - Project
-    range: Permit
-    multivalued: true
-    inlined: true
-    inlined_as_list: true
   public_comments:
     name: public_comments
-    description: Links to public comments or concerns about the project.
+    description: If possible, please provide public comments concatenated into a single
+      pdf
     title: Public Comments
     from_schema: Project
     rank: 1000
     domain_of:
     - Project
-    range: NamedLink
+    range: string
     recommended: true
-    multivalued: true
   research_project:
     name: research_project
     description: Project, which the data collection is part of. For example, West
@@ -737,9 +685,6 @@ slot_usage:
     required: true
   spatial_coverage:
     name: spatial_coverage
-    required: true
-  vertical_coverage:
-    name: vertical_coverage
     required: true
 attributes:
   project_id:
@@ -870,6 +815,7 @@ attributes:
     domain_of:
     - Project
     range: MCDRPathway
+    required: true
   previous_or_ongoing_colocated_research:
     name: previous_or_ongoing_colocated_research
     description: This field is required for co-located operations that potentially
@@ -901,23 +847,10 @@ attributes:
     domain_of:
     - Project
     range: string
-  permits:
-    name: permits
-    description: Associated permit number(s).
-    title: Permits
-    from_schema: Project
-    rank: 1000
-    alias: permits
-    owner: Project
-    domain_of:
-    - Project
-    range: Permit
-    multivalued: true
-    inlined: true
-    inlined_as_list: true
   public_comments:
     name: public_comments
-    description: Links to public comments or concerns about the project.
+    description: If possible, please provide public comments concatenated into a single
+      pdf
     title: Public Comments
     from_schema: Project
     rank: 1000
@@ -925,9 +858,8 @@ attributes:
     owner: Project
     domain_of:
     - Project
-    range: NamedLink
+    range: string
     recommended: true
-    multivalued: true
   research_project:
     name: research_project
     description: Project, which the data collection is part of. For example, West
@@ -1002,19 +934,6 @@ attributes:
     - ExternalProject
     - Experiment
     range: Place
-    required: true
-  vertical_coverage:
-    name: vertical_coverage
-    description: Minimum and maximum depths of observation in meters.
-    title: Vertical Coverage
-    from_schema: OAEDataManagementProtocol
-    rank: 1000
-    alias: vertical_coverage
-    owner: Project
-    domain_of:
-    - Project
-    - Experiment
-    range: VerticalExtent
     required: true
 
 </code></pre>

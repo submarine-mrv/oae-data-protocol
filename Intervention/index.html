@@ -227,12 +227,28 @@
 <div class="mermaid"> classDiagram
     class Intervention
     click Intervention href "../Intervention"
+      InterventionDetails &lt;|-- Intervention
+        click InterventionDetails href "../InterventionDetails"
+      DosingDetails &lt;|-- Intervention
+        click DosingDetails href "../DosingDetails"
       Experiment &lt;|-- Intervention
         click Experiment href "../Experiment"
+
+
+      Intervention &lt;|-- InterventionWithTracer
+        click InterventionWithTracer href "../InterventionWithTracer"
+
 
       Intervention : additional_details
 
       Intervention : alkalinity_dosing_effluent_density
+
+
+
+
+    Intervention --&gt; "1" DosingConcentration : alkalinity_dosing_effluent_density
+    click DosingConcentration href "../DosingConcentration"
+
 
       Intervention : alkalinity_feedstock
 
@@ -244,6 +260,8 @@
 
 
       Intervention : alkalinity_feedstock_co2_removal_potential
+
+      Intervention : alkalinity_feedstock_custom
 
       Intervention : alkalinity_feedstock_description
 
@@ -261,15 +279,15 @@
 
 
 
-    Intervention --&gt; "1..*" AlkalinityFeedstockProcessing : alkalinity_feedstock_processing
+    Intervention --&gt; "1" AlkalinityFeedstockProcessing : alkalinity_feedstock_processing
     click AlkalinityFeedstockProcessing href "../AlkalinityFeedstockProcessing"
 
+
+      Intervention : alkalinity_feedstock_processing_custom
 
       Intervention : data_conflicts_and_unreported_data
 
       Intervention : description
-
-      Intervention : dosing_data
 
       Intervention : dosing_delivery_type
 
@@ -298,8 +316,8 @@
 
 
 
-    Intervention --&gt; "1" GeoCoordinate : dosing_location
-    click GeoCoordinate href "../GeoCoordinate"
+    Intervention --&gt; "1" DosingLocation : dosing_location
+    click DosingLocation href "../DosingLocation"
 
 
       Intervention : dosing_regimen
@@ -331,8 +349,8 @@
 
 
 
-    Intervention --&gt; "1..*" Investigator : investigators
-    click Investigator href "../Investigator"
+    Intervention --&gt; "1..*" Person : investigators
+    click Person href "../Person"
 
 
       Intervention : meteorological_and_tidal_data
@@ -345,6 +363,15 @@
 
 
       Intervention : name
+
+      Intervention : permits
+
+
+
+
+    Intervention --&gt; "*" Permit : permits
+    click Permit href "../Permit"
+
 
       Intervention : project_id
 
@@ -373,7 +400,10 @@
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../Experiment/">Experiment</a><ul>
-<li><strong>Intervention</strong></li>
+<li><strong>Intervention</strong> [ <a href="../InterventionDetails/">InterventionDetails</a> <a href="../DosingDetails/">DosingDetails</a>]<ul>
+<li><a href="../InterventionWithTracer/">InterventionWithTracer</a> [ <a href="../TracerDetails/">TracerDetails</a>]</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -390,92 +420,98 @@
 <tbody>
 <tr>
 <td><a href="../alkalinity_feedstock_processing/">alkalinity_feedstock_processing</a></td>
-<td>1..* <br/> <a href="../AlkalinityFeedstockProcessing/">AlkalinityFeedstockProcessing</a></td>
+<td>1 <br/> <a href="../AlkalinityFeedstockProcessing/">AlkalinityFeedstockProcessing</a></td>
 <td>Method(s) used to process the alkalinity feedstock</td>
-<td>direct</td>
+<td><a href="../InterventionDetails/">InterventionDetails</a></td>
+</tr>
+<tr>
+<td><a href="../alkalinity_feedstock_processing_custom/">alkalinity_feedstock_processing_custom</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Custom description of alkalinity feedstock processing method when 'other' is ...</td>
+<td><a href="../InterventionDetails/">InterventionDetails</a></td>
 </tr>
 <tr>
 <td><a href="../alkalinity_feedstock_form/">alkalinity_feedstock_form</a></td>
 <td>1 <br/> <a href="../AlkalinityFeedstockForm/">AlkalinityFeedstockForm</a></td>
 <td>The phase upon delivery to the ocean</td>
-<td>direct</td>
+<td><a href="../InterventionDetails/">InterventionDetails</a></td>
 </tr>
 <tr>
 <td><a href="../alkalinity_feedstock/">alkalinity_feedstock</a></td>
 <td>1 <br/> <a href="../FeedstockType/">FeedstockType</a></td>
 <td>Examples may include: olivine, potassium hydroxide, magnesium hydroxide, lime...</td>
-<td>direct</td>
+<td><a href="../InterventionDetails/">InterventionDetails</a></td>
+</tr>
+<tr>
+<td><a href="../alkalinity_feedstock_custom/">alkalinity_feedstock_custom</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Custom description of alkalinity feedstock when using a feedstock type not li...</td>
+<td><a href="../InterventionDetails/">InterventionDetails</a></td>
 </tr>
 <tr>
 <td><a href="../alkalinity_feedstock_co2_removal_potential/">alkalinity_feedstock_co2_removal_potential</a></td>
-<td>0..1 <br/> <a href="../Float/">Float</a></td>
+<td>1 <br/> <a href="../Float/">Float</a></td>
 <td>Maximum CO₂ removal potential of a feedstock material</td>
-<td>direct</td>
+<td><a href="../InterventionDetails/">InterventionDetails</a></td>
 </tr>
 <tr>
 <td><a href="../alkalinity_feedstock_description/">alkalinity_feedstock_description</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>Information such as feedstock source, characteristics, impurities, dilution p...</td>
-<td>direct</td>
+<td><a href="../InterventionDetails/">InterventionDetails</a></td>
 </tr>
 <tr>
 <td><a href="../equilibration/">equilibration</a></td>
 <td>1 <br/> <a href="../EquilibrationStatus/">EquilibrationStatus</a></td>
 <td>Whether the feedstock was pre-equilibrated or unequilibrated</td>
-<td>direct</td>
+<td><a href="../InterventionDetails/">InterventionDetails</a></td>
 </tr>
 <tr>
-<td><a href="../dosing_location/">dosing_location</a></td>
-<td>1 <br/> <a href="../GeoCoordinate/">GeoCoordinate</a></td>
-<td>Provide latitude and longitude in decimal degrees</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../dosing_dispersal_hydrologic_location/">dosing_dispersal_hydrologic_location</a></td>
-<td>1 <br/> <a href="../HydrologicLocation/">HydrologicLocation</a></td>
-<td>Descriptive dosing location</td>
-<td>direct</td>
+<td><a href="../alkalinity_dosing_effluent_density/">alkalinity_dosing_effluent_density</a></td>
+<td>1 <br/> <a href="../DosingConcentration/">DosingConcentration</a></td>
+<td>Fixed density or provide link/source to effluent density data if applicable</td>
+<td><a href="../InterventionDetails/">InterventionDetails</a></td>
 </tr>
 <tr>
 <td><a href="../dosing_delivery_type/">dosing_delivery_type</a></td>
 <td>1 <br/> <a href="../DosingDeliveryType/">DosingDeliveryType</a></td>
 <td>Type of dosing delivery method</td>
-<td>direct</td>
+<td><a href="../DosingDetails/">DosingDetails</a></td>
 </tr>
 <tr>
-<td><a href="../alkalinity_dosing_effluent_density/">alkalinity_dosing_effluent_density</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>Fixed density or provide link/source to effluent density data if applicable</td>
-<td>direct</td>
+<td><a href="../dosing_location/">dosing_location</a></td>
+<td>1 <br/> <a href="../DosingLocation/">DosingLocation</a></td>
+<td>Provide latitude and longitude in decimal degrees</td>
+<td><a href="../DosingDetails/">DosingDetails</a></td>
+</tr>
+<tr>
+<td><a href="../dosing_dispersal_hydrologic_location/">dosing_dispersal_hydrologic_location</a></td>
+<td>1 <br/> <a href="../HydrologicLocation/">HydrologicLocation</a></td>
+<td>Descriptive dosing location</td>
+<td><a href="../DosingDetails/">DosingDetails</a></td>
 </tr>
 <tr>
 <td><a href="../dosing_depth/">dosing_depth</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
-<td>Depth(s) in meters</td>
-<td>direct</td>
+<td>Depth in meters</td>
+<td><a href="../DosingDetails/">DosingDetails</a></td>
+</tr>
+<tr>
+<td><a href="../dosing_regimen/">dosing_regimen</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>A human readable summary description of the dosing regimen / frequency</td>
+<td><a href="../DosingDetails/">DosingDetails</a></td>
 </tr>
 <tr>
 <td><a href="../dosing_description/">dosing_description</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>Please be descriptive</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../dosing_regimen/">dosing_regimen</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>At a minimum, please provide the schedule and timeline of dosing, including t...</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../dosing_data/">dosing_data</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>Dosing data include: flow rate, dosing rate, and mineral mass addition rate</td>
-<td>direct</td>
+<td><a href="../DosingDetails/">DosingDetails</a></td>
 </tr>
 <tr>
 <td><a href="../name/">name</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>A human-readable name for the thing</td>
+<td>Optional common name for experiment</td>
 <td><a href="../Experiment/">Experiment</a></td>
 </tr>
 <tr>
@@ -497,6 +533,12 @@
 <td><a href="../Experiment/">Experiment</a></td>
 </tr>
 <tr>
+<td><a href="../permits/">permits</a></td>
+<td>* <br/> <a href="../Permit/">Permit</a></td>
+<td>Associated permit number(s)</td>
+<td><a href="../Experiment/">Experiment</a></td>
+</tr>
+<tr>
 <td><a href="../experiment_id/">experiment_id</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>The experiment to which the data belong</td>
@@ -505,7 +547,7 @@
 <tr>
 <td><a href="../project_id/">project_id</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Project ID must be included in the Experiment-level metadata in order to link...</td>
+<td>The project to which the submitted data belong</td>
 <td><a href="../Experiment/">Experiment</a></td>
 </tr>
 <tr>
@@ -516,7 +558,7 @@
 </tr>
 <tr>
 <td><a href="../investigators/">investigators</a></td>
-<td>1..* <br/> <a href="../Investigator/">Investigator</a></td>
+<td>1..* <br/> <a href="../Person/">Person</a></td>
 <td>Provide details for each investigator including: Name, institutional informat...</td>
 <td><a href="../Experiment/">Experiment</a></td>
 </tr>
@@ -585,190 +627,30 @@ description: Additional metadata that applies to experiments where an interventi
   such as an alkalinity addition, was conducted.
 from_schema: OAEDataManagementProtocol
 is_a: Experiment
-attributes:
-  alkalinity_feedstock_processing:
-    name: alkalinity_feedstock_processing
-    description: Method(s) used to process the alkalinity feedstock. See Controlled
-      Vocabularies section for definitions.
-    title: Alkalinity Feedstock Processing
-    from_schema: Experiment
-    rank: 1000
-    domain_of:
-    - Intervention
-    range: AlkalinityFeedstockProcessing
-    required: true
-    multivalued: true
-  alkalinity_feedstock_form:
-    name: alkalinity_feedstock_form
-    description: The phase upon delivery to the ocean. See Controlled Vocabularies
-      section for definitions.
-    title: Alkalinity Feedstock Form
-    from_schema: Experiment
-    rank: 1000
-    domain_of:
-    - Intervention
-    range: AlkalinityFeedstockForm
-    required: true
-  alkalinity_feedstock:
-    name: alkalinity_feedstock
-    description: 'Examples may include: olivine, potassium hydroxide, magnesium hydroxide,
-      lime, portlandite, calcium carbonate, anorthite, dolomite, periclase, brucite,
-      magnesite, forsterite, sodium hydroxide, natrite, nahcolite, akermanite, akermanite,
-      alunoakermanite, etc.
-
-      See Controlled Vocabularies section for selected examples (this list is not
-      exhaustive, you may need to include your unique feedstock).'
-    title: Alkalinity Feedstock
-    from_schema: Experiment
-    rank: 1000
-    domain_of:
-    - Intervention
-    range: FeedstockType
-    required: true
-  alkalinity_feedstock_co2_removal_potential:
-    name: alkalinity_feedstock_co2_removal_potential
-    description: Maximum CO₂ removal potential of a feedstock material. We recommend
-      using an adjusted version of the Steinour equation (Gunning et al., 2010), which
-      uses bulk elemental oxide composition to estimate the maximum CO₂ removal potential
-      of a feedstock material. The calculation output is in the form of kg of CO₂
-      per tonne of feedstock and represents the quantitative hypothetical potential
-      of the material to capture CO₂ as bicarbonate or carbonate. See Isometric's
-      CO2 removal potential module for details.
-    title: Alkalinity Feedstock CO₂ Removal Potential
-    from_schema: Experiment
-    rank: 1000
-    domain_of:
-    - Intervention
-    range: float
-  alkalinity_feedstock_description:
-    name: alkalinity_feedstock_description
-    description: 'Information such as feedstock source, characteristics, impurities,
-      dilution prior to dosing, and concentration. For feedstock other than NaOH:
-      trace metal composition and particulate grain size. Any variable information
-      must be provided in the dosing data file, in this case include the data file
-      and column header names here provided as variables. See Intervention Data for
-      details.'
-    title: Alkalinity Feedstock Description
-    from_schema: Experiment
-    rank: 1000
-    domain_of:
-    - Intervention
-    range: string
-    required: true
-  equilibration:
-    name: equilibration
-    description: Whether the feedstock was pre-equilibrated or unequilibrated
-    title: Equilibration
-    from_schema: Experiment
-    rank: 1000
-    domain_of:
-    - Intervention
-    range: EquilibrationStatus
-    required: true
-  dosing_location:
-    name: dosing_location
-    description: Provide latitude and longitude in decimal degrees. Depending on your
-      method of dispersal, this information may be provided as a point source, vector,
-      or bounding box. If provided as a vector, the latitude and longitude values
-      should be included in the dosing data file.
-    title: Dosing Location
-    from_schema: Experiment
-    rank: 1000
-    domain_of:
-    - Intervention
-    range: GeoCoordinate
-    required: true
-  dosing_dispersal_hydrologic_location:
-    name: dosing_dispersal_hydrologic_location
-    description: Descriptive dosing location
-    title: Dosing Dispersal Hydrologic Location
-    from_schema: Experiment
-    rank: 1000
-    domain_of:
-    - Intervention
-    range: HydrologicLocation
-    required: true
-  dosing_delivery_type:
-    name: dosing_delivery_type
-    description: Type of dosing delivery method. See Controlled Vocabularies for definitions.
-    title: Dosing Delivery Type
-    from_schema: Experiment
-    rank: 1000
-    domain_of:
-    - Intervention
-    range: DosingDeliveryType
-    required: true
-  alkalinity_dosing_effluent_density:
-    name: alkalinity_dosing_effluent_density
-    description: Fixed density or provide link/source to effluent density data if
-      applicable. Please include whether density is directly measured or a derived
-      value. If this is a variable included with your data, please note so here as
-      'alkalinity dosing effluent density is provided as a variable' and use 'dosing_effluent_density'
-      for your column header name.
-    title: Alkalinity Dosing Effluent Density
-    from_schema: Experiment
-    rank: 1000
-    domain_of:
-    - Intervention
-    range: string
-    required: true
-  dosing_depth:
-    name: dosing_depth
-    description: Depth(s) in meters. If this is variable, please include the schedule
-      of depth changes and depths, or as a vector in meters with the data, named 'dosing_depth'.
-      Please note here that 'dosing depth is provided as a variable'.
-    title: Dosing Depth(s)
-    from_schema: Experiment
-    rank: 1000
-    domain_of:
-    - Intervention
-    range: string
-    required: true
-  dosing_description:
-    name: dosing_description
-    description: Please be descriptive. Information about the dosing mechanism must
-      be included (e.g., outflow from pipe, diffuser, doser, manual placement) E.g.,
-      outflow from existing facility pipe directly to ocean, manual riverine introduction,
-      coastal distribution at three separate 30 meter long sections, pier-based diffuser
-      to intercoastal bay, distributed from stationary barge 10 miles offshore.
-    title: Dosing Description
-    from_schema: Experiment
-    rank: 1000
-    domain_of:
-    - Intervention
-    range: string
-    required: true
-  dosing_regimen:
-    name: dosing_regimen
-    description: At a minimum, please provide the schedule and timeline of dosing,
-      including the time between doses, the duration of treatment and the amount used
-      each time. More optimally, this information would be provided as a vector of
-      binary data in the data file where 1 = dosing 'on' 0 = dosing 'off', using the
-      column header name 'dosing_onoff'. If provided as a vector state here as 'dosing
-      regimen is provided as a variable' and include the file name. See Intervention
-      Data for details.
-    title: Dosing Regimen
-    from_schema: Experiment
-    rank: 1000
-    domain_of:
-    - Intervention
-    range: string
-    required: true
-  dosing_data:
-    name: dosing_data
-    description: 'Dosing data include: flow rate, dosing rate, and mineral mass addition
-      rate. If any of these are constant, values may be given here rather than in
-      the dosing data file. To link dosing data that have been provided as vector
-      data provide the source or filename. See Intervention Data for details. Provide
-      a description of the units for dosing rate provided as this will vary depending
-      on the method.'
-    title: Dosing Data
-    from_schema: Experiment
-    rank: 1000
-    domain_of:
-    - Intervention
-    range: string
-    required: true
+mixins:
+- InterventionDetails
+- DosingDetails
+rules:
+- preconditions:
+    slot_conditions:
+      alkalinity_feedstock:
+        name: alkalinity_feedstock
+        equals_string: other
+  postconditions:
+    slot_conditions:
+      alkalinity_feedstock_custom:
+        name: alkalinity_feedstock_custom
+        required: true
+- preconditions:
+    slot_conditions:
+      alkalinity_feedstock_processing:
+        name: alkalinity_feedstock_processing
+        equals_string: other
+  postconditions:
+    slot_conditions:
+      alkalinity_feedstock_processing_custom:
+        name: alkalinity_feedstock_processing_custom
+        required: true
 
 </code></pre>
 </details>
@@ -779,6 +661,9 @@ description: Additional metadata that applies to experiments where an interventi
   such as an alkalinity addition, was conducted.
 from_schema: OAEDataManagementProtocol
 is_a: Experiment
+mixins:
+- InterventionDetails
+- DosingDetails
 attributes:
   alkalinity_feedstock_processing:
     name: alkalinity_feedstock_processing
@@ -790,10 +675,21 @@ attributes:
     alias: alkalinity_feedstock_processing
     owner: Intervention
     domain_of:
-    - Intervention
+    - InterventionDetails
     range: AlkalinityFeedstockProcessing
     required: true
-    multivalued: true
+  alkalinity_feedstock_processing_custom:
+    name: alkalinity_feedstock_processing_custom
+    description: Custom description of alkalinity feedstock processing method when
+      'other' is selected in alkalinity_feedstock_processing.
+    title: Alkalinity Feedstock Processing (Custom)
+    from_schema: Experiment
+    rank: 1000
+    alias: alkalinity_feedstock_processing_custom
+    owner: Intervention
+    domain_of:
+    - InterventionDetails
+    range: string
   alkalinity_feedstock_form:
     name: alkalinity_feedstock_form
     description: The phase upon delivery to the ocean. See Controlled Vocabularies
@@ -804,7 +700,7 @@ attributes:
     alias: alkalinity_feedstock_form
     owner: Intervention
     domain_of:
-    - Intervention
+    - InterventionDetails
     range: AlkalinityFeedstockForm
     required: true
   alkalinity_feedstock:
@@ -822,9 +718,21 @@ attributes:
     alias: alkalinity_feedstock
     owner: Intervention
     domain_of:
-    - Intervention
+    - InterventionDetails
     range: FeedstockType
     required: true
+  alkalinity_feedstock_custom:
+    name: alkalinity_feedstock_custom
+    description: Custom description of alkalinity feedstock when using a feedstock
+      type not listed in the controlled vocabulary.
+    title: Alkalinity Feedstock (Custom)
+    from_schema: Experiment
+    rank: 1000
+    alias: alkalinity_feedstock_custom
+    owner: Intervention
+    domain_of:
+    - InterventionDetails
+    range: string
   alkalinity_feedstock_co2_removal_potential:
     name: alkalinity_feedstock_co2_removal_potential
     description: Maximum CO₂ removal potential of a feedstock material. We recommend
@@ -840,8 +748,9 @@ attributes:
     alias: alkalinity_feedstock_co2_removal_potential
     owner: Intervention
     domain_of:
-    - Intervention
+    - InterventionDetails
     range: float
+    required: true
   alkalinity_feedstock_description:
     name: alkalinity_feedstock_description
     description: 'Information such as feedstock source, characteristics, impurities,
@@ -856,7 +765,7 @@ attributes:
     alias: alkalinity_feedstock_description
     owner: Intervention
     domain_of:
-    - Intervention
+    - InterventionDetails
     range: string
     required: true
   equilibration:
@@ -868,47 +777,8 @@ attributes:
     alias: equilibration
     owner: Intervention
     domain_of:
-    - Intervention
+    - InterventionDetails
     range: EquilibrationStatus
-    required: true
-  dosing_location:
-    name: dosing_location
-    description: Provide latitude and longitude in decimal degrees. Depending on your
-      method of dispersal, this information may be provided as a point source, vector,
-      or bounding box. If provided as a vector, the latitude and longitude values
-      should be included in the dosing data file.
-    title: Dosing Location
-    from_schema: Experiment
-    rank: 1000
-    alias: dosing_location
-    owner: Intervention
-    domain_of:
-    - Intervention
-    range: GeoCoordinate
-    required: true
-  dosing_dispersal_hydrologic_location:
-    name: dosing_dispersal_hydrologic_location
-    description: Descriptive dosing location
-    title: Dosing Dispersal Hydrologic Location
-    from_schema: Experiment
-    rank: 1000
-    alias: dosing_dispersal_hydrologic_location
-    owner: Intervention
-    domain_of:
-    - Intervention
-    range: HydrologicLocation
-    required: true
-  dosing_delivery_type:
-    name: dosing_delivery_type
-    description: Type of dosing delivery method. See Controlled Vocabularies for definitions.
-    title: Dosing Delivery Type
-    from_schema: Experiment
-    rank: 1000
-    alias: dosing_delivery_type
-    owner: Intervention
-    domain_of:
-    - Intervention
-    range: DosingDeliveryType
     required: true
   alkalinity_dosing_effluent_density:
     name: alkalinity_dosing_effluent_density
@@ -923,77 +793,96 @@ attributes:
     alias: alkalinity_dosing_effluent_density
     owner: Intervention
     domain_of:
-    - Intervention
-    range: string
+    - InterventionDetails
+    range: DosingConcentration
+    required: true
+  dosing_delivery_type:
+    name: dosing_delivery_type
+    description: Type of dosing delivery method. See Controlled Vocabularies for definitions.
+    title: Dosing Delivery Type
+    from_schema: Experiment
+    rank: 1000
+    alias: dosing_delivery_type
+    owner: Intervention
+    domain_of:
+    - DosingDetails
+    range: DosingDeliveryType
+    required: true
+  dosing_location:
+    name: dosing_location
+    description: Provide latitude and longitude in decimal degrees. Depending on your
+      method of dispersal, this information may be provided as a point source, vector,
+      or bounding box. If provided as a vector, the latitude and longitude values
+      should be included in the dosing data file.
+    title: Dosing Location
+    from_schema: Experiment
+    rank: 1000
+    alias: dosing_location
+    owner: Intervention
+    domain_of:
+    - DosingDetails
+    range: DosingLocation
+    required: true
+  dosing_dispersal_hydrologic_location:
+    name: dosing_dispersal_hydrologic_location
+    description: Descriptive dosing location
+    title: Dosing Dispersal Hydrologic Location
+    from_schema: Experiment
+    rank: 1000
+    alias: dosing_dispersal_hydrologic_location
+    owner: Intervention
+    domain_of:
+    - DosingDetails
+    range: HydrologicLocation
     required: true
   dosing_depth:
     name: dosing_depth
-    description: Depth(s) in meters. If this is variable, please include the schedule
-      of depth changes and depths, or as a vector in meters with the data, named 'dosing_depth'.
-      Please note here that 'dosing depth is provided as a variable'.
-    title: Dosing Depth(s)
+    description: Depth in meters. If this is variable, please include the schedule
+      of depth changes and depths, or as a vector in meters with the data.
+    title: Dosing Depth
     from_schema: Experiment
     rank: 1000
     alias: dosing_depth
     owner: Intervention
     domain_of:
-    - Intervention
-    range: string
-    required: true
-  dosing_description:
-    name: dosing_description
-    description: Please be descriptive. Information about the dosing mechanism must
-      be included (e.g., outflow from pipe, diffuser, doser, manual placement) E.g.,
-      outflow from existing facility pipe directly to ocean, manual riverine introduction,
-      coastal distribution at three separate 30 meter long sections, pier-based diffuser
-      to intercoastal bay, distributed from stationary barge 10 miles offshore.
-    title: Dosing Description
-    from_schema: Experiment
-    rank: 1000
-    alias: dosing_description
-    owner: Intervention
-    domain_of:
-    - Intervention
+    - DosingDetails
     range: string
     required: true
   dosing_regimen:
     name: dosing_regimen
-    description: At a minimum, please provide the schedule and timeline of dosing,
-      including the time between doses, the duration of treatment and the amount used
-      each time. More optimally, this information would be provided as a vector of
-      binary data in the data file where 1 = dosing 'on' 0 = dosing 'off', using the
-      column header name 'dosing_onoff'. If provided as a vector state here as 'dosing
-      regimen is provided as a variable' and include the file name. See Intervention
-      Data for details.
+    description: A human readable summary description of the dosing regimen / frequency.
+      Exact details must be provided in the corresponding dosing file with exact timestamps
+      for dosing on/off schedule.
     title: Dosing Regimen
     from_schema: Experiment
     rank: 1000
     alias: dosing_regimen
     owner: Intervention
     domain_of:
-    - Intervention
+    - DosingDetails
     range: string
     required: true
-  dosing_data:
-    name: dosing_data
-    description: 'Dosing data include: flow rate, dosing rate, and mineral mass addition
-      rate. If any of these are constant, values may be given here rather than in
-      the dosing data file. To link dosing data that have been provided as vector
-      data provide the source or filename. See Intervention Data for details. Provide
-      a description of the units for dosing rate provided as this will vary depending
-      on the method.'
-    title: Dosing Data
+  dosing_description:
+    name: dosing_description
+    description: 'Please be descriptive. Information about the dosing mechanism must
+      be included (outflow from pipe, diffuser, doser, manual placement)
+
+      E.g., outflow from existing facility pipe directly to ocean, manual riverine
+      introduction, coastal distribution at three separate 30 meter long sections,
+      pier-based diffuser to intercoastal bay, distributed from stationary barge 10
+      miles offshore.'
+    title: Dosing Description
     from_schema: Experiment
     rank: 1000
-    alias: dosing_data
+    alias: dosing_description
     owner: Intervention
     domain_of:
-    - Intervention
+    - DosingDetails
     range: string
     required: true
   name:
     name: name
-    description: A human-readable name for the thing.
+    description: Optional common name for experiment.
     title: Name
     from_schema: OAEDataManagementProtocol
     rank: 1000
@@ -1005,7 +894,7 @@ attributes:
     - ExternalProject
     - MonetaryGrant
     - Experiment
-    - Investigator
+    - Person
     range: string
   description:
     name: description
@@ -1052,10 +941,23 @@ attributes:
     alias: vertical_coverage
     owner: Intervention
     domain_of:
-    - Project
     - Experiment
     range: VerticalExtent
     required: true
+  permits:
+    name: permits
+    description: Associated permit number(s).
+    title: Permits
+    from_schema: OAEDataManagementProtocol
+    rank: 1000
+    alias: permits
+    owner: Intervention
+    domain_of:
+    - Experiment
+    range: Permit
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
   experiment_id:
     name: experiment_id
     description: 'The experiment to which the data belong. Any naming convention that
@@ -1075,19 +977,14 @@ attributes:
     required: true
   project_id:
     name: project_id
-    description: 'Project ID must be included in the Experiment-level metadata in
-      order to link all experiments to the main project.
+    description: 'The project to which the submitted data belong. A unique project
+      identifier that can be used to link project data across data submissions, and
+      link baseline data to intervention data, for example.
 
-      The project to which the submitted data belong. A unique project identifier
-      that can be used to link project data across data submissions, and link baseline
-      data to intervention data, for example.
+      If no Project ID has been assigned, one may be generated by combining: lead
+      organizer surname and first initial or company, a unique date, and location.
 
-      If no Project ID has been assigned, one may be generated by combining the following
-      fields, as described in Cross-linking Data Sets with Common Identifiers.
-
-      Any method that creates a unique ID that will link all project data (e.g., a
-      project''s baseline data to intervention data, and various data submissions
-      within an experiment type) is acceptable.'
+      Any method that creates a unique ID that will link all project data is acceptable.'
     title: Project ID
     from_schema: Experiment
     alias: project_id
@@ -1121,7 +1018,7 @@ attributes:
     owner: Intervention
     domain_of:
     - Experiment
-    range: Investigator
+    range: Person
     required: true
     multivalued: true
     inlined: true
@@ -1193,6 +1090,27 @@ attributes:
     - Project
     - Experiment
     range: string
+rules:
+- preconditions:
+    slot_conditions:
+      alkalinity_feedstock:
+        name: alkalinity_feedstock
+        equals_string: other
+  postconditions:
+    slot_conditions:
+      alkalinity_feedstock_custom:
+        name: alkalinity_feedstock_custom
+        required: true
+- preconditions:
+    slot_conditions:
+      alkalinity_feedstock_processing:
+        name: alkalinity_feedstock_processing
+        equals_string: other
+  postconditions:
+    slot_conditions:
+      alkalinity_feedstock_processing_custom:
+        name: alkalinity_feedstock_processing_custom
+        required: true
 
 </code></pre>
 </details>

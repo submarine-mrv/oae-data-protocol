@@ -247,13 +247,13 @@
 <tbody>
 <tr>
 <td><a href="../min_depth_in_m/">min_depth_in_m</a></td>
-<td>1 <br/> <a href="../Float/">Float</a></td>
+<td>0..1 <br/> <a href="../Float/">Float</a></td>
 <td>Minimum depth of observation in meters</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../max_depth_in_m/">max_depth_in_m</a></td>
-<td>1 <br/> <a href="../Float/">Float</a></td>
+<td>0..1 <br/> <a href="../Float/">Float</a></td>
 <td>Maximum depth of observation in meters</td>
 <td>direct</td>
 </tr>
@@ -271,12 +271,6 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Project/">Project</a></td>
-<td><a href="../vertical_coverage/">vertical_coverage</a></td>
-<td>range</td>
-<td><a href="./">VerticalExtent</a></td>
-</tr>
-<tr>
 <td><a href="../Experiment/">Experiment</a></td>
 <td><a href="../vertical_coverage/">vertical_coverage</a></td>
 <td>range</td>
@@ -284,6 +278,18 @@
 </tr>
 <tr>
 <td><a href="../Intervention/">Intervention</a></td>
+<td><a href="../vertical_coverage/">vertical_coverage</a></td>
+<td>range</td>
+<td><a href="./">VerticalExtent</a></td>
+</tr>
+<tr>
+<td><a href="../Tracer/">Tracer</a></td>
+<td><a href="../vertical_coverage/">vertical_coverage</a></td>
+<td>range</td>
+<td><a href="./">VerticalExtent</a></td>
+</tr>
+<tr>
+<td><a href="../InterventionWithTracer/">InterventionWithTracer</a></td>
 <td><a href="../vertical_coverage/">vertical_coverage</a></td>
 <td>range</td>
 <td><a href="./">VerticalExtent</a></td>
@@ -332,7 +338,6 @@ attributes:
     domain_of:
     - VerticalExtent
     range: float
-    required: true
   max_depth_in_m:
     name: max_depth_in_m
     description: Maximum depth of observation in meters. Use negative numbers for
@@ -343,7 +348,6 @@ attributes:
     domain_of:
     - VerticalExtent
     range: float
-    required: true
 
 </code></pre>
 </details>
@@ -365,7 +369,6 @@ attributes:
     domain_of:
     - VerticalExtent
     range: float
-    required: true
   max_depth_in_m:
     name: max_depth_in_m
     description: Maximum depth of observation in meters. Use negative numbers for
@@ -378,7 +381,6 @@ attributes:
     domain_of:
     - VerticalExtent
     range: float
-    required: true
 
 </code></pre>
 </details>

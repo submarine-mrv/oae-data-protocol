@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: Identifier Type (identifier_type) - oae-data-protocol</title>
+        <title>Slot: Researcher ID Type (identifier_type) - oae-data-protocol</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-identifier-type-identifier_type" class="md-skip">
+        <a href="#slot-researcher-id-type-identifier_type" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: Identifier Type (identifier_type)
+              Slot: Researcher ID Type (identifier_type)
             
           </span>
         </div>
@@ -359,8 +359,8 @@
   
 
 
-<h1 id="slot-identifier-type-identifier_type">Slot: Identifier Type (identifier_type)</h1>
-<p><em>Type of researcher identifier (e.g., ORCID, ResearcherID).</em></p>
+<h1 id="slot-researcher-id-type-identifier_type">Slot: Researcher ID Type (identifier_type)</h1>
+<p><em>Type of Researcher ID (e.g., ORCID, ResearcherID).</em></p>
 <p>URI: <a href="https://example.org/oae#identifier_type">oae:identifier_type</a></p>
 <!-- no inheritance hierarchy -->
 
@@ -375,7 +375,7 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Investigator/">Investigator</a></td>
+<td><a href="../Person/">Person</a></td>
 <td>Information about a researcher or investigator involved in the experiment</td>
 <td>no</td>
 </tr>
@@ -383,7 +383,7 @@
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../String/">String</a></li>
+<li>Range: <a href="../ResearcherIDType/">ResearcherIDType</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -413,15 +413,15 @@
 <details>
 
 <pre><code class="language-yaml">name: identifier_type
-description: Type of researcher identifier (e.g., ORCID, ResearcherID).
-title: Identifier Type
+description: Type of Researcher ID (e.g., ORCID, ResearcherID).
+title: Researcher ID Type
 from_schema: OAEDataManagementProtocol
 rank: 1000
 alias: identifier_type
-owner: Investigator
+owner: Person
 domain_of:
-- Investigator
-range: string
+- Person
+range: ResearcherIDType
 
 </code></pre>
 

@@ -453,6 +453,14 @@
 <td>None</td>
 </tr>
 <tr>
+<td><a href="DosingConcentration/">DosingConcentration</a></td>
+<td>Details of tracer concentration information</td>
+</tr>
+<tr>
+<td><a href="DosingDetails/">DosingDetails</a></td>
+<td>An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are  specific to an Experiment with active dosing (e.g. type "Tracer", "Intervention", or "InterventionWithDosing")</td>
+</tr>
+<tr>
 <td><a href="Experiment/">Experiment</a></td>
 <td>Experiment metadata applies to a specific study but remains consistent across datasets.</td>
 </tr>
@@ -461,11 +469,19 @@
 <td>Additional metadata that applies to experiments where an intervention, such as an alkalinity addition, was conducted.</td>
 </tr>
 <tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="InterventionWithTracer/">InterventionWithTracer</a></td>
+<td>Additional metadata that applies to hybrid experiments where an intervention was conducted simultaneously alongside a tracer study, using the same instrumentation.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Tracer/">Tracer</a></td>
+<td>Additional metadata that applies to experiments where a tracer study was conducted</td>
+</tr>
+<tr>
 <td><a href="ExternalProject/">ExternalProject</a></td>
 <td>A research project that is not directly managed by the OAE project, but whose location is proximal to the OAE project and whose data may be relevant to understanding the context or impacts of OAE activities.</td>
 </tr>
 <tr>
-<td><a href="GeoCoordinate/">GeoCoordinate</a></td>
+<td><a href="GeoCoordinates/">GeoCoordinates</a></td>
 <td>A geographic coordinate in decimal degrees.</td>
 </tr>
 <tr>
@@ -473,8 +489,8 @@
 <td>The geographic shape of a place. A GeoShape can be described using several properties whose values are based on latitude/longitude pairs. Either whitespace or commas can be used to separate latitude and longitude; whitespace should be used when writing a list of several such points. (imported from schema.org)</td>
 </tr>
 <tr>
-<td><a href="Investigator/">Investigator</a></td>
-<td>Information about a researcher or investigator involved in the experiment.</td>
+<td><a href="InterventionDetails/">InterventionDetails</a></td>
+<td>An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are  specific to an Experiment with type "Intervention"</td>
 </tr>
 <tr>
 <td><a href="MonetaryGrant/">MonetaryGrant</a></td>
@@ -493,7 +509,19 @@
 <td>A permit associated with the project.</td>
 </tr>
 <tr>
+<td><a href="Person/">Person</a></td>
+<td>Information about a researcher or investigator involved in the experiment.</td>
+</tr>
+<tr>
 <td><a href="Place/">Place</a></td>
+<td>A geospatial area of interest, defined by a bounding box, polygon/line, or a point designated as a  pair of geo-coordinates.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DosingLocation/">DosingLocation</a></td>
+<td>A specific location of dosing for an OAE intervention and/or tracer study. Can be a point, line, or bounding box</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="SpatialCoverage/">SpatialCoverage</a></td>
 <td>A bounding box defined by latitude and longitude coordinates.</td>
 </tr>
 <tr>
@@ -503,6 +531,10 @@
 <tr>
 <td><a href="PropertyValue/">PropertyValue</a></td>
 <td>None</td>
+</tr>
+<tr>
+<td><a href="TracerDetails/">TracerDetails</a></td>
+<td>An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are  specific to an Experiment with type "Tracer"</td>
 </tr>
 <tr>
 <td><a href="VerticalExtent/">VerticalExtent</a></td>
@@ -528,6 +560,10 @@
 <td>Institutional affiliation of the investigator</td>
 </tr>
 <tr>
+<td><a href="agency_contact/">agency_contact</a></td>
+<td>The point of contact at the permitting agency</td>
+</tr>
+<tr>
 <td><a href="alkalinity_dosing_effluent_density/">alkalinity_dosing_effluent_density</a></td>
 <td>Fixed density or provide link/source to effluent density data if applicable</td>
 </tr>
@@ -538,6 +574,10 @@
 <tr>
 <td><a href="alkalinity_feedstock_co2_removal_potential/">alkalinity_feedstock_co2_removal_potential</a></td>
 <td>Maximum CO₂ removal potential of a feedstock material</td>
+</tr>
+<tr>
+<td><a href="alkalinity_feedstock_custom/">alkalinity_feedstock_custom</a></td>
+<td>Custom description of alkalinity feedstock when using a feedstock type not li...</td>
 </tr>
 <tr>
 <td><a href="alkalinity_feedstock_description/">alkalinity_feedstock_description</a></td>
@@ -552,12 +592,24 @@
 <td>Method(s) used to process the alkalinity feedstock</td>
 </tr>
 <tr>
+<td><a href="alkalinity_feedstock_processing_custom/">alkalinity_feedstock_processing_custom</a></td>
+<td>Custom description of alkalinity feedstock processing method when 'other' is ...</td>
+</tr>
+<tr>
+<td><a href="amount/">amount</a></td>
+<td></td>
+</tr>
+<tr>
 <td><a href="approval_document/">approval_document</a></td>
-<td>Links to documentation related to the permit</td>
+<td>Filename(s) of permitting documents included, separated by commas</td>
 </tr>
 <tr>
 <td><a href="box/">box</a></td>
 <td>A box defined by two latitude-longitude points, southwest and northeast</td>
+</tr>
+<tr>
+<td><a href="changes_to_evolution_of_permit_criteria/">changes_to_evolution_of_permit_criteria</a></td>
+<td>e</td>
 </tr>
 <tr>
 <td><a href="colocated_operations/">colocated_operations</a></td>
@@ -565,7 +617,7 @@
 </tr>
 <tr>
 <td><a href="country/">country</a></td>
-<td>The country in which the organization belongs (formatted as ISO 3166-1 alpha-...</td>
+<td>The country in which the organization belongs</td>
 </tr>
 <tr>
 <td><a href="data_conflicts_and_unreported_data/">data_conflicts_and_unreported_data</a></td>
@@ -576,16 +628,12 @@
 <td>A narrative description of the thing</td>
 </tr>
 <tr>
-<td><a href="dosing_data/">dosing_data</a></td>
-<td>Dosing data include: flow rate, dosing rate, and mineral mass addition rate</td>
-</tr>
-<tr>
 <td><a href="dosing_delivery_type/">dosing_delivery_type</a></td>
 <td>Type of dosing delivery method</td>
 </tr>
 <tr>
 <td><a href="dosing_depth/">dosing_depth</a></td>
-<td>Depth(s) in meters</td>
+<td>Depth in meters</td>
 </tr>
 <tr>
 <td><a href="dosing_description/">dosing_description</a></td>
@@ -600,8 +648,12 @@
 <td>Provide latitude and longitude in decimal degrees</td>
 </tr>
 <tr>
+<td><a href="dosing_location_file/">dosing_location_file</a></td>
+<td>Exact path and filename for the location file (relative to root path of proje...</td>
+</tr>
+<tr>
 <td><a href="dosing_regimen/">dosing_regimen</a></td>
-<td>At a minimum, please provide the schedule and timeline of dosing, including t...</td>
+<td>A human readable summary description of the dosing regimen / frequency</td>
 </tr>
 <tr>
 <td><a href="email/">email</a></td>
@@ -649,19 +701,31 @@
 </tr>
 <tr>
 <td><a href="identifier_type/">identifier_type</a></td>
-<td>Type of researcher identifier (e</td>
+<td>Type of Researcher ID (e</td>
 </tr>
 <tr>
 <td><a href="investigators/">investigators</a></td>
 <td>Provide details for each investigator including: Name, institutional informat...</td>
 </tr>
 <tr>
+<td><a href="is_derived_value/">is_derived_value</a></td>
+<td>Indicates that the field in question is a derived value as opposed to one mea...</td>
+</tr>
+<tr>
+<td><a href="is_provided_as_a_file/">is_provided_as_a_file</a></td>
+<td>Indicates that the field in question is provided as a file</td>
+</tr>
+<tr>
 <td><a href="latitude/">latitude</a></td>
-<td>Latitude in decimal degrees</td>
+<td>Latitude in decimal degrees of a location</td>
+</tr>
+<tr>
+<td><a href="line/">line</a></td>
+<td>A line is a point-to-point path consisting of two or more points</td>
 </tr>
 <tr>
 <td><a href="longitude/">longitude</a></td>
-<td>Longitude in decimal degrees</td>
+<td>Longitude in decimal degrees of a location</td>
 </tr>
 <tr>
 <td><a href="max_depth_in_m/">max_depth_in_m</a></td>
@@ -692,8 +756,8 @@
 <td>The unique identifier or number associated with this permit</td>
 </tr>
 <tr>
-<td><a href="permit_status/">permit_status</a></td>
-<td>The current status of the permit (e</td>
+<td><a href="permit_type/">permit_type</a></td>
+<td>The category of permit (E</td>
 </tr>
 <tr>
 <td><a href="permits/">permits</a></td>
@@ -733,7 +797,7 @@
 </tr>
 <tr>
 <td><a href="public_comments/">public_comments</a></td>
-<td>Links to public comments or concerns about the project</td>
+<td>If possible, please provide public comments concatenated into a single pdf</td>
 </tr>
 <tr>
 <td><a href="related_links/">related_links</a></td>
@@ -774,6 +838,26 @@
 <tr>
 <td><a href="temporal_coverage/">temporal_coverage</a></td>
 <td>Start date and end date (if known) of the project in ISO-8601 interval format...</td>
+</tr>
+<tr>
+<td><a href="time_period/">time_period</a></td>
+<td>The time period during which the permit will be applicable, or expected durat...</td>
+</tr>
+<tr>
+<td><a href="tracer_concentration/">tracer_concentration</a></td>
+<td>Fixed concentration or provide link/source to tracer concentration separately...</td>
+</tr>
+<tr>
+<td><a href="tracer_details/">tracer_details</a></td>
+<td>state the kind of tracer used (e</td>
+</tr>
+<tr>
+<td><a href="tracer_form/">tracer_form</a></td>
+<td>The form of tracer upon delivery to the ocean (e</td>
+</tr>
+<tr>
+<td><a href="unit/">unit</a></td>
+<td></td>
 </tr>
 <tr>
 <td><a href="url/">url</a></td>
@@ -827,6 +911,10 @@
 <td>Hydrologic location types for dosing</td>
 </tr>
 <tr>
+<td><a href="MassConcentrationUnit/">MassConcentrationUnit</a></td>
+<td></td>
+</tr>
+<tr>
 <td><a href="MCDRPathway/">MCDRPathway</a></td>
 <td>Type of marine Carbon Dioxide Removal (mCDR) pathways</td>
 </tr>
@@ -835,12 +923,16 @@
 <td>Types of observational data collected in ocean carbon and acidification studi...</td>
 </tr>
 <tr>
-<td><a href="PermitStatus/">PermitStatus</a></td>
-<td>The status of a permit</td>
+<td><a href="ResearcherIDType/">ResearcherIDType</a></td>
+<td></td>
 </tr>
 <tr>
 <td><a href="SeaNames/">SeaNames</a></td>
 <td></td>
+</tr>
+<tr>
+<td><a href="TracerForm/">TracerForm</a></td>
+<td>Forms of tracer used in tracer studies</td>
 </tr>
 </tbody>
 </table>

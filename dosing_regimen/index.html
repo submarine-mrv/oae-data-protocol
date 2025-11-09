@@ -360,7 +360,7 @@
 
 
 <h1 id="slot-dosing-regimen-dosing_regimen">Slot: Dosing Regimen (dosing_regimen)</h1>
-<p><em>At a minimum, please provide the schedule and timeline of dosing, including the time between doses, the duration of treatment and the amount used each time. More optimally, this information would be provided as a vector of binary data in the data file where 1 = dosing 'on' 0 = dosing 'off', using the column header name 'dosing_onoff'. If provided as a vector state here as 'dosing regimen is provided as a variable' and include the file name. See Intervention Data for details.</em></p>
+<p><em>A human readable summary description of the dosing regimen / frequency. Exact details must be provided in the corresponding dosing file with exact timestamps for dosing on/off schedule.</em></p>
 <p>URI: <a href="https://example.org/oae#dosing_regimen">oae:dosing_regimen</a></p>
 <!-- no inheritance hierarchy -->
 
@@ -375,8 +375,23 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="../InterventionWithTracer/">InterventionWithTracer</a></td>
+<td>Additional metadata that applies to hybrid experiments where an intervention ...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../DosingDetails/">DosingDetails</a></td>
+<td>An abstract class (used as a mixin, not implemented directly) for detailing t...</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../Intervention/">Intervention</a></td>
 <td>Additional metadata that applies to experiments where an intervention, such a...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Tracer/">Tracer</a></td>
+<td>Additional metadata that applies to experiments where a tracer study was cond...</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -418,19 +433,16 @@
 <details>
 
 <pre><code class="language-yaml">name: dosing_regimen
-description: At a minimum, please provide the schedule and timeline of dosing, including
-  the time between doses, the duration of treatment and the amount used each time.
-  More optimally, this information would be provided as a vector of binary data in
-  the data file where 1 = dosing 'on' 0 = dosing 'off', using the column header name
-  'dosing_onoff'. If provided as a vector state here as 'dosing regimen is provided
-  as a variable' and include the file name. See Intervention Data for details.
+description: A human readable summary description of the dosing regimen / frequency.
+  Exact details must be provided in the corresponding dosing file with exact timestamps
+  for dosing on/off schedule.
 title: Dosing Regimen
 from_schema: OAEDataManagementProtocol
 rank: 1000
 alias: dosing_regimen
-owner: Intervention
+owner: DosingDetails
 domain_of:
-- Intervention
+- DosingDetails
 range: string
 required: true
 

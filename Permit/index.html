@@ -227,20 +227,19 @@
 <div class="mermaid"> classDiagram
     class Permit
     click Permit href "../Permit"
+      Permit : agency_contact
+
       Permit : approval_document
+
+      Permit : changes_to_evolution_of_permit_criteria
 
       Permit : permit_id
 
-      Permit : permit_status
-
-
-
-
-    Permit --&gt; "1" PermitStatus : permit_status
-    click PermitStatus href "../PermitStatus"
-
+      Permit : permit_type
 
       Permit : permitting_authority
+
+      Permit : time_period
 
 
 </div>
@@ -269,15 +268,33 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../permit_status/">permit_status</a></td>
-<td>1 <br/> <a href="../PermitStatus/">PermitStatus</a></td>
-<td>The current status of the permit (e</td>
+<td><a href="../agency_contact/">agency_contact</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>The point of contact at the permitting agency</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../changes_to_evolution_of_permit_criteria/">changes_to_evolution_of_permit_criteria</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>e</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../permit_type/">permit_type</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>The category of permit (E</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../time_period/">time_period</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>The time period during which the permit will be applicable, or expected durat...</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../approval_document/">approval_document</a></td>
-<td>1 <br/> <a href="../Uri/">Uri</a></td>
-<td>Links to documentation related to the permit</td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>Filename(s) of permitting documents included, separated by commas</td>
 <td>direct</td>
 </tr>
 </tbody>
@@ -294,7 +311,25 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Project/">Project</a></td>
+<td><a href="../Experiment/">Experiment</a></td>
+<td><a href="../permits/">permits</a></td>
+<td>range</td>
+<td><a href="./">Permit</a></td>
+</tr>
+<tr>
+<td><a href="../Intervention/">Intervention</a></td>
+<td><a href="../permits/">permits</a></td>
+<td>range</td>
+<td><a href="./">Permit</a></td>
+</tr>
+<tr>
+<td><a href="../Tracer/">Tracer</a></td>
+<td><a href="../permits/">permits</a></td>
+<td>range</td>
+<td><a href="./">Permit</a></td>
+</tr>
+<tr>
+<td><a href="../InterventionWithTracer/">InterventionWithTracer</a></td>
 <td><a href="../permits/">permits</a></td>
 <td>range</td>
 <td><a href="./">Permit</a></td>
@@ -337,7 +372,7 @@ attributes:
     name: permit_id
     description: The unique identifier or number associated with this permit.
     title: Permit ID or Number
-    from_schema: Project
+    from_schema: Permit
     rank: 1000
     domain_of:
     - Permit
@@ -347,31 +382,58 @@ attributes:
     name: permitting_authority
     description: The group that issued the permit.
     title: Permitting Authority
-    from_schema: Project
+    from_schema: Permit
     rank: 1000
     domain_of:
     - Permit
     range: string
     required: true
-  permit_status:
-    name: permit_status
-    description: The current status of the permit (e.g., active, expired).
-    title: Permit Status
-    from_schema: Project
+  agency_contact:
+    name: agency_contact
+    description: The point of contact at the permitting agency.
+    title: Agency Contact
+    from_schema: Permit
     rank: 1000
     domain_of:
     - Permit
-    range: PermitStatus
-    required: true
+    range: string
+  changes_to_evolution_of_permit_criteria:
+    name: changes_to_evolution_of_permit_criteria
+    description: e.g., changes of discharge pH and basis for changes
+    title: Changes to evolution of permit criteria
+    from_schema: Permit
+    rank: 1000
+    domain_of:
+    - Permit
+    range: string
+  permit_type:
+    name: permit_type
+    description: The category of permit (E.g., experimental permit, commercial permit)
+    title: Permit Type
+    from_schema: Permit
+    rank: 1000
+    domain_of:
+    - Permit
+    range: string
+  time_period:
+    name: time_period
+    description: The time period during which the permit will be applicable, or expected
+      duration of the permit.
+    title: Permit Time Period
+    from_schema: Permit
+    rank: 1000
+    domain_of:
+    - Permit
+    range: string
   approval_document:
     name: approval_document
-    description: Links to documentation related to the permit.
+    description: Filename(s) of permitting documents included, separated by commas
     title: Permit Document
-    from_schema: Project
+    from_schema: Permit
     rank: 1000
     domain_of:
     - Permit
-    range: uri
+    range: string
     required: true
 
 </code></pre>
@@ -386,7 +448,7 @@ attributes:
     name: permit_id
     description: The unique identifier or number associated with this permit.
     title: Permit ID or Number
-    from_schema: Project
+    from_schema: Permit
     rank: 1000
     alias: permit_id
     owner: Permit
@@ -398,7 +460,7 @@ attributes:
     name: permitting_authority
     description: The group that issued the permit.
     title: Permitting Authority
-    from_schema: Project
+    from_schema: Permit
     rank: 1000
     alias: permitting_authority
     owner: Permit
@@ -406,29 +468,62 @@ attributes:
     - Permit
     range: string
     required: true
-  permit_status:
-    name: permit_status
-    description: The current status of the permit (e.g., active, expired).
-    title: Permit Status
-    from_schema: Project
+  agency_contact:
+    name: agency_contact
+    description: The point of contact at the permitting agency.
+    title: Agency Contact
+    from_schema: Permit
     rank: 1000
-    alias: permit_status
+    alias: agency_contact
     owner: Permit
     domain_of:
     - Permit
-    range: PermitStatus
-    required: true
+    range: string
+  changes_to_evolution_of_permit_criteria:
+    name: changes_to_evolution_of_permit_criteria
+    description: e.g., changes of discharge pH and basis for changes
+    title: Changes to evolution of permit criteria
+    from_schema: Permit
+    rank: 1000
+    alias: changes_to_evolution_of_permit_criteria
+    owner: Permit
+    domain_of:
+    - Permit
+    range: string
+  permit_type:
+    name: permit_type
+    description: The category of permit (E.g., experimental permit, commercial permit)
+    title: Permit Type
+    from_schema: Permit
+    rank: 1000
+    alias: permit_type
+    owner: Permit
+    domain_of:
+    - Permit
+    range: string
+  time_period:
+    name: time_period
+    description: The time period during which the permit will be applicable, or expected
+      duration of the permit.
+    title: Permit Time Period
+    from_schema: Permit
+    rank: 1000
+    alias: time_period
+    owner: Permit
+    domain_of:
+    - Permit
+    range: string
   approval_document:
     name: approval_document
-    description: Links to documentation related to the permit.
+    description: Filename(s) of permitting documents included, separated by commas
     title: Permit Document
-    from_schema: Project
+    from_schema: Permit
     rank: 1000
     alias: approval_document
     owner: Permit
     domain_of:
     - Permit
-    range: uri
+    range: string
     required: true
 
 </code></pre>

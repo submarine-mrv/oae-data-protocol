@@ -375,8 +375,8 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Experiment/">Experiment</a></td>
-<td>Experiment metadata applies to a specific study but remains consistent across...</td>
+<td><a href="../InterventionWithTracer/">InterventionWithTracer</a></td>
+<td>Additional metadata that applies to hybrid experiments where an intervention ...</td>
 <td>no</td>
 </tr>
 <tr>
@@ -384,12 +384,22 @@
 <td>Additional metadata that applies to experiments where an intervention, such a...</td>
 <td>no</td>
 </tr>
+<tr>
+<td><a href="../Experiment/">Experiment</a></td>
+<td>Experiment metadata applies to a specific study but remains consistent across...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Tracer/">Tracer</a></td>
+<td>Additional metadata that applies to experiments where a tracer study was cond...</td>
+<td>no</td>
+</tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
 <li>
-<p>Range: <a href="../Investigator/">Investigator</a></p>
+<p>Range: <a href="../Person/">Person</a></p>
 </li>
 <li>
 <p>Multivalued: True</p>
@@ -436,7 +446,7 @@ alias: investigators
 owner: Experiment
 domain_of:
 - Experiment
-range: Investigator
+range: Person
 required: true
 multivalued: true
 inlined: true

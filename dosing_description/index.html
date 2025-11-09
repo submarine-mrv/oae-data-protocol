@@ -360,7 +360,8 @@
 
 
 <h1 id="slot-dosing-description-dosing_description">Slot: Dosing Description (dosing_description)</h1>
-<p><em>Please be descriptive. Information about the dosing mechanism must be included (e.g., outflow from pipe, diffuser, doser, manual placement) E.g., outflow from existing facility pipe directly to ocean, manual riverine introduction, coastal distribution at three separate 30 meter long sections, pier-based diffuser to intercoastal bay, distributed from stationary barge 10 miles offshore.</em></p>
+<p><em>Please be descriptive. Information about the dosing mechanism must be included (outflow from pipe, diffuser, doser, manual placement)</em></p>
+<p><em>E.g., outflow from existing facility pipe directly to ocean, manual riverine introduction, coastal distribution at three separate 30 meter long sections, pier-based diffuser to intercoastal bay, distributed from stationary barge 10 miles offshore.</em></p>
 <p>URI: <a href="https://example.org/oae#dosing_description">oae:dosing_description</a></p>
 <!-- no inheritance hierarchy -->
 
@@ -375,8 +376,23 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="../InterventionWithTracer/">InterventionWithTracer</a></td>
+<td>Additional metadata that applies to hybrid experiments where an intervention ...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../DosingDetails/">DosingDetails</a></td>
+<td>An abstract class (used as a mixin, not implemented directly) for detailing t...</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../Intervention/">Intervention</a></td>
 <td>Additional metadata that applies to experiments where an intervention, such a...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Tracer/">Tracer</a></td>
+<td>Additional metadata that applies to experiments where a tracer study was cond...</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -418,18 +434,19 @@
 <details>
 
 <pre><code class="language-yaml">name: dosing_description
-description: Please be descriptive. Information about the dosing mechanism must be
-  included (e.g., outflow from pipe, diffuser, doser, manual placement) E.g., outflow
-  from existing facility pipe directly to ocean, manual riverine introduction, coastal
-  distribution at three separate 30 meter long sections, pier-based diffuser to intercoastal
-  bay, distributed from stationary barge 10 miles offshore.
+description: 'Please be descriptive. Information about the dosing mechanism must be
+  included (outflow from pipe, diffuser, doser, manual placement)
+
+  E.g., outflow from existing facility pipe directly to ocean, manual riverine introduction,
+  coastal distribution at three separate 30 meter long sections, pier-based diffuser
+  to intercoastal bay, distributed from stationary barge 10 miles offshore.'
 title: Dosing Description
 from_schema: OAEDataManagementProtocol
 rank: 1000
 alias: dosing_description
-owner: Intervention
+owner: DosingDetails
 domain_of:
-- Intervention
+- DosingDetails
 range: string
 required: true
 

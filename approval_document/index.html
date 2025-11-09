@@ -360,7 +360,7 @@
 
 
 <h1 id="slot-permit-document-approval_document">Slot: Permit Document (approval_document)</h1>
-<p><em>Links to documentation related to the permit.</em></p>
+<p><em>Filename(s) of permitting documents included, separated by commas</em></p>
 <p>URI: <a href="https://example.org/oae#approval_document">oae:approval_document</a></p>
 <!-- no inheritance hierarchy -->
 
@@ -384,7 +384,7 @@
 <h2 id="properties">Properties</h2>
 <ul>
 <li>
-<p>Range: <a href="../Uri/">Uri</a></p>
+<p>Range: <a href="../String/">String</a></p>
 </li>
 <li>
 <p>Required: True</p>
@@ -418,7 +418,7 @@
 <details>
 
 <pre><code class="language-yaml">name: approval_document
-description: Links to documentation related to the permit.
+description: Filename(s) of permitting documents included, separated by commas
 title: Permit Document
 from_schema: OAEDataManagementProtocol
 rank: 1000
@@ -426,7 +426,7 @@ alias: approval_document
 owner: Permit
 domain_of:
 - Permit
-range: uri
+range: string
 required: true
 
 </code></pre>

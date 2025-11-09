@@ -375,20 +375,25 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Place/">Place</a></td>
+<td><a href="../SpatialCoverage/">SpatialCoverage</a></td>
 <td>A bounding box defined by latitude and longitude coordinates</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../Place/">Place</a></td>
+<td>A geospatial area of interest, defined by a bounding box, polygon/line, or a ...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../DosingLocation/">DosingLocation</a></td>
+<td>A specific location of dosing for an OAE intervention and/or tracer study</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>
-<p>Range: <a href="../GeoShape/">GeoShape</a></p>
-</li>
-<li>
-<p>Required: True</p>
-</li>
+<li>Range: <a href="../Any/">Any</a>&nbsp;or&nbsp;<br /><a href="../GeoShape/">GeoShape</a>&nbsp;or&nbsp;<br /><a href="../GeoCoordinates/">GeoCoordinates</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -423,11 +428,12 @@ description: Entities that have a somewhat fixed, physical extension. (imported 
 from_schema: OAEDataManagementProtocol
 rank: 1000
 alias: geo
-owner: Place
 domain_of:
 - Place
-range: GeoShape
-required: true
+range: Any
+any_of:
+- range: GeoShape
+- range: GeoCoordinates
 
 </code></pre>
 

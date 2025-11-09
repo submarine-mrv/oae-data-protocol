@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: Dosing Depth(s) (dosing_depth) - oae-data-protocol</title>
+        <title>Slot: Dosing Depth (dosing_depth) - oae-data-protocol</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-dosing-depths-dosing_depth" class="md-skip">
+        <a href="#slot-dosing-depth-dosing_depth" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: Dosing Depth(s) (dosing_depth)
+              Slot: Dosing Depth (dosing_depth)
             
           </span>
         </div>
@@ -359,8 +359,8 @@
   
 
 
-<h1 id="slot-dosing-depths-dosing_depth">Slot: Dosing Depth(s) (dosing_depth)</h1>
-<p><em>Depth(s) in meters. If this is variable, please include the schedule of depth changes and depths, or as a vector in meters with the data, named 'dosing_depth'. Please note here that 'dosing depth is provided as a variable'.</em></p>
+<h1 id="slot-dosing-depth-dosing_depth">Slot: Dosing Depth (dosing_depth)</h1>
+<p><em>Depth in meters. If this is variable, please include the schedule of depth changes and depths, or as a vector in meters with the data.</em></p>
 <p>URI: <a href="https://example.org/oae#dosing_depth">oae:dosing_depth</a></p>
 <!-- no inheritance hierarchy -->
 
@@ -375,8 +375,23 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="../InterventionWithTracer/">InterventionWithTracer</a></td>
+<td>Additional metadata that applies to hybrid experiments where an intervention ...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../DosingDetails/">DosingDetails</a></td>
+<td>An abstract class (used as a mixin, not implemented directly) for detailing t...</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../Intervention/">Intervention</a></td>
 <td>Additional metadata that applies to experiments where an intervention, such a...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Tracer/">Tracer</a></td>
+<td>Additional metadata that applies to experiments where a tracer study was cond...</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -418,16 +433,15 @@
 <details>
 
 <pre><code class="language-yaml">name: dosing_depth
-description: Depth(s) in meters. If this is variable, please include the schedule
-  of depth changes and depths, or as a vector in meters with the data, named 'dosing_depth'.
-  Please note here that 'dosing depth is provided as a variable'.
-title: Dosing Depth(s)
+description: Depth in meters. If this is variable, please include the schedule of
+  depth changes and depths, or as a vector in meters with the data.
+title: Dosing Depth
 from_schema: OAEDataManagementProtocol
 rank: 1000
 alias: dosing_depth
-owner: Intervention
+owner: DosingDetails
 domain_of:
-- Intervention
+- DosingDetails
 range: string
 required: true
 

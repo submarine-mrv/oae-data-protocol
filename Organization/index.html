@@ -261,7 +261,7 @@
 <tr>
 <td><a href="../country/">country</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>The country in which the organization belongs (formatted as ISO 3166-1 alpha-...</td>
+<td>The country in which the organization belongs</td>
 <td>direct</td>
 </tr>
 </tbody>
@@ -284,7 +284,7 @@
 <td><a href="./">Organization</a></td>
 </tr>
 <tr>
-<td><a href="../Investigator/">Investigator</a></td>
+<td><a href="../Person/">Person</a></td>
 <td><a href="../affiliation/">affiliation</a></td>
 <td>range</td>
 <td><a href="./">Organization</a></td>
@@ -336,15 +336,13 @@ slot_usage:
 attributes:
   country:
     name: country
-    description: The country in which the organization belongs (formatted as ISO 3166-1
-      alpha-2 code)
+    description: The country in which the organization belongs.
     title: Country
     from_schema: Core
     rank: 1000
     domain_of:
     - Organization
     range: string
-    pattern: ^[A-Z]{2}$
 class_uri: schema:Organization
 
 </code></pre>
@@ -365,8 +363,7 @@ slot_usage:
 attributes:
   country:
     name: country
-    description: The country in which the organization belongs (formatted as ISO 3166-1
-      alpha-2 code)
+    description: The country in which the organization belongs.
     title: Country
     from_schema: Core
     rank: 1000
@@ -375,7 +372,6 @@ attributes:
     domain_of:
     - Organization
     range: string
-    pattern: ^[A-Z]{2}$
   identifier:
     name: identifier
     description: Organization identifier in the form of an ROR URL (e.g., https://ror.org/02mhbdp94).
@@ -389,7 +385,7 @@ attributes:
     domain_of:
     - Organization
     - MonetaryGrant
-    - Investigator
+    - Person
     range: string
   name:
     name: name
@@ -405,7 +401,7 @@ attributes:
     - ExternalProject
     - MonetaryGrant
     - Experiment
-    - Investigator
+    - Person
     range: string
 class_uri: schema:Organization
 

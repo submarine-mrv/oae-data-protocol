@@ -360,8 +360,8 @@
 
 
 <h1 id="slot-longitude-longitude">Slot: Longitude (longitude)</h1>
-<p><em>Longitude in decimal degrees</em></p>
-<p>URI: <a href="https://example.org/oae#longitude">oae:longitude</a></p>
+<p><em>Longitude in decimal degrees of a location. For example -122.08585 (WGS 84).</em></p>
+<p>URI: <a href="http://schema.org/longitude">schema:longitude</a></p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -375,7 +375,7 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../GeoCoordinate/">GeoCoordinate</a></td>
+<td><a href="../GeoCoordinates/">GeoCoordinates</a></td>
 <td>A geographic coordinate in decimal degrees</td>
 <td>no</td>
 </tr>
@@ -406,7 +406,7 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>oae:longitude</td>
+<td>schema:longitude</td>
 </tr>
 <tr>
 <td>native</td>
@@ -418,14 +418,16 @@
 <details>
 
 <pre><code class="language-yaml">name: longitude
-description: Longitude in decimal degrees
+description: Longitude in decimal degrees of a location. For example -122.08585 (WGS
+  84).
 title: Longitude
 from_schema: OAEDataManagementProtocol
 rank: 1000
+slot_uri: schema:longitude
 alias: longitude
-owner: GeoCoordinate
+owner: GeoCoordinates
 domain_of:
-- GeoCoordinate
+- GeoCoordinates
 range: float
 required: true
 

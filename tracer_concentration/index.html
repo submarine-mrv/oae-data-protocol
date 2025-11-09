@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://clevinson.github.io/oae-data-protocol/dosing_delivery_type/">
+        <link rel="canonical" href="https://clevinson.github.io/oae-data-protocol/tracer_concentration/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: Dosing Delivery Type (dosing_delivery_type) - oae-data-protocol</title>
+        <title>Slot: Tracer Concentration (tracer_concentration) - oae-data-protocol</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-dosing-delivery-type-dosing_delivery_type" class="md-skip">
+        <a href="#slot-tracer-concentration-tracer_concentration" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: Dosing Delivery Type (dosing_delivery_type)
+              Slot: Tracer Concentration (tracer_concentration)
             
           </span>
         </div>
@@ -359,9 +359,9 @@
   
 
 
-<h1 id="slot-dosing-delivery-type-dosing_delivery_type">Slot: Dosing Delivery Type (dosing_delivery_type)</h1>
-<p><em>Type of dosing delivery method. See Controlled Vocabularies for definitions.</em></p>
-<p>URI: <a href="https://example.org/oae#dosing_delivery_type">oae:dosing_delivery_type</a></p>
+<h1 id="slot-tracer-concentration-tracer_concentration">Slot: Tracer Concentration (tracer_concentration)</h1>
+<p><em>Fixed concentration or provide link/source to tracer concentration separately in the dosing file. Please include whether concentration is directly measured or a derived value. If this is a variable included with  your data, please note so here as 'tracer concentration provided as a variable' and use 'tracer_concentration' for your column header name.</em></p>
+<p>URI: <a href="https://example.org/oae#tracer_concentration">oae:tracer_concentration</a></p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -380,18 +380,13 @@
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../DosingDetails/">DosingDetails</a></td>
-<td>An abstract class (used as a mixin, not implemented directly) for detailing t...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Intervention/">Intervention</a></td>
-<td>Additional metadata that applies to experiments where an intervention, such a...</td>
-<td>no</td>
-</tr>
-<tr>
 <td><a href="../Tracer/">Tracer</a></td>
 <td>Additional metadata that applies to experiments where a tracer study was cond...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../TracerDetails/">TracerDetails</a></td>
+<td>An abstract class (used as a mixin, not implemented directly) for detailing t...</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -399,7 +394,7 @@
 <h2 id="properties">Properties</h2>
 <ul>
 <li>
-<p>Range: <a href="../DosingDeliveryType/">DosingDeliveryType</a></p>
+<p>Range: <a href="../DosingConcentration/">DosingConcentration</a></p>
 </li>
 <li>
 <p>Required: True</p>
@@ -421,27 +416,31 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>oae:dosing_delivery_type</td>
+<td>oae:tracer_concentration</td>
 </tr>
 <tr>
 <td>native</td>
-<td>oae:dosing_delivery_type</td>
+<td>oae:tracer_concentration</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: dosing_delivery_type
-description: Type of dosing delivery method. See Controlled Vocabularies for definitions.
-title: Dosing Delivery Type
+<pre><code class="language-yaml">name: tracer_concentration
+description: Fixed concentration or provide link/source to tracer concentration separately
+  in the dosing file. Please include whether concentration is directly measured or
+  a derived value. If this is a variable included with  your data, please note so
+  here as 'tracer concentration provided as a variable' and use 'tracer_concentration'
+  for your column header name.
+title: Tracer Concentration
 from_schema: OAEDataManagementProtocol
 rank: 1000
-alias: dosing_delivery_type
-owner: DosingDetails
+alias: tracer_concentration
+owner: TracerDetails
 domain_of:
-- DosingDetails
-range: DosingDeliveryType
+- TracerDetails
+range: DosingConcentration
 required: true
 
 </code></pre>
