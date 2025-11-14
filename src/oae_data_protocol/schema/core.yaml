@@ -45,7 +45,6 @@ slots:
     description: >-
       Minimum and maximum depths of observation in meters.
     range: VerticalExtent
-    required: true
   permits:
     title: Permits
     description: Associated permit number(s).
