@@ -404,7 +404,7 @@
 
 
 
-    InterventionWithTracer --&gt; "1" VerticalExtent : vertical_coverage
+    InterventionWithTracer --&gt; "0..1" VerticalExtent : vertical_coverage
     click VerticalExtent href "../VerticalExtent"
 
 
@@ -559,7 +559,7 @@
 </tr>
 <tr>
 <td><a href="../vertical_coverage/">vertical_coverage</a></td>
-<td>1 <br/> <a href="../VerticalExtent/">VerticalExtent</a></td>
+<td>0..1 <br/> <a href="../VerticalExtent/">VerticalExtent</a></td>
 <td>Minimum and maximum depths of observations in meters</td>
 <td><a href="../Experiment/">Experiment</a></td>
 </tr>
@@ -991,7 +991,6 @@ attributes:
     domain_of:
     - Experiment
     range: VerticalExtent
-    required: true
   permits:
     name: permits
     description: Associated permit number(s).
