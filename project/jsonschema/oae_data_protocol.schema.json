@@ -1110,6 +1110,7 @@
                     ]
                 },
                 "funding": {
+                    "description": "Include the name of the funder, funder country, project title, project ID, and the project start and end dates. If there is no funding source (e.g., in the case of commercial projects), leave this field empty.",
                     "items": {
                         "$ref": "#/$defs/MonetaryGrant"
                     },
@@ -1559,10 +1560,6 @@
                     "type": "number"
                 }
             },
-            "required": [
-                "min_depth_in_m",
-                "max_depth_in_m"
-            ],
             "title": "VerticalExtent",
             "type": "object"
         }

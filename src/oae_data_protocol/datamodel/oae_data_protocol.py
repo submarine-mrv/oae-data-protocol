@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-11-08T07:32:40
+# Generation date: 2025-11-13T17:40:14
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -258,18 +258,14 @@ class VerticalExtent(YAMLRoot):
     class_name: ClassVar[str] = "VerticalExtent"
     class_model_uri: ClassVar[URIRef] = OAE.VerticalExtent
 
-    min_depth_in_m: float = None
-    max_depth_in_m: float = None
+    min_depth_in_m: Optional[float] = None
+    max_depth_in_m: Optional[float] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.min_depth_in_m):
-            self.MissingRequiredField("min_depth_in_m")
-        if not isinstance(self.min_depth_in_m, float):
+        if self.min_depth_in_m is not None and not isinstance(self.min_depth_in_m, float):
             self.min_depth_in_m = float(self.min_depth_in_m)
 
-        if self._is_empty(self.max_depth_in_m):
-            self.MissingRequiredField("max_depth_in_m")
-        if not isinstance(self.max_depth_in_m, float):
+        if self.max_depth_in_m is not None and not isinstance(self.max_depth_in_m, float):
             self.max_depth_in_m = float(self.max_depth_in_m)
 
         super().__post_init__(**kwargs)
@@ -2055,10 +2051,10 @@ slots.geoCoordinates__longitude = Slot(uri=SCHEMA.longitude, name="geoCoordinate
                    model_uri=OAE.geoCoordinates__longitude, domain=None, range=float)
 
 slots.verticalExtent__min_depth_in_m = Slot(uri=OAE.min_depth_in_m, name="verticalExtent__min_depth_in_m", curie=OAE.curie('min_depth_in_m'),
-                   model_uri=OAE.verticalExtent__min_depth_in_m, domain=None, range=float)
+                   model_uri=OAE.verticalExtent__min_depth_in_m, domain=None, range=Optional[float])
 
 slots.verticalExtent__max_depth_in_m = Slot(uri=OAE.max_depth_in_m, name="verticalExtent__max_depth_in_m", curie=OAE.curie('max_depth_in_m'),
-                   model_uri=OAE.verticalExtent__max_depth_in_m, domain=None, range=float)
+                   model_uri=OAE.verticalExtent__max_depth_in_m, domain=None, range=Optional[float])
 
 slots.organization__country = Slot(uri=OAE.country, name="organization__country", curie=OAE.curie('country'),
                    model_uri=OAE.organization__country, domain=None, range=Optional[str])

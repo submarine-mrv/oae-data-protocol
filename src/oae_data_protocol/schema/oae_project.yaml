@@ -101,6 +101,9 @@ classes:
         range: string
       funding:
         title: Funding Info
+        description: >-
+          Include the name of the funder, funder country, project title, project ID, and the project start and end
+          dates. If there is no funding source (e.g., in the case of commercial projects), leave this field empty.
         slot_uri: schema:funding
         range: MonetaryGrant
         multivalued: true
