@@ -402,7 +402,7 @@
 <tr>
 <td><a href="../funding/">funding</a></td>
 <td>* <br/> <a href="../MonetaryGrant/">MonetaryGrant</a></td>
-<td></td>
+<td>Include the name of the funder, funder country, project title, project ID, an...</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -644,6 +644,9 @@ attributes:
     range: string
   funding:
     name: funding
+    description: Include the name of the funder, funder country, project title, project
+      ID, and the project start and end dates. If there is no funding source (e.g.,
+      in the case of commercial projects), leave this field empty.
     title: Funding Info
     from_schema: Project
     rank: 1000
@@ -874,6 +877,9 @@ attributes:
     range: string
   funding:
     name: funding
+    description: Include the name of the funder, funder country, project title, project
+      ID, and the project start and end dates. If there is no funding source (e.g.,
+      in the case of commercial projects), leave this field empty.
     title: Funding Info
     from_schema: Project
     rank: 1000
