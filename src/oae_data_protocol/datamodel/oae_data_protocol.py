@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-11-13T17:40:14
+# Generation date: 2025-11-13T17:45:42
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -508,13 +508,13 @@ class Experiment(YAMLRoot):
 
     description: str = None
     spatial_coverage: Union[dict, Place] = None
-    vertical_coverage: Union[dict, VerticalExtent] = None
     experiment_id: str = None
     experiment_type: Union[str, "ExperimentType"] = None
     investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     end_datetime: Union[str, XSDDateTime] = None
     name: Optional[str] = None
+    vertical_coverage: Optional[Union[dict, VerticalExtent]] = None
     permits: Optional[Union[Union[dict, "Permit"], List[Union[dict, "Permit"]]]] = empty_list()
     project_id: Optional[str] = None
     data_conflicts_and_unreported_data: Optional[str] = None
@@ -531,11 +531,6 @@ class Experiment(YAMLRoot):
             self.MissingRequiredField("spatial_coverage")
         if not isinstance(self.spatial_coverage, Place):
             self.spatial_coverage = Place(**as_dict(self.spatial_coverage))
-
-        if self._is_empty(self.vertical_coverage):
-            self.MissingRequiredField("vertical_coverage")
-        if not isinstance(self.vertical_coverage, VerticalExtent):
-            self.vertical_coverage = VerticalExtent(**as_dict(self.vertical_coverage))
 
         if self._is_empty(self.experiment_id):
             self.MissingRequiredField("experiment_id")
@@ -565,6 +560,9 @@ class Experiment(YAMLRoot):
 
         if self.name is not None and not isinstance(self.name, str):
             self.name = str(self.name)
+
+        if self.vertical_coverage is not None and not isinstance(self.vertical_coverage, VerticalExtent):
+            self.vertical_coverage = VerticalExtent(**as_dict(self.vertical_coverage))
 
         if not isinstance(self.permits, list):
             self.permits = [self.permits] if self.permits is not None else []
@@ -601,7 +599,6 @@ class Intervention(Experiment):
 
     description: str = None
     spatial_coverage: Union[dict, Place] = None
-    vertical_coverage: Union[dict, VerticalExtent] = None
     experiment_id: str = None
     experiment_type: Union[str, "ExperimentType"] = None
     investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
@@ -712,7 +709,6 @@ class Tracer(Experiment):
 
     description: str = None
     spatial_coverage: Union[dict, Place] = None
-    vertical_coverage: Union[dict, VerticalExtent] = None
     experiment_id: str = None
     experiment_type: Union[str, "ExperimentType"] = None
     investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
@@ -792,7 +788,6 @@ class InterventionWithTracer(Intervention):
 
     description: str = None
     spatial_coverage: Union[dict, Place] = None
-    vertical_coverage: Union[dict, VerticalExtent] = None
     experiment_id: str = None
     experiment_type: Union[str, "ExperimentType"] = None
     investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
@@ -2009,7 +2004,7 @@ slots.spatial_coverage = Slot(uri=SCHEMA.spatialCoverage, name="spatial_coverage
                    model_uri=OAE.spatial_coverage, domain=None, range=Union[dict, Place])
 
 slots.vertical_coverage = Slot(uri=OAE.vertical_coverage, name="vertical_coverage", curie=OAE.curie('vertical_coverage'),
-                   model_uri=OAE.vertical_coverage, domain=None, range=Union[dict, VerticalExtent])
+                   model_uri=OAE.vertical_coverage, domain=None, range=Optional[Union[dict, VerticalExtent]])
 
 slots.permits = Slot(uri=OAE.permits, name="permits", curie=OAE.curie('permits'),
                    model_uri=OAE.permits, domain=None, range=Optional[Union[Union[dict, Permit], List[Union[dict, Permit]]]])
@@ -2288,4 +2283,4 @@ slots.Experiment_spatial_coverage = Slot(uri=SCHEMA.spatialCoverage, name="Exper
                    model_uri=OAE.Experiment_spatial_coverage, domain=Experiment, range=Union[dict, Place])
 
 slots.Experiment_vertical_coverage = Slot(uri=OAE.vertical_coverage, name="Experiment_vertical_coverage", curie=OAE.curie('vertical_coverage'),
-                   model_uri=OAE.Experiment_vertical_coverage, domain=Experiment, range=Union[dict, VerticalExtent])
+                   model_uri=OAE.Experiment_vertical_coverage, domain=Experiment, range=Optional[Union[dict, VerticalExtent]])
