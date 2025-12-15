@@ -393,6 +393,35 @@ enums:
       http://vocab.nerc.ac.uk/collection/C16/current/28Bh/:
         text: http://vocab.nerc.ac.uk/collection/C16/current/28Bh/
         meaning: http://vocab.nerc.ac.uk/collection/C16/current/28Bh/
+  PlatformTypes:
+    matches:
+      source_ontology: SDN:L06
+      identifier_pattern: http://vocab.nerc.ac.uk/collection/L06/current/(31|32|48|42|46|3C|27|3B)/
+    permissible_values:
+      http://vocab.nerc.ac.uk/collection/L06/current/3C/:
+        text: http://vocab.nerc.ac.uk/collection/L06/current/3C/
+        meaning: http://vocab.nerc.ac.uk/collection/L06/current/3C/
+      http://vocab.nerc.ac.uk/collection/L06/current/32/:
+        text: http://vocab.nerc.ac.uk/collection/L06/current/32/
+        meaning: http://vocab.nerc.ac.uk/collection/L06/current/32/
+      http://vocab.nerc.ac.uk/collection/L06/current/3B/:
+        text: http://vocab.nerc.ac.uk/collection/L06/current/3B/
+        meaning: http://vocab.nerc.ac.uk/collection/L06/current/3B/
+      http://vocab.nerc.ac.uk/collection/L06/current/42/:
+        text: http://vocab.nerc.ac.uk/collection/L06/current/42/
+        meaning: http://vocab.nerc.ac.uk/collection/L06/current/42/
+      http://vocab.nerc.ac.uk/collection/L06/current/46/:
+        text: http://vocab.nerc.ac.uk/collection/L06/current/46/
+        meaning: http://vocab.nerc.ac.uk/collection/L06/current/46/
+      http://vocab.nerc.ac.uk/collection/L06/current/27/:
+        text: http://vocab.nerc.ac.uk/collection/L06/current/27/
+        meaning: http://vocab.nerc.ac.uk/collection/L06/current/27/
+      http://vocab.nerc.ac.uk/collection/L06/current/48/:
+        text: http://vocab.nerc.ac.uk/collection/L06/current/48/
+        meaning: http://vocab.nerc.ac.uk/collection/L06/current/48/
+      http://vocab.nerc.ac.uk/collection/L06/current/31/:
+        text: http://vocab.nerc.ac.uk/collection/L06/current/31/
+        meaning: http://vocab.nerc.ac.uk/collection/L06/current/31/
   MassConcentrationUnit:
     reachable_from:
       source_ontology: qudt:unit

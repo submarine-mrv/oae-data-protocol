@@ -1,0 +1,40 @@
+id: Platform
+name: Platform
+
+prefixes:
+  oae: "https://example.org/oae#"
+  schema: "http://schema.org/"
+
+default_prefix: oae
+
+classes:
+  Platform:
+    slots:
+      - name
+    slot_usage:
+      - name:
+          description: >-
+            Name of the observing platform, e.g., RV Ronald Brown, Saildrone#0132, Mooring_First_Landing, etc.
+    attributes:
+      platform_type:
+        description: >-
+          Controlled vocabularies for the types of the platform:
+          https://www.ncei.noaa.gov/access/ocean-carbon-acidification-data-system/vocabularies/platform-types.html
+        range: PlatformType
+        required: true
+      platform_id:
+        description: >-
+          Synonymous with glider ID, cruise ID. A unique name assigned to oceanographic assets such as buoys, moorings,
+          floats, drifters, towed vehicles like the Scanfish or StingRay. This is synonymous with the BCO-DMO “platform”
+          parameter (https://www.bco-dmo.org/parameter/932), NERC “platform type” term
+          (https://vocab.nerc.ac.uk/collection/W06/current/CLSS0001/), and the “platform_id” term within the
+          Climate and Forecast (CF) metadata conventions
+          (https://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html). e.g., ICES
+          platform code (e.g., 33RO).
+      owner:
+        description: Institution that owns the platform.
+        range: string
+      country:
+        description: Country to which the platform belongs.
+        range: string
+

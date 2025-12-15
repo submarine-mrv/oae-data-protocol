@@ -1,0 +1,220 @@
+id: Variable
+name: Variable
+
+prefixes:
+  oae: "https://example.org/oae#"
+  schema: "http://schema.org/"
+
+default_prefix: oae
+
+classes:
+  Variable:
+    attributes:
+      dataset_variable_name:
+        title: Variable name in data files
+        range: string
+        required: true
+      long_name:
+        title: Variable full name
+        range: string
+        required: true
+      # TODO: Upgrade this to controlled vocab with qudt
+      variable_unit:
+        title: Unit
+        range: string
+        required: true
+      sampling_method:
+        title: Sampling Method
+        range: string
+        required: true
+      analyzing_method:
+        title: Analyzing Method
+        range: string
+        required: true
+      other_detailed_information:
+        title: Other Detailed Information
+        range: string
+        required: true
+      method_reference:
+        description: Citation for the method.
+        title: Method Reference
+        range: string
+      measurement_researcher:
+        description: The name of the PI, whose research team measured or derived this parameter.
+        title: Researcher who measured the variable
+        range: Person
+
+
+
+
+  # Mixin classes for variable metadata
+  # All vars except socioeconomic
+  QCFields:
+    mixin: true
+    description: Quality control fields applicable to all variables except socioeconomic.
+    attributes:
+      field_replicate_information:
+        title: Field replicate information
+        description: Repetition of sample collection and measurement, e.g., triplicate samples.
+        range: string
+      qc_steps_taken:
+        title: QC steps taken
+        description: Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).
+        range: string
+        required: true
+      uncertainty:
+        title: Uncertainty
+        description: It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.
+        range: string
+      uncertainty_definition:
+        title: How was the uncertainty defined
+        description: A description of the uncertainties involved in this method.
+        range: string
+        required: true
+      missing_value_indicators:
+        title: Missing value indicators
+        description: The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.
+        range: string
+        required: true
+      qc_researcher:
+        title: Researcher who QCed this variable
+        description: The name of the PI, whose research team QCed this parameter.
+        range: Person
+      qc_researcher_institution:
+        title: Researcher Institution
+        description: The institution of the PI, whose research team QCed this parameter.
+        range: string
+
+  # All vars except socioeconomic
+  CalibrationFields:
+    mixin: true
+    description: Calibration information fields applicable to all variables except socioeconomic.
+    attributes:
+      calibration_info:
+        title: Calibration information
+        description: Information about instrument calibration including type (factory, lab, or field calibration).
+        range: Calibration
+        required: true
+
+  # Only DIC, pH, pCO2 (both), and TA
+  WeatherClimateFields:
+    mixin: true
+    description: Weather or climate quality fields applicable only to DIC, pH, pCO2 (both), and TA variables.
+    attributes:
+      weather_or_climate_quality:
+        title: Weather or climate quality
+        description: Climate quality is defined as measurements of quality sufficient to assess long-term trends. Weather quality is defined as measurements of quality sufficient to compare with satellite measurements and study regional associational air-sea CO2 flux.
+        range: string
+
+  # All vars except HPLC, socioeconomic, disc pCO2 fCO2
+  DiscreteOrContinuousFields:
+    mixin: true
+    description: Fields for discrete vs continuous measurement information.
+    attributes:
+      discrete_or_continuous:
+        title: Discrete or continuous
+        description: Whether the primary variables were measured based on discrete bottle or continuous measurements. One of two choices - (a) Discrete measurements, or (b) Continuous measurements from autonomous sensors.
+        range: string
+        required: true
+      raw_data_calculation_method:
+        title: Method to calculate reported values from raw data
+        description: The method used to calculate the reported values from raw sensor data.
+        range: string
+        required: true
+      calculation_software_version:
+        title: Software version for the calculation
+        description: The version of the software that was used to calculate the reported value from raw value.
+        range: string
+
+  # All vars except socioeconomic
+  AnalyzingFields:
+    mixin: true
+    description: Analyzing instrument information fields applicable to all variables except socioeconomic.
+    attributes:
+      analyzing_instrument:
+        title: Analyzing instrument
+        description: Instrument used to analyze the water samples or measure the water body continuously.
+        range: AnalyzingInstrument
+        required: true
+
+  # All vars except socioeconomic
+  SamplingFields:
+    mixin: true
+    description: Fields indicating whether a variable was measured or calculated, applicable to all variables except socioeconomic.
+    attributes:
+      measured_or_calculated:
+        title: Measured or calculated
+        description: Whether the variable is measured in-situ, or calculated from other variables.
+        range: string
+        required: true
+      calculation_method_and_parameters:
+        title: Calculation method and parameters
+        description: Information about how the variable was calculated, e.g., using a MATLAB version of the CO2SYS with the dissociation constants of Lueker et al., 2000 for carbonic acid, etc.
+        range: string
+
+  # Placeholder class for analyzing instrument details
+  AnalyzingInstrument:
+    description: Information about the instrument used to analyze samples.
+    attributes:
+      instrument_type:
+        title: Analyzing instrument type
+        description: Type of instrument used to analyze the water samples collected with the sampling instrument, or the sensors that are mounted on the sampling instrument to measure the water body continuously.
+        range: string
+        required: true
+      manufacturer:
+        title: Manufacturer
+        description: Manufacturer name of the instrument.
+        range: string
+      model:
+        title: Model
+        description: Model number of the instrument.
+        range: string
+      serial_number:
+        title: Serial number
+        description: Serial number of the instrument.
+        range: string
+      precision:
+        title: Precision
+        description: Precision of the instrument.
+        range: string
+        required: true
+      accuracy:
+        title: Accuracy
+        description: Accuracy of the instrument.
+        range: string
+        required: true
+
+  # Placeholder class for calibration details
+  Calibration:
+    description: Information about instrument calibration.
+    attributes:
+      calibration_type:
+        title: Calibration type
+        description: Factory calibration, lab calibration, or field calibration.
+        range: string
+        required: true
+      calibration_technique_description:
+        title: Calibration technique description
+        description: Details of the calibration.
+        range: string
+        required: true
+      calibration_method_reference:
+        title: Calibration method reference
+        description: Citation or reference for the calibration method.
+        range: string
+      calibration_frequency:
+        title: Frequency of Calibration
+        description: How often the instrument was calibrated.
+        range: string
+      calibration_datetime:
+        title: Calibration date and time (UTC)
+        description: Date and time of calibration in UTC.
+        range: string
+      calibration_certificates:
+        title: Information about the calibration certificates
+        description: Ideally, the calibration certificate should be made available in a pdf file with filename listed here.
+        range: string
+
+
+
+

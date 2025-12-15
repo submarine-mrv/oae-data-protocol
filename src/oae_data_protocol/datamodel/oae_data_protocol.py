@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-11-13T17:45:42
+# Generation date: 2025-12-15T15:46:27
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -309,13 +309,12 @@ class Project(YAMLRoot):
     class_name: ClassVar[str] = "Project"
     class_model_uri: ClassVar[URIRef] = OAE.Project
 
+    project_id: str = None
     temporal_coverage: str = None
     spatial_coverage: Union[dict, Place] = None
-    project_id: str = None
     mcdr_pathway: Union[str, "MCDRPathway"] = None
     experiments: Optional[Union[Union[dict, "Experiment"], List[Union[dict, "Experiment"]]]] = empty_list()
     sea_names: Optional[Union[Union[str, "SeaNames"], List[Union[str, "SeaNames"]]]] = empty_list()
-    project_description: Optional[str] = None
     physical_site_description: Optional[str] = None
     social_context_site_description: Optional[str] = None
     social_research_conducted_to_date: Optional[str] = None
@@ -325,8 +324,14 @@ class Project(YAMLRoot):
     research_project: Optional[str] = None
     funding: Optional[Union[Union[dict, "MonetaryGrant"], List[Union[dict, "MonetaryGrant"]]]] = empty_list()
     additional_details: Optional[str] = None
+    description: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.project_id):
+            self.MissingRequiredField("project_id")
+        if not isinstance(self.project_id, str):
+            self.project_id = str(self.project_id)
+
         if self._is_empty(self.temporal_coverage):
             self.MissingRequiredField("temporal_coverage")
         if not isinstance(self.temporal_coverage, str):
@@ -336,11 +341,6 @@ class Project(YAMLRoot):
             self.MissingRequiredField("spatial_coverage")
         if not isinstance(self.spatial_coverage, Place):
             self.spatial_coverage = Place(**as_dict(self.spatial_coverage))
-
-        if self._is_empty(self.project_id):
-            self.MissingRequiredField("project_id")
-        if not isinstance(self.project_id, str):
-            self.project_id = str(self.project_id)
 
         if self._is_empty(self.mcdr_pathway):
             self.MissingRequiredField("mcdr_pathway")
@@ -352,9 +352,6 @@ class Project(YAMLRoot):
         if not isinstance(self.sea_names, list):
             self.sea_names = [self.sea_names] if self.sea_names is not None else []
         self.sea_names = [v if isinstance(v, SeaNames) else SeaNames(v) for v in self.sea_names]
-
-        if self.project_description is not None and not isinstance(self.project_description, str):
-            self.project_description = str(self.project_description)
 
         if self.physical_site_description is not None and not isinstance(self.physical_site_description, str):
             self.physical_site_description = str(self.physical_site_description)
@@ -382,6 +379,9 @@ class Project(YAMLRoot):
 
         if self.additional_details is not None and not isinstance(self.additional_details, str):
             self.additional_details = str(self.additional_details)
+
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
 
         super().__post_init__(**kwargs)
 
@@ -508,15 +508,14 @@ class Experiment(YAMLRoot):
 
     description: str = None
     spatial_coverage: Union[dict, Place] = None
-    experiment_id: str = None
     experiment_type: Union[str, "ExperimentType"] = None
     investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     end_datetime: Union[str, XSDDateTime] = None
+    experiment_id: str = None
     name: Optional[str] = None
     vertical_coverage: Optional[Union[dict, VerticalExtent]] = None
     permits: Optional[Union[Union[dict, "Permit"], List[Union[dict, "Permit"]]]] = empty_list()
-    project_id: Optional[str] = None
     data_conflicts_and_unreported_data: Optional[str] = None
     meteorological_and_tidal_data: Optional[Union[Union[dict, NamedLink], List[Union[dict, NamedLink]]]] = empty_list()
     additional_details: Optional[str] = None
@@ -531,11 +530,6 @@ class Experiment(YAMLRoot):
             self.MissingRequiredField("spatial_coverage")
         if not isinstance(self.spatial_coverage, Place):
             self.spatial_coverage = Place(**as_dict(self.spatial_coverage))
-
-        if self._is_empty(self.experiment_id):
-            self.MissingRequiredField("experiment_id")
-        if not isinstance(self.experiment_id, str):
-            self.experiment_id = str(self.experiment_id)
 
         if self._is_empty(self.experiment_type):
             self.MissingRequiredField("experiment_type")
@@ -558,6 +552,11 @@ class Experiment(YAMLRoot):
         if not isinstance(self.end_datetime, XSDDateTime):
             self.end_datetime = XSDDateTime(self.end_datetime)
 
+        if self._is_empty(self.experiment_id):
+            self.MissingRequiredField("experiment_id")
+        if not isinstance(self.experiment_id, str):
+            self.experiment_id = str(self.experiment_id)
+
         if self.name is not None and not isinstance(self.name, str):
             self.name = str(self.name)
 
@@ -567,9 +566,6 @@ class Experiment(YAMLRoot):
         if not isinstance(self.permits, list):
             self.permits = [self.permits] if self.permits is not None else []
         self.permits = [v if isinstance(v, Permit) else Permit(**as_dict(v)) for v in self.permits]
-
-        if self.project_id is not None and not isinstance(self.project_id, str):
-            self.project_id = str(self.project_id)
 
         if self.data_conflicts_and_unreported_data is not None and not isinstance(self.data_conflicts_and_unreported_data, str):
             self.data_conflicts_and_unreported_data = str(self.data_conflicts_and_unreported_data)
@@ -599,11 +595,11 @@ class Intervention(Experiment):
 
     description: str = None
     spatial_coverage: Union[dict, Place] = None
-    experiment_id: str = None
     experiment_type: Union[str, "ExperimentType"] = None
     investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     end_datetime: Union[str, XSDDateTime] = None
+    experiment_id: str = None
     alkalinity_feedstock_processing: Union[str, "AlkalinityFeedstockProcessing"] = None
     alkalinity_feedstock_form: Union[str, "AlkalinityFeedstockForm"] = None
     alkalinity_feedstock: Union[str, "FeedstockType"] = None
@@ -709,11 +705,11 @@ class Tracer(Experiment):
 
     description: str = None
     spatial_coverage: Union[dict, Place] = None
-    experiment_id: str = None
     experiment_type: Union[str, "ExperimentType"] = None
     investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     end_datetime: Union[str, XSDDateTime] = None
+    experiment_id: str = None
     tracer_form: Union[str, "TracerForm"] = None
     tracer_details: str = None
     tracer_concentration: Union[dict, "DosingConcentration"] = None
@@ -788,11 +784,11 @@ class InterventionWithTracer(Intervention):
 
     description: str = None
     spatial_coverage: Union[dict, Place] = None
-    experiment_id: str = None
     experiment_type: Union[str, "ExperimentType"] = None
     investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     end_datetime: Union[str, XSDDateTime] = None
+    experiment_id: str = None
     alkalinity_feedstock_processing: Union[str, "AlkalinityFeedstockProcessing"] = None
     alkalinity_feedstock_form: Union[str, "AlkalinityFeedstockForm"] = None
     alkalinity_feedstock: Union[str, "FeedstockType"] = None
@@ -1123,40 +1119,74 @@ class Permit(YAMLRoot):
 
 
 # Enumerations
-class ObservationType(EnumDefinitionImpl):
+class DatasetType(EnumDefinitionImpl):
     """
-    Types of observational data collected in ocean carbon and acidification studies, as defined in OCADS controlled
-    vocabulary hosted at
-    https://www.ncei.noaa.gov/access/ocean-carbon-acidification-data-system/vocabularies/observation-types.html
+    Type of dataset being submitted. This usually
     """
-    profile = PermissibleValue(
-        text="profile",
-        description="""Discrete water samples collected at specific ocean locations and depths, analyzed for parameters like dissolved inorganic carbon, total alkalinity, dissolved oxygen, and nutrients. Can also refer to continuous measurements using autonomous sensors mounted on a CTD rosette.""")
-    surface_underway = PermissibleValue(
-        text="surface_underway",
-        description="""Continuous measurements of oceanographic variables at the ocean surface using sensors, often in flow-through systems onboard research vessels or ships of opportunity, to obtain real-time information about the ocean's physical and chemical conditions, such as temperature, salinity, and fCO₂.""")
-    time_series = PermissibleValue(
-        text="time_series",
-        description="""Continuous measurements of oceanographic variables using autonomous or remotely operated platforms, including time-series moorings, uncrewed surface vehicles (USVs, eg- Saildrones), profiling floats (eg- Argo), and autonomous underwater vehicles (AUVs, eg- gliders).""")
-    laboratory_experiments = PermissibleValue(
-        text="laboratory_experiments",
-        description="""Scientific investigations where researchers manipulate parameters of the carbonate system in laboratory aquariums to simulate future ocean alkalinity enhancement (OAE) conditions and observe the responses of selected marine organisms.""")
-    mesocosms = PermissibleValue(
-        text="mesocosms",
-        description="""Studies conducted in large, controlled outdoor tanks or enclosures that simulate natural ocean conditions, allowing examination of multiple interacting factors affecting marine communities' responses to OAE, including physical processes and complex biological interactions.""")
-    field_experiments = PermissibleValue(
-        text="field_experiments",
-        description="""Studies involving the manipulation of total alkalinity and carbon dioxide levels in seawater at natural coastal or offshore sites, followed by monitoring the responses of the surrounding marine ecosystem.""")
-    natural_analogues = PermissibleValue(
-        text="natural_analogues",
-        description="""Studies utilizing natural gradients in carbonate chemistry and other relevant parameters to assess the sensitivity of ocean systems to future OAE conditions, evaluating marine species' and ecosystems' long-term acclimation and adaptation to enhanced total alkalinity.""")
-    model_outputs = PermissibleValue(
-        text="model_outputs",
-        description="""Outputs from mathematical models that simulate Earth system processes, used to replicate real-world scenarios and assess the impacts of different policies related to ocean carbon and alkalinity.""")
+    dosing = PermissibleValue(
+        text="dosing",
+        description="Variables such as dosing_onoff, dosing_rate, and flow_rate should be included here.")
+    cast = PermissibleValue(
+        text="cast",
+        description="Vertical profiles (e.g., optical packages, CTD)")
+    bottle = PermissibleValue(
+        text="bottle",
+        description="""Any other types of measurements from water samples collected at discrete depths (e.g., nutrients)""")
+    flow_thru = PermissibleValue(
+        text="flow_thru",
+        description="Continuous data (e.g., shipboard, underway flow through system)")
+    pigment = PermissibleValue(
+        text="pigment",
+        description="For laboratory measured pigment data (e.g. fluorometry, spectrophotometry, HPLC)")
+    marine_snow_catcher = PermissibleValue(
+        text="marine_snow_catcher",
+        description="For various types of marine snow catcher data")
+    mooring = PermissibleValue(
+        text="mooring",
+        description="Moored and buoy data")
+    drifter = PermissibleValue(
+        text="drifter",
+        description="Drifter and drogue data")
+    airborne = PermissibleValue(
+        text="airborne",
+        description="Measurements made via an aircraft")
+    diver = PermissibleValue(
+        text="diver",
+        description="For measurements made by a diver")
+    auv = PermissibleValue(
+        text="auv",
+        description="Measurements made by an autonomous underwater vehicle")
+    asv = PermissibleValue(
+        text="asv",
+        description="Measurements made by an autonomous surface vehicle")
+    experimental = PermissibleValue(
+        text="experimental",
+        description="""Measurements that have a non-geospatial aspect (e.g., incubations or other laboratory measurements, etc.)""")
+    sediment_trap = PermissibleValue(
+        text="sediment_trap",
+        description="Measurements from a sediment trap platform")
+    taxonomy = PermissibleValue(
+        text="taxonomy",
+        description="""Data whose purpose is the classification or annotation of phytoplankton, zooplankton, or other marine groups.""")
+    sediment = PermissibleValue(
+        text="sediment",
+        description="Measurements from sediment samples (e.g., core samples, grab samples)")
+    model_output = PermissibleValue(
+        text="model_output",
+        description="Data output from model experiments")
+    socioeconomic = PermissibleValue(
+        text="socioeconomic",
+        description="Information (quantitative or qualitative) from socioeconomic studies")
+    net_tow = PermissibleValue(
+        text="net_tow",
+        description="For measurements captured via net (e.g., zooplankton via MOCNESS)")
+    other = PermissibleValue(
+        text="other",
+        description="""For data types not included in the controlled vocabulary. Please fill in a the `dataset_type_custom` field with a more specific name for the custom mCDR data type.""")
 
     _defn = EnumDefinition(
-        name="ObservationType",
-        description="""Types of observational data collected in ocean carbon and acidification studies, as defined in OCADS controlled vocabulary hosted at https://www.ncei.noaa.gov/access/ocean-carbon-acidification-data-system/vocabularies/observation-types.html""",
+        name="DatasetType",
+        description="Type of dataset being submitted. This usually",
     )
 
 class MCDRPathway(EnumDefinitionImpl):
@@ -1405,6 +1435,22 @@ class FeedstockType(EnumDefinitionImpl):
     _defn = EnumDefinition(
         name="FeedstockType",
         description="""Types of materials used for alkalinity addition, as sourced from NCEI's OCADS controlled vocabulary: https://www.ncei.noaa.gov/access/ocean-carbon-acidification-data-system/vocabularies/alkalinization-types.html""",
+    )
+
+class DataProductType(EnumDefinitionImpl):
+
+    originally_collected_dataset = PermissibleValue(
+        text="originally_collected_dataset",
+        description="A dataset collected from a research cruise or laboratory experiment")
+    data_compilation_product = PermissibleValue(
+        text="data_compilation_product",
+        description="(e.g., SOCAT, GLODAP)")
+    derived_product = PermissibleValue(
+        text="derived_product",
+        description="(e.g. gridded products, or model output).")
+
+    _defn = EnumDefinition(
+        name="DataProductType",
     )
 
 class SeaNames(EnumDefinitionImpl):
@@ -1924,6 +1970,47 @@ class SeaNames(EnumDefinitionImpl):
                 text="http://vocab.nerc.ac.uk/collection/C16/current/28Bh/",
                 meaning=None))
 
+class PlatformTypes(EnumDefinitionImpl):
+
+    _defn = EnumDefinition(
+        name="PlatformTypes",
+    )
+
+    @classmethod
+    def _addvals(cls):
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/3C/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/L06/current/3C/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/32/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/L06/current/32/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/3B/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/L06/current/3B/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/42/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/L06/current/42/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/46/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/L06/current/46/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/27/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/L06/current/27/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/48/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/L06/current/48/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/31/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/L06/current/31/",
+                meaning=None))
+
 class MassConcentrationUnit(EnumDefinitionImpl):
 
     _defn = EnumDefinition(
@@ -1987,14 +2074,20 @@ class ResearcherIDType(EnumDefinitionImpl):
 class slots:
     pass
 
-slots.description = Slot(uri=OAE.description, name="description", curie=OAE.curie('description'),
+slots.description = Slot(uri=SCHEMA.description, name="description", curie=SCHEMA.curie('description'),
                    model_uri=OAE.description, domain=None, range=Optional[str])
 
-slots.name = Slot(uri=OAE.name, name="name", curie=OAE.curie('name'),
+slots.name = Slot(uri=SCHEMA.name, name="name", curie=SCHEMA.curie('name'),
                    model_uri=OAE.name, domain=None, range=Optional[str])
 
 slots.identifier = Slot(uri=SCHEMA.identifier, name="identifier", curie=SCHEMA.curie('identifier'),
                    model_uri=OAE.identifier, domain=None, range=Optional[str])
+
+slots.experiment_id = Slot(uri=OAE.experiment_id, name="experiment_id", curie=OAE.curie('experiment_id'),
+                   model_uri=OAE.experiment_id, domain=None, range=Optional[str])
+
+slots.project_id = Slot(uri=OAE.project_id, name="project_id", curie=OAE.curie('project_id'),
+                   model_uri=OAE.project_id, domain=None, range=Optional[str])
 
 slots.temporal_coverage = Slot(uri=SCHEMA.temporalCoverage, name="temporal_coverage", curie=SCHEMA.curie('temporalCoverage'),
                    model_uri=OAE.temporal_coverage, domain=None, range=str,
@@ -2054,17 +2147,11 @@ slots.verticalExtent__max_depth_in_m = Slot(uri=OAE.max_depth_in_m, name="vertic
 slots.organization__country = Slot(uri=OAE.country, name="organization__country", curie=OAE.curie('country'),
                    model_uri=OAE.organization__country, domain=None, range=Optional[str])
 
-slots.project__project_id = Slot(uri=OAE.project_id, name="project__project_id", curie=OAE.curie('project_id'),
-                   model_uri=OAE.project__project_id, domain=None, range=str)
-
 slots.project__experiments = Slot(uri=OAE.experiments, name="project__experiments", curie=OAE.curie('experiments'),
                    model_uri=OAE.project__experiments, domain=None, range=Optional[Union[Union[dict, Experiment], List[Union[dict, Experiment]]]])
 
 slots.project__sea_names = Slot(uri=OAE.sea_names, name="project__sea_names", curie=OAE.curie('sea_names'),
                    model_uri=OAE.project__sea_names, domain=None, range=Optional[Union[Union[str, "SeaNames"], List[Union[str, "SeaNames"]]]])
-
-slots.project__project_description = Slot(uri=OAE.project_description, name="project__project_description", curie=OAE.curie('project_description'),
-                   model_uri=OAE.project__project_description, domain=None, range=Optional[str])
 
 slots.project__physical_site_description = Slot(uri=OAE.physical_site_description, name="project__physical_site_description", curie=OAE.curie('physical_site_description'),
                    model_uri=OAE.project__physical_site_description, domain=None, range=Optional[str])
@@ -2119,12 +2206,6 @@ slots.monetaryGrant__end_date = Slot(uri=OAE.end_date, name="monetaryGrant__end_
 
 slots.monetaryGrant__funder = Slot(uri=OAE.funder, name="monetaryGrant__funder", curie=OAE.curie('funder'),
                    model_uri=OAE.monetaryGrant__funder, domain=None, range=Optional[Union[dict, Organization]])
-
-slots.experiment__experiment_id = Slot(uri=OAE.experiment_id, name="experiment__experiment_id", curie=OAE.curie('experiment_id'),
-                   model_uri=OAE.experiment__experiment_id, domain=None, range=str)
-
-slots.experiment__project_id = Slot(uri=OAE.project_id, name="experiment__project_id", curie=OAE.curie('project_id'),
-                   model_uri=OAE.experiment__project_id, domain=None, range=Optional[str])
 
 slots.experiment__experiment_type = Slot(uri=OAE.experiment_type, name="experiment__experiment_type", curie=OAE.curie('experiment_type'),
                    model_uri=OAE.experiment__experiment_type, domain=None, range=Union[str, "ExperimentType"])
@@ -2257,7 +2338,7 @@ slots.SpatialCoverage_geo = Slot(uri=OAE.geo, name="SpatialCoverage_geo", curie=
 slots.Organization_identifier = Slot(uri=SCHEMA.identifier, name="Organization_identifier", curie=SCHEMA.curie('identifier'),
                    model_uri=OAE.Organization_identifier, domain=Organization, range=Optional[str])
 
-slots.Organization_name = Slot(uri=OAE.name, name="Organization_name", curie=OAE.curie('name'),
+slots.Organization_name = Slot(uri=SCHEMA.name, name="Organization_name", curie=SCHEMA.curie('name'),
                    model_uri=OAE.Organization_name, domain=Organization, range=Optional[str])
 
 slots.Project_temporal_coverage = Slot(uri=SCHEMA.temporalCoverage, name="Project_temporal_coverage", curie=SCHEMA.curie('temporalCoverage'),
@@ -2267,16 +2348,25 @@ slots.Project_temporal_coverage = Slot(uri=SCHEMA.temporalCoverage, name="Projec
 slots.Project_spatial_coverage = Slot(uri=SCHEMA.spatialCoverage, name="Project_spatial_coverage", curie=SCHEMA.curie('spatialCoverage'),
                    model_uri=OAE.Project_spatial_coverage, domain=Project, range=Union[dict, Place])
 
-slots.MonetaryGrant_name = Slot(uri=OAE.name, name="MonetaryGrant_name", curie=OAE.curie('name'),
+slots.Project_project_id = Slot(uri=OAE.project_id, name="Project_project_id", curie=OAE.curie('project_id'),
+                   model_uri=OAE.Project_project_id, domain=Project, range=str)
+
+slots.Project_description = Slot(uri=SCHEMA.description, name="Project_description", curie=SCHEMA.curie('description'),
+                   model_uri=OAE.Project_description, domain=Project, range=Optional[str])
+
+slots.MonetaryGrant_name = Slot(uri=SCHEMA.name, name="MonetaryGrant_name", curie=SCHEMA.curie('name'),
                    model_uri=OAE.MonetaryGrant_name, domain=MonetaryGrant, range=Optional[str])
 
 slots.MonetaryGrant_identifier = Slot(uri=SCHEMA.identifier, name="MonetaryGrant_identifier", curie=SCHEMA.curie('identifier'),
                    model_uri=OAE.MonetaryGrant_identifier, domain=MonetaryGrant, range=Optional[str])
 
-slots.Experiment_description = Slot(uri=OAE.description, name="Experiment_description", curie=OAE.curie('description'),
+slots.Experiment_experiment_id = Slot(uri=OAE.experiment_id, name="Experiment_experiment_id", curie=OAE.curie('experiment_id'),
+                   model_uri=OAE.Experiment_experiment_id, domain=Experiment, range=str)
+
+slots.Experiment_description = Slot(uri=SCHEMA.description, name="Experiment_description", curie=SCHEMA.curie('description'),
                    model_uri=OAE.Experiment_description, domain=Experiment, range=str)
 
-slots.Experiment_name = Slot(uri=OAE.name, name="Experiment_name", curie=OAE.curie('name'),
+slots.Experiment_name = Slot(uri=SCHEMA.name, name="Experiment_name", curie=SCHEMA.curie('name'),
                    model_uri=OAE.Experiment_name, domain=Experiment, range=Optional[str])
 
 slots.Experiment_spatial_coverage = Slot(uri=SCHEMA.spatialCoverage, name="Experiment_spatial_coverage", curie=SCHEMA.curie('spatialCoverage'),

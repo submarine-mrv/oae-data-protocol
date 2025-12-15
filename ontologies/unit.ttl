@@ -32,6 +32,9 @@
   owl:imports <http://qudt.org/3.1.7/vocab/sou> ;
   owl:versionIRI <http://qudt.org/3.1.7/vocab/unit> ;
 .
+qudt:hasQuantityKind
+  rdf:type owl:ObjectProperty ;
+.
 <http://qudt.org/vocab/unit/2PiRAD>
   a qudt:Unit ;
   dcterms:isReplacedBy unit:REV ;
