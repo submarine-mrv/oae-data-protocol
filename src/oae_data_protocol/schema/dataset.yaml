@@ -35,16 +35,23 @@ classes:
             dataset. An abstract may include information such as the dataset's source, how the data was collected or
             generated, the variables or attributes included in the dataset, and any limitations or restrictions on the
             use of the data. It may also include information on how the data can be accessed or used.
+      - project_id:
+          # TODO: Consider making the "required: true" general for all implementations of project_id
+          required: true
+      - experiment_id:
+          # TODO: Consider making the "required: true" general for all implementations of experiment_id
+          required: true
     attributes:
-      data_type:
+      dataset_type:
+        # TODO: Add pre/post condition slots for _custom field rendering
         description: >-
           Selected controlled vocabularies for data types relevant to mCDR have been referenced from NASA’s SeaBASS
           metadata system and are provided below, for additional data types of optical characteristics see the [SeaBASS
           controlled definitions list](https://seabass.gsfc.nasa.gov/wiki/metadataheaders#data_type). Additional data
           types have been included to meet the needs of mCDR field projects.
-        range: DatasetDataType
+        range: DatasetType
         required: true
-      data_type_custom:
+      dataset_type_custom:
         description: >-
           Custom "data type" when an appropriate value is not found in the controlled vocabulary list for mCDR Data Type
           and the corresponding `data_type` field is set to "other".
@@ -52,8 +59,9 @@ classes:
       data_submitter:
         range: Person
       author_list_for_citation:
-        range: Person
-        multivalued: true
+        range: string
+        description: >-
+          Author list in the format of Lastname1, Firstname1 Middlename1; Lastname2, Firstname2 Middlename2; ...
       license:
         slot_uri: schema:license
         description: >-
@@ -73,8 +81,8 @@ classes:
           from a research cruise or laboratory experiment), (b) Data compilation product (e.g., SOCAT, GLODAP), or
           (c) Derived product (e.g., gridded products, or model output).
         range: DataProductType
+        required: true
       qc_flag_scheme:
-        range: string
         description: >-
           Describe what the quality control flags stand for, e.g.,
             0 = interpolated or calculated data
@@ -84,8 +92,11 @@ classes:
             4 = known bad 
             6 = median of replicates 
             9 = missing value"
+        range: string
+        required: true
       platform_info:
         range: Platform
+        required: true
       calibration_files:
         description: >-
           A list of supplementary file names containing coefficients and techniques used to
@@ -96,6 +107,12 @@ classes:
       variables:
         slot_uri: schema:variableMeasured
         range: Variable
+        multivalued: true
+      filenames:
+        # TODO: Should be upgraded to be compatilbe with schema:distribution
+        # https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md#distributions
+        range: string
+        required: true
         multivalued: true
 
     exact_mappings:
