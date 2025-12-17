@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://clevinson.github.io/oae-data-protocol/PlatformTypes/">
+        <link rel="canonical" href="https://clevinson.github.io/oae-data-protocol/missing_value_indicators/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Enum: PlatformTypes - oae-data-protocol</title>
+        <title>Slot: Missing value indicators (missing_value_indicators) - oae-data-protocol</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#enum-platformtypes" class="md-skip">
+        <a href="#slot-missing-value-indicators-missing_value_indicators" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Enum: PlatformTypes
+              Slot: Missing value indicators (missing_value_indicators)
             
           </span>
         </div>
@@ -281,9 +281,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#permissible-values" class="md-nav__link">
+  <a href="#applicable-classes" class="md-nav__link">
     <span class="md-ellipsis">
-      Permissible Values
+      Applicable Classes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      Properties
     </span>
   </a>
   
@@ -310,6 +319,15 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mappings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mappings
+    </span>
+  </a>
   
 </li>
       
@@ -341,99 +359,131 @@
   
 
 
-<h1 id="enum-platformtypes">Enum: PlatformTypes</h1>
-<p>URI: <a href="./">PlatformTypes</a></p>
-<h2 id="permissible-values">Permissible Values</h2>
+<h1 id="slot-missing-value-indicators-missing_value_indicators">Slot: Missing value indicators (missing_value_indicators)</h1>
+<p><em>The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.</em></p>
+<p>URI: <a href="https://example.org/oae#missing_value_indicators">oae:missing_value_indicators</a></p>
+<!-- no inheritance hierarchy -->
+
+<h2 id="applicable-classes">Applicable Classes</h2>
 <table>
 <thead>
 <tr>
-<th>Value</th>
-<th>Meaning</th>
+<th>Name</th>
 <th>Description</th>
+<th>Modifies Slot</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>http://vocab.nerc.ac.uk/collection/L06/current/3C/</td>
-<td>http://vocab.nerc.ac.uk/collection/L06/current/3C/</td>
-<td></td>
+<td><a href="../PHVariable/">PHVariable</a></td>
+<td>pH measured variable with dye-based spectrophotometric measurement</td>
+<td>no</td>
 </tr>
 <tr>
-<td>http://vocab.nerc.ac.uk/collection/L06/current/32/</td>
-<td>http://vocab.nerc.ac.uk/collection/L06/current/32/</td>
-<td></td>
+<td><a href="../DICVariable/">DICVariable</a></td>
+<td>Dissolved Inorganic Carbon (DIC) measured variable</td>
+<td>no</td>
 </tr>
 <tr>
-<td>http://vocab.nerc.ac.uk/collection/L06/current/3B/</td>
-<td>http://vocab.nerc.ac.uk/collection/L06/current/3B/</td>
-<td></td>
+<td><a href="../PhysiologicalVariable/">PhysiologicalVariable</a></td>
+<td>Physiological response measured variable for organism response data</td>
+<td>no</td>
 </tr>
 <tr>
-<td>http://vocab.nerc.ac.uk/collection/L06/current/42/</td>
-<td>http://vocab.nerc.ac.uk/collection/L06/current/42/</td>
-<td></td>
+<td><a href="../CalculatedVariable/">CalculatedVariable</a></td>
+<td>Variable that is calculated or derived from other variables</td>
+<td>no</td>
 </tr>
 <tr>
-<td>http://vocab.nerc.ac.uk/collection/L06/current/46/</td>
-<td>http://vocab.nerc.ac.uk/collection/L06/current/46/</td>
-<td></td>
+<td><a href="../TAVariable/">TAVariable</a></td>
+<td>Total Alkalinity (TA) measured variable</td>
+<td>no</td>
 </tr>
 <tr>
-<td>http://vocab.nerc.ac.uk/collection/L06/current/27/</td>
-<td>http://vocab.nerc.ac.uk/collection/L06/current/27/</td>
-<td></td>
+<td><a href="../CO2ContinuousVariable/">CO2ContinuousVariable</a></td>
+<td>CO2 continuous (underway) measured variable</td>
+<td>no</td>
 </tr>
 <tr>
-<td>http://vocab.nerc.ac.uk/collection/L06/current/48/</td>
-<td>http://vocab.nerc.ac.uk/collection/L06/current/48/</td>
-<td></td>
+<td><a href="../MeasuredVariable/">MeasuredVariable</a></td>
+<td>Variable that is directly measured in-situ using instruments</td>
+<td>no</td>
 </tr>
 <tr>
-<td>http://vocab.nerc.ac.uk/collection/L06/current/31/</td>
-<td>http://vocab.nerc.ac.uk/collection/L06/current/31/</td>
-<td></td>
+<td><a href="../CO2DiscreteVariable/">CO2DiscreteVariable</a></td>
+<td>CO2 discrete (bottle) measured variable</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../HPLCVariable/">HPLCVariable</a></td>
+<td>HPLC (High-Performance Liquid Chromatography) measured variable for pigment a...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../SedimentVariable/">SedimentVariable</a></td>
+<td>Sediment measured variable for seafloor/sediment sampling data</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../QCFields/">QCFields</a></td>
+<td>Quality control fields applicable to measured and calculated variables</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../CO2Variable/">CO2Variable</a></td>
+<td>Abstract base class for CO2 measured variables (both continuous and discrete)</td>
+<td>no</td>
 </tr>
 </tbody>
 </table>
+<h2 id="properties">Properties</h2>
+<ul>
+<li>
+<p>Range: <a href="../String/">String</a></p>
+</li>
+<li>
+<p>Required: True</p>
+</li>
+</ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
 <li>from schema: OAEDataManagementProtocol</li>
 </ul>
+<h2 id="mappings">Mappings</h2>
+<table>
+<thead>
+<tr>
+<th>Mapping Type</th>
+<th>Mapped Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>self</td>
+<td>oae:missing_value_indicators</td>
+</tr>
+<tr>
+<td>native</td>
+<td>oae:missing_value_indicators</td>
+</tr>
+</tbody>
+</table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: PlatformTypes
+<pre><code class="language-yaml">name: missing_value_indicators
+description: The indicator used to represent missing values in the data file, e.g.,
+  -999, NaN, etc.
+title: Missing value indicators
 from_schema: OAEDataManagementProtocol
 rank: 1000
-permissible_values:
-  http://vocab.nerc.ac.uk/collection/L06/current/3C/:
-    text: http://vocab.nerc.ac.uk/collection/L06/current/3C/
-    meaning: http://vocab.nerc.ac.uk/collection/L06/current/3C/
-  http://vocab.nerc.ac.uk/collection/L06/current/32/:
-    text: http://vocab.nerc.ac.uk/collection/L06/current/32/
-    meaning: http://vocab.nerc.ac.uk/collection/L06/current/32/
-  http://vocab.nerc.ac.uk/collection/L06/current/3B/:
-    text: http://vocab.nerc.ac.uk/collection/L06/current/3B/
-    meaning: http://vocab.nerc.ac.uk/collection/L06/current/3B/
-  http://vocab.nerc.ac.uk/collection/L06/current/42/:
-    text: http://vocab.nerc.ac.uk/collection/L06/current/42/
-    meaning: http://vocab.nerc.ac.uk/collection/L06/current/42/
-  http://vocab.nerc.ac.uk/collection/L06/current/46/:
-    text: http://vocab.nerc.ac.uk/collection/L06/current/46/
-    meaning: http://vocab.nerc.ac.uk/collection/L06/current/46/
-  http://vocab.nerc.ac.uk/collection/L06/current/27/:
-    text: http://vocab.nerc.ac.uk/collection/L06/current/27/
-    meaning: http://vocab.nerc.ac.uk/collection/L06/current/27/
-  http://vocab.nerc.ac.uk/collection/L06/current/48/:
-    text: http://vocab.nerc.ac.uk/collection/L06/current/48/
-    meaning: http://vocab.nerc.ac.uk/collection/L06/current/48/
-  http://vocab.nerc.ac.uk/collection/L06/current/31/:
-    text: http://vocab.nerc.ac.uk/collection/L06/current/31/
-    meaning: http://vocab.nerc.ac.uk/collection/L06/current/31/
-matches:
-  identifier_pattern: http://vocab.nerc.ac.uk/collection/L06/current/(31|32|48|42|46|3C|27|3B)/
-  source_ontology: SDN:L06
+alias: missing_value_indicators
+owner: QCFields
+domain_of:
+- QCFields
+range: string
+required: true
 
 </code></pre>
 

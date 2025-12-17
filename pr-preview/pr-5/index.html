@@ -445,12 +445,44 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="AnalyzingFields/">AnalyzingFields</a></td>
+<td>Analyzing instrument information fields. Applied to measured variables. The instrument type can be narrowed in subclasses using slot_usage.</td>
+</tr>
+<tr>
+<td><a href="AnalyzingInstrument/">AnalyzingInstrument</a></td>
+<td>DEPRECATED: Use Instrument types from instrument.yaml instead. This class is kept for backward compatibility.</td>
+</tr>
+<tr>
 <td><a href="Any/">Any</a></td>
 <td>None</td>
 </tr>
 <tr>
+<td><a href="Calibration/">Calibration</a></td>
+<td>Base calibration information for instruments.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CO2Calibration/">CO2Calibration</a></td>
+<td>CO2 gas detector calibration with standard gas information.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CRMCalibration/">CRMCalibration</a></td>
+<td>Calibration using Certified Reference Materials, used for DIC and TA instruments.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="PHCalibration/">PHCalibration</a></td>
+<td>pH instrument calibration with dye information.</td>
+</tr>
+<tr>
 <td><a href="Container/">Container</a></td>
 <td>None</td>
+</tr>
+<tr>
+<td><a href="Dataset/">Dataset</a></td>
+<td>A dataset related to an OAE experiment. Generally following guidelines &amp; best practices as outlined in <a href="https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md">science-on-schema.org</a></td>
+</tr>
+<tr>
+<td><a href="DiscreteOrContinuousFields/">DiscreteOrContinuousFields</a></td>
+<td>Fields for discrete vs continuous measurement information. To be replaced by SamplingInfo choice structure in Phase 3.</td>
 </tr>
 <tr>
 <td><a href="DosingConcentration/">DosingConcentration</a></td>
@@ -489,6 +521,30 @@
 <td>The geographic shape of a place. A GeoShape can be described using several properties whose values are based on latitude/longitude pairs. Either whitespace or commas can be used to separate latitude and longitude; whitespace should be used when writing a list of several such points. (imported from schema.org)</td>
 </tr>
 <tr>
+<td><a href="Instrument/">Instrument</a></td>
+<td>Base class for scientific instruments used in measurements.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CO2GasDetector/">CO2GasDetector</a></td>
+<td>CO2 gas detector with standard gas calibration.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CRMInstrument/">CRMInstrument</a></td>
+<td>Instrument calibrated with Certified Reference Materials, used for DIC and TA measurements.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GenericInstrument/">GenericInstrument</a></td>
+<td>Generic instrument for cases that don't fit specialized instrument types. Provides backward compatibility and flexibility.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="PHInstrument/">PHInstrument</a></td>
+<td>pH measurement instrument with dye-based calibration.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Sensor/">Sensor</a></td>
+<td>Generic sensor with basic calibration information. Used for auxiliary measurements like temperature, pressure, etc.</td>
+</tr>
+<tr>
 <td><a href="InterventionDetails/">InterventionDetails</a></td>
 <td>An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are  specific to an Experiment with type "Intervention"</td>
 </tr>
@@ -525,6 +581,10 @@
 <td>A bounding box defined by latitude and longitude coordinates.</td>
 </tr>
 <tr>
+<td><a href="Platform/">Platform</a></td>
+<td>None</td>
+</tr>
+<tr>
 <td><a href="Project/">Project</a></td>
 <td>A project conducting OAE field trials or modeling.</td>
 </tr>
@@ -533,12 +593,88 @@
 <td>None</td>
 </tr>
 <tr>
+<td><a href="QCFields/">QCFields</a></td>
+<td>Quality control fields applicable to measured and calculated variables. Not applied to socioeconomic variables.</td>
+</tr>
+<tr>
+<td><a href="SamplePreservation/">SamplePreservation</a></td>
+<td>Sample preservation information for DIC and TA measurements. Reference: OAPMetadata XSD variables.xsd - sample_preservation</td>
+</tr>
+<tr>
+<td><a href="StandardGas/">StandardGas</a></td>
+<td>Standard gas used for CO2 calibration.</td>
+</tr>
+<tr>
 <td><a href="TracerDetails/">TracerDetails</a></td>
 <td>An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are  specific to an Experiment with type "Tracer"</td>
 </tr>
 <tr>
+<td><a href="Variable/">Variable</a></td>
+<td>Abstract base class for all variable types. Contains common identification and description fields shared by all variables. Reference: OAPMetadata XSD variables.xsd - variable, basic_variable</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CalculatedVariable/">CalculatedVariable</a></td>
+<td>Variable that is calculated or derived from other variables. Reference: OAPMetadata XSD variables.xsd - basic_calculated_observation_base</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GenericVariable/">GenericVariable</a></td>
+<td>Generic concrete variable for cases that don't fit MeasuredVariable or CalculatedVariable. Provides backward compatibility and flexibility for variable types like socioeconomic data.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="MeasuredVariable/">MeasuredVariable</a></td>
+<td>Variable that is directly measured in-situ using instruments. Reference: OAPMetadata XSD variables.xsd - basic_measured_observation_base</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CO2Variable/">CO2Variable</a></td>
+<td>Abstract base class for CO2 measured variables (both continuous and discrete). Reference: OAPMetadata XSD variables.xsd - co2_measured_base</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CO2ContinuousVariable/">CO2ContinuousVariable</a></td>
+<td>CO2 continuous (underway) measured variable. Reference: OAPMetadata XSD variables.xsd - co2_continuous</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CO2DiscreteVariable/">CO2DiscreteVariable</a></td>
+<td>CO2 discrete (bottle) measured variable. Reference: OAPMetadata XSD variables.xsd - co2_discrete</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DICVariable/">DICVariable</a></td>
+<td>Dissolved Inorganic Carbon (DIC) measured variable. Uses CRM-calibrated instrument and includes sample preservation information. Reference: OAPMetadata XSD variables.xsd - DIC_measured</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="TAVariable/">TAVariable</a></td>
+<td>Total Alkalinity (TA) measured variable. Extends DIC with TA-specific fields. Reference: OAPMetadata XSD variables.xsd - TA_measured</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="HPLCVariable/">HPLCVariable</a></td>
+<td>HPLC (High-Performance Liquid Chromatography) measured variable for pigment analysis. Always measured, not calculated.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="PHVariable/">PHVariable</a></td>
+<td>pH measured variable with dye-based spectrophotometric measurement. Reference: OAPMetadata XSD variables.xsd - pH_measured</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="PhysiologicalVariable/">PhysiologicalVariable</a></td>
+<td>Physiological response measured variable for organism response data.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="SedimentVariable/">SedimentVariable</a></td>
+<td>Sediment measured variable for seafloor/sediment sampling data.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="NonMeasuredVariable/">NonMeasuredVariable</a></td>
+<td>Non-measured variable for data from external sources (e.g., satellite, model outputs, published data) that are not directly measured by the project but included in the dataset.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="SocioeconomicVariable/">SocioeconomicVariable</a></td>
+<td>Socioeconomic variable for social and economic data. Note: Does NOT include QCFields mixin as QC is not applicable.</td>
+</tr>
+<tr>
 <td><a href="VerticalExtent/">VerticalExtent</a></td>
 <td>The vertical extent of a place or structure in meters.</td>
+</tr>
+<tr>
+<td><a href="WeatherClimateFields/">WeatherClimateFields</a></td>
+<td>Weather or climate quality fields applicable only to DIC, pH, pCO2, and TA variables.</td>
 </tr>
 </tbody>
 </table>
@@ -551,6 +687,10 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><a href="accuracy/">accuracy</a></td>
+<td>Accuracy of the instrument measurements</td>
+</tr>
 <tr>
 <td><a href="additional_details/">additional_details</a></td>
 <td>Open text area to include additional information</td>
@@ -600,32 +740,144 @@
 <td></td>
 </tr>
 <tr>
+<td><a href="analyzing_instrument/">analyzing_instrument</a></td>
+<td>Instrument used to analyze the water samples or measure the water body contin...</td>
+</tr>
+<tr>
+<td><a href="analyzing_method/">analyzing_method</a></td>
+<td>Method used to analyze samples</td>
+</tr>
+<tr>
 <td><a href="approval_document/">approval_document</a></td>
 <td>Filename(s) of permitting documents included, separated by commas</td>
+</tr>
+<tr>
+<td><a href="author_list_for_citation/">author_list_for_citation</a></td>
+<td>Author list in the format of Lastname1, Firstname1 Middlename1; Lastname2, Fi...</td>
+</tr>
+<tr>
+<td><a href="blank_correction/">blank_correction</a></td>
+<td>The magnitude of the blank correction applied to the DIC measurements</td>
 </tr>
 <tr>
 <td><a href="box/">box</a></td>
 <td>A box defined by two latitude-longitude points, southwest and northeast</td>
 </tr>
 <tr>
+<td><a href="calculation_method/">calculation_method</a></td>
+<td>Reference or description of the calculation method, e</td>
+</tr>
+<tr>
+<td><a href="calculation_parameters/">calculation_parameters</a></td>
+<td>Parameters used in the calculation</td>
+</tr>
+<tr>
+<td><a href="calculation_software/">calculation_software</a></td>
+<td>Software used for the calculation</td>
+</tr>
+<tr>
+<td><a href="calculation_software_version/">calculation_software_version</a></td>
+<td>Version of the software used for the calculation</td>
+</tr>
+<tr>
+<td><a href="calibration/">calibration</a></td>
+<td>CRM calibration information for this instrument</td>
+</tr>
+<tr>
+<td><a href="calibration_certificates/">calibration_certificates</a></td>
+<td>Information about calibration certificates</td>
+</tr>
+<tr>
+<td><a href="calibration_files/">calibration_files</a></td>
+<td>A list of supplementary file names containing coefficients and techniques use...</td>
+</tr>
+<tr>
+<td><a href="calibration_temperature/">calibration_temperature</a></td>
+<td>Temperature at which calibration was performed</td>
+</tr>
+<tr>
+<td><a href="calibration_type/">calibration_type</a></td>
+<td>Factory calibration, lab calibration, or field calibration</td>
+</tr>
+<tr>
+<td><a href="cell_type/">cell_type</a></td>
+<td>Type of titration cell used for TA analysis (open or closed)</td>
+</tr>
+<tr>
 <td><a href="changes_to_evolution_of_permit_criteria/">changes_to_evolution_of_permit_criteria</a></td>
 <td>e</td>
+</tr>
+<tr>
+<td><a href="co2_drying_method/">co2_drying_method</a></td>
+<td>Method used to dry the CO2 sample</td>
 </tr>
 <tr>
 <td><a href="colocated_operations/">colocated_operations</a></td>
 <td>A description is required if any nearby operations exist that may influence t...</td>
 </tr>
 <tr>
+<td><a href="concentration/">concentration</a></td>
+<td>CO2 concentration of the standard gas</td>
+</tr>
+<tr>
+<td><a href="correction_description/">correction_description</a></td>
+<td>Description of how the preservative effect was corrected for</td>
+</tr>
+<tr>
+<td><a href="correction_for_unpurified_dye/">correction_for_unpurified_dye</a></td>
+<td>Correction method applied if dye was not purified</td>
+</tr>
+<tr>
 <td><a href="country/">country</a></td>
 <td>The country in which the organization belongs</td>
+</tr>
+<tr>
+<td><a href="crm_batch_number/">crm_batch_number</a></td>
+<td>Batch number of the Certified Reference Material</td>
+</tr>
+<tr>
+<td><a href="crm_manufacturer/">crm_manufacturer</a></td>
+<td>Manufacturer of the Certified Reference Material (e</td>
+</tr>
+<tr>
+<td><a href="curve_fitting/">curve_fitting</a></td>
+<td>The curve fitting method used for TA determination</td>
 </tr>
 <tr>
 <td><a href="data_conflicts_and_unreported_data/">data_conflicts_and_unreported_data</a></td>
 <td>If data exist that are or have been used by the project but are not provided ...</td>
 </tr>
 <tr>
+<td><a href="data_product_type/">data_product_type</a></td>
+<td>"Controlled vocabulary" One of the three choices: (a) Originally collected da...</td>
+</tr>
+<tr>
+<td><a href="data_source/">data_source</a></td>
+<td>Source of the non-measured data (e</td>
+</tr>
+<tr>
+<td><a href="data_submitter/">data_submitter</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="dataset_type/">dataset_type</a></td>
+<td>Selected controlled vocabularies for data types relevant to mCDR have been re...</td>
+</tr>
+<tr>
+<td><a href="dataset_type_custom/">dataset_type_custom</a></td>
+<td>Custom "data type" when an appropriate value is not found in the controlled v...</td>
+</tr>
+<tr>
+<td><a href="dataset_variable_name/">dataset_variable_name</a></td>
+<td>How the variable is identified in the dataset data file</td>
+</tr>
+<tr>
 <td><a href="description/">description</a></td>
 <td>A narrative description of the thing</td>
+</tr>
+<tr>
+<td><a href="discrete_or_continuous/">discrete_or_continuous</a></td>
+<td>Whether the primary variables were measured based on discrete bottle or conti...</td>
 </tr>
 <tr>
 <td><a href="dosing_delivery_type/">dosing_delivery_type</a></td>
@@ -656,6 +908,18 @@
 <td>A human readable summary description of the dosing regimen / frequency</td>
 </tr>
 <tr>
+<td><a href="dye_correction_method/">dye_correction_method</a></td>
+<td>Method used to correct for dye effects</td>
+</tr>
+<tr>
+<td><a href="dye_purified/">dye_purified</a></td>
+<td>Whether the dye has been purified</td>
+</tr>
+<tr>
+<td><a href="dye_type_and_manufacturer/">dye_type_and_manufacturer</a></td>
+<td>Type of indicator dye and any detailed information about it, e</td>
+</tr>
+<tr>
 <td><a href="email/">email</a></td>
 <td>Contact email address</td>
 </tr>
@@ -684,6 +948,22 @@
 <td></td>
 </tr>
 <tr>
+<td><a href="fair_use_data_request/">fair_use_data_request</a></td>
+<td>A statement from the data producer regarding how this dataset should be used</td>
+</tr>
+<tr>
+<td><a href="field_replicate_information/">field_replicate_information</a></td>
+<td>Repetition of sample collection and measurement, e</td>
+</tr>
+<tr>
+<td><a href="filenames/">filenames</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="frequency/">frequency</a></td>
+<td>How often the instrument was calibrated</td>
+</tr>
+<tr>
 <td><a href="funder/">funder</a></td>
 <td></td>
 </tr>
@@ -696,12 +976,20 @@
 <td>Entities that have a somewhat fixed, physical extension</td>
 </tr>
 <tr>
+<td><a href="headspace_volume/">headspace_volume</a></td>
+<td>Volume of headspace in the sample container</td>
+</tr>
+<tr>
 <td><a href="identifier/">identifier</a></td>
 <td>A unique identifier for the thing</td>
 </tr>
 <tr>
 <td><a href="identifier_type/">identifier_type</a></td>
 <td>Type of Researcher ID (e</td>
+</tr>
+<tr>
+<td><a href="instrument_type/">instrument_type</a></td>
+<td>Type of instrument used to analyze samples or measure continuously</td>
 </tr>
 <tr>
 <td><a href="investigators/">investigators</a></td>
@@ -716,16 +1004,32 @@
 <td>Indicates that the field in question is provided as a file</td>
 </tr>
 <tr>
+<td><a href="last_calibration_date/">last_calibration_date</a></td>
+<td>Date and time of most recent calibration in UTC</td>
+</tr>
+<tr>
 <td><a href="latitude/">latitude</a></td>
 <td>Latitude in decimal degrees of a location</td>
+</tr>
+<tr>
+<td><a href="license/">license</a></td>
+<td>Link a Dataset to its license to document legal constraints by adding a schem...</td>
 </tr>
 <tr>
 <td><a href="line/">line</a></td>
 <td>A line is a point-to-point path consisting of two or more points</td>
 </tr>
 <tr>
+<td><a href="long_name/">long_name</a></td>
+<td>Full descriptive name of the variable</td>
+</tr>
+<tr>
 <td><a href="longitude/">longitude</a></td>
 <td>Longitude in decimal degrees of a location</td>
+</tr>
+<tr>
+<td><a href="manufacturer/">manufacturer</a></td>
+<td>Manufacturer of the standard gas</td>
 </tr>
 <tr>
 <td><a href="max_depth_in_m/">max_depth_in_m</a></td>
@@ -736,6 +1040,14 @@
 <td>The Marine Carbon Dioxide Removal (MCDR) pathway being studied</td>
 </tr>
 <tr>
+<td><a href="measurement_researcher/">measurement_researcher</a></td>
+<td>The name of the PI whose research team measured or derived this parameter</td>
+</tr>
+<tr>
+<td><a href="measurement_temperature/">measurement_temperature</a></td>
+<td>Temperature at which CO2 was measured</td>
+</tr>
+<tr>
 <td><a href="metadata_builder_git_hash/">metadata_builder_git_hash</a></td>
 <td>Git commit hash of the metadata-builder UI</td>
 </tr>
@@ -744,12 +1056,36 @@
 <td>Include links to relevant open datasets if referenced in the experiment but n...</td>
 </tr>
 <tr>
+<td><a href="method_reference/">method_reference</a></td>
+<td>Citation or reference for the calibration method</td>
+</tr>
+<tr>
 <td><a href="min_depth_in_m/">min_depth_in_m</a></td>
 <td>Minimum depth of observation in meters</td>
 </tr>
 <tr>
+<td><a href="missing_value_indicators/">missing_value_indicators</a></td>
+<td>The indicator used to represent missing values in the data file, e</td>
+</tr>
+<tr>
+<td><a href="model/">model</a></td>
+<td>Model number or name of the instrument</td>
+</tr>
+<tr>
 <td><a href="name/">name</a></td>
 <td>A human-readable name for the thing</td>
+</tr>
+<tr>
+<td><a href="other_detailed_information/">other_detailed_information</a></td>
+<td>Any additional information about this variable</td>
+</tr>
+<tr>
+<td><a href="owner/">owner</a></td>
+<td>Institution that owns the platform</td>
+</tr>
+<tr>
+<td><a href="pco2_fco2_calculation_method/">pco2_fco2_calculation_method</a></td>
+<td>Method used to calculate fCO2 from pCO2</td>
 </tr>
 <tr>
 <td><a href="permit_id/">permit_id</a></td>
@@ -768,12 +1104,40 @@
 <td>The group that issued the permit</td>
 </tr>
 <tr>
+<td><a href="ph_of_standards/">ph_of_standards</a></td>
+<td>pH values of the calibration standards used</td>
+</tr>
+<tr>
+<td><a href="ph_report_temperature/">ph_report_temperature</a></td>
+<td>Temperature at which pH is reported</td>
+</tr>
+<tr>
 <td><a href="phone/">phone</a></td>
 <td>Contact phone number</td>
 </tr>
 <tr>
 <td><a href="physical_site_description/">physical_site_description</a></td>
 <td>Provide information to help characterize the field site and provide context w...</td>
+</tr>
+<tr>
+<td><a href="platform_id/">platform_id</a></td>
+<td>Synonymous with glider ID, cruise ID</td>
+</tr>
+<tr>
+<td><a href="platform_info/">platform_info</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="platform_type/">platform_type</a></td>
+<td>Controlled vocabularies for the types of the platform: https://www</td>
+</tr>
+<tr>
+<td><a href="precision/">precision</a></td>
+<td>Precision of the instrument measurements</td>
+</tr>
+<tr>
+<td><a href="preservative/">preservative</a></td>
+<td>The preservative used to preserve the samples</td>
 </tr>
 <tr>
 <td><a href="previous_or_ongoing_colocated_research/">previous_or_ongoing_colocated_research</a></td>
@@ -796,6 +1160,26 @@
 <td>If possible, please provide public comments concatenated into a single pdf</td>
 </tr>
 <tr>
+<td><a href="qc_flag_scheme/">qc_flag_scheme</a></td>
+<td>Describe what the quality control flags stand for, e</td>
+</tr>
+<tr>
+<td><a href="qc_researcher/">qc_researcher</a></td>
+<td>The name of the PI whose research team QCed this parameter</td>
+</tr>
+<tr>
+<td><a href="qc_researcher_institution/">qc_researcher_institution</a></td>
+<td>The institution of the PI whose research team QCed this parameter</td>
+</tr>
+<tr>
+<td><a href="qc_steps_taken/">qc_steps_taken</a></td>
+<td>Describe what QC steps have been taken to improve the quality of the data (e</td>
+</tr>
+<tr>
+<td><a href="raw_data_calculation_method/">raw_data_calculation_method</a></td>
+<td>The method used to calculate reported values from raw sensor data</td>
+</tr>
+<tr>
 <td><a href="related_links/">related_links</a></td>
 <td>Links to websites or documents related to the external research project</td>
 </tr>
@@ -804,12 +1188,32 @@
 <td>Project, which the data collection is part of</td>
 </tr>
 <tr>
+<td><a href="resolution/">resolution</a></td>
+<td>Resolution of the CO2 sensor</td>
+</tr>
+<tr>
 <td><a href="role/">role</a></td>
 <td>Role of the investigator in the experiment (e</td>
 </tr>
 <tr>
+<td><a href="sample_preservation/">sample_preservation</a></td>
+<td>How the samples were preserved for DIC analysis</td>
+</tr>
+<tr>
+<td><a href="sampling_method/">sampling_method</a></td>
+<td>Method used to collect samples</td>
+</tr>
+<tr>
 <td><a href="sea_names/">sea_names</a></td>
 <td>Names of the seas where the data collection takes place, See Controlled Vocab...</td>
+</tr>
+<tr>
+<td><a href="seawater_volume/">seawater_volume</a></td>
+<td>Volume of seawater in the sample</td>
+</tr>
+<tr>
+<td><a href="serial_number/">serial_number</a></td>
+<td>Serial number of the instrument</td>
 </tr>
 <tr>
 <td><a href="social_context_site_description/">social_context_site_description</a></td>
@@ -820,8 +1224,16 @@
 <td>A description of any social research conducted to date</td>
 </tr>
 <tr>
+<td><a href="source_reference/">source_reference</a></td>
+<td>Citation or DOI for the source data</td>
+</tr>
+<tr>
 <td><a href="spatial_coverage/">spatial_coverage</a></td>
 <td>Latitude/longitude bounds of project site (e</td>
+</tr>
+<tr>
+<td><a href="standard_gases/">standard_gases</a></td>
+<td>Standard gases used for calibration</td>
 </tr>
 <tr>
 <td><a href="start_date/">start_date</a></td>
@@ -830,6 +1242,18 @@
 <tr>
 <td><a href="start_datetime/">start_datetime</a></td>
 <td>Start date and time of experiment in UTC ISO-8601</td>
+</tr>
+<tr>
+<td><a href="storage_method/">storage_method</a></td>
+<td>How samples were stored prior to analysis</td>
+</tr>
+<tr>
+<td><a href="technique_description/">technique_description</a></td>
+<td>Details of the calibration technique used</td>
+</tr>
+<tr>
+<td><a href="temperature_correction_method/">temperature_correction_method</a></td>
+<td>Method used to correct CO2 for temperature</td>
 </tr>
 <tr>
 <td><a href="temporal_coverage/">temporal_coverage</a></td>
@@ -852,6 +1276,14 @@
 <td>The form of tracer upon delivery to the ocean (e</td>
 </tr>
 <tr>
+<td><a href="uncertainty/">uncertainty</a></td>
+<td>Uncertainty of the standard gas concentration</td>
+</tr>
+<tr>
+<td><a href="uncertainty_definition/">uncertainty_definition</a></td>
+<td>A description of the uncertainties involved in this method</td>
+</tr>
+<tr>
 <td><a href="unit/">unit</a></td>
 <td></td>
 </tr>
@@ -860,12 +1292,44 @@
 <td>The URL of the linked resource</td>
 </tr>
 <tr>
+<td><a href="variable_type/">variable_type</a></td>
+<td>The type of variable, used to determine which fields are applicable</td>
+</tr>
+<tr>
+<td><a href="variable_unit/">variable_unit</a></td>
+<td>Unit of measurement for this variable</td>
+</tr>
+<tr>
+<td><a href="variables/">variables</a></td>
+<td></td>
+</tr>
+<tr>
 <td><a href="version/">version</a></td>
 <td>Version of the oae-data-protocol</td>
 </tr>
 <tr>
 <td><a href="vertical_coverage/">vertical_coverage</a></td>
 <td>Minimum and maximum depths of observation in meters</td>
+</tr>
+<tr>
+<td><a href="volume/">volume</a></td>
+<td>The volume of preservative used</td>
+</tr>
+<tr>
+<td><a href="water_vapor_correction/">water_vapor_correction</a></td>
+<td>Method used to correct for water vapor</td>
+</tr>
+<tr>
+<td><a href="weather_or_climate_quality/">weather_or_climate_quality</a></td>
+<td>Climate quality is defined as measurements of quality sufficient to assess lo...</td>
+</tr>
+<tr>
+<td><a href="wmo_traceable/">wmo_traceable</a></td>
+<td>Whether standard gases are traceable to WMO standards</td>
+</tr>
+<tr>
+<td><a href="xco2_pco2_calculation_method/">xco2_pco2_calculation_method</a></td>
+<td>Method used to calculate pCO2 from xCO2</td>
 </tr>
 </tbody>
 </table>
@@ -885,6 +1349,10 @@
 <tr>
 <td><a href="AlkalinityFeedstockProcessing/">AlkalinityFeedstockProcessing</a></td>
 <td>Methods used to process alkalinity feedstock</td>
+</tr>
+<tr>
+<td><a href="CalibrationType/">CalibrationType</a></td>
+<td>Where/how calibration was performed</td>
 </tr>
 <tr>
 <td><a href="DataProductType/">DataProductType</a></td>
@@ -923,7 +1391,7 @@
 <td>Type of marine Carbon Dioxide Removal (mCDR) pathways</td>
 </tr>
 <tr>
-<td><a href="PlatformTypes/">PlatformTypes</a></td>
+<td><a href="PlatformType/">PlatformType</a></td>
 <td></td>
 </tr>
 <tr>

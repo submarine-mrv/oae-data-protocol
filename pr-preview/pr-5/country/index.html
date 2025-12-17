@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: Country (country) - oae-data-protocol</title>
+        <title>Slot: country - oae-data-protocol</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-country-country" class="md-skip">
+        <a href="#slot-country" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: Country (country)
+              Slot: country
             
           </span>
         </div>
@@ -305,21 +305,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Identifier and Mapping Information">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#schema-source" class="md-nav__link">
-    <span class="md-ellipsis">
-      Schema Source
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -359,8 +344,7 @@
   
 
 
-<h1 id="slot-country-country">Slot: Country (country)</h1>
-<p><em>The country in which the organization belongs.</em></p>
+<h1 id="slot-country">Slot: country</h1>
 <p>URI: <a href="https://example.org/oae#country">oae:country</a></p>
 <!-- no inheritance hierarchy -->
 
@@ -375,6 +359,11 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="../Platform/">Platform</a></td>
+<td></td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../Organization/">Organization</a></td>
 <td></td>
 <td>no</td>
@@ -383,13 +372,9 @@
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../String/">String</a></li>
+<li>Range: NONE</li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
-<h3 id="schema-source">Schema Source</h3>
-<ul>
-<li>from schema: OAEDataManagementProtocol</li>
-</ul>
 <h2 id="mappings">Mappings</h2>
 <table>
 <thead>
@@ -413,15 +398,10 @@
 <details>
 
 <pre><code class="language-yaml">name: country
-description: The country in which the organization belongs.
-title: Country
-from_schema: OAEDataManagementProtocol
-rank: 1000
 alias: country
-owner: Organization
 domain_of:
 - Organization
-range: string
+- Platform
 
 </code></pre>
 
