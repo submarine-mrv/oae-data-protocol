@@ -245,6 +245,14 @@
                     "title": "How was the uncertainty defined",
                     "type": "string"
                 },
+                "variable_type": {
+                    "description": "The type of variable, used to determine which fields are applicable. This field acts as a discriminator for polymorphic variable types.",
+                    "enum": [
+                        "CO2ContinuousVariable"
+                    ],
+                    "title": "Variable Type",
+                    "type": "string"
+                },
                 "variable_unit": {
                     "description": "Unit of measurement for this variable.",
                     "title": "Unit",
@@ -277,6 +285,7 @@
                 "uncertainty_definition",
                 "missing_value_indicators",
                 "analyzing_instrument",
+                "variable_type",
                 "dataset_variable_name",
                 "long_name",
                 "variable_unit"
@@ -388,6 +397,14 @@
                     "title": "How was the uncertainty defined",
                     "type": "string"
                 },
+                "variable_type": {
+                    "description": "The type of variable, used to determine which fields are applicable. This field acts as a discriminator for polymorphic variable types.",
+                    "enum": [
+                        "CO2DiscreteVariable"
+                    ],
+                    "title": "Variable Type",
+                    "type": "string"
+                },
                 "variable_unit": {
                     "description": "Unit of measurement for this variable.",
                     "title": "Unit",
@@ -417,6 +434,7 @@
                 "uncertainty_definition",
                 "missing_value_indicators",
                 "analyzing_instrument",
+                "variable_type",
                 "dataset_variable_name",
                 "long_name",
                 "variable_unit"
@@ -671,6 +689,14 @@
                     "title": "How was the uncertainty defined",
                     "type": "string"
                 },
+                "variable_type": {
+                    "description": "The type of variable, used to determine which fields are applicable. This field acts as a discriminator for polymorphic variable types.",
+                    "enum": [
+                        "CalculatedVariable"
+                    ],
+                    "title": "Variable Type",
+                    "type": "string"
+                },
                 "variable_unit": {
                     "description": "Unit of measurement for this variable.",
                     "title": "Unit",
@@ -682,6 +708,7 @@
                 "qc_steps_taken",
                 "uncertainty_definition",
                 "missing_value_indicators",
+                "variable_type",
                 "dataset_variable_name",
                 "long_name",
                 "variable_unit"
@@ -854,6 +881,14 @@
                     "title": "How was the uncertainty defined",
                     "type": "string"
                 },
+                "variable_type": {
+                    "description": "The type of variable, used to determine which fields are applicable. This field acts as a discriminator for polymorphic variable types.",
+                    "enum": [
+                        "DICVariable"
+                    ],
+                    "title": "Variable Type",
+                    "type": "string"
+                },
                 "variable_unit": {
                     "description": "Unit of measurement for this variable.",
                     "title": "Unit",
@@ -873,6 +908,7 @@
                 "uncertainty_definition",
                 "missing_value_indicators",
                 "analyzing_instrument",
+                "variable_type",
                 "dataset_variable_name",
                 "long_name",
                 "variable_unit"
@@ -972,7 +1008,47 @@
                 },
                 "variables": {
                     "items": {
-                        "$ref": "#/$defs/Variable"
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/MeasuredVariable"
+                            },
+                            {
+                                "$ref": "#/$defs/CalculatedVariable"
+                            },
+                            {
+                                "$ref": "#/$defs/SocioeconomicVariable"
+                            },
+                            {
+                                "$ref": "#/$defs/NonMeasuredVariable"
+                            },
+                            {
+                                "$ref": "#/$defs/GenericVariable"
+                            },
+                            {
+                                "$ref": "#/$defs/DICVariable"
+                            },
+                            {
+                                "$ref": "#/$defs/PHVariable"
+                            },
+                            {
+                                "$ref": "#/$defs/HPLCVariable"
+                            },
+                            {
+                                "$ref": "#/$defs/SedimentVariable"
+                            },
+                            {
+                                "$ref": "#/$defs/PhysiologicalVariable"
+                            },
+                            {
+                                "$ref": "#/$defs/CO2ContinuousVariable"
+                            },
+                            {
+                                "$ref": "#/$defs/CO2DiscreteVariable"
+                            },
+                            {
+                                "$ref": "#/$defs/TAVariable"
+                            }
+                        ]
                     },
                     "type": [
                         "array",
@@ -1158,7 +1234,17 @@
                     ]
                 },
                 "spatial_coverage": {
-                    "$ref": "#/$defs/Place",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Place"
+                        },
+                        {
+                            "$ref": "#/$defs/SpatialCoverage"
+                        },
+                        {
+                            "$ref": "#/$defs/DosingLocation"
+                        }
+                    ],
                     "description": "Latitude/longitude bounds of observed data in experiment, provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]",
                     "title": "Spatial Coverage"
                 },
@@ -1224,7 +1310,17 @@
                     ]
                 },
                 "spatial_coverage": {
-                    "$ref": "#/$defs/Place",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Place"
+                        },
+                        {
+                            "$ref": "#/$defs/SpatialCoverage"
+                        },
+                        {
+                            "$ref": "#/$defs/DosingLocation"
+                        }
+                    ],
                     "description": "Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities) provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]",
                     "title": "Spatial Coverage"
                 },
@@ -1274,7 +1370,20 @@
                     "type": "string"
                 },
                 "calibration": {
-                    "$ref": "#/$defs/Calibration",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Calibration"
+                        },
+                        {
+                            "$ref": "#/$defs/CRMCalibration"
+                        },
+                        {
+                            "$ref": "#/$defs/PHCalibration"
+                        },
+                        {
+                            "$ref": "#/$defs/CO2Calibration"
+                        }
+                    ],
                     "description": "Calibration information for this instrument.",
                     "title": "Calibration"
                 },
@@ -1351,6 +1460,14 @@
                     "title": "Sampling Method",
                     "type": "string"
                 },
+                "variable_type": {
+                    "description": "The type of variable, used to determine which fields are applicable. This field acts as a discriminator for polymorphic variable types.",
+                    "enum": [
+                        "GenericVariable"
+                    ],
+                    "title": "Variable Type",
+                    "type": "string"
+                },
                 "variable_unit": {
                     "description": "Unit of measurement for this variable.",
                     "title": "Unit",
@@ -1358,6 +1475,7 @@
                 }
             },
             "required": [
+                "variable_type",
                 "dataset_variable_name",
                 "long_name",
                 "variable_unit"
@@ -1408,7 +1526,23 @@
             "description": "HPLC (High-Performance Liquid Chromatography) measured variable for pigment analysis. Always measured, not calculated.",
             "properties": {
                 "analyzing_instrument": {
-                    "$ref": "#/$defs/Instrument",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/CRMInstrument"
+                        },
+                        {
+                            "$ref": "#/$defs/PHInstrument"
+                        },
+                        {
+                            "$ref": "#/$defs/CO2GasDetector"
+                        },
+                        {
+                            "$ref": "#/$defs/Sensor"
+                        },
+                        {
+                            "$ref": "#/$defs/GenericInstrument"
+                        }
+                    ],
                     "description": "Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.",
                     "title": "Analyzing instrument"
                 },
@@ -1482,6 +1616,14 @@
                     "title": "How was the uncertainty defined",
                     "type": "string"
                 },
+                "variable_type": {
+                    "description": "The type of variable, used to determine which fields are applicable. This field acts as a discriminator for polymorphic variable types.",
+                    "enum": [
+                        "HPLCVariable"
+                    ],
+                    "title": "Variable Type",
+                    "type": "string"
+                },
                 "variable_unit": {
                     "description": "Unit of measurement for this variable.",
                     "title": "Unit",
@@ -1495,6 +1637,7 @@
                 "uncertainty_definition",
                 "missing_value_indicators",
                 "analyzing_instrument",
+                "variable_type",
                 "dataset_variable_name",
                 "long_name",
                 "variable_unit"
@@ -1697,7 +1840,17 @@
                     ]
                 },
                 "spatial_coverage": {
-                    "$ref": "#/$defs/Place",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Place"
+                        },
+                        {
+                            "$ref": "#/$defs/SpatialCoverage"
+                        },
+                        {
+                            "$ref": "#/$defs/DosingLocation"
+                        }
+                    ],
                     "description": "Latitude/longitude bounds of observed data in experiment, provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]",
                     "title": "Spatial Coverage"
                 },
@@ -1920,7 +2073,17 @@
                     ]
                 },
                 "spatial_coverage": {
-                    "$ref": "#/$defs/Place",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Place"
+                        },
+                        {
+                            "$ref": "#/$defs/SpatialCoverage"
+                        },
+                        {
+                            "$ref": "#/$defs/DosingLocation"
+                        }
+                    ],
                     "description": "Latitude/longitude bounds of observed data in experiment, provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]",
                     "title": "Spatial Coverage"
                 },
@@ -2013,7 +2176,23 @@
             "description": "Variable that is directly measured in-situ using instruments. Reference: OAPMetadata XSD variables.xsd - basic_measured_observation_base",
             "properties": {
                 "analyzing_instrument": {
-                    "$ref": "#/$defs/Instrument",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/CRMInstrument"
+                        },
+                        {
+                            "$ref": "#/$defs/PHInstrument"
+                        },
+                        {
+                            "$ref": "#/$defs/CO2GasDetector"
+                        },
+                        {
+                            "$ref": "#/$defs/Sensor"
+                        },
+                        {
+                            "$ref": "#/$defs/GenericInstrument"
+                        }
+                    ],
                     "description": "Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.",
                     "title": "Analyzing instrument"
                 },
@@ -2087,6 +2266,14 @@
                     "title": "How was the uncertainty defined",
                     "type": "string"
                 },
+                "variable_type": {
+                    "description": "The type of variable, used to determine which fields are applicable. This field acts as a discriminator for polymorphic variable types.",
+                    "enum": [
+                        "MeasuredVariable"
+                    ],
+                    "title": "Variable Type",
+                    "type": "string"
+                },
                 "variable_unit": {
                     "description": "Unit of measurement for this variable.",
                     "title": "Unit",
@@ -2100,6 +2287,7 @@
                 "uncertainty_definition",
                 "missing_value_indicators",
                 "analyzing_instrument",
+                "variable_type",
                 "dataset_variable_name",
                 "long_name",
                 "variable_unit"
@@ -2199,6 +2387,14 @@
                     "title": "Source reference",
                     "type": "string"
                 },
+                "variable_type": {
+                    "description": "The type of variable, used to determine which fields are applicable. This field acts as a discriminator for polymorphic variable types.",
+                    "enum": [
+                        "NonMeasuredVariable"
+                    ],
+                    "title": "Variable Type",
+                    "type": "string"
+                },
                 "variable_unit": {
                     "description": "Unit of measurement for this variable.",
                     "title": "Unit",
@@ -2207,6 +2403,7 @@
             },
             "required": [
                 "data_source",
+                "variable_type",
                 "dataset_variable_name",
                 "long_name",
                 "variable_unit"
@@ -2454,6 +2651,14 @@
                     "title": "How was the uncertainty defined",
                     "type": "string"
                 },
+                "variable_type": {
+                    "description": "The type of variable, used to determine which fields are applicable. This field acts as a discriminator for polymorphic variable types.",
+                    "enum": [
+                        "pHVariable"
+                    ],
+                    "title": "Variable Type",
+                    "type": "string"
+                },
                 "variable_unit": {
                     "description": "Unit of measurement for this variable.",
                     "title": "Unit",
@@ -2473,6 +2678,7 @@
                 "uncertainty_definition",
                 "missing_value_indicators",
                 "analyzing_instrument",
+                "variable_type",
                 "dataset_variable_name",
                 "long_name",
                 "variable_unit"
@@ -2581,7 +2787,23 @@
             "description": "Physiological response measured variable for organism response data.",
             "properties": {
                 "analyzing_instrument": {
-                    "$ref": "#/$defs/Instrument",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/CRMInstrument"
+                        },
+                        {
+                            "$ref": "#/$defs/PHInstrument"
+                        },
+                        {
+                            "$ref": "#/$defs/CO2GasDetector"
+                        },
+                        {
+                            "$ref": "#/$defs/Sensor"
+                        },
+                        {
+                            "$ref": "#/$defs/GenericInstrument"
+                        }
+                    ],
                     "description": "Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.",
                     "title": "Analyzing instrument"
                 },
@@ -2655,6 +2877,14 @@
                     "title": "How was the uncertainty defined",
                     "type": "string"
                 },
+                "variable_type": {
+                    "description": "The type of variable, used to determine which fields are applicable. This field acts as a discriminator for polymorphic variable types.",
+                    "enum": [
+                        "PhysiologicalVariable"
+                    ],
+                    "title": "Variable Type",
+                    "type": "string"
+                },
                 "variable_unit": {
                     "description": "Unit of measurement for this variable.",
                     "title": "Unit",
@@ -2668,6 +2898,7 @@
                 "uncertainty_definition",
                 "missing_value_indicators",
                 "analyzing_instrument",
+                "variable_type",
                 "dataset_variable_name",
                 "long_name",
                 "variable_unit"
@@ -2758,7 +2989,20 @@
                 },
                 "experiments": {
                     "items": {
-                        "$ref": "#/$defs/Experiment"
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/Experiment"
+                            },
+                            {
+                                "$ref": "#/$defs/Intervention"
+                            },
+                            {
+                                "$ref": "#/$defs/Tracer"
+                            },
+                            {
+                                "$ref": "#/$defs/InterventionWithTracer"
+                            }
+                        ]
                     },
                     "title": "Related Experiments",
                     "type": [
@@ -2835,7 +3079,17 @@
                     "type": "string"
                 },
                 "spatial_coverage": {
-                    "$ref": "#/$defs/Place",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Place"
+                        },
+                        {
+                            "$ref": "#/$defs/SpatialCoverage"
+                        },
+                        {
+                            "$ref": "#/$defs/DosingLocation"
+                        }
+                    ],
                     "description": "Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities) provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]",
                     "title": "Spatial Coverage"
                 },
@@ -3037,7 +3291,23 @@
             "description": "Sediment measured variable for seafloor/sediment sampling data.",
             "properties": {
                 "analyzing_instrument": {
-                    "$ref": "#/$defs/Instrument",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/CRMInstrument"
+                        },
+                        {
+                            "$ref": "#/$defs/PHInstrument"
+                        },
+                        {
+                            "$ref": "#/$defs/CO2GasDetector"
+                        },
+                        {
+                            "$ref": "#/$defs/Sensor"
+                        },
+                        {
+                            "$ref": "#/$defs/GenericInstrument"
+                        }
+                    ],
                     "description": "Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.",
                     "title": "Analyzing instrument"
                 },
@@ -3111,6 +3381,14 @@
                     "title": "How was the uncertainty defined",
                     "type": "string"
                 },
+                "variable_type": {
+                    "description": "The type of variable, used to determine which fields are applicable. This field acts as a discriminator for polymorphic variable types.",
+                    "enum": [
+                        "SedimentVariable"
+                    ],
+                    "title": "Variable Type",
+                    "type": "string"
+                },
                 "variable_unit": {
                     "description": "Unit of measurement for this variable.",
                     "title": "Unit",
@@ -3124,6 +3402,7 @@
                 "uncertainty_definition",
                 "missing_value_indicators",
                 "analyzing_instrument",
+                "variable_type",
                 "dataset_variable_name",
                 "long_name",
                 "variable_unit"
@@ -3141,7 +3420,20 @@
                     "type": "string"
                 },
                 "calibration": {
-                    "$ref": "#/$defs/Calibration",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Calibration"
+                        },
+                        {
+                            "$ref": "#/$defs/CRMCalibration"
+                        },
+                        {
+                            "$ref": "#/$defs/PHCalibration"
+                        },
+                        {
+                            "$ref": "#/$defs/CO2Calibration"
+                        }
+                    ],
                     "description": "Calibration information for this sensor.",
                     "title": "Calibration"
                 },
@@ -3208,6 +3500,14 @@
                     "title": "Other Detailed Information",
                     "type": "string"
                 },
+                "variable_type": {
+                    "description": "The type of variable, used to determine which fields are applicable. This field acts as a discriminator for polymorphic variable types.",
+                    "enum": [
+                        "SocioeconomicVariable"
+                    ],
+                    "title": "Variable Type",
+                    "type": "string"
+                },
                 "variable_unit": {
                     "description": "Unit of measurement for this variable.",
                     "title": "Unit",
@@ -3215,6 +3515,7 @@
                 }
             },
             "required": [
+                "variable_type",
                 "dataset_variable_name",
                 "long_name",
                 "variable_unit"
@@ -3372,6 +3673,14 @@
                     "title": "How was the uncertainty defined",
                     "type": "string"
                 },
+                "variable_type": {
+                    "description": "The type of variable, used to determine which fields are applicable. This field acts as a discriminator for polymorphic variable types.",
+                    "enum": [
+                        "TAVariable"
+                    ],
+                    "title": "Variable Type",
+                    "type": "string"
+                },
                 "variable_unit": {
                     "description": "Unit of measurement for this variable.",
                     "title": "Unit",
@@ -3393,6 +3702,7 @@
                 "uncertainty_definition",
                 "missing_value_indicators",
                 "analyzing_instrument",
+                "variable_type",
                 "dataset_variable_name",
                 "long_name",
                 "variable_unit"
@@ -3496,7 +3806,17 @@
                     ]
                 },
                 "spatial_coverage": {
-                    "$ref": "#/$defs/Place",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Place"
+                        },
+                        {
+                            "$ref": "#/$defs/SpatialCoverage"
+                        },
+                        {
+                            "$ref": "#/$defs/DosingLocation"
+                        }
+                    ],
                     "description": "Latitude/longitude bounds of observed data in experiment, provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]",
                     "title": "Spatial Coverage"
                 },

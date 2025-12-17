@@ -10,6 +10,7 @@ generator_args:
     mergeimports: true
     include_null: false
     title_from: title
+    include_range_class_descendants: true
   python:
     mergeimports: true
 

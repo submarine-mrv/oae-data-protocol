@@ -22,6 +22,14 @@ classes:
       Reference: OAPMetadata XSD variables.xsd - variable, basic_variable
     abstract: true
     attributes:
+      variable_type:
+        title: Variable Type
+        description: >-
+          The type of variable, used to determine which fields are applicable.
+          This field acts as a discriminator for polymorphic variable types.
+        designates_type: true
+        range: string
+        required: true
       dataset_variable_name:
         title: Variable name in data files
         description: >-
