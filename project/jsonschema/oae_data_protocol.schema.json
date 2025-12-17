@@ -136,6 +136,294 @@
             "title": "CO2Calibration",
             "type": "object"
         },
+        "CO2ContinuousVariable": {
+            "additionalProperties": false,
+            "description": "CO2 continuous (underway) measured variable. Reference: OAPMetadata XSD variables.xsd - co2_continuous",
+            "properties": {
+                "analyzing_instrument": {
+                    "$ref": "#/$defs/CO2GasDetector",
+                    "description": "CO2 gas detector with standard gas calibration.",
+                    "title": "Analyzing instrument"
+                },
+                "analyzing_method": {
+                    "description": "Method used to analyze samples.",
+                    "title": "Analyzing Method",
+                    "type": "string"
+                },
+                "calculation_software_version": {
+                    "description": "Version of the software used to calculate reported values from raw values.",
+                    "title": "Software version for the calculation",
+                    "type": "string"
+                },
+                "co2_drying_method": {
+                    "description": "Method used to dry the CO2 sample.",
+                    "title": "CO2 drying method",
+                    "type": "string"
+                },
+                "dataset_variable_name": {
+                    "description": "How the variable is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file.",
+                    "title": "Variable name in data files",
+                    "type": "string"
+                },
+                "discrete_or_continuous": {
+                    "description": "Whether the primary variables were measured based on discrete bottle or continuous measurements.",
+                    "title": "Discrete or continuous",
+                    "type": "string"
+                },
+                "field_replicate_information": {
+                    "description": "Repetition of sample collection and measurement, e.g., triplicate samples.",
+                    "title": "Field replicate information",
+                    "type": "string"
+                },
+                "long_name": {
+                    "description": "Full descriptive name of the variable.",
+                    "title": "Variable full name",
+                    "type": "string"
+                },
+                "measurement_researcher": {
+                    "$ref": "#/$defs/Person",
+                    "description": "The name of the PI whose research team measured or derived this parameter.",
+                    "title": "Researcher who measured the variable"
+                },
+                "method_reference": {
+                    "description": "Citation for the method used.",
+                    "title": "Method Reference",
+                    "type": "string"
+                },
+                "missing_value_indicators": {
+                    "description": "The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.",
+                    "title": "Missing value indicators",
+                    "type": "string"
+                },
+                "other_detailed_information": {
+                    "description": "Any additional information about this variable.",
+                    "title": "Other Detailed Information",
+                    "type": "string"
+                },
+                "pco2_fco2_calculation_method": {
+                    "description": "Method used to calculate fCO2 from pCO2.",
+                    "title": "pCO2 to fCO2 calculation method",
+                    "type": "string"
+                },
+                "qc_researcher": {
+                    "$ref": "#/$defs/Person",
+                    "description": "The name of the PI whose research team QCed this parameter.",
+                    "title": "Researcher who QCed this variable"
+                },
+                "qc_researcher_institution": {
+                    "description": "The institution of the PI whose research team QCed this parameter.",
+                    "title": "QC Researcher Institution",
+                    "type": "string"
+                },
+                "qc_steps_taken": {
+                    "description": "Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).",
+                    "title": "QC steps taken",
+                    "type": "string"
+                },
+                "raw_data_calculation_method": {
+                    "description": "The method used to calculate reported values from raw sensor data.",
+                    "title": "Method to calculate reported values from raw data",
+                    "type": "string"
+                },
+                "sampling_method": {
+                    "description": "Method used to collect samples.",
+                    "title": "Sampling Method",
+                    "type": "string"
+                },
+                "temperature_correction_method": {
+                    "description": "Method used to correct CO2 for temperature.",
+                    "title": "Temperature correction method",
+                    "type": "string"
+                },
+                "uncertainty": {
+                    "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.",
+                    "title": "Uncertainty",
+                    "type": "string"
+                },
+                "uncertainty_definition": {
+                    "description": "A description of the uncertainties involved in this method.",
+                    "title": "How was the uncertainty defined",
+                    "type": "string"
+                },
+                "variable_unit": {
+                    "description": "Unit of measurement for this variable.",
+                    "title": "Unit",
+                    "type": "string"
+                },
+                "water_vapor_correction": {
+                    "description": "Method used to correct for water vapor.",
+                    "title": "Water vapor correction",
+                    "type": "string"
+                },
+                "weather_or_climate_quality": {
+                    "description": "Climate quality is defined as measurements of quality sufficient to assess long-term trends. Weather quality is defined as measurements of quality sufficient to compare with satellite measurements and study regional air-sea CO2 flux.",
+                    "title": "Weather or climate quality",
+                    "type": "string"
+                },
+                "xco2_pco2_calculation_method": {
+                    "description": "Method used to calculate pCO2 from xCO2.",
+                    "title": "xCO2 to pCO2 calculation method",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "discrete_or_continuous",
+                "raw_data_calculation_method",
+                "water_vapor_correction",
+                "temperature_correction_method",
+                "sampling_method",
+                "analyzing_method",
+                "qc_steps_taken",
+                "uncertainty_definition",
+                "missing_value_indicators",
+                "analyzing_instrument",
+                "dataset_variable_name",
+                "long_name",
+                "variable_unit"
+            ],
+            "title": "CO2ContinuousVariable",
+            "type": "object"
+        },
+        "CO2DiscreteVariable": {
+            "additionalProperties": false,
+            "description": "CO2 discrete (bottle) measured variable. Reference: OAPMetadata XSD variables.xsd - co2_discrete",
+            "properties": {
+                "analyzing_instrument": {
+                    "$ref": "#/$defs/CO2GasDetector",
+                    "description": "CO2 gas detector with standard gas calibration.",
+                    "title": "Analyzing instrument"
+                },
+                "analyzing_method": {
+                    "description": "Method used to analyze samples.",
+                    "title": "Analyzing Method",
+                    "type": "string"
+                },
+                "dataset_variable_name": {
+                    "description": "How the variable is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file.",
+                    "title": "Variable name in data files",
+                    "type": "string"
+                },
+                "field_replicate_information": {
+                    "description": "Repetition of sample collection and measurement, e.g., triplicate samples.",
+                    "title": "Field replicate information",
+                    "type": "string"
+                },
+                "headspace_volume": {
+                    "description": "Volume of headspace in the sample container.",
+                    "title": "Headspace volume",
+                    "type": "string"
+                },
+                "long_name": {
+                    "description": "Full descriptive name of the variable.",
+                    "title": "Variable full name",
+                    "type": "string"
+                },
+                "measurement_researcher": {
+                    "$ref": "#/$defs/Person",
+                    "description": "The name of the PI whose research team measured or derived this parameter.",
+                    "title": "Researcher who measured the variable"
+                },
+                "measurement_temperature": {
+                    "description": "Temperature at which CO2 was measured.",
+                    "title": "Measurement temperature",
+                    "type": "string"
+                },
+                "method_reference": {
+                    "description": "Citation for the method used.",
+                    "title": "Method Reference",
+                    "type": "string"
+                },
+                "missing_value_indicators": {
+                    "description": "The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.",
+                    "title": "Missing value indicators",
+                    "type": "string"
+                },
+                "other_detailed_information": {
+                    "description": "Any additional information about this variable.",
+                    "title": "Other Detailed Information",
+                    "type": "string"
+                },
+                "qc_researcher": {
+                    "$ref": "#/$defs/Person",
+                    "description": "The name of the PI whose research team QCed this parameter.",
+                    "title": "Researcher who QCed this variable"
+                },
+                "qc_researcher_institution": {
+                    "description": "The institution of the PI whose research team QCed this parameter.",
+                    "title": "QC Researcher Institution",
+                    "type": "string"
+                },
+                "qc_steps_taken": {
+                    "description": "Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).",
+                    "title": "QC steps taken",
+                    "type": "string"
+                },
+                "sampling_method": {
+                    "description": "Method used to collect samples.",
+                    "title": "Sampling Method",
+                    "type": "string"
+                },
+                "seawater_volume": {
+                    "description": "Volume of seawater in the sample.",
+                    "title": "Seawater volume",
+                    "type": "string"
+                },
+                "storage_method": {
+                    "description": "How samples were stored prior to analysis.",
+                    "title": "Storage method",
+                    "type": "string"
+                },
+                "temperature_correction_method": {
+                    "description": "Method used to correct CO2 for temperature.",
+                    "title": "Temperature correction method",
+                    "type": "string"
+                },
+                "uncertainty": {
+                    "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.",
+                    "title": "Uncertainty",
+                    "type": "string"
+                },
+                "uncertainty_definition": {
+                    "description": "A description of the uncertainties involved in this method.",
+                    "title": "How was the uncertainty defined",
+                    "type": "string"
+                },
+                "variable_unit": {
+                    "description": "Unit of measurement for this variable.",
+                    "title": "Unit",
+                    "type": "string"
+                },
+                "water_vapor_correction": {
+                    "description": "Method used to correct for water vapor.",
+                    "title": "Water vapor correction",
+                    "type": "string"
+                },
+                "weather_or_climate_quality": {
+                    "description": "Climate quality is defined as measurements of quality sufficient to assess long-term trends. Weather quality is defined as measurements of quality sufficient to compare with satellite measurements and study regional air-sea CO2 flux.",
+                    "title": "Weather or climate quality",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "storage_method",
+                "seawater_volume",
+                "headspace_volume",
+                "measurement_temperature",
+                "water_vapor_correction",
+                "temperature_correction_method",
+                "sampling_method",
+                "analyzing_method",
+                "qc_steps_taken",
+                "uncertainty_definition",
+                "missing_value_indicators",
+                "analyzing_instrument",
+                "dataset_variable_name",
+                "long_name",
+                "variable_unit"
+            ],
+            "title": "CO2DiscreteVariable",
+            "type": "object"
+        },
         "CO2GasDetector": {
             "additionalProperties": false,
             "description": "CO2 gas detector with standard gas calibration.",
@@ -475,6 +763,121 @@
                 }
             },
             "title": "Container",
+            "type": "object"
+        },
+        "DICVariable": {
+            "additionalProperties": false,
+            "description": "Dissolved Inorganic Carbon (DIC) measured variable. Uses CRM-calibrated instrument and includes sample preservation information. Reference: OAPMetadata XSD variables.xsd - DIC_measured",
+            "properties": {
+                "analyzing_instrument": {
+                    "$ref": "#/$defs/CRMInstrument",
+                    "description": "CRM-calibrated instrument used to analyze DIC samples.",
+                    "title": "Analyzing instrument"
+                },
+                "analyzing_method": {
+                    "description": "Method used to analyze samples.",
+                    "title": "Analyzing Method",
+                    "type": "string"
+                },
+                "blank_correction": {
+                    "description": "The magnitude of the blank correction applied to the DIC measurements.",
+                    "title": "Magnitude of blank correction",
+                    "type": "string"
+                },
+                "dataset_variable_name": {
+                    "description": "How the variable is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file.",
+                    "title": "Variable name in data files",
+                    "type": "string"
+                },
+                "field_replicate_information": {
+                    "description": "Repetition of sample collection and measurement, e.g., triplicate samples.",
+                    "title": "Field replicate information",
+                    "type": "string"
+                },
+                "long_name": {
+                    "description": "Full descriptive name of the variable.",
+                    "title": "Variable full name",
+                    "type": "string"
+                },
+                "measurement_researcher": {
+                    "$ref": "#/$defs/Person",
+                    "description": "The name of the PI whose research team measured or derived this parameter.",
+                    "title": "Researcher who measured the variable"
+                },
+                "method_reference": {
+                    "description": "Citation for the method used.",
+                    "title": "Method Reference",
+                    "type": "string"
+                },
+                "missing_value_indicators": {
+                    "description": "The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.",
+                    "title": "Missing value indicators",
+                    "type": "string"
+                },
+                "other_detailed_information": {
+                    "description": "Any additional information about this variable.",
+                    "title": "Other Detailed Information",
+                    "type": "string"
+                },
+                "qc_researcher": {
+                    "$ref": "#/$defs/Person",
+                    "description": "The name of the PI whose research team QCed this parameter.",
+                    "title": "Researcher who QCed this variable"
+                },
+                "qc_researcher_institution": {
+                    "description": "The institution of the PI whose research team QCed this parameter.",
+                    "title": "QC Researcher Institution",
+                    "type": "string"
+                },
+                "qc_steps_taken": {
+                    "description": "Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).",
+                    "title": "QC steps taken",
+                    "type": "string"
+                },
+                "sample_preservation": {
+                    "$ref": "#/$defs/SamplePreservation",
+                    "description": "How the samples were preserved for DIC analysis.",
+                    "title": "Sample preservation"
+                },
+                "sampling_method": {
+                    "description": "Method used to collect samples.",
+                    "title": "Sampling Method",
+                    "type": "string"
+                },
+                "uncertainty": {
+                    "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.",
+                    "title": "Uncertainty",
+                    "type": "string"
+                },
+                "uncertainty_definition": {
+                    "description": "A description of the uncertainties involved in this method.",
+                    "title": "How was the uncertainty defined",
+                    "type": "string"
+                },
+                "variable_unit": {
+                    "description": "Unit of measurement for this variable.",
+                    "title": "Unit",
+                    "type": "string"
+                },
+                "weather_or_climate_quality": {
+                    "description": "Climate quality is defined as measurements of quality sufficient to assess long-term trends. Weather quality is defined as measurements of quality sufficient to compare with satellite measurements and study regional air-sea CO2 flux.",
+                    "title": "Weather or climate quality",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "blank_correction",
+                "sampling_method",
+                "analyzing_method",
+                "qc_steps_taken",
+                "uncertainty_definition",
+                "missing_value_indicators",
+                "analyzing_instrument",
+                "dataset_variable_name",
+                "long_name",
+                "variable_unit"
+            ],
+            "title": "DICVariable",
             "type": "object"
         },
         "DataProductType": {
@@ -998,6 +1401,105 @@
                 }
             },
             "title": "GeoShape",
+            "type": "object"
+        },
+        "HPLCVariable": {
+            "additionalProperties": false,
+            "description": "HPLC (High-Performance Liquid Chromatography) measured variable for pigment analysis. Always measured, not calculated.",
+            "properties": {
+                "analyzing_instrument": {
+                    "$ref": "#/$defs/Instrument",
+                    "description": "Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.",
+                    "title": "Analyzing instrument"
+                },
+                "analyzing_method": {
+                    "description": "Method used to analyze samples.",
+                    "title": "Analyzing Method",
+                    "type": "string"
+                },
+                "dataset_variable_name": {
+                    "description": "How the variable is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file.",
+                    "title": "Variable name in data files",
+                    "type": "string"
+                },
+                "field_replicate_information": {
+                    "description": "Repetition of sample collection and measurement, e.g., triplicate samples.",
+                    "title": "Field replicate information",
+                    "type": "string"
+                },
+                "long_name": {
+                    "description": "Full descriptive name of the variable.",
+                    "title": "Variable full name",
+                    "type": "string"
+                },
+                "measurement_researcher": {
+                    "$ref": "#/$defs/Person",
+                    "description": "The name of the PI whose research team measured or derived this parameter.",
+                    "title": "Researcher who measured the variable"
+                },
+                "method_reference": {
+                    "description": "Citation for the method used.",
+                    "title": "Method Reference",
+                    "type": "string"
+                },
+                "missing_value_indicators": {
+                    "description": "The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.",
+                    "title": "Missing value indicators",
+                    "type": "string"
+                },
+                "other_detailed_information": {
+                    "description": "Any additional information about this variable.",
+                    "title": "Other Detailed Information",
+                    "type": "string"
+                },
+                "qc_researcher": {
+                    "$ref": "#/$defs/Person",
+                    "description": "The name of the PI whose research team QCed this parameter.",
+                    "title": "Researcher who QCed this variable"
+                },
+                "qc_researcher_institution": {
+                    "description": "The institution of the PI whose research team QCed this parameter.",
+                    "title": "QC Researcher Institution",
+                    "type": "string"
+                },
+                "qc_steps_taken": {
+                    "description": "Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).",
+                    "title": "QC steps taken",
+                    "type": "string"
+                },
+                "sampling_method": {
+                    "description": "Method used to collect samples.",
+                    "title": "Sampling Method",
+                    "type": "string"
+                },
+                "uncertainty": {
+                    "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.",
+                    "title": "Uncertainty",
+                    "type": "string"
+                },
+                "uncertainty_definition": {
+                    "description": "A description of the uncertainties involved in this method.",
+                    "title": "How was the uncertainty defined",
+                    "type": "string"
+                },
+                "variable_unit": {
+                    "description": "Unit of measurement for this variable.",
+                    "title": "Unit",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "sampling_method",
+                "analyzing_method",
+                "qc_steps_taken",
+                "uncertainty_definition",
+                "missing_value_indicators",
+                "analyzing_instrument",
+                "dataset_variable_name",
+                "long_name",
+                "variable_unit"
+            ],
+            "title": "HPLCVariable",
             "type": "object"
         },
         "HydrologicLocation": {
@@ -1658,6 +2160,60 @@
             "title": "NamedLink",
             "type": "object"
         },
+        "NonMeasuredVariable": {
+            "additionalProperties": false,
+            "description": "Non-measured variable for data from external sources (e.g., satellite, model outputs, published data) that are not directly measured by the project but included in the dataset.",
+            "properties": {
+                "data_source": {
+                    "description": "Source of the non-measured data (e.g., satellite mission, model name).",
+                    "title": "Data source",
+                    "type": "string"
+                },
+                "dataset_variable_name": {
+                    "description": "How the variable is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file.",
+                    "title": "Variable name in data files",
+                    "type": "string"
+                },
+                "long_name": {
+                    "description": "Full descriptive name of the variable.",
+                    "title": "Variable full name",
+                    "type": "string"
+                },
+                "measurement_researcher": {
+                    "$ref": "#/$defs/Person",
+                    "description": "The name of the PI whose research team measured or derived this parameter.",
+                    "title": "Researcher who measured the variable"
+                },
+                "method_reference": {
+                    "description": "Citation for the method used.",
+                    "title": "Method Reference",
+                    "type": "string"
+                },
+                "other_detailed_information": {
+                    "description": "Any additional information about this variable.",
+                    "title": "Other Detailed Information",
+                    "type": "string"
+                },
+                "source_reference": {
+                    "description": "Citation or DOI for the source data.",
+                    "title": "Source reference",
+                    "type": "string"
+                },
+                "variable_unit": {
+                    "description": "Unit of measurement for this variable.",
+                    "title": "Unit",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "data_source",
+                "dataset_variable_name",
+                "long_name",
+                "variable_unit"
+            ],
+            "title": "NonMeasuredVariable",
+            "type": "object"
+        },
         "Organization": {
             "additionalProperties": false,
             "description": "",
@@ -1804,6 +2360,126 @@
             "title": "PHInstrument",
             "type": "object"
         },
+        "PHVariable": {
+            "additionalProperties": false,
+            "description": "pH measured variable with dye-based spectrophotometric measurement. Reference: OAPMetadata XSD variables.xsd - pH_measured",
+            "properties": {
+                "analyzing_instrument": {
+                    "$ref": "#/$defs/PHInstrument",
+                    "description": "pH instrument with dye-based calibration used for measurements.",
+                    "title": "Analyzing instrument"
+                },
+                "analyzing_method": {
+                    "description": "Method used to analyze samples.",
+                    "title": "Analyzing Method",
+                    "type": "string"
+                },
+                "dataset_variable_name": {
+                    "description": "How the variable is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file.",
+                    "title": "Variable name in data files",
+                    "type": "string"
+                },
+                "field_replicate_information": {
+                    "description": "Repetition of sample collection and measurement, e.g., triplicate samples.",
+                    "title": "Field replicate information",
+                    "type": "string"
+                },
+                "long_name": {
+                    "description": "Full descriptive name of the variable.",
+                    "title": "Variable full name",
+                    "type": "string"
+                },
+                "measurement_researcher": {
+                    "$ref": "#/$defs/Person",
+                    "description": "The name of the PI whose research team measured or derived this parameter.",
+                    "title": "Researcher who measured the variable"
+                },
+                "measurement_temperature": {
+                    "description": "Temperature at which pH was measured.",
+                    "title": "Measurement temperature",
+                    "type": "string"
+                },
+                "method_reference": {
+                    "description": "Citation for the method used.",
+                    "title": "Method Reference",
+                    "type": "string"
+                },
+                "missing_value_indicators": {
+                    "description": "The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.",
+                    "title": "Missing value indicators",
+                    "type": "string"
+                },
+                "other_detailed_information": {
+                    "description": "Any additional information about this variable.",
+                    "title": "Other Detailed Information",
+                    "type": "string"
+                },
+                "ph_report_temperature": {
+                    "description": "Temperature at which pH is reported.",
+                    "title": "pH report temperature",
+                    "type": "string"
+                },
+                "qc_researcher": {
+                    "$ref": "#/$defs/Person",
+                    "description": "The name of the PI whose research team QCed this parameter.",
+                    "title": "Researcher who QCed this variable"
+                },
+                "qc_researcher_institution": {
+                    "description": "The institution of the PI whose research team QCed this parameter.",
+                    "title": "QC Researcher Institution",
+                    "type": "string"
+                },
+                "qc_steps_taken": {
+                    "description": "Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).",
+                    "title": "QC steps taken",
+                    "type": "string"
+                },
+                "sampling_method": {
+                    "description": "Method used to collect samples.",
+                    "title": "Sampling Method",
+                    "type": "string"
+                },
+                "temperature_correction_method": {
+                    "description": "Method used to correct pH for temperature.",
+                    "title": "Temperature correction method",
+                    "type": "string"
+                },
+                "uncertainty": {
+                    "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.",
+                    "title": "Uncertainty",
+                    "type": "string"
+                },
+                "uncertainty_definition": {
+                    "description": "A description of the uncertainties involved in this method.",
+                    "title": "How was the uncertainty defined",
+                    "type": "string"
+                },
+                "variable_unit": {
+                    "description": "Unit of measurement for this variable.",
+                    "title": "Unit",
+                    "type": "string"
+                },
+                "weather_or_climate_quality": {
+                    "description": "Climate quality is defined as measurements of quality sufficient to assess long-term trends. Weather quality is defined as measurements of quality sufficient to compare with satellite measurements and study regional air-sea CO2 flux.",
+                    "title": "Weather or climate quality",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "ph_report_temperature",
+                "sampling_method",
+                "analyzing_method",
+                "qc_steps_taken",
+                "uncertainty_definition",
+                "missing_value_indicators",
+                "analyzing_instrument",
+                "dataset_variable_name",
+                "long_name",
+                "variable_unit"
+            ],
+            "title": "PHVariable",
+            "type": "object"
+        },
         "Permit": {
             "additionalProperties": false,
             "description": "A permit associated with the project.",
@@ -1898,6 +2574,105 @@
                 "name"
             ],
             "title": "Person",
+            "type": "object"
+        },
+        "PhysiologicalVariable": {
+            "additionalProperties": false,
+            "description": "Physiological response measured variable for organism response data.",
+            "properties": {
+                "analyzing_instrument": {
+                    "$ref": "#/$defs/Instrument",
+                    "description": "Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.",
+                    "title": "Analyzing instrument"
+                },
+                "analyzing_method": {
+                    "description": "Method used to analyze samples.",
+                    "title": "Analyzing Method",
+                    "type": "string"
+                },
+                "dataset_variable_name": {
+                    "description": "How the variable is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file.",
+                    "title": "Variable name in data files",
+                    "type": "string"
+                },
+                "field_replicate_information": {
+                    "description": "Repetition of sample collection and measurement, e.g., triplicate samples.",
+                    "title": "Field replicate information",
+                    "type": "string"
+                },
+                "long_name": {
+                    "description": "Full descriptive name of the variable.",
+                    "title": "Variable full name",
+                    "type": "string"
+                },
+                "measurement_researcher": {
+                    "$ref": "#/$defs/Person",
+                    "description": "The name of the PI whose research team measured or derived this parameter.",
+                    "title": "Researcher who measured the variable"
+                },
+                "method_reference": {
+                    "description": "Citation for the method used.",
+                    "title": "Method Reference",
+                    "type": "string"
+                },
+                "missing_value_indicators": {
+                    "description": "The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.",
+                    "title": "Missing value indicators",
+                    "type": "string"
+                },
+                "other_detailed_information": {
+                    "description": "Any additional information about this variable.",
+                    "title": "Other Detailed Information",
+                    "type": "string"
+                },
+                "qc_researcher": {
+                    "$ref": "#/$defs/Person",
+                    "description": "The name of the PI whose research team QCed this parameter.",
+                    "title": "Researcher who QCed this variable"
+                },
+                "qc_researcher_institution": {
+                    "description": "The institution of the PI whose research team QCed this parameter.",
+                    "title": "QC Researcher Institution",
+                    "type": "string"
+                },
+                "qc_steps_taken": {
+                    "description": "Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).",
+                    "title": "QC steps taken",
+                    "type": "string"
+                },
+                "sampling_method": {
+                    "description": "Method used to collect samples.",
+                    "title": "Sampling Method",
+                    "type": "string"
+                },
+                "uncertainty": {
+                    "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.",
+                    "title": "Uncertainty",
+                    "type": "string"
+                },
+                "uncertainty_definition": {
+                    "description": "A description of the uncertainties involved in this method.",
+                    "title": "How was the uncertainty defined",
+                    "type": "string"
+                },
+                "variable_unit": {
+                    "description": "Unit of measurement for this variable.",
+                    "title": "Unit",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "sampling_method",
+                "analyzing_method",
+                "qc_steps_taken",
+                "uncertainty_definition",
+                "missing_value_indicators",
+                "analyzing_instrument",
+                "dataset_variable_name",
+                "long_name",
+                "variable_unit"
+            ],
+            "title": "PhysiologicalVariable",
             "type": "object"
         },
         "Place": {
@@ -2096,6 +2871,33 @@
             "title": "ResearcherIDType",
             "type": "string"
         },
+        "SamplePreservation": {
+            "additionalProperties": false,
+            "description": "Sample preservation information for DIC and TA measurements. Reference: OAPMetadata XSD variables.xsd - sample_preservation",
+            "properties": {
+                "correction_description": {
+                    "description": "Description of how the preservative effect was corrected for.",
+                    "title": "Preservative correction description",
+                    "type": "string"
+                },
+                "preservative": {
+                    "description": "The preservative used to preserve the samples.",
+                    "title": "Preservative used",
+                    "type": "string"
+                },
+                "volume": {
+                    "description": "The volume of preservative used.",
+                    "title": "Preservative volume",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "preservative",
+                "volume"
+            ],
+            "title": "SamplePreservation",
+            "type": "object"
+        },
         "SeaNames": {
             "description": "",
             "enum": [
@@ -2230,6 +3032,105 @@
             "title": "SeaNames",
             "type": "string"
         },
+        "SedimentVariable": {
+            "additionalProperties": false,
+            "description": "Sediment measured variable for seafloor/sediment sampling data.",
+            "properties": {
+                "analyzing_instrument": {
+                    "$ref": "#/$defs/Instrument",
+                    "description": "Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.",
+                    "title": "Analyzing instrument"
+                },
+                "analyzing_method": {
+                    "description": "Method used to analyze samples.",
+                    "title": "Analyzing Method",
+                    "type": "string"
+                },
+                "dataset_variable_name": {
+                    "description": "How the variable is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file.",
+                    "title": "Variable name in data files",
+                    "type": "string"
+                },
+                "field_replicate_information": {
+                    "description": "Repetition of sample collection and measurement, e.g., triplicate samples.",
+                    "title": "Field replicate information",
+                    "type": "string"
+                },
+                "long_name": {
+                    "description": "Full descriptive name of the variable.",
+                    "title": "Variable full name",
+                    "type": "string"
+                },
+                "measurement_researcher": {
+                    "$ref": "#/$defs/Person",
+                    "description": "The name of the PI whose research team measured or derived this parameter.",
+                    "title": "Researcher who measured the variable"
+                },
+                "method_reference": {
+                    "description": "Citation for the method used.",
+                    "title": "Method Reference",
+                    "type": "string"
+                },
+                "missing_value_indicators": {
+                    "description": "The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.",
+                    "title": "Missing value indicators",
+                    "type": "string"
+                },
+                "other_detailed_information": {
+                    "description": "Any additional information about this variable.",
+                    "title": "Other Detailed Information",
+                    "type": "string"
+                },
+                "qc_researcher": {
+                    "$ref": "#/$defs/Person",
+                    "description": "The name of the PI whose research team QCed this parameter.",
+                    "title": "Researcher who QCed this variable"
+                },
+                "qc_researcher_institution": {
+                    "description": "The institution of the PI whose research team QCed this parameter.",
+                    "title": "QC Researcher Institution",
+                    "type": "string"
+                },
+                "qc_steps_taken": {
+                    "description": "Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).",
+                    "title": "QC steps taken",
+                    "type": "string"
+                },
+                "sampling_method": {
+                    "description": "Method used to collect samples.",
+                    "title": "Sampling Method",
+                    "type": "string"
+                },
+                "uncertainty": {
+                    "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.",
+                    "title": "Uncertainty",
+                    "type": "string"
+                },
+                "uncertainty_definition": {
+                    "description": "A description of the uncertainties involved in this method.",
+                    "title": "How was the uncertainty defined",
+                    "type": "string"
+                },
+                "variable_unit": {
+                    "description": "Unit of measurement for this variable.",
+                    "title": "Unit",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "sampling_method",
+                "analyzing_method",
+                "qc_steps_taken",
+                "uncertainty_definition",
+                "missing_value_indicators",
+                "analyzing_instrument",
+                "dataset_variable_name",
+                "long_name",
+                "variable_unit"
+            ],
+            "title": "SedimentVariable",
+            "type": "object"
+        },
         "Sensor": {
             "additionalProperties": false,
             "description": "Generic sensor with basic calibration information. Used for auxiliary measurements like temperature, pressure, etc.",
@@ -2276,6 +3177,49 @@
                 "accuracy"
             ],
             "title": "Sensor",
+            "type": "object"
+        },
+        "SocioeconomicVariable": {
+            "additionalProperties": false,
+            "description": "Socioeconomic variable for social and economic data. Note: Does NOT include QCFields mixin as QC is not applicable.",
+            "properties": {
+                "dataset_variable_name": {
+                    "description": "How the variable is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file.",
+                    "title": "Variable name in data files",
+                    "type": "string"
+                },
+                "long_name": {
+                    "description": "Full descriptive name of the variable.",
+                    "title": "Variable full name",
+                    "type": "string"
+                },
+                "measurement_researcher": {
+                    "$ref": "#/$defs/Person",
+                    "description": "The name of the PI whose research team measured or derived this parameter.",
+                    "title": "Researcher who measured the variable"
+                },
+                "method_reference": {
+                    "description": "Citation for the method used.",
+                    "title": "Method Reference",
+                    "type": "string"
+                },
+                "other_detailed_information": {
+                    "description": "Any additional information about this variable.",
+                    "title": "Other Detailed Information",
+                    "type": "string"
+                },
+                "variable_unit": {
+                    "description": "Unit of measurement for this variable.",
+                    "title": "Unit",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "dataset_variable_name",
+                "long_name",
+                "variable_unit"
+            ],
+            "title": "SocioeconomicVariable",
             "type": "object"
         },
         "SpatialCoverage": {
@@ -2327,6 +3271,133 @@
                 "uncertainty"
             ],
             "title": "StandardGas",
+            "type": "object"
+        },
+        "TAVariable": {
+            "additionalProperties": false,
+            "description": "Total Alkalinity (TA) measured variable. Extends DIC with TA-specific fields. Reference: OAPMetadata XSD variables.xsd - TA_measured",
+            "properties": {
+                "analyzing_instrument": {
+                    "$ref": "#/$defs/CRMInstrument",
+                    "description": "CRM-calibrated instrument used to analyze DIC samples.",
+                    "title": "Analyzing instrument"
+                },
+                "analyzing_method": {
+                    "description": "Method used to analyze samples.",
+                    "title": "Analyzing Method",
+                    "type": "string"
+                },
+                "blank_correction": {
+                    "description": "The magnitude of the blank correction applied to the DIC measurements.",
+                    "title": "Magnitude of blank correction",
+                    "type": "string"
+                },
+                "cell_type": {
+                    "description": "Type of titration cell used for TA analysis (open or closed).",
+                    "title": "Cell type",
+                    "type": "string"
+                },
+                "curve_fitting": {
+                    "description": "The curve fitting method used for TA determination.",
+                    "title": "Curve fitting method",
+                    "type": "string"
+                },
+                "dataset_variable_name": {
+                    "description": "How the variable is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file.",
+                    "title": "Variable name in data files",
+                    "type": "string"
+                },
+                "field_replicate_information": {
+                    "description": "Repetition of sample collection and measurement, e.g., triplicate samples.",
+                    "title": "Field replicate information",
+                    "type": "string"
+                },
+                "long_name": {
+                    "description": "Full descriptive name of the variable.",
+                    "title": "Variable full name",
+                    "type": "string"
+                },
+                "measurement_researcher": {
+                    "$ref": "#/$defs/Person",
+                    "description": "The name of the PI whose research team measured or derived this parameter.",
+                    "title": "Researcher who measured the variable"
+                },
+                "method_reference": {
+                    "description": "Citation for the method used.",
+                    "title": "Method Reference",
+                    "type": "string"
+                },
+                "missing_value_indicators": {
+                    "description": "The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.",
+                    "title": "Missing value indicators",
+                    "type": "string"
+                },
+                "other_detailed_information": {
+                    "description": "Any additional information about this variable.",
+                    "title": "Other Detailed Information",
+                    "type": "string"
+                },
+                "qc_researcher": {
+                    "$ref": "#/$defs/Person",
+                    "description": "The name of the PI whose research team QCed this parameter.",
+                    "title": "Researcher who QCed this variable"
+                },
+                "qc_researcher_institution": {
+                    "description": "The institution of the PI whose research team QCed this parameter.",
+                    "title": "QC Researcher Institution",
+                    "type": "string"
+                },
+                "qc_steps_taken": {
+                    "description": "Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).",
+                    "title": "QC steps taken",
+                    "type": "string"
+                },
+                "sample_preservation": {
+                    "$ref": "#/$defs/SamplePreservation",
+                    "description": "How the samples were preserved for DIC analysis.",
+                    "title": "Sample preservation"
+                },
+                "sampling_method": {
+                    "description": "Method used to collect samples.",
+                    "title": "Sampling Method",
+                    "type": "string"
+                },
+                "uncertainty": {
+                    "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.",
+                    "title": "Uncertainty",
+                    "type": "string"
+                },
+                "uncertainty_definition": {
+                    "description": "A description of the uncertainties involved in this method.",
+                    "title": "How was the uncertainty defined",
+                    "type": "string"
+                },
+                "variable_unit": {
+                    "description": "Unit of measurement for this variable.",
+                    "title": "Unit",
+                    "type": "string"
+                },
+                "weather_or_climate_quality": {
+                    "description": "Climate quality is defined as measurements of quality sufficient to assess long-term trends. Weather quality is defined as measurements of quality sufficient to compare with satellite measurements and study regional air-sea CO2 flux.",
+                    "title": "Weather or climate quality",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "cell_type",
+                "curve_fitting",
+                "blank_correction",
+                "sampling_method",
+                "analyzing_method",
+                "qc_steps_taken",
+                "uncertainty_definition",
+                "missing_value_indicators",
+                "analyzing_instrument",
+                "dataset_variable_name",
+                "long_name",
+                "variable_unit"
+            ],
+            "title": "TAVariable",
             "type": "object"
         },
         "Tracer": {
