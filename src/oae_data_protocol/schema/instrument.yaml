@@ -1,0 +1,120 @@
+id: Instrument
+name: Instrument
+description: >-
+  Instrument type hierarchy for scientific measurements.
+  See docs/dev/noaa-xsd-fields-not-included.md for XSD fields not yet included.
+
+prefixes:
+  oae: "https://example.org/oae#"
+  schema: "http://schema.org/"
+
+default_prefix: oae
+
+imports:
+  - linkml:types
+  - calibration
+
+classes:
+  # Abstract base instrument class
+  Instrument:
+    description: >-
+      Base class for scientific instruments used in measurements.
+    abstract: true
+    attributes:
+      instrument_type:
+        title: Instrument type
+        description: >-
+          Type of instrument used to analyze samples or measure continuously.
+        range: string
+        required: true
+      manufacturer:
+        title: Manufacturer
+        description: Manufacturer name of the instrument.
+        range: string
+      model:
+        title: Model
+        description: Model number or name of the instrument.
+        range: string
+      serial_number:
+        title: Serial number
+        description: Serial number of the instrument.
+        range: string
+      precision:
+        title: Precision
+        description: Precision of the instrument measurements.
+        range: string
+        required: true
+        # TODO: Change to DimensionedQuantity in Phase 3
+      accuracy:
+        title: Accuracy
+        description: Accuracy of the instrument measurements.
+        range: string
+        required: true
+        # TODO: Change to DimensionedQuantity in Phase 3
+  # CRM Instrument for DIC and TA measurements
+  CRMInstrument:
+    description: >-
+      Instrument calibrated with Certified Reference Materials, used for DIC and TA measurements.
+    is_a: Instrument
+    attributes:
+      calibration:
+        title: Calibration
+        description: CRM calibration information for this instrument.
+        range: CRMCalibration
+        required: true
+
+  # pH Instrument with dye-based calibration
+  pHInstrument:
+    description: >-
+      pH measurement instrument with dye-based calibration.
+    is_a: Instrument
+    attributes:
+      calibration:
+        title: Calibration
+        description: pH calibration information for this instrument.
+        range: pHCalibration
+        required: true
+
+  # CO2 Gas Detector
+  CO2GasDetector:
+    description: >-
+      CO2 gas detector with standard gas calibration.
+    is_a: Instrument
+    attributes:
+      calibration:
+        title: Calibration
+        description: CO2 calibration information for this instrument.
+        range: CO2Calibration
+        required: true
+      resolution:
+        title: Resolution
+        description: Resolution of the CO2 sensor.
+        range: string
+      uncertainty:
+        title: Uncertainty
+        description: Uncertainty of the CO2 sensor.
+        range: string
+
+  # Generic sensor with basic calibration
+  Sensor:
+    description: >-
+      Generic sensor with basic calibration information.
+      Used for auxiliary measurements like temperature, pressure, etc.
+    is_a: Instrument
+    attributes:
+      calibration:
+        title: Calibration
+        description: Calibration information for this sensor.
+        range: Calibration
+
+  # Concrete generic instrument for backward compatibility
+  GenericInstrument:
+    description: >-
+      Generic instrument for cases that don't fit specialized instrument types.
+      Provides backward compatibility and flexibility.
+    is_a: Instrument
+    attributes:
+      calibration:
+        title: Calibration
+        description: Calibration information for this instrument.
+        range: Calibration

@@ -31,6 +31,7 @@ classes:
           Climate and Forecast (CF) metadata conventions
           (https://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html). e.g., ICES
           platform code (e.g., 33RO).
+        range: string
       owner:
         description: Institution that owns the platform.
         range: string

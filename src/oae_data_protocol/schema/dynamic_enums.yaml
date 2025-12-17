@@ -11,7 +11,7 @@ enums:
     matches:
       source_ontology: "SDN:C16"
       identifier_pattern: "http://vocab.nerc.ac.uk/collection/C16/current/.+/"
-  PlatformTypes:
+  PlatformType:
     matches:
       source_ontology: SDN:L06
       identifier_pattern: http://vocab.nerc.ac.uk/collection/L06/current/(31|32|48|42|46|3C|27|3B)/

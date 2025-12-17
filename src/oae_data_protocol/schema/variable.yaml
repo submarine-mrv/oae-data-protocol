@@ -7,65 +7,155 @@ prefixes:
 
 default_prefix: oae
 
+imports:
+  - linkml:types
+  - instrument
+
 classes:
+  # =============================================================================
+  # Base Variable Class (Abstract)
+  # =============================================================================
   Variable:
+    description: >-
+      Abstract base class for all variable types. Contains common identification
+      and description fields shared by all variables.
+      Reference: OAPMetadata XSD variables.xsd - variable, basic_variable
+    abstract: true
     attributes:
       dataset_variable_name:
         title: Variable name in data files
+        description: >-
+          How the variable is identified in the dataset data file.
+          This could be the column header in a CSV or the variable name in a NetCDF file.
         range: string
         required: true
       long_name:
         title: Variable full name
+        description: Full descriptive name of the variable.
         range: string
         required: true
-      # TODO: Upgrade this to controlled vocab with qudt
       variable_unit:
         title: Unit
+        description: Unit of measurement for this variable.
         range: string
         required: true
+        # TODO: Upgrade this to controlled vocab with QUDT
+      method_reference:
+        title: Method Reference
+        description: Citation for the method used.
+        range: string
+      measurement_researcher:
+        title: Researcher who measured the variable
+        description: The name of the PI whose research team measured or derived this parameter.
+        range: Person
+      other_detailed_information:
+        title: Other Detailed Information
+        description: Any additional information about this variable.
+        range: string
+
+  # =============================================================================
+  # Measured Variable Class
+  # =============================================================================
+  MeasuredVariable:
+    description: >-
+      Variable that is directly measured in-situ using instruments.
+      Reference: OAPMetadata XSD variables.xsd - basic_measured_observation_base
+    is_a: Variable
+    mixins:
+      - QCFields
+      - AnalyzingFields
+    attributes:
       sampling_method:
         title: Sampling Method
+        description: Method used to collect samples.
         range: string
         required: true
       analyzing_method:
         title: Analyzing Method
+        description: Method used to analyze samples.
         range: string
         required: true
-      other_detailed_information:
-        title: Other Detailed Information
+
+  # =============================================================================
+  # Calculated Variable Class
+  # =============================================================================
+  CalculatedVariable:
+    description: >-
+      Variable that is calculated or derived from other variables.
+      Reference: OAPMetadata XSD variables.xsd - basic_calculated_observation_base
+    is_a: Variable
+    mixins:
+      - QCFields
+    attributes:
+      calculation_method:
+        title: Calculation method
+        description: >-
+          Reference or description of the calculation method, e.g., using a MATLAB
+          version of CO2SYS with dissociation constants of Lueker et al., 2000.
         range: string
         required: true
-      method_reference:
-        description: Citation for the method.
-        title: Method Reference
+      calculation_parameters:
+        title: Calculation parameters
+        description: Parameters used in the calculation.
         range: string
-      measurement_researcher:
-        description: The name of the PI, whose research team measured or derived this parameter.
-        title: Researcher who measured the variable
-        range: Person
+      calculation_software:
+        title: Calculation software
+        description: Software used for the calculation.
+        range: string
+      calculation_software_version:
+        title: Calculation software version
+        description: Version of the software used for the calculation.
+        range: string
 
+  # =============================================================================
+  # Generic Variable Class (Concrete)
+  # =============================================================================
+  GenericVariable:
+    description: >-
+      Generic concrete variable for cases that don't fit MeasuredVariable or
+      CalculatedVariable. Provides backward compatibility and flexibility for
+      variable types like socioeconomic data.
+    is_a: Variable
+    attributes:
+      sampling_method:
+        title: Sampling Method
+        description: Method used to collect samples, if applicable.
+        range: string
+      analyzing_method:
+        title: Analyzing Method
+        description: Method used to analyze samples, if applicable.
+        range: string
 
+  # =============================================================================
+  # Mixin Classes
+  # =============================================================================
 
-
-  # Mixin classes for variable metadata
-  # All vars except socioeconomic
+  # Quality Control Fields - All vars except socioeconomic
   QCFields:
     mixin: true
-    description: Quality control fields applicable to all variables except socioeconomic.
+    description: >-
+      Quality control fields applicable to measured and calculated variables.
+      Not applied to socioeconomic variables.
     attributes:
       field_replicate_information:
         title: Field replicate information
-        description: Repetition of sample collection and measurement, e.g., triplicate samples.
+        description: >-
+          Repetition of sample collection and measurement, e.g., triplicate samples.
         range: string
       qc_steps_taken:
         title: QC steps taken
-        description: Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).
+        description: >-
+          Describe what QC steps have been taken to improve the quality of the data
+          (e.g., DOI, software and settings used, outlier removal, etc.).
         range: string
         required: true
       uncertainty:
         title: Uncertainty
-        description: It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.
+        description: >-
+          It is recommended to provide uncertainty for each data point in the data file.
+          Else provide a single value representative of the dataset.
         range: string
+        # TODO: Change to VariableUncertainty in Phase 3
       uncertainty_definition:
         title: How was the uncertainty defined
         description: A description of the uncertainties involved in this method.
@@ -73,148 +163,122 @@ classes:
         required: true
       missing_value_indicators:
         title: Missing value indicators
-        description: The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.
+        description: >-
+          The indicator used to represent missing values in the data file,
+          e.g., -999, NaN, etc.
         range: string
         required: true
       qc_researcher:
         title: Researcher who QCed this variable
-        description: The name of the PI, whose research team QCed this parameter.
+        description: The name of the PI whose research team QCed this parameter.
         range: Person
       qc_researcher_institution:
-        title: Researcher Institution
-        description: The institution of the PI, whose research team QCed this parameter.
+        title: QC Researcher Institution
+        description: The institution of the PI whose research team QCed this parameter.
         range: string
 
-  # All vars except socioeconomic
-  CalibrationFields:
+  # Analyzing Instrument Fields - All vars except socioeconomic
+  AnalyzingFields:
     mixin: true
-    description: Calibration information fields applicable to all variables except socioeconomic.
+    description: >-
+      Analyzing instrument information fields. Applied to measured variables.
+      The instrument type can be narrowed in subclasses using slot_usage.
     attributes:
-      calibration_info:
-        title: Calibration information
-        description: Information about instrument calibration including type (factory, lab, or field calibration).
-        range: Calibration
+      analyzing_instrument:
+        title: Analyzing instrument
+        description: >-
+          Instrument used to analyze the water samples or measure the water body
+          continuously. Instrument includes calibration information.
+        range: Instrument
         required: true
 
-  # Only DIC, pH, pCO2 (both), and TA
+  # Weather or Climate Quality Fields - Only DIC, pH, pCO2 (both), and TA
   WeatherClimateFields:
     mixin: true
-    description: Weather or climate quality fields applicable only to DIC, pH, pCO2 (both), and TA variables.
+    description: >-
+      Weather or climate quality fields applicable only to DIC, pH, pCO2, and TA variables.
     attributes:
       weather_or_climate_quality:
         title: Weather or climate quality
-        description: Climate quality is defined as measurements of quality sufficient to assess long-term trends. Weather quality is defined as measurements of quality sufficient to compare with satellite measurements and study regional associational air-sea CO2 flux.
+        description: >-
+          Climate quality is defined as measurements of quality sufficient to assess
+          long-term trends. Weather quality is defined as measurements of quality
+          sufficient to compare with satellite measurements and study regional
+          air-sea CO2 flux.
         range: string
+        # TODO: Change to AppropriateUseQuality enum in Phase 4
 
-  # All vars except HPLC, socioeconomic, disc pCO2 fCO2
+  # Discrete or Continuous Fields - All vars except HPLC, socioeconomic, disc pCO2 fCO2
   DiscreteOrContinuousFields:
     mixin: true
-    description: Fields for discrete vs continuous measurement information.
+    description: >-
+      Fields for discrete vs continuous measurement information.
+      To be replaced by SamplingInfo choice structure in Phase 3.
     attributes:
       discrete_or_continuous:
         title: Discrete or continuous
-        description: Whether the primary variables were measured based on discrete bottle or continuous measurements. One of two choices - (a) Discrete measurements, or (b) Continuous measurements from autonomous sensors.
+        description: >-
+          Whether the primary variables were measured based on discrete bottle or
+          continuous measurements.
         range: string
         required: true
+        # TODO: Replace with SamplingInfo choice structure in Phase 3
       raw_data_calculation_method:
         title: Method to calculate reported values from raw data
-        description: The method used to calculate the reported values from raw sensor data.
+        description: The method used to calculate reported values from raw sensor data.
         range: string
         required: true
       calculation_software_version:
         title: Software version for the calculation
-        description: The version of the software that was used to calculate the reported value from raw value.
+        description: Version of the software used to calculate reported values from raw values.
         range: string
 
-  # All vars except socioeconomic
-  AnalyzingFields:
-    mixin: true
-    description: Analyzing instrument information fields applicable to all variables except socioeconomic.
-    attributes:
-      analyzing_instrument:
-        title: Analyzing instrument
-        description: Instrument used to analyze the water samples or measure the water body continuously.
-        range: AnalyzingInstrument
-        required: true
+  # =============================================================================
+  # Deprecated Classes (kept for backward compatibility, will be removed)
+  # =============================================================================
 
-  # All vars except socioeconomic
-  SamplingFields:
-    mixin: true
-    description: Fields indicating whether a variable was measured or calculated, applicable to all variables except socioeconomic.
-    attributes:
-      measured_or_calculated:
-        title: Measured or calculated
-        description: Whether the variable is measured in-situ, or calculated from other variables.
-        range: string
-        required: true
-      calculation_method_and_parameters:
-        title: Calculation method and parameters
-        description: Information about how the variable was calculated, e.g., using a MATLAB version of the CO2SYS with the dissociation constants of Lueker et al., 2000 for carbonic acid, etc.
-        range: string
+  # NOTE: AnalyzingInstrument and Calibration have been moved to instrument.yaml
+  # and calibration.yaml respectively. These stub classes are kept temporarily
+  # for any existing references but should be migrated to use the new types.
 
-  # Placeholder class for analyzing instrument details
   AnalyzingInstrument:
-    description: Information about the instrument used to analyze samples.
+    description: >-
+      DEPRECATED: Use Instrument types from instrument.yaml instead.
+      This class is kept for backward compatibility.
+    deprecated: Use Instrument, CRMInstrument, pHInstrument, CO2GasDetector, or Sensor instead
     attributes:
       instrument_type:
         title: Analyzing instrument type
-        description: Type of instrument used to analyze the water samples collected with the sampling instrument, or the sensors that are mounted on the sampling instrument to measure the water body continuously.
         range: string
         required: true
       manufacturer:
         title: Manufacturer
-        description: Manufacturer name of the instrument.
         range: string
       model:
         title: Model
-        description: Model number of the instrument.
         range: string
       serial_number:
         title: Serial number
-        description: Serial number of the instrument.
         range: string
       precision:
         title: Precision
-        description: Precision of the instrument.
         range: string
         required: true
       accuracy:
         title: Accuracy
-        description: Accuracy of the instrument.
         range: string
         required: true
 
-  # Placeholder class for calibration details
-  Calibration:
-    description: Information about instrument calibration.
-    attributes:
-      calibration_type:
-        title: Calibration type
-        description: Factory calibration, lab calibration, or field calibration.
-        range: string
-        required: true
-      calibration_technique_description:
-        title: Calibration technique description
-        description: Details of the calibration.
-        range: string
-        required: true
-      calibration_method_reference:
-        title: Calibration method reference
-        description: Citation or reference for the calibration method.
-        range: string
-      calibration_frequency:
-        title: Frequency of Calibration
-        description: How often the instrument was calibrated.
-        range: string
-      calibration_datetime:
-        title: Calibration date and time (UTC)
-        description: Date and time of calibration in UTC.
-        range: string
-      calibration_certificates:
-        title: Information about the calibration certificates
-        description: Ideally, the calibration certificate should be made available in a pdf file with filename listed here.
-        range: string
+  # NOTE: CalibrationFields mixin is no longer needed as calibration is now
+  # embedded in each instrument type. Left commented for reference.
+  # CalibrationFields:
+  #   mixin: true
+  #   description: DEPRECATED - Calibration is now part of Instrument types.
 
-
-
-
+  # NOTE: SamplingFields mixin functionality is now split:
+  # - measured_or_calculated -> determined by MeasuredVariable vs CalculatedVariable
+  # - calculation_method_and_parameters -> moved to CalculatedVariable
+  # Left commented for reference.
+  # SamplingFields:
+  #   mixin: true
+  #   description: DEPRECATED - Use MeasuredVariable or CalculatedVariable instead.
