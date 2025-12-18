@@ -16,7 +16,7 @@ classes:
       - temporal_coverage
     slot_usage:
       - name:
-          title: Title
+          title: Dataset Title
           range: string
           required: true
           description: >-
@@ -44,6 +44,7 @@ classes:
     attributes:
       dataset_type:
         # TODO: Add pre/post condition slots for _custom field rendering
+        title: Dataset Type
         description: >-
           Selected controlled vocabularies for data types relevant to mCDR have been referenced from NASA’s SeaBASS
           metadata system and are provided below, for additional data types of optical characteristics see the [SeaBASS
@@ -52,17 +53,21 @@ classes:
         range: DatasetType
         required: true
       dataset_type_custom:
+        title: Dataset Type (Custom)
         description: >-
           Custom "data type" when an appropriate value is not found in the controlled vocabulary list for mCDR Data Type
           and the corresponding `data_type` field is set to "other".
         range: string
       data_submitter:
+        title: Data Submitter
         range: Person
       author_list_for_citation:
+        title: Author List (for citation)
         range: string
         description: >-
           Author list in the format of Lastname1, Firstname1 Middlename1; Lastname2, Firstname2 Middlename2; ...
       license:
+        title: License
         slot_uri: schema:license
         description: >-
           Link a Dataset to its license to document legal constraints by adding a schema:license property. The guide
@@ -73,9 +78,11 @@ classes:
           http://spdx.org/licenses/CC0-1.0), a unique licenseId (e.g., CC0-1.0), and other metadata about the license.
         range: uri
       fair_use_data_request:
+        title: Fair Use Data Request
         description: A statement from the data producer regarding how this dataset should be used.
         range: string
       data_product_type:
+        title: Data Product Type
         description: >-
           "Controlled vocabulary" One of the three choices: (a) Originally collected dataset (e.g., a dataset collected
           from a research cruise or laboratory experiment), (b) Data compilation product (e.g., SOCAT, GLODAP), or
@@ -83,6 +90,7 @@ classes:
         range: DataProductType
         required: true
       qc_flag_scheme:
+        title: QC Flag Scheme
         description: >-
           Describe what the quality control flags stand for, e.g.,
             0 = interpolated or calculated data
@@ -93,8 +101,8 @@ classes:
             6 = median of replicates 
             9 = missing value"
         range: string
-        required: true
       platform_info:
+        title: Platform Information
         range: Platform
         required: true
       calibration_files:

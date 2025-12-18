@@ -932,6 +932,7 @@
             "properties": {
                 "author_list_for_citation": {
                     "description": "Author list in the format of Lastname1, Firstname1 Middlename1; Lastname2, Firstname2 Middlename2; ...",
+                    "title": "Author List (for citation)",
                     "type": "string"
                 },
                 "calibration_files": {
@@ -946,17 +947,21 @@
                 },
                 "data_product_type": {
                     "$ref": "#/$defs/DataProductType",
-                    "description": "\"Controlled vocabulary\" One of the three choices: (a) Originally collected dataset (e.g., a dataset collected from a research cruise or laboratory experiment), (b) Data compilation product (e.g., SOCAT, GLODAP), or (c) Derived product (e.g., gridded products, or model output)."
+                    "description": "\"Controlled vocabulary\" One of the three choices: (a) Originally collected dataset (e.g., a dataset collected from a research cruise or laboratory experiment), (b) Data compilation product (e.g., SOCAT, GLODAP), or (c) Derived product (e.g., gridded products, or model output).",
+                    "title": "Data Product Type"
                 },
                 "data_submitter": {
-                    "$ref": "#/$defs/Person"
+                    "$ref": "#/$defs/Person",
+                    "title": "Data Submitter"
                 },
                 "dataset_type": {
                     "$ref": "#/$defs/DatasetType",
-                    "description": "Selected controlled vocabularies for data types relevant to mCDR have been referenced from NASA\u2019s SeaBASS metadata system and are provided below, for additional data types of optical characteristics see the [SeaBASS controlled definitions list](https://seabass.gsfc.nasa.gov/wiki/metadataheaders#data_type). Additional data types have been included to meet the needs of mCDR field projects."
+                    "description": "Selected controlled vocabularies for data types relevant to mCDR have been referenced from NASA\u2019s SeaBASS metadata system and are provided below, for additional data types of optical characteristics see the [SeaBASS controlled definitions list](https://seabass.gsfc.nasa.gov/wiki/metadataheaders#data_type). Additional data types have been included to meet the needs of mCDR field projects.",
+                    "title": "Dataset Type"
                 },
                 "dataset_type_custom": {
                     "description": "Custom \"data type\" when an appropriate value is not found in the controlled vocabulary list for mCDR Data Type and the corresponding `data_type` field is set to \"other\".",
+                    "title": "Dataset Type (Custom)",
                     "type": "string"
                 },
                 "description": {
@@ -971,6 +976,7 @@
                 },
                 "fair_use_data_request": {
                     "description": "A statement from the data producer regarding how this dataset should be used.",
+                    "title": "Fair Use Data Request",
                     "type": "string"
                 },
                 "filenames": {
@@ -981,15 +987,17 @@
                 },
                 "license": {
                     "description": "Link a Dataset to its license to document legal constraints by adding a schema:license property. The guide recommends providing a URL that unambiguously identifies a specific version of the license used, but for many licenses it is hard to determine what that URL should be. Thus, we recommend that the license URL be drawn from the [SPDX license list](https://spdx.org/licenses/), which provides a curated list of licenses and their properties that is well maintained. For each SPDX entry, SPDX provides a canonical URL for the license (e.g., http://spdx.org/licenses/CC0-1.0), a unique licenseId (e.g., CC0-1.0), and other metadata about the license.",
+                    "title": "License",
                     "type": "string"
                 },
                 "name": {
                     "description": "A brief descriptive sentence that summarizes the content of a dataset. Here is one example:\n\"Dissolved inorganic carbon, total alkalinity, pH, temperature, salinity and other variables collected from profile and discrete sample observations using CTD, Niskin bottle, and other instruments from R/V Wecoma in the U.S. West Coast California Current System during the 2011 West Coast Ocean Acidification Cruise (WCOA2011) from 2011-08-12 to 2011-08-30\"",
-                    "title": "Title",
+                    "title": "Dataset Title",
                     "type": "string"
                 },
                 "platform_info": {
-                    "$ref": "#/$defs/Platform"
+                    "$ref": "#/$defs/Platform",
+                    "title": "Platform Information"
                 },
                 "project_id": {
                     "description": "The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.\nIf no Project ID has been assigned, one may be generated by combining: lead organizer surname and first initial or company, a unique date, and location.\nAny method that creates a unique ID that will link all project data is acceptable.",
@@ -998,6 +1006,7 @@
                 },
                 "qc_flag_scheme": {
                     "description": "Describe what the quality control flags stand for, e.g.,\n  0 = interpolated or calculated data\n  1 = not evaluated/quality unknown \n  2 = acceptable \n  3 = questionable \n  4 = known bad \n  6 = median of replicates \n  9 = missing value\"",
+                    "title": "QC Flag Scheme",
                     "type": "string"
                 },
                 "temporal_coverage": {
@@ -1064,7 +1073,6 @@
                 "temporal_coverage",
                 "dataset_type",
                 "data_product_type",
-                "qc_flag_scheme",
                 "platform_info",
                 "filenames"
             ],
@@ -1095,7 +1103,7 @@
                 "net_tow",
                 "other"
             ],
-            "title": "Dataset Type",
+            "title": "DatasetType",
             "type": "string"
         },
         "DosingConcentration": {
@@ -1234,17 +1242,7 @@
                     ]
                 },
                 "spatial_coverage": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Place"
-                        },
-                        {
-                            "$ref": "#/$defs/SpatialCoverage"
-                        },
-                        {
-                            "$ref": "#/$defs/DosingLocation"
-                        }
-                    ],
+                    "$ref": "#/$defs/SpatialCoverage",
                     "description": "Latitude/longitude bounds of observed data in experiment, provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]",
                     "title": "Spatial Coverage"
                 },
@@ -1310,17 +1308,7 @@
                     ]
                 },
                 "spatial_coverage": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Place"
-                        },
-                        {
-                            "$ref": "#/$defs/SpatialCoverage"
-                        },
-                        {
-                            "$ref": "#/$defs/DosingLocation"
-                        }
-                    ],
+                    "$ref": "#/$defs/SpatialCoverage",
                     "description": "Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities) provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]",
                     "title": "Spatial Coverage"
                 },
@@ -1840,17 +1828,7 @@
                     ]
                 },
                 "spatial_coverage": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Place"
-                        },
-                        {
-                            "$ref": "#/$defs/SpatialCoverage"
-                        },
-                        {
-                            "$ref": "#/$defs/DosingLocation"
-                        }
-                    ],
+                    "$ref": "#/$defs/SpatialCoverage",
                     "description": "Latitude/longitude bounds of observed data in experiment, provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]",
                     "title": "Spatial Coverage"
                 },
@@ -2073,17 +2051,7 @@
                     ]
                 },
                 "spatial_coverage": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Place"
-                        },
-                        {
-                            "$ref": "#/$defs/SpatialCoverage"
-                        },
-                        {
-                            "$ref": "#/$defs/DosingLocation"
-                        }
-                    ],
+                    "$ref": "#/$defs/SpatialCoverage",
                     "description": "Latitude/longitude bounds of observed data in experiment, provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]",
                     "title": "Spatial Coverage"
                 },
@@ -3079,17 +3047,7 @@
                     "type": "string"
                 },
                 "spatial_coverage": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Place"
-                        },
-                        {
-                            "$ref": "#/$defs/SpatialCoverage"
-                        },
-                        {
-                            "$ref": "#/$defs/DosingLocation"
-                        }
-                    ],
+                    "$ref": "#/$defs/SpatialCoverage",
                     "description": "Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities) provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]",
                     "title": "Spatial Coverage"
                 },
@@ -3806,17 +3764,7 @@
                     ]
                 },
                 "spatial_coverage": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Place"
-                        },
-                        {
-                            "$ref": "#/$defs/SpatialCoverage"
-                        },
-                        {
-                            "$ref": "#/$defs/DosingLocation"
-                        }
-                    ],
+                    "$ref": "#/$defs/SpatialCoverage",
                     "description": "Latitude/longitude bounds of observed data in experiment, provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]",
                     "title": "Spatial Coverage"
                 },

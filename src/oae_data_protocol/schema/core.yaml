@@ -58,7 +58,7 @@ slots:
       longitude, northernmost latitude. [S, W, N, E]
     # Could update this to be a more restrictive range (e.g. SpatialCoverage, which inherits from Place and only
     # allows GeoShapes, not GeoCoordinates)
-    range: Place
+    range: SpatialCoverage
     required: true
   vertical_coverage:
     title: Vertical Coverage

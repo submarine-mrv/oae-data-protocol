@@ -7,7 +7,6 @@ default_prefix: oae
 
 enums:
   DatasetType:
-    title: Dataset Type
     description: "Type of dataset being submitted. This usually "
     permissible_values:
       dosing:

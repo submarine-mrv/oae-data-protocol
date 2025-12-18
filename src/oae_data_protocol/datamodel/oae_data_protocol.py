@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-12-17T14:15:36
+# Generation date: 2025-12-17T17:08:42
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -311,7 +311,7 @@ class Project(YAMLRoot):
 
     project_id: str = None
     temporal_coverage: str = None
-    spatial_coverage: Union[dict, Place] = None
+    spatial_coverage: Union[dict, SpatialCoverage] = None
     mcdr_pathway: Union[str, "MCDRPathway"] = None
     experiments: Optional[Union[Union[dict, "Experiment"], List[Union[dict, "Experiment"]]]] = empty_list()
     sea_names: Optional[Union[Union[str, "SeaNames"], List[Union[str, "SeaNames"]]]] = empty_list()
@@ -339,8 +339,8 @@ class Project(YAMLRoot):
 
         if self._is_empty(self.spatial_coverage):
             self.MissingRequiredField("spatial_coverage")
-        if not isinstance(self.spatial_coverage, Place):
-            self.spatial_coverage = Place(**as_dict(self.spatial_coverage))
+        if not isinstance(self.spatial_coverage, SpatialCoverage):
+            self.spatial_coverage = SpatialCoverage(**as_dict(self.spatial_coverage))
 
         if self._is_empty(self.mcdr_pathway):
             self.MissingRequiredField("mcdr_pathway")
@@ -429,7 +429,7 @@ class ExternalProject(YAMLRoot):
     class_model_uri: ClassVar[URIRef] = OAE.ExternalProject
 
     temporal_coverage: str = None
-    spatial_coverage: Union[dict, Place] = None
+    spatial_coverage: Union[dict, SpatialCoverage] = None
     name: str = None
     description: Optional[str] = None
     related_links: Optional[Union[Union[str, URI], List[Union[str, URI]]]] = empty_list()
@@ -442,8 +442,8 @@ class ExternalProject(YAMLRoot):
 
         if self._is_empty(self.spatial_coverage):
             self.MissingRequiredField("spatial_coverage")
-        if not isinstance(self.spatial_coverage, Place):
-            self.spatial_coverage = Place(**as_dict(self.spatial_coverage))
+        if not isinstance(self.spatial_coverage, SpatialCoverage):
+            self.spatial_coverage = SpatialCoverage(**as_dict(self.spatial_coverage))
 
         if self._is_empty(self.name):
             self.MissingRequiredField("name")
@@ -507,7 +507,7 @@ class Experiment(YAMLRoot):
     class_model_uri: ClassVar[URIRef] = OAE.Experiment
 
     description: str = None
-    spatial_coverage: Union[dict, Place] = None
+    spatial_coverage: Union[dict, SpatialCoverage] = None
     experiment_type: Union[str, "ExperimentType"] = None
     investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
@@ -528,8 +528,8 @@ class Experiment(YAMLRoot):
 
         if self._is_empty(self.spatial_coverage):
             self.MissingRequiredField("spatial_coverage")
-        if not isinstance(self.spatial_coverage, Place):
-            self.spatial_coverage = Place(**as_dict(self.spatial_coverage))
+        if not isinstance(self.spatial_coverage, SpatialCoverage):
+            self.spatial_coverage = SpatialCoverage(**as_dict(self.spatial_coverage))
 
         if self._is_empty(self.experiment_type):
             self.MissingRequiredField("experiment_type")
@@ -594,7 +594,7 @@ class Intervention(Experiment):
     class_model_uri: ClassVar[URIRef] = OAE.Intervention
 
     description: str = None
-    spatial_coverage: Union[dict, Place] = None
+    spatial_coverage: Union[dict, SpatialCoverage] = None
     experiment_type: Union[str, "ExperimentType"] = None
     investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
@@ -704,7 +704,7 @@ class Tracer(Experiment):
     class_model_uri: ClassVar[URIRef] = OAE.Tracer
 
     description: str = None
-    spatial_coverage: Union[dict, Place] = None
+    spatial_coverage: Union[dict, SpatialCoverage] = None
     experiment_type: Union[str, "ExperimentType"] = None
     investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
@@ -783,7 +783,7 @@ class InterventionWithTracer(Intervention):
     class_model_uri: ClassVar[URIRef] = OAE.InterventionWithTracer
 
     description: str = None
-    spatial_coverage: Union[dict, Place] = None
+    spatial_coverage: Union[dict, SpatialCoverage] = None
     experiment_type: Union[str, "ExperimentType"] = None
     investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
@@ -2079,7 +2079,6 @@ class Dataset(YAMLRoot):
     temporal_coverage: str = None
     dataset_type: Union[str, "DatasetType"] = None
     data_product_type: Union[str, "DataProductType"] = None
-    qc_flag_scheme: str = None
     platform_info: Union[dict, "Platform"] = None
     filenames: Union[str, List[str]] = None
     dataset_type_custom: Optional[str] = None
@@ -2087,6 +2086,7 @@ class Dataset(YAMLRoot):
     author_list_for_citation: Optional[str] = None
     license: Optional[Union[str, URI]] = None
     fair_use_data_request: Optional[str] = None
+    qc_flag_scheme: Optional[str] = None
     calibration_files: Optional[Union[str, List[str]]] = empty_list()
     variables: Optional[Union[Union[dict, Variable], List[Union[dict, Variable]]]] = empty_list()
 
@@ -2126,11 +2126,6 @@ class Dataset(YAMLRoot):
         if not isinstance(self.data_product_type, DataProductType):
             self.data_product_type = DataProductType(self.data_product_type)
 
-        if self._is_empty(self.qc_flag_scheme):
-            self.MissingRequiredField("qc_flag_scheme")
-        if not isinstance(self.qc_flag_scheme, str):
-            self.qc_flag_scheme = str(self.qc_flag_scheme)
-
         if self._is_empty(self.platform_info):
             self.MissingRequiredField("platform_info")
         if not isinstance(self.platform_info, Platform):
@@ -2156,6 +2151,9 @@ class Dataset(YAMLRoot):
 
         if self.fair_use_data_request is not None and not isinstance(self.fair_use_data_request, str):
             self.fair_use_data_request = str(self.fair_use_data_request)
+
+        if self.qc_flag_scheme is not None and not isinstance(self.qc_flag_scheme, str):
+            self.qc_flag_scheme = str(self.qc_flag_scheme)
 
         if not isinstance(self.calibration_files, list):
             self.calibration_files = [self.calibration_files] if self.calibration_files is not None else []
@@ -3571,7 +3569,7 @@ slots.temporal_coverage = Slot(uri=SCHEMA.temporalCoverage, name="temporal_cover
                    pattern=re.compile(r'^\d{4}-\d{2}-\d{2}/(\d{4}-\d{2}-\d{2}|\.\.)$'))
 
 slots.spatial_coverage = Slot(uri=SCHEMA.spatialCoverage, name="spatial_coverage", curie=SCHEMA.curie('spatialCoverage'),
-                   model_uri=OAE.spatial_coverage, domain=None, range=Union[dict, Place])
+                   model_uri=OAE.spatial_coverage, domain=None, range=Union[dict, SpatialCoverage])
 
 slots.vertical_coverage = Slot(uri=OAE.vertical_coverage, name="vertical_coverage", curie=OAE.curie('vertical_coverage'),
                    model_uri=OAE.vertical_coverage, domain=None, range=Optional[Union[dict, VerticalExtent]])
@@ -3993,7 +3991,7 @@ slots.dataset__data_product_type = Slot(uri=OAE.data_product_type, name="dataset
                    model_uri=OAE.dataset__data_product_type, domain=None, range=Union[str, "DataProductType"])
 
 slots.dataset__qc_flag_scheme = Slot(uri=OAE.qc_flag_scheme, name="dataset__qc_flag_scheme", curie=OAE.curie('qc_flag_scheme'),
-                   model_uri=OAE.dataset__qc_flag_scheme, domain=None, range=str)
+                   model_uri=OAE.dataset__qc_flag_scheme, domain=None, range=Optional[str])
 
 slots.dataset__platform_info = Slot(uri=OAE.platform_info, name="dataset__platform_info", curie=OAE.curie('platform_info'),
                    model_uri=OAE.dataset__platform_info, domain=None, range=Union[dict, Platform])
@@ -4135,7 +4133,7 @@ slots.Project_temporal_coverage = Slot(uri=SCHEMA.temporalCoverage, name="Projec
                    pattern=re.compile(r'^\d{4}-\d{2}-\d{2}/(\d{4}-\d{2}-\d{2}|\.\.)$'))
 
 slots.Project_spatial_coverage = Slot(uri=SCHEMA.spatialCoverage, name="Project_spatial_coverage", curie=SCHEMA.curie('spatialCoverage'),
-                   model_uri=OAE.Project_spatial_coverage, domain=Project, range=Union[dict, Place])
+                   model_uri=OAE.Project_spatial_coverage, domain=Project, range=Union[dict, SpatialCoverage])
 
 slots.Project_project_id = Slot(uri=OAE.project_id, name="Project_project_id", curie=OAE.curie('project_id'),
                    model_uri=OAE.Project_project_id, domain=Project, range=str)
@@ -4159,7 +4157,7 @@ slots.Experiment_name = Slot(uri=SCHEMA.name, name="Experiment_name", curie=SCHE
                    model_uri=OAE.Experiment_name, domain=Experiment, range=Optional[str])
 
 slots.Experiment_spatial_coverage = Slot(uri=SCHEMA.spatialCoverage, name="Experiment_spatial_coverage", curie=SCHEMA.curie('spatialCoverage'),
-                   model_uri=OAE.Experiment_spatial_coverage, domain=Experiment, range=Union[dict, Place])
+                   model_uri=OAE.Experiment_spatial_coverage, domain=Experiment, range=Union[dict, SpatialCoverage])
 
 slots.Experiment_vertical_coverage = Slot(uri=OAE.vertical_coverage, name="Experiment_vertical_coverage", curie=OAE.curie('vertical_coverage'),
                    model_uri=OAE.Experiment_vertical_coverage, domain=Experiment, range=Optional[Union[dict, VerticalExtent]])
