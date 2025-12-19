@@ -9,7 +9,7 @@
 The [OAE Data Management Protocol](http://carbontosea.org/oae-data-protocol/1-0-0/) outlines recommendations
 for producing consistent data and metadata for Ocean Alkalinity Enhancement (OAE) research projects.
 
-This repository provides machine-readable schemas and data standards for the protocol. It focuses on formal specifications for metadata about OAE projects, experiments, and datasets—not the individual data variables within datasets themselves.
+This repository provides machine-readable schemas and data standards for the protocol. It focuses on formal specifications for metadata about OAE projects, experiments, datasets, and individual data variables within datasets themselves (including instrumet, analysis, and calibration metadata).
 
 **For Protocol Compliance**: As of the v1.0 protocol launch (August 25, 2025), projects seeking to comply with the protocol guidelines should use the Excel templates available on the [protocol website](http://carbontosea.org/oae-data-protocol/1-0-0/). These templates are also available in the [`templates/excel`](./templates/excel) directory of this repository.
 
