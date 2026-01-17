@@ -360,7 +360,8 @@
 
 
 <h1 id="slot-weather-or-climate-quality-weather_or_climate_quality">Slot: Weather or climate quality (weather_or_climate_quality)</h1>
-<p><em>Climate quality is defined as measurements of quality sufficient to assess long-term trends. Weather quality is defined as measurements of quality sufficient to compare with satellite measurements and study regional air-sea CO2 flux.</em></p>
+<p><em>Climate quality is defined as measurements of quality sufficient to assess long term trends with a defined level of confidence. Weather quality is defined as measurements of quality sufficient to identify relative spatial patterns and short term variation.</em></p>
+<p><em>For more details, refer to Newton J.A., Feely R. A., Jewett E. B., Williamson P. &amp; Mathis J., 2015. Global Ocean Acidification Observing Network: Requirements and Governance Plan. Second Edition, GOA-ON, http://www.goa-on.org/docs/GOA-ON_plan_print.pdf.</em></p>
 <p>URI: <a href="https://example.org/oae#weather_or_climate_quality">oae:weather_or_climate_quality</a></p>
 <!-- no inheritance hierarchy -->
 
@@ -375,16 +376,6 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../CO2ContinuousVariable/">CO2ContinuousVariable</a></td>
-<td>CO2 continuous (underway) measured variable</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../CO2DiscreteVariable/">CO2DiscreteVariable</a></td>
-<td>CO2 discrete (bottle) measured variable</td>
-<td>no</td>
-</tr>
-<tr>
 <td><a href="../DICVariable/">DICVariable</a></td>
 <td>Dissolved Inorganic Carbon (DIC) measured variable</td>
 <td>no</td>
@@ -395,18 +386,28 @@
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../PHVariable/">PHVariable</a></td>
-<td>pH measured variable with dye-based spectrophotometric measurement</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../TAVariable/">TAVariable</a></td>
-<td>Total Alkalinity (TA) measured variable</td>
+<td><a href="../CO2ContinuousVariable/">CO2ContinuousVariable</a></td>
+<td>CO2 continuous (underway) measured variable</td>
 <td>no</td>
 </tr>
 <tr>
 <td><a href="../WeatherClimateFields/">WeatherClimateFields</a></td>
 <td>Weather or climate quality fields applicable only to DIC, pH, pCO2, and TA va...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../PHVariable/">PHVariable</a></td>
+<td>pH measured variable with dye-based spectrophotometric measurement</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../CO2DiscreteVariable/">CO2DiscreteVariable</a></td>
+<td>CO2 discrete (bottle) measured variable</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../TAVariable/">TAVariable</a></td>
+<td>Total Alkalinity (TA) measured variable</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -443,9 +444,14 @@
 <details>
 
 <pre><code class="language-yaml">name: weather_or_climate_quality
-description: Climate quality is defined as measurements of quality sufficient to assess
-  long-term trends. Weather quality is defined as measurements of quality sufficient
-  to compare with satellite measurements and study regional air-sea CO2 flux.
+description: 'Climate quality is defined as measurements of quality sufficient to
+  assess long term trends with a defined level of confidence. Weather quality is defined
+  as measurements of quality sufficient to identify relative spatial patterns and
+  short term variation.
+
+  For more details, refer to Newton J.A., Feely R. A., Jewett E. B., Williamson P.
+  &amp; Mathis J., 2015. Global Ocean Acidification Observing Network: Requirements and
+  Governance Plan. Second Edition, GOA-ON, http://www.goa-on.org/docs/GOA-ON_plan_print.pdf.'
 title: Weather or climate quality
 from_schema: OAEDataManagementProtocol
 rank: 1000
