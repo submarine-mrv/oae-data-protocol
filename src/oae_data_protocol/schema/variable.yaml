@@ -39,6 +39,11 @@ classes:
           [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).
         range: string
         required: true
+      column_header_name_qc_flag:
+        title: Column header name (Quality Flag)
+        description: >-
+          If applicable, the column header name used for the quality control flag corresponding to this variable.
+        range: string
       long_name:
         title: Variable full name
         description: Full descriptive name of the variable.
