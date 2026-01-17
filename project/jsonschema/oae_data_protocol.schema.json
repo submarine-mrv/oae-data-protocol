@@ -2567,9 +2567,9 @@
                     "title": "Other Detailed Information",
                     "type": "string"
                 },
-                "ph_report_temperature": {
-                    "description": "Temperature at which pH is reported.",
-                    "title": "pH report temperature",
+                "ph_reported_temperature": {
+                    "description": "The input could be a constant temperature value, or something like, in-situ temperature, temperature of analysis, etc.",
+                    "title": "pH reported temperature",
                     "type": "string"
                 },
                 "qc_researcher": {
@@ -2627,7 +2627,7 @@
                 }
             },
             "required": [
-                "ph_report_temperature",
+                "ph_reported_temperature",
                 "sampling_method",
                 "analyzing_method",
                 "qc_steps_taken",

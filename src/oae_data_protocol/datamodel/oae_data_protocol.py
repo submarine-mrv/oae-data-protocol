@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-01-17T14:25:19
+# Generation date: 2026-01-17T14:30:01
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -1572,17 +1572,17 @@ class PHVariable(MeasuredVariable):
     qc_steps_taken: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
-    ph_report_temperature: str = None
+    ph_reported_temperature: str = None
     analyzing_instrument: Union[dict, "PHInstrument"] = None
     measurement_temperature: Optional[str] = None
     temperature_correction_method: Optional[str] = None
     weather_or_climate_quality: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.ph_report_temperature):
-            self.MissingRequiredField("ph_report_temperature")
-        if not isinstance(self.ph_report_temperature, str):
-            self.ph_report_temperature = str(self.ph_report_temperature)
+        if self._is_empty(self.ph_reported_temperature):
+            self.MissingRequiredField("ph_reported_temperature")
+        if not isinstance(self.ph_reported_temperature, str):
+            self.ph_reported_temperature = str(self.ph_reported_temperature)
 
         if self._is_empty(self.analyzing_instrument):
             self.MissingRequiredField("analyzing_instrument")
@@ -3863,8 +3863,8 @@ slots.pHVariable__measurement_temperature = Slot(uri=OAE.measurement_temperature
 slots.pHVariable__temperature_correction_method = Slot(uri=OAE.temperature_correction_method, name="pHVariable__temperature_correction_method", curie=OAE.curie('temperature_correction_method'),
                    model_uri=OAE.pHVariable__temperature_correction_method, domain=None, range=Optional[str])
 
-slots.pHVariable__ph_report_temperature = Slot(uri=OAE.ph_report_temperature, name="pHVariable__ph_report_temperature", curie=OAE.curie('ph_report_temperature'),
-                   model_uri=OAE.pHVariable__ph_report_temperature, domain=None, range=str)
+slots.pHVariable__ph_reported_temperature = Slot(uri=OAE.ph_reported_temperature, name="pHVariable__ph_reported_temperature", curie=OAE.curie('ph_reported_temperature'),
+                   model_uri=OAE.pHVariable__ph_reported_temperature, domain=None, range=str)
 
 slots.tAVariable__cell_type = Slot(uri=OAE.cell_type, name="tAVariable__cell_type", curie=OAE.curie('cell_type'),
                    model_uri=OAE.tAVariable__cell_type, domain=None, range=str)

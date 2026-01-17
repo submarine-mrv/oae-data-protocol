@@ -236,9 +236,9 @@ classes:
         title: Temperature correction method
         description: Method used to correct pH for temperature.
         range: string
-      ph_report_temperature:
-        title: pH report temperature
-        description: Temperature at which pH is reported.
+      ph_reported_temperature:
+        title: pH reported temperature
+        description: The input could be a constant temperature value, or something like, in-situ temperature, temperature of analysis, etc.
         range: string
         required: true
         # TODO: Change to DimensionedQuantity in Phase 3
