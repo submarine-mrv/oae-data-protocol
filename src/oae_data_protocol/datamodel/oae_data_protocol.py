@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2025-12-17T17:08:42
+# Generation date: 2026-01-17T13:47:58
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -1271,8 +1271,7 @@ class MeasuredVariable(Variable):
 @dataclass(repr=False)
 class CalculatedVariable(Variable):
     """
-    Variable that is calculated or derived from other variables. Reference: OAPMetadata XSD variables.xsd -
-    basic_calculated_observation_base
+    Variable that is calculated or derived from other variables.
     """
     _inherited_slots: ClassVar[List[str]] = []
 
@@ -1285,23 +1284,20 @@ class CalculatedVariable(Variable):
     dataset_variable_name: str = None
     long_name: str = None
     variable_unit: str = None
-    calculation_method: str = None
+    calculation_method_and_parameters: str = None
     qc_steps_taken: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
-    calculation_parameters: Optional[str] = None
-    calculation_software: Optional[str] = None
-    calculation_software_version: Optional[str] = None
     field_replicate_information: Optional[str] = None
     uncertainty: Optional[str] = None
     qc_researcher: Optional[Union[dict, Person]] = None
     qc_researcher_institution: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.calculation_method):
-            self.MissingRequiredField("calculation_method")
-        if not isinstance(self.calculation_method, str):
-            self.calculation_method = str(self.calculation_method)
+        if self._is_empty(self.calculation_method_and_parameters):
+            self.MissingRequiredField("calculation_method_and_parameters")
+        if not isinstance(self.calculation_method_and_parameters, str):
+            self.calculation_method_and_parameters = str(self.calculation_method_and_parameters)
 
         if self._is_empty(self.qc_steps_taken):
             self.MissingRequiredField("qc_steps_taken")
@@ -1317,15 +1313,6 @@ class CalculatedVariable(Variable):
             self.MissingRequiredField("missing_value_indicators")
         if not isinstance(self.missing_value_indicators, str):
             self.missing_value_indicators = str(self.missing_value_indicators)
-
-        if self.calculation_parameters is not None and not isinstance(self.calculation_parameters, str):
-            self.calculation_parameters = str(self.calculation_parameters)
-
-        if self.calculation_software is not None and not isinstance(self.calculation_software, str):
-            self.calculation_software = str(self.calculation_software)
-
-        if self.calculation_software_version is not None and not isinstance(self.calculation_software_version, str):
-            self.calculation_software_version = str(self.calculation_software_version)
 
         if self.field_replicate_information is not None and not isinstance(self.field_replicate_information, str):
             self.field_replicate_information = str(self.field_replicate_information)
@@ -3834,17 +3821,8 @@ slots.measuredVariable__sampling_method = Slot(uri=OAE.sampling_method, name="me
 slots.measuredVariable__analyzing_method = Slot(uri=OAE.analyzing_method, name="measuredVariable__analyzing_method", curie=OAE.curie('analyzing_method'),
                    model_uri=OAE.measuredVariable__analyzing_method, domain=None, range=str)
 
-slots.calculatedVariable__calculation_method = Slot(uri=OAE.calculation_method, name="calculatedVariable__calculation_method", curie=OAE.curie('calculation_method'),
-                   model_uri=OAE.calculatedVariable__calculation_method, domain=None, range=str)
-
-slots.calculatedVariable__calculation_parameters = Slot(uri=OAE.calculation_parameters, name="calculatedVariable__calculation_parameters", curie=OAE.curie('calculation_parameters'),
-                   model_uri=OAE.calculatedVariable__calculation_parameters, domain=None, range=Optional[str])
-
-slots.calculatedVariable__calculation_software = Slot(uri=OAE.calculation_software, name="calculatedVariable__calculation_software", curie=OAE.curie('calculation_software'),
-                   model_uri=OAE.calculatedVariable__calculation_software, domain=None, range=Optional[str])
-
-slots.calculatedVariable__calculation_software_version = Slot(uri=OAE.calculation_software_version, name="calculatedVariable__calculation_software_version", curie=OAE.curie('calculation_software_version'),
-                   model_uri=OAE.calculatedVariable__calculation_software_version, domain=None, range=Optional[str])
+slots.calculatedVariable__calculation_method_and_parameters = Slot(uri=OAE.calculation_method_and_parameters, name="calculatedVariable__calculation_method_and_parameters", curie=OAE.curie('calculation_method_and_parameters'),
+                   model_uri=OAE.calculatedVariable__calculation_method_and_parameters, domain=None, range=str)
 
 slots.dICVariable__sample_preservation = Slot(uri=OAE.sample_preservation, name="dICVariable__sample_preservation", curie=OAE.curie('sample_preservation'),
                    model_uri=OAE.dICVariable__sample_preservation, domain=None, range=Optional[Union[dict, SamplePreservation]])
