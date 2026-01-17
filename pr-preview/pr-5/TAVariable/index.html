@@ -247,6 +247,8 @@
 
       TAVariable : column_header_name
 
+      TAVariable : column_header_name_qc_flag
+
       TAVariable : curve_fitting
 
       TAVariable : field_replicate_information
@@ -428,6 +430,12 @@
 <td><a href="../column_header_name/">column_header_name</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>The name for the variable as it is identified in the dataset data file</td>
+<td><a href="../Variable/">Variable</a></td>
+</tr>
+<tr>
+<td><a href="../column_header_name_qc_flag/">column_header_name_qc_flag</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>If applicable, the column header name used for the quality control flag corre...</td>
 <td><a href="../Variable/">Variable</a></td>
 </tr>
 <tr>
@@ -748,6 +756,18 @@ attributes:
     - Variable
     range: string
     required: true
+  column_header_name_qc_flag:
+    name: column_header_name_qc_flag
+    description: If applicable, the column header name used for the quality control
+      flag corresponding to this variable.
+    title: Column header name (Quality Flag)
+    from_schema: Variable
+    rank: 1000
+    alias: column_header_name_qc_flag
+    owner: TAVariable
+    domain_of:
+    - Variable
+    range: string
   long_name:
     name: long_name
     description: Full descriptive name of the variable.
