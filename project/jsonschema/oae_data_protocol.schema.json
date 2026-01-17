@@ -80,15 +80,15 @@
                     "title": "Calibration certificate information",
                     "type": "string"
                 },
+                "calibration_location": {
+                    "$ref": "#/$defs/CalibrationLocation",
+                    "description": "Factory calibration, lab calibration, or field calibration.",
+                    "title": "Calibration location"
+                },
                 "calibration_temperature": {
                     "description": "Temperature at which calibration was performed.",
                     "title": "Calibration temperature",
                     "type": "string"
-                },
-                "calibration_type": {
-                    "$ref": "#/$defs/CalibrationType",
-                    "description": "Factory calibration, lab calibration, or field calibration.",
-                    "title": "Calibration type"
                 },
                 "frequency": {
                     "description": "How often the instrument was calibrated.",
@@ -130,7 +130,7 @@
             },
             "required": [
                 "wmo_traceable",
-                "calibration_type",
+                "calibration_location",
                 "technique_description"
             ],
             "title": "CO2Calibration",
@@ -510,10 +510,10 @@
                     "title": "Calibration certificate information",
                     "type": "string"
                 },
-                "calibration_type": {
-                    "$ref": "#/$defs/CalibrationType",
+                "calibration_location": {
+                    "$ref": "#/$defs/CalibrationLocation",
                     "description": "Factory calibration, lab calibration, or field calibration.",
-                    "title": "Calibration type"
+                    "title": "Calibration location"
                 },
                 "crm_batch_number": {
                     "description": "Batch number of the Certified Reference Material.",
@@ -550,7 +550,7 @@
             "required": [
                 "crm_manufacturer",
                 "crm_batch_number",
-                "calibration_type",
+                "calibration_location",
                 "technique_description"
             ],
             "title": "CRMCalibration",
@@ -710,10 +710,10 @@
                     "title": "Calibration certificate information",
                     "type": "string"
                 },
-                "calibration_type": {
-                    "$ref": "#/$defs/CalibrationType",
+                "calibration_location": {
+                    "$ref": "#/$defs/CalibrationLocation",
                     "description": "Factory calibration, lab calibration, or field calibration.",
-                    "title": "Calibration type"
+                    "title": "Calibration location"
                 },
                 "frequency": {
                     "description": "How often the instrument was calibrated.",
@@ -738,20 +738,20 @@
                 }
             },
             "required": [
-                "calibration_type",
+                "calibration_location",
                 "technique_description"
             ],
             "title": "Calibration",
             "type": "object"
         },
-        "CalibrationType": {
-            "description": "Where/how calibration was performed.",
+        "CalibrationLocation": {
+            "description": "Where the calibration was performed.",
             "enum": [
                 "factory",
                 "lab",
                 "field"
             ],
-            "title": "CalibrationType",
+            "title": "CalibrationLocation",
             "type": "string"
         },
         "Container": {
@@ -2398,15 +2398,15 @@
                     "title": "Calibration certificate information",
                     "type": "string"
                 },
+                "calibration_location": {
+                    "$ref": "#/$defs/CalibrationLocation",
+                    "description": "Factory calibration, lab calibration, or field calibration.",
+                    "title": "Calibration location"
+                },
                 "calibration_temperature": {
                     "description": "Temperature at which calibration was performed.",
                     "title": "Calibration temperature",
                     "type": "string"
-                },
-                "calibration_type": {
-                    "$ref": "#/$defs/CalibrationType",
-                    "description": "Factory calibration, lab calibration, or field calibration.",
-                    "title": "Calibration type"
                 },
                 "correction_for_unpurified_dye": {
                     "description": "Correction method applied if dye was not purified.",
@@ -2458,7 +2458,7 @@
             "required": [
                 "dye_type_and_manufacturer",
                 "dye_purified",
-                "calibration_type",
+                "calibration_location",
                 "technique_description"
             ],
             "title": "PHCalibration",

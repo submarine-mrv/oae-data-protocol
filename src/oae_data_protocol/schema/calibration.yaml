@@ -19,10 +19,10 @@ classes:
     description: >-
       Base calibration information for instruments.
     attributes:
-      calibration_type:
-        title: Calibration type
+      calibration_location:
+        title: Calibration location
         description: Factory calibration, lab calibration, or field calibration.
-        range: CalibrationType
+        range: CalibrationLocation
         required: true
       technique_description:
         title: Calibration technique description
@@ -146,8 +146,8 @@ classes:
         # TODO: Change to DimensionedQuantity in Phase 3
 
 enums:
-  CalibrationType:
-    description: Where/how calibration was performed.
+  CalibrationLocation:
+    description: Where the calibration was performed.
     permissible_values:
       factory:
         description: Factory calibration performed by manufacturer.

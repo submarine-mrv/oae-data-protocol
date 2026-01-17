@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-01-17T14:17:08
+# Generation date: 2026-01-17T14:25:19
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -2381,7 +2381,7 @@ class Calibration(YAMLRoot):
     class_name: ClassVar[str] = "Calibration"
     class_model_uri: ClassVar[URIRef] = OAE.Calibration
 
-    calibration_type: Union[str, "CalibrationType"] = None
+    calibration_location: Union[str, "CalibrationLocation"] = None
     technique_description: str = None
     method_reference: Optional[str] = None
     frequency: Optional[str] = None
@@ -2389,10 +2389,10 @@ class Calibration(YAMLRoot):
     calibration_certificates: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.calibration_type):
-            self.MissingRequiredField("calibration_type")
-        if not isinstance(self.calibration_type, CalibrationType):
-            self.calibration_type = CalibrationType(self.calibration_type)
+        if self._is_empty(self.calibration_location):
+            self.MissingRequiredField("calibration_location")
+        if not isinstance(self.calibration_location, CalibrationLocation):
+            self.calibration_location = CalibrationLocation(self.calibration_location)
 
         if self._is_empty(self.technique_description):
             self.MissingRequiredField("technique_description")
@@ -2426,7 +2426,7 @@ class CRMCalibration(Calibration):
     class_name: ClassVar[str] = "CRMCalibration"
     class_model_uri: ClassVar[URIRef] = OAE.CRMCalibration
 
-    calibration_type: Union[str, "CalibrationType"] = None
+    calibration_location: Union[str, "CalibrationLocation"] = None
     technique_description: str = None
     crm_manufacturer: str = None
     crm_batch_number: str = None
@@ -2457,7 +2457,7 @@ class PHCalibration(Calibration):
     class_name: ClassVar[str] = "pHCalibration"
     class_model_uri: ClassVar[URIRef] = OAE.PHCalibration
 
-    calibration_type: Union[str, "CalibrationType"] = None
+    calibration_location: Union[str, "CalibrationLocation"] = None
     technique_description: str = None
     dye_type_and_manufacturer: str = None
     dye_purified: Union[bool, Bool] = None
@@ -2504,7 +2504,7 @@ class CO2Calibration(Calibration):
     class_name: ClassVar[str] = "CO2Calibration"
     class_model_uri: ClassVar[URIRef] = OAE.CO2Calibration
 
-    calibration_type: Union[str, "CalibrationType"] = None
+    calibration_location: Union[str, "CalibrationLocation"] = None
     technique_description: str = None
     wmo_traceable: Union[bool, Bool] = None
     calibration_temperature: Optional[str] = None
@@ -3513,9 +3513,9 @@ class ResearcherIDType(EnumDefinitionImpl):
         name="ResearcherIDType",
     )
 
-class CalibrationType(EnumDefinitionImpl):
+class CalibrationLocation(EnumDefinitionImpl):
     """
-    Where/how calibration was performed.
+    Where the calibration was performed.
     """
     factory = PermissibleValue(
         text="factory",
@@ -3528,8 +3528,8 @@ class CalibrationType(EnumDefinitionImpl):
         description="Field calibration performed during deployment.")
 
     _defn = EnumDefinition(
-        name="CalibrationType",
-        description="Where/how calibration was performed.",
+        name="CalibrationLocation",
+        description="Where the calibration was performed.",
     )
 
 # Slots
@@ -4034,8 +4034,8 @@ slots.sensor__calibration = Slot(uri=OAE.calibration, name="sensor__calibration"
 slots.genericInstrument__calibration = Slot(uri=OAE.calibration, name="genericInstrument__calibration", curie=OAE.curie('calibration'),
                    model_uri=OAE.genericInstrument__calibration, domain=None, range=Optional[Union[dict, Calibration]])
 
-slots.calibration__calibration_type = Slot(uri=OAE.calibration_type, name="calibration__calibration_type", curie=OAE.curie('calibration_type'),
-                   model_uri=OAE.calibration__calibration_type, domain=None, range=Union[str, "CalibrationType"])
+slots.calibration__calibration_location = Slot(uri=OAE.calibration_location, name="calibration__calibration_location", curie=OAE.curie('calibration_location'),
+                   model_uri=OAE.calibration__calibration_location, domain=None, range=Union[str, "CalibrationLocation"])
 
 slots.calibration__technique_description = Slot(uri=OAE.technique_description, name="calibration__technique_description", curie=OAE.curie('technique_description'),
                    model_uri=OAE.calibration__technique_description, domain=None, range=str)
