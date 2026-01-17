@@ -247,7 +247,7 @@
 
       CO2ContinuousVariable : co2_drying_method
 
-      CO2ContinuousVariable : dataset_variable_name
+      CO2ContinuousVariable : column_header_name
 
       CO2ContinuousVariable : discrete_or_continuous
 
@@ -452,9 +452,9 @@
 <td><a href="../Variable/">Variable</a></td>
 </tr>
 <tr>
-<td><a href="../dataset_variable_name/">dataset_variable_name</a></td>
+<td><a href="../column_header_name/">column_header_name</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
-<td>How the variable is identified in the dataset data file</td>
+<td>The name for the variable as it is identified in the dataset data file</td>
 <td><a href="../Variable/">Variable</a></td>
 </tr>
 <tr>
@@ -811,14 +811,16 @@ attributes:
     - Variable
     range: string
     required: true
-  dataset_variable_name:
-    name: dataset_variable_name
-    description: How the variable is identified in the dataset data file. This could
-      be the column header in a CSV or the variable name in a NetCDF file.
-    title: Variable name in data files
+  column_header_name:
+    name: column_header_name
+    description: The name for the variable as it is identified in the dataset data
+      file. This could be the column header in a CSV or the variable name in a NetCDF
+      file. Standard common recommended column header names can be found in protocol
+      documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).
+    title: Column header name
     from_schema: Variable
     rank: 1000
-    alias: dataset_variable_name
+    alias: column_header_name
     owner: CO2ContinuousVariable
     domain_of:
     - Variable
