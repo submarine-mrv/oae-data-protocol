@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-01-17T13:47:58
+# Generation date: 2026-01-17T14:17:08
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -1132,7 +1132,7 @@ class Variable(YAMLRoot):
     class_model_uri: ClassVar[URIRef] = OAE.Variable
 
     variable_type: str = None
-    dataset_variable_name: str = None
+    column_header_name: str = None
     long_name: str = None
     variable_unit: str = None
     method_reference: Optional[str] = None
@@ -1144,10 +1144,10 @@ class Variable(YAMLRoot):
             self.MissingRequiredField("variable_type")
         self.variable_type = str(self.class_name)
 
-        if self._is_empty(self.dataset_variable_name):
-            self.MissingRequiredField("dataset_variable_name")
-        if not isinstance(self.dataset_variable_name, str):
-            self.dataset_variable_name = str(self.dataset_variable_name)
+        if self._is_empty(self.column_header_name):
+            self.MissingRequiredField("column_header_name")
+        if not isinstance(self.column_header_name, str):
+            self.column_header_name = str(self.column_header_name)
 
         if self._is_empty(self.long_name):
             self.MissingRequiredField("long_name")
@@ -1205,7 +1205,7 @@ class MeasuredVariable(Variable):
     class_model_uri: ClassVar[URIRef] = OAE.MeasuredVariable
 
     variable_type: str = None
-    dataset_variable_name: str = None
+    column_header_name: str = None
     long_name: str = None
     variable_unit: str = None
     sampling_method: str = None
@@ -1281,7 +1281,7 @@ class CalculatedVariable(Variable):
     class_model_uri: ClassVar[URIRef] = OAE.CalculatedVariable
 
     variable_type: str = None
-    dataset_variable_name: str = None
+    column_header_name: str = None
     long_name: str = None
     variable_unit: str = None
     calculation_method_and_parameters: str = None
@@ -1346,7 +1346,7 @@ class DICVariable(MeasuredVariable):
     class_model_uri: ClassVar[URIRef] = OAE.DICVariable
 
     variable_type: str = None
-    dataset_variable_name: str = None
+    column_header_name: str = None
     long_name: str = None
     variable_unit: str = None
     sampling_method: str = None
@@ -1396,7 +1396,7 @@ class CO2Variable(MeasuredVariable):
     class_model_uri: ClassVar[URIRef] = OAE.CO2Variable
 
     variable_type: str = None
-    dataset_variable_name: str = None
+    column_header_name: str = None
     long_name: str = None
     variable_unit: str = None
     sampling_method: str = None
@@ -1447,7 +1447,7 @@ class CO2ContinuousVariable(CO2Variable):
     class_model_uri: ClassVar[URIRef] = OAE.CO2ContinuousVariable
 
     variable_type: str = None
-    dataset_variable_name: str = None
+    column_header_name: str = None
     long_name: str = None
     variable_unit: str = None
     sampling_method: str = None
@@ -1507,7 +1507,7 @@ class CO2DiscreteVariable(CO2Variable):
     class_model_uri: ClassVar[URIRef] = OAE.CO2DiscreteVariable
 
     variable_type: str = None
-    dataset_variable_name: str = None
+    column_header_name: str = None
     long_name: str = None
     variable_unit: str = None
     sampling_method: str = None
@@ -1564,7 +1564,7 @@ class PHVariable(MeasuredVariable):
     class_model_uri: ClassVar[URIRef] = OAE.PHVariable
 
     variable_type: str = None
-    dataset_variable_name: str = None
+    column_header_name: str = None
     long_name: str = None
     variable_unit: str = None
     sampling_method: str = None
@@ -1618,7 +1618,7 @@ class TAVariable(DICVariable):
     class_model_uri: ClassVar[URIRef] = OAE.TAVariable
 
     variable_type: str = None
-    dataset_variable_name: str = None
+    column_header_name: str = None
     long_name: str = None
     variable_unit: str = None
     sampling_method: str = None
@@ -1662,7 +1662,7 @@ class HPLCVariable(MeasuredVariable):
     class_model_uri: ClassVar[URIRef] = OAE.HPLCVariable
 
     variable_type: str = None
-    dataset_variable_name: str = None
+    column_header_name: str = None
     long_name: str = None
     variable_unit: str = None
     sampling_method: str = None
@@ -1693,7 +1693,7 @@ class SedimentVariable(MeasuredVariable):
     class_model_uri: ClassVar[URIRef] = OAE.SedimentVariable
 
     variable_type: str = None
-    dataset_variable_name: str = None
+    column_header_name: str = None
     long_name: str = None
     variable_unit: str = None
     sampling_method: str = None
@@ -1724,7 +1724,7 @@ class PhysiologicalVariable(MeasuredVariable):
     class_model_uri: ClassVar[URIRef] = OAE.PhysiologicalVariable
 
     variable_type: str = None
-    dataset_variable_name: str = None
+    column_header_name: str = None
     long_name: str = None
     variable_unit: str = None
     sampling_method: str = None
@@ -1755,7 +1755,7 @@ class SocioeconomicVariable(Variable):
     class_model_uri: ClassVar[URIRef] = OAE.SocioeconomicVariable
 
     variable_type: str = None
-    dataset_variable_name: str = None
+    column_header_name: str = None
     long_name: str = None
     variable_unit: str = None
 
@@ -1781,7 +1781,7 @@ class NonMeasuredVariable(Variable):
     class_model_uri: ClassVar[URIRef] = OAE.NonMeasuredVariable
 
     variable_type: str = None
-    dataset_variable_name: str = None
+    column_header_name: str = None
     long_name: str = None
     variable_unit: str = None
     data_source: str = None
@@ -1850,7 +1850,7 @@ class GenericVariable(Variable):
     class_model_uri: ClassVar[URIRef] = OAE.GenericVariable
 
     variable_type: str = None
-    dataset_variable_name: str = None
+    column_header_name: str = None
     long_name: str = None
     variable_unit: str = None
     sampling_method: Optional[str] = None
@@ -3797,8 +3797,8 @@ slots.permit__approval_document = Slot(uri=OAE.approval_document, name="permit__
 slots.variable__variable_type = Slot(uri=OAE.variable_type, name="variable__variable_type", curie=OAE.curie('variable_type'),
                    model_uri=OAE.variable__variable_type, domain=None, range=str)
 
-slots.variable__dataset_variable_name = Slot(uri=OAE.dataset_variable_name, name="variable__dataset_variable_name", curie=OAE.curie('dataset_variable_name'),
-                   model_uri=OAE.variable__dataset_variable_name, domain=None, range=str)
+slots.variable__column_header_name = Slot(uri=OAE.column_header_name, name="variable__column_header_name", curie=OAE.curie('column_header_name'),
+                   model_uri=OAE.variable__column_header_name, domain=None, range=str)
 
 slots.variable__long_name = Slot(uri=OAE.long_name, name="variable__long_name", curie=OAE.curie('long_name'),
                    model_uri=OAE.variable__long_name, domain=None, range=str)

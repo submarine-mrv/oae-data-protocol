@@ -82,7 +82,7 @@ classes:
         required: true
       analyzing_method:
         title: Analyzing Method
-        description: Method used to analyze samples.
+        description: Additional information describing how the sample was analyzed. DOIs provided as applicable.
         range: string
         required: true
 
@@ -364,7 +364,7 @@ classes:
         range: string
       analyzing_method:
         title: Analyzing Method
-        description: Method used to analyze samples, if applicable.
+        description: Additional information describing how the sample was analyzed. DOIs provided as applicable.
         range: string
 
   # =============================================================================
