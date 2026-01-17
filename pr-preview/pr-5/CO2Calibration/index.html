@@ -239,16 +239,16 @@
 
       CO2Calibration : calibration_certificates
 
+      CO2Calibration : calibration_location
+
+
+
+
+    CO2Calibration --&gt; "1" CalibrationLocation : calibration_location
+    click CalibrationLocation href "../CalibrationLocation"
+
+
       CO2Calibration : calibration_temperature
-
-      CO2Calibration : calibration_type
-
-
-
-
-    CO2Calibration --&gt; "1" CalibrationType : calibration_type
-    click CalibrationType href "../CalibrationType"
-
 
       CO2Calibration : frequency
 
@@ -308,8 +308,8 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../calibration_type/">calibration_type</a></td>
-<td>1 <br/> <a href="../CalibrationType/">CalibrationType</a></td>
+<td><a href="../calibration_location/">calibration_location</a></td>
+<td>1 <br/> <a href="../CalibrationLocation/">CalibrationLocation</a></td>
 <td>Factory calibration, lab calibration, or field calibration</td>
 <td><a href="../Calibration/">Calibration</a></td>
 </tr>
@@ -475,17 +475,17 @@ attributes:
     - CO2Calibration
     range: boolean
     required: true
-  calibration_type:
-    name: calibration_type
+  calibration_location:
+    name: calibration_location
     description: Factory calibration, lab calibration, or field calibration.
-    title: Calibration type
+    title: Calibration location
     from_schema: Calibration
     rank: 1000
-    alias: calibration_type
+    alias: calibration_location
     owner: CO2Calibration
     domain_of:
     - Calibration
-    range: CalibrationType
+    range: CalibrationLocation
     required: true
   technique_description:
     name: technique_description

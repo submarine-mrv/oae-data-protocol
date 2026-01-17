@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://clevinson.github.io/oae-data-protocol/CalibrationType/">
+        <link rel="canonical" href="https://clevinson.github.io/oae-data-protocol/calibration_location/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Enum: CalibrationType - oae-data-protocol</title>
+        <title>Slot: Calibration location (calibration_location) - oae-data-protocol</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#enum-calibrationtype" class="md-skip">
+        <a href="#slot-calibration-location-calibration_location" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Enum: CalibrationType
+              Slot: Calibration location (calibration_location)
             
           </span>
         </div>
@@ -281,18 +281,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#permissible-values" class="md-nav__link">
+  <a href="#applicable-classes" class="md-nav__link">
     <span class="md-ellipsis">
-      Permissible Values
+      Applicable Classes
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#slots" class="md-nav__link">
+  <a href="#properties" class="md-nav__link">
     <span class="md-ellipsis">
-      Slots
+      Properties
     </span>
   </a>
   
@@ -319,6 +319,15 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mappings" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mappings
+    </span>
+  </a>
   
 </li>
       
@@ -350,73 +359,90 @@
   
 
 
-<h1 id="enum-calibrationtype">Enum: CalibrationType</h1>
-<p><em>Where/how calibration was performed.</em></p>
-<p>URI: <a href="./">CalibrationType</a></p>
-<h2 id="permissible-values">Permissible Values</h2>
-<table>
-<thead>
-<tr>
-<th>Value</th>
-<th>Meaning</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>factory</td>
-<td>None</td>
-<td>Factory calibration performed by manufacturer</td>
-</tr>
-<tr>
-<td>lab</td>
-<td>None</td>
-<td>Laboratory calibration</td>
-</tr>
-<tr>
-<td>field</td>
-<td>None</td>
-<td>Field calibration performed during deployment</td>
-</tr>
-</tbody>
-</table>
-<h2 id="slots">Slots</h2>
+<h1 id="slot-calibration-location-calibration_location">Slot: Calibration location (calibration_location)</h1>
+<p><em>Factory calibration, lab calibration, or field calibration.</em></p>
+<p>URI: <a href="https://example.org/oae#calibration_location">oae:calibration_location</a></p>
+<!-- no inheritance hierarchy -->
+
+<h2 id="applicable-classes">Applicable Classes</h2>
 <table>
 <thead>
 <tr>
 <th>Name</th>
 <th>Description</th>
+<th>Modifies Slot</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="../calibration_type/">calibration_type</a></td>
-<td>Factory calibration, lab calibration, or field calibration</td>
+<td><a href="../PHCalibration/">PHCalibration</a></td>
+<td>pH instrument calibration with dye information</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../CRMCalibration/">CRMCalibration</a></td>
+<td>Calibration using Certified Reference Materials, used for DIC and TA instrume...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../CO2Calibration/">CO2Calibration</a></td>
+<td>CO2 gas detector calibration with standard gas information</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Calibration/">Calibration</a></td>
+<td>Base calibration information for instruments</td>
+<td>no</td>
 </tr>
 </tbody>
 </table>
+<h2 id="properties">Properties</h2>
+<ul>
+<li>
+<p>Range: <a href="../CalibrationLocation/">CalibrationLocation</a></p>
+</li>
+<li>
+<p>Required: True</p>
+</li>
+</ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
 <li>from schema: OAEDataManagementProtocol</li>
 </ul>
+<h2 id="mappings">Mappings</h2>
+<table>
+<thead>
+<tr>
+<th>Mapping Type</th>
+<th>Mapped Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>self</td>
+<td>oae:calibration_location</td>
+</tr>
+<tr>
+<td>native</td>
+<td>oae:calibration_location</td>
+</tr>
+</tbody>
+</table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: CalibrationType
-description: Where/how calibration was performed.
+<pre><code class="language-yaml">name: calibration_location
+description: Factory calibration, lab calibration, or field calibration.
+title: Calibration location
 from_schema: OAEDataManagementProtocol
 rank: 1000
-permissible_values:
-  factory:
-    text: factory
-    description: Factory calibration performed by manufacturer.
-  lab:
-    text: lab
-    description: Laboratory calibration.
-  field:
-    text: field
-    description: Field calibration performed during deployment.
+alias: calibration_location
+owner: Calibration
+domain_of:
+- Calibration
+range: CalibrationLocation
+required: true
 
 </code></pre>
 

@@ -65,7 +65,7 @@
          <lastmod>2026-01-17</lastmod>
     </url>
     <url>
-         <loc>https://clevinson.github.io/oae-data-protocol/CalibrationType/</loc>
+         <loc>https://clevinson.github.io/oae-data-protocol/CalibrationLocation/</loc>
          <lastmod>2026-01-17</lastmod>
     </url>
     <url>
@@ -485,11 +485,11 @@
          <lastmod>2026-01-17</lastmod>
     </url>
     <url>
-         <loc>https://clevinson.github.io/oae-data-protocol/calibration_temperature/</loc>
+         <loc>https://clevinson.github.io/oae-data-protocol/calibration_location/</loc>
          <lastmod>2026-01-17</lastmod>
     </url>
     <url>
-         <loc>https://clevinson.github.io/oae-data-protocol/calibration_type/</loc>
+         <loc>https://clevinson.github.io/oae-data-protocol/calibration_temperature/</loc>
          <lastmod>2026-01-17</lastmod>
     </url>
     <url>
