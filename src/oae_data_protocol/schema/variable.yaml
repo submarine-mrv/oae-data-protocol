@@ -90,30 +90,19 @@ classes:
   CalculatedVariable:
     description: >-
       Variable that is calculated or derived from other variables.
-      Reference: OAPMetadata XSD variables.xsd - basic_calculated_observation_base
     is_a: Variable
     mixins:
       - QCFields
     attributes:
-      calculation_method:
-        title: Calculation method
+      calculation_method_and_parameters:
+        title: Calculated Method And Parameters
         description: >-
-          Reference or description of the calculation method, e.g., using a MATLAB
-          version of CO2SYS with dissociation constants of Lueker et al., 2000.
+          Information about how the variable was calculated and the parameters used in calculation, e.g.:
+          Calculation software = CO2SYSv1 (MATLAB) 
+          Input variables =  pH and DIC (column header names 'ph_t_insitu' and 'dic' in associated dataset file)
+          Additional information = the dissociation constants of Lueker et al., 2000 for carbonic acid, etc.
         range: string
         required: true
-      calculation_parameters:
-        title: Calculation parameters
-        description: Parameters used in the calculation.
-        range: string
-      calculation_software:
-        title: Calculation software
-        description: Software used for the calculation.
-        range: string
-      calculation_software_version:
-        title: Calculation software version
-        description: Version of the software used for the calculation.
-        range: string
 
   # =============================================================================
   # DIC Variable Class

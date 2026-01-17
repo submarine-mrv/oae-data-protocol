@@ -106,6 +106,7 @@ classes:
         range: Platform
         required: true
       calibration_files:
+        title: Calibration Files
         description: >-
           A list of supplementary file names containing coefficients and techniques used to
           calibrate the instruments used in data collection. The named files can be found within the relevant documents
@@ -113,12 +114,14 @@ classes:
         range: string
         multivalued: true
       variables:
+        title: Variables
         slot_uri: schema:variableMeasured
         range: Variable
         multivalued: true
       filenames:
         # TODO: Should be upgraded to be compatilbe with schema:distribution
         # https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md#distributions
+        title: Filenames
         range: string
         required: true
         multivalued: true
