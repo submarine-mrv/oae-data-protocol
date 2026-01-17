@@ -266,7 +266,7 @@
 
       PHVariable : other_detailed_information
 
-      PHVariable : ph_report_temperature
+      PHVariable : ph_reported_temperature
 
       PHVariable : qc_researcher
 
@@ -331,9 +331,9 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../ph_report_temperature/">ph_report_temperature</a></td>
+<td><a href="../ph_reported_temperature/">ph_reported_temperature</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
-<td>Temperature at which pH is reported</td>
+<td>The input could be a constant temperature value, or something like, in-situ t...</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -505,10 +505,11 @@ attributes:
     - CO2Variable
     - pHVariable
     range: string
-  ph_report_temperature:
-    name: ph_report_temperature
-    description: Temperature at which pH is reported.
-    title: pH report temperature
+  ph_reported_temperature:
+    name: ph_reported_temperature
+    description: The input could be a constant temperature value, or something like,
+      in-situ temperature, temperature of analysis, etc.
+    title: pH reported temperature
     from_schema: Variable
     rank: 1000
     domain_of:
@@ -555,13 +556,14 @@ attributes:
     - CO2Variable
     - pHVariable
     range: string
-  ph_report_temperature:
-    name: ph_report_temperature
-    description: Temperature at which pH is reported.
-    title: pH report temperature
+  ph_reported_temperature:
+    name: ph_reported_temperature
+    description: The input could be a constant temperature value, or something like,
+      in-situ temperature, temperature of analysis, etc.
+    title: pH reported temperature
     from_schema: Variable
     rank: 1000
-    alias: ph_report_temperature
+    alias: ph_reported_temperature
     owner: pHVariable
     domain_of:
     - pHVariable

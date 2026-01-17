@@ -359,13 +359,13 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../CO2Variable/">CO2Variable</a></td>
-<td>Abstract base class for CO2 measured variables (both continuous and discrete)</td>
+<td><a href="../CO2ContinuousVariable/">CO2ContinuousVariable</a></td>
+<td>CO2 continuous (underway) measured variable</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../CalculatedVariable/">CalculatedVariable</a></td>
-<td>Variable that is calculated or derived from other variables</td>
+<td><a href="../CO2DiscreteVariable/">CO2DiscreteVariable</a></td>
+<td>CO2 discrete (bottle) measured variable</td>
 <td>no</td>
 </tr>
 <tr>
@@ -374,13 +374,8 @@
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../MeasuredVariable/">MeasuredVariable</a></td>
-<td>Variable that is directly measured in-situ using instruments</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../SocioeconomicVariable/">SocioeconomicVariable</a></td>
-<td>Socioeconomic variable for social and economic data</td>
+<td><a href="../PhysiologicalVariable/">PhysiologicalVariable</a></td>
+<td>Physiological response measured variable for organism response data</td>
 <td>no</td>
 </tr>
 <tr>
@@ -389,43 +384,8 @@
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../TAVariable/">TAVariable</a></td>
-<td>Total Alkalinity (TA) measured variable</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../PhysiologicalVariable/">PhysiologicalVariable</a></td>
-<td>Physiological response measured variable for organism response data</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../NonMeasuredVariable/">NonMeasuredVariable</a></td>
-<td>Non-measured variable for data from external sources (e</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../CO2ContinuousVariable/">CO2ContinuousVariable</a></td>
-<td>CO2 continuous (underway) measured variable</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../SedimentVariable/">SedimentVariable</a></td>
-<td>Sediment measured variable for seafloor/sediment sampling data</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Calibration/">Calibration</a></td>
-<td>Base calibration information for instruments</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../CRMCalibration/">CRMCalibration</a></td>
-<td>Calibration using Certified Reference Materials, used for DIC and TA instrume...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../HPLCVariable/">HPLCVariable</a></td>
-<td>HPLC (High-Performance Liquid Chromatography) measured variable for pigment a...</td>
+<td><a href="../CalculatedVariable/">CalculatedVariable</a></td>
+<td>Variable that is calculated or derived from other variables</td>
 <td>no</td>
 </tr>
 <tr>
@@ -439,18 +399,58 @@
 <td>no</td>
 </tr>
 <tr>
+<td><a href="../CRMCalibration/">CRMCalibration</a></td>
+<td>Calibration using Certified Reference Materials, used for DIC and TA instrume...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../TAVariable/">TAVariable</a></td>
+<td>Total Alkalinity (TA) measured variable</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Calibration/">Calibration</a></td>
+<td>Base calibration information for instruments</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../HPLCVariable/">HPLCVariable</a></td>
+<td>HPLC (High-Performance Liquid Chromatography) measured variable for pigment a...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../CO2Variable/">CO2Variable</a></td>
+<td>Abstract base class for CO2 measured variables (both continuous and discrete)</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../SedimentVariable/">SedimentVariable</a></td>
+<td>Sediment measured variable for seafloor/sediment sampling data</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../Variable/">Variable</a></td>
 <td>Abstract base class for all variable types</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../CO2DiscreteVariable/">CO2DiscreteVariable</a></td>
-<td>CO2 discrete (bottle) measured variable</td>
+<td><a href="../NonMeasuredVariable/">NonMeasuredVariable</a></td>
+<td>Non-measured variable for data from external sources (e</td>
 <td>no</td>
 </tr>
 <tr>
 <td><a href="../GenericVariable/">GenericVariable</a></td>
 <td>Generic concrete variable for cases that don't fit MeasuredVariable or Calcul...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../SocioeconomicVariable/">SocioeconomicVariable</a></td>
+<td>Socioeconomic variable for social and economic data</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../MeasuredVariable/">MeasuredVariable</a></td>
+<td>Variable that is directly measured in-situ using instruments</td>
 <td>no</td>
 </tr>
 </tbody>
