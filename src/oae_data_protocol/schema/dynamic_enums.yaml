@@ -14,7 +14,7 @@ enums:
   PlatformType:
     matches:
       source_ontology: SDN:L06
-      identifier_pattern: http://vocab.nerc.ac.uk/collection/L06/current/(31|32|48|42|46|3C|27|3B)/
+      identifier_pattern: http://vocab.nerc.ac.uk/collection/L06/current/(62|3B|25|13|17|72|44|46|42|36|11|45|47|6A|67|71|14|15|26|3A|19|99|41|48|16|61|31|18|68|12|33|30|27|20|43|3C|3Z|23|6D|)/
   MassConcentrationUnit:
     reachable_from:
       source_ontology: qudt:unit

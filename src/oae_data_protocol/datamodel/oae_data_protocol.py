@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-01-17T14:47:46
+# Generation date: 2026-01-17T15:15:03
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -960,9 +960,6 @@ class DosingConcentration(YAMLRoot):
         if self.amount is not None and not isinstance(self.amount, float):
             self.amount = float(self.amount)
 
-        if self.unit is not None and not isinstance(self.unit, MassConcentrationUnit):
-            self.unit = MassConcentrationUnit(self.unit)
-
         super().__post_init__(**kwargs)
 
 
@@ -1135,6 +1132,7 @@ class Variable(YAMLRoot):
     column_header_name: str = None
     long_name: str = None
     variable_unit: str = None
+    column_header_name_qc_flag: Optional[str] = None
     method_reference: Optional[str] = None
     measurement_researcher: Optional[Union[dict, Person]] = None
     other_detailed_information: Optional[str] = None
@@ -1158,6 +1156,9 @@ class Variable(YAMLRoot):
             self.MissingRequiredField("variable_unit")
         if not isinstance(self.variable_unit, str):
             self.variable_unit = str(self.variable_unit)
+
+        if self.column_header_name_qc_flag is not None and not isinstance(self.column_header_name_qc_flag, str):
+            self.column_header_name_qc_flag = str(self.column_header_name_qc_flag)
 
         if self.method_reference is not None and not isinstance(self.method_reference, str):
             self.method_reference = str(self.method_reference)
@@ -3421,29 +3422,145 @@ class PlatformType(EnumDefinitionImpl):
 
     @classmethod
     def _addvals(cls):
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/99/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/L06/current/99/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/6D/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/L06/current/6D/",
+                meaning=None))
         setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/3C/",
             PermissibleValue(
                 text="http://vocab.nerc.ac.uk/collection/L06/current/3C/",
                 meaning=None))
-        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/32/",
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/36/",
             PermissibleValue(
-                text="http://vocab.nerc.ac.uk/collection/L06/current/32/",
+                text="http://vocab.nerc.ac.uk/collection/L06/current/36/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/18/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/L06/current/18/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/30/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/L06/current/30/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/61/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/L06/current/61/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/26/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/L06/current/26/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/16/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/L06/current/16/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/3A/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/L06/current/3A/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/41/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/L06/current/41/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/72/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/L06/current/72/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/43/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/L06/current/43/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/15/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/L06/current/15/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/13/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/L06/current/13/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/6A/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/L06/current/6A/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/44/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/L06/current/44/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/68/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/L06/current/68/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/33/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/L06/current/33/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/19/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/L06/current/19/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/11/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/L06/current/11/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/12/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/L06/current/12/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/23/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/L06/current/23/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/17/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/L06/current/17/",
                 meaning=None))
         setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/3B/",
             PermissibleValue(
                 text="http://vocab.nerc.ac.uk/collection/L06/current/3B/",
                 meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/45/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/L06/current/45/",
+                meaning=None))
         setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/42/",
             PermissibleValue(
                 text="http://vocab.nerc.ac.uk/collection/L06/current/42/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/47/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/L06/current/47/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/14/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/L06/current/14/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/71/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/L06/current/71/",
                 meaning=None))
         setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/46/",
             PermissibleValue(
                 text="http://vocab.nerc.ac.uk/collection/L06/current/46/",
                 meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/20/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/L06/current/20/",
+                meaning=None))
         setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/27/",
             PermissibleValue(
                 text="http://vocab.nerc.ac.uk/collection/L06/current/27/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/25/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/L06/current/25/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/3Z/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/L06/current/3Z/",
                 meaning=None))
         setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/48/",
             PermissibleValue(
@@ -3453,55 +3570,20 @@ class PlatformType(EnumDefinitionImpl):
             PermissibleValue(
                 text="http://vocab.nerc.ac.uk/collection/L06/current/31/",
                 meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/62/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/L06/current/62/",
+                meaning=None))
+        setattr(cls, "http://vocab.nerc.ac.uk/collection/L06/current/67/",
+            PermissibleValue(
+                text="http://vocab.nerc.ac.uk/collection/L06/current/67/",
+                meaning=None))
 
 class MassConcentrationUnit(EnumDefinitionImpl):
 
     _defn = EnumDefinition(
         name="MassConcentrationUnit",
     )
-
-    @classmethod
-    def _addvals(cls):
-        setattr(cls, "unit:KiloGM-PER-M3",
-            PermissibleValue(
-                text="unit:KiloGM-PER-M3",
-                meaning=UNIT["KiloGM-PER-M3"]))
-        setattr(cls, "unit:MicroGM-PER-L",
-            PermissibleValue(
-                text="unit:MicroGM-PER-L",
-                meaning=UNIT["MicroGM-PER-L"]))
-        setattr(cls, "unit:MicroGM-PER-L-DAY",
-            PermissibleValue(
-                text="unit:MicroGM-PER-L-DAY",
-                meaning=UNIT["MicroGM-PER-L-DAY"]))
-        setattr(cls, "unit:MicroGM-PER-MilliL",
-            PermissibleValue(
-                text="unit:MicroGM-PER-MilliL",
-                meaning=UNIT["MicroGM-PER-MilliL"]))
-        setattr(cls, "unit:MilliGM-PER-L",
-            PermissibleValue(
-                text="unit:MilliGM-PER-L",
-                meaning=UNIT["MilliGM-PER-L"]))
-        setattr(cls, "unit:MilliGM-PER-M3",
-            PermissibleValue(
-                text="unit:MilliGM-PER-M3",
-                meaning=UNIT["MilliGM-PER-M3"]))
-        setattr(cls, "unit:MilliGM-PER-MilliL",
-            PermissibleValue(
-                text="unit:MilliGM-PER-MilliL",
-                meaning=UNIT["MilliGM-PER-MilliL"]))
-        setattr(cls, "unit:NanoGM-PER-L",
-            PermissibleValue(
-                text="unit:NanoGM-PER-L",
-                meaning=UNIT["NanoGM-PER-L"]))
-        setattr(cls, "unit:NanoGM-PER-MilliL",
-            PermissibleValue(
-                text="unit:NanoGM-PER-MilliL",
-                meaning=UNIT["NanoGM-PER-MilliL"]))
-        setattr(cls, "unit:PicoGM-PER-MilliL",
-            PermissibleValue(
-                text="unit:PicoGM-PER-MilliL",
-                meaning=UNIT["PicoGM-PER-MilliL"]))
 
 class ResearcherIDType(EnumDefinitionImpl):
 
@@ -3799,6 +3881,9 @@ slots.variable__variable_type = Slot(uri=OAE.variable_type, name="variable__vari
 
 slots.variable__column_header_name = Slot(uri=OAE.column_header_name, name="variable__column_header_name", curie=OAE.curie('column_header_name'),
                    model_uri=OAE.variable__column_header_name, domain=None, range=str)
+
+slots.variable__column_header_name_qc_flag = Slot(uri=OAE.column_header_name_qc_flag, name="variable__column_header_name_qc_flag", curie=OAE.curie('column_header_name_qc_flag'),
+                   model_uri=OAE.variable__column_header_name_qc_flag, domain=None, range=Optional[str])
 
 slots.variable__long_name = Slot(uri=OAE.long_name, name="variable__long_name", curie=OAE.curie('long_name'),
                    model_uri=OAE.variable__long_name, domain=None, range=str)
