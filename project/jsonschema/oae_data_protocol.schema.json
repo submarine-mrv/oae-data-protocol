@@ -216,7 +216,7 @@
                     "type": "string"
                 },
                 "qc_steps_taken": {
-                    "description": "Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).",
+                    "description": "Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).\nIf quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.",
                     "title": "QC steps taken",
                     "type": "string"
                 },
@@ -264,7 +264,7 @@
                     "type": "string"
                 },
                 "weather_or_climate_quality": {
-                    "description": "Climate quality is defined as measurements of quality sufficient to assess long-term trends. Weather quality is defined as measurements of quality sufficient to compare with satellite measurements and study regional air-sea CO2 flux.",
+                    "description": "Climate quality is defined as measurements of quality sufficient to assess long term trends with a defined level of confidence. Weather quality is defined as measurements of quality sufficient to identify relative spatial patterns and short term variation.\nFor more details, refer to Newton J.A., Feely R. A., Jewett E. B., Williamson P. & Mathis J., 2015. Global Ocean Acidification Observing Network: Requirements and Governance Plan. Second Edition, GOA-ON, http://www.goa-on.org/docs/GOA-ON_plan_print.pdf.",
                     "title": "Weather or climate quality",
                     "type": "string"
                 },
@@ -363,7 +363,7 @@
                     "type": "string"
                 },
                 "qc_steps_taken": {
-                    "description": "Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).",
+                    "description": "Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).\nIf quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.",
                     "title": "QC steps taken",
                     "type": "string"
                 },
@@ -416,7 +416,7 @@
                     "type": "string"
                 },
                 "weather_or_climate_quality": {
-                    "description": "Climate quality is defined as measurements of quality sufficient to assess long-term trends. Weather quality is defined as measurements of quality sufficient to compare with satellite measurements and study regional air-sea CO2 flux.",
+                    "description": "Climate quality is defined as measurements of quality sufficient to assess long term trends with a defined level of confidence. Weather quality is defined as measurements of quality sufficient to identify relative spatial patterns and short term variation.\nFor more details, refer to Newton J.A., Feely R. A., Jewett E. B., Williamson P. & Mathis J., 2015. Global Ocean Acidification Observing Network: Requirements and Governance Plan. Second Edition, GOA-ON, http://www.goa-on.org/docs/GOA-ON_plan_print.pdf.",
                     "title": "Weather or climate quality",
                     "type": "string"
                 }
@@ -660,7 +660,7 @@
                     "type": "string"
                 },
                 "qc_steps_taken": {
-                    "description": "Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).",
+                    "description": "Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).\nIf quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.",
                     "title": "QC steps taken",
                     "type": "string"
                 },
@@ -842,7 +842,7 @@
                     "type": "string"
                 },
                 "qc_steps_taken": {
-                    "description": "Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).",
+                    "description": "Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).\nIf quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.",
                     "title": "QC steps taken",
                     "type": "string"
                 },
@@ -880,7 +880,7 @@
                     "type": "string"
                 },
                 "weather_or_climate_quality": {
-                    "description": "Climate quality is defined as measurements of quality sufficient to assess long-term trends. Weather quality is defined as measurements of quality sufficient to compare with satellite measurements and study regional air-sea CO2 flux.",
+                    "description": "Climate quality is defined as measurements of quality sufficient to assess long term trends with a defined level of confidence. Weather quality is defined as measurements of quality sufficient to identify relative spatial patterns and short term variation.\nFor more details, refer to Newton J.A., Feely R. A., Jewett E. B., Williamson P. & Mathis J., 2015. Global Ocean Acidification Observing Network: Requirements and Governance Plan. Second Edition, GOA-ON, http://www.goa-on.org/docs/GOA-ON_plan_print.pdf.",
                     "title": "Weather or climate quality",
                     "type": "string"
                 }
@@ -1573,7 +1573,7 @@
                     "type": "string"
                 },
                 "qc_steps_taken": {
-                    "description": "Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).",
+                    "description": "Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).\nIf quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.",
                     "title": "QC steps taken",
                     "type": "string"
                 },
@@ -2203,7 +2203,7 @@
                     "type": "string"
                 },
                 "qc_steps_taken": {
-                    "description": "Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).",
+                    "description": "Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).\nIf quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.",
                     "title": "QC steps taken",
                     "type": "string"
                 },
@@ -2583,7 +2583,7 @@
                     "type": "string"
                 },
                 "qc_steps_taken": {
-                    "description": "Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).",
+                    "description": "Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).\nIf quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.",
                     "title": "QC steps taken",
                     "type": "string"
                 },
@@ -2621,7 +2621,7 @@
                     "type": "string"
                 },
                 "weather_or_climate_quality": {
-                    "description": "Climate quality is defined as measurements of quality sufficient to assess long-term trends. Weather quality is defined as measurements of quality sufficient to compare with satellite measurements and study regional air-sea CO2 flux.",
+                    "description": "Climate quality is defined as measurements of quality sufficient to assess long term trends with a defined level of confidence. Weather quality is defined as measurements of quality sufficient to identify relative spatial patterns and short term variation.\nFor more details, refer to Newton J.A., Feely R. A., Jewett E. B., Williamson P. & Mathis J., 2015. Global Ocean Acidification Observing Network: Requirements and Governance Plan. Second Edition, GOA-ON, http://www.goa-on.org/docs/GOA-ON_plan_print.pdf.",
                     "title": "Weather or climate quality",
                     "type": "string"
                 }
@@ -2814,7 +2814,7 @@
                     "type": "string"
                 },
                 "qc_steps_taken": {
-                    "description": "Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).",
+                    "description": "Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).\nIf quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.",
                     "title": "QC steps taken",
                     "type": "string"
                 },
@@ -3308,7 +3308,7 @@
                     "type": "string"
                 },
                 "qc_steps_taken": {
-                    "description": "Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).",
+                    "description": "Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).\nIf quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.",
                     "title": "QC steps taken",
                     "type": "string"
                 },
@@ -3595,7 +3595,7 @@
                     "type": "string"
                 },
                 "qc_steps_taken": {
-                    "description": "Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).",
+                    "description": "Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).\nIf quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.",
                     "title": "QC steps taken",
                     "type": "string"
                 },
@@ -3633,7 +3633,7 @@
                     "type": "string"
                 },
                 "weather_or_climate_quality": {
-                    "description": "Climate quality is defined as measurements of quality sufficient to assess long-term trends. Weather quality is defined as measurements of quality sufficient to compare with satellite measurements and study regional air-sea CO2 flux.",
+                    "description": "Climate quality is defined as measurements of quality sufficient to assess long term trends with a defined level of confidence. Weather quality is defined as measurements of quality sufficient to identify relative spatial patterns and short term variation.\nFor more details, refer to Newton J.A., Feely R. A., Jewett E. B., Williamson P. & Mathis J., 2015. Global Ocean Acidification Observing Network: Requirements and Governance Plan. Second Edition, GOA-ON, http://www.goa-on.org/docs/GOA-ON_plan_print.pdf.",
                     "title": "Weather or climate quality",
                     "type": "string"
                 }

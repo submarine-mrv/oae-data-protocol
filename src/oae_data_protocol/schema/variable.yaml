@@ -388,6 +388,9 @@ classes:
         description: >-
           Describe what QC steps have been taken to improve the quality of the data
           (e.g., DOI, software and settings used, outlier removal, etc.).
+          
+          If quality control procedures are described in a separate document uploaded with the data, provide the name
+          of the document here.
         range: string
         required: true
       uncertainty:
