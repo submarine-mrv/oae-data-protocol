@@ -7,6 +7,9 @@ description: >-
 prefixes:
   oae: "https://example.org/oae#"
   schema: "http://schema.org/"
+  "SDN_L05": "http://vocab.nerc.ac.uk/collection/L05/current/"
+  "SDN_L22": "http://vocab.nerc.ac.uk/collection/L22/current/"
+  "SDN_B75": "http://vocab.nerc.ac.uk/collection/B75/current/"
 
 default_prefix: oae
 
@@ -25,8 +28,11 @@ classes:
         title: Instrument type
         description: >-
           Type of instrument used to analyze samples or measure continuously.
-        range: string
+        range: InstrumentType
         required: true
+      instrument_type_custom:
+        title: Instrument type (custom)
+        range: string
       manufacturer:
         title: Manufacturer
         description: Manufacturer name of the instrument.
@@ -118,3 +124,194 @@ classes:
         title: Calibration
         description: Calibration information for this instrument.
         range: Calibration
+
+enums:
+  InstrumentType:
+    permissible_values:
+      CTD_ROSETTE:
+        description: >-
+          A CTD rosette consists of a metal frame that houses a collection of sensors and water sampling bottles
+          (e.g., Niskin)
+      CTD_SENSOR:
+        meaning: SDN_L05:130
+        description: >-
+          The acronym CTD stands for Conductivity, Temperature, and Depth, which are the three primary variables
+          measured by a CTD sensor.
+      NISKIN_BOTTLE:
+        meaning: SDN_L05:30
+        description: >-
+          A Niskin bottle is a type of sampling device used in oceanography to collect water samples at different
+          depths. It is named after the inventor, Shale Niskin, who developed the device in the 1960s.
+      FLOW_THROUGH_SYSTEM:
+        meaning: SDN_L05:31
+        description: >-
+          A flow-through system on a research vessel or ship of opportunity is a system designed to continuously pump
+          seawater from the ocean into the laboratory for scientific research.
+      THERMOSALINOGRAPH:
+        meaning: SDN_L05:133
+        description: A Thermosalinograph (TSG) is an instrument used to measure seawater temperature and salinity.
+      SALINOMETER_FOR_DISCRETE_SALINITY_MEASUREMENT:
+        meaning: SDN_L05:LAB30
+        description: >-
+          Salinometers work based on the principle of conductivity. They measure the electrical conductivity of the
+          water, which is directly related to its salinity.
+      DIC_ANALYZERS_BASED_ON_COULOMETERS:
+        description: >-
+          DIC coulometers are widely used in oceanographic research to measure the concentration of dissolved inorganic
+          carbon in seawater samples. They are often coupled with computer-controlled automated dynamic headspace
+          analyzers that extracts total carbon dioxide from seawater using Single-Operator Multiparameter Metabolic
+          Analyzers (SOMMAs).
+      DIC_ANALYZERS_BASED_ON_CO2_GAS_DETECTORS:
+        description: >-
+          DIC analyzers based on a CO2 gas detector including Non-dispersive infrared absorption (NDIR)
+          (e.g., Licor LI-850), Cavity Enhanced Absorption Spectroscopy (e.g., Licor's LI-7815), and
+          Cavity Ring-Down Spectroscopy (CRDS) (e.g., Picarro G2131i) detectors.
+      AUTONOMOUS_DIC_SENSOR:
+        meaning: SDN_L05:86
+        description: >-
+          Autonomous dissolved inorganic carbon (DIC) sensors are devices that can measure the
+          concentration of DIC in seawater or other natural waters in situ, without the need for
+          manual sampling and laboratory analysis.
+      ALKALINITY_TITRATOR:
+        meaning: SDN_L05:LAB12
+        description: >-
+          An alkalinity titrator is a device used to measure the total alkalinity of a seawater by
+          titration.
+      AUTONOMOUS_TA_SENSOR:
+        description: >-
+          Autonomous total alkalinity (TA) sensors are devices that can measure the concentration of
+          TA in seawater or other natural waters in situ, without the need for manual sampling and
+          laboratory analysis.
+      SHOWERHEAD_EQUILIBRATOR:
+        meaning: SDN_L05:EQUIL
+        description: >-
+          This type of equilibrator works by spraying seawater into a gas chamber, allowing the CO2
+          in the water to equilibrate with a gas mixture in the chamber.
+      FLOATING_AIR_WATER_EQUILIBRATOR:
+        meaning: SDN_L05:EQUIL
+        description: >-
+          An "h"-shaped bubble equilibrator assembly commonly used in MAPCO2 systems on moorings.
+          For more information, refer to Friederich et al. (1995).
+      MEMBRANE_EQUILIBRATOR:
+        meaning: SDN_L05:EQUIL
+        description: >-
+          While seawater is passed through a membrane, CO2 in the water diffuses across the membrane
+          and equilibrates with the gas mixture, which is then analyzed to determine the CO2
+          concentration.
+      FLASK_FOR_DISCRETE_CARBON_DIOXIDE_MEASUREMENT:
+        description: >-
+          Such flasks are typically made of glass and have a capacity of around one liter. Seawater
+          samples are collected from a specific depth using a Niskin bottle or other sampling device
+          and transferred to the flask without exposing them to the air. The flask is then sealed
+          with a stopper and transported to the laboratory for analysis.
+      SPECTROPHOTOMETER:
+        meaning: SDN_L05:LAB20
+        description: >-
+          A spectrophotometer is a scientific instrument used to measure the amount of light absorbed
+          or transmitted by a sample. It is commonly used for high quality pH measurements.
+      HANDHELD_PH_SPECTROPHOTOMETER:
+        description: >-
+          One example of a handheld pH spectrophotometer is the "pHyter". Refer to Pardis et al.
+          (2022) for more details.
+      PH_ELECTRODE:
+        meaning: SDN_L05:355
+        description: >-
+          A pH electrode, sometimes referred to as a pH probe or pH sensor, is a glass device used to
+          measure the pH of a solution.
+      SEA_BIRD_SEAFET:
+        meaning: SDN_L22:TOOL1292
+        description: >-
+          Sea-Bird SeaFET is a type of oceanographic instrument that is used to measure the pH of
+          seawater in real-time.
+      OXYGEN_TITRATOR:
+        meaning: SDN_L05:LAB12
+        description: >-
+          An oxygen titrator is a device used to measure the concentration of dissolved oxygen in a
+          water sample, as required for the Winkler method.
+      OXYGEN_SENSOR:
+        meaning: SDN_L05:351
+        description: >-
+          An oxygen sensor or probe or sond, is an electronic device that measures the concentration
+          of dissolved oxygen in the ocean.
+      SEA_BIRD_SEAPHOX:
+        meaning: SDN_L22:TOOL1895
+        description: >-
+          Sea-Bird SeapHOx is a type of oceanographic instrument that measures both the pH and
+          dissolved oxygen concentration of seawater in real-time.
+      YSI:
+        meaning: SDN_B75:ORG00475
+        description: >-
+          YSI (Yellow Springs Instruments) is a company that produces a variety of water quality
+          monitoring instruments. The YSI sensors are designed to measure a wide range of parameters,
+          including temperature, salinity, and dissolved oxygen.
+      NUTRIENT_ANALYZER:
+        meaning: SDN_L05:181
+        description: >-
+          A nutrient analyzer is a device used to measure the concentration of nutrients, such as
+          nitrate, nitrite, ammonium, phosphate, and silicate, in water samples.
+      FLUOROMETERS:
+        meaning: SDN_L05:113
+        description: >-
+          Fluorometers can detect chlorophyll a by transmitting an excitation beam of light in the
+          blue range and by detecting the light fluoresced by cells or chlorophyll in a sample.
+      HIGH_PERFORMANCE_LIQUID_CHROMATOGRAPHY_HPLC:
+        meaning: SDN_L05:LAB11
+        description: >-
+          High performance liquid chromatography (HPLC) is a powerful analytical technique used in
+          chemistry, biochemistry, and pharmaceutical industries to separate, identify, and quantify
+          individual components in a mixture.
+      ACOUSTIC_DOPPLER_CURRENT_PROFILER_ADCP:
+        meaning: SDN_L05:115
+        description: >-
+          Acoustic Doppler Current Profiler (ADCP), is a type of instrument used to measure water
+          currents in oceans, rivers, and other bodies of water.
+      MASS_SPECTROMETERS:
+        meaning: SDN_L05:LAB16
+        description: >-
+          A mass spectrometer is an analytical instrument used to measure and identify the mass and
+          abundance of atoms and molecules in a sample.
+      ISOTOPE_RATIO_MASS_SPECTROMETERS_IRMS:
+        meaning: SDN_L05:LAB48
+        description: >-
+          An isotope ratio mass spectrometer (IRMS) is a scientific instrument used to measure the
+          isotopic composition of a sample.
+      BAROMETRIC_PRESSURE_SENSOR:
+        meaning: SDN_L05:102
+        description: >-
+          A barometric pressure sensor is a device that measures atmospheric pressure, which is the
+          pressure exerted by the weight of the Earth's atmosphere.
+      MICROSCOPES:
+        meaning: SDN_L05:LAB05
+        description: >-
+          A microscope is an instrument used to observe and magnify objects that are too small to be
+          seen by the naked eye.
+      SCANNING_ELECTRON_MICROSCOPES:
+        meaning: SDN_L05:LAB07
+        description: >-
+          A scanning electron microscope (SEM) is a type of microscope that uses a focused beam of
+          electrons to create high-resolution images of the surface of a specimen.
+      BIOLOGICAL_TRAWL:
+        meaning: SDN_L05:23
+        description: >-
+          A biological trawl is a type of pelagic trawl net used to collect biological samples from
+          the water column.
+      PHYTOPLANKTON_NET:
+        meaning: SDN_L05:22
+        description: >-
+          Phytoplankton net is used to collect and identify phytoplankton, which are microscopic
+          plants that form the base of the marine food web.
+      ZOOPLANKTON_NET:
+        meaning: SDN_L05:22
+        description: >-
+          Zooplankton net is used to collect and identify zooplankton, which are microscopic animals
+          that feed on phytoplankton and are important prey for many marine organisms.
+      FLOW_CYTOMETERS:
+        meaning: SDN_L05:LAB37
+        description: >-
+          A flow cytometer is a scientific instrument used to analyze and sort cells or particles in
+          a liquid suspension based on their physical and chemical properties.
+      EDNA_SAMPLER:
+        description: >-
+          Environmental DNA (eDNA) samplers: used to collect and analyze genetic material shed by marine organisms,
+          which can provide information about their distribution, abundance, and diversity.
+      OTHER:

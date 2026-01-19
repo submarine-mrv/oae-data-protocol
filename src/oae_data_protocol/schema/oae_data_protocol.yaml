@@ -20,9 +20,9 @@ imports:
   - oae_project
   - external_project
   - monetary_grant
+  - permit
   - experiment
   - person
-  - permit
   - variable
   - dataset
   - platform

@@ -94,11 +94,11 @@ classes:
         description: >-
           Describe what the quality control flags stand for, e.g.,
             0 = interpolated or calculated data
-            1 = not evaluated/quality unknown 
-            2 = acceptable 
-            3 = questionable 
-            4 = known bad 
-            6 = median of replicates 
+            1 = not evaluated/quality unknown
+            2 = acceptable
+            3 = questionable
+            4 = known bad
+            6 = median of replicates
             9 = missing value"
         range: string
       platform_info:
