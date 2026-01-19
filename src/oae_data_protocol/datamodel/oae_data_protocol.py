@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-01-18T21:02:19
+# Generation date: 2026-01-18T21:38:57
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -57,8 +57,8 @@ from rdflib import (
     URIRef
 )
 
-from linkml_runtime.linkml_model.types import Boolean, Date, Datetime, Float, String, Uri
-from linkml_runtime.utils.metamodelcore import Bool, URI, XSDDate, XSDDateTime
+from linkml_runtime.linkml_model.types import Boolean, Date, Datetime, Float, String, Uri, Uriorcurie
+from linkml_runtime.utils.metamodelcore import Bool, URI, URIorCURIE, XSDDate, XSDDateTime
 
 metamodel_version = "1.7.0"
 version = "0.1.0"
@@ -1115,6 +1115,1061 @@ class Person(YAMLRoot):
         super().__post_init__(**kwargs)
 
 
+@dataclass(repr=False)
+class Variable(YAMLRoot):
+    """
+    Abstract base class for all variable types. Contains common identification and description fields shared by all
+    variables. Reference: OAPMetadata XSD variables.xsd - variable, basic_variable
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["Variable"]
+    class_class_curie: ClassVar[str] = "oae:Variable"
+    class_name: ClassVar[str] = "Variable"
+    class_model_uri: ClassVar[URIRef] = OAE.Variable
+
+    dataset_variable_name: str = None
+    long_name: str = None
+    units: str = None
+    standard_identifier: Optional[Union[dict, "VocabularyItemReference"]] = None
+    dataset_variable_name_qc_flag: Optional[str] = None
+    method_reference: Optional[str] = None
+    measurement_researcher: Optional[Union[dict, Person]] = None
+    other_detailed_information: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.dataset_variable_name):
+            self.MissingRequiredField("dataset_variable_name")
+        if not isinstance(self.dataset_variable_name, str):
+            self.dataset_variable_name = str(self.dataset_variable_name)
+
+        if self._is_empty(self.long_name):
+            self.MissingRequiredField("long_name")
+        if not isinstance(self.long_name, str):
+            self.long_name = str(self.long_name)
+
+        if self._is_empty(self.units):
+            self.MissingRequiredField("units")
+        if not isinstance(self.units, str):
+            self.units = str(self.units)
+
+        if self.standard_identifier is not None and not isinstance(self.standard_identifier, VocabularyItemReference):
+            self.standard_identifier = VocabularyItemReference(**as_dict(self.standard_identifier))
+
+        if self.dataset_variable_name_qc_flag is not None and not isinstance(self.dataset_variable_name_qc_flag, str):
+            self.dataset_variable_name_qc_flag = str(self.dataset_variable_name_qc_flag)
+
+        if self.method_reference is not None and not isinstance(self.method_reference, str):
+            self.method_reference = str(self.method_reference)
+
+        if self.measurement_researcher is not None and not isinstance(self.measurement_researcher, Person):
+            self.measurement_researcher = Person(**as_dict(self.measurement_researcher))
+
+        if self.other_detailed_information is not None and not isinstance(self.other_detailed_information, str):
+            self.other_detailed_information = str(self.other_detailed_information)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class VocabularyItemReference(YAMLRoot):
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["VocabularyItemReference"]
+    class_class_curie: ClassVar[str] = "oae:VocabularyItemReference"
+    class_name: ClassVar[str] = "VocabularyItemReference"
+    class_model_uri: ClassVar[URIRef] = OAE.VocabularyItemReference
+
+    term: str = None
+    uri: Union[str, URIorCURIE] = None
+    description: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.term):
+            self.MissingRequiredField("term")
+        if not isinstance(self.term, str):
+            self.term = str(self.term)
+
+        if self._is_empty(self.uri):
+            self.MissingRequiredField("uri")
+        if not isinstance(self.uri, URIorCURIE):
+            self.uri = URIorCURIE(self.uri)
+
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class ObservedPropertyVariable(Variable):
+    """
+    Variable that is directly measured in-situ using instruments. Reference: OAPMetadata XSD variables.xsd -
+    basic_measured_observation_base
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["ObservedPropertyVariable"]
+    class_class_curie: ClassVar[str] = "oae:ObservedPropertyVariable"
+    class_name: ClassVar[str] = "ObservedPropertyVariable"
+    class_model_uri: ClassVar[URIRef] = OAE.ObservedPropertyVariable
+
+    dataset_variable_name: str = None
+    long_name: str = None
+    units: str = None
+    sampling_method: str = None
+    analyzing_method: str = None
+    observation_type: Union[str, "ObservationType"] = None
+    sampling: Union[str, "SamplingType"] = None
+    genesis: Union[str, "GenesisType"] = None
+    qc_steps_taken: str = None
+    uncertainty_definition: str = None
+    missing_value_indicators: str = None
+    sampling_instrument_type: Optional[Union[str, "InstrumentType"]] = None
+    sampling_instrument_type_custom: Optional[str] = None
+    field_replicate_information: Optional[str] = None
+    uncertainty: Optional[str] = None
+    qc_researcher: Optional[Union[dict, Person]] = None
+    qc_researcher_institution: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.sampling_method):
+            self.MissingRequiredField("sampling_method")
+        if not isinstance(self.sampling_method, str):
+            self.sampling_method = str(self.sampling_method)
+
+        if self._is_empty(self.analyzing_method):
+            self.MissingRequiredField("analyzing_method")
+        if not isinstance(self.analyzing_method, str):
+            self.analyzing_method = str(self.analyzing_method)
+
+        if self._is_empty(self.observation_type):
+            self.MissingRequiredField("observation_type")
+        if not isinstance(self.observation_type, ObservationType):
+            self.observation_type = ObservationType(self.observation_type)
+
+        if self._is_empty(self.sampling):
+            self.MissingRequiredField("sampling")
+        if not isinstance(self.sampling, SamplingType):
+            self.sampling = SamplingType(self.sampling)
+
+        if self._is_empty(self.genesis):
+            self.MissingRequiredField("genesis")
+        if not isinstance(self.genesis, GenesisType):
+            self.genesis = GenesisType(self.genesis)
+
+        if self._is_empty(self.qc_steps_taken):
+            self.MissingRequiredField("qc_steps_taken")
+        if not isinstance(self.qc_steps_taken, str):
+            self.qc_steps_taken = str(self.qc_steps_taken)
+
+        if self._is_empty(self.uncertainty_definition):
+            self.MissingRequiredField("uncertainty_definition")
+        if not isinstance(self.uncertainty_definition, str):
+            self.uncertainty_definition = str(self.uncertainty_definition)
+
+        if self._is_empty(self.missing_value_indicators):
+            self.MissingRequiredField("missing_value_indicators")
+        if not isinstance(self.missing_value_indicators, str):
+            self.missing_value_indicators = str(self.missing_value_indicators)
+
+        if self.sampling_instrument_type is not None and not isinstance(self.sampling_instrument_type, InstrumentType):
+            self.sampling_instrument_type = InstrumentType(self.sampling_instrument_type)
+
+        if self.sampling_instrument_type_custom is not None and not isinstance(self.sampling_instrument_type_custom, str):
+            self.sampling_instrument_type_custom = str(self.sampling_instrument_type_custom)
+
+        if self.field_replicate_information is not None and not isinstance(self.field_replicate_information, str):
+            self.field_replicate_information = str(self.field_replicate_information)
+
+        if self.uncertainty is not None and not isinstance(self.uncertainty, str):
+            self.uncertainty = str(self.uncertainty)
+
+        if self.qc_researcher is not None and not isinstance(self.qc_researcher, Person):
+            self.qc_researcher = Person(**as_dict(self.qc_researcher))
+
+        if self.qc_researcher_institution is not None and not isinstance(self.qc_researcher_institution, str):
+            self.qc_researcher_institution = str(self.qc_researcher_institution)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class DiscreteMeasuredVariable(ObservedPropertyVariable):
+    """
+    Analyzing instrument information fields, only applied to discretely measured variables. The instrument type can be
+    narrowed in subclasses using slot_usage.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["DiscreteMeasuredVariable"]
+    class_class_curie: ClassVar[str] = "oae:DiscreteMeasuredVariable"
+    class_name: ClassVar[str] = "DiscreteMeasuredVariable"
+    class_model_uri: ClassVar[URIRef] = OAE.DiscreteMeasuredVariable
+
+    dataset_variable_name: str = None
+    long_name: str = None
+    units: str = None
+    sampling_method: str = None
+    analyzing_method: str = None
+    observation_type: Union[str, "ObservationType"] = None
+    sampling: Union[str, "SamplingType"] = None
+    genesis: Union[str, "GenesisType"] = None
+    qc_steps_taken: str = None
+    uncertainty_definition: str = None
+    missing_value_indicators: str = None
+    analyzing_instrument: Union[dict, "Instrument"] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.analyzing_instrument):
+            self.MissingRequiredField("analyzing_instrument")
+        if not isinstance(self.analyzing_instrument, Instrument):
+            self.analyzing_instrument = Instrument(**as_dict(self.analyzing_instrument))
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class ContinuousMeasuredVariable(ObservedPropertyVariable):
+    """
+    Fields for continuous sampling information.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["ContinuousMeasuredVariable"]
+    class_class_curie: ClassVar[str] = "oae:ContinuousMeasuredVariable"
+    class_name: ClassVar[str] = "ContinuousMeasuredVariable"
+    class_model_uri: ClassVar[URIRef] = OAE.ContinuousMeasuredVariable
+
+    dataset_variable_name: str = None
+    long_name: str = None
+    units: str = None
+    sampling_method: str = None
+    analyzing_method: str = None
+    observation_type: Union[str, "ObservationType"] = None
+    sampling: Union[str, "SamplingType"] = None
+    genesis: Union[str, "GenesisType"] = None
+    qc_steps_taken: str = None
+    uncertainty_definition: str = None
+    missing_value_indicators: str = None
+    raw_data_calculation_method: str = None
+    calculation_software_version: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.raw_data_calculation_method):
+            self.MissingRequiredField("raw_data_calculation_method")
+        if not isinstance(self.raw_data_calculation_method, str):
+            self.raw_data_calculation_method = str(self.raw_data_calculation_method)
+
+        if self.calculation_software_version is not None and not isinstance(self.calculation_software_version, str):
+            self.calculation_software_version = str(self.calculation_software_version)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class CalculatedVariable(Variable):
+    """
+    Variable that is calculated or derived from other variables.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["CalculatedVariable"]
+    class_class_curie: ClassVar[str] = "oae:CalculatedVariable"
+    class_name: ClassVar[str] = "CalculatedVariable"
+    class_model_uri: ClassVar[URIRef] = OAE.CalculatedVariable
+
+    dataset_variable_name: str = None
+    long_name: str = None
+    units: str = None
+    calculation_method_and_parameters: str = None
+    qc_steps_taken: str = None
+    uncertainty_definition: str = None
+    missing_value_indicators: str = None
+    field_replicate_information: Optional[str] = None
+    uncertainty: Optional[str] = None
+    qc_researcher: Optional[Union[dict, Person]] = None
+    qc_researcher_institution: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.calculation_method_and_parameters):
+            self.MissingRequiredField("calculation_method_and_parameters")
+        if not isinstance(self.calculation_method_and_parameters, str):
+            self.calculation_method_and_parameters = str(self.calculation_method_and_parameters)
+
+        if self._is_empty(self.qc_steps_taken):
+            self.MissingRequiredField("qc_steps_taken")
+        if not isinstance(self.qc_steps_taken, str):
+            self.qc_steps_taken = str(self.qc_steps_taken)
+
+        if self._is_empty(self.uncertainty_definition):
+            self.MissingRequiredField("uncertainty_definition")
+        if not isinstance(self.uncertainty_definition, str):
+            self.uncertainty_definition = str(self.uncertainty_definition)
+
+        if self._is_empty(self.missing_value_indicators):
+            self.MissingRequiredField("missing_value_indicators")
+        if not isinstance(self.missing_value_indicators, str):
+            self.missing_value_indicators = str(self.missing_value_indicators)
+
+        if self.field_replicate_information is not None and not isinstance(self.field_replicate_information, str):
+            self.field_replicate_information = str(self.field_replicate_information)
+
+        if self.uncertainty is not None and not isinstance(self.uncertainty, str):
+            self.uncertainty = str(self.uncertainty)
+
+        if self.qc_researcher is not None and not isinstance(self.qc_researcher, Person):
+            self.qc_researcher = Person(**as_dict(self.qc_researcher))
+
+        if self.qc_researcher_institution is not None and not isinstance(self.qc_researcher_institution, str):
+            self.qc_researcher_institution = str(self.qc_researcher_institution)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class DiscretePHVariable(DiscreteMeasuredVariable):
+    """
+    pH measured variable with dye-based spectrophotometric measurement. Reference: OAPMetadata XSD variables.xsd -
+    pH_measured
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["DiscretePHVariable"]
+    class_class_curie: ClassVar[str] = "oae:DiscretePHVariable"
+    class_name: ClassVar[str] = "DiscretePHVariable"
+    class_model_uri: ClassVar[URIRef] = OAE.DiscretePHVariable
+
+    dataset_variable_name: str = None
+    long_name: str = None
+    units: str = None
+    sampling_method: str = None
+    analyzing_method: str = None
+    observation_type: Union[str, "ObservationType"] = None
+    sampling: Union[str, "SamplingType"] = None
+    genesis: Union[str, "GenesisType"] = None
+    qc_steps_taken: str = None
+    uncertainty_definition: str = None
+    missing_value_indicators: str = None
+    ph_reported_temperature: str = None
+    analyzing_instrument: Union[dict, "PHInstrument"] = None
+    appropriate_use_quality: Optional[Union[str, "AppropriateUseQuality"]] = None
+    measurement_temperature: Optional[str] = None
+    temperature_correction_method: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.ph_reported_temperature):
+            self.MissingRequiredField("ph_reported_temperature")
+        if not isinstance(self.ph_reported_temperature, str):
+            self.ph_reported_temperature = str(self.ph_reported_temperature)
+
+        if self._is_empty(self.analyzing_instrument):
+            self.MissingRequiredField("analyzing_instrument")
+        if not isinstance(self.analyzing_instrument, PHInstrument):
+            self.analyzing_instrument = PHInstrument(**as_dict(self.analyzing_instrument))
+
+        if self.appropriate_use_quality is not None and not isinstance(self.appropriate_use_quality, AppropriateUseQuality):
+            self.appropriate_use_quality = AppropriateUseQuality(self.appropriate_use_quality)
+
+        if self.measurement_temperature is not None and not isinstance(self.measurement_temperature, str):
+            self.measurement_temperature = str(self.measurement_temperature)
+
+        if self.temperature_correction_method is not None and not isinstance(self.temperature_correction_method, str):
+            self.temperature_correction_method = str(self.temperature_correction_method)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class HPLCVariable(ObservedPropertyVariable):
+    """
+    HPLC (High-Performance Liquid Chromatography) measured variable for pigment analysis. Always measured, not
+    calculated.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["HPLCVariable"]
+    class_class_curie: ClassVar[str] = "oae:HPLCVariable"
+    class_name: ClassVar[str] = "HPLCVariable"
+    class_model_uri: ClassVar[URIRef] = OAE.HPLCVariable
+
+    dataset_variable_name: str = None
+    long_name: str = None
+    units: str = None
+    sampling_method: str = None
+    analyzing_method: str = None
+    observation_type: Union[str, "ObservationType"] = None
+    sampling: Union[str, "SamplingType"] = None
+    genesis: Union[str, "GenesisType"] = None
+    qc_steps_taken: str = None
+    uncertainty_definition: str = None
+    missing_value_indicators: str = None
+
+@dataclass(repr=False)
+class SedimentVariable(ObservedPropertyVariable):
+    """
+    Sediment measured variable for seafloor/sediment sampling data.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["SedimentVariable"]
+    class_class_curie: ClassVar[str] = "oae:SedimentVariable"
+    class_name: ClassVar[str] = "SedimentVariable"
+    class_model_uri: ClassVar[URIRef] = OAE.SedimentVariable
+
+    dataset_variable_name: str = None
+    long_name: str = None
+    units: str = None
+    sampling_method: str = None
+    analyzing_method: str = None
+    observation_type: Union[str, "ObservationType"] = None
+    sampling: Union[str, "SamplingType"] = None
+    genesis: Union[str, "GenesisType"] = None
+    qc_steps_taken: str = None
+    uncertainty_definition: str = None
+    missing_value_indicators: str = None
+
+@dataclass(repr=False)
+class PhysiologicalVariable(ObservedPropertyVariable):
+    """
+    Physiological response measured variable for organism response data.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["PhysiologicalVariable"]
+    class_class_curie: ClassVar[str] = "oae:PhysiologicalVariable"
+    class_name: ClassVar[str] = "PhysiologicalVariable"
+    class_model_uri: ClassVar[URIRef] = OAE.PhysiologicalVariable
+
+    dataset_variable_name: str = None
+    long_name: str = None
+    units: str = None
+    sampling_method: str = None
+    analyzing_method: str = None
+    observation_type: Union[str, "ObservationType"] = None
+    sampling: Union[str, "SamplingType"] = None
+    genesis: Union[str, "GenesisType"] = None
+    qc_steps_taken: str = None
+    uncertainty_definition: str = None
+    missing_value_indicators: str = None
+
+@dataclass(repr=False)
+class SocioeconomicVariable(Variable):
+    """
+    Socioeconomic variable for social and economic data. Note: Does NOT include QCFields mixin as QC is not applicable.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["SocioeconomicVariable"]
+    class_class_curie: ClassVar[str] = "oae:SocioeconomicVariable"
+    class_name: ClassVar[str] = "SocioeconomicVariable"
+    class_model_uri: ClassVar[URIRef] = OAE.SocioeconomicVariable
+
+    dataset_variable_name: str = None
+    long_name: str = None
+    units: str = None
+
+@dataclass(repr=False)
+class NonMeasuredVariable(Variable):
+    """
+    Non-measured variable for data from external sources (e.g., satellite, model outputs, published data) that are not
+    directly measured by the project but included in the dataset.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["NonMeasuredVariable"]
+    class_class_curie: ClassVar[str] = "oae:NonMeasuredVariable"
+    class_name: ClassVar[str] = "NonMeasuredVariable"
+    class_model_uri: ClassVar[URIRef] = OAE.NonMeasuredVariable
+
+    dataset_variable_name: str = None
+    long_name: str = None
+    units: str = None
+    data_source: str = None
+    source_reference: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.data_source):
+            self.MissingRequiredField("data_source")
+        if not isinstance(self.data_source, str):
+            self.data_source = str(self.data_source)
+
+        if self.source_reference is not None and not isinstance(self.source_reference, str):
+            self.source_reference = str(self.source_reference)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class QCFields(YAMLRoot):
+    """
+    Quality control fields applicable to measured and calculated variables. Not applied to socioeconomic variables.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["QCFields"]
+    class_class_curie: ClassVar[str] = "oae:QCFields"
+    class_name: ClassVar[str] = "QCFields"
+    class_model_uri: ClassVar[URIRef] = OAE.QCFields
+
+    qc_steps_taken: str = None
+    uncertainty_definition: str = None
+    missing_value_indicators: str = None
+    field_replicate_information: Optional[str] = None
+    uncertainty: Optional[str] = None
+    qc_researcher: Optional[Union[dict, Person]] = None
+    qc_researcher_institution: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.qc_steps_taken):
+            self.MissingRequiredField("qc_steps_taken")
+        if not isinstance(self.qc_steps_taken, str):
+            self.qc_steps_taken = str(self.qc_steps_taken)
+
+        if self._is_empty(self.uncertainty_definition):
+            self.MissingRequiredField("uncertainty_definition")
+        if not isinstance(self.uncertainty_definition, str):
+            self.uncertainty_definition = str(self.uncertainty_definition)
+
+        if self._is_empty(self.missing_value_indicators):
+            self.MissingRequiredField("missing_value_indicators")
+        if not isinstance(self.missing_value_indicators, str):
+            self.missing_value_indicators = str(self.missing_value_indicators)
+
+        if self.field_replicate_information is not None and not isinstance(self.field_replicate_information, str):
+            self.field_replicate_information = str(self.field_replicate_information)
+
+        if self.uncertainty is not None and not isinstance(self.uncertainty, str):
+            self.uncertainty = str(self.uncertainty)
+
+        if self.qc_researcher is not None and not isinstance(self.qc_researcher, Person):
+            self.qc_researcher = Person(**as_dict(self.qc_researcher))
+
+        if self.qc_researcher_institution is not None and not isinstance(self.qc_researcher_institution, str):
+            self.qc_researcher_institution = str(self.qc_researcher_institution)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class Dataset(YAMLRoot):
+    """
+    A dataset related to an OAE experiment. Generally following guidelines & best practices as outlined in
+    [science-on-schema.org](https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md)
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["Dataset"]
+    class_class_curie: ClassVar[str] = "oae:Dataset"
+    class_name: ClassVar[str] = "Dataset"
+    class_model_uri: ClassVar[URIRef] = OAE.Dataset
+
+    name: str = None
+    description: str = None
+    project_id: str = None
+    experiment_id: str = None
+    temporal_coverage: str = None
+    dataset_type: Union[str, "DatasetType"] = None
+    data_product_type: Union[str, "DataProductType"] = None
+    platform_info: Union[dict, "Platform"] = None
+    filenames: Union[str, List[str]] = None
+    dataset_type_custom: Optional[str] = None
+    data_submitter: Optional[Union[dict, Person]] = None
+    author_list_for_citation: Optional[str] = None
+    license: Optional[Union[str, URI]] = None
+    fair_use_data_request: Optional[str] = None
+    qc_flag_scheme: Optional[str] = None
+    calibration_files: Optional[Union[str, List[str]]] = empty_list()
+    variables: Optional[Union[Union[dict, Variable], List[Union[dict, Variable]]]] = empty_list()
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.name):
+            self.MissingRequiredField("name")
+        if not isinstance(self.name, str):
+            self.name = str(self.name)
+
+        if self._is_empty(self.description):
+            self.MissingRequiredField("description")
+        if not isinstance(self.description, str):
+            self.description = str(self.description)
+
+        if self._is_empty(self.project_id):
+            self.MissingRequiredField("project_id")
+        if not isinstance(self.project_id, str):
+            self.project_id = str(self.project_id)
+
+        if self._is_empty(self.experiment_id):
+            self.MissingRequiredField("experiment_id")
+        if not isinstance(self.experiment_id, str):
+            self.experiment_id = str(self.experiment_id)
+
+        if self._is_empty(self.temporal_coverage):
+            self.MissingRequiredField("temporal_coverage")
+        if not isinstance(self.temporal_coverage, str):
+            self.temporal_coverage = str(self.temporal_coverage)
+
+        if self._is_empty(self.dataset_type):
+            self.MissingRequiredField("dataset_type")
+        if not isinstance(self.dataset_type, DatasetType):
+            self.dataset_type = DatasetType(self.dataset_type)
+
+        if self._is_empty(self.data_product_type):
+            self.MissingRequiredField("data_product_type")
+        if not isinstance(self.data_product_type, DataProductType):
+            self.data_product_type = DataProductType(self.data_product_type)
+
+        if self._is_empty(self.platform_info):
+            self.MissingRequiredField("platform_info")
+        if not isinstance(self.platform_info, Platform):
+            self.platform_info = Platform(**as_dict(self.platform_info))
+
+        if self._is_empty(self.filenames):
+            self.MissingRequiredField("filenames")
+        if not isinstance(self.filenames, list):
+            self.filenames = [self.filenames] if self.filenames is not None else []
+        self.filenames = [v if isinstance(v, str) else str(v) for v in self.filenames]
+
+        if self.dataset_type_custom is not None and not isinstance(self.dataset_type_custom, str):
+            self.dataset_type_custom = str(self.dataset_type_custom)
+
+        if self.data_submitter is not None and not isinstance(self.data_submitter, Person):
+            self.data_submitter = Person(**as_dict(self.data_submitter))
+
+        if self.author_list_for_citation is not None and not isinstance(self.author_list_for_citation, str):
+            self.author_list_for_citation = str(self.author_list_for_citation)
+
+        if self.license is not None and not isinstance(self.license, URI):
+            self.license = URI(self.license)
+
+        if self.fair_use_data_request is not None and not isinstance(self.fair_use_data_request, str):
+            self.fair_use_data_request = str(self.fair_use_data_request)
+
+        if self.qc_flag_scheme is not None and not isinstance(self.qc_flag_scheme, str):
+            self.qc_flag_scheme = str(self.qc_flag_scheme)
+
+        if not isinstance(self.calibration_files, list):
+            self.calibration_files = [self.calibration_files] if self.calibration_files is not None else []
+        self.calibration_files = [v if isinstance(v, str) else str(v) for v in self.calibration_files]
+
+        self._normalize_inlined_as_dict(slot_name="variables", slot_type=Variable, key_name="dataset_variable_name", keyed=False)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class Platform(YAMLRoot):
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["Platform"]
+    class_class_curie: ClassVar[str] = "oae:Platform"
+    class_name: ClassVar[str] = "Platform"
+    class_model_uri: ClassVar[URIRef] = OAE.Platform
+
+    platform_type: Union[str, "PlatformType"] = None
+    name: Optional[str] = None
+    platform_id: Optional[str] = None
+    owner: Optional[str] = None
+    country: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.platform_type):
+            self.MissingRequiredField("platform_type")
+        if not isinstance(self.platform_type, PlatformType):
+            self.platform_type = PlatformType(self.platform_type)
+
+        if self.name is not None and not isinstance(self.name, str):
+            self.name = str(self.name)
+
+        if self.platform_id is not None and not isinstance(self.platform_id, str):
+            self.platform_id = str(self.platform_id)
+
+        if self.owner is not None and not isinstance(self.owner, str):
+            self.owner = str(self.owner)
+
+        if self.country is not None and not isinstance(self.country, str):
+            self.country = str(self.country)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class Instrument(YAMLRoot):
+    """
+    Base class for scientific instruments used in measurements.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["Instrument"]
+    class_class_curie: ClassVar[str] = "oae:Instrument"
+    class_name: ClassVar[str] = "Instrument"
+    class_model_uri: ClassVar[URIRef] = OAE.Instrument
+
+    instrument_type: Union[str, "InstrumentType"] = None
+    precision: str = None
+    accuracy: str = None
+    instrument_type_custom: Optional[str] = None
+    manufacturer: Optional[str] = None
+    model: Optional[str] = None
+    serial_number: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.instrument_type):
+            self.MissingRequiredField("instrument_type")
+        if not isinstance(self.instrument_type, InstrumentType):
+            self.instrument_type = InstrumentType(self.instrument_type)
+
+        if self._is_empty(self.precision):
+            self.MissingRequiredField("precision")
+        if not isinstance(self.precision, str):
+            self.precision = str(self.precision)
+
+        if self._is_empty(self.accuracy):
+            self.MissingRequiredField("accuracy")
+        if not isinstance(self.accuracy, str):
+            self.accuracy = str(self.accuracy)
+
+        if self.instrument_type_custom is not None and not isinstance(self.instrument_type_custom, str):
+            self.instrument_type_custom = str(self.instrument_type_custom)
+
+        if self.manufacturer is not None and not isinstance(self.manufacturer, str):
+            self.manufacturer = str(self.manufacturer)
+
+        if self.model is not None and not isinstance(self.model, str):
+            self.model = str(self.model)
+
+        if self.serial_number is not None and not isinstance(self.serial_number, str):
+            self.serial_number = str(self.serial_number)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class CRMInstrument(Instrument):
+    """
+    Instrument calibrated with Certified Reference Materials, used for DIC and TA measurements.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["CRMInstrument"]
+    class_class_curie: ClassVar[str] = "oae:CRMInstrument"
+    class_name: ClassVar[str] = "CRMInstrument"
+    class_model_uri: ClassVar[URIRef] = OAE.CRMInstrument
+
+    instrument_type: Union[str, "InstrumentType"] = None
+    precision: str = None
+    accuracy: str = None
+    calibration: Union[dict, "CRMCalibration"] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.calibration):
+            self.MissingRequiredField("calibration")
+        if not isinstance(self.calibration, CRMCalibration):
+            self.calibration = CRMCalibration(**as_dict(self.calibration))
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class PHInstrument(Instrument):
+    """
+    pH measurement instrument with dye-based calibration.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["PHInstrument"]
+    class_class_curie: ClassVar[str] = "oae:PHInstrument"
+    class_name: ClassVar[str] = "pHInstrument"
+    class_model_uri: ClassVar[URIRef] = OAE.PHInstrument
+
+    instrument_type: Union[str, "InstrumentType"] = None
+    precision: str = None
+    accuracy: str = None
+    calibration: Union[dict, "PHCalibration"] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.calibration):
+            self.MissingRequiredField("calibration")
+        if not isinstance(self.calibration, PHCalibration):
+            self.calibration = PHCalibration(**as_dict(self.calibration))
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class CO2GasDetector(Instrument):
+    """
+    CO2 gas detector with standard gas calibration.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["CO2GasDetector"]
+    class_class_curie: ClassVar[str] = "oae:CO2GasDetector"
+    class_name: ClassVar[str] = "CO2GasDetector"
+    class_model_uri: ClassVar[URIRef] = OAE.CO2GasDetector
+
+    instrument_type: Union[str, "InstrumentType"] = None
+    precision: str = None
+    accuracy: str = None
+    calibration: Union[dict, "CO2Calibration"] = None
+    resolution: Optional[str] = None
+    uncertainty: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.calibration):
+            self.MissingRequiredField("calibration")
+        if not isinstance(self.calibration, CO2Calibration):
+            self.calibration = CO2Calibration(**as_dict(self.calibration))
+
+        if self.resolution is not None and not isinstance(self.resolution, str):
+            self.resolution = str(self.resolution)
+
+        if self.uncertainty is not None and not isinstance(self.uncertainty, str):
+            self.uncertainty = str(self.uncertainty)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class Sensor(Instrument):
+    """
+    Generic sensor with basic calibration information. Used for auxiliary measurements like temperature, pressure, etc.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["Sensor"]
+    class_class_curie: ClassVar[str] = "oae:Sensor"
+    class_name: ClassVar[str] = "Sensor"
+    class_model_uri: ClassVar[URIRef] = OAE.Sensor
+
+    instrument_type: Union[str, "InstrumentType"] = None
+    precision: str = None
+    accuracy: str = None
+    calibration: Optional[Union[dict, "Calibration"]] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self.calibration is not None and not isinstance(self.calibration, Calibration):
+            self.calibration = Calibration(**as_dict(self.calibration))
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class GenericInstrument(Instrument):
+    """
+    Generic instrument for cases that don't fit specialized instrument types. Provides backward compatibility and
+    flexibility.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["GenericInstrument"]
+    class_class_curie: ClassVar[str] = "oae:GenericInstrument"
+    class_name: ClassVar[str] = "GenericInstrument"
+    class_model_uri: ClassVar[URIRef] = OAE.GenericInstrument
+
+    instrument_type: Union[str, "InstrumentType"] = None
+    precision: str = None
+    accuracy: str = None
+    calibration: Optional[Union[dict, "Calibration"]] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self.calibration is not None and not isinstance(self.calibration, Calibration):
+            self.calibration = Calibration(**as_dict(self.calibration))
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class Calibration(YAMLRoot):
+    """
+    Base calibration information for instruments.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["Calibration"]
+    class_class_curie: ClassVar[str] = "oae:Calibration"
+    class_name: ClassVar[str] = "Calibration"
+    class_model_uri: ClassVar[URIRef] = OAE.Calibration
+
+    calibration_location: Union[str, "CalibrationLocation"] = None
+    technique_description: str = None
+    method_reference: Optional[str] = None
+    frequency: Optional[str] = None
+    last_calibration_date: Optional[Union[str, XSDDateTime]] = None
+    calibration_certificates: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.calibration_location):
+            self.MissingRequiredField("calibration_location")
+        if not isinstance(self.calibration_location, CalibrationLocation):
+            self.calibration_location = CalibrationLocation(self.calibration_location)
+
+        if self._is_empty(self.technique_description):
+            self.MissingRequiredField("technique_description")
+        if not isinstance(self.technique_description, str):
+            self.technique_description = str(self.technique_description)
+
+        if self.method_reference is not None and not isinstance(self.method_reference, str):
+            self.method_reference = str(self.method_reference)
+
+        if self.frequency is not None and not isinstance(self.frequency, str):
+            self.frequency = str(self.frequency)
+
+        if self.last_calibration_date is not None and not isinstance(self.last_calibration_date, XSDDateTime):
+            self.last_calibration_date = XSDDateTime(self.last_calibration_date)
+
+        if self.calibration_certificates is not None and not isinstance(self.calibration_certificates, str):
+            self.calibration_certificates = str(self.calibration_certificates)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class CRMCalibration(Calibration):
+    """
+    Calibration using Certified Reference Materials, used for DIC and TA instruments.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["CRMCalibration"]
+    class_class_curie: ClassVar[str] = "oae:CRMCalibration"
+    class_name: ClassVar[str] = "CRMCalibration"
+    class_model_uri: ClassVar[URIRef] = OAE.CRMCalibration
+
+    calibration_location: Union[str, "CalibrationLocation"] = None
+    technique_description: str = None
+    crm_manufacturer: str = None
+    crm_batch_number: str = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.crm_manufacturer):
+            self.MissingRequiredField("crm_manufacturer")
+        if not isinstance(self.crm_manufacturer, str):
+            self.crm_manufacturer = str(self.crm_manufacturer)
+
+        if self._is_empty(self.crm_batch_number):
+            self.MissingRequiredField("crm_batch_number")
+        if not isinstance(self.crm_batch_number, str):
+            self.crm_batch_number = str(self.crm_batch_number)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class PHCalibration(Calibration):
+    """
+    pH instrument calibration with dye information.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["PHCalibration"]
+    class_class_curie: ClassVar[str] = "oae:PHCalibration"
+    class_name: ClassVar[str] = "pHCalibration"
+    class_model_uri: ClassVar[URIRef] = OAE.PHCalibration
+
+    calibration_location: Union[str, "CalibrationLocation"] = None
+    technique_description: str = None
+    dye_type_and_manufacturer: str = None
+    dye_purified: Union[bool, Bool] = None
+    correction_for_unpurified_dye: Optional[str] = None
+    dye_correction_method: Optional[str] = None
+    ph_of_standards: Optional[str] = None
+    calibration_temperature: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.dye_type_and_manufacturer):
+            self.MissingRequiredField("dye_type_and_manufacturer")
+        if not isinstance(self.dye_type_and_manufacturer, str):
+            self.dye_type_and_manufacturer = str(self.dye_type_and_manufacturer)
+
+        if self._is_empty(self.dye_purified):
+            self.MissingRequiredField("dye_purified")
+        if not isinstance(self.dye_purified, Bool):
+            self.dye_purified = Bool(self.dye_purified)
+
+        if self.correction_for_unpurified_dye is not None and not isinstance(self.correction_for_unpurified_dye, str):
+            self.correction_for_unpurified_dye = str(self.correction_for_unpurified_dye)
+
+        if self.dye_correction_method is not None and not isinstance(self.dye_correction_method, str):
+            self.dye_correction_method = str(self.dye_correction_method)
+
+        if self.ph_of_standards is not None and not isinstance(self.ph_of_standards, str):
+            self.ph_of_standards = str(self.ph_of_standards)
+
+        if self.calibration_temperature is not None and not isinstance(self.calibration_temperature, str):
+            self.calibration_temperature = str(self.calibration_temperature)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class CO2Calibration(Calibration):
+    """
+    CO2 gas detector calibration with standard gas information.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["CO2Calibration"]
+    class_class_curie: ClassVar[str] = "oae:CO2Calibration"
+    class_name: ClassVar[str] = "CO2Calibration"
+    class_model_uri: ClassVar[URIRef] = OAE.CO2Calibration
+
+    calibration_location: Union[str, "CalibrationLocation"] = None
+    technique_description: str = None
+    wmo_traceable: Union[bool, Bool] = None
+    calibration_temperature: Optional[str] = None
+    standard_gases: Optional[Union[Union[dict, "StandardGas"], List[Union[dict, "StandardGas"]]]] = empty_list()
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.wmo_traceable):
+            self.MissingRequiredField("wmo_traceable")
+        if not isinstance(self.wmo_traceable, Bool):
+            self.wmo_traceable = Bool(self.wmo_traceable)
+
+        if self.calibration_temperature is not None and not isinstance(self.calibration_temperature, str):
+            self.calibration_temperature = str(self.calibration_temperature)
+
+        if not isinstance(self.standard_gases, list):
+            self.standard_gases = [self.standard_gases] if self.standard_gases is not None else []
+        self.standard_gases = [v if isinstance(v, StandardGas) else StandardGas(**as_dict(v)) for v in self.standard_gases]
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class StandardGas(YAMLRoot):
+    """
+    Standard gas used for CO2 calibration.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["StandardGas"]
+    class_class_curie: ClassVar[str] = "oae:StandardGas"
+    class_name: ClassVar[str] = "StandardGas"
+    class_model_uri: ClassVar[URIRef] = OAE.StandardGas
+
+    manufacturer: str = None
+    concentration: str = None
+    uncertainty: str = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.manufacturer):
+            self.MissingRequiredField("manufacturer")
+        if not isinstance(self.manufacturer, str):
+            self.manufacturer = str(self.manufacturer)
+
+        if self._is_empty(self.concentration):
+            self.MissingRequiredField("concentration")
+        if not isinstance(self.concentration, str):
+            self.concentration = str(self.concentration)
+
+        if self._is_empty(self.uncertainty):
+            self.MissingRequiredField("uncertainty")
+        if not isinstance(self.uncertainty, str):
+            self.uncertainty = str(self.uncertainty)
+
+        super().__post_init__(**kwargs)
+
+
 # Enumerations
 class DatasetType(EnumDefinitionImpl):
     """
@@ -2148,6 +3203,217 @@ class ResearcherIDType(EnumDefinitionImpl):
         name="ResearcherIDType",
     )
 
+class SamplingType(EnumDefinitionImpl):
+
+    DISCRETE = PermissibleValue(text="DISCRETE")
+    CONTINUOUS = PermissibleValue(text="CONTINUOUS")
+
+    _defn = EnumDefinition(
+        name="SamplingType",
+    )
+
+class GenesisType(EnumDefinitionImpl):
+
+    MEASURED = PermissibleValue(text="MEASURED")
+    CALCULATED = PermissibleValue(text="CALCULATED")
+
+    _defn = EnumDefinition(
+        name="GenesisType",
+    )
+
+class ObservationType(EnumDefinitionImpl):
+
+    PROFILE = PermissibleValue(text="PROFILE")
+    SURFACE_UNDERWAY = PermissibleValue(text="SURFACE_UNDERWAY")
+    TIME_SERIES = PermissibleValue(text="TIME_SERIES")
+    LABORATORY_EXPERIMENTS = PermissibleValue(text="LABORATORY_EXPERIMENTS")
+    MESOCOSM = PermissibleValue(text="MESOCOSM")
+    FIELD_EXPERIMENTS = PermissibleValue(text="FIELD_EXPERIMENTS")
+    NATURAL_ANALOGUES = PermissibleValue(text="NATURAL_ANALOGUES")
+    MODEL_OUTPUTS = PermissibleValue(text="MODEL_OUTPUTS")
+
+    _defn = EnumDefinition(
+        name="ObservationType",
+    )
+
+class AppropriateUseQuality(EnumDefinitionImpl):
+
+    WEATHER_QUALITY = PermissibleValue(text="WEATHER_QUALITY")
+    CLIMATE_QUALITY = PermissibleValue(text="CLIMATE_QUALITY")
+    OTHER = PermissibleValue(text="OTHER")
+
+    _defn = EnumDefinition(
+        name="AppropriateUseQuality",
+    )
+
+class InstrumentType(EnumDefinitionImpl):
+
+    CTD_ROSETTE = PermissibleValue(
+        text="CTD_ROSETTE",
+        description="""A CTD rosette consists of a metal frame that houses a collection of sensors and water sampling bottles (e.g., Niskin)""")
+    CTD_SENSOR = PermissibleValue(
+        text="CTD_SENSOR",
+        description="""The acronym CTD stands for Conductivity, Temperature, and Depth, which are the three primary variables measured by a CTD sensor.""",
+        meaning=SDN_L05["130"])
+    NISKIN_BOTTLE = PermissibleValue(
+        text="NISKIN_BOTTLE",
+        description="""A Niskin bottle is a type of sampling device used in oceanography to collect water samples at different depths. It is named after the inventor, Shale Niskin, who developed the device in the 1960s.""",
+        meaning=SDN_L05["30"])
+    FLOW_THROUGH_SYSTEM = PermissibleValue(
+        text="FLOW_THROUGH_SYSTEM",
+        description="""A flow-through system on a research vessel or ship of opportunity is a system designed to continuously pump seawater from the ocean into the laboratory for scientific research.""",
+        meaning=SDN_L05["31"])
+    THERMOSALINOGRAPH = PermissibleValue(
+        text="THERMOSALINOGRAPH",
+        description="A Thermosalinograph (TSG) is an instrument used to measure seawater temperature and salinity.",
+        meaning=SDN_L05["133"])
+    SALINOMETER_FOR_DISCRETE_SALINITY_MEASUREMENT = PermissibleValue(
+        text="SALINOMETER_FOR_DISCRETE_SALINITY_MEASUREMENT",
+        description="""Salinometers work based on the principle of conductivity. They measure the electrical conductivity of the water, which is directly related to its salinity.""",
+        meaning=SDN_L05["LAB30"])
+    DIC_ANALYZERS_BASED_ON_COULOMETERS = PermissibleValue(
+        text="DIC_ANALYZERS_BASED_ON_COULOMETERS",
+        description="""DIC coulometers are widely used in oceanographic research to measure the concentration of dissolved inorganic carbon in seawater samples. They are often coupled with computer-controlled automated dynamic headspace analyzers that extracts total carbon dioxide from seawater using Single-Operator Multiparameter Metabolic Analyzers (SOMMAs).""")
+    DIC_ANALYZERS_BASED_ON_CO2_GAS_DETECTORS = PermissibleValue(
+        text="DIC_ANALYZERS_BASED_ON_CO2_GAS_DETECTORS",
+        description="""DIC analyzers based on a CO2 gas detector including Non-dispersive infrared absorption (NDIR) (e.g., Licor LI-850), Cavity Enhanced Absorption Spectroscopy (e.g., Licor's LI-7815), and Cavity Ring-Down Spectroscopy (CRDS) (e.g., Picarro G2131i) detectors.""")
+    AUTONOMOUS_DIC_SENSOR = PermissibleValue(
+        text="AUTONOMOUS_DIC_SENSOR",
+        description="""Autonomous dissolved inorganic carbon (DIC) sensors are devices that can measure the concentration of DIC in seawater or other natural waters in situ, without the need for manual sampling and laboratory analysis.""",
+        meaning=SDN_L05["86"])
+    ALKALINITY_TITRATOR = PermissibleValue(
+        text="ALKALINITY_TITRATOR",
+        description="""An alkalinity titrator is a device used to measure the total alkalinity of a seawater by titration.""",
+        meaning=SDN_L05["LAB12"])
+    AUTONOMOUS_TA_SENSOR = PermissibleValue(
+        text="AUTONOMOUS_TA_SENSOR",
+        description="""Autonomous total alkalinity (TA) sensors are devices that can measure the concentration of TA in seawater or other natural waters in situ, without the need for manual sampling and laboratory analysis.""")
+    SHOWERHEAD_EQUILIBRATOR = PermissibleValue(
+        text="SHOWERHEAD_EQUILIBRATOR",
+        description="""This type of equilibrator works by spraying seawater into a gas chamber, allowing the CO2 in the water to equilibrate with a gas mixture in the chamber.""",
+        meaning=SDN_L05["EQUIL"])
+    FLOATING_AIR_WATER_EQUILIBRATOR = PermissibleValue(
+        text="FLOATING_AIR_WATER_EQUILIBRATOR",
+        description="""An \"h\"-shaped bubble equilibrator assembly commonly used in MAPCO2 systems on moorings. For more information, refer to Friederich et al. (1995).""",
+        meaning=SDN_L05["EQUIL"])
+    MEMBRANE_EQUILIBRATOR = PermissibleValue(
+        text="MEMBRANE_EQUILIBRATOR",
+        description="""While seawater is passed through a membrane, CO2 in the water diffuses across the membrane and equilibrates with the gas mixture, which is then analyzed to determine the CO2 concentration.""",
+        meaning=SDN_L05["EQUIL"])
+    FLASK_FOR_DISCRETE_CARBON_DIOXIDE_MEASUREMENT = PermissibleValue(
+        text="FLASK_FOR_DISCRETE_CARBON_DIOXIDE_MEASUREMENT",
+        description="""Such flasks are typically made of glass and have a capacity of around one liter. Seawater samples are collected from a specific depth using a Niskin bottle or other sampling device and transferred to the flask without exposing them to the air. The flask is then sealed with a stopper and transported to the laboratory for analysis.""")
+    SPECTROPHOTOMETER = PermissibleValue(
+        text="SPECTROPHOTOMETER",
+        description="""A spectrophotometer is a scientific instrument used to measure the amount of light absorbed or transmitted by a sample. It is commonly used for high quality pH measurements.""",
+        meaning=SDN_L05["LAB20"])
+    HANDHELD_PH_SPECTROPHOTOMETER = PermissibleValue(
+        text="HANDHELD_PH_SPECTROPHOTOMETER",
+        description="""One example of a handheld pH spectrophotometer is the \"pHyter\". Refer to Pardis et al. (2022) for more details.""")
+    PH_ELECTRODE = PermissibleValue(
+        text="PH_ELECTRODE",
+        description="""A pH electrode, sometimes referred to as a pH probe or pH sensor, is a glass device used to measure the pH of a solution.""",
+        meaning=SDN_L05["355"])
+    SEA_BIRD_SEAFET = PermissibleValue(
+        text="SEA_BIRD_SEAFET",
+        description="""Sea-Bird SeaFET is a type of oceanographic instrument that is used to measure the pH of seawater in real-time.""",
+        meaning=SDN_L22["TOOL1292"])
+    OXYGEN_TITRATOR = PermissibleValue(
+        text="OXYGEN_TITRATOR",
+        description="""An oxygen titrator is a device used to measure the concentration of dissolved oxygen in a water sample, as required for the Winkler method.""",
+        meaning=SDN_L05["LAB12"])
+    OXYGEN_SENSOR = PermissibleValue(
+        text="OXYGEN_SENSOR",
+        description="""An oxygen sensor or probe or sond, is an electronic device that measures the concentration of dissolved oxygen in the ocean.""",
+        meaning=SDN_L05["351"])
+    SEA_BIRD_SEAPHOX = PermissibleValue(
+        text="SEA_BIRD_SEAPHOX",
+        description="""Sea-Bird SeapHOx is a type of oceanographic instrument that measures both the pH and dissolved oxygen concentration of seawater in real-time.""",
+        meaning=SDN_L22["TOOL1895"])
+    YSI = PermissibleValue(
+        text="YSI",
+        description="""YSI (Yellow Springs Instruments) is a company that produces a variety of water quality monitoring instruments. The YSI sensors are designed to measure a wide range of parameters, including temperature, salinity, and dissolved oxygen.""",
+        meaning=SDN_B75["ORG00475"])
+    NUTRIENT_ANALYZER = PermissibleValue(
+        text="NUTRIENT_ANALYZER",
+        description="""A nutrient analyzer is a device used to measure the concentration of nutrients, such as nitrate, nitrite, ammonium, phosphate, and silicate, in water samples.""",
+        meaning=SDN_L05["181"])
+    FLUOROMETERS = PermissibleValue(
+        text="FLUOROMETERS",
+        description="""Fluorometers can detect chlorophyll a by transmitting an excitation beam of light in the blue range and by detecting the light fluoresced by cells or chlorophyll in a sample.""",
+        meaning=SDN_L05["113"])
+    HIGH_PERFORMANCE_LIQUID_CHROMATOGRAPHY_HPLC = PermissibleValue(
+        text="HIGH_PERFORMANCE_LIQUID_CHROMATOGRAPHY_HPLC",
+        description="""High performance liquid chromatography (HPLC) is a powerful analytical technique used in chemistry, biochemistry, and pharmaceutical industries to separate, identify, and quantify individual components in a mixture.""",
+        meaning=SDN_L05["LAB11"])
+    ACOUSTIC_DOPPLER_CURRENT_PROFILER_ADCP = PermissibleValue(
+        text="ACOUSTIC_DOPPLER_CURRENT_PROFILER_ADCP",
+        description="""Acoustic Doppler Current Profiler (ADCP), is a type of instrument used to measure water currents in oceans, rivers, and other bodies of water.""",
+        meaning=SDN_L05["115"])
+    MASS_SPECTROMETERS = PermissibleValue(
+        text="MASS_SPECTROMETERS",
+        description="""A mass spectrometer is an analytical instrument used to measure and identify the mass and abundance of atoms and molecules in a sample.""",
+        meaning=SDN_L05["LAB16"])
+    ISOTOPE_RATIO_MASS_SPECTROMETERS_IRMS = PermissibleValue(
+        text="ISOTOPE_RATIO_MASS_SPECTROMETERS_IRMS",
+        description="""An isotope ratio mass spectrometer (IRMS) is a scientific instrument used to measure the isotopic composition of a sample.""",
+        meaning=SDN_L05["LAB48"])
+    BAROMETRIC_PRESSURE_SENSOR = PermissibleValue(
+        text="BAROMETRIC_PRESSURE_SENSOR",
+        description="""A barometric pressure sensor is a device that measures atmospheric pressure, which is the pressure exerted by the weight of the Earth's atmosphere.""",
+        meaning=SDN_L05["102"])
+    MICROSCOPES = PermissibleValue(
+        text="MICROSCOPES",
+        description="""A microscope is an instrument used to observe and magnify objects that are too small to be seen by the naked eye.""",
+        meaning=SDN_L05["LAB05"])
+    SCANNING_ELECTRON_MICROSCOPES = PermissibleValue(
+        text="SCANNING_ELECTRON_MICROSCOPES",
+        description="""A scanning electron microscope (SEM) is a type of microscope that uses a focused beam of electrons to create high-resolution images of the surface of a specimen.""",
+        meaning=SDN_L05["LAB07"])
+    BIOLOGICAL_TRAWL = PermissibleValue(
+        text="BIOLOGICAL_TRAWL",
+        description="""A biological trawl is a type of pelagic trawl net used to collect biological samples from the water column.""",
+        meaning=SDN_L05["23"])
+    PHYTOPLANKTON_NET = PermissibleValue(
+        text="PHYTOPLANKTON_NET",
+        description="""Phytoplankton net is used to collect and identify phytoplankton, which are microscopic plants that form the base of the marine food web.""",
+        meaning=SDN_L05["22"])
+    ZOOPLANKTON_NET = PermissibleValue(
+        text="ZOOPLANKTON_NET",
+        description="""Zooplankton net is used to collect and identify zooplankton, which are microscopic animals that feed on phytoplankton and are important prey for many marine organisms.""",
+        meaning=SDN_L05["22"])
+    FLOW_CYTOMETERS = PermissibleValue(
+        text="FLOW_CYTOMETERS",
+        description="""A flow cytometer is a scientific instrument used to analyze and sort cells or particles in a liquid suspension based on their physical and chemical properties.""",
+        meaning=SDN_L05["LAB37"])
+    EDNA_SAMPLER = PermissibleValue(
+        text="EDNA_SAMPLER",
+        description="""Environmental DNA (eDNA) samplers: used to collect and analyze genetic material shed by marine organisms, which can provide information about their distribution, abundance, and diversity.""")
+    OTHER = PermissibleValue(text="OTHER")
+
+    _defn = EnumDefinition(
+        name="InstrumentType",
+    )
+
+class CalibrationLocation(EnumDefinitionImpl):
+    """
+    Where the calibration was performed.
+    """
+    factory = PermissibleValue(
+        text="factory",
+        description="Factory calibration performed by manufacturer.")
+    lab = PermissibleValue(
+        text="lab",
+        description="Laboratory calibration.")
+    field = PermissibleValue(
+        text="field",
+        description="Field calibration performed during deployment.")
+
+    _defn = EnumDefinition(
+        name="CalibrationLocation",
+        description="Where the calibration was performed.",
+    )
+
 # Slots
 class slots:
     pass
@@ -2188,6 +3454,9 @@ slots.is_provided_as_a_file = Slot(uri=OAE.is_provided_as_a_file, name="is_provi
 
 slots.is_derived_value = Slot(uri=OAE.is_derived_value, name="is_derived_value", curie=OAE.curie('is_derived_value'),
                    model_uri=OAE.is_derived_value, domain=None, range=Union[bool, Bool])
+
+slots.appropriate_use_quality = Slot(uri=OAE.appropriate_use_quality, name="appropriate_use_quality", curie=OAE.curie('appropriate_use_quality'),
+                   model_uri=OAE.appropriate_use_quality, domain=None, range=Optional[Union[str, "AppropriateUseQuality"]])
 
 slots.container__project = Slot(uri=OAE.project, name="container__project", curie=OAE.curie('project'),
                    model_uri=OAE.container__project, domain=None, range=Optional[Union[dict, Project]])
@@ -2410,6 +3679,255 @@ slots.person__identifier = Slot(uri=OAE.identifier, name="person__identifier", c
 slots.person__role = Slot(uri=OAE.role, name="person__role", curie=OAE.curie('role'),
                    model_uri=OAE.person__role, domain=None, range=Optional[str])
 
+slots.variable__standard_identifier = Slot(uri=OAE.standard_identifier, name="variable__standard_identifier", curie=OAE.curie('standard_identifier'),
+                   model_uri=OAE.variable__standard_identifier, domain=None, range=Optional[Union[dict, VocabularyItemReference]])
+
+slots.variable__dataset_variable_name = Slot(uri=OAE.dataset_variable_name, name="variable__dataset_variable_name", curie=OAE.curie('dataset_variable_name'),
+                   model_uri=OAE.variable__dataset_variable_name, domain=None, range=str)
+
+slots.variable__dataset_variable_name_qc_flag = Slot(uri=OAE.dataset_variable_name_qc_flag, name="variable__dataset_variable_name_qc_flag", curie=OAE.curie('dataset_variable_name_qc_flag'),
+                   model_uri=OAE.variable__dataset_variable_name_qc_flag, domain=None, range=Optional[str])
+
+slots.variable__long_name = Slot(uri=OAE.long_name, name="variable__long_name", curie=OAE.curie('long_name'),
+                   model_uri=OAE.variable__long_name, domain=None, range=str)
+
+slots.variable__units = Slot(uri=OAE.units, name="variable__units", curie=OAE.curie('units'),
+                   model_uri=OAE.variable__units, domain=None, range=str)
+
+slots.variable__method_reference = Slot(uri=OAE.method_reference, name="variable__method_reference", curie=OAE.curie('method_reference'),
+                   model_uri=OAE.variable__method_reference, domain=None, range=Optional[str])
+
+slots.variable__measurement_researcher = Slot(uri=OAE.measurement_researcher, name="variable__measurement_researcher", curie=OAE.curie('measurement_researcher'),
+                   model_uri=OAE.variable__measurement_researcher, domain=None, range=Optional[Union[dict, Person]])
+
+slots.variable__other_detailed_information = Slot(uri=OAE.other_detailed_information, name="variable__other_detailed_information", curie=OAE.curie('other_detailed_information'),
+                   model_uri=OAE.variable__other_detailed_information, domain=None, range=Optional[str])
+
+slots.vocabularyItemReference__term = Slot(uri=OAE.term, name="vocabularyItemReference__term", curie=OAE.curie('term'),
+                   model_uri=OAE.vocabularyItemReference__term, domain=None, range=str)
+
+slots.vocabularyItemReference__uri = Slot(uri=OAE.uri, name="vocabularyItemReference__uri", curie=OAE.curie('uri'),
+                   model_uri=OAE.vocabularyItemReference__uri, domain=None, range=Union[str, URIorCURIE])
+
+slots.observedPropertyVariable__sampling_method = Slot(uri=OAE.sampling_method, name="observedPropertyVariable__sampling_method", curie=OAE.curie('sampling_method'),
+                   model_uri=OAE.observedPropertyVariable__sampling_method, domain=None, range=str)
+
+slots.observedPropertyVariable__analyzing_method = Slot(uri=OAE.analyzing_method, name="observedPropertyVariable__analyzing_method", curie=OAE.curie('analyzing_method'),
+                   model_uri=OAE.observedPropertyVariable__analyzing_method, domain=None, range=str)
+
+slots.observedPropertyVariable__observation_type = Slot(uri=OAE.observation_type, name="observedPropertyVariable__observation_type", curie=OAE.curie('observation_type'),
+                   model_uri=OAE.observedPropertyVariable__observation_type, domain=None, range=Union[str, "ObservationType"])
+
+slots.observedPropertyVariable__sampling = Slot(uri=OAE.sampling, name="observedPropertyVariable__sampling", curie=OAE.curie('sampling'),
+                   model_uri=OAE.observedPropertyVariable__sampling, domain=None, range=Union[str, "SamplingType"])
+
+slots.observedPropertyVariable__genesis = Slot(uri=OAE.genesis, name="observedPropertyVariable__genesis", curie=OAE.curie('genesis'),
+                   model_uri=OAE.observedPropertyVariable__genesis, domain=None, range=Union[str, "GenesisType"])
+
+slots.observedPropertyVariable__sampling_instrument_type = Slot(uri=OAE.sampling_instrument_type, name="observedPropertyVariable__sampling_instrument_type", curie=OAE.curie('sampling_instrument_type'),
+                   model_uri=OAE.observedPropertyVariable__sampling_instrument_type, domain=None, range=Optional[Union[str, "InstrumentType"]])
+
+slots.observedPropertyVariable__sampling_instrument_type_custom = Slot(uri=OAE.sampling_instrument_type_custom, name="observedPropertyVariable__sampling_instrument_type_custom", curie=OAE.curie('sampling_instrument_type_custom'),
+                   model_uri=OAE.observedPropertyVariable__sampling_instrument_type_custom, domain=None, range=Optional[str])
+
+slots.discreteMeasuredVariable__analyzing_instrument = Slot(uri=OAE.analyzing_instrument, name="discreteMeasuredVariable__analyzing_instrument", curie=OAE.curie('analyzing_instrument'),
+                   model_uri=OAE.discreteMeasuredVariable__analyzing_instrument, domain=None, range=Union[dict, Instrument])
+
+slots.continuousMeasuredVariable__raw_data_calculation_method = Slot(uri=OAE.raw_data_calculation_method, name="continuousMeasuredVariable__raw_data_calculation_method", curie=OAE.curie('raw_data_calculation_method'),
+                   model_uri=OAE.continuousMeasuredVariable__raw_data_calculation_method, domain=None, range=str)
+
+slots.continuousMeasuredVariable__calculation_software_version = Slot(uri=OAE.calculation_software_version, name="continuousMeasuredVariable__calculation_software_version", curie=OAE.curie('calculation_software_version'),
+                   model_uri=OAE.continuousMeasuredVariable__calculation_software_version, domain=None, range=Optional[str])
+
+slots.calculatedVariable__calculation_method_and_parameters = Slot(uri=OAE.calculation_method_and_parameters, name="calculatedVariable__calculation_method_and_parameters", curie=OAE.curie('calculation_method_and_parameters'),
+                   model_uri=OAE.calculatedVariable__calculation_method_and_parameters, domain=None, range=str)
+
+slots.discretePHVariable__measurement_temperature = Slot(uri=OAE.measurement_temperature, name="discretePHVariable__measurement_temperature", curie=OAE.curie('measurement_temperature'),
+                   model_uri=OAE.discretePHVariable__measurement_temperature, domain=None, range=Optional[str])
+
+slots.discretePHVariable__temperature_correction_method = Slot(uri=OAE.temperature_correction_method, name="discretePHVariable__temperature_correction_method", curie=OAE.curie('temperature_correction_method'),
+                   model_uri=OAE.discretePHVariable__temperature_correction_method, domain=None, range=Optional[str])
+
+slots.discretePHVariable__ph_reported_temperature = Slot(uri=OAE.ph_reported_temperature, name="discretePHVariable__ph_reported_temperature", curie=OAE.curie('ph_reported_temperature'),
+                   model_uri=OAE.discretePHVariable__ph_reported_temperature, domain=None, range=str)
+
+slots.nonMeasuredVariable__data_source = Slot(uri=OAE.data_source, name="nonMeasuredVariable__data_source", curie=OAE.curie('data_source'),
+                   model_uri=OAE.nonMeasuredVariable__data_source, domain=None, range=str)
+
+slots.nonMeasuredVariable__source_reference = Slot(uri=OAE.source_reference, name="nonMeasuredVariable__source_reference", curie=OAE.curie('source_reference'),
+                   model_uri=OAE.nonMeasuredVariable__source_reference, domain=None, range=Optional[str])
+
+slots.qCFields__field_replicate_information = Slot(uri=OAE.field_replicate_information, name="qCFields__field_replicate_information", curie=OAE.curie('field_replicate_information'),
+                   model_uri=OAE.qCFields__field_replicate_information, domain=None, range=Optional[str])
+
+slots.qCFields__qc_steps_taken = Slot(uri=OAE.qc_steps_taken, name="qCFields__qc_steps_taken", curie=OAE.curie('qc_steps_taken'),
+                   model_uri=OAE.qCFields__qc_steps_taken, domain=None, range=str)
+
+slots.qCFields__uncertainty = Slot(uri=OAE.uncertainty, name="qCFields__uncertainty", curie=OAE.curie('uncertainty'),
+                   model_uri=OAE.qCFields__uncertainty, domain=None, range=Optional[str])
+
+slots.qCFields__uncertainty_definition = Slot(uri=OAE.uncertainty_definition, name="qCFields__uncertainty_definition", curie=OAE.curie('uncertainty_definition'),
+                   model_uri=OAE.qCFields__uncertainty_definition, domain=None, range=str)
+
+slots.qCFields__missing_value_indicators = Slot(uri=OAE.missing_value_indicators, name="qCFields__missing_value_indicators", curie=OAE.curie('missing_value_indicators'),
+                   model_uri=OAE.qCFields__missing_value_indicators, domain=None, range=str)
+
+slots.qCFields__qc_researcher = Slot(uri=OAE.qc_researcher, name="qCFields__qc_researcher", curie=OAE.curie('qc_researcher'),
+                   model_uri=OAE.qCFields__qc_researcher, domain=None, range=Optional[Union[dict, Person]])
+
+slots.qCFields__qc_researcher_institution = Slot(uri=OAE.qc_researcher_institution, name="qCFields__qc_researcher_institution", curie=OAE.curie('qc_researcher_institution'),
+                   model_uri=OAE.qCFields__qc_researcher_institution, domain=None, range=Optional[str])
+
+slots.dataset__dataset_type = Slot(uri=OAE.dataset_type, name="dataset__dataset_type", curie=OAE.curie('dataset_type'),
+                   model_uri=OAE.dataset__dataset_type, domain=None, range=Union[str, "DatasetType"])
+
+slots.dataset__dataset_type_custom = Slot(uri=OAE.dataset_type_custom, name="dataset__dataset_type_custom", curie=OAE.curie('dataset_type_custom'),
+                   model_uri=OAE.dataset__dataset_type_custom, domain=None, range=Optional[str])
+
+slots.dataset__data_submitter = Slot(uri=OAE.data_submitter, name="dataset__data_submitter", curie=OAE.curie('data_submitter'),
+                   model_uri=OAE.dataset__data_submitter, domain=None, range=Optional[Union[dict, Person]])
+
+slots.dataset__author_list_for_citation = Slot(uri=OAE.author_list_for_citation, name="dataset__author_list_for_citation", curie=OAE.curie('author_list_for_citation'),
+                   model_uri=OAE.dataset__author_list_for_citation, domain=None, range=Optional[str])
+
+slots.dataset__license = Slot(uri=SCHEMA.license, name="dataset__license", curie=SCHEMA.curie('license'),
+                   model_uri=OAE.dataset__license, domain=None, range=Optional[Union[str, URI]])
+
+slots.dataset__fair_use_data_request = Slot(uri=OAE.fair_use_data_request, name="dataset__fair_use_data_request", curie=OAE.curie('fair_use_data_request'),
+                   model_uri=OAE.dataset__fair_use_data_request, domain=None, range=Optional[str])
+
+slots.dataset__data_product_type = Slot(uri=OAE.data_product_type, name="dataset__data_product_type", curie=OAE.curie('data_product_type'),
+                   model_uri=OAE.dataset__data_product_type, domain=None, range=Union[str, "DataProductType"])
+
+slots.dataset__qc_flag_scheme = Slot(uri=OAE.qc_flag_scheme, name="dataset__qc_flag_scheme", curie=OAE.curie('qc_flag_scheme'),
+                   model_uri=OAE.dataset__qc_flag_scheme, domain=None, range=Optional[str])
+
+slots.dataset__platform_info = Slot(uri=OAE.platform_info, name="dataset__platform_info", curie=OAE.curie('platform_info'),
+                   model_uri=OAE.dataset__platform_info, domain=None, range=Union[dict, Platform])
+
+slots.dataset__calibration_files = Slot(uri=OAE.calibration_files, name="dataset__calibration_files", curie=OAE.curie('calibration_files'),
+                   model_uri=OAE.dataset__calibration_files, domain=None, range=Optional[Union[str, List[str]]])
+
+slots.dataset__variables = Slot(uri=SCHEMA.variableMeasured, name="dataset__variables", curie=SCHEMA.curie('variableMeasured'),
+                   model_uri=OAE.dataset__variables, domain=None, range=Optional[Union[Union[dict, Variable], List[Union[dict, Variable]]]])
+
+slots.dataset__filenames = Slot(uri=OAE.filenames, name="dataset__filenames", curie=OAE.curie('filenames'),
+                   model_uri=OAE.dataset__filenames, domain=None, range=Union[str, List[str]])
+
+slots.platform__platform_type = Slot(uri=OAE.platform_type, name="platform__platform_type", curie=OAE.curie('platform_type'),
+                   model_uri=OAE.platform__platform_type, domain=None, range=Union[str, "PlatformType"])
+
+slots.platform__platform_id = Slot(uri=OAE.platform_id, name="platform__platform_id", curie=OAE.curie('platform_id'),
+                   model_uri=OAE.platform__platform_id, domain=None, range=Optional[str])
+
+slots.platform__owner = Slot(uri=OAE.owner, name="platform__owner", curie=OAE.curie('owner'),
+                   model_uri=OAE.platform__owner, domain=None, range=Optional[str])
+
+slots.platform__country = Slot(uri=OAE.country, name="platform__country", curie=OAE.curie('country'),
+                   model_uri=OAE.platform__country, domain=None, range=Optional[str])
+
+slots.instrument__instrument_type = Slot(uri=OAE.instrument_type, name="instrument__instrument_type", curie=OAE.curie('instrument_type'),
+                   model_uri=OAE.instrument__instrument_type, domain=None, range=Union[str, "InstrumentType"])
+
+slots.instrument__instrument_type_custom = Slot(uri=OAE.instrument_type_custom, name="instrument__instrument_type_custom", curie=OAE.curie('instrument_type_custom'),
+                   model_uri=OAE.instrument__instrument_type_custom, domain=None, range=Optional[str])
+
+slots.instrument__manufacturer = Slot(uri=OAE.manufacturer, name="instrument__manufacturer", curie=OAE.curie('manufacturer'),
+                   model_uri=OAE.instrument__manufacturer, domain=None, range=Optional[str])
+
+slots.instrument__model = Slot(uri=OAE.model, name="instrument__model", curie=OAE.curie('model'),
+                   model_uri=OAE.instrument__model, domain=None, range=Optional[str])
+
+slots.instrument__serial_number = Slot(uri=OAE.serial_number, name="instrument__serial_number", curie=OAE.curie('serial_number'),
+                   model_uri=OAE.instrument__serial_number, domain=None, range=Optional[str])
+
+slots.instrument__precision = Slot(uri=OAE.precision, name="instrument__precision", curie=OAE.curie('precision'),
+                   model_uri=OAE.instrument__precision, domain=None, range=str)
+
+slots.instrument__accuracy = Slot(uri=OAE.accuracy, name="instrument__accuracy", curie=OAE.curie('accuracy'),
+                   model_uri=OAE.instrument__accuracy, domain=None, range=str)
+
+slots.cRMInstrument__calibration = Slot(uri=OAE.calibration, name="cRMInstrument__calibration", curie=OAE.curie('calibration'),
+                   model_uri=OAE.cRMInstrument__calibration, domain=None, range=Union[dict, CRMCalibration])
+
+slots.pHInstrument__calibration = Slot(uri=OAE.calibration, name="pHInstrument__calibration", curie=OAE.curie('calibration'),
+                   model_uri=OAE.pHInstrument__calibration, domain=None, range=Union[dict, PHCalibration])
+
+slots.cO2GasDetector__calibration = Slot(uri=OAE.calibration, name="cO2GasDetector__calibration", curie=OAE.curie('calibration'),
+                   model_uri=OAE.cO2GasDetector__calibration, domain=None, range=Union[dict, CO2Calibration])
+
+slots.cO2GasDetector__resolution = Slot(uri=OAE.resolution, name="cO2GasDetector__resolution", curie=OAE.curie('resolution'),
+                   model_uri=OAE.cO2GasDetector__resolution, domain=None, range=Optional[str])
+
+slots.cO2GasDetector__uncertainty = Slot(uri=OAE.uncertainty, name="cO2GasDetector__uncertainty", curie=OAE.curie('uncertainty'),
+                   model_uri=OAE.cO2GasDetector__uncertainty, domain=None, range=Optional[str])
+
+slots.sensor__calibration = Slot(uri=OAE.calibration, name="sensor__calibration", curie=OAE.curie('calibration'),
+                   model_uri=OAE.sensor__calibration, domain=None, range=Optional[Union[dict, Calibration]])
+
+slots.genericInstrument__calibration = Slot(uri=OAE.calibration, name="genericInstrument__calibration", curie=OAE.curie('calibration'),
+                   model_uri=OAE.genericInstrument__calibration, domain=None, range=Optional[Union[dict, Calibration]])
+
+slots.calibration__calibration_location = Slot(uri=OAE.calibration_location, name="calibration__calibration_location", curie=OAE.curie('calibration_location'),
+                   model_uri=OAE.calibration__calibration_location, domain=None, range=Union[str, "CalibrationLocation"])
+
+slots.calibration__technique_description = Slot(uri=OAE.technique_description, name="calibration__technique_description", curie=OAE.curie('technique_description'),
+                   model_uri=OAE.calibration__technique_description, domain=None, range=str)
+
+slots.calibration__method_reference = Slot(uri=OAE.method_reference, name="calibration__method_reference", curie=OAE.curie('method_reference'),
+                   model_uri=OAE.calibration__method_reference, domain=None, range=Optional[str])
+
+slots.calibration__frequency = Slot(uri=OAE.frequency, name="calibration__frequency", curie=OAE.curie('frequency'),
+                   model_uri=OAE.calibration__frequency, domain=None, range=Optional[str])
+
+slots.calibration__last_calibration_date = Slot(uri=OAE.last_calibration_date, name="calibration__last_calibration_date", curie=OAE.curie('last_calibration_date'),
+                   model_uri=OAE.calibration__last_calibration_date, domain=None, range=Optional[Union[str, XSDDateTime]])
+
+slots.calibration__calibration_certificates = Slot(uri=OAE.calibration_certificates, name="calibration__calibration_certificates", curie=OAE.curie('calibration_certificates'),
+                   model_uri=OAE.calibration__calibration_certificates, domain=None, range=Optional[str])
+
+slots.cRMCalibration__crm_manufacturer = Slot(uri=OAE.crm_manufacturer, name="cRMCalibration__crm_manufacturer", curie=OAE.curie('crm_manufacturer'),
+                   model_uri=OAE.cRMCalibration__crm_manufacturer, domain=None, range=str)
+
+slots.cRMCalibration__crm_batch_number = Slot(uri=OAE.crm_batch_number, name="cRMCalibration__crm_batch_number", curie=OAE.curie('crm_batch_number'),
+                   model_uri=OAE.cRMCalibration__crm_batch_number, domain=None, range=str)
+
+slots.pHCalibration__dye_type_and_manufacturer = Slot(uri=OAE.dye_type_and_manufacturer, name="pHCalibration__dye_type_and_manufacturer", curie=OAE.curie('dye_type_and_manufacturer'),
+                   model_uri=OAE.pHCalibration__dye_type_and_manufacturer, domain=None, range=str)
+
+slots.pHCalibration__dye_purified = Slot(uri=OAE.dye_purified, name="pHCalibration__dye_purified", curie=OAE.curie('dye_purified'),
+                   model_uri=OAE.pHCalibration__dye_purified, domain=None, range=Union[bool, Bool])
+
+slots.pHCalibration__correction_for_unpurified_dye = Slot(uri=OAE.correction_for_unpurified_dye, name="pHCalibration__correction_for_unpurified_dye", curie=OAE.curie('correction_for_unpurified_dye'),
+                   model_uri=OAE.pHCalibration__correction_for_unpurified_dye, domain=None, range=Optional[str])
+
+slots.pHCalibration__dye_correction_method = Slot(uri=OAE.dye_correction_method, name="pHCalibration__dye_correction_method", curie=OAE.curie('dye_correction_method'),
+                   model_uri=OAE.pHCalibration__dye_correction_method, domain=None, range=Optional[str])
+
+slots.pHCalibration__ph_of_standards = Slot(uri=OAE.ph_of_standards, name="pHCalibration__ph_of_standards", curie=OAE.curie('ph_of_standards'),
+                   model_uri=OAE.pHCalibration__ph_of_standards, domain=None, range=Optional[str])
+
+slots.pHCalibration__calibration_temperature = Slot(uri=OAE.calibration_temperature, name="pHCalibration__calibration_temperature", curie=OAE.curie('calibration_temperature'),
+                   model_uri=OAE.pHCalibration__calibration_temperature, domain=None, range=Optional[str])
+
+slots.cO2Calibration__calibration_temperature = Slot(uri=OAE.calibration_temperature, name="cO2Calibration__calibration_temperature", curie=OAE.curie('calibration_temperature'),
+                   model_uri=OAE.cO2Calibration__calibration_temperature, domain=None, range=Optional[str])
+
+slots.cO2Calibration__standard_gases = Slot(uri=OAE.standard_gases, name="cO2Calibration__standard_gases", curie=OAE.curie('standard_gases'),
+                   model_uri=OAE.cO2Calibration__standard_gases, domain=None, range=Optional[Union[Union[dict, StandardGas], List[Union[dict, StandardGas]]]])
+
+slots.cO2Calibration__wmo_traceable = Slot(uri=OAE.wmo_traceable, name="cO2Calibration__wmo_traceable", curie=OAE.curie('wmo_traceable'),
+                   model_uri=OAE.cO2Calibration__wmo_traceable, domain=None, range=Union[bool, Bool])
+
+slots.standardGas__manufacturer = Slot(uri=OAE.manufacturer, name="standardGas__manufacturer", curie=OAE.curie('manufacturer'),
+                   model_uri=OAE.standardGas__manufacturer, domain=None, range=str)
+
+slots.standardGas__concentration = Slot(uri=OAE.concentration, name="standardGas__concentration", curie=OAE.curie('concentration'),
+                   model_uri=OAE.standardGas__concentration, domain=None, range=str)
+
+slots.standardGas__uncertainty = Slot(uri=OAE.uncertainty, name="standardGas__uncertainty", curie=OAE.curie('uncertainty'),
+                   model_uri=OAE.standardGas__uncertainty, domain=None, range=str)
+
 slots.SpatialCoverage_geo = Slot(uri=OAE.geo, name="SpatialCoverage_geo", curie=OAE.curie('geo'),
                    model_uri=OAE.SpatialCoverage_geo, domain=SpatialCoverage, range=Union[dict, "GeoShape"])
 
@@ -2452,3 +3970,21 @@ slots.Experiment_spatial_coverage = Slot(uri=SCHEMA.spatialCoverage, name="Exper
 
 slots.Experiment_vertical_coverage = Slot(uri=OAE.vertical_coverage, name="Experiment_vertical_coverage", curie=OAE.curie('vertical_coverage'),
                    model_uri=OAE.Experiment_vertical_coverage, domain=Experiment, range=Optional[Union[dict, VerticalExtent]])
+
+slots.DiscretePHVariable_analyzing_instrument = Slot(uri=OAE.analyzing_instrument, name="DiscretePHVariable_analyzing_instrument", curie=OAE.curie('analyzing_instrument'),
+                   model_uri=OAE.DiscretePHVariable_analyzing_instrument, domain=DiscretePHVariable, range=Union[dict, "PHInstrument"])
+
+slots.Dataset_name = Slot(uri=SCHEMA.name, name="Dataset_name", curie=SCHEMA.curie('name'),
+                   model_uri=OAE.Dataset_name, domain=Dataset, range=str)
+
+slots.Dataset_description = Slot(uri=SCHEMA.description, name="Dataset_description", curie=SCHEMA.curie('description'),
+                   model_uri=OAE.Dataset_description, domain=Dataset, range=str)
+
+slots.Dataset_project_id = Slot(uri=OAE.project_id, name="Dataset_project_id", curie=OAE.curie('project_id'),
+                   model_uri=OAE.Dataset_project_id, domain=Dataset, range=str)
+
+slots.Dataset_experiment_id = Slot(uri=OAE.experiment_id, name="Dataset_experiment_id", curie=OAE.curie('experiment_id'),
+                   model_uri=OAE.Dataset_experiment_id, domain=Dataset, range=str)
+
+slots.Platform_name = Slot(uri=SCHEMA.name, name="Platform_name", curie=SCHEMA.curie('name'),
+                   model_uri=OAE.Platform_name, domain=Platform, range=Optional[str])
