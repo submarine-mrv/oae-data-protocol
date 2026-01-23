@@ -314,12 +314,12 @@ enums:
         description: >-
           Instrument that measures the amount of stimulated electromagnetic radiation produced by pulses of
           electromagnetic radiation emitted into the water column.
-      high_performance_liquid_chromatography_hplc:
+      high_performance_liquid_chromatography:
         meaning: SDN_L05:LAB11
         description: >-
           Instruments that separate and analyse mixtures of substances by high pressure pumping the sample through a
           column packed with microspheres coated with the stationary phase.
-      acoustic_doppler_current_profiler_adcp:
+      acoustic_doppler_current_profiler:
         meaning: SDN_L05:115
         description: >-
           Acoustic Doppler Current Profiler (ADCP), is a type of instrument used to measure water
@@ -329,7 +329,7 @@ enums:
         description: >-
           Instruments used to measure the mass-to-charge ratio of ions most generally used to find the composition of a
           sample by generating a mass spectrum representing the masses of sample components.
-      isotope_ratio_mass_spectrometers_irms:
+      isotope_ratio_mass_spectrometers:
         meaning: SDN_L05:LAB48
         description: >-
           Instruments that measure isotopic ratios using an electron ionisation source. Atoms in purified samples are
