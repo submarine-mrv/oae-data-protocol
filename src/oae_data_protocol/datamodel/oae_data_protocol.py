@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-01-22T22:25:24
+# Generation date: 2026-01-22T22:49:58
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -3389,20 +3389,20 @@ class AnalyzingInstrumentType(EnumDefinitionImpl):
         text="fluorometers",
         description="""Instrument that measures the amount of stimulated electromagnetic radiation produced by pulses of electromagnetic radiation emitted into the water column.""",
         meaning=SDN_L05["113"])
-    high_performance_liquid_chromatography_hplc = PermissibleValue(
-        text="high_performance_liquid_chromatography_hplc",
+    high_performance_liquid_chromatography = PermissibleValue(
+        text="high_performance_liquid_chromatography",
         description="""Instruments that separate and analyse mixtures of substances by high pressure pumping the sample through a column packed with microspheres coated with the stationary phase.""",
         meaning=SDN_L05["LAB11"])
-    acoustic_doppler_current_profiler_adcp = PermissibleValue(
-        text="acoustic_doppler_current_profiler_adcp",
+    acoustic_doppler_current_profiler = PermissibleValue(
+        text="acoustic_doppler_current_profiler",
         description="""Acoustic Doppler Current Profiler (ADCP), is a type of instrument used to measure water currents in oceans, rivers, and other bodies of water.""",
         meaning=SDN_L05["115"])
     mass_spectrometers = PermissibleValue(
         text="mass_spectrometers",
         description="""Instruments used to measure the mass-to-charge ratio of ions most generally used to find the composition of a sample by generating a mass spectrum representing the masses of sample components.""",
         meaning=SDN_L05["LAB16"])
-    isotope_ratio_mass_spectrometers_irms = PermissibleValue(
-        text="isotope_ratio_mass_spectrometers_irms",
+    isotope_ratio_mass_spectrometers = PermissibleValue(
+        text="isotope_ratio_mass_spectrometers",
         description="""Instruments that measure isotopic ratios using an electron ionisation source. Atoms in purified samples are ionised using a beam of electrons under vacuum. Subsequently, ions are focused into a beam by an electromagnet and then separated into individual beams based on their mass/charge ratio""",
         meaning=SDN_L05["LAB48"])
     barometric_pressure_sensor = PermissibleValue(
