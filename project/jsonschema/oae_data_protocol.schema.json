@@ -1057,7 +1057,7 @@
                 },
                 "measurement_temperature": {
                     "description": "Temperature at which pH was measured.",
-                    "title": "Measurement temperature",
+                    "title": "Temperature at which pH was measured",
                     "type": "string"
                 },
                 "method_reference": {
@@ -1081,7 +1081,7 @@
                 },
                 "ph_reported_temperature": {
                     "description": "The input could be a constant temperature value, or something like, in-situ temperature, temperature of analysis, etc.",
-                    "title": "pH reported temperature",
+                    "title": "Temperature at which pH was reported",
                     "type": "string"
                 },
                 "qc_researcher": {

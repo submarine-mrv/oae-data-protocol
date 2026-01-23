@@ -189,7 +189,7 @@ classes:
         description: pH instrument with dye-based calibration used for measurements.
     attributes:
       measurement_temperature:
-        title: Measurement temperature
+        title: Temperature at which pH was measured
         description: Temperature at which pH was measured.
         range: string
         # TODO: Change to DimensionedQuantity in Phase 3
@@ -198,7 +198,7 @@ classes:
         description: Method used to correct pH for temperature.
         range: string
       ph_reported_temperature:
-        title: pH reported temperature
+        title: Temperature at which pH was reported
         description: The input could be a constant temperature value, or something like, in-situ temperature, temperature of analysis, etc.
         range: string
         required: true
