@@ -25,6 +25,55 @@
         "AnalyzingInstrument": {
             "additionalProperties": false,
             "description": "Subclass of Instrument used for analyzing samples",
+            "properties": {
+                "accuracy": {
+                    "description": "Accuracy of the instrument measurements.",
+                    "title": "Accuracy",
+                    "type": "string"
+                },
+                "instrument_type": {
+                    "$ref": "#/$defs/AnalyzingInstrumentType",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/AnalyzingInstrumentType"
+                        },
+                        {
+                            "$ref": "#/$defs/SamplingInstrumentType"
+                        }
+                    ],
+                    "description": "Type of instrument used to analyze samples or measure continuously.",
+                    "title": "Instrument type"
+                },
+                "instrument_type_custom": {
+                    "title": "Instrument type (custom)",
+                    "type": "string"
+                },
+                "manufacturer": {
+                    "description": "Manufacturer name of the instrument.",
+                    "title": "Manufacturer",
+                    "type": "string"
+                },
+                "model": {
+                    "description": "Model number or name of the instrument.",
+                    "title": "Model",
+                    "type": "string"
+                },
+                "precision": {
+                    "description": "Precision of the instrument measurements.",
+                    "title": "Precision",
+                    "type": "string"
+                },
+                "serial_number": {
+                    "description": "Serial number of the instrument.",
+                    "title": "Serial number",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "instrument_type",
+                "precision",
+                "accuracy"
+            ],
             "title": "AnalyzingInstrument",
             "type": "object"
         },
@@ -170,7 +219,7 @@
                     "title": "Calibration"
                 },
                 "instrument_type": {
-                    "$ref": "#/$defs/Any",
+                    "$ref": "#/$defs/AnalyzingInstrumentType",
                     "anyOf": [
                         {
                             "$ref": "#/$defs/AnalyzingInstrumentType"
@@ -296,7 +345,7 @@
                     "title": "Calibration"
                 },
                 "instrument_type": {
-                    "$ref": "#/$defs/Any",
+                    "$ref": "#/$defs/AnalyzingInstrumentType",
                     "anyOf": [
                         {
                             "$ref": "#/$defs/AnalyzingInstrumentType"
@@ -1379,7 +1428,7 @@
                     "title": "Calibration"
                 },
                 "instrument_type": {
-                    "$ref": "#/$defs/Any",
+                    "$ref": "#/$defs/AnalyzingInstrumentType",
                     "anyOf": [
                         {
                             "$ref": "#/$defs/AnalyzingInstrumentType"
@@ -2442,14 +2491,59 @@
             "additionalProperties": false,
             "description": "pH measurement instrument with dye-based calibration.",
             "properties": {
+                "accuracy": {
+                    "description": "Accuracy of the instrument measurements.",
+                    "title": "Accuracy",
+                    "type": "string"
+                },
                 "calibration": {
                     "$ref": "#/$defs/PHCalibration",
                     "description": "pH calibration information for this instrument.",
                     "title": "Calibration"
+                },
+                "instrument_type": {
+                    "$ref": "#/$defs/AnalyzingInstrumentType",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/AnalyzingInstrumentType"
+                        },
+                        {
+                            "$ref": "#/$defs/SamplingInstrumentType"
+                        }
+                    ],
+                    "description": "Type of instrument used to analyze samples or measure continuously.",
+                    "title": "Instrument type"
+                },
+                "instrument_type_custom": {
+                    "title": "Instrument type (custom)",
+                    "type": "string"
+                },
+                "manufacturer": {
+                    "description": "Manufacturer name of the instrument.",
+                    "title": "Manufacturer",
+                    "type": "string"
+                },
+                "model": {
+                    "description": "Model number or name of the instrument.",
+                    "title": "Model",
+                    "type": "string"
+                },
+                "precision": {
+                    "description": "Precision of the instrument measurements.",
+                    "title": "Precision",
+                    "type": "string"
+                },
+                "serial_number": {
+                    "description": "Serial number of the instrument.",
+                    "title": "Serial number",
+                    "type": "string"
                 }
             },
             "required": [
-                "calibration"
+                "calibration",
+                "instrument_type",
+                "precision",
+                "accuracy"
             ],
             "title": "PHInstrument",
             "type": "object"
@@ -3224,7 +3318,7 @@
                     "title": "Calibration"
                 },
                 "instrument_type": {
-                    "$ref": "#/$defs/Any",
+                    "$ref": "#/$defs/AnalyzingInstrumentType",
                     "anyOf": [
                         {
                             "$ref": "#/$defs/AnalyzingInstrumentType"

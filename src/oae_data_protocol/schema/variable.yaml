@@ -185,7 +185,7 @@ classes:
       - appropriate_use_quality
     slot_usage:
       analyzing_instrument:
-        range: pHInstrument
+        range: PHInstrument
         description: pH instrument with dye-based calibration used for measurements.
     attributes:
       measurement_temperature:

@@ -28,7 +28,7 @@ classes:
         title: Instrument type
         description: >-
           Type of instrument used to analyze samples or measure continuously.
-        range: Any
+        range: AnalyzingInstrumentType
         any_of:
           - range: AnalyzingInstrumentType
           - range: SamplingInstrumentType
@@ -62,6 +62,8 @@ classes:
         # TODO: Change to DimensionedQuantity in Phase 3
 
   AnalyzingInstrument:
+    is_a:
+      Instrument
     description: >-
       Subclass of Instrument used for analyzing samples
     slot_usage:
@@ -69,7 +71,7 @@ classes:
         range: AnalyzingInstrumentType
 
   # pH Instrument with dye-based calibration
-  pHInstrument:
+  PHInstrument:
     description: >-
       pH measurement instrument with dye-based calibration.
     is_a: AnalyzingInstrument
