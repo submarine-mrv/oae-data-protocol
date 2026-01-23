@@ -230,6 +230,8 @@
 <div class="mermaid"> classDiagram
     class Instrument
     click Instrument href "../Instrument"
+      Instrument &lt;|-- AnalyzingInstrument
+        click AnalyzingInstrument href "../AnalyzingInstrument"
       Instrument &lt;|-- CRMInstrument
         click CRMInstrument href "../CRMInstrument"
       Instrument &lt;|-- CO2GasDetector
@@ -246,8 +248,8 @@
 
 
 
-    Instrument --&gt; "1" Any : instrument_type
-    click Any href "../Any"
+    Instrument --&gt; "1" AnalyzingInstrumentType : instrument_type
+    click AnalyzingInstrumentType href "../AnalyzingInstrumentType"
 
 
       Instrument : instrument_type_custom
@@ -265,6 +267,7 @@
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><strong>Instrument</strong><ul>
+<li><a href="../AnalyzingInstrument/">AnalyzingInstrument</a></li>
 <li><a href="../CRMInstrument/">CRMInstrument</a></li>
 <li><a href="../CO2GasDetector/">CO2GasDetector</a></li>
 <li><a href="../Sensor/">Sensor</a></li>
@@ -285,7 +288,7 @@
 <tbody>
 <tr>
 <td><a href="../instrument_type/">instrument_type</a></td>
-<td>1 <br/> <a href="../Any/">Any</a> or <br/><a href="../AnalyzingInstrumentType/">AnalyzingInstrumentType</a> or <br/><a href="../SamplingInstrumentType/">SamplingInstrumentType</a></td>
+<td>1 <br/> <a href="../AnalyzingInstrumentType/">AnalyzingInstrumentType</a> or <br/><a href="../AnalyzingInstrumentType/">AnalyzingInstrumentType</a> or <br/><a href="../SamplingInstrumentType/">SamplingInstrumentType</a></td>
 <td>Type of instrument used to analyze samples or measure continuously</td>
 <td>direct</td>
 </tr>
@@ -368,7 +371,7 @@ attributes:
     rank: 1000
     domain_of:
     - Instrument
-    range: Any
+    range: AnalyzingInstrumentType
     required: true
     any_of:
     - range: AnalyzingInstrumentType
@@ -448,7 +451,7 @@ attributes:
     owner: Instrument
     domain_of:
     - Instrument
-    range: Any
+    range: AnalyzingInstrumentType
     required: true
     any_of:
     - range: AnalyzingInstrumentType

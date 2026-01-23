@@ -290,6 +290,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#slots" class="md-nav__link">
+    <span class="md-ellipsis">
+      Slots
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#identifier-and-mapping-information" class="md-nav__link">
     <span class="md-ellipsis">
       Identifier and Mapping Information
@@ -429,9 +438,14 @@
 <td>A pH electrode, sometimes referred to as a pH probe or pH sensor, is a glass ...</td>
 </tr>
 <tr>
-<td>sea_bird_seafet</td>
+<td>sea_bird_seafet_v1</td>
 <td>SDN_L22:TOOL1292</td>
-<td>Sea-Bird SeaFET is a type of oceanographic instrument that is used to measure...</td>
+<td>A pH sensor</td>
+</tr>
+<tr>
+<td>sea_bird_seafet_v2</td>
+<td>SDN_L22:TOOL1293</td>
+<td>A pH sensor</td>
 </tr>
 <tr>
 <td>oxygen_titrator</td>
@@ -464,12 +478,12 @@
 <td>Instrument that measures the amount of stimulated electromagnetic radiation p...</td>
 </tr>
 <tr>
-<td>high_performance_liquid_chromatography_hplc</td>
+<td>high_performance_liquid_chromatography</td>
 <td>SDN_L05:LAB11</td>
 <td>Instruments that separate and analyse mixtures of substances by high pressure...</td>
 </tr>
 <tr>
-<td>acoustic_doppler_current_profiler_adcp</td>
+<td>acoustic_doppler_current_profiler</td>
 <td>SDN_L05:115</td>
 <td>Acoustic Doppler Current Profiler (ADCP), is a type of instrument used to mea...</td>
 </tr>
@@ -479,7 +493,7 @@
 <td>Instruments used to measure the mass-to-charge ratio of ions most generally u...</td>
 </tr>
 <tr>
-<td>isotope_ratio_mass_spectrometers_irms</td>
+<td>isotope_ratio_mass_spectrometers</td>
 <td>SDN_L05:LAB48</td>
 <td>Instruments that measure isotopic ratios using an electron ionisation source</td>
 </tr>
@@ -511,6 +525,25 @@
 <tr>
 <td>other</td>
 <td>None</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="slots">Slots</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../instrument_type/">instrument_type</a></td>
+<td>Type of instrument used to analyze samples or measure continuously</td>
+</tr>
+<tr>
+<td><a href="../instrument_type/">instrument_type</a></td>
 <td></td>
 </tr>
 </tbody>
@@ -607,11 +640,27 @@ permissible_values:
     description: A pH electrode, sometimes referred to as a pH probe or pH sensor,
       is a glass device used to measure the pH of a solution.
     meaning: SDN_L05:355
-  sea_bird_seafet:
-    text: sea_bird_seafet
-    description: Sea-Bird SeaFET is a type of oceanographic instrument that is used
-      to measure the pH of seawater in real-time.
+  sea_bird_seafet_v1:
+    text: sea_bird_seafet_v1
+    description: A pH sensor. The sensor can be used for ocean acidification, research
+      coral reef sensitivity analysis and environmental monitoring. The sensor measures
+      pH with a range of 6.5 to 9.0. The sensing element is an ion  sensitive field
+      effect transistor. The pH sensor has an initial accuracy of +/-0.05 pH, precision
+      of 0.001 pH and stability of 0.005 pH/month. It can operate in temperatures
+      ranging from 0 deg C to 50 deg C and up to depths of 50 m.
     meaning: SDN_L22:TOOL1292
+  sea_bird_seafet_v2:
+    text: sea_bird_seafet_v2
+    description: A pH sensor. The sensor can be used for ocean acidification, research
+      coral reef sensitivity analysis and environmental monitoring. The sensor measures
+      pH with a range of 6.5 to 9.0. The sensing element is an ion sensitive field
+      effect transistor. V2 implements improvements to the original SeaFET's reliability,
+      data quality, ease of operation, and deployment endurance, with significant
+      changes to how users interface with the instrument. The pH sensor has an accuracy
+      to +/-0.05 pH, precision of 0.004 pH and stability of 0.003 pH/month. It can
+      operate in temperatures ranging from 0 deg C to 50 deg C and up to depths of
+      50 m.
+    meaning: SDN_L22:TOOL1293
   oxygen_titrator:
     text: oxygen_titrator
     description: An oxygen titrator is a device used to measure the concentration
@@ -644,14 +693,14 @@ permissible_values:
       radiation produced by pulses of electromagnetic radiation emitted into the water
       column.
     meaning: SDN_L05:113
-  high_performance_liquid_chromatography_hplc:
-    text: high_performance_liquid_chromatography_hplc
+  high_performance_liquid_chromatography:
+    text: high_performance_liquid_chromatography
     description: Instruments that separate and analyse mixtures of substances by high
       pressure pumping the sample through a column packed with microspheres coated
       with the stationary phase.
     meaning: SDN_L05:LAB11
-  acoustic_doppler_current_profiler_adcp:
-    text: acoustic_doppler_current_profiler_adcp
+  acoustic_doppler_current_profiler:
+    text: acoustic_doppler_current_profiler
     description: Acoustic Doppler Current Profiler (ADCP), is a type of instrument
       used to measure water currents in oceans, rivers, and other bodies of water.
     meaning: SDN_L05:115
@@ -661,8 +710,8 @@ permissible_values:
       generally used to find the composition of a sample by generating a mass spectrum
       representing the masses of sample components.
     meaning: SDN_L05:LAB16
-  isotope_ratio_mass_spectrometers_irms:
-    text: isotope_ratio_mass_spectrometers_irms
+  isotope_ratio_mass_spectrometers:
+    text: isotope_ratio_mass_spectrometers
     description: Instruments that measure isotopic ratios using an electron ionisation
       source. Atoms in purified samples are ionised using a beam of electrons under
       vacuum. Subsequently, ions are focused into a beam by an electromagnet and then

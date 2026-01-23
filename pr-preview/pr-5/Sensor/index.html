@@ -246,8 +246,8 @@
 
 
 
-    Sensor --&gt; "1" Any : instrument_type
-    click Any href "../Any"
+    Sensor --&gt; "1" AnalyzingInstrumentType : instrument_type
+    click AnalyzingInstrumentType href "../AnalyzingInstrumentType"
 
 
       Sensor : instrument_type_custom
@@ -288,7 +288,7 @@
 </tr>
 <tr>
 <td><a href="../instrument_type/">instrument_type</a></td>
-<td>1 <br/> <a href="../Any/">Any</a> or <br/><a href="../AnalyzingInstrumentType/">AnalyzingInstrumentType</a> or <br/><a href="../SamplingInstrumentType/">SamplingInstrumentType</a></td>
+<td>1 <br/> <a href="../AnalyzingInstrumentType/">AnalyzingInstrumentType</a> or <br/><a href="../AnalyzingInstrumentType/">AnalyzingInstrumentType</a> or <br/><a href="../SamplingInstrumentType/">SamplingInstrumentType</a></td>
 <td>Type of instrument used to analyze samples or measure continuously</td>
 <td><a href="../Instrument/">Instrument</a></td>
 </tr>
@@ -370,7 +370,7 @@ attributes:
     title: Calibration
     from_schema: Instrument
     domain_of:
-    - pHInstrument
+    - PHInstrument
     - CRMInstrument
     - CO2GasDetector
     - Sensor
@@ -395,7 +395,7 @@ attributes:
     alias: calibration
     owner: Sensor
     domain_of:
-    - pHInstrument
+    - PHInstrument
     - CRMInstrument
     - CO2GasDetector
     - Sensor
@@ -411,7 +411,7 @@ attributes:
     owner: Sensor
     domain_of:
     - Instrument
-    range: Any
+    range: AnalyzingInstrumentType
     required: true
     any_of:
     - range: AnalyzingInstrumentType

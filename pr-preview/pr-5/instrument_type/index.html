@@ -375,18 +375,13 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Instrument/">Instrument</a></td>
-<td>Base class for scientific instruments used in measurements</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../GenericInstrument/">GenericInstrument</a></td>
-<td>Generic instrument for cases that don't fit specialized instrument types</td>
-<td>no</td>
-</tr>
-<tr>
 <td><a href="../Sensor/">Sensor</a></td>
 <td>Generic sensor with basic calibration information</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../PHInstrument/">PHInstrument</a></td>
+<td>pH measurement instrument with dye-based calibration</td>
 <td>no</td>
 </tr>
 <tr>
@@ -395,8 +390,23 @@
 <td>no</td>
 </tr>
 <tr>
+<td><a href="../GenericInstrument/">GenericInstrument</a></td>
+<td>Generic instrument for cases that don't fit specialized instrument types</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../AnalyzingInstrument/">AnalyzingInstrument</a></td>
+<td>Subclass of Instrument used for analyzing samples</td>
+<td>yes</td>
+</tr>
+<tr>
 <td><a href="../CRMInstrument/">CRMInstrument</a></td>
 <td>Instrument calibrated with Certified Reference Materials, used for DIC and TA...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Instrument/">Instrument</a></td>
+<td>Base class for scientific instruments used in measurements</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -404,7 +414,7 @@
 <h2 id="properties">Properties</h2>
 <ul>
 <li>
-<p>Range: <a href="../Any/">Any</a>&nbsp;or&nbsp;<br /><a href="../AnalyzingInstrumentType/">AnalyzingInstrumentType</a>&nbsp;or&nbsp;<br /><a href="../SamplingInstrumentType/">SamplingInstrumentType</a></p>
+<p>Range: <a href="../AnalyzingInstrumentType/">AnalyzingInstrumentType</a>&nbsp;or&nbsp;<br /><a href="../AnalyzingInstrumentType/">AnalyzingInstrumentType</a>&nbsp;or&nbsp;<br /><a href="../SamplingInstrumentType/">SamplingInstrumentType</a></p>
 </li>
 <li>
 <p>Required: True</p>
@@ -446,7 +456,7 @@ alias: instrument_type
 owner: Instrument
 domain_of:
 - Instrument
-range: Any
+range: AnalyzingInstrumentType
 required: true
 any_of:
 - range: AnalyzingInstrumentType

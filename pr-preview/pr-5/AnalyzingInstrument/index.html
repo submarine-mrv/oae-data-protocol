@@ -234,15 +234,44 @@
 <div class="mermaid"> classDiagram
     class AnalyzingInstrument
     click AnalyzingInstrument href "../AnalyzingInstrument"
+      Instrument &lt;|-- AnalyzingInstrument
+        click Instrument href "../Instrument"
+
+
       AnalyzingInstrument &lt;|-- PHInstrument
         click PHInstrument href "../PHInstrument"
+
+
+      AnalyzingInstrument : accuracy
+
+      AnalyzingInstrument : instrument_type
+
+
+
+
+    AnalyzingInstrument --&gt; "1" AnalyzingInstrumentType : instrument_type
+    click AnalyzingInstrumentType href "../AnalyzingInstrumentType"
+
+
+      AnalyzingInstrument : instrument_type_custom
+
+      AnalyzingInstrument : manufacturer
+
+      AnalyzingInstrument : model
+
+      AnalyzingInstrument : precision
+
+      AnalyzingInstrument : serial_number
 
 
 </div>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
+<li><a href="../Instrument/">Instrument</a><ul>
 <li><strong>AnalyzingInstrument</strong><ul>
 <li><a href="../PHInstrument/">PHInstrument</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -258,10 +287,46 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="../instrument_type/">instrument_type</a></td>
+<td>1 <br/> <a href="../AnalyzingInstrumentType/">AnalyzingInstrumentType</a> or <br/><a href="../AnalyzingInstrumentType/">AnalyzingInstrumentType</a> or <br/><a href="../SamplingInstrumentType/">SamplingInstrumentType</a></td>
+<td>Type of instrument used to analyze samples or measure continuously</td>
+<td><a href="../Instrument/">Instrument</a></td>
+</tr>
+<tr>
+<td><a href="../instrument_type_custom/">instrument_type_custom</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
 <td></td>
-<td></td>
-<td></td>
-<td></td>
+<td><a href="../Instrument/">Instrument</a></td>
+</tr>
+<tr>
+<td><a href="../manufacturer/">manufacturer</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Manufacturer name of the instrument</td>
+<td><a href="../Instrument/">Instrument</a></td>
+</tr>
+<tr>
+<td><a href="../model/">model</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Model number or name of the instrument</td>
+<td><a href="../Instrument/">Instrument</a></td>
+</tr>
+<tr>
+<td><a href="../serial_number/">serial_number</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Serial number of the instrument</td>
+<td><a href="../Instrument/">Instrument</a></td>
+</tr>
+<tr>
+<td><a href="../precision/">precision</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>Precision of the instrument measurements</td>
+<td><a href="../Instrument/">Instrument</a></td>
+</tr>
+<tr>
+<td><a href="../accuracy/">accuracy</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>Accuracy of the instrument measurements</td>
+<td><a href="../Instrument/">Instrument</a></td>
 </tr>
 </tbody>
 </table>
@@ -315,10 +380,11 @@
 <pre><code class="language-yaml">name: AnalyzingInstrument
 description: Subclass of Instrument used for analyzing samples
 from_schema: OAEDataManagementProtocol
+is_a: Instrument
 slot_usage:
   instrument_type:
     name: instrument_type
-    range: string
+    range: AnalyzingInstrumentType
 
 </code></pre>
 </details>
@@ -327,10 +393,94 @@ slot_usage:
 <pre><code class="language-yaml">name: AnalyzingInstrument
 description: Subclass of Instrument used for analyzing samples
 from_schema: OAEDataManagementProtocol
+is_a: Instrument
 slot_usage:
   instrument_type:
     name: instrument_type
+    range: AnalyzingInstrumentType
+attributes:
+  instrument_type:
+    name: instrument_type
+    description: Type of instrument used to analyze samples or measure continuously.
+    title: Instrument type
+    from_schema: Instrument
+    rank: 1000
+    alias: instrument_type
+    owner: AnalyzingInstrument
+    domain_of:
+    - Instrument
+    range: AnalyzingInstrumentType
+    required: true
+    any_of:
+    - range: AnalyzingInstrumentType
+    - range: SamplingInstrumentType
+  instrument_type_custom:
+    name: instrument_type_custom
+    title: Instrument type (custom)
+    from_schema: Instrument
+    rank: 1000
+    alias: instrument_type_custom
+    owner: AnalyzingInstrument
+    domain_of:
+    - Instrument
     range: string
+  manufacturer:
+    name: manufacturer
+    description: Manufacturer name of the instrument.
+    title: Manufacturer
+    from_schema: Instrument
+    alias: manufacturer
+    owner: AnalyzingInstrument
+    domain_of:
+    - StandardGas
+    - Instrument
+    range: string
+  model:
+    name: model
+    description: Model number or name of the instrument.
+    title: Model
+    from_schema: Instrument
+    rank: 1000
+    alias: model
+    owner: AnalyzingInstrument
+    domain_of:
+    - Instrument
+    range: string
+  serial_number:
+    name: serial_number
+    description: Serial number of the instrument.
+    title: Serial number
+    from_schema: Instrument
+    rank: 1000
+    alias: serial_number
+    owner: AnalyzingInstrument
+    domain_of:
+    - Instrument
+    range: string
+  precision:
+    name: precision
+    description: Precision of the instrument measurements.
+    title: Precision
+    from_schema: Instrument
+    rank: 1000
+    alias: precision
+    owner: AnalyzingInstrument
+    domain_of:
+    - Instrument
+    range: string
+    required: true
+  accuracy:
+    name: accuracy
+    description: Accuracy of the instrument measurements.
+    title: Accuracy
+    from_schema: Instrument
+    rank: 1000
+    alias: accuracy
+    owner: AnalyzingInstrument
+    domain_of:
+    - Instrument
+    range: string
+    required: true
 
 </code></pre>
 </details>
