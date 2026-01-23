@@ -364,8 +364,8 @@
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../GenericInstrument/">GenericInstrument</a></td>
-<td>Generic instrument for cases that don't fit specialized instrument types</td>
+<td><a href="../Sensor/">Sensor</a></td>
+<td>Generic sensor with basic calibration information</td>
 <td>no</td>
 </tr>
 <tr>
@@ -374,13 +374,13 @@
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../Sensor/">Sensor</a></td>
-<td>Generic sensor with basic calibration information</td>
+<td><a href="../CO2GasDetector/">CO2GasDetector</a></td>
+<td>CO2 gas detector with standard gas calibration</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../CO2GasDetector/">CO2GasDetector</a></td>
-<td>CO2 gas detector with standard gas calibration</td>
+<td><a href="../GenericInstrument/">GenericInstrument</a></td>
+<td>Generic instrument for cases that don't fit specialized instrument types</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -415,8 +415,8 @@
 <pre><code class="language-yaml">name: calibration
 alias: calibration
 domain_of:
-- CRMInstrument
 - pHInstrument
+- CRMInstrument
 - CO2GasDetector
 - Sensor
 - GenericInstrument

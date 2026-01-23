@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: measurement_temperature - oae-data-protocol</title>
+        <title>Slot: Measurement temperature (measurement_temperature) - oae-data-protocol</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-measurement_temperature" class="md-skip">
+        <a href="#slot-measurement-temperature-measurement_temperature" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: measurement_temperature
+              Slot: Measurement temperature (measurement_temperature)
             
           </span>
         </div>
@@ -305,6 +305,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Identifier and Mapping Information">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      Schema Source
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -344,7 +359,8 @@
   
 
 
-<h1 id="slot-measurement_temperature">Slot: measurement_temperature</h1>
+<h1 id="slot-measurement-temperature-measurement_temperature">Slot: Measurement temperature (measurement_temperature)</h1>
+<p><em>Temperature at which pH was measured.</em></p>
 <p>URI: <a href="https://example.org/oae#measurement_temperature">oae:measurement_temperature</a></p>
 <!-- no inheritance hierarchy -->
 
@@ -359,22 +375,21 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../PHVariable/">PHVariable</a></td>
+<td><a href="../DiscretePHVariable/">DiscretePHVariable</a></td>
 <td>pH measured variable with dye-based spectrophotometric measurement</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../CO2DiscreteVariable/">CO2DiscreteVariable</a></td>
-<td>CO2 discrete (bottle) measured variable</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: NONE</li>
+<li>Range: <a href="../String/">String</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
+<h3 id="schema-source">Schema Source</h3>
+<ul>
+<li>from schema: OAEDataManagementProtocol</li>
+</ul>
 <h2 id="mappings">Mappings</h2>
 <table>
 <thead>
@@ -398,10 +413,15 @@
 <details>
 
 <pre><code class="language-yaml">name: measurement_temperature
+description: Temperature at which pH was measured.
+title: Measurement temperature
+from_schema: OAEDataManagementProtocol
+rank: 1000
 alias: measurement_temperature
+owner: DiscretePHVariable
 domain_of:
-- CO2DiscreteVariable
-- pHVariable
+- DiscretePHVariable
+range: string
 
 </code></pre>
 

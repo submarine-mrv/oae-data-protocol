@@ -237,20 +237,18 @@
 <div class="mermaid"> classDiagram
     class Variable
     click Variable href "../Variable"
-      Variable &lt;|-- MeasuredVariable
-        click MeasuredVariable href "../MeasuredVariable"
+      Variable &lt;|-- ObservedPropertyVariable
+        click ObservedPropertyVariable href "../ObservedPropertyVariable"
       Variable &lt;|-- CalculatedVariable
         click CalculatedVariable href "../CalculatedVariable"
       Variable &lt;|-- SocioeconomicVariable
         click SocioeconomicVariable href "../SocioeconomicVariable"
       Variable &lt;|-- NonMeasuredVariable
         click NonMeasuredVariable href "../NonMeasuredVariable"
-      Variable &lt;|-- GenericVariable
-        click GenericVariable href "../GenericVariable"
 
-      Variable : column_header_name
+      Variable : dataset_variable_name
 
-      Variable : column_header_name_qc_flag
+      Variable : dataset_variable_name_qc_flag
 
       Variable : long_name
 
@@ -267,20 +265,26 @@
 
       Variable : other_detailed_information
 
-      Variable : variable_type
+      Variable : standard_identifier
 
-      Variable : variable_unit
+
+
+
+    Variable --&gt; "0..1" VocabularyItemReference : standard_identifier
+    click VocabularyItemReference href "../VocabularyItemReference"
+
+
+      Variable : units
 
 
 </div>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><strong>Variable</strong><ul>
-<li><a href="../MeasuredVariable/">MeasuredVariable</a> [ <a href="../QCFields/">QCFields</a> <a href="../AnalyzingFields/">AnalyzingFields</a>]</li>
+<li><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a> [ <a href="../QCFields/">QCFields</a>]</li>
 <li><a href="../CalculatedVariable/">CalculatedVariable</a> [ <a href="../QCFields/">QCFields</a>]</li>
 <li><a href="../SocioeconomicVariable/">SocioeconomicVariable</a></li>
 <li><a href="../NonMeasuredVariable/">NonMeasuredVariable</a></li>
-<li><a href="../GenericVariable/">GenericVariable</a></li>
 </ul>
 </li>
 </ul>
@@ -296,19 +300,19 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../variable_type/">variable_type</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>The type of variable, used to determine which fields are applicable</td>
+<td><a href="../standard_identifier/">standard_identifier</a></td>
+<td>0..1 <br/> <a href="../VocabularyItemReference/">VocabularyItemReference</a></td>
+<td></td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../column_header_name/">column_header_name</a></td>
+<td><a href="../dataset_variable_name/">dataset_variable_name</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>The name for the variable as it is identified in the dataset data file</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../column_header_name_qc_flag/">column_header_name_qc_flag</a></td>
+<td><a href="../dataset_variable_name_qc_flag/">dataset_variable_name_qc_flag</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>If applicable, the column header name used for the quality control flag corre...</td>
 <td>direct</td>
@@ -320,7 +324,7 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../variable_unit/">variable_unit</a></td>
+<td><a href="../units/">units</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>Unit of measurement for this variable</td>
 <td>direct</td>
@@ -399,36 +403,31 @@ description: 'Abstract base class for all variable types. Contains common identi
 from_schema: OAEDataManagementProtocol
 abstract: true
 attributes:
-  variable_type:
-    name: variable_type
-    description: The type of variable, used to determine which fields are applicable.
-      This field acts as a discriminator for polymorphic variable types.
-    title: Variable Type
+  standard_identifier:
+    name: standard_identifier
     from_schema: Variable
     rank: 1000
-    designates_type: true
     domain_of:
     - Variable
-    range: string
-    required: true
-  column_header_name:
-    name: column_header_name
+    range: VocabularyItemReference
+  dataset_variable_name:
+    name: dataset_variable_name
     description: The name for the variable as it is identified in the dataset data
       file. This could be the column header in a CSV or the variable name in a NetCDF
       file. Standard common recommended column header names can be found in protocol
       documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).
-    title: Column header name
+    title: Dataset variable name
     from_schema: Variable
     rank: 1000
     domain_of:
     - Variable
     range: string
     required: true
-  column_header_name_qc_flag:
-    name: column_header_name_qc_flag
+  dataset_variable_name_qc_flag:
+    name: dataset_variable_name_qc_flag
     description: If applicable, the column header name used for the quality control
       flag corresponding to this variable.
-    title: Column header name (Quality Flag)
+    title: Dataset variable name (Quality Flag)
     from_schema: Variable
     rank: 1000
     domain_of:
@@ -444,8 +443,8 @@ attributes:
     - Variable
     range: string
     required: true
-  variable_unit:
-    name: variable_unit
+  units:
+    name: units
     description: Unit of measurement for this variable.
     title: Unit
     from_schema: Variable
@@ -493,43 +492,38 @@ description: 'Abstract base class for all variable types. Contains common identi
 from_schema: OAEDataManagementProtocol
 abstract: true
 attributes:
-  variable_type:
-    name: variable_type
-    description: The type of variable, used to determine which fields are applicable.
-      This field acts as a discriminator for polymorphic variable types.
-    title: Variable Type
+  standard_identifier:
+    name: standard_identifier
     from_schema: Variable
     rank: 1000
-    designates_type: true
-    alias: variable_type
+    alias: standard_identifier
     owner: Variable
     domain_of:
     - Variable
-    range: string
-    required: true
-  column_header_name:
-    name: column_header_name
+    range: VocabularyItemReference
+  dataset_variable_name:
+    name: dataset_variable_name
     description: The name for the variable as it is identified in the dataset data
       file. This could be the column header in a CSV or the variable name in a NetCDF
       file. Standard common recommended column header names can be found in protocol
       documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).
-    title: Column header name
+    title: Dataset variable name
     from_schema: Variable
     rank: 1000
-    alias: column_header_name
+    alias: dataset_variable_name
     owner: Variable
     domain_of:
     - Variable
     range: string
     required: true
-  column_header_name_qc_flag:
-    name: column_header_name_qc_flag
+  dataset_variable_name_qc_flag:
+    name: dataset_variable_name_qc_flag
     description: If applicable, the column header name used for the quality control
       flag corresponding to this variable.
-    title: Column header name (Quality Flag)
+    title: Dataset variable name (Quality Flag)
     from_schema: Variable
     rank: 1000
-    alias: column_header_name_qc_flag
+    alias: dataset_variable_name_qc_flag
     owner: Variable
     domain_of:
     - Variable
@@ -546,13 +540,13 @@ attributes:
     - Variable
     range: string
     required: true
-  variable_unit:
-    name: variable_unit
+  units:
+    name: units
     description: Unit of measurement for this variable.
     title: Unit
     from_schema: Variable
     rank: 1000
-    alias: variable_unit
+    alias: units
     owner: Variable
     domain_of:
     - Variable

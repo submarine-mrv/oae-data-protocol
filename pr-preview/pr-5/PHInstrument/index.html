@@ -234,10 +234,8 @@
 <div class="mermaid"> classDiagram
     class PHInstrument
     click PHInstrument href "../PHInstrument"
-      Instrument &lt;|-- PHInstrument
-        click Instrument href "../Instrument"
-
-      PHInstrument : accuracy
+      AnalyzingInstrument &lt;|-- PHInstrument
+        click AnalyzingInstrument href "../AnalyzingInstrument"
 
       PHInstrument : calibration
 
@@ -248,21 +246,11 @@
     click PHCalibration href "../PHCalibration"
 
 
-      PHInstrument : instrument_type
-
-      PHInstrument : manufacturer
-
-      PHInstrument : model
-
-      PHInstrument : precision
-
-      PHInstrument : serial_number
-
 
 </div>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
-<li><a href="../Instrument/">Instrument</a><ul>
+<li><a href="../AnalyzingInstrument/">AnalyzingInstrument</a><ul>
 <li><strong>PHInstrument</strong></li>
 </ul>
 </li>
@@ -284,42 +272,6 @@
 <td>pH calibration information for this instrument</td>
 <td>direct</td>
 </tr>
-<tr>
-<td><a href="../instrument_type/">instrument_type</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>Type of instrument used to analyze samples or measure continuously</td>
-<td><a href="../Instrument/">Instrument</a></td>
-</tr>
-<tr>
-<td><a href="../manufacturer/">manufacturer</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Manufacturer name of the instrument</td>
-<td><a href="../Instrument/">Instrument</a></td>
-</tr>
-<tr>
-<td><a href="../model/">model</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Model number or name of the instrument</td>
-<td><a href="../Instrument/">Instrument</a></td>
-</tr>
-<tr>
-<td><a href="../serial_number/">serial_number</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Serial number of the instrument</td>
-<td><a href="../Instrument/">Instrument</a></td>
-</tr>
-<tr>
-<td><a href="../precision/">precision</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>Precision of the instrument measurements</td>
-<td><a href="../Instrument/">Instrument</a></td>
-</tr>
-<tr>
-<td><a href="../accuracy/">accuracy</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>Accuracy of the instrument measurements</td>
-<td><a href="../Instrument/">Instrument</a></td>
-</tr>
 </tbody>
 </table>
 <h2 id="usages">Usages</h2>
@@ -334,7 +286,7 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../PHVariable/">PHVariable</a></td>
+<td><a href="../DiscretePHVariable/">DiscretePHVariable</a></td>
 <td><a href="../analyzing_instrument/">analyzing_instrument</a></td>
 <td>range</td>
 <td><a href="./">PHInstrument</a></td>
@@ -372,16 +324,17 @@
 <pre><code class="language-yaml">name: pHInstrument
 description: pH measurement instrument with dye-based calibration.
 from_schema: OAEDataManagementProtocol
-is_a: Instrument
+is_a: AnalyzingInstrument
 attributes:
   calibration:
     name: calibration
     description: pH calibration information for this instrument.
     title: Calibration
     from_schema: Instrument
+    rank: 1000
     domain_of:
-    - CRMInstrument
     - pHInstrument
+    - CRMInstrument
     - CO2GasDetector
     - Sensor
     - GenericInstrument
@@ -395,97 +348,23 @@ attributes:
 <pre><code class="language-yaml">name: pHInstrument
 description: pH measurement instrument with dye-based calibration.
 from_schema: OAEDataManagementProtocol
-is_a: Instrument
+is_a: AnalyzingInstrument
 attributes:
   calibration:
     name: calibration
     description: pH calibration information for this instrument.
     title: Calibration
     from_schema: Instrument
+    rank: 1000
     alias: calibration
     owner: pHInstrument
     domain_of:
-    - CRMInstrument
     - pHInstrument
+    - CRMInstrument
     - CO2GasDetector
     - Sensor
     - GenericInstrument
     range: pHCalibration
-    required: true
-  instrument_type:
-    name: instrument_type
-    description: Type of instrument used to analyze samples or measure continuously.
-    title: Instrument type
-    from_schema: Instrument
-    rank: 1000
-    alias: instrument_type
-    owner: pHInstrument
-    domain_of:
-    - Instrument
-    - AnalyzingInstrument
-    range: string
-    required: true
-  manufacturer:
-    name: manufacturer
-    description: Manufacturer name of the instrument.
-    title: Manufacturer
-    from_schema: Instrument
-    alias: manufacturer
-    owner: pHInstrument
-    domain_of:
-    - StandardGas
-    - Instrument
-    - AnalyzingInstrument
-    range: string
-  model:
-    name: model
-    description: Model number or name of the instrument.
-    title: Model
-    from_schema: Instrument
-    rank: 1000
-    alias: model
-    owner: pHInstrument
-    domain_of:
-    - Instrument
-    - AnalyzingInstrument
-    range: string
-  serial_number:
-    name: serial_number
-    description: Serial number of the instrument.
-    title: Serial number
-    from_schema: Instrument
-    rank: 1000
-    alias: serial_number
-    owner: pHInstrument
-    domain_of:
-    - Instrument
-    - AnalyzingInstrument
-    range: string
-  precision:
-    name: precision
-    description: Precision of the instrument measurements.
-    title: Precision
-    from_schema: Instrument
-    rank: 1000
-    alias: precision
-    owner: pHInstrument
-    domain_of:
-    - Instrument
-    - AnalyzingInstrument
-    range: string
-    required: true
-  accuracy:
-    name: accuracy
-    description: Accuracy of the instrument measurements.
-    title: Accuracy
-    from_schema: Instrument
-    rank: 1000
-    alias: accuracy
-    owner: pHInstrument
-    domain_of:
-    - Instrument
-    - AnalyzingInstrument
-    range: string
     required: true
 
 </code></pre>

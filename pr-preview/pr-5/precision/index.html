@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: precision - oae-data-protocol</title>
+        <title>Slot: Precision (precision) - oae-data-protocol</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-precision" class="md-skip">
+        <a href="#slot-precision-precision" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: precision
+              Slot: Precision (precision)
             
           </span>
         </div>
@@ -305,6 +305,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Identifier and Mapping Information">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      Schema Source
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -344,7 +359,8 @@
   
 
 
-<h1 id="slot-precision">Slot: precision</h1>
+<h1 id="slot-precision-precision">Slot: Precision (precision)</h1>
+<p><em>Precision of the instrument measurements.</em></p>
 <p>URI: <a href="https://example.org/oae#precision">oae:precision</a></p>
 <!-- no inheritance hierarchy -->
 
@@ -359,13 +375,8 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../PHInstrument/">PHInstrument</a></td>
-<td>pH measurement instrument with dye-based calibration</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../GenericInstrument/">GenericInstrument</a></td>
-<td>Generic instrument for cases that don't fit specialized instrument types</td>
+<td><a href="../Sensor/">Sensor</a></td>
+<td>Generic sensor with basic calibration information</td>
 <td>no</td>
 </tr>
 <tr>
@@ -374,13 +385,8 @@
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../AnalyzingInstrument/">AnalyzingInstrument</a></td>
-<td>DEPRECATED: Use Instrument types from instrument</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Sensor/">Sensor</a></td>
-<td>Generic sensor with basic calibration information</td>
+<td><a href="../CO2GasDetector/">CO2GasDetector</a></td>
+<td>CO2 gas detector with standard gas calibration</td>
 <td>no</td>
 </tr>
 <tr>
@@ -389,17 +395,26 @@
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../CO2GasDetector/">CO2GasDetector</a></td>
-<td>CO2 gas detector with standard gas calibration</td>
+<td><a href="../GenericInstrument/">GenericInstrument</a></td>
+<td>Generic instrument for cases that don't fit specialized instrument types</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: NONE</li>
+<li>
+<p>Range: <a href="../String/">String</a></p>
+</li>
+<li>
+<p>Required: True</p>
+</li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
+<h3 id="schema-source">Schema Source</h3>
+<ul>
+<li>from schema: OAEDataManagementProtocol</li>
+</ul>
 <h2 id="mappings">Mappings</h2>
 <table>
 <thead>
@@ -423,10 +438,16 @@
 <details>
 
 <pre><code class="language-yaml">name: precision
+description: Precision of the instrument measurements.
+title: Precision
+from_schema: OAEDataManagementProtocol
+rank: 1000
 alias: precision
+owner: Instrument
 domain_of:
 - Instrument
-- AnalyzingInstrument
+range: string
+required: true
 
 </code></pre>
 

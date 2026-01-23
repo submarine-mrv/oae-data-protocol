@@ -243,6 +243,15 @@
 
       Sensor : instrument_type
 
+
+
+
+    Sensor --&gt; "1" Any : instrument_type
+    click Any href "../Any"
+
+
+      Sensor : instrument_type_custom
+
       Sensor : manufacturer
 
       Sensor : model
@@ -279,8 +288,14 @@
 </tr>
 <tr>
 <td><a href="../instrument_type/">instrument_type</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
+<td>1 <br/> <a href="../Any/">Any</a> or <br/><a href="../AnalyzingInstrumentType/">AnalyzingInstrumentType</a> or <br/><a href="../SamplingInstrumentType/">SamplingInstrumentType</a></td>
 <td>Type of instrument used to analyze samples or measure continuously</td>
+<td><a href="../Instrument/">Instrument</a></td>
+</tr>
+<tr>
+<td><a href="../instrument_type_custom/">instrument_type_custom</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td></td>
 <td><a href="../Instrument/">Instrument</a></td>
 </tr>
 <tr>
@@ -355,8 +370,8 @@ attributes:
     title: Calibration
     from_schema: Instrument
     domain_of:
-    - CRMInstrument
     - pHInstrument
+    - CRMInstrument
     - CO2GasDetector
     - Sensor
     - GenericInstrument
@@ -380,8 +395,8 @@ attributes:
     alias: calibration
     owner: Sensor
     domain_of:
-    - CRMInstrument
     - pHInstrument
+    - CRMInstrument
     - CO2GasDetector
     - Sensor
     - GenericInstrument
@@ -396,9 +411,21 @@ attributes:
     owner: Sensor
     domain_of:
     - Instrument
-    - AnalyzingInstrument
-    range: string
+    range: Any
     required: true
+    any_of:
+    - range: AnalyzingInstrumentType
+    - range: SamplingInstrumentType
+  instrument_type_custom:
+    name: instrument_type_custom
+    title: Instrument type (custom)
+    from_schema: Instrument
+    rank: 1000
+    alias: instrument_type_custom
+    owner: Sensor
+    domain_of:
+    - Instrument
+    range: string
   manufacturer:
     name: manufacturer
     description: Manufacturer name of the instrument.
@@ -409,7 +436,6 @@ attributes:
     domain_of:
     - StandardGas
     - Instrument
-    - AnalyzingInstrument
     range: string
   model:
     name: model
@@ -421,7 +447,6 @@ attributes:
     owner: Sensor
     domain_of:
     - Instrument
-    - AnalyzingInstrument
     range: string
   serial_number:
     name: serial_number
@@ -433,7 +458,6 @@ attributes:
     owner: Sensor
     domain_of:
     - Instrument
-    - AnalyzingInstrument
     range: string
   precision:
     name: precision
@@ -445,7 +469,6 @@ attributes:
     owner: Sensor
     domain_of:
     - Instrument
-    - AnalyzingInstrument
     range: string
     required: true
   accuracy:
@@ -458,7 +481,6 @@ attributes:
     owner: Sensor
     domain_of:
     - Instrument
-    - AnalyzingInstrument
     range: string
     required: true
 

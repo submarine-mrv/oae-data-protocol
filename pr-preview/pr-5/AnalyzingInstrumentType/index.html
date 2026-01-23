@@ -1,0 +1,764 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://clevinson.github.io/oae-data-protocol/AnalyzingInstrumentType/">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>Enum: AnalyzingInstrumentType - oae-data-protocol</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.8608ea7d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/ansi-colours.css">
+    
+      <link rel="stylesheet" href="../css/jupyter-cells.css">
+    
+      <link rel="stylesheet" href="../css/pandas-dataframe.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#enum-analyzinginstrumenttype" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="oae-data-protocol" class="md-header__button md-logo" aria-label="oae-data-protocol" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            oae-data-protocol
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Enum: AnalyzingInstrumentType
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/clevinson/oae-data-protocol" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="oae-data-protocol" class="md-nav__button md-logo" aria-label="oae-data-protocol" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    oae-data-protocol
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/clevinson/oae-data-protocol" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Index
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#permissible-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      Permissible Values
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identifier-and-mapping-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      Identifier and Mapping Information
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Identifier and Mapping Information">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      Schema Source
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linkml-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      LinkML Source
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="enum-analyzinginstrumenttype">Enum: AnalyzingInstrumentType</h1>
+<p>URI: <a href="./">AnalyzingInstrumentType</a></p>
+<h2 id="permissible-values">Permissible Values</h2>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Meaning</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ctd_sensor</td>
+<td>SDN_L05:130</td>
+<td>A reusable instrument that always simultaneously measures conductivity and te...</td>
+</tr>
+<tr>
+<td>flow_through_system</td>
+<td>SDN_L05:31</td>
+<td>A device that continuously supplies a flow of water either to an analytical i...</td>
+</tr>
+<tr>
+<td>thermosalinograph</td>
+<td>SDN_L05:133</td>
+<td>Temperature and conductivity sensors mounted on a sea-surface platform contin...</td>
+</tr>
+<tr>
+<td>salinometer_for_discrete_salinity_measurement</td>
+<td>SDN_L05:LAB30</td>
+<td>Instruments that measure the salinity of a collected water sample based on it...</td>
+</tr>
+<tr>
+<td>dic_analyzers_based_on_coulometers</td>
+<td>None</td>
+<td>DIC coulometers are widely used in oceanographic research to measure the conc...</td>
+</tr>
+<tr>
+<td>dic_analyzers_based_on_co2_gas_detectors</td>
+<td>None</td>
+<td>DIC analyzers based on a CO2 gas detector including Non-dispersive infrared a...</td>
+</tr>
+<tr>
+<td>autonomous_dic_sensor</td>
+<td>SDN_L05:86</td>
+<td>Autonomous dissolved inorganic carbon (DIC) sensors are devices that can meas...</td>
+</tr>
+<tr>
+<td>alkalinity_titrator</td>
+<td>SDN_L05:LAB12</td>
+<td>An alkalinity titrator is a device used to measure the total alkalinity of a ...</td>
+</tr>
+<tr>
+<td>autonomous_ta_sensor</td>
+<td>None</td>
+<td>Autonomous total alkalinity (TA) sensors are devices that can measure the con...</td>
+</tr>
+<tr>
+<td>showerhead_equilibrator</td>
+<td>SDN_L05:EQUIL</td>
+<td>This type of equilibrator works by spraying seawater into a gas chamber, allo...</td>
+</tr>
+<tr>
+<td>floating_air_water_equilibrator</td>
+<td>SDN_L05:EQUIL</td>
+<td>An "h"-shaped bubble equilibrator assembly commonly used in MAPCO2 systems on...</td>
+</tr>
+<tr>
+<td>membrane_equilibrator</td>
+<td>SDN_L05:EQUIL</td>
+<td>While seawater is passed through a membrane, CO2 in the water diffuses across...</td>
+</tr>
+<tr>
+<td>spectrophotometer</td>
+<td>SDN_L05:LAB20</td>
+<td>Instruments measuring the relative absorption of electromagnetic radiation of...</td>
+</tr>
+<tr>
+<td>handheld_ph_spectrophotometer</td>
+<td>None</td>
+<td>One example of a handheld pH spectrophotometer is the "pHyter"</td>
+</tr>
+<tr>
+<td>ph_electrode</td>
+<td>SDN_L05:355</td>
+<td>A pH electrode, sometimes referred to as a pH probe or pH sensor, is a glass ...</td>
+</tr>
+<tr>
+<td>sea_bird_seafet</td>
+<td>SDN_L22:TOOL1292</td>
+<td>Sea-Bird SeaFET is a type of oceanographic instrument that is used to measure...</td>
+</tr>
+<tr>
+<td>oxygen_titrator</td>
+<td>SDN_L05:LAB12</td>
+<td>An oxygen titrator is a device used to measure the concentration of dissolved...</td>
+</tr>
+<tr>
+<td>oxygen_sensor</td>
+<td>SDN_L05:351</td>
+<td>An oxygen sensor or probe or sond, is an electronic device that measures the ...</td>
+</tr>
+<tr>
+<td>sea_bird_seaphox</td>
+<td>SDN_L22:TOOL1895</td>
+<td>Sea-Bird SeapHOx is a type of oceanographic instrument that measures both the...</td>
+</tr>
+<tr>
+<td>ysi</td>
+<td>SDN_B75:ORG00475</td>
+<td>YSI (Yellow Springs Instruments) is a company that produces a variety of wate...</td>
+</tr>
+<tr>
+<td>nutrient_analyzer</td>
+<td>SDN_L05:181</td>
+<td>Instrument that makes in-situ measurements of one or more of nitrate, nitrite...</td>
+</tr>
+<tr>
+<td>fluorometers</td>
+<td>SDN_L05:113</td>
+<td>Instrument that measures the amount of stimulated electromagnetic radiation p...</td>
+</tr>
+<tr>
+<td>high_performance_liquid_chromatography_hplc</td>
+<td>SDN_L05:LAB11</td>
+<td>Instruments that separate and analyse mixtures of substances by high pressure...</td>
+</tr>
+<tr>
+<td>acoustic_doppler_current_profiler_adcp</td>
+<td>SDN_L05:115</td>
+<td>Acoustic Doppler Current Profiler (ADCP), is a type of instrument used to mea...</td>
+</tr>
+<tr>
+<td>mass_spectrometers</td>
+<td>SDN_L05:LAB16</td>
+<td>Instruments used to measure the mass-to-charge ratio of ions most generally u...</td>
+</tr>
+<tr>
+<td>isotope_ratio_mass_spectrometers_irms</td>
+<td>SDN_L05:LAB48</td>
+<td>Instruments that measure isotopic ratios using an electron ionisation source</td>
+</tr>
+<tr>
+<td>barometric_pressure_sensor</td>
+<td>SDN_L05:102</td>
+<td>Instrument that makes routine meteorological measurements on the atmosphere, ...</td>
+</tr>
+<tr>
+<td>microscopes</td>
+<td>SDN_L05:LAB05</td>
+<td>Instruments that generate enlarged images of samples using the phenomena of r...</td>
+</tr>
+<tr>
+<td>scanning_electron_microscopes</td>
+<td>SDN_L05:LAB07</td>
+<td>A scanning electron microscope (SEM) is a type of microscope that uses a focu...</td>
+</tr>
+<tr>
+<td>flow_cytometers</td>
+<td>SDN_L05:LAB37</td>
+<td>Instruments that suspend cells in a stream of fluid past detection sensors wh...</td>
+</tr>
+<tr>
+<td>edna_sampler</td>
+<td>None</td>
+<td>Environmental DNA (eDNA) samplers: used to collect and analyze genetic materi...</td>
+</tr>
+<tr>
+<td>other</td>
+<td>None</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
+<h3 id="schema-source">Schema Source</h3>
+<ul>
+<li>from schema: OAEDataManagementProtocol</li>
+</ul>
+<h2 id="linkml-source">LinkML Source</h2>
+<details>
+
+<pre><code class="language-yaml">name: AnalyzingInstrumentType
+from_schema: OAEDataManagementProtocol
+rank: 1000
+permissible_values:
+  ctd_sensor:
+    text: ctd_sensor
+    description: A reusable instrument that always simultaneously measures conductivity
+      and temperature (for salinity) and pressure (for depth).
+    meaning: SDN_L05:130
+  flow_through_system:
+    text: flow_through_system
+    description: A device that continuously supplies a flow of water either to an
+      analytical instrument, over a sensor or from which samples may be drawn.
+    meaning: SDN_L05:31
+  thermosalinograph:
+    text: thermosalinograph
+    description: Temperature and conductivity sensors mounted on a sea-surface platform
+      continuously measuring a surface water supply.
+    meaning: SDN_L05:133
+  salinometer_for_discrete_salinity_measurement:
+    text: salinometer_for_discrete_salinity_measurement
+    description: Instruments that measure the salinity of a collected water sample
+      based on its electrical conductivity or optical properties.
+    meaning: SDN_L05:LAB30
+  dic_analyzers_based_on_coulometers:
+    text: dic_analyzers_based_on_coulometers
+    description: DIC coulometers are widely used in oceanographic research to measure
+      the concentration of dissolved inorganic carbon in seawater samples. They are
+      often coupled with computer-controlled automated dynamic headspace analyzers
+      that extracts total carbon dioxide from seawater using Single-Operator Multiparameter
+      Metabolic Analyzers (SOMMAs).
+  dic_analyzers_based_on_co2_gas_detectors:
+    text: dic_analyzers_based_on_co2_gas_detectors
+    description: DIC analyzers based on a CO2 gas detector including Non-dispersive
+      infrared absorption (NDIR) (e.g., Licor LI-850), Cavity Enhanced Absorption
+      Spectroscopy (e.g., Licor's LI-7815), and Cavity Ring-Down Spectroscopy (CRDS)
+      (e.g., Picarro G2131i) detectors.
+  autonomous_dic_sensor:
+    text: autonomous_dic_sensor
+    description: Autonomous dissolved inorganic carbon (DIC) sensors are devices that
+      can measure the concentration of DIC in seawater or other natural waters in
+      situ, without the need for manual sampling and laboratory analysis.
+    meaning: SDN_L05:86
+  alkalinity_titrator:
+    text: alkalinity_titrator
+    description: An alkalinity titrator is a device used to measure the total alkalinity
+      of a seawater by titration.
+    meaning: SDN_L05:LAB12
+  autonomous_ta_sensor:
+    text: autonomous_ta_sensor
+    description: Autonomous total alkalinity (TA) sensors are devices that can measure
+      the concentration of TA in seawater or other natural waters in situ, without
+      the need for manual sampling and laboratory analysis.
+  showerhead_equilibrator:
+    text: showerhead_equilibrator
+    description: This type of equilibrator works by spraying seawater into a gas chamber,
+      allowing the CO2 in the water to equilibrate with a gas mixture in the chamber.
+    meaning: SDN_L05:EQUIL
+  floating_air_water_equilibrator:
+    text: floating_air_water_equilibrator
+    description: An &quot;h&quot;-shaped bubble equilibrator assembly commonly used in MAPCO2
+      systems on moorings. For more information, refer to Friederich et al. (1995).
+    meaning: SDN_L05:EQUIL
+  membrane_equilibrator:
+    text: membrane_equilibrator
+    description: While seawater is passed through a membrane, CO2 in the water diffuses
+      across the membrane and equilibrates with the gas mixture, which is then analyzed
+      to determine the CO2 concentration.
+    meaning: SDN_L05:EQUIL
+  spectrophotometer:
+    text: spectrophotometer
+    description: Instruments measuring the relative absorption of electromagnetic
+      radiation of different wavelengths in the near infra-red, visible and ultraviolet
+      wavebands by samples.
+    meaning: SDN_L05:LAB20
+  handheld_ph_spectrophotometer:
+    text: handheld_ph_spectrophotometer
+    description: One example of a handheld pH spectrophotometer is the &quot;pHyter&quot;. Refer
+      to Pardis et al. (2022) for more details.
+  ph_electrode:
+    text: ph_electrode
+    description: A pH electrode, sometimes referred to as a pH probe or pH sensor,
+      is a glass device used to measure the pH of a solution.
+    meaning: SDN_L05:355
+  sea_bird_seafet:
+    text: sea_bird_seafet
+    description: Sea-Bird SeaFET is a type of oceanographic instrument that is used
+      to measure the pH of seawater in real-time.
+    meaning: SDN_L22:TOOL1292
+  oxygen_titrator:
+    text: oxygen_titrator
+    description: An oxygen titrator is a device used to measure the concentration
+      of dissolved oxygen in a water sample, as required for the Winkler method.
+    meaning: SDN_L05:LAB12
+  oxygen_sensor:
+    text: oxygen_sensor
+    description: An oxygen sensor or probe or sond, is an electronic device that measures
+      the concentration of dissolved oxygen in the ocean.
+    meaning: SDN_L05:351
+  sea_bird_seaphox:
+    text: sea_bird_seaphox
+    description: Sea-Bird SeapHOx is a type of oceanographic instrument that measures
+      both the pH and dissolved oxygen concentration of seawater in real-time.
+    meaning: SDN_L22:TOOL1895
+  ysi:
+    text: ysi
+    description: YSI (Yellow Springs Instruments) is a company that produces a variety
+      of water quality monitoring instruments. The YSI sensors are designed to measure
+      a wide range of parameters, including temperature, salinity, and dissolved oxygen.
+    meaning: SDN_B75:ORG00475
+  nutrient_analyzer:
+    text: nutrient_analyzer
+    description: Instrument that makes in-situ measurements of one or more of nitrate,
+      nitrite, ammonium, urea, phosphate or silicate dissolved in the water column.
+    meaning: SDN_L05:181
+  fluorometers:
+    text: fluorometers
+    description: Instrument that measures the amount of stimulated electromagnetic
+      radiation produced by pulses of electromagnetic radiation emitted into the water
+      column.
+    meaning: SDN_L05:113
+  high_performance_liquid_chromatography_hplc:
+    text: high_performance_liquid_chromatography_hplc
+    description: Instruments that separate and analyse mixtures of substances by high
+      pressure pumping the sample through a column packed with microspheres coated
+      with the stationary phase.
+    meaning: SDN_L05:LAB11
+  acoustic_doppler_current_profiler_adcp:
+    text: acoustic_doppler_current_profiler_adcp
+    description: Acoustic Doppler Current Profiler (ADCP), is a type of instrument
+      used to measure water currents in oceans, rivers, and other bodies of water.
+    meaning: SDN_L05:115
+  mass_spectrometers:
+    text: mass_spectrometers
+    description: Instruments used to measure the mass-to-charge ratio of ions most
+      generally used to find the composition of a sample by generating a mass spectrum
+      representing the masses of sample components.
+    meaning: SDN_L05:LAB16
+  isotope_ratio_mass_spectrometers_irms:
+    text: isotope_ratio_mass_spectrometers_irms
+    description: Instruments that measure isotopic ratios using an electron ionisation
+      source. Atoms in purified samples are ionised using a beam of electrons under
+      vacuum. Subsequently, ions are focused into a beam by an electromagnet and then
+      separated into individual beams based on their mass/charge ratio
+    meaning: SDN_L05:LAB48
+  barometric_pressure_sensor:
+    text: barometric_pressure_sensor
+    description: Instrument that makes routine meteorological measurements on the
+      atmosphere, typically air pressure, temperature and humidity
+    meaning: SDN_L05:102
+  microscopes:
+    text: microscopes
+    description: Instruments that generate enlarged images of samples using the phenomena
+      of reflection and absorption of visible light. Includes conventional and inverted
+      instruments
+    meaning: SDN_L05:LAB05
+  scanning_electron_microscopes:
+    text: scanning_electron_microscopes
+    description: A scanning electron microscope (SEM) is a type of microscope that
+      uses a focused beam of electrons to create high-resolution images of the surface
+      of a specimen.
+    meaning: SDN_L05:LAB07
+  flow_cytometers:
+    text: flow_cytometers
+    description: Instruments that suspend cells in a stream of fluid past detection
+      sensors whilst illuminating them with laser light. Used for cell counting, sorting,
+      biomarker detection and protein engineering.
+    meaning: SDN_L05:LAB37
+  edna_sampler:
+    text: edna_sampler
+    description: 'Environmental DNA (eDNA) samplers: used to collect and analyze genetic
+      material shed by marine organisms, which can provide information about their
+      distribution, abundance, and diversity.'
+  other:
+    text: other
+
+</code></pre>
+
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.tabs.link"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
+      
+        <script src="../javascripts/tablesort.js"></script>
+      
+    
+  </body>
+</html>

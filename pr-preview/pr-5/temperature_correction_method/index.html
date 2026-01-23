@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: temperature_correction_method - oae-data-protocol</title>
+        <title>Slot: Temperature correction method (temperature_correction_method) - oae-data-protocol</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-temperature_correction_method" class="md-skip">
+        <a href="#slot-temperature-correction-method-temperature_correction_method" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: temperature_correction_method
+              Slot: Temperature correction method (temperature_correction_method)
             
           </span>
         </div>
@@ -305,6 +305,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Identifier and Mapping Information">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      Schema Source
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -344,7 +359,8 @@
   
 
 
-<h1 id="slot-temperature_correction_method">Slot: temperature_correction_method</h1>
+<h1 id="slot-temperature-correction-method-temperature_correction_method">Slot: Temperature correction method (temperature_correction_method)</h1>
+<p><em>Method used to correct pH for temperature.</em></p>
 <p>URI: <a href="https://example.org/oae#temperature_correction_method">oae:temperature_correction_method</a></p>
 <!-- no inheritance hierarchy -->
 
@@ -359,32 +375,21 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../CO2ContinuousVariable/">CO2ContinuousVariable</a></td>
-<td>CO2 continuous (underway) measured variable</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../PHVariable/">PHVariable</a></td>
+<td><a href="../DiscretePHVariable/">DiscretePHVariable</a></td>
 <td>pH measured variable with dye-based spectrophotometric measurement</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../CO2DiscreteVariable/">CO2DiscreteVariable</a></td>
-<td>CO2 discrete (bottle) measured variable</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../CO2Variable/">CO2Variable</a></td>
-<td>Abstract base class for CO2 measured variables (both continuous and discrete)</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: NONE</li>
+<li>Range: <a href="../String/">String</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
+<h3 id="schema-source">Schema Source</h3>
+<ul>
+<li>from schema: OAEDataManagementProtocol</li>
+</ul>
 <h2 id="mappings">Mappings</h2>
 <table>
 <thead>
@@ -408,10 +413,15 @@
 <details>
 
 <pre><code class="language-yaml">name: temperature_correction_method
+description: Method used to correct pH for temperature.
+title: Temperature correction method
+from_schema: OAEDataManagementProtocol
+rank: 1000
 alias: temperature_correction_method
+owner: DiscretePHVariable
 domain_of:
-- CO2Variable
-- pHVariable
+- DiscretePHVariable
+range: string
 
 </code></pre>
 

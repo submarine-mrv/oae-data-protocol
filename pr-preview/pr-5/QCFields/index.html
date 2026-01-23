@@ -227,12 +227,10 @@
 <div class="mermaid"> classDiagram
     class QCFields
     click QCFields href "../QCFields"
-      QCFields &lt;|-- MeasuredVariable
-        click MeasuredVariable href "../MeasuredVariable"
+      QCFields &lt;|-- ObservedPropertyVariable
+        click ObservedPropertyVariable href "../ObservedPropertyVariable"
       QCFields &lt;|-- CalculatedVariable
         click CalculatedVariable href "../CalculatedVariable"
-
-      QCFields : field_replicate_information
 
       QCFields : missing_value_indicators
 
@@ -268,14 +266,8 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../field_replicate_information/">field_replicate_information</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Repetition of sample collection and measurement, e</td>
-<td>direct</td>
-</tr>
-<tr>
 <td><a href="../qc_steps_taken/">qc_steps_taken</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Describe what QC steps have been taken to improve the quality of the data (e</td>
 <td>direct</td>
 </tr>
@@ -287,13 +279,13 @@
 </tr>
 <tr>
 <td><a href="../uncertainty_definition/">uncertainty_definition</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
 <td>A description of the uncertainties involved in this method</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../missing_value_indicators/">missing_value_indicators</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
 <td>The indicator used to represent missing values in the data file, e</td>
 <td>direct</td>
 </tr>
@@ -321,7 +313,7 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../MeasuredVariable/">MeasuredVariable</a></td>
+<td><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
 <td>Variable that is directly measured in-situ using instruments</td>
 </tr>
 <tr>
@@ -364,16 +356,6 @@ description: Quality control fields applicable to measured and calculated variab
 from_schema: OAEDataManagementProtocol
 mixin: true
 attributes:
-  field_replicate_information:
-    name: field_replicate_information
-    description: Repetition of sample collection and measurement, e.g., triplicate
-      samples.
-    title: Field replicate information
-    from_schema: Variable
-    rank: 1000
-    domain_of:
-    - QCFields
-    range: string
   qc_steps_taken:
     name: qc_steps_taken
     description: 'Describe what QC steps have been taken to improve the quality of
@@ -387,11 +369,13 @@ attributes:
     domain_of:
     - QCFields
     range: string
-    required: true
   uncertainty:
     name: uncertainty
-    description: It is recommended to provide uncertainty for each data point in the
-      data file. Else provide a single value representative of the dataset.
+    description: 'It is recommended to provide uncertainty for each data point in
+      the data file. Else provide a single value representative of the dataset.
+
+      If uncertainty is provided as a variable, please list the column header name
+      here.'
     title: Uncertainty
     from_schema: Variable
     domain_of:
@@ -408,7 +392,6 @@ attributes:
     domain_of:
     - QCFields
     range: string
-    required: true
   missing_value_indicators:
     name: missing_value_indicators
     description: The indicator used to represent missing values in the data file,
@@ -419,7 +402,6 @@ attributes:
     domain_of:
     - QCFields
     range: string
-    required: true
   qc_researcher:
     name: qc_researcher
     description: The name of the PI whose research team QCed this parameter.
@@ -449,18 +431,6 @@ description: Quality control fields applicable to measured and calculated variab
 from_schema: OAEDataManagementProtocol
 mixin: true
 attributes:
-  field_replicate_information:
-    name: field_replicate_information
-    description: Repetition of sample collection and measurement, e.g., triplicate
-      samples.
-    title: Field replicate information
-    from_schema: Variable
-    rank: 1000
-    alias: field_replicate_information
-    owner: QCFields
-    domain_of:
-    - QCFields
-    range: string
   qc_steps_taken:
     name: qc_steps_taken
     description: 'Describe what QC steps have been taken to improve the quality of
@@ -476,11 +446,13 @@ attributes:
     domain_of:
     - QCFields
     range: string
-    required: true
   uncertainty:
     name: uncertainty
-    description: It is recommended to provide uncertainty for each data point in the
-      data file. Else provide a single value representative of the dataset.
+    description: 'It is recommended to provide uncertainty for each data point in
+      the data file. Else provide a single value representative of the dataset.
+
+      If uncertainty is provided as a variable, please list the column header name
+      here.'
     title: Uncertainty
     from_schema: Variable
     alias: uncertainty
@@ -501,7 +473,6 @@ attributes:
     domain_of:
     - QCFields
     range: string
-    required: true
   missing_value_indicators:
     name: missing_value_indicators
     description: The indicator used to represent missing values in the data file,
@@ -514,7 +485,6 @@ attributes:
     domain_of:
     - QCFields
     range: string
-    required: true
   qc_researcher:
     name: qc_researcher
     description: The name of the PI whose research team QCed this parameter.

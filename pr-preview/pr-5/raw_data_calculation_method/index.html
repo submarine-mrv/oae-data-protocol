@@ -375,13 +375,8 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../CO2ContinuousVariable/">CO2ContinuousVariable</a></td>
-<td>CO2 continuous (underway) measured variable</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../DiscreteOrContinuousFields/">DiscreteOrContinuousFields</a></td>
-<td>Fields for discrete vs continuous measurement information</td>
+<td><a href="../ContinuousMeasuredVariable/">ContinuousMeasuredVariable</a></td>
+<td>Fields for continuous sampling information</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -428,9 +423,9 @@ title: Method to calculate reported values from raw data
 from_schema: OAEDataManagementProtocol
 rank: 1000
 alias: raw_data_calculation_method
-owner: DiscreteOrContinuousFields
+owner: ContinuousMeasuredVariable
 domain_of:
-- DiscreteOrContinuousFields
+- ContinuousMeasuredVariable
 range: string
 required: true
 

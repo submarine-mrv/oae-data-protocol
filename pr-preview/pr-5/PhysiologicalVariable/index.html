@@ -227,25 +227,25 @@
 <div class="mermaid"> classDiagram
     class PhysiologicalVariable
     click PhysiologicalVariable href "../PhysiologicalVariable"
-      MeasuredVariable &lt;|-- PhysiologicalVariable
-        click MeasuredVariable href "../MeasuredVariable"
-
-      PhysiologicalVariable : analyzing_instrument
-
-
-
-
-    PhysiologicalVariable --&gt; "1" Instrument : analyzing_instrument
-    click Instrument href "../Instrument"
-
+      ObservedPropertyVariable &lt;|-- PhysiologicalVariable
+        click ObservedPropertyVariable href "../ObservedPropertyVariable"
 
       PhysiologicalVariable : analyzing_method
 
-      PhysiologicalVariable : column_header_name
+      PhysiologicalVariable : dataset_variable_name
 
-      PhysiologicalVariable : column_header_name_qc_flag
+      PhysiologicalVariable : dataset_variable_name_qc_flag
 
       PhysiologicalVariable : field_replicate_information
+
+      PhysiologicalVariable : genesis
+
+
+
+
+    PhysiologicalVariable --&gt; "1" GenesisType : genesis
+    click GenesisType href "../GenesisType"
+
 
       PhysiologicalVariable : long_name
 
@@ -262,6 +262,15 @@
 
       PhysiologicalVariable : missing_value_indicators
 
+      PhysiologicalVariable : observation_type
+
+
+
+
+    PhysiologicalVariable --&gt; "1" ObservationType : observation_type
+    click ObservationType href "../ObservationType"
+
+
       PhysiologicalVariable : other_detailed_information
 
       PhysiologicalVariable : qc_researcher
@@ -277,22 +286,49 @@
 
       PhysiologicalVariable : qc_steps_taken
 
+      PhysiologicalVariable : sampling
+
+
+
+
+    PhysiologicalVariable --&gt; "1" SamplingType : sampling
+    click SamplingType href "../SamplingType"
+
+
+      PhysiologicalVariable : sampling_instrument_type
+
+
+
+
+    PhysiologicalVariable --&gt; "0..1" SamplingInstrumentType : sampling_instrument_type
+    click SamplingInstrumentType href "../SamplingInstrumentType"
+
+
+      PhysiologicalVariable : sampling_instrument_type_custom
+
       PhysiologicalVariable : sampling_method
+
+      PhysiologicalVariable : standard_identifier
+
+
+
+
+    PhysiologicalVariable --&gt; "0..1" VocabularyItemReference : standard_identifier
+    click VocabularyItemReference href "../VocabularyItemReference"
+
 
       PhysiologicalVariable : uncertainty
 
       PhysiologicalVariable : uncertainty_definition
 
-      PhysiologicalVariable : variable_type
-
-      PhysiologicalVariable : variable_unit
+      PhysiologicalVariable : units
 
 
 </div>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../Variable/">Variable</a><ul>
-<li><a href="../MeasuredVariable/">MeasuredVariable</a> [ <a href="../QCFields/">QCFields</a> <a href="../AnalyzingFields/">AnalyzingFields</a>]<ul>
+<li><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a> [ <a href="../QCFields/">QCFields</a>]<ul>
 <li><strong>PhysiologicalVariable</strong></li>
 </ul>
 </li>
@@ -314,19 +350,49 @@
 <td><a href="../sampling_method/">sampling_method</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>Method used to collect samples</td>
-<td><a href="../MeasuredVariable/">MeasuredVariable</a></td>
-</tr>
-<tr>
-<td><a href="../analyzing_method/">analyzing_method</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>Additional information describing how the sample was analyzed</td>
-<td><a href="../MeasuredVariable/">MeasuredVariable</a></td>
+<td><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
 </tr>
 <tr>
 <td><a href="../field_replicate_information/">field_replicate_information</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Repetition of sample collection and measurement, e</td>
-<td><a href="../QCFields/">QCFields</a></td>
+<td><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
+</tr>
+<tr>
+<td><a href="../analyzing_method/">analyzing_method</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>Additional information describing how the sample was analyzed</td>
+<td><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
+</tr>
+<tr>
+<td><a href="../observation_type/">observation_type</a></td>
+<td>1 <br/> <a href="../ObservationType/">ObservationType</a></td>
+<td></td>
+<td><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
+</tr>
+<tr>
+<td><a href="../sampling/">sampling</a></td>
+<td>1 <br/> <a href="../SamplingType/">SamplingType</a></td>
+<td></td>
+<td><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
+</tr>
+<tr>
+<td><a href="../genesis/">genesis</a></td>
+<td>1 <br/> <a href="../GenesisType/">GenesisType</a></td>
+<td></td>
+<td><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
+</tr>
+<tr>
+<td><a href="../sampling_instrument_type/">sampling_instrument_type</a></td>
+<td>0..1 <br/> <a href="../SamplingInstrumentType/">SamplingInstrumentType</a></td>
+<td></td>
+<td><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
+</tr>
+<tr>
+<td><a href="../sampling_instrument_type_custom/">sampling_instrument_type_custom</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td></td>
+<td><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
 </tr>
 <tr>
 <td><a href="../qc_steps_taken/">qc_steps_taken</a></td>
@@ -336,7 +402,7 @@
 </tr>
 <tr>
 <td><a href="../uncertainty/">uncertainty</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
 <td>It is recommended to provide uncertainty for each data point in the data file</td>
 <td><a href="../QCFields/">QCFields</a></td>
 </tr>
@@ -365,25 +431,19 @@
 <td><a href="../QCFields/">QCFields</a></td>
 </tr>
 <tr>
-<td><a href="../analyzing_instrument/">analyzing_instrument</a></td>
-<td>1 <br/> <a href="../Instrument/">Instrument</a></td>
-<td>Instrument used to analyze the water samples or measure the water body contin...</td>
-<td><a href="../AnalyzingFields/">AnalyzingFields</a></td>
-</tr>
-<tr>
-<td><a href="../variable_type/">variable_type</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>The type of variable, used to determine which fields are applicable</td>
+<td><a href="../standard_identifier/">standard_identifier</a></td>
+<td>0..1 <br/> <a href="../VocabularyItemReference/">VocabularyItemReference</a></td>
+<td></td>
 <td><a href="../Variable/">Variable</a></td>
 </tr>
 <tr>
-<td><a href="../column_header_name/">column_header_name</a></td>
+<td><a href="../dataset_variable_name/">dataset_variable_name</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>The name for the variable as it is identified in the dataset data file</td>
 <td><a href="../Variable/">Variable</a></td>
 </tr>
 <tr>
-<td><a href="../column_header_name_qc_flag/">column_header_name_qc_flag</a></td>
+<td><a href="../dataset_variable_name_qc_flag/">dataset_variable_name_qc_flag</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>If applicable, the column header name used for the quality control flag corre...</td>
 <td><a href="../Variable/">Variable</a></td>
@@ -395,7 +455,7 @@
 <td><a href="../Variable/">Variable</a></td>
 </tr>
 <tr>
-<td><a href="../variable_unit/">variable_unit</a></td>
+<td><a href="../units/">units</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>Unit of measurement for this variable</td>
 <td><a href="../Variable/">Variable</a></td>
@@ -451,7 +511,7 @@
 <pre><code class="language-yaml">name: PhysiologicalVariable
 description: Physiological response measured variable for organism response data.
 from_schema: OAEDataManagementProtocol
-is_a: MeasuredVariable
+is_a: ObservedPropertyVariable
 
 </code></pre>
 </details>
@@ -460,7 +520,7 @@ is_a: MeasuredVariable
 <pre><code class="language-yaml">name: PhysiologicalVariable
 description: Physiological response measured variable for organism response data.
 from_schema: OAEDataManagementProtocol
-is_a: MeasuredVariable
+is_a: ObservedPropertyVariable
 attributes:
   sampling_method:
     name: sampling_method
@@ -471,22 +531,7 @@ attributes:
     alias: sampling_method
     owner: PhysiologicalVariable
     domain_of:
-    - MeasuredVariable
-    - GenericVariable
-    range: string
-    required: true
-  analyzing_method:
-    name: analyzing_method
-    description: Additional information describing how the sample was analyzed. DOIs
-      provided as applicable.
-    title: Analyzing Method
-    from_schema: Variable
-    rank: 1000
-    alias: analyzing_method
-    owner: PhysiologicalVariable
-    domain_of:
-    - MeasuredVariable
-    - GenericVariable
+    - ObservedPropertyVariable
     range: string
     required: true
   field_replicate_information:
@@ -499,7 +544,71 @@ attributes:
     alias: field_replicate_information
     owner: PhysiologicalVariable
     domain_of:
-    - QCFields
+    - ObservedPropertyVariable
+    range: string
+  analyzing_method:
+    name: analyzing_method
+    description: Additional information describing how the sample was analyzed. DOIs
+      provided as applicable.
+    title: Analyzing Method
+    from_schema: Variable
+    rank: 1000
+    alias: analyzing_method
+    owner: PhysiologicalVariable
+    domain_of:
+    - ObservedPropertyVariable
+    range: string
+    required: true
+  observation_type:
+    name: observation_type
+    title: Observation Type
+    from_schema: Variable
+    rank: 1000
+    alias: observation_type
+    owner: PhysiologicalVariable
+    domain_of:
+    - ObservedPropertyVariable
+    range: ObservationType
+    required: true
+  sampling:
+    name: sampling
+    from_schema: Variable
+    rank: 1000
+    alias: sampling
+    owner: PhysiologicalVariable
+    domain_of:
+    - ObservedPropertyVariable
+    range: SamplingType
+    required: true
+  genesis:
+    name: genesis
+    from_schema: Variable
+    rank: 1000
+    alias: genesis
+    owner: PhysiologicalVariable
+    domain_of:
+    - ObservedPropertyVariable
+    range: GenesisType
+    required: true
+  sampling_instrument_type:
+    name: sampling_instrument_type
+    title: Sampling instrument type
+    from_schema: Variable
+    rank: 1000
+    alias: sampling_instrument_type
+    owner: PhysiologicalVariable
+    domain_of:
+    - ObservedPropertyVariable
+    range: SamplingInstrumentType
+  sampling_instrument_type_custom:
+    name: sampling_instrument_type_custom
+    title: Sampling instrument type (custom)
+    from_schema: Variable
+    rank: 1000
+    alias: sampling_instrument_type_custom
+    owner: PhysiologicalVariable
+    domain_of:
+    - ObservedPropertyVariable
     range: string
   qc_steps_taken:
     name: qc_steps_taken
@@ -519,8 +628,11 @@ attributes:
     required: true
   uncertainty:
     name: uncertainty
-    description: It is recommended to provide uncertainty for each data point in the
-      data file. Else provide a single value representative of the dataset.
+    description: 'It is recommended to provide uncertainty for each data point in
+      the data file. Else provide a single value representative of the dataset.
+
+      If uncertainty is provided as a variable, please list the column header name
+      here.'
     title: Uncertainty
     from_schema: Variable
     alias: uncertainty
@@ -530,6 +642,7 @@ attributes:
     - CO2GasDetector
     - QCFields
     range: string
+    required: true
   uncertainty_definition:
     name: uncertainty_definition
     description: A description of the uncertainties involved in this method.
@@ -577,56 +690,38 @@ attributes:
     domain_of:
     - QCFields
     range: string
-  analyzing_instrument:
-    name: analyzing_instrument
-    description: Instrument used to analyze the water samples or measure the water
-      body continuously. Instrument includes calibration information.
-    title: Analyzing instrument
+  standard_identifier:
+    name: standard_identifier
     from_schema: Variable
     rank: 1000
-    alias: analyzing_instrument
-    owner: PhysiologicalVariable
-    domain_of:
-    - AnalyzingFields
-    range: Instrument
-    required: true
-  variable_type:
-    name: variable_type
-    description: The type of variable, used to determine which fields are applicable.
-      This field acts as a discriminator for polymorphic variable types.
-    title: Variable Type
-    from_schema: Variable
-    rank: 1000
-    designates_type: true
-    alias: variable_type
+    alias: standard_identifier
     owner: PhysiologicalVariable
     domain_of:
     - Variable
-    range: string
-    required: true
-  column_header_name:
-    name: column_header_name
+    range: VocabularyItemReference
+  dataset_variable_name:
+    name: dataset_variable_name
     description: The name for the variable as it is identified in the dataset data
       file. This could be the column header in a CSV or the variable name in a NetCDF
       file. Standard common recommended column header names can be found in protocol
       documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).
-    title: Column header name
+    title: Dataset variable name
     from_schema: Variable
     rank: 1000
-    alias: column_header_name
+    alias: dataset_variable_name
     owner: PhysiologicalVariable
     domain_of:
     - Variable
     range: string
     required: true
-  column_header_name_qc_flag:
-    name: column_header_name_qc_flag
+  dataset_variable_name_qc_flag:
+    name: dataset_variable_name_qc_flag
     description: If applicable, the column header name used for the quality control
       flag corresponding to this variable.
-    title: Column header name (Quality Flag)
+    title: Dataset variable name (Quality Flag)
     from_schema: Variable
     rank: 1000
-    alias: column_header_name_qc_flag
+    alias: dataset_variable_name_qc_flag
     owner: PhysiologicalVariable
     domain_of:
     - Variable
@@ -643,13 +738,13 @@ attributes:
     - Variable
     range: string
     required: true
-  variable_unit:
-    name: variable_unit
+  units:
+    name: units
     description: Unit of measurement for this variable.
     title: Unit
     from_schema: Variable
     rank: 1000
-    alias: variable_unit
+    alias: units
     owner: PhysiologicalVariable
     domain_of:
     - Variable
