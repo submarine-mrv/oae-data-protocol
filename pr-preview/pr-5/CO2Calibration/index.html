@@ -244,7 +244,7 @@
 
 
 
-    CO2Calibration --&gt; "1" CalibrationLocation : calibration_location
+    CO2Calibration --&gt; "0..1" CalibrationLocation : calibration_location
     click CalibrationLocation href "../CalibrationLocation"
 
 
@@ -309,7 +309,7 @@
 </tr>
 <tr>
 <td><a href="../calibration_location/">calibration_location</a></td>
-<td>1 <br/> <a href="../CalibrationLocation/">CalibrationLocation</a></td>
+<td>0..1 <br/> <a href="../CalibrationLocation/">CalibrationLocation</a></td>
 <td>Factory calibration, lab calibration, or field calibration</td>
 <td><a href="../Calibration/">Calibration</a></td>
 </tr>
@@ -479,14 +479,13 @@ attributes:
     name: calibration_location
     description: Factory calibration, lab calibration, or field calibration.
     title: Calibration location
-    from_schema: Calibration
+    from_schema: OAEDataManagementProtocol
     rank: 1000
     alias: calibration_location
     owner: CO2Calibration
     domain_of:
     - Calibration
     range: CalibrationLocation
-    required: true
   technique_description:
     name: technique_description
     description: Details of the calibration technique used.

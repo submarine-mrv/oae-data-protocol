@@ -229,10 +229,7 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="class-variable">Class: Variable</h1>
-<p><em>Abstract base class for all variable types. Contains common identification and description fields shared by all variables. Reference: OAPMetadata XSD variables.xsd - variable, basic_variable</em></p>
-<ul>
-<li><strong>NOTE</strong>: this is an abstract class and should not be instantiated directly</li>
-</ul>
+<p><em>Base class for all variable types. Contains common identification and description fields shared by all variables. Reference: OAPMetadata XSD variables.xsd - variable, basic_variable</em></p>
 <p>URI: <a href="https://example.org/oae#Variable">oae:Variable</a></p>
 <div class="mermaid"> classDiagram
     class Variable
@@ -397,11 +394,10 @@
 <h3 id="direct">Direct</h3>
 <details>
 <pre><code class="language-yaml">name: Variable
-description: 'Abstract base class for all variable types. Contains common identification
-  and description fields shared by all variables. Reference: OAPMetadata XSD variables.xsd
+description: 'Base class for all variable types. Contains common identification and
+  description fields shared by all variables. Reference: OAPMetadata XSD variables.xsd
   - variable, basic_variable'
 from_schema: OAEDataManagementProtocol
-abstract: true
 attributes:
   standard_identifier:
     name: standard_identifier
@@ -486,11 +482,10 @@ attributes:
 <h3 id="induced">Induced</h3>
 <details>
 <pre><code class="language-yaml">name: Variable
-description: 'Abstract base class for all variable types. Contains common identification
-  and description fields shared by all variables. Reference: OAPMetadata XSD variables.xsd
+description: 'Base class for all variable types. Contains common identification and
+  description fields shared by all variables. Reference: OAPMetadata XSD variables.xsd
   - variable, basic_variable'
 from_schema: OAEDataManagementProtocol
-abstract: true
 attributes:
   standard_identifier:
     name: standard_identifier

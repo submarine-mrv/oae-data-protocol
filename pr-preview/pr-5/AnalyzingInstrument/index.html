@@ -244,6 +244,15 @@
 
       AnalyzingInstrument : accuracy
 
+      AnalyzingInstrument : calibration
+
+
+
+
+    AnalyzingInstrument --&gt; "0..1" Calibration : calibration
+    click Calibration href "../Calibration"
+
+
       AnalyzingInstrument : instrument_type
 
 
@@ -326,6 +335,12 @@
 <td><a href="../accuracy/">accuracy</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>Accuracy of the instrument measurements</td>
+<td><a href="../Instrument/">Instrument</a></td>
+</tr>
+<tr>
+<td><a href="../calibration/">calibration</a></td>
+<td>0..1 <br/> <a href="../Calibration/">Calibration</a></td>
+<td>Calibration information for this instrument</td>
 <td><a href="../Instrument/">Instrument</a></td>
 </tr>
 </tbody>
@@ -481,6 +496,22 @@ attributes:
     - Instrument
     range: string
     required: true
+  calibration:
+    name: calibration
+    description: Calibration information for this instrument.
+    title: Calibration
+    from_schema: Instrument
+    rank: 1000
+    alias: calibration
+    owner: AnalyzingInstrument
+    domain_of:
+    - Instrument
+    - PHInstrument
+    - CRMInstrument
+    - CO2GasDetector
+    - Sensor
+    - GenericInstrument
+    range: Calibration
 
 </code></pre>
 </details>

@@ -375,35 +375,30 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="../CRMCalibration/">CRMCalibration</a></td>
+<td>Calibration using Certified Reference Materials, used for DIC and TA instrume...</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../CO2Calibration/">CO2Calibration</a></td>
 <td>CO2 gas detector calibration with standard gas information</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../CRMCalibration/">CRMCalibration</a></td>
-<td>Calibration using Certified Reference Materials, used for DIC and TA instrume...</td>
-<td>no</td>
+<td><a href="../PHCalibration/">PHCalibration</a></td>
+<td>pH instrument calibration with dye information</td>
+<td>yes</td>
 </tr>
 <tr>
 <td><a href="../Calibration/">Calibration</a></td>
 <td>Base calibration information for instruments</td>
 <td>no</td>
 </tr>
-<tr>
-<td><a href="../PHCalibration/">PHCalibration</a></td>
-<td>pH instrument calibration with dye information</td>
-<td>no</td>
-</tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>
-<p>Range: <a href="../CalibrationLocation/">CalibrationLocation</a></p>
-</li>
-<li>
-<p>Required: True</p>
-</li>
+<li>Range: <a href="../CalibrationLocation/">CalibrationLocation</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -438,11 +433,9 @@ title: Calibration location
 from_schema: OAEDataManagementProtocol
 rank: 1000
 alias: calibration_location
-owner: Calibration
 domain_of:
 - Calibration
 range: CalibrationLocation
-required: true
 
 </code></pre>
 

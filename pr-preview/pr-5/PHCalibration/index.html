@@ -413,6 +413,10 @@
 description: pH instrument calibration with dye information.
 from_schema: OAEDataManagementProtocol
 is_a: Calibration
+slot_usage:
+  calibration_location:
+    name: calibration_location
+    required: true
 attributes:
   dye_type_and_manufacturer:
     name: dye_type_and_manufacturer
@@ -481,6 +485,10 @@ attributes:
 description: pH instrument calibration with dye information.
 from_schema: OAEDataManagementProtocol
 is_a: Calibration
+slot_usage:
+  calibration_location:
+    name: calibration_location
+    required: true
 attributes:
   dye_type_and_manufacturer:
     name: dye_type_and_manufacturer
@@ -556,7 +564,7 @@ attributes:
     name: calibration_location
     description: Factory calibration, lab calibration, or field calibration.
     title: Calibration location
-    from_schema: Calibration
+    from_schema: OAEDataManagementProtocol
     rank: 1000
     alias: calibration_location
     owner: pHCalibration
