@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-01-23T01:35:18
+# Generation date: 2026-01-23T01:41:45
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -1118,8 +1118,8 @@ class Person(YAMLRoot):
 @dataclass(repr=False)
 class Variable(YAMLRoot):
     """
-    Abstract base class for all variable types. Contains common identification and description fields shared by all
-    variables. Reference: OAPMetadata XSD variables.xsd - variable, basic_variable
+    Base class for all variable types. Contains common identification and description fields shared by all variables.
+    Reference: OAPMetadata XSD variables.xsd - variable, basic_variable
     """
     _inherited_slots: ClassVar[List[str]] = []
 

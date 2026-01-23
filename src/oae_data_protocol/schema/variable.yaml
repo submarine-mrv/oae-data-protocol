@@ -13,14 +13,13 @@ imports:
 
 classes:
   # =============================================================================
-  # Base Variable Class (Abstract)
+  # Base Variable Class
   # =============================================================================
   Variable:
     description: >-
-      Abstract base class for all variable types. Contains common identification
+      Base class for all variable types. Contains common identification
       and description fields shared by all variables.
       Reference: OAPMetadata XSD variables.xsd - variable, basic_variable
-    abstract: true
     attributes:
       standard_identifier:
         range: VocabularyItemReference

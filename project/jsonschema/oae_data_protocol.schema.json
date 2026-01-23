@@ -3547,6 +3547,57 @@
             "title": "TracerForm",
             "type": "string"
         },
+        "Variable": {
+            "additionalProperties": false,
+            "description": "Base class for all variable types. Contains common identification and description fields shared by all variables. Reference: OAPMetadata XSD variables.xsd - variable, basic_variable",
+            "properties": {
+                "dataset_variable_name": {
+                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
+                    "title": "Dataset variable name",
+                    "type": "string"
+                },
+                "dataset_variable_name_qc_flag": {
+                    "description": "If applicable, the column header name used for the quality control flag corresponding to this variable.",
+                    "title": "Dataset variable name (Quality Flag)",
+                    "type": "string"
+                },
+                "long_name": {
+                    "description": "Full descriptive name of the variable.",
+                    "title": "Variable full name",
+                    "type": "string"
+                },
+                "measurement_researcher": {
+                    "$ref": "#/$defs/Person",
+                    "description": "The name of the PI whose research team measured or derived this parameter.",
+                    "title": "Researcher who measured the variable"
+                },
+                "method_reference": {
+                    "description": "Citation for the method used.",
+                    "title": "Method Reference",
+                    "type": "string"
+                },
+                "other_detailed_information": {
+                    "description": "Any additional information about this variable.",
+                    "title": "Other Detailed Information",
+                    "type": "string"
+                },
+                "standard_identifier": {
+                    "$ref": "#/$defs/VocabularyItemReference"
+                },
+                "units": {
+                    "description": "Unit of measurement for this variable.",
+                    "title": "Unit",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "dataset_variable_name",
+                "long_name",
+                "units"
+            ],
+            "title": "Variable",
+            "type": "object"
+        },
         "VerticalExtent": {
             "additionalProperties": false,
             "description": "The vertical extent of a place or structure in meters.",
