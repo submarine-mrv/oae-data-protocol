@@ -32,20 +32,7 @@
                     "type": "string"
                 },
                 "calibration": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Calibration"
-                        },
-                        {
-                            "$ref": "#/$defs/CRMCalibration"
-                        },
-                        {
-                            "$ref": "#/$defs/PHCalibration"
-                        },
-                        {
-                            "$ref": "#/$defs/CO2Calibration"
-                        }
-                    ],
+                    "$ref": "#/$defs/Calibration",
                     "description": "Calibration information for this instrument.",
                     "title": "Calibration"
                 },
@@ -806,38 +793,7 @@
                 },
                 "variables": {
                     "items": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/$defs/ObservedPropertyVariable"
-                            },
-                            {
-                                "$ref": "#/$defs/CalculatedVariable"
-                            },
-                            {
-                                "$ref": "#/$defs/SocioeconomicVariable"
-                            },
-                            {
-                                "$ref": "#/$defs/NonMeasuredVariable"
-                            },
-                            {
-                                "$ref": "#/$defs/DiscreteMeasuredVariable"
-                            },
-                            {
-                                "$ref": "#/$defs/ContinuousMeasuredVariable"
-                            },
-                            {
-                                "$ref": "#/$defs/HPLCVariable"
-                            },
-                            {
-                                "$ref": "#/$defs/SedimentVariable"
-                            },
-                            {
-                                "$ref": "#/$defs/PhysiologicalVariable"
-                            },
-                            {
-                                "$ref": "#/$defs/DiscretePHVariable"
-                            }
-                        ]
+                        "$ref": "#/$defs/Variable"
                     },
                     "title": "Variables",
                     "type": [
@@ -892,14 +848,7 @@
             "description": "Analyzing instrument information fields, only applied to discretely measured variables. The instrument type can be narrowed in subclasses using slot_usage.",
             "properties": {
                 "analyzing_instrument": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/AnalyzingInstrument"
-                        },
-                        {
-                            "$ref": "#/$defs/PHInstrument"
-                        }
-                    ],
+                    "$ref": "#/$defs/AnalyzingInstrument",
                     "description": "Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.",
                     "title": "Analyzing instrument"
                 },
@@ -1425,20 +1374,7 @@
                     "type": "string"
                 },
                 "calibration": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Calibration"
-                        },
-                        {
-                            "$ref": "#/$defs/CRMCalibration"
-                        },
-                        {
-                            "$ref": "#/$defs/PHCalibration"
-                        },
-                        {
-                            "$ref": "#/$defs/CO2Calibration"
-                        }
-                    ],
+                    "$ref": "#/$defs/Calibration",
                     "description": "Calibration information for this instrument.",
                     "title": "Calibration"
                 },
@@ -2896,20 +2832,7 @@
                 },
                 "experiments": {
                     "items": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/$defs/Experiment"
-                            },
-                            {
-                                "$ref": "#/$defs/Intervention"
-                            },
-                            {
-                                "$ref": "#/$defs/Tracer"
-                            },
-                            {
-                                "$ref": "#/$defs/InterventionWithTracer"
-                            }
-                        ]
+                        "$ref": "#/$defs/Experiment"
                     },
                     "title": "Related Experiments",
                     "type": [
@@ -3315,20 +3238,7 @@
                     "type": "string"
                 },
                 "calibration": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Calibration"
-                        },
-                        {
-                            "$ref": "#/$defs/CRMCalibration"
-                        },
-                        {
-                            "$ref": "#/$defs/PHCalibration"
-                        },
-                        {
-                            "$ref": "#/$defs/CO2Calibration"
-                        }
-                    ],
+                    "$ref": "#/$defs/Calibration",
                     "description": "Calibration information for this sensor.",
                     "title": "Calibration"
                 },
