@@ -19,11 +19,6 @@ classes:
     description: >-
       Base calibration information for instruments.
     attributes:
-      calibration_location:
-        title: Calibration location
-        description: Factory calibration, lab calibration, or field calibration.
-        range: CalibrationLocation
-        required: true
       technique_description:
         title: Calibration technique description
         description: Details of the calibration technique used.
@@ -70,6 +65,9 @@ classes:
     description: >-
       pH instrument calibration with dye information.
     is_a: Calibration
+    slot_usage:
+      calibration_location:
+        required: true
     attributes:
       dye_type_and_manufacturer:
         title: Type of dye and manufacturer information
@@ -144,6 +142,11 @@ classes:
         range: string
         required: true
         # TODO: Change to DimensionedQuantity in Phase 3
+slots:
+  calibration_location:
+    title: Calibration location
+    description: Factory calibration, lab calibration, or field calibration.
+    range: CalibrationLocation
 
 enums:
   CalibrationLocation:
