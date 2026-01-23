@@ -355,53 +355,12 @@ description: Quality control fields applicable to measured and calculated variab
   Not applied to socioeconomic variables.
 from_schema: OAEDataManagementProtocol
 mixin: true
+slots:
+- qc_steps_taken
+- uncertainty
+- uncertainty_definition
+- missing_value_indicators
 attributes:
-  qc_steps_taken:
-    name: qc_steps_taken
-    description: 'Describe what QC steps have been taken to improve the quality of
-      the data (e.g., DOI, software and settings used, outlier removal, etc.).
-
-      If quality control procedures are described in a separate document uploaded
-      with the data, provide the name of the document here.'
-    title: QC steps taken
-    from_schema: Variable
-    rank: 1000
-    domain_of:
-    - QCFields
-    range: string
-  uncertainty:
-    name: uncertainty
-    description: 'It is recommended to provide uncertainty for each data point in
-      the data file. Else provide a single value representative of the dataset.
-
-      If uncertainty is provided as a variable, please list the column header name
-      here.'
-    title: Uncertainty
-    from_schema: Variable
-    domain_of:
-    - StandardGas
-    - CO2GasDetector
-    - QCFields
-    range: string
-  uncertainty_definition:
-    name: uncertainty_definition
-    description: A description of the uncertainties involved in this method.
-    title: How was the uncertainty defined
-    from_schema: Variable
-    rank: 1000
-    domain_of:
-    - QCFields
-    range: string
-  missing_value_indicators:
-    name: missing_value_indicators
-    description: The indicator used to represent missing values in the data file,
-      e.g., -999, NaN, etc.
-    title: Missing value indicators
-    from_schema: Variable
-    rank: 1000
-    domain_of:
-    - QCFields
-    range: string
   qc_researcher:
     name: qc_researcher
     description: The name of the PI whose research team QCed this parameter.
@@ -431,60 +390,6 @@ description: Quality control fields applicable to measured and calculated variab
 from_schema: OAEDataManagementProtocol
 mixin: true
 attributes:
-  qc_steps_taken:
-    name: qc_steps_taken
-    description: 'Describe what QC steps have been taken to improve the quality of
-      the data (e.g., DOI, software and settings used, outlier removal, etc.).
-
-      If quality control procedures are described in a separate document uploaded
-      with the data, provide the name of the document here.'
-    title: QC steps taken
-    from_schema: Variable
-    rank: 1000
-    alias: qc_steps_taken
-    owner: QCFields
-    domain_of:
-    - QCFields
-    range: string
-  uncertainty:
-    name: uncertainty
-    description: 'It is recommended to provide uncertainty for each data point in
-      the data file. Else provide a single value representative of the dataset.
-
-      If uncertainty is provided as a variable, please list the column header name
-      here.'
-    title: Uncertainty
-    from_schema: Variable
-    alias: uncertainty
-    owner: QCFields
-    domain_of:
-    - StandardGas
-    - CO2GasDetector
-    - QCFields
-    range: string
-  uncertainty_definition:
-    name: uncertainty_definition
-    description: A description of the uncertainties involved in this method.
-    title: How was the uncertainty defined
-    from_schema: Variable
-    rank: 1000
-    alias: uncertainty_definition
-    owner: QCFields
-    domain_of:
-    - QCFields
-    range: string
-  missing_value_indicators:
-    name: missing_value_indicators
-    description: The indicator used to represent missing values in the data file,
-      e.g., -999, NaN, etc.
-    title: Missing value indicators
-    from_schema: Variable
-    rank: 1000
-    alias: missing_value_indicators
-    owner: QCFields
-    domain_of:
-    - QCFields
-    range: string
   qc_researcher:
     name: qc_researcher
     description: The name of the PI whose research team QCed this parameter.
@@ -503,6 +408,61 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: qc_researcher_institution
+    owner: QCFields
+    domain_of:
+    - QCFields
+    range: string
+  qc_steps_taken:
+    name: qc_steps_taken
+    description: 'Describe what QC steps have been taken to improve the quality of
+      the data (e.g., DOI, software and settings used, outlier removal, etc.).
+
+      If quality control procedures are described in a separate document uploaded
+      with the data, provide the name of the document here.'
+    title: QC steps taken
+    from_schema: OAEDataManagementProtocol
+    rank: 1000
+    alias: qc_steps_taken
+    owner: QCFields
+    domain_of:
+    - QCFields
+    range: string
+  uncertainty:
+    name: uncertainty
+    description: 'It is recommended to provide uncertainty for each data point in
+      the data file. Else provide a single value representative of the dataset.
+
+      If uncertainty is provided as a variable, please list the column header name
+      here.'
+    title: Uncertainty
+    from_schema: OAEDataManagementProtocol
+    rank: 1000
+    alias: uncertainty
+    owner: QCFields
+    domain_of:
+    - StandardGas
+    - CO2GasDetector
+    - QCFields
+    range: string
+  uncertainty_definition:
+    name: uncertainty_definition
+    description: A description of the uncertainties involved in this method.
+    title: How was the uncertainty defined
+    from_schema: OAEDataManagementProtocol
+    rank: 1000
+    alias: uncertainty_definition
+    owner: QCFields
+    domain_of:
+    - QCFields
+    range: string
+  missing_value_indicators:
+    name: missing_value_indicators
+    description: The indicator used to represent missing values in the data file,
+      e.g., -999, NaN, etc.
+    title: Missing value indicators
+    from_schema: OAEDataManagementProtocol
+    rank: 1000
+    alias: missing_value_indicators
     owner: QCFields
     domain_of:
     - QCFields

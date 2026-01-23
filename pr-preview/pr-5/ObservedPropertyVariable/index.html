@@ -742,7 +742,7 @@ attributes:
       If quality control procedures are described in a separate document uploaded
       with the data, provide the name of the document here.'
     title: QC steps taken
-    from_schema: Variable
+    from_schema: OAEDataManagementProtocol
     rank: 1000
     alias: qc_steps_taken
     owner: ObservedPropertyVariable
@@ -758,7 +758,8 @@ attributes:
       If uncertainty is provided as a variable, please list the column header name
       here.'
     title: Uncertainty
-    from_schema: Variable
+    from_schema: OAEDataManagementProtocol
+    rank: 1000
     alias: uncertainty
     owner: ObservedPropertyVariable
     domain_of:
@@ -771,7 +772,7 @@ attributes:
     name: uncertainty_definition
     description: A description of the uncertainties involved in this method.
     title: How was the uncertainty defined
-    from_schema: Variable
+    from_schema: OAEDataManagementProtocol
     rank: 1000
     alias: uncertainty_definition
     owner: ObservedPropertyVariable
@@ -784,7 +785,7 @@ attributes:
     description: The indicator used to represent missing values in the data file,
       e.g., -999, NaN, etc.
     title: Missing value indicators
-    from_schema: Variable
+    from_schema: OAEDataManagementProtocol
     rank: 1000
     alias: missing_value_indicators
     owner: ObservedPropertyVariable
