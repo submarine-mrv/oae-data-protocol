@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-01-22T18:52:36
+# Generation date: 2026-01-22T19:09:31
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -3474,6 +3474,21 @@ slots.is_provided_as_a_file = Slot(uri=OAE.is_provided_as_a_file, name="is_provi
 slots.is_derived_value = Slot(uri=OAE.is_derived_value, name="is_derived_value", curie=OAE.curie('is_derived_value'),
                    model_uri=OAE.is_derived_value, domain=None, range=Union[bool, Bool])
 
+slots.analyzing_instrument = Slot(uri=OAE.analyzing_instrument, name="analyzing_instrument", curie=OAE.curie('analyzing_instrument'),
+                   model_uri=OAE.analyzing_instrument, domain=None, range=Union[dict, AnalyzingInstrument])
+
+slots.qc_steps_taken = Slot(uri=OAE.qc_steps_taken, name="qc_steps_taken", curie=OAE.curie('qc_steps_taken'),
+                   model_uri=OAE.qc_steps_taken, domain=None, range=Optional[str])
+
+slots.uncertainty = Slot(uri=OAE.uncertainty, name="uncertainty", curie=OAE.curie('uncertainty'),
+                   model_uri=OAE.uncertainty, domain=None, range=Optional[str])
+
+slots.uncertainty_definition = Slot(uri=OAE.uncertainty_definition, name="uncertainty_definition", curie=OAE.curie('uncertainty_definition'),
+                   model_uri=OAE.uncertainty_definition, domain=None, range=Optional[str])
+
+slots.missing_value_indicators = Slot(uri=OAE.missing_value_indicators, name="missing_value_indicators", curie=OAE.curie('missing_value_indicators'),
+                   model_uri=OAE.missing_value_indicators, domain=None, range=Optional[str])
+
 slots.appropriate_use_quality = Slot(uri=OAE.appropriate_use_quality, name="appropriate_use_quality", curie=OAE.curie('appropriate_use_quality'),
                    model_uri=OAE.appropriate_use_quality, domain=None, range=Optional[Union[str, "AppropriateUseQuality"]])
 
@@ -3752,9 +3767,6 @@ slots.observedPropertyVariable__sampling_instrument_type = Slot(uri=OAE.sampling
 slots.observedPropertyVariable__sampling_instrument_type_custom = Slot(uri=OAE.sampling_instrument_type_custom, name="observedPropertyVariable__sampling_instrument_type_custom", curie=OAE.curie('sampling_instrument_type_custom'),
                    model_uri=OAE.observedPropertyVariable__sampling_instrument_type_custom, domain=None, range=Optional[str])
 
-slots.discreteMeasuredVariable__analyzing_instrument = Slot(uri=OAE.analyzing_instrument, name="discreteMeasuredVariable__analyzing_instrument", curie=OAE.curie('analyzing_instrument'),
-                   model_uri=OAE.discreteMeasuredVariable__analyzing_instrument, domain=None, range=Union[dict, AnalyzingInstrument])
-
 slots.continuousMeasuredVariable__raw_data_calculation_method = Slot(uri=OAE.raw_data_calculation_method, name="continuousMeasuredVariable__raw_data_calculation_method", curie=OAE.curie('raw_data_calculation_method'),
                    model_uri=OAE.continuousMeasuredVariable__raw_data_calculation_method, domain=None, range=str)
 
@@ -3778,18 +3790,6 @@ slots.nonMeasuredVariable__data_source = Slot(uri=OAE.data_source, name="nonMeas
 
 slots.nonMeasuredVariable__source_reference = Slot(uri=OAE.source_reference, name="nonMeasuredVariable__source_reference", curie=OAE.curie('source_reference'),
                    model_uri=OAE.nonMeasuredVariable__source_reference, domain=None, range=Optional[str])
-
-slots.qCFields__qc_steps_taken = Slot(uri=OAE.qc_steps_taken, name="qCFields__qc_steps_taken", curie=OAE.curie('qc_steps_taken'),
-                   model_uri=OAE.qCFields__qc_steps_taken, domain=None, range=Optional[str])
-
-slots.qCFields__uncertainty = Slot(uri=OAE.uncertainty, name="qCFields__uncertainty", curie=OAE.curie('uncertainty'),
-                   model_uri=OAE.qCFields__uncertainty, domain=None, range=Optional[str])
-
-slots.qCFields__uncertainty_definition = Slot(uri=OAE.uncertainty_definition, name="qCFields__uncertainty_definition", curie=OAE.curie('uncertainty_definition'),
-                   model_uri=OAE.qCFields__uncertainty_definition, domain=None, range=Optional[str])
-
-slots.qCFields__missing_value_indicators = Slot(uri=OAE.missing_value_indicators, name="qCFields__missing_value_indicators", curie=OAE.curie('missing_value_indicators'),
-                   model_uri=OAE.qCFields__missing_value_indicators, domain=None, range=Optional[str])
 
 slots.qCFields__qc_researcher = Slot(uri=OAE.qc_researcher, name="qCFields__qc_researcher", curie=OAE.curie('qc_researcher'),
                    model_uri=OAE.qCFields__qc_researcher, domain=None, range=Optional[Union[dict, Person]])
