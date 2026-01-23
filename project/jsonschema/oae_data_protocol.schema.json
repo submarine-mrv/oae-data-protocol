@@ -31,6 +31,24 @@
                     "title": "Accuracy",
                     "type": "string"
                 },
+                "calibration": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Calibration"
+                        },
+                        {
+                            "$ref": "#/$defs/CRMCalibration"
+                        },
+                        {
+                            "$ref": "#/$defs/PHCalibration"
+                        },
+                        {
+                            "$ref": "#/$defs/CO2Calibration"
+                        }
+                    ],
+                    "description": "Calibration information for this instrument.",
+                    "title": "Calibration"
+                },
                 "instrument_type": {
                     "$ref": "#/$defs/AnalyzingInstrumentType",
                     "anyOf": [

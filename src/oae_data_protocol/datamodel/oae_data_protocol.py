@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-01-22T23:09:38
+# Generation date: 2026-01-22T23:50:30
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -1799,6 +1799,7 @@ class Instrument(YAMLRoot):
     manufacturer: Optional[str] = None
     model: Optional[str] = None
     serial_number: Optional[str] = None
+    calibration: Optional[Union[dict, "Calibration"]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.instrument_type):
@@ -1827,6 +1828,9 @@ class Instrument(YAMLRoot):
 
         if self.serial_number is not None and not isinstance(self.serial_number, str):
             self.serial_number = str(self.serial_number)
+
+        if self.calibration is not None and not isinstance(self.calibration, Calibration):
+            self.calibration = Calibration(**as_dict(self.calibration))
 
         super().__post_init__(**kwargs)
 
@@ -3885,6 +3889,9 @@ slots.instrument__precision = Slot(uri=OAE.precision, name="instrument__precisio
 
 slots.instrument__accuracy = Slot(uri=OAE.accuracy, name="instrument__accuracy", curie=OAE.curie('accuracy'),
                    model_uri=OAE.instrument__accuracy, domain=None, range=str)
+
+slots.instrument__calibration = Slot(uri=OAE.calibration, name="instrument__calibration", curie=OAE.curie('calibration'),
+                   model_uri=OAE.instrument__calibration, domain=None, range=Optional[Union[dict, Calibration]])
 
 slots.pHInstrument__calibration = Slot(uri=OAE.calibration, name="pHInstrument__calibration", curie=OAE.curie('calibration'),
                    model_uri=OAE.pHInstrument__calibration, domain=None, range=Union[dict, PHCalibration])
