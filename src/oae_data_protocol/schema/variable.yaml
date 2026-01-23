@@ -83,18 +83,33 @@ classes:
     is_a: Variable
     mixins:
       - QCFields
+    slot_usage:
+      qc_steps_taken:
+        required: true
+      uncertainty:
+        required: true
+      uncertainty_definition:
+        required: true
+      missing_value_indicators:
+        required: true
     attributes:
       sampling_method:
         title: Sampling Method
         description: Method used to collect samples.
         range: string
         required: true
+      field_replicate_information:
+        title: Field replicate information
+        description: >-
+          Repetition of sample collection and measurement, e.g., triplicate samples.
+        range: string
       analyzing_method:
         title: Analyzing Method
         description: Additional information describing how the sample was analyzed. DOIs provided as applicable.
         range: string
         required: true
       observation_type:
+        title: Observation Type
         range: ObservationType
         required: true
       sampling:
@@ -105,7 +120,7 @@ classes:
         required: true
       sampling_instrument_type:
         title: Sampling instrument type
-        range: InstrumentType
+        range: SamplingInstrumentType
       sampling_instrument_type_custom:
         title: Sampling instrument type (custom)
         range: string
@@ -124,7 +139,7 @@ classes:
         description: >-
           Instrument used to analyze the water samples or measure the water body
           continuously. Instrument includes calibration information.
-        range: Instrument
+        range: AnalyzingInstrument
         required: true
 
   # Continuous specific fields - All vars except HPLC, socioeconomic, disc pCO2 fCO2
@@ -271,11 +286,6 @@ classes:
       Quality control fields applicable to measured and calculated variables.
       Not applied to socioeconomic variables.
     attributes:
-      field_replicate_information:
-        title: Field replicate information
-        description: >-
-          Repetition of sample collection and measurement, e.g., triplicate samples.
-        range: string
       qc_steps_taken:
         title: QC steps taken
         description: >-
@@ -285,26 +295,25 @@ classes:
           If quality control procedures are described in a separate document uploaded with the data, provide the name
           of the document here.
         range: string
-        required: true
       uncertainty:
         title: Uncertainty
         description: >-
           It is recommended to provide uncertainty for each data point in the data file.
           Else provide a single value representative of the dataset.
+          
+          If uncertainty is provided as a variable, please list the column header name here.
         range: string
         # TODO: Change to VariableUncertainty in Phase 3
       uncertainty_definition:
         title: How was the uncertainty defined
         description: A description of the uncertainties involved in this method.
         range: string
-        required: true
       missing_value_indicators:
         title: Missing value indicators
         description: >-
           The indicator used to represent missing values in the data file,
           e.g., -999, NaN, etc.
         range: string
-        required: true
       qc_researcher:
         title: Researcher who QCed this variable
         description: The name of the PI whose research team QCed this parameter.

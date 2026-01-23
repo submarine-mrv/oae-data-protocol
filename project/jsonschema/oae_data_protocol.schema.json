@@ -22,6 +22,51 @@
             "title": "AlkalinityFeedstockProcessing",
             "type": "string"
         },
+        "AnalyzingInstrument": {
+            "additionalProperties": false,
+            "description": "Subclass of Instrument used for analyzing samples",
+            "title": "AnalyzingInstrument",
+            "type": "object"
+        },
+        "AnalyzingInstrumentType": {
+            "description": "",
+            "enum": [
+                "ctd_sensor",
+                "flow_through_system",
+                "thermosalinograph",
+                "salinometer_for_discrete_salinity_measurement",
+                "dic_analyzers_based_on_coulometers",
+                "dic_analyzers_based_on_co2_gas_detectors",
+                "autonomous_dic_sensor",
+                "alkalinity_titrator",
+                "autonomous_ta_sensor",
+                "showerhead_equilibrator",
+                "floating_air_water_equilibrator",
+                "membrane_equilibrator",
+                "spectrophotometer",
+                "handheld_ph_spectrophotometer",
+                "ph_electrode",
+                "sea_bird_seafet",
+                "oxygen_titrator",
+                "oxygen_sensor",
+                "sea_bird_seaphox",
+                "ysi",
+                "nutrient_analyzer",
+                "fluorometers",
+                "high_performance_liquid_chromatography_hplc",
+                "acoustic_doppler_current_profiler_adcp",
+                "mass_spectrometers",
+                "isotope_ratio_mass_spectrometers_irms",
+                "barometric_pressure_sensor",
+                "microscopes",
+                "scanning_electron_microscopes",
+                "flow_cytometers",
+                "edna_sampler",
+                "other"
+            ],
+            "title": "AnalyzingInstrumentType",
+            "type": "string"
+        },
         "Any": {
             "additionalProperties": true,
             "description": "",
@@ -124,7 +169,15 @@
                     "title": "Calibration"
                 },
                 "instrument_type": {
-                    "$ref": "#/$defs/InstrumentType",
+                    "$ref": "#/$defs/Any",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/AnalyzingInstrumentType"
+                        },
+                        {
+                            "$ref": "#/$defs/SamplingInstrumentType"
+                        }
+                    ],
                     "description": "Type of instrument used to analyze samples or measure continuously.",
                     "title": "Instrument type"
                 },
@@ -242,7 +295,15 @@
                     "title": "Calibration"
                 },
                 "instrument_type": {
-                    "$ref": "#/$defs/InstrumentType",
+                    "$ref": "#/$defs/Any",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/AnalyzingInstrumentType"
+                        },
+                        {
+                            "$ref": "#/$defs/SamplingInstrumentType"
+                        }
+                    ],
                     "description": "Type of instrument used to analyze samples or measure continuously.",
                     "title": "Instrument type"
                 },
@@ -299,11 +360,6 @@
                     "title": "Dataset variable name (Quality Flag)",
                     "type": "string"
                 },
-                "field_replicate_information": {
-                    "description": "Repetition of sample collection and measurement, e.g., triplicate samples.",
-                    "title": "Field replicate information",
-                    "type": "string"
-                },
                 "long_name": {
                     "description": "Full descriptive name of the variable.",
                     "title": "Variable full name",
@@ -348,7 +404,7 @@
                     "$ref": "#/$defs/VocabularyItemReference"
                 },
                 "uncertainty": {
-                    "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.",
+                    "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.\nIf uncertainty is provided as a variable, please list the column header name here.",
                     "title": "Uncertainty",
                     "type": "string"
                 },
@@ -365,9 +421,6 @@
             },
             "required": [
                 "calculation_method_and_parameters",
-                "qc_steps_taken",
-                "uncertainty_definition",
-                "missing_value_indicators",
                 "dataset_variable_name",
                 "long_name",
                 "units"
@@ -504,7 +557,8 @@
                     "type": "string"
                 },
                 "observation_type": {
-                    "$ref": "#/$defs/ObservationType"
+                    "$ref": "#/$defs/ObservationType",
+                    "title": "Observation Type"
                 },
                 "other_detailed_information": {
                     "description": "Any additional information about this variable.",
@@ -535,7 +589,7 @@
                     "$ref": "#/$defs/SamplingType"
                 },
                 "sampling_instrument_type": {
-                    "$ref": "#/$defs/InstrumentType",
+                    "$ref": "#/$defs/SamplingInstrumentType",
                     "title": "Sampling instrument type"
                 },
                 "sampling_instrument_type_custom": {
@@ -551,7 +605,7 @@
                     "$ref": "#/$defs/VocabularyItemReference"
                 },
                 "uncertainty": {
-                    "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.",
+                    "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.\nIf uncertainty is provided as a variable, please list the column header name here.",
                     "title": "Uncertainty",
                     "type": "string"
                 },
@@ -574,6 +628,7 @@
                 "sampling",
                 "genesis",
                 "qc_steps_taken",
+                "uncertainty",
                 "uncertainty_definition",
                 "missing_value_indicators",
                 "dataset_variable_name",
@@ -774,19 +829,10 @@
                 "analyzing_instrument": {
                     "anyOf": [
                         {
-                            "$ref": "#/$defs/CRMInstrument"
+                            "$ref": "#/$defs/AnalyzingInstrument"
                         },
                         {
                             "$ref": "#/$defs/PHInstrument"
-                        },
-                        {
-                            "$ref": "#/$defs/CO2GasDetector"
-                        },
-                        {
-                            "$ref": "#/$defs/Sensor"
-                        },
-                        {
-                            "$ref": "#/$defs/GenericInstrument"
                         }
                     ],
                     "description": "Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.",
@@ -836,7 +882,8 @@
                     "type": "string"
                 },
                 "observation_type": {
-                    "$ref": "#/$defs/ObservationType"
+                    "$ref": "#/$defs/ObservationType",
+                    "title": "Observation Type"
                 },
                 "other_detailed_information": {
                     "description": "Any additional information about this variable.",
@@ -862,7 +909,7 @@
                     "$ref": "#/$defs/SamplingType"
                 },
                 "sampling_instrument_type": {
-                    "$ref": "#/$defs/InstrumentType",
+                    "$ref": "#/$defs/SamplingInstrumentType",
                     "title": "Sampling instrument type"
                 },
                 "sampling_instrument_type_custom": {
@@ -878,7 +925,7 @@
                     "$ref": "#/$defs/VocabularyItemReference"
                 },
                 "uncertainty": {
-                    "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.",
+                    "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.\nIf uncertainty is provided as a variable, please list the column header name here.",
                     "title": "Uncertainty",
                     "type": "string"
                 },
@@ -901,6 +948,7 @@
                 "sampling",
                 "genesis",
                 "qc_steps_taken",
+                "uncertainty",
                 "uncertainty_definition",
                 "missing_value_indicators",
                 "dataset_variable_name",
@@ -973,7 +1021,8 @@
                     "type": "string"
                 },
                 "observation_type": {
-                    "$ref": "#/$defs/ObservationType"
+                    "$ref": "#/$defs/ObservationType",
+                    "title": "Observation Type"
                 },
                 "other_detailed_information": {
                     "description": "Any additional information about this variable.",
@@ -1004,7 +1053,7 @@
                     "$ref": "#/$defs/SamplingType"
                 },
                 "sampling_instrument_type": {
-                    "$ref": "#/$defs/InstrumentType",
+                    "$ref": "#/$defs/SamplingInstrumentType",
                     "title": "Sampling instrument type"
                 },
                 "sampling_instrument_type_custom": {
@@ -1025,7 +1074,7 @@
                     "type": "string"
                 },
                 "uncertainty": {
-                    "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.",
+                    "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.\nIf uncertainty is provided as a variable, please list the column header name here.",
                     "title": "Uncertainty",
                     "type": "string"
                 },
@@ -1049,6 +1098,7 @@
                 "sampling",
                 "genesis",
                 "qc_steps_taken",
+                "uncertainty",
                 "uncertainty_definition",
                 "missing_value_indicators",
                 "dataset_variable_name",
@@ -1328,7 +1378,15 @@
                     "title": "Calibration"
                 },
                 "instrument_type": {
-                    "$ref": "#/$defs/InstrumentType",
+                    "$ref": "#/$defs/Any",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/AnalyzingInstrumentType"
+                        },
+                        {
+                            "$ref": "#/$defs/SamplingInstrumentType"
+                        }
+                    ],
                     "description": "Type of instrument used to analyze samples or measure continuously.",
                     "title": "Instrument type"
                 },
@@ -1460,7 +1518,8 @@
                     "type": "string"
                 },
                 "observation_type": {
-                    "$ref": "#/$defs/ObservationType"
+                    "$ref": "#/$defs/ObservationType",
+                    "title": "Observation Type"
                 },
                 "other_detailed_information": {
                     "description": "Any additional information about this variable.",
@@ -1486,7 +1545,7 @@
                     "$ref": "#/$defs/SamplingType"
                 },
                 "sampling_instrument_type": {
-                    "$ref": "#/$defs/InstrumentType",
+                    "$ref": "#/$defs/SamplingInstrumentType",
                     "title": "Sampling instrument type"
                 },
                 "sampling_instrument_type_custom": {
@@ -1502,7 +1561,7 @@
                     "$ref": "#/$defs/VocabularyItemReference"
                 },
                 "uncertainty": {
-                    "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.",
+                    "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.\nIf uncertainty is provided as a variable, please list the column header name here.",
                     "title": "Uncertainty",
                     "type": "string"
                 },
@@ -1524,6 +1583,7 @@
                 "sampling",
                 "genesis",
                 "qc_steps_taken",
+                "uncertainty",
                 "uncertainty_definition",
                 "missing_value_indicators",
                 "dataset_variable_name",
@@ -1543,51 +1603,6 @@
                 "seafloor"
             ],
             "title": "HydrologicLocation",
-            "type": "string"
-        },
-        "InstrumentType": {
-            "description": "",
-            "enum": [
-                "CTD_ROSETTE",
-                "CTD_SENSOR",
-                "NISKIN_BOTTLE",
-                "FLOW_THROUGH_SYSTEM",
-                "THERMOSALINOGRAPH",
-                "SALINOMETER_FOR_DISCRETE_SALINITY_MEASUREMENT",
-                "DIC_ANALYZERS_BASED_ON_COULOMETERS",
-                "DIC_ANALYZERS_BASED_ON_CO2_GAS_DETECTORS",
-                "AUTONOMOUS_DIC_SENSOR",
-                "ALKALINITY_TITRATOR",
-                "AUTONOMOUS_TA_SENSOR",
-                "SHOWERHEAD_EQUILIBRATOR",
-                "FLOATING_AIR_WATER_EQUILIBRATOR",
-                "MEMBRANE_EQUILIBRATOR",
-                "FLASK_FOR_DISCRETE_CARBON_DIOXIDE_MEASUREMENT",
-                "SPECTROPHOTOMETER",
-                "HANDHELD_PH_SPECTROPHOTOMETER",
-                "PH_ELECTRODE",
-                "SEA_BIRD_SEAFET",
-                "OXYGEN_TITRATOR",
-                "OXYGEN_SENSOR",
-                "SEA_BIRD_SEAPHOX",
-                "YSI",
-                "NUTRIENT_ANALYZER",
-                "FLUOROMETERS",
-                "HIGH_PERFORMANCE_LIQUID_CHROMATOGRAPHY_HPLC",
-                "ACOUSTIC_DOPPLER_CURRENT_PROFILER_ADCP",
-                "MASS_SPECTROMETERS",
-                "ISOTOPE_RATIO_MASS_SPECTROMETERS_IRMS",
-                "BAROMETRIC_PRESSURE_SENSOR",
-                "MICROSCOPES",
-                "SCANNING_ELECTRON_MICROSCOPES",
-                "BIOLOGICAL_TRAWL",
-                "PHYTOPLANKTON_NET",
-                "ZOOPLANKTON_NET",
-                "FLOW_CYTOMETERS",
-                "EDNA_SAMPLER",
-                "OTHER"
-            ],
-            "title": "InstrumentType",
             "type": "string"
         },
         "Intervention": {
@@ -2250,7 +2265,8 @@
                     "type": "string"
                 },
                 "observation_type": {
-                    "$ref": "#/$defs/ObservationType"
+                    "$ref": "#/$defs/ObservationType",
+                    "title": "Observation Type"
                 },
                 "other_detailed_information": {
                     "description": "Any additional information about this variable.",
@@ -2276,7 +2292,7 @@
                     "$ref": "#/$defs/SamplingType"
                 },
                 "sampling_instrument_type": {
-                    "$ref": "#/$defs/InstrumentType",
+                    "$ref": "#/$defs/SamplingInstrumentType",
                     "title": "Sampling instrument type"
                 },
                 "sampling_instrument_type_custom": {
@@ -2292,7 +2308,7 @@
                     "$ref": "#/$defs/VocabularyItemReference"
                 },
                 "uncertainty": {
-                    "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.",
+                    "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.\nIf uncertainty is provided as a variable, please list the column header name here.",
                     "title": "Uncertainty",
                     "type": "string"
                 },
@@ -2314,6 +2330,7 @@
                 "sampling",
                 "genesis",
                 "qc_steps_taken",
+                "uncertainty",
                 "uncertainty_definition",
                 "missing_value_indicators",
                 "dataset_variable_name",
@@ -2424,51 +2441,14 @@
             "additionalProperties": false,
             "description": "pH measurement instrument with dye-based calibration.",
             "properties": {
-                "accuracy": {
-                    "description": "Accuracy of the instrument measurements.",
-                    "title": "Accuracy",
-                    "type": "string"
-                },
                 "calibration": {
                     "$ref": "#/$defs/PHCalibration",
                     "description": "pH calibration information for this instrument.",
                     "title": "Calibration"
-                },
-                "instrument_type": {
-                    "$ref": "#/$defs/InstrumentType",
-                    "description": "Type of instrument used to analyze samples or measure continuously.",
-                    "title": "Instrument type"
-                },
-                "instrument_type_custom": {
-                    "title": "Instrument type (custom)",
-                    "type": "string"
-                },
-                "manufacturer": {
-                    "description": "Manufacturer name of the instrument.",
-                    "title": "Manufacturer",
-                    "type": "string"
-                },
-                "model": {
-                    "description": "Model number or name of the instrument.",
-                    "title": "Model",
-                    "type": "string"
-                },
-                "precision": {
-                    "description": "Precision of the instrument measurements.",
-                    "title": "Precision",
-                    "type": "string"
-                },
-                "serial_number": {
-                    "description": "Serial number of the instrument.",
-                    "title": "Serial number",
-                    "type": "string"
                 }
             },
             "required": [
-                "calibration",
-                "instrument_type",
-                "precision",
-                "accuracy"
+                "calibration"
             ],
             "title": "PHInstrument",
             "type": "object"
@@ -2617,7 +2597,8 @@
                     "type": "string"
                 },
                 "observation_type": {
-                    "$ref": "#/$defs/ObservationType"
+                    "$ref": "#/$defs/ObservationType",
+                    "title": "Observation Type"
                 },
                 "other_detailed_information": {
                     "description": "Any additional information about this variable.",
@@ -2643,7 +2624,7 @@
                     "$ref": "#/$defs/SamplingType"
                 },
                 "sampling_instrument_type": {
-                    "$ref": "#/$defs/InstrumentType",
+                    "$ref": "#/$defs/SamplingInstrumentType",
                     "title": "Sampling instrument type"
                 },
                 "sampling_instrument_type_custom": {
@@ -2659,7 +2640,7 @@
                     "$ref": "#/$defs/VocabularyItemReference"
                 },
                 "uncertainty": {
-                    "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.",
+                    "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.\nIf uncertainty is provided as a variable, please list the column header name here.",
                     "title": "Uncertainty",
                     "type": "string"
                 },
@@ -2681,6 +2662,7 @@
                 "sampling",
                 "genesis",
                 "qc_steps_taken",
+                "uncertainty",
                 "uncertainty_definition",
                 "missing_value_indicators",
                 "dataset_variable_name",
@@ -2930,6 +2912,23 @@
             "title": "ResearcherIDType",
             "type": "string"
         },
+        "SamplingInstrumentType": {
+            "description": "",
+            "enum": [
+                "ctd_rosette",
+                "niskin_bottle",
+                "flow_through_system",
+                "flask_for_discrete_carbon_dioxide_measurement",
+                "biological_trawl",
+                "phytoplankton_net",
+                "zooplankton_net",
+                "edna_sampler",
+                "autonomous_sensor",
+                "other"
+            ],
+            "title": "SamplingInstrumentType",
+            "type": "string"
+        },
         "SamplingType": {
             "description": "",
             "enum": [
@@ -3121,7 +3120,8 @@
                     "type": "string"
                 },
                 "observation_type": {
-                    "$ref": "#/$defs/ObservationType"
+                    "$ref": "#/$defs/ObservationType",
+                    "title": "Observation Type"
                 },
                 "other_detailed_information": {
                     "description": "Any additional information about this variable.",
@@ -3147,7 +3147,7 @@
                     "$ref": "#/$defs/SamplingType"
                 },
                 "sampling_instrument_type": {
-                    "$ref": "#/$defs/InstrumentType",
+                    "$ref": "#/$defs/SamplingInstrumentType",
                     "title": "Sampling instrument type"
                 },
                 "sampling_instrument_type_custom": {
@@ -3163,7 +3163,7 @@
                     "$ref": "#/$defs/VocabularyItemReference"
                 },
                 "uncertainty": {
-                    "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.",
+                    "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.\nIf uncertainty is provided as a variable, please list the column header name here.",
                     "title": "Uncertainty",
                     "type": "string"
                 },
@@ -3185,6 +3185,7 @@
                 "sampling",
                 "genesis",
                 "qc_steps_taken",
+                "uncertainty",
                 "uncertainty_definition",
                 "missing_value_indicators",
                 "dataset_variable_name",
@@ -3222,7 +3223,15 @@
                     "title": "Calibration"
                 },
                 "instrument_type": {
-                    "$ref": "#/$defs/InstrumentType",
+                    "$ref": "#/$defs/Any",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/AnalyzingInstrumentType"
+                        },
+                        {
+                            "$ref": "#/$defs/SamplingInstrumentType"
+                        }
+                    ],
                     "description": "Type of instrument used to analyze samples or measure continuously.",
                     "title": "Instrument type"
                 },

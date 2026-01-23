@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-01-18T21:38:57
+# Generation date: 2026-01-22T18:52:36
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -1223,12 +1223,12 @@ class ObservedPropertyVariable(Variable):
     sampling: Union[str, "SamplingType"] = None
     genesis: Union[str, "GenesisType"] = None
     qc_steps_taken: str = None
+    uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
-    sampling_instrument_type: Optional[Union[str, "InstrumentType"]] = None
-    sampling_instrument_type_custom: Optional[str] = None
     field_replicate_information: Optional[str] = None
-    uncertainty: Optional[str] = None
+    sampling_instrument_type: Optional[Union[str, "SamplingInstrumentType"]] = None
+    sampling_instrument_type_custom: Optional[str] = None
     qc_researcher: Optional[Union[dict, Person]] = None
     qc_researcher_institution: Optional[str] = None
 
@@ -1263,6 +1263,11 @@ class ObservedPropertyVariable(Variable):
         if not isinstance(self.qc_steps_taken, str):
             self.qc_steps_taken = str(self.qc_steps_taken)
 
+        if self._is_empty(self.uncertainty):
+            self.MissingRequiredField("uncertainty")
+        if not isinstance(self.uncertainty, str):
+            self.uncertainty = str(self.uncertainty)
+
         if self._is_empty(self.uncertainty_definition):
             self.MissingRequiredField("uncertainty_definition")
         if not isinstance(self.uncertainty_definition, str):
@@ -1273,17 +1278,14 @@ class ObservedPropertyVariable(Variable):
         if not isinstance(self.missing_value_indicators, str):
             self.missing_value_indicators = str(self.missing_value_indicators)
 
-        if self.sampling_instrument_type is not None and not isinstance(self.sampling_instrument_type, InstrumentType):
-            self.sampling_instrument_type = InstrumentType(self.sampling_instrument_type)
-
-        if self.sampling_instrument_type_custom is not None and not isinstance(self.sampling_instrument_type_custom, str):
-            self.sampling_instrument_type_custom = str(self.sampling_instrument_type_custom)
-
         if self.field_replicate_information is not None and not isinstance(self.field_replicate_information, str):
             self.field_replicate_information = str(self.field_replicate_information)
 
-        if self.uncertainty is not None and not isinstance(self.uncertainty, str):
-            self.uncertainty = str(self.uncertainty)
+        if self.sampling_instrument_type is not None and not isinstance(self.sampling_instrument_type, SamplingInstrumentType):
+            self.sampling_instrument_type = SamplingInstrumentType(self.sampling_instrument_type)
+
+        if self.sampling_instrument_type_custom is not None and not isinstance(self.sampling_instrument_type_custom, str):
+            self.sampling_instrument_type_custom = str(self.sampling_instrument_type_custom)
 
         if self.qc_researcher is not None and not isinstance(self.qc_researcher, Person):
             self.qc_researcher = Person(**as_dict(self.qc_researcher))
@@ -1316,15 +1318,16 @@ class DiscreteMeasuredVariable(ObservedPropertyVariable):
     sampling: Union[str, "SamplingType"] = None
     genesis: Union[str, "GenesisType"] = None
     qc_steps_taken: str = None
+    uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
-    analyzing_instrument: Union[dict, "Instrument"] = None
+    analyzing_instrument: Union[dict, "AnalyzingInstrument"] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.analyzing_instrument):
             self.MissingRequiredField("analyzing_instrument")
-        if not isinstance(self.analyzing_instrument, Instrument):
-            self.analyzing_instrument = Instrument(**as_dict(self.analyzing_instrument))
+        if not isinstance(self.analyzing_instrument, AnalyzingInstrument):
+            self.analyzing_instrument = AnalyzingInstrument(**as_dict(self.analyzing_instrument))
 
         super().__post_init__(**kwargs)
 
@@ -1350,6 +1353,7 @@ class ContinuousMeasuredVariable(ObservedPropertyVariable):
     sampling: Union[str, "SamplingType"] = None
     genesis: Union[str, "GenesisType"] = None
     qc_steps_taken: str = None
+    uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
     raw_data_calculation_method: str = None
@@ -1383,11 +1387,10 @@ class CalculatedVariable(Variable):
     long_name: str = None
     units: str = None
     calculation_method_and_parameters: str = None
-    qc_steps_taken: str = None
-    uncertainty_definition: str = None
-    missing_value_indicators: str = None
-    field_replicate_information: Optional[str] = None
+    qc_steps_taken: Optional[str] = None
     uncertainty: Optional[str] = None
+    uncertainty_definition: Optional[str] = None
+    missing_value_indicators: Optional[str] = None
     qc_researcher: Optional[Union[dict, Person]] = None
     qc_researcher_institution: Optional[str] = None
 
@@ -1397,26 +1400,17 @@ class CalculatedVariable(Variable):
         if not isinstance(self.calculation_method_and_parameters, str):
             self.calculation_method_and_parameters = str(self.calculation_method_and_parameters)
 
-        if self._is_empty(self.qc_steps_taken):
-            self.MissingRequiredField("qc_steps_taken")
-        if not isinstance(self.qc_steps_taken, str):
+        if self.qc_steps_taken is not None and not isinstance(self.qc_steps_taken, str):
             self.qc_steps_taken = str(self.qc_steps_taken)
-
-        if self._is_empty(self.uncertainty_definition):
-            self.MissingRequiredField("uncertainty_definition")
-        if not isinstance(self.uncertainty_definition, str):
-            self.uncertainty_definition = str(self.uncertainty_definition)
-
-        if self._is_empty(self.missing_value_indicators):
-            self.MissingRequiredField("missing_value_indicators")
-        if not isinstance(self.missing_value_indicators, str):
-            self.missing_value_indicators = str(self.missing_value_indicators)
-
-        if self.field_replicate_information is not None and not isinstance(self.field_replicate_information, str):
-            self.field_replicate_information = str(self.field_replicate_information)
 
         if self.uncertainty is not None and not isinstance(self.uncertainty, str):
             self.uncertainty = str(self.uncertainty)
+
+        if self.uncertainty_definition is not None and not isinstance(self.uncertainty_definition, str):
+            self.uncertainty_definition = str(self.uncertainty_definition)
+
+        if self.missing_value_indicators is not None and not isinstance(self.missing_value_indicators, str):
+            self.missing_value_indicators = str(self.missing_value_indicators)
 
         if self.qc_researcher is not None and not isinstance(self.qc_researcher, Person):
             self.qc_researcher = Person(**as_dict(self.qc_researcher))
@@ -1449,6 +1443,7 @@ class DiscretePHVariable(DiscreteMeasuredVariable):
     sampling: Union[str, "SamplingType"] = None
     genesis: Union[str, "GenesisType"] = None
     qc_steps_taken: str = None
+    uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
     ph_reported_temperature: str = None
@@ -1502,6 +1497,7 @@ class HPLCVariable(ObservedPropertyVariable):
     sampling: Union[str, "SamplingType"] = None
     genesis: Union[str, "GenesisType"] = None
     qc_steps_taken: str = None
+    uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
 
@@ -1526,6 +1522,7 @@ class SedimentVariable(ObservedPropertyVariable):
     sampling: Union[str, "SamplingType"] = None
     genesis: Union[str, "GenesisType"] = None
     qc_steps_taken: str = None
+    uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
 
@@ -1550,6 +1547,7 @@ class PhysiologicalVariable(ObservedPropertyVariable):
     sampling: Union[str, "SamplingType"] = None
     genesis: Union[str, "GenesisType"] = None
     qc_steps_taken: str = None
+    uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
 
@@ -1612,35 +1610,25 @@ class QCFields(YAMLRoot):
     class_name: ClassVar[str] = "QCFields"
     class_model_uri: ClassVar[URIRef] = OAE.QCFields
 
-    qc_steps_taken: str = None
-    uncertainty_definition: str = None
-    missing_value_indicators: str = None
-    field_replicate_information: Optional[str] = None
+    qc_steps_taken: Optional[str] = None
     uncertainty: Optional[str] = None
+    uncertainty_definition: Optional[str] = None
+    missing_value_indicators: Optional[str] = None
     qc_researcher: Optional[Union[dict, Person]] = None
     qc_researcher_institution: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.qc_steps_taken):
-            self.MissingRequiredField("qc_steps_taken")
-        if not isinstance(self.qc_steps_taken, str):
+        if self.qc_steps_taken is not None and not isinstance(self.qc_steps_taken, str):
             self.qc_steps_taken = str(self.qc_steps_taken)
-
-        if self._is_empty(self.uncertainty_definition):
-            self.MissingRequiredField("uncertainty_definition")
-        if not isinstance(self.uncertainty_definition, str):
-            self.uncertainty_definition = str(self.uncertainty_definition)
-
-        if self._is_empty(self.missing_value_indicators):
-            self.MissingRequiredField("missing_value_indicators")
-        if not isinstance(self.missing_value_indicators, str):
-            self.missing_value_indicators = str(self.missing_value_indicators)
-
-        if self.field_replicate_information is not None and not isinstance(self.field_replicate_information, str):
-            self.field_replicate_information = str(self.field_replicate_information)
 
         if self.uncertainty is not None and not isinstance(self.uncertainty, str):
             self.uncertainty = str(self.uncertainty)
+
+        if self.uncertainty_definition is not None and not isinstance(self.uncertainty_definition, str):
+            self.uncertainty_definition = str(self.uncertainty_definition)
+
+        if self.missing_value_indicators is not None and not isinstance(self.missing_value_indicators, str):
+            self.missing_value_indicators = str(self.missing_value_indicators)
 
         if self.qc_researcher is not None and not isinstance(self.qc_researcher, Person):
             self.qc_researcher = Person(**as_dict(self.qc_researcher))
@@ -1804,7 +1792,7 @@ class Instrument(YAMLRoot):
     class_name: ClassVar[str] = "Instrument"
     class_model_uri: ClassVar[URIRef] = OAE.Instrument
 
-    instrument_type: Union[str, "InstrumentType"] = None
+    instrument_type: Union[dict, Any] = None
     precision: str = None
     accuracy: str = None
     instrument_type_custom: Optional[str] = None
@@ -1813,11 +1801,6 @@ class Instrument(YAMLRoot):
     serial_number: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.instrument_type):
-            self.MissingRequiredField("instrument_type")
-        if not isinstance(self.instrument_type, InstrumentType):
-            self.instrument_type = InstrumentType(self.instrument_type)
-
         if self._is_empty(self.precision):
             self.MissingRequiredField("precision")
         if not isinstance(self.precision, str):
@@ -1844,6 +1827,50 @@ class Instrument(YAMLRoot):
 
 
 @dataclass(repr=False)
+class AnalyzingInstrument(YAMLRoot):
+    """
+    Subclass of Instrument used for analyzing samples
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["AnalyzingInstrument"]
+    class_class_curie: ClassVar[str] = "oae:AnalyzingInstrument"
+    class_name: ClassVar[str] = "AnalyzingInstrument"
+    class_model_uri: ClassVar[URIRef] = OAE.AnalyzingInstrument
+
+    instrument_type: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self.instrument_type is not None and not isinstance(self.instrument_type, str):
+            self.instrument_type = str(self.instrument_type)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class PHInstrument(AnalyzingInstrument):
+    """
+    pH measurement instrument with dye-based calibration.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["PHInstrument"]
+    class_class_curie: ClassVar[str] = "oae:PHInstrument"
+    class_name: ClassVar[str] = "pHInstrument"
+    class_model_uri: ClassVar[URIRef] = OAE.PHInstrument
+
+    calibration: Union[dict, "PHCalibration"] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.calibration):
+            self.MissingRequiredField("calibration")
+        if not isinstance(self.calibration, PHCalibration):
+            self.calibration = PHCalibration(**as_dict(self.calibration))
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
 class CRMInstrument(Instrument):
     """
     Instrument calibrated with Certified Reference Materials, used for DIC and TA measurements.
@@ -1855,7 +1882,7 @@ class CRMInstrument(Instrument):
     class_name: ClassVar[str] = "CRMInstrument"
     class_model_uri: ClassVar[URIRef] = OAE.CRMInstrument
 
-    instrument_type: Union[str, "InstrumentType"] = None
+    instrument_type: Union[dict, Any] = None
     precision: str = None
     accuracy: str = None
     calibration: Union[dict, "CRMCalibration"] = None
@@ -1865,32 +1892,6 @@ class CRMInstrument(Instrument):
             self.MissingRequiredField("calibration")
         if not isinstance(self.calibration, CRMCalibration):
             self.calibration = CRMCalibration(**as_dict(self.calibration))
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class PHInstrument(Instrument):
-    """
-    pH measurement instrument with dye-based calibration.
-    """
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OAE["PHInstrument"]
-    class_class_curie: ClassVar[str] = "oae:PHInstrument"
-    class_name: ClassVar[str] = "pHInstrument"
-    class_model_uri: ClassVar[URIRef] = OAE.PHInstrument
-
-    instrument_type: Union[str, "InstrumentType"] = None
-    precision: str = None
-    accuracy: str = None
-    calibration: Union[dict, "PHCalibration"] = None
-
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.calibration):
-            self.MissingRequiredField("calibration")
-        if not isinstance(self.calibration, PHCalibration):
-            self.calibration = PHCalibration(**as_dict(self.calibration))
 
         super().__post_init__(**kwargs)
 
@@ -1907,7 +1908,7 @@ class CO2GasDetector(Instrument):
     class_name: ClassVar[str] = "CO2GasDetector"
     class_model_uri: ClassVar[URIRef] = OAE.CO2GasDetector
 
-    instrument_type: Union[str, "InstrumentType"] = None
+    instrument_type: Union[dict, Any] = None
     precision: str = None
     accuracy: str = None
     calibration: Union[dict, "CO2Calibration"] = None
@@ -1941,7 +1942,7 @@ class Sensor(Instrument):
     class_name: ClassVar[str] = "Sensor"
     class_model_uri: ClassVar[URIRef] = OAE.Sensor
 
-    instrument_type: Union[str, "InstrumentType"] = None
+    instrument_type: Union[dict, Any] = None
     precision: str = None
     accuracy: str = None
     calibration: Optional[Union[dict, "Calibration"]] = None
@@ -1966,7 +1967,7 @@ class GenericInstrument(Instrument):
     class_name: ClassVar[str] = "GenericInstrument"
     class_model_uri: ClassVar[URIRef] = OAE.GenericInstrument
 
-    instrument_type: Union[str, "InstrumentType"] = None
+    instrument_type: Union[dict, Any] = None
     precision: str = None
     accuracy: str = None
     calibration: Optional[Union[dict, "Calibration"]] = None
@@ -3246,153 +3247,171 @@ class AppropriateUseQuality(EnumDefinitionImpl):
         name="AppropriateUseQuality",
     )
 
-class InstrumentType(EnumDefinitionImpl):
+class SamplingInstrumentType(EnumDefinitionImpl):
 
-    CTD_ROSETTE = PermissibleValue(
-        text="CTD_ROSETTE",
+    ctd_rosette = PermissibleValue(
+        text="ctd_rosette",
         description="""A CTD rosette consists of a metal frame that houses a collection of sensors and water sampling bottles (e.g., Niskin)""")
-    CTD_SENSOR = PermissibleValue(
-        text="CTD_SENSOR",
-        description="""The acronym CTD stands for Conductivity, Temperature, and Depth, which are the three primary variables measured by a CTD sensor.""",
-        meaning=SDN_L05["130"])
-    NISKIN_BOTTLE = PermissibleValue(
-        text="NISKIN_BOTTLE",
-        description="""A Niskin bottle is a type of sampling device used in oceanography to collect water samples at different depths. It is named after the inventor, Shale Niskin, who developed the device in the 1960s.""",
+    niskin_bottle = PermissibleValue(
+        text="niskin_bottle",
+        description="""A device that collects an in-situ discrete water sample from any depth and returns it to the surface without contamination by the waters through which it passes, such as a water bottle.""",
         meaning=SDN_L05["30"])
-    FLOW_THROUGH_SYSTEM = PermissibleValue(
-        text="FLOW_THROUGH_SYSTEM",
-        description="""A flow-through system on a research vessel or ship of opportunity is a system designed to continuously pump seawater from the ocean into the laboratory for scientific research.""",
+    flow_through_system = PermissibleValue(
+        text="flow_through_system",
+        description="""A device that continuously supplies a flow of water either to an analytical instrument, over a sensor or from which samples may be drawn.""",
         meaning=SDN_L05["31"])
-    THERMOSALINOGRAPH = PermissibleValue(
-        text="THERMOSALINOGRAPH",
-        description="A Thermosalinograph (TSG) is an instrument used to measure seawater temperature and salinity.",
-        meaning=SDN_L05["133"])
-    SALINOMETER_FOR_DISCRETE_SALINITY_MEASUREMENT = PermissibleValue(
-        text="SALINOMETER_FOR_DISCRETE_SALINITY_MEASUREMENT",
-        description="""Salinometers work based on the principle of conductivity. They measure the electrical conductivity of the water, which is directly related to its salinity.""",
-        meaning=SDN_L05["LAB30"])
-    DIC_ANALYZERS_BASED_ON_COULOMETERS = PermissibleValue(
-        text="DIC_ANALYZERS_BASED_ON_COULOMETERS",
-        description="""DIC coulometers are widely used in oceanographic research to measure the concentration of dissolved inorganic carbon in seawater samples. They are often coupled with computer-controlled automated dynamic headspace analyzers that extracts total carbon dioxide from seawater using Single-Operator Multiparameter Metabolic Analyzers (SOMMAs).""")
-    DIC_ANALYZERS_BASED_ON_CO2_GAS_DETECTORS = PermissibleValue(
-        text="DIC_ANALYZERS_BASED_ON_CO2_GAS_DETECTORS",
-        description="""DIC analyzers based on a CO2 gas detector including Non-dispersive infrared absorption (NDIR) (e.g., Licor LI-850), Cavity Enhanced Absorption Spectroscopy (e.g., Licor's LI-7815), and Cavity Ring-Down Spectroscopy (CRDS) (e.g., Picarro G2131i) detectors.""")
-    AUTONOMOUS_DIC_SENSOR = PermissibleValue(
-        text="AUTONOMOUS_DIC_SENSOR",
-        description="""Autonomous dissolved inorganic carbon (DIC) sensors are devices that can measure the concentration of DIC in seawater or other natural waters in situ, without the need for manual sampling and laboratory analysis.""",
-        meaning=SDN_L05["86"])
-    ALKALINITY_TITRATOR = PermissibleValue(
-        text="ALKALINITY_TITRATOR",
-        description="""An alkalinity titrator is a device used to measure the total alkalinity of a seawater by titration.""",
-        meaning=SDN_L05["LAB12"])
-    AUTONOMOUS_TA_SENSOR = PermissibleValue(
-        text="AUTONOMOUS_TA_SENSOR",
-        description="""Autonomous total alkalinity (TA) sensors are devices that can measure the concentration of TA in seawater or other natural waters in situ, without the need for manual sampling and laboratory analysis.""")
-    SHOWERHEAD_EQUILIBRATOR = PermissibleValue(
-        text="SHOWERHEAD_EQUILIBRATOR",
-        description="""This type of equilibrator works by spraying seawater into a gas chamber, allowing the CO2 in the water to equilibrate with a gas mixture in the chamber.""",
-        meaning=SDN_L05["EQUIL"])
-    FLOATING_AIR_WATER_EQUILIBRATOR = PermissibleValue(
-        text="FLOATING_AIR_WATER_EQUILIBRATOR",
-        description="""An \"h\"-shaped bubble equilibrator assembly commonly used in MAPCO2 systems on moorings. For more information, refer to Friederich et al. (1995).""",
-        meaning=SDN_L05["EQUIL"])
-    MEMBRANE_EQUILIBRATOR = PermissibleValue(
-        text="MEMBRANE_EQUILIBRATOR",
-        description="""While seawater is passed through a membrane, CO2 in the water diffuses across the membrane and equilibrates with the gas mixture, which is then analyzed to determine the CO2 concentration.""",
-        meaning=SDN_L05["EQUIL"])
-    FLASK_FOR_DISCRETE_CARBON_DIOXIDE_MEASUREMENT = PermissibleValue(
-        text="FLASK_FOR_DISCRETE_CARBON_DIOXIDE_MEASUREMENT",
+    flask_for_discrete_carbon_dioxide_measurement = PermissibleValue(
+        text="flask_for_discrete_carbon_dioxide_measurement",
         description="""Such flasks are typically made of glass and have a capacity of around one liter. Seawater samples are collected from a specific depth using a Niskin bottle or other sampling device and transferred to the flask without exposing them to the air. The flask is then sealed with a stopper and transported to the laboratory for analysis.""")
-    SPECTROPHOTOMETER = PermissibleValue(
-        text="SPECTROPHOTOMETER",
-        description="""A spectrophotometer is a scientific instrument used to measure the amount of light absorbed or transmitted by a sample. It is commonly used for high quality pH measurements.""",
-        meaning=SDN_L05["LAB20"])
-    HANDHELD_PH_SPECTROPHOTOMETER = PermissibleValue(
-        text="HANDHELD_PH_SPECTROPHOTOMETER",
-        description="""One example of a handheld pH spectrophotometer is the \"pHyter\". Refer to Pardis et al. (2022) for more details.""")
-    PH_ELECTRODE = PermissibleValue(
-        text="PH_ELECTRODE",
-        description="""A pH electrode, sometimes referred to as a pH probe or pH sensor, is a glass device used to measure the pH of a solution.""",
-        meaning=SDN_L05["355"])
-    SEA_BIRD_SEAFET = PermissibleValue(
-        text="SEA_BIRD_SEAFET",
-        description="""Sea-Bird SeaFET is a type of oceanographic instrument that is used to measure the pH of seawater in real-time.""",
-        meaning=SDN_L22["TOOL1292"])
-    OXYGEN_TITRATOR = PermissibleValue(
-        text="OXYGEN_TITRATOR",
-        description="""An oxygen titrator is a device used to measure the concentration of dissolved oxygen in a water sample, as required for the Winkler method.""",
-        meaning=SDN_L05["LAB12"])
-    OXYGEN_SENSOR = PermissibleValue(
-        text="OXYGEN_SENSOR",
-        description="""An oxygen sensor or probe or sond, is an electronic device that measures the concentration of dissolved oxygen in the ocean.""",
-        meaning=SDN_L05["351"])
-    SEA_BIRD_SEAPHOX = PermissibleValue(
-        text="SEA_BIRD_SEAPHOX",
-        description="""Sea-Bird SeapHOx is a type of oceanographic instrument that measures both the pH and dissolved oxygen concentration of seawater in real-time.""",
-        meaning=SDN_L22["TOOL1895"])
-    YSI = PermissibleValue(
-        text="YSI",
-        description="""YSI (Yellow Springs Instruments) is a company that produces a variety of water quality monitoring instruments. The YSI sensors are designed to measure a wide range of parameters, including temperature, salinity, and dissolved oxygen.""",
-        meaning=SDN_B75["ORG00475"])
-    NUTRIENT_ANALYZER = PermissibleValue(
-        text="NUTRIENT_ANALYZER",
-        description="""A nutrient analyzer is a device used to measure the concentration of nutrients, such as nitrate, nitrite, ammonium, phosphate, and silicate, in water samples.""",
-        meaning=SDN_L05["181"])
-    FLUOROMETERS = PermissibleValue(
-        text="FLUOROMETERS",
-        description="""Fluorometers can detect chlorophyll a by transmitting an excitation beam of light in the blue range and by detecting the light fluoresced by cells or chlorophyll in a sample.""",
-        meaning=SDN_L05["113"])
-    HIGH_PERFORMANCE_LIQUID_CHROMATOGRAPHY_HPLC = PermissibleValue(
-        text="HIGH_PERFORMANCE_LIQUID_CHROMATOGRAPHY_HPLC",
-        description="""High performance liquid chromatography (HPLC) is a powerful analytical technique used in chemistry, biochemistry, and pharmaceutical industries to separate, identify, and quantify individual components in a mixture.""",
-        meaning=SDN_L05["LAB11"])
-    ACOUSTIC_DOPPLER_CURRENT_PROFILER_ADCP = PermissibleValue(
-        text="ACOUSTIC_DOPPLER_CURRENT_PROFILER_ADCP",
-        description="""Acoustic Doppler Current Profiler (ADCP), is a type of instrument used to measure water currents in oceans, rivers, and other bodies of water.""",
-        meaning=SDN_L05["115"])
-    MASS_SPECTROMETERS = PermissibleValue(
-        text="MASS_SPECTROMETERS",
-        description="""A mass spectrometer is an analytical instrument used to measure and identify the mass and abundance of atoms and molecules in a sample.""",
-        meaning=SDN_L05["LAB16"])
-    ISOTOPE_RATIO_MASS_SPECTROMETERS_IRMS = PermissibleValue(
-        text="ISOTOPE_RATIO_MASS_SPECTROMETERS_IRMS",
-        description="""An isotope ratio mass spectrometer (IRMS) is a scientific instrument used to measure the isotopic composition of a sample.""",
-        meaning=SDN_L05["LAB48"])
-    BAROMETRIC_PRESSURE_SENSOR = PermissibleValue(
-        text="BAROMETRIC_PRESSURE_SENSOR",
-        description="""A barometric pressure sensor is a device that measures atmospheric pressure, which is the pressure exerted by the weight of the Earth's atmosphere.""",
-        meaning=SDN_L05["102"])
-    MICROSCOPES = PermissibleValue(
-        text="MICROSCOPES",
-        description="""A microscope is an instrument used to observe and magnify objects that are too small to be seen by the naked eye.""",
-        meaning=SDN_L05["LAB05"])
-    SCANNING_ELECTRON_MICROSCOPES = PermissibleValue(
-        text="SCANNING_ELECTRON_MICROSCOPES",
-        description="""A scanning electron microscope (SEM) is a type of microscope that uses a focused beam of electrons to create high-resolution images of the surface of a specimen.""",
-        meaning=SDN_L05["LAB07"])
-    BIOLOGICAL_TRAWL = PermissibleValue(
-        text="BIOLOGICAL_TRAWL",
-        description="""A biological trawl is a type of pelagic trawl net used to collect biological samples from the water column.""",
+    biological_trawl = PermissibleValue(
+        text="biological_trawl",
+        description="A net towed through the water column designed to sample free-swimming nekton or fish",
         meaning=SDN_L05["23"])
-    PHYTOPLANKTON_NET = PermissibleValue(
-        text="PHYTOPLANKTON_NET",
+    phytoplankton_net = PermissibleValue(
+        text="phytoplankton_net",
         description="""Phytoplankton net is used to collect and identify phytoplankton, which are microscopic plants that form the base of the marine food web.""",
         meaning=SDN_L05["22"])
-    ZOOPLANKTON_NET = PermissibleValue(
-        text="ZOOPLANKTON_NET",
+    zooplankton_net = PermissibleValue(
+        text="zooplankton_net",
         description="""Zooplankton net is used to collect and identify zooplankton, which are microscopic animals that feed on phytoplankton and are important prey for many marine organisms.""",
         meaning=SDN_L05["22"])
-    FLOW_CYTOMETERS = PermissibleValue(
-        text="FLOW_CYTOMETERS",
-        description="""A flow cytometer is a scientific instrument used to analyze and sort cells or particles in a liquid suspension based on their physical and chemical properties.""",
-        meaning=SDN_L05["LAB37"])
-    EDNA_SAMPLER = PermissibleValue(
-        text="EDNA_SAMPLER",
+    edna_sampler = PermissibleValue(
+        text="edna_sampler",
         description="""Environmental DNA (eDNA) samplers: used to collect and analyze genetic material shed by marine organisms, which can provide information about their distribution, abundance, and diversity.""")
-    OTHER = PermissibleValue(text="OTHER")
+    autonomous_sensor = PermissibleValue(
+        text="autonomous_sensor",
+        description="""A device used in the measurement of a variety of oceanographic variables that functions autonomously""")
+    other = PermissibleValue(text="other")
 
     _defn = EnumDefinition(
-        name="InstrumentType",
+        name="SamplingInstrumentType",
+    )
+
+class AnalyzingInstrumentType(EnumDefinitionImpl):
+
+    ctd_sensor = PermissibleValue(
+        text="ctd_sensor",
+        description="""A reusable instrument that always simultaneously measures conductivity and temperature (for salinity) and pressure (for depth).""",
+        meaning=SDN_L05["130"])
+    flow_through_system = PermissibleValue(
+        text="flow_through_system",
+        description="""A device that continuously supplies a flow of water either to an analytical instrument, over a sensor or from which samples may be drawn.""",
+        meaning=SDN_L05["31"])
+    thermosalinograph = PermissibleValue(
+        text="thermosalinograph",
+        description="""Temperature and conductivity sensors mounted on a sea-surface platform continuously measuring a surface water supply.""",
+        meaning=SDN_L05["133"])
+    salinometer_for_discrete_salinity_measurement = PermissibleValue(
+        text="salinometer_for_discrete_salinity_measurement",
+        description="""Instruments that measure the salinity of a collected water sample based on its electrical conductivity or optical properties.""",
+        meaning=SDN_L05["LAB30"])
+    dic_analyzers_based_on_coulometers = PermissibleValue(
+        text="dic_analyzers_based_on_coulometers",
+        description="""DIC coulometers are widely used in oceanographic research to measure the concentration of dissolved inorganic carbon in seawater samples. They are often coupled with computer-controlled automated dynamic headspace analyzers that extracts total carbon dioxide from seawater using Single-Operator Multiparameter Metabolic Analyzers (SOMMAs).""")
+    dic_analyzers_based_on_co2_gas_detectors = PermissibleValue(
+        text="dic_analyzers_based_on_co2_gas_detectors",
+        description="""DIC analyzers based on a CO2 gas detector including Non-dispersive infrared absorption (NDIR) (e.g., Licor LI-850), Cavity Enhanced Absorption Spectroscopy (e.g., Licor's LI-7815), and Cavity Ring-Down Spectroscopy (CRDS) (e.g., Picarro G2131i) detectors.""")
+    autonomous_dic_sensor = PermissibleValue(
+        text="autonomous_dic_sensor",
+        description="""Autonomous dissolved inorganic carbon (DIC) sensors are devices that can measure the concentration of DIC in seawater or other natural waters in situ, without the need for manual sampling and laboratory analysis.""",
+        meaning=SDN_L05["86"])
+    alkalinity_titrator = PermissibleValue(
+        text="alkalinity_titrator",
+        description="""An alkalinity titrator is a device used to measure the total alkalinity of a seawater by titration.""",
+        meaning=SDN_L05["LAB12"])
+    autonomous_ta_sensor = PermissibleValue(
+        text="autonomous_ta_sensor",
+        description="""Autonomous total alkalinity (TA) sensors are devices that can measure the concentration of TA in seawater or other natural waters in situ, without the need for manual sampling and laboratory analysis.""")
+    showerhead_equilibrator = PermissibleValue(
+        text="showerhead_equilibrator",
+        description="""This type of equilibrator works by spraying seawater into a gas chamber, allowing the CO2 in the water to equilibrate with a gas mixture in the chamber.""",
+        meaning=SDN_L05["EQUIL"])
+    floating_air_water_equilibrator = PermissibleValue(
+        text="floating_air_water_equilibrator",
+        description="""An \"h\"-shaped bubble equilibrator assembly commonly used in MAPCO2 systems on moorings. For more information, refer to Friederich et al. (1995).""",
+        meaning=SDN_L05["EQUIL"])
+    membrane_equilibrator = PermissibleValue(
+        text="membrane_equilibrator",
+        description="""While seawater is passed through a membrane, CO2 in the water diffuses across the membrane and equilibrates with the gas mixture, which is then analyzed to determine the CO2 concentration.""",
+        meaning=SDN_L05["EQUIL"])
+    spectrophotometer = PermissibleValue(
+        text="spectrophotometer",
+        description="""Instruments measuring the relative absorption of electromagnetic radiation of different wavelengths in the near infra-red, visible and ultraviolet wavebands by samples.""",
+        meaning=SDN_L05["LAB20"])
+    handheld_ph_spectrophotometer = PermissibleValue(
+        text="handheld_ph_spectrophotometer",
+        description="""One example of a handheld pH spectrophotometer is the \"pHyter\". Refer to Pardis et al. (2022) for more details.""")
+    ph_electrode = PermissibleValue(
+        text="ph_electrode",
+        description="""A pH electrode, sometimes referred to as a pH probe or pH sensor, is a glass device used to measure the pH of a solution.""",
+        meaning=SDN_L05["355"])
+    sea_bird_seafet = PermissibleValue(
+        text="sea_bird_seafet",
+        description="""Sea-Bird SeaFET is a type of oceanographic instrument that is used to measure the pH of seawater in real-time.""",
+        meaning=SDN_L22["TOOL1292"])
+    oxygen_titrator = PermissibleValue(
+        text="oxygen_titrator",
+        description="""An oxygen titrator is a device used to measure the concentration of dissolved oxygen in a water sample, as required for the Winkler method.""",
+        meaning=SDN_L05["LAB12"])
+    oxygen_sensor = PermissibleValue(
+        text="oxygen_sensor",
+        description="""An oxygen sensor or probe or sond, is an electronic device that measures the concentration of dissolved oxygen in the ocean.""",
+        meaning=SDN_L05["351"])
+    sea_bird_seaphox = PermissibleValue(
+        text="sea_bird_seaphox",
+        description="""Sea-Bird SeapHOx is a type of oceanographic instrument that measures both the pH and dissolved oxygen concentration of seawater in real-time.""",
+        meaning=SDN_L22["TOOL1895"])
+    ysi = PermissibleValue(
+        text="ysi",
+        description="""YSI (Yellow Springs Instruments) is a company that produces a variety of water quality monitoring instruments. The YSI sensors are designed to measure a wide range of parameters, including temperature, salinity, and dissolved oxygen.""",
+        meaning=SDN_B75["ORG00475"])
+    nutrient_analyzer = PermissibleValue(
+        text="nutrient_analyzer",
+        description="""Instrument that makes in-situ measurements of one or more of nitrate, nitrite, ammonium, urea, phosphate or silicate dissolved in the water column.""",
+        meaning=SDN_L05["181"])
+    fluorometers = PermissibleValue(
+        text="fluorometers",
+        description="""Instrument that measures the amount of stimulated electromagnetic radiation produced by pulses of electromagnetic radiation emitted into the water column.""",
+        meaning=SDN_L05["113"])
+    high_performance_liquid_chromatography_hplc = PermissibleValue(
+        text="high_performance_liquid_chromatography_hplc",
+        description="""Instruments that separate and analyse mixtures of substances by high pressure pumping the sample through a column packed with microspheres coated with the stationary phase.""",
+        meaning=SDN_L05["LAB11"])
+    acoustic_doppler_current_profiler_adcp = PermissibleValue(
+        text="acoustic_doppler_current_profiler_adcp",
+        description="""Acoustic Doppler Current Profiler (ADCP), is a type of instrument used to measure water currents in oceans, rivers, and other bodies of water.""",
+        meaning=SDN_L05["115"])
+    mass_spectrometers = PermissibleValue(
+        text="mass_spectrometers",
+        description="""Instruments used to measure the mass-to-charge ratio of ions most generally used to find the composition of a sample by generating a mass spectrum representing the masses of sample components.""",
+        meaning=SDN_L05["LAB16"])
+    isotope_ratio_mass_spectrometers_irms = PermissibleValue(
+        text="isotope_ratio_mass_spectrometers_irms",
+        description="""Instruments that measure isotopic ratios using an electron ionisation source. Atoms in purified samples are ionised using a beam of electrons under vacuum. Subsequently, ions are focused into a beam by an electromagnet and then separated into individual beams based on their mass/charge ratio""",
+        meaning=SDN_L05["LAB48"])
+    barometric_pressure_sensor = PermissibleValue(
+        text="barometric_pressure_sensor",
+        description="""Instrument that makes routine meteorological measurements on the atmosphere, typically air pressure, temperature and humidity""",
+        meaning=SDN_L05["102"])
+    microscopes = PermissibleValue(
+        text="microscopes",
+        description="""Instruments that generate enlarged images of samples using the phenomena of reflection and absorption of visible light. Includes conventional and inverted instruments""",
+        meaning=SDN_L05["LAB05"])
+    scanning_electron_microscopes = PermissibleValue(
+        text="scanning_electron_microscopes",
+        description="""A scanning electron microscope (SEM) is a type of microscope that uses a focused beam of electrons to create high-resolution images of the surface of a specimen.""",
+        meaning=SDN_L05["LAB07"])
+    flow_cytometers = PermissibleValue(
+        text="flow_cytometers",
+        description="""Instruments that suspend cells in a stream of fluid past detection sensors whilst illuminating them with laser light. Used for cell counting, sorting, biomarker detection and protein engineering.""",
+        meaning=SDN_L05["LAB37"])
+    edna_sampler = PermissibleValue(
+        text="edna_sampler",
+        description="""Environmental DNA (eDNA) samplers: used to collect and analyze genetic material shed by marine organisms, which can provide information about their distribution, abundance, and diversity.""")
+    other = PermissibleValue(text="other")
+
+    _defn = EnumDefinition(
+        name="AnalyzingInstrumentType",
     )
 
 class CalibrationLocation(EnumDefinitionImpl):
@@ -3712,6 +3731,9 @@ slots.vocabularyItemReference__uri = Slot(uri=OAE.uri, name="vocabularyItemRefer
 slots.observedPropertyVariable__sampling_method = Slot(uri=OAE.sampling_method, name="observedPropertyVariable__sampling_method", curie=OAE.curie('sampling_method'),
                    model_uri=OAE.observedPropertyVariable__sampling_method, domain=None, range=str)
 
+slots.observedPropertyVariable__field_replicate_information = Slot(uri=OAE.field_replicate_information, name="observedPropertyVariable__field_replicate_information", curie=OAE.curie('field_replicate_information'),
+                   model_uri=OAE.observedPropertyVariable__field_replicate_information, domain=None, range=Optional[str])
+
 slots.observedPropertyVariable__analyzing_method = Slot(uri=OAE.analyzing_method, name="observedPropertyVariable__analyzing_method", curie=OAE.curie('analyzing_method'),
                    model_uri=OAE.observedPropertyVariable__analyzing_method, domain=None, range=str)
 
@@ -3725,13 +3747,13 @@ slots.observedPropertyVariable__genesis = Slot(uri=OAE.genesis, name="observedPr
                    model_uri=OAE.observedPropertyVariable__genesis, domain=None, range=Union[str, "GenesisType"])
 
 slots.observedPropertyVariable__sampling_instrument_type = Slot(uri=OAE.sampling_instrument_type, name="observedPropertyVariable__sampling_instrument_type", curie=OAE.curie('sampling_instrument_type'),
-                   model_uri=OAE.observedPropertyVariable__sampling_instrument_type, domain=None, range=Optional[Union[str, "InstrumentType"]])
+                   model_uri=OAE.observedPropertyVariable__sampling_instrument_type, domain=None, range=Optional[Union[str, "SamplingInstrumentType"]])
 
 slots.observedPropertyVariable__sampling_instrument_type_custom = Slot(uri=OAE.sampling_instrument_type_custom, name="observedPropertyVariable__sampling_instrument_type_custom", curie=OAE.curie('sampling_instrument_type_custom'),
                    model_uri=OAE.observedPropertyVariable__sampling_instrument_type_custom, domain=None, range=Optional[str])
 
 slots.discreteMeasuredVariable__analyzing_instrument = Slot(uri=OAE.analyzing_instrument, name="discreteMeasuredVariable__analyzing_instrument", curie=OAE.curie('analyzing_instrument'),
-                   model_uri=OAE.discreteMeasuredVariable__analyzing_instrument, domain=None, range=Union[dict, Instrument])
+                   model_uri=OAE.discreteMeasuredVariable__analyzing_instrument, domain=None, range=Union[dict, AnalyzingInstrument])
 
 slots.continuousMeasuredVariable__raw_data_calculation_method = Slot(uri=OAE.raw_data_calculation_method, name="continuousMeasuredVariable__raw_data_calculation_method", curie=OAE.curie('raw_data_calculation_method'),
                    model_uri=OAE.continuousMeasuredVariable__raw_data_calculation_method, domain=None, range=str)
@@ -3757,20 +3779,17 @@ slots.nonMeasuredVariable__data_source = Slot(uri=OAE.data_source, name="nonMeas
 slots.nonMeasuredVariable__source_reference = Slot(uri=OAE.source_reference, name="nonMeasuredVariable__source_reference", curie=OAE.curie('source_reference'),
                    model_uri=OAE.nonMeasuredVariable__source_reference, domain=None, range=Optional[str])
 
-slots.qCFields__field_replicate_information = Slot(uri=OAE.field_replicate_information, name="qCFields__field_replicate_information", curie=OAE.curie('field_replicate_information'),
-                   model_uri=OAE.qCFields__field_replicate_information, domain=None, range=Optional[str])
-
 slots.qCFields__qc_steps_taken = Slot(uri=OAE.qc_steps_taken, name="qCFields__qc_steps_taken", curie=OAE.curie('qc_steps_taken'),
-                   model_uri=OAE.qCFields__qc_steps_taken, domain=None, range=str)
+                   model_uri=OAE.qCFields__qc_steps_taken, domain=None, range=Optional[str])
 
 slots.qCFields__uncertainty = Slot(uri=OAE.uncertainty, name="qCFields__uncertainty", curie=OAE.curie('uncertainty'),
                    model_uri=OAE.qCFields__uncertainty, domain=None, range=Optional[str])
 
 slots.qCFields__uncertainty_definition = Slot(uri=OAE.uncertainty_definition, name="qCFields__uncertainty_definition", curie=OAE.curie('uncertainty_definition'),
-                   model_uri=OAE.qCFields__uncertainty_definition, domain=None, range=str)
+                   model_uri=OAE.qCFields__uncertainty_definition, domain=None, range=Optional[str])
 
 slots.qCFields__missing_value_indicators = Slot(uri=OAE.missing_value_indicators, name="qCFields__missing_value_indicators", curie=OAE.curie('missing_value_indicators'),
-                   model_uri=OAE.qCFields__missing_value_indicators, domain=None, range=str)
+                   model_uri=OAE.qCFields__missing_value_indicators, domain=None, range=Optional[str])
 
 slots.qCFields__qc_researcher = Slot(uri=OAE.qc_researcher, name="qCFields__qc_researcher", curie=OAE.curie('qc_researcher'),
                    model_uri=OAE.qCFields__qc_researcher, domain=None, range=Optional[Union[dict, Person]])
@@ -3827,7 +3846,7 @@ slots.platform__country = Slot(uri=OAE.country, name="platform__country", curie=
                    model_uri=OAE.platform__country, domain=None, range=Optional[str])
 
 slots.instrument__instrument_type = Slot(uri=OAE.instrument_type, name="instrument__instrument_type", curie=OAE.curie('instrument_type'),
-                   model_uri=OAE.instrument__instrument_type, domain=None, range=Union[str, "InstrumentType"])
+                   model_uri=OAE.instrument__instrument_type, domain=None, range=Union[dict, Any])
 
 slots.instrument__instrument_type_custom = Slot(uri=OAE.instrument_type_custom, name="instrument__instrument_type_custom", curie=OAE.curie('instrument_type_custom'),
                    model_uri=OAE.instrument__instrument_type_custom, domain=None, range=Optional[str])
@@ -3847,11 +3866,11 @@ slots.instrument__precision = Slot(uri=OAE.precision, name="instrument__precisio
 slots.instrument__accuracy = Slot(uri=OAE.accuracy, name="instrument__accuracy", curie=OAE.curie('accuracy'),
                    model_uri=OAE.instrument__accuracy, domain=None, range=str)
 
-slots.cRMInstrument__calibration = Slot(uri=OAE.calibration, name="cRMInstrument__calibration", curie=OAE.curie('calibration'),
-                   model_uri=OAE.cRMInstrument__calibration, domain=None, range=Union[dict, CRMCalibration])
-
 slots.pHInstrument__calibration = Slot(uri=OAE.calibration, name="pHInstrument__calibration", curie=OAE.curie('calibration'),
                    model_uri=OAE.pHInstrument__calibration, domain=None, range=Union[dict, PHCalibration])
+
+slots.cRMInstrument__calibration = Slot(uri=OAE.calibration, name="cRMInstrument__calibration", curie=OAE.curie('calibration'),
+                   model_uri=OAE.cRMInstrument__calibration, domain=None, range=Union[dict, CRMCalibration])
 
 slots.cO2GasDetector__calibration = Slot(uri=OAE.calibration, name="cO2GasDetector__calibration", curie=OAE.curie('calibration'),
                    model_uri=OAE.cO2GasDetector__calibration, domain=None, range=Union[dict, CO2Calibration])
@@ -3928,6 +3947,9 @@ slots.standardGas__concentration = Slot(uri=OAE.concentration, name="standardGas
 slots.standardGas__uncertainty = Slot(uri=OAE.uncertainty, name="standardGas__uncertainty", curie=OAE.curie('uncertainty'),
                    model_uri=OAE.standardGas__uncertainty, domain=None, range=str)
 
+slots.instrument_type = Slot(uri=OAE.instrument_type, name="instrument_type", curie=OAE.curie('instrument_type'),
+                   model_uri=OAE.instrument_type, domain=None, range=Optional[str])
+
 slots.SpatialCoverage_geo = Slot(uri=OAE.geo, name="SpatialCoverage_geo", curie=OAE.curie('geo'),
                    model_uri=OAE.SpatialCoverage_geo, domain=SpatialCoverage, range=Union[dict, "GeoShape"])
 
@@ -3971,6 +3993,18 @@ slots.Experiment_spatial_coverage = Slot(uri=SCHEMA.spatialCoverage, name="Exper
 slots.Experiment_vertical_coverage = Slot(uri=OAE.vertical_coverage, name="Experiment_vertical_coverage", curie=OAE.curie('vertical_coverage'),
                    model_uri=OAE.Experiment_vertical_coverage, domain=Experiment, range=Optional[Union[dict, VerticalExtent]])
 
+slots.ObservedPropertyVariable_qc_steps_taken = Slot(uri=OAE.qc_steps_taken, name="ObservedPropertyVariable_qc_steps_taken", curie=OAE.curie('qc_steps_taken'),
+                   model_uri=OAE.ObservedPropertyVariable_qc_steps_taken, domain=ObservedPropertyVariable, range=str)
+
+slots.ObservedPropertyVariable_uncertainty = Slot(uri=OAE.uncertainty, name="ObservedPropertyVariable_uncertainty", curie=OAE.curie('uncertainty'),
+                   model_uri=OAE.ObservedPropertyVariable_uncertainty, domain=ObservedPropertyVariable, range=str)
+
+slots.ObservedPropertyVariable_uncertainty_definition = Slot(uri=OAE.uncertainty_definition, name="ObservedPropertyVariable_uncertainty_definition", curie=OAE.curie('uncertainty_definition'),
+                   model_uri=OAE.ObservedPropertyVariable_uncertainty_definition, domain=ObservedPropertyVariable, range=str)
+
+slots.ObservedPropertyVariable_missing_value_indicators = Slot(uri=OAE.missing_value_indicators, name="ObservedPropertyVariable_missing_value_indicators", curie=OAE.curie('missing_value_indicators'),
+                   model_uri=OAE.ObservedPropertyVariable_missing_value_indicators, domain=ObservedPropertyVariable, range=str)
+
 slots.DiscretePHVariable_analyzing_instrument = Slot(uri=OAE.analyzing_instrument, name="DiscretePHVariable_analyzing_instrument", curie=OAE.curie('analyzing_instrument'),
                    model_uri=OAE.DiscretePHVariable_analyzing_instrument, domain=DiscretePHVariable, range=Union[dict, "PHInstrument"])
 
@@ -3988,3 +4022,6 @@ slots.Dataset_experiment_id = Slot(uri=OAE.experiment_id, name="Dataset_experime
 
 slots.Platform_name = Slot(uri=SCHEMA.name, name="Platform_name", curie=SCHEMA.curie('name'),
                    model_uri=OAE.Platform_name, domain=Platform, range=Optional[str])
+
+slots.AnalyzingInstrument_instrument_type = Slot(uri=OAE.instrument_type, name="AnalyzingInstrument_instrument_type", curie=OAE.curie('instrument_type'),
+                   model_uri=OAE.AnalyzingInstrument_instrument_type, domain=AnalyzingInstrument, range=Optional[str])
