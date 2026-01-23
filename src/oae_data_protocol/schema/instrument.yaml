@@ -66,7 +66,7 @@ classes:
       Subclass of Instrument used for analyzing samples
     slot_usage:
       instrument_type:
-        range: string
+        range: AnalyzingInstrumentType
 
   # pH Instrument with dye-based calibration
   pHInstrument:

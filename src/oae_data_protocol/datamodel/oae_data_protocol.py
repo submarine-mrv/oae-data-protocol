@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-01-22T22:00:32
+# Generation date: 2026-01-22T22:18:16
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -1838,11 +1838,11 @@ class AnalyzingInstrument(YAMLRoot):
     class_name: ClassVar[str] = "AnalyzingInstrument"
     class_model_uri: ClassVar[URIRef] = OAE.AnalyzingInstrument
 
-    instrument_type: Optional[str] = None
+    instrument_type: Optional[Union[str, "AnalyzingInstrumentType"]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.instrument_type is not None and not isinstance(self.instrument_type, str):
-            self.instrument_type = str(self.instrument_type)
+        if self.instrument_type is not None and not isinstance(self.instrument_type, AnalyzingInstrumentType):
+            self.instrument_type = AnalyzingInstrumentType(self.instrument_type)
 
         super().__post_init__(**kwargs)
 
@@ -3952,7 +3952,7 @@ slots.standardGas__uncertainty = Slot(uri=OAE.uncertainty, name="standardGas__un
                    model_uri=OAE.standardGas__uncertainty, domain=None, range=str)
 
 slots.instrument_type = Slot(uri=OAE.instrument_type, name="instrument_type", curie=OAE.curie('instrument_type'),
-                   model_uri=OAE.instrument_type, domain=None, range=Optional[str])
+                   model_uri=OAE.instrument_type, domain=None, range=Optional[Union[str, "AnalyzingInstrumentType"]])
 
 slots.SpatialCoverage_geo = Slot(uri=OAE.geo, name="SpatialCoverage_geo", curie=OAE.curie('geo'),
                    model_uri=OAE.SpatialCoverage_geo, domain=SpatialCoverage, range=Union[dict, "GeoShape"])
@@ -4028,4 +4028,4 @@ slots.Platform_name = Slot(uri=SCHEMA.name, name="Platform_name", curie=SCHEMA.c
                    model_uri=OAE.Platform_name, domain=Platform, range=Optional[str])
 
 slots.AnalyzingInstrument_instrument_type = Slot(uri=OAE.instrument_type, name="AnalyzingInstrument_instrument_type", curie=OAE.curie('instrument_type'),
-                   model_uri=OAE.AnalyzingInstrument_instrument_type, domain=AnalyzingInstrument, range=Optional[str])
+                   model_uri=OAE.AnalyzingInstrument_instrument_type, domain=AnalyzingInstrument, range=Optional[Union[str, "AnalyzingInstrumentType"]])
