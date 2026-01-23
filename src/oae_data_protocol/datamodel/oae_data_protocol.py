@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-01-22T23:08:20
+# Generation date: 2026-01-22T23:09:38
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -2004,6 +2004,7 @@ class Calibration(YAMLRoot):
     class_model_uri: ClassVar[URIRef] = OAE.Calibration
 
     technique_description: str = None
+    calibration_location: Optional[Union[str, "CalibrationLocation"]] = None
     method_reference: Optional[str] = None
     frequency: Optional[str] = None
     last_calibration_date: Optional[Union[str, XSDDateTime]] = None
@@ -2014,6 +2015,9 @@ class Calibration(YAMLRoot):
             self.MissingRequiredField("technique_description")
         if not isinstance(self.technique_description, str):
             self.technique_description = str(self.technique_description)
+
+        if self.calibration_location is not None and not isinstance(self.calibration_location, CalibrationLocation):
+            self.calibration_location = CalibrationLocation(self.calibration_location)
 
         if self.method_reference is not None and not isinstance(self.method_reference, str):
             self.method_reference = str(self.method_reference)

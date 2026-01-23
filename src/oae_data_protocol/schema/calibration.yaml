@@ -18,6 +18,8 @@ classes:
   Calibration:
     description: >-
       Base calibration information for instruments.
+    slots:
+      - calibration_location
     attributes:
       technique_description:
         title: Calibration technique description
