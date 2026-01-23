@@ -157,7 +157,7 @@ enums:
         description: >-
           A device that continuously supplies a flow of water either to an analytical instrument, over a sensor or from
           which samples may be drawn.
-      flask_for_discrete_carbon_dioxide_measurement:
+      flask_for_discrete_co2_measurement:
         description: >-
           Such flasks are typically made of glass and have a capacity of around one liter. Seawater
           samples are collected from a specific depth using a Niskin bottle or other sampling device
@@ -264,11 +264,23 @@ enums:
         description: >-
           A pH electrode, sometimes referred to as a pH probe or pH sensor, is a glass device used to
           measure the pH of a solution.
-      sea_bird_seafet:
+      sea_bird_seafet_v1:
         meaning: SDN_L22:TOOL1292
         description: >-
-          Sea-Bird SeaFET is a type of oceanographic instrument that is used to measure the pH of
-          seawater in real-time.
+          A pH sensor. The sensor can be used for ocean acidification, research coral reef sensitivity analysis and
+          environmental monitoring. The sensor measures pH with a range of 6.5 to 9.0. The sensing element is an ion 
+          sensitive field effect transistor. The pH sensor has an initial accuracy of +/-0.05 pH, precision of 0.001 pH
+          and stability of 0.005 pH/month. It can operate in temperatures ranging from 0 deg C to 50 deg C and up to
+          depths of 50 m.
+      sea_bird_seafet_v2:
+        meaning: SDN_L22:TOOL1293
+        description: >-
+          A pH sensor. The sensor can be used for ocean acidification, research coral reef sensitivity analysis and
+          environmental monitoring. The sensor measures pH with a range of 6.5 to 9.0. The sensing element is an ion
+          sensitive field effect transistor. V2 implements improvements to the original SeaFET's reliability, data
+          quality, ease of operation, and deployment endurance, with significant changes to how users interface with the
+          instrument. The pH sensor has an accuracy to +/-0.05 pH, precision of 0.004 pH and stability of 0.003
+          pH/month. It can operate in temperatures ranging from 0 deg C to 50 deg C and up to depths of 50 m.
       oxygen_titrator:
         meaning: SDN_L05:LAB12
         description: >-

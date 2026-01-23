@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-01-22T19:09:31
+# Generation date: 2026-01-22T22:00:32
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -3260,8 +3260,8 @@ class SamplingInstrumentType(EnumDefinitionImpl):
         text="flow_through_system",
         description="""A device that continuously supplies a flow of water either to an analytical instrument, over a sensor or from which samples may be drawn.""",
         meaning=SDN_L05["31"])
-    flask_for_discrete_carbon_dioxide_measurement = PermissibleValue(
-        text="flask_for_discrete_carbon_dioxide_measurement",
+    flask_for_discrete_co2_measurement = PermissibleValue(
+        text="flask_for_discrete_co2_measurement",
         description="""Such flasks are typically made of glass and have a capacity of around one liter. Seawater samples are collected from a specific depth using a Niskin bottle or other sampling device and transferred to the flask without exposing them to the air. The flask is then sealed with a stopper and transported to the laboratory for analysis.""")
     biological_trawl = PermissibleValue(
         text="biological_trawl",
@@ -3345,10 +3345,14 @@ class AnalyzingInstrumentType(EnumDefinitionImpl):
         text="ph_electrode",
         description="""A pH electrode, sometimes referred to as a pH probe or pH sensor, is a glass device used to measure the pH of a solution.""",
         meaning=SDN_L05["355"])
-    sea_bird_seafet = PermissibleValue(
-        text="sea_bird_seafet",
-        description="""Sea-Bird SeaFET is a type of oceanographic instrument that is used to measure the pH of seawater in real-time.""",
+    sea_bird_seafet_v1 = PermissibleValue(
+        text="sea_bird_seafet_v1",
+        description="""A pH sensor. The sensor can be used for ocean acidification, research coral reef sensitivity analysis and environmental monitoring. The sensor measures pH with a range of 6.5 to 9.0. The sensing element is an ion  sensitive field effect transistor. The pH sensor has an initial accuracy of +/-0.05 pH, precision of 0.001 pH and stability of 0.005 pH/month. It can operate in temperatures ranging from 0 deg C to 50 deg C and up to depths of 50 m.""",
         meaning=SDN_L22["TOOL1292"])
+    sea_bird_seafet_v2 = PermissibleValue(
+        text="sea_bird_seafet_v2",
+        description="""A pH sensor. The sensor can be used for ocean acidification, research coral reef sensitivity analysis and environmental monitoring. The sensor measures pH with a range of 6.5 to 9.0. The sensing element is an ion sensitive field effect transistor. V2 implements improvements to the original SeaFET's reliability, data quality, ease of operation, and deployment endurance, with significant changes to how users interface with the instrument. The pH sensor has an accuracy to +/-0.05 pH, precision of 0.004 pH and stability of 0.003 pH/month. It can operate in temperatures ranging from 0 deg C to 50 deg C and up to depths of 50 m.""",
+        meaning=SDN_L22["TOOL1293"])
     oxygen_titrator = PermissibleValue(
         text="oxygen_titrator",
         description="""An oxygen titrator is a device used to measure the concentration of dissolved oxygen in a water sample, as required for the Winkler method.""",
