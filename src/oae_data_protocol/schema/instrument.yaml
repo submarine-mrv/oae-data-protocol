@@ -60,6 +60,10 @@ classes:
         range: string
         required: true
         # TODO: Change to DimensionedQuantity in Phase 3
+      calibration:
+        title: Calibration
+        description: Calibration information for this instrument.
+        range: Calibration
 
   AnalyzingInstrument:
     is_a:
