@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-01-22T23:00:38
+# Generation date: 2026-01-22T23:08:20
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -2003,7 +2003,6 @@ class Calibration(YAMLRoot):
     class_name: ClassVar[str] = "Calibration"
     class_model_uri: ClassVar[URIRef] = OAE.Calibration
 
-    calibration_location: Union[str, "CalibrationLocation"] = None
     technique_description: str = None
     method_reference: Optional[str] = None
     frequency: Optional[str] = None
@@ -2011,11 +2010,6 @@ class Calibration(YAMLRoot):
     calibration_certificates: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.calibration_location):
-            self.MissingRequiredField("calibration_location")
-        if not isinstance(self.calibration_location, CalibrationLocation):
-            self.calibration_location = CalibrationLocation(self.calibration_location)
-
         if self._is_empty(self.technique_description):
             self.MissingRequiredField("technique_description")
         if not isinstance(self.technique_description, str):
@@ -2048,7 +2042,6 @@ class CRMCalibration(Calibration):
     class_name: ClassVar[str] = "CRMCalibration"
     class_model_uri: ClassVar[URIRef] = OAE.CRMCalibration
 
-    calibration_location: Union[str, "CalibrationLocation"] = None
     technique_description: str = None
     crm_manufacturer: str = None
     crm_batch_number: str = None
@@ -2079,10 +2072,10 @@ class PHCalibration(Calibration):
     class_name: ClassVar[str] = "pHCalibration"
     class_model_uri: ClassVar[URIRef] = OAE.PHCalibration
 
-    calibration_location: Union[str, "CalibrationLocation"] = None
     technique_description: str = None
     dye_type_and_manufacturer: str = None
     dye_purified: Union[bool, Bool] = None
+    calibration_location: Union[str, "CalibrationLocation"] = None
     correction_for_unpurified_dye: Optional[str] = None
     dye_correction_method: Optional[str] = None
     ph_of_standards: Optional[str] = None
@@ -2098,6 +2091,11 @@ class PHCalibration(Calibration):
             self.MissingRequiredField("dye_purified")
         if not isinstance(self.dye_purified, Bool):
             self.dye_purified = Bool(self.dye_purified)
+
+        if self._is_empty(self.calibration_location):
+            self.MissingRequiredField("calibration_location")
+        if not isinstance(self.calibration_location, CalibrationLocation):
+            self.calibration_location = CalibrationLocation(self.calibration_location)
 
         if self.correction_for_unpurified_dye is not None and not isinstance(self.correction_for_unpurified_dye, str):
             self.correction_for_unpurified_dye = str(self.correction_for_unpurified_dye)
@@ -2126,7 +2124,6 @@ class CO2Calibration(Calibration):
     class_name: ClassVar[str] = "CO2Calibration"
     class_model_uri: ClassVar[URIRef] = OAE.CO2Calibration
 
-    calibration_location: Union[str, "CalibrationLocation"] = None
     technique_description: str = None
     wmo_traceable: Union[bool, Bool] = None
     calibration_temperature: Optional[str] = None
@@ -3508,6 +3505,9 @@ slots.missing_value_indicators = Slot(uri=OAE.missing_value_indicators, name="mi
 slots.appropriate_use_quality = Slot(uri=OAE.appropriate_use_quality, name="appropriate_use_quality", curie=OAE.curie('appropriate_use_quality'),
                    model_uri=OAE.appropriate_use_quality, domain=None, range=Optional[Union[str, "AppropriateUseQuality"]])
 
+slots.calibration_location = Slot(uri=OAE.calibration_location, name="calibration_location", curie=OAE.curie('calibration_location'),
+                   model_uri=OAE.calibration_location, domain=None, range=Optional[Union[str, "CalibrationLocation"]])
+
 slots.container__project = Slot(uri=OAE.project, name="container__project", curie=OAE.curie('project'),
                    model_uri=OAE.container__project, domain=None, range=Optional[Union[dict, Project]])
 
@@ -3903,9 +3903,6 @@ slots.sensor__calibration = Slot(uri=OAE.calibration, name="sensor__calibration"
 slots.genericInstrument__calibration = Slot(uri=OAE.calibration, name="genericInstrument__calibration", curie=OAE.curie('calibration'),
                    model_uri=OAE.genericInstrument__calibration, domain=None, range=Optional[Union[dict, Calibration]])
 
-slots.calibration__calibration_location = Slot(uri=OAE.calibration_location, name="calibration__calibration_location", curie=OAE.curie('calibration_location'),
-                   model_uri=OAE.calibration__calibration_location, domain=None, range=Union[str, "CalibrationLocation"])
-
 slots.calibration__technique_description = Slot(uri=OAE.technique_description, name="calibration__technique_description", curie=OAE.curie('technique_description'),
                    model_uri=OAE.calibration__technique_description, domain=None, range=str)
 
@@ -4038,3 +4035,6 @@ slots.Platform_name = Slot(uri=SCHEMA.name, name="Platform_name", curie=SCHEMA.c
 
 slots.AnalyzingInstrument_instrument_type = Slot(uri=OAE.instrument_type, name="AnalyzingInstrument_instrument_type", curie=OAE.curie('instrument_type'),
                    model_uri=OAE.AnalyzingInstrument_instrument_type, domain=AnalyzingInstrument, range=Union[str, "AnalyzingInstrumentType"])
+
+slots.pHCalibration_calibration_location = Slot(uri=OAE.calibration_location, name="pHCalibration_calibration_location", curie=OAE.curie('calibration_location'),
+                   model_uri=OAE.pHCalibration_calibration_location, domain=PHCalibration, range=Union[str, "CalibrationLocation"])
