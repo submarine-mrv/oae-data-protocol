@@ -2574,7 +2574,6 @@
             "required": [
                 "dye_type_and_manufacturer",
                 "dye_purified",
-                "calibration_location",
                 "technique_description"
             ],
             "title": "PHCalibration",

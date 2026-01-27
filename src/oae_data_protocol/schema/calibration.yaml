@@ -67,9 +67,6 @@ classes:
     description: >-
       pH instrument calibration with dye information.
     is_a: Calibration
-    slot_usage:
-      calibration_location:
-        required: true
     attributes:
       dye_type_and_manufacturer:
         title: Type of dye and manufacturer information

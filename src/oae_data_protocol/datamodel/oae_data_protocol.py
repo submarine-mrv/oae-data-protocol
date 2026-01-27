@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-01-26T22:53:24
+# Generation date: 2026-01-27T10:41:21
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -2121,7 +2121,6 @@ class PHCalibration(Calibration):
     technique_description: str = None
     dye_type_and_manufacturer: str = None
     dye_purified: Union[bool, Bool] = None
-    calibration_location: Union[str, "CalibrationLocation"] = None
     correction_for_unpurified_dye: Optional[str] = None
     dye_correction_method: Optional[str] = None
     ph_of_standards: Optional[str] = None
@@ -2137,11 +2136,6 @@ class PHCalibration(Calibration):
             self.MissingRequiredField("dye_purified")
         if not isinstance(self.dye_purified, Bool):
             self.dye_purified = Bool(self.dye_purified)
-
-        if self._is_empty(self.calibration_location):
-            self.MissingRequiredField("calibration_location")
-        if not isinstance(self.calibration_location, CalibrationLocation):
-            self.calibration_location = CalibrationLocation(self.calibration_location)
 
         if self.correction_for_unpurified_dye is not None and not isinstance(self.correction_for_unpurified_dye, str):
             self.correction_for_unpurified_dye = str(self.correction_for_unpurified_dye)
@@ -4084,6 +4078,3 @@ slots.Platform_name = Slot(uri=SCHEMA.name, name="Platform_name", curie=SCHEMA.c
 
 slots.AnalyzingInstrument_instrument_type = Slot(uri=OAE.instrument_type, name="AnalyzingInstrument_instrument_type", curie=OAE.curie('instrument_type'),
                    model_uri=OAE.AnalyzingInstrument_instrument_type, domain=AnalyzingInstrument, range=Union[str, "AnalyzingInstrumentType"])
-
-slots.pHCalibration_calibration_location = Slot(uri=OAE.calibration_location, name="pHCalibration_calibration_location", curie=OAE.curie('calibration_location'),
-                   model_uri=OAE.pHCalibration_calibration_location, domain=PHCalibration, range=Union[str, "CalibrationLocation"])
