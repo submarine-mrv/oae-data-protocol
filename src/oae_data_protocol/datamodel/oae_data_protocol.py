@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-01-27T10:41:21
+# Generation date: 2026-01-27T10:57:12
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -1221,6 +1221,7 @@ class ObservedPropertyVariable(Variable):
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
+    analyzing_instrument: Union[dict, "AnalyzingInstrument"] = None
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
@@ -1237,6 +1238,11 @@ class ObservedPropertyVariable(Variable):
     qc_researcher_institution: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.analyzing_instrument):
+            self.MissingRequiredField("analyzing_instrument")
+        if not isinstance(self.analyzing_instrument, AnalyzingInstrument):
+            self.analyzing_instrument = AnalyzingInstrument(**as_dict(self.analyzing_instrument))
+
         if self._is_empty(self.sampling_method):
             self.MissingRequiredField("sampling_method")
         if not isinstance(self.sampling_method, str):
@@ -1316,6 +1322,7 @@ class DiscreteMeasuredVariable(ObservedPropertyVariable):
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
+    analyzing_instrument: Union[dict, "AnalyzingInstrument"] = None
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
@@ -1325,16 +1332,6 @@ class DiscreteMeasuredVariable(ObservedPropertyVariable):
     uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
-    analyzing_instrument: Union[dict, "AnalyzingInstrument"] = None
-
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.analyzing_instrument):
-            self.MissingRequiredField("analyzing_instrument")
-        if not isinstance(self.analyzing_instrument, AnalyzingInstrument):
-            self.analyzing_instrument = AnalyzingInstrument(**as_dict(self.analyzing_instrument))
-
-        super().__post_init__(**kwargs)
-
 
 @dataclass(repr=False)
 class ContinuousMeasuredVariable(ObservedPropertyVariable):
@@ -1351,6 +1348,7 @@ class ContinuousMeasuredVariable(ObservedPropertyVariable):
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
+    analyzing_instrument: Union[dict, "AnalyzingInstrument"] = None
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
@@ -1440,6 +1438,7 @@ class ContinuousPHVariable(ContinuousMeasuredVariable):
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
+    analyzing_instrument: Union[dict, "AnalyzingInstrument"] = None
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
@@ -1529,6 +1528,7 @@ class HPLCVariable(ObservedPropertyVariable):
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
+    analyzing_instrument: Union[dict, "AnalyzingInstrument"] = None
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
@@ -1554,6 +1554,7 @@ class SedimentVariable(ObservedPropertyVariable):
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
+    analyzing_instrument: Union[dict, "AnalyzingInstrument"] = None
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
@@ -1579,6 +1580,7 @@ class PhysiologicalVariable(ObservedPropertyVariable):
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
+    analyzing_instrument: Union[dict, "AnalyzingInstrument"] = None
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None

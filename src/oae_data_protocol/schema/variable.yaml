@@ -91,6 +91,8 @@ classes:
         required: true
       missing_value_indicators:
         required: true
+    slots:
+      - analyzing_instrument
     attributes:
       sampling_method:
         title: Sampling Method
@@ -132,8 +134,6 @@ classes:
     description: >-
       Analyzing instrument information fields, only applied to discretely measured variables.
       The instrument type can be narrowed in subclasses using slot_usage.
-    slots:
-      - analyzing_instrument
 
   # Continuous specific fields - All vars except HPLC, socioeconomic, disc pCO2 fCO2
   ContinuousMeasuredVariable:

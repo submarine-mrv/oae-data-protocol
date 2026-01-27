@@ -560,6 +560,11 @@
             "additionalProperties": false,
             "description": "Fields for continuous sampling information.",
             "properties": {
+                "analyzing_instrument": {
+                    "$ref": "#/$defs/AnalyzingInstrument",
+                    "description": "Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.",
+                    "title": "Analyzing instrument"
+                },
                 "analyzing_method": {
                     "description": "Additional information describing how the sample was analyzed. DOIs provided as applicable.",
                     "title": "Analyzing Method",
@@ -674,6 +679,7 @@
             },
             "required": [
                 "raw_data_calculation_method",
+                "analyzing_instrument",
                 "sampling_method",
                 "analyzing_method",
                 "observation_type",
@@ -694,6 +700,11 @@
             "additionalProperties": false,
             "description": "pH measured variable from continuous autonomous sensor",
             "properties": {
+                "analyzing_instrument": {
+                    "$ref": "#/$defs/AnalyzingInstrument",
+                    "description": "Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.",
+                    "title": "Analyzing instrument"
+                },
                 "analyzing_method": {
                     "description": "Additional information describing how the sample was analyzed. DOIs provided as applicable.",
                     "title": "Analyzing Method",
@@ -813,6 +824,7 @@
             },
             "required": [
                 "raw_data_calculation_method",
+                "analyzing_instrument",
                 "sampling_method",
                 "analyzing_method",
                 "observation_type",
@@ -1614,6 +1626,11 @@
             "additionalProperties": false,
             "description": "HPLC (High-Performance Liquid Chromatography) measured variable for pigment analysis. Always measured, not calculated.",
             "properties": {
+                "analyzing_instrument": {
+                    "$ref": "#/$defs/AnalyzingInstrument",
+                    "description": "Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.",
+                    "title": "Analyzing instrument"
+                },
                 "analyzing_method": {
                     "description": "Additional information describing how the sample was analyzed. DOIs provided as applicable.",
                     "title": "Analyzing Method",
@@ -1717,6 +1734,7 @@
                 }
             },
             "required": [
+                "analyzing_instrument",
                 "sampling_method",
                 "analyzing_method",
                 "observation_type",
@@ -2361,6 +2379,11 @@
             "additionalProperties": false,
             "description": "Variable that is directly measured in-situ using instruments. Reference: OAPMetadata XSD variables.xsd - basic_measured_observation_base",
             "properties": {
+                "analyzing_instrument": {
+                    "$ref": "#/$defs/AnalyzingInstrument",
+                    "description": "Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.",
+                    "title": "Analyzing instrument"
+                },
                 "analyzing_method": {
                     "description": "Additional information describing how the sample was analyzed. DOIs provided as applicable.",
                     "title": "Analyzing Method",
@@ -2464,6 +2487,7 @@
                 }
             },
             "required": [
+                "analyzing_instrument",
                 "sampling_method",
                 "analyzing_method",
                 "observation_type",
@@ -2741,6 +2765,11 @@
             "additionalProperties": false,
             "description": "Physiological response measured variable for organism response data.",
             "properties": {
+                "analyzing_instrument": {
+                    "$ref": "#/$defs/AnalyzingInstrument",
+                    "description": "Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.",
+                    "title": "Analyzing instrument"
+                },
                 "analyzing_method": {
                     "description": "Additional information describing how the sample was analyzed. DOIs provided as applicable.",
                     "title": "Analyzing Method",
@@ -2844,6 +2873,7 @@
                 }
             },
             "required": [
+                "analyzing_instrument",
                 "sampling_method",
                 "analyzing_method",
                 "observation_type",
@@ -3255,6 +3285,11 @@
             "additionalProperties": false,
             "description": "Sediment measured variable for seafloor/sediment sampling data.",
             "properties": {
+                "analyzing_instrument": {
+                    "$ref": "#/$defs/AnalyzingInstrument",
+                    "description": "Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.",
+                    "title": "Analyzing instrument"
+                },
                 "analyzing_method": {
                     "description": "Additional information describing how the sample was analyzed. DOIs provided as applicable.",
                     "title": "Analyzing Method",
@@ -3358,6 +3393,7 @@
                 }
             },
             "required": [
+                "analyzing_instrument",
                 "sampling_method",
                 "analyzing_method",
                 "observation_type",
