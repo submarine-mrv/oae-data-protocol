@@ -413,6 +413,11 @@
                     "title": "Dataset variable name (Quality Flag)",
                     "type": "string"
                 },
+                "dataset_variable_name_raw": {
+                    "description": "If applicable, the column header name used for the raw data corresponding to this variable.",
+                    "title": "Dataset variable name (raw)",
+                    "type": "string"
+                },
                 "long_name": {
                     "description": "Full descriptive name of the variable.",
                     "title": "Variable full name",
@@ -585,6 +590,11 @@
                     "title": "Dataset variable name (Quality Flag)",
                     "type": "string"
                 },
+                "dataset_variable_name_raw": {
+                    "description": "If applicable, the column header name used for the raw data corresponding to this variable.",
+                    "title": "Dataset variable name (raw)",
+                    "type": "string"
+                },
                 "field_replicate_information": {
                     "description": "Repetition of sample collection and measurement, e.g., triplicate samples.",
                     "title": "Field replicate information",
@@ -729,6 +739,11 @@
                 "dataset_variable_name_qc_flag": {
                     "description": "If applicable, the column header name used for the quality control flag corresponding to this variable.",
                     "title": "Dataset variable name (Quality Flag)",
+                    "type": "string"
+                },
+                "dataset_variable_name_raw": {
+                    "description": "If applicable, the column header name used for the raw data corresponding to this variable.",
+                    "title": "Dataset variable name (raw)",
                     "type": "string"
                 },
                 "field_replicate_information": {
@@ -1020,6 +1035,11 @@
                     "title": "Dataset variable name (Quality Flag)",
                     "type": "string"
                 },
+                "dataset_variable_name_raw": {
+                    "description": "If applicable, the column header name used for the raw data corresponding to this variable.",
+                    "title": "Dataset variable name (raw)",
+                    "type": "string"
+                },
                 "field_replicate_information": {
                     "description": "Repetition of sample collection and measurement, e.g., triplicate samples.",
                     "title": "Field replicate information",
@@ -1153,6 +1173,11 @@
                 "dataset_variable_name_qc_flag": {
                     "description": "If applicable, the column header name used for the quality control flag corresponding to this variable.",
                     "title": "Dataset variable name (Quality Flag)",
+                    "type": "string"
+                },
+                "dataset_variable_name_raw": {
+                    "description": "If applicable, the column header name used for the raw data corresponding to this variable.",
+                    "title": "Dataset variable name (raw)",
                     "type": "string"
                 },
                 "field_replicate_information": {
@@ -1649,6 +1674,11 @@
                 "dataset_variable_name_qc_flag": {
                     "description": "If applicable, the column header name used for the quality control flag corresponding to this variable.",
                     "title": "Dataset variable name (Quality Flag)",
+                    "type": "string"
+                },
+                "dataset_variable_name_raw": {
+                    "description": "If applicable, the column header name used for the raw data corresponding to this variable.",
+                    "title": "Dataset variable name (raw)",
                     "type": "string"
                 },
                 "field_replicate_information": {
@@ -2323,6 +2353,11 @@
                     "title": "Dataset variable name (Quality Flag)",
                     "type": "string"
                 },
+                "dataset_variable_name_raw": {
+                    "description": "If applicable, the column header name used for the raw data corresponding to this variable.",
+                    "title": "Dataset variable name (raw)",
+                    "type": "string"
+                },
                 "long_name": {
                     "description": "Full descriptive name of the variable.",
                     "title": "Variable full name",
@@ -2403,6 +2438,11 @@
                 "dataset_variable_name_qc_flag": {
                     "description": "If applicable, the column header name used for the quality control flag corresponding to this variable.",
                     "title": "Dataset variable name (Quality Flag)",
+                    "type": "string"
+                },
+                "dataset_variable_name_raw": {
+                    "description": "If applicable, the column header name used for the raw data corresponding to this variable.",
+                    "title": "Dataset variable name (raw)",
                     "type": "string"
                 },
                 "field_replicate_information": {
@@ -2788,6 +2828,11 @@
                 "dataset_variable_name_qc_flag": {
                     "description": "If applicable, the column header name used for the quality control flag corresponding to this variable.",
                     "title": "Dataset variable name (Quality Flag)",
+                    "type": "string"
+                },
+                "dataset_variable_name_raw": {
+                    "description": "If applicable, the column header name used for the raw data corresponding to this variable.",
+                    "title": "Dataset variable name (raw)",
                     "type": "string"
                 },
                 "field_replicate_information": {
@@ -3311,6 +3356,11 @@
                     "title": "Dataset variable name (Quality Flag)",
                     "type": "string"
                 },
+                "dataset_variable_name_raw": {
+                    "description": "If applicable, the column header name used for the raw data corresponding to this variable.",
+                    "title": "Dataset variable name (raw)",
+                    "type": "string"
+                },
                 "field_replicate_information": {
                     "description": "Repetition of sample collection and measurement, e.g., triplicate samples.",
                     "title": "Field replicate information",
@@ -3489,6 +3539,11 @@
                 "dataset_variable_name_qc_flag": {
                     "description": "If applicable, the column header name used for the quality control flag corresponding to this variable.",
                     "title": "Dataset variable name (Quality Flag)",
+                    "type": "string"
+                },
+                "dataset_variable_name_raw": {
+                    "description": "If applicable, the column header name used for the raw data corresponding to this variable.",
+                    "title": "Dataset variable name (raw)",
                     "type": "string"
                 },
                 "long_name": {
@@ -3748,6 +3803,11 @@
                 "dataset_variable_name_qc_flag": {
                     "description": "If applicable, the column header name used for the quality control flag corresponding to this variable.",
                     "title": "Dataset variable name (Quality Flag)",
+                    "type": "string"
+                },
+                "dataset_variable_name_raw": {
+                    "description": "If applicable, the column header name used for the raw data corresponding to this variable.",
+                    "title": "Dataset variable name (raw)",
                     "type": "string"
                 },
                 "long_name": {

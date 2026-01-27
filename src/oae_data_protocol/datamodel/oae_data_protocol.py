@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-01-27T11:16:57
+# Generation date: 2026-01-27T11:22:29
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -1137,6 +1137,7 @@ class Variable(YAMLRoot):
     units: str = None
     standard_identifier: Optional[Union[dict, "VocabularyItemReference"]] = None
     dataset_variable_name_qc_flag: Optional[str] = None
+    dataset_variable_name_raw: Optional[str] = None
     method_reference: Optional[str] = None
     measurement_researcher: Optional[Union[dict, Person]] = None
     other_detailed_information: Optional[str] = None
@@ -1162,6 +1163,9 @@ class Variable(YAMLRoot):
 
         if self.dataset_variable_name_qc_flag is not None and not isinstance(self.dataset_variable_name_qc_flag, str):
             self.dataset_variable_name_qc_flag = str(self.dataset_variable_name_qc_flag)
+
+        if self.dataset_variable_name_raw is not None and not isinstance(self.dataset_variable_name_raw, str):
+            self.dataset_variable_name_raw = str(self.dataset_variable_name_raw)
 
         if self.method_reference is not None and not isinstance(self.method_reference, str):
             self.method_reference = str(self.method_reference)
@@ -3786,6 +3790,9 @@ slots.variable__dataset_variable_name = Slot(uri=OAE.dataset_variable_name, name
 
 slots.variable__dataset_variable_name_qc_flag = Slot(uri=OAE.dataset_variable_name_qc_flag, name="variable__dataset_variable_name_qc_flag", curie=OAE.curie('dataset_variable_name_qc_flag'),
                    model_uri=OAE.variable__dataset_variable_name_qc_flag, domain=None, range=Optional[str])
+
+slots.variable__dataset_variable_name_raw = Slot(uri=OAE.dataset_variable_name_raw, name="variable__dataset_variable_name_raw", curie=OAE.curie('dataset_variable_name_raw'),
+                   model_uri=OAE.variable__dataset_variable_name_raw, domain=None, range=Optional[str])
 
 slots.variable__long_name = Slot(uri=OAE.long_name, name="variable__long_name", curie=OAE.curie('long_name'),
                    model_uri=OAE.variable__long_name, domain=None, range=str)

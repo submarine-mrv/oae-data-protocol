@@ -37,6 +37,11 @@ classes:
         description: >-
           If applicable, the column header name used for the quality control flag corresponding to this variable.
         range: string
+      dataset_variable_name_raw:
+        title: Dataset variable name (raw)
+        description: >-
+          If applicable, the column header name used for the raw data corresponding to this variable.
+        range: string
       long_name:
         title: Variable full name
         description: Full descriptive name of the variable.
