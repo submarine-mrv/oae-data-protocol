@@ -289,7 +289,7 @@
 </tr>
 <tr>
 <td><a href="../email/">email</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
 <td>Contact email address</td>
 <td>direct</td>
 </tr>
@@ -398,6 +398,18 @@
 </tr>
 <tr>
 <td><a href="../CalculatedVariable/">CalculatedVariable</a></td>
+<td><a href="../measurement_researcher/">measurement_researcher</a></td>
+<td>range</td>
+<td><a href="./">Person</a></td>
+</tr>
+<tr>
+<td><a href="../ContinuousPHVariable/">ContinuousPHVariable</a></td>
+<td><a href="../qc_researcher/">qc_researcher</a></td>
+<td>range</td>
+<td><a href="./">Person</a></td>
+</tr>
+<tr>
+<td><a href="../ContinuousPHVariable/">ContinuousPHVariable</a></td>
 <td><a href="../measurement_researcher/">measurement_researcher</a></td>
 <td>range</td>
 <td><a href="./">Person</a></td>
@@ -552,6 +564,7 @@ attributes:
     domain_of:
     - Person
     range: string
+    required: true
     pattern: ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$
   identifier_type:
     name: identifier_type
@@ -644,6 +657,7 @@ attributes:
     domain_of:
     - Person
     range: string
+    required: true
     pattern: ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$
   identifier_type:
     name: identifier_type

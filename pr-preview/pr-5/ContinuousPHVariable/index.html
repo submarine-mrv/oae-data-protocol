@@ -5,10 +5,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://clevinson.github.io/oae-data-protocol/DiscretePHVariable/" rel="canonical"/>
+<link href="https://clevinson.github.io/oae-data-protocol/ContinuousPHVariable/" rel="canonical"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.6.7" name="generator"/>
-<title>Class: DiscretePHVariable - oae-data-protocol</title>
+<title>Class: ContinuousPHVariable - oae-data-protocol</title>
 <link href="../assets/stylesheets/main.8608ea7d.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
@@ -23,7 +23,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#class-discretephvariable">
+<a class="md-skip" href="#class-continuousphvariable">
           Skip to content
         </a>
 </div>
@@ -47,7 +47,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Class: DiscretePHVariable
+              Class: ContinuousPHVariable
             
           </span>
 </div>
@@ -221,131 +221,120 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="class-discretephvariable">Class: DiscretePHVariable</h1>
-<p><em>pH measured variable with dye-based spectrophotometric measurement. Reference: OAPMetadata XSD variables.xsd - pH_measured</em></p>
-<p>URI: <a href="https://example.org/oae#DiscretePHVariable">oae:DiscretePHVariable</a></p>
+<h1 id="class-continuousphvariable">Class: ContinuousPHVariable</h1>
+<p><em>pH measured variable from continuous autonomous sensor</em></p>
+<p>URI: <a href="https://example.org/oae#ContinuousPHVariable">oae:ContinuousPHVariable</a></p>
 <div class="mermaid"> classDiagram
-    class DiscretePHVariable
-    click DiscretePHVariable href "../DiscretePHVariable"
-      DiscreteMeasuredVariable &lt;|-- DiscretePHVariable
-        click DiscreteMeasuredVariable href "../DiscreteMeasuredVariable"
+    class ContinuousPHVariable
+    click ContinuousPHVariable href "../ContinuousPHVariable"
+      ContinuousMeasuredVariable &lt;|-- ContinuousPHVariable
+        click ContinuousMeasuredVariable href "../ContinuousMeasuredVariable"
 
-      DiscretePHVariable : analyzing_instrument
+      ContinuousPHVariable : analyzing_method
 
-
-
-
-    DiscretePHVariable --&gt; "1" PHInstrument : analyzing_instrument
-    click PHInstrument href "../PHInstrument"
-
-
-      DiscretePHVariable : analyzing_method
-
-      DiscretePHVariable : appropriate_use_quality
+      ContinuousPHVariable : appropriate_use_quality
 
 
 
 
-    DiscretePHVariable --&gt; "0..1" AppropriateUseQuality : appropriate_use_quality
+    ContinuousPHVariable --&gt; "0..1" AppropriateUseQuality : appropriate_use_quality
     click AppropriateUseQuality href "../AppropriateUseQuality"
 
 
-      DiscretePHVariable : dataset_variable_name
+      ContinuousPHVariable : calculation_software_version
 
-      DiscretePHVariable : dataset_variable_name_qc_flag
+      ContinuousPHVariable : dataset_variable_name
 
-      DiscretePHVariable : field_replicate_information
+      ContinuousPHVariable : dataset_variable_name_qc_flag
 
-      DiscretePHVariable : genesis
+      ContinuousPHVariable : field_replicate_information
+
+      ContinuousPHVariable : genesis
 
 
 
 
-    DiscretePHVariable --&gt; "1" GenesisType : genesis
+    ContinuousPHVariable --&gt; "1" GenesisType : genesis
     click GenesisType href "../GenesisType"
 
 
-      DiscretePHVariable : long_name
+      ContinuousPHVariable : long_name
 
-      DiscretePHVariable : measurement_researcher
-
-
+      ContinuousPHVariable : measurement_researcher
 
 
-    DiscretePHVariable --&gt; "0..1" Person : measurement_researcher
+
+
+    ContinuousPHVariable --&gt; "0..1" Person : measurement_researcher
     click Person href "../Person"
 
 
-      DiscretePHVariable : measurement_temperature
+      ContinuousPHVariable : method_reference
 
-      DiscretePHVariable : method_reference
+      ContinuousPHVariable : missing_value_indicators
 
-      DiscretePHVariable : missing_value_indicators
-
-      DiscretePHVariable : observation_type
+      ContinuousPHVariable : observation_type
 
 
 
 
-    DiscretePHVariable --&gt; "1" ObservationType : observation_type
+    ContinuousPHVariable --&gt; "1" ObservationType : observation_type
     click ObservationType href "../ObservationType"
 
 
-      DiscretePHVariable : other_detailed_information
+      ContinuousPHVariable : other_detailed_information
 
-      DiscretePHVariable : ph_reported_temperature
-
-      DiscretePHVariable : qc_researcher
+      ContinuousPHVariable : qc_researcher
 
 
 
 
-    DiscretePHVariable --&gt; "0..1" Person : qc_researcher
+    ContinuousPHVariable --&gt; "0..1" Person : qc_researcher
     click Person href "../Person"
 
 
-      DiscretePHVariable : qc_researcher_institution
+      ContinuousPHVariable : qc_researcher_institution
 
-      DiscretePHVariable : qc_steps_taken
+      ContinuousPHVariable : qc_steps_taken
 
-      DiscretePHVariable : sampling
+      ContinuousPHVariable : raw_data_calculation_method
+
+      ContinuousPHVariable : sampling
 
 
 
 
-    DiscretePHVariable --&gt; "1" SamplingType : sampling
+    ContinuousPHVariable --&gt; "1" SamplingType : sampling
     click SamplingType href "../SamplingType"
 
 
-      DiscretePHVariable : sampling_instrument_type
+      ContinuousPHVariable : sampling_instrument_type
 
 
 
 
-    DiscretePHVariable --&gt; "0..1" SamplingInstrumentType : sampling_instrument_type
+    ContinuousPHVariable --&gt; "0..1" SamplingInstrumentType : sampling_instrument_type
     click SamplingInstrumentType href "../SamplingInstrumentType"
 
 
-      DiscretePHVariable : sampling_instrument_type_custom
+      ContinuousPHVariable : sampling_instrument_type_custom
 
-      DiscretePHVariable : sampling_method
+      ContinuousPHVariable : sampling_method
 
-      DiscretePHVariable : standard_identifier
-
-
+      ContinuousPHVariable : standard_identifier
 
 
-    DiscretePHVariable --&gt; "0..1" VocabularyItemReference : standard_identifier
+
+
+    ContinuousPHVariable --&gt; "0..1" VocabularyItemReference : standard_identifier
     click VocabularyItemReference href "../VocabularyItemReference"
 
 
-      DiscretePHVariable : temperature_correction_method
+      ContinuousPHVariable : uncertainty
 
-      DiscretePHVariable : uncertainty
+      ContinuousPHVariable : uncertainty_definition
 
-      DiscretePHVariable : uncertainty_definition
-
-      DiscretePHVariable : units
+      ContinuousPHVariable : units
 
 
 </div>
@@ -353,8 +342,8 @@
 <ul>
 <li><a href="../Variable/">Variable</a><ul>
 <li><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a> [ <a href="../QCFields/">QCFields</a>]<ul>
-<li><a href="../DiscreteMeasuredVariable/">DiscreteMeasuredVariable</a><ul>
-<li><strong>DiscretePHVariable</strong></li>
+<li><a href="../ContinuousMeasuredVariable/">ContinuousMeasuredVariable</a><ul>
+<li><strong>ContinuousPHVariable</strong></li>
 </ul>
 </li>
 </ul>
@@ -380,28 +369,16 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../measurement_temperature/">measurement_temperature</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Temperature at which pH was measured</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../temperature_correction_method/">temperature_correction_method</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Method used to correct pH for temperature</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../ph_reported_temperature/">ph_reported_temperature</a></td>
+<td><a href="../raw_data_calculation_method/">raw_data_calculation_method</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
-<td>The input could be a constant temperature value, or something like, in-situ t...</td>
-<td>direct</td>
+<td>The method used to calculate reported values from raw sensor data</td>
+<td><a href="../ContinuousMeasuredVariable/">ContinuousMeasuredVariable</a></td>
 </tr>
 <tr>
-<td><a href="../analyzing_instrument/">analyzing_instrument</a></td>
-<td>1 <br/> <a href="../PHInstrument/">PHInstrument</a></td>
-<td>pH instrument with dye-based calibration used for measurements</td>
-<td><a href="../DiscreteMeasuredVariable/">DiscreteMeasuredVariable</a></td>
+<td><a href="../calculation_software_version/">calculation_software_version</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Version of the software used to calculate reported values from raw values</td>
+<td><a href="../ContinuousMeasuredVariable/">ContinuousMeasuredVariable</a></td>
 </tr>
 <tr>
 <td><a href="../sampling_method/">sampling_method</a></td>
@@ -553,11 +530,11 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>oae:DiscretePHVariable</td>
+<td>oae:ContinuousPHVariable</td>
 </tr>
 <tr>
 <td>native</td>
-<td>oae:DiscretePHVariable</td>
+<td>oae:ContinuousPHVariable</td>
 </tr>
 </tbody>
 </table>
@@ -565,99 +542,22 @@
 <!-- TODO: investigate https://stackoverflow.com/questions/37606292/how-to-create-tabbed-code-blocks-in-mkdocs-or-sphinx -->
 <h3 id="direct">Direct</h3>
 <details>
-<pre><code class="language-yaml">name: DiscretePHVariable
-description: 'pH measured variable with dye-based spectrophotometric measurement.
-  Reference: OAPMetadata XSD variables.xsd - pH_measured'
+<pre><code class="language-yaml">name: ContinuousPHVariable
+description: pH measured variable from continuous autonomous sensor
 from_schema: OAEDataManagementProtocol
-is_a: DiscreteMeasuredVariable
+is_a: ContinuousMeasuredVariable
 slots:
 - appropriate_use_quality
-slot_usage:
-  analyzing_instrument:
-    name: analyzing_instrument
-    description: pH instrument with dye-based calibration used for measurements.
-    range: PHInstrument
-attributes:
-  measurement_temperature:
-    name: measurement_temperature
-    description: Temperature at which pH was measured.
-    title: Temperature at which pH was measured
-    from_schema: Variable
-    rank: 1000
-    domain_of:
-    - DiscretePHVariable
-    range: string
-  temperature_correction_method:
-    name: temperature_correction_method
-    description: Method used to correct pH for temperature.
-    title: Temperature correction method
-    from_schema: Variable
-    rank: 1000
-    domain_of:
-    - DiscretePHVariable
-    range: string
-  ph_reported_temperature:
-    name: ph_reported_temperature
-    description: The input could be a constant temperature value, or something like,
-      in-situ temperature, temperature of analysis, etc.
-    title: Temperature at which pH was reported
-    from_schema: Variable
-    rank: 1000
-    domain_of:
-    - DiscretePHVariable
-    range: string
-    required: true
 
 </code></pre>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
-<pre><code class="language-yaml">name: DiscretePHVariable
-description: 'pH measured variable with dye-based spectrophotometric measurement.
-  Reference: OAPMetadata XSD variables.xsd - pH_measured'
+<pre><code class="language-yaml">name: ContinuousPHVariable
+description: pH measured variable from continuous autonomous sensor
 from_schema: OAEDataManagementProtocol
-is_a: DiscreteMeasuredVariable
-slot_usage:
-  analyzing_instrument:
-    name: analyzing_instrument
-    description: pH instrument with dye-based calibration used for measurements.
-    range: PHInstrument
+is_a: ContinuousMeasuredVariable
 attributes:
-  measurement_temperature:
-    name: measurement_temperature
-    description: Temperature at which pH was measured.
-    title: Temperature at which pH was measured
-    from_schema: Variable
-    rank: 1000
-    alias: measurement_temperature
-    owner: DiscretePHVariable
-    domain_of:
-    - DiscretePHVariable
-    range: string
-  temperature_correction_method:
-    name: temperature_correction_method
-    description: Method used to correct pH for temperature.
-    title: Temperature correction method
-    from_schema: Variable
-    rank: 1000
-    alias: temperature_correction_method
-    owner: DiscretePHVariable
-    domain_of:
-    - DiscretePHVariable
-    range: string
-  ph_reported_temperature:
-    name: ph_reported_temperature
-    description: The input could be a constant temperature value, or something like,
-      in-situ temperature, temperature of analysis, etc.
-    title: Temperature at which pH was reported
-    from_schema: Variable
-    rank: 1000
-    alias: ph_reported_temperature
-    owner: DiscretePHVariable
-    domain_of:
-    - DiscretePHVariable
-    range: string
-    required: true
   appropriate_use_quality:
     name: appropriate_use_quality
     description: 'Climate quality is defined as measurements of quality sufficient
@@ -672,23 +572,35 @@ attributes:
     from_schema: OAEDataManagementProtocol
     rank: 1000
     alias: appropriate_use_quality
-    owner: DiscretePHVariable
+    owner: ContinuousPHVariable
     domain_of:
     - ContinuousPHVariable
     - DiscretePHVariable
     range: AppropriateUseQuality
-  analyzing_instrument:
-    name: analyzing_instrument
-    description: pH instrument with dye-based calibration used for measurements.
-    title: Analyzing instrument
-    from_schema: OAEDataManagementProtocol
+  raw_data_calculation_method:
+    name: raw_data_calculation_method
+    description: The method used to calculate reported values from raw sensor data.
+    title: Method to calculate reported values from raw data
+    from_schema: Variable
     rank: 1000
-    alias: analyzing_instrument
-    owner: DiscretePHVariable
+    alias: raw_data_calculation_method
+    owner: ContinuousPHVariable
     domain_of:
-    - DiscreteMeasuredVariable
-    range: PHInstrument
+    - ContinuousMeasuredVariable
+    range: string
     required: true
+  calculation_software_version:
+    name: calculation_software_version
+    description: Version of the software used to calculate reported values from raw
+      values.
+    title: Software version for the calculation
+    from_schema: Variable
+    rank: 1000
+    alias: calculation_software_version
+    owner: ContinuousPHVariable
+    domain_of:
+    - ContinuousMeasuredVariable
+    range: string
   sampling_method:
     name: sampling_method
     description: Method used to collect samples.
@@ -696,7 +608,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: sampling_method
-    owner: DiscretePHVariable
+    owner: ContinuousPHVariable
     domain_of:
     - ObservedPropertyVariable
     range: string
@@ -709,7 +621,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: field_replicate_information
-    owner: DiscretePHVariable
+    owner: ContinuousPHVariable
     domain_of:
     - ObservedPropertyVariable
     range: string
@@ -721,7 +633,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: analyzing_method
-    owner: DiscretePHVariable
+    owner: ContinuousPHVariable
     domain_of:
     - ObservedPropertyVariable
     range: string
@@ -732,7 +644,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: observation_type
-    owner: DiscretePHVariable
+    owner: ContinuousPHVariable
     domain_of:
     - ObservedPropertyVariable
     range: ObservationType
@@ -742,7 +654,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: sampling
-    owner: DiscretePHVariable
+    owner: ContinuousPHVariable
     domain_of:
     - ObservedPropertyVariable
     range: SamplingType
@@ -752,7 +664,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: genesis
-    owner: DiscretePHVariable
+    owner: ContinuousPHVariable
     domain_of:
     - ObservedPropertyVariable
     range: GenesisType
@@ -763,7 +675,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: sampling_instrument_type
-    owner: DiscretePHVariable
+    owner: ContinuousPHVariable
     domain_of:
     - ObservedPropertyVariable
     range: SamplingInstrumentType
@@ -773,7 +685,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: sampling_instrument_type_custom
-    owner: DiscretePHVariable
+    owner: ContinuousPHVariable
     domain_of:
     - ObservedPropertyVariable
     range: string
@@ -788,7 +700,7 @@ attributes:
     from_schema: OAEDataManagementProtocol
     rank: 1000
     alias: qc_steps_taken
-    owner: DiscretePHVariable
+    owner: ContinuousPHVariable
     domain_of:
     - QCFields
     range: string
@@ -804,7 +716,7 @@ attributes:
     from_schema: OAEDataManagementProtocol
     rank: 1000
     alias: uncertainty
-    owner: DiscretePHVariable
+    owner: ContinuousPHVariable
     domain_of:
     - StandardGas
     - CO2GasDetector
@@ -818,7 +730,7 @@ attributes:
     from_schema: OAEDataManagementProtocol
     rank: 1000
     alias: uncertainty_definition
-    owner: DiscretePHVariable
+    owner: ContinuousPHVariable
     domain_of:
     - QCFields
     range: string
@@ -831,7 +743,7 @@ attributes:
     from_schema: OAEDataManagementProtocol
     rank: 1000
     alias: missing_value_indicators
-    owner: DiscretePHVariable
+    owner: ContinuousPHVariable
     domain_of:
     - QCFields
     range: string
@@ -843,7 +755,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: qc_researcher
-    owner: DiscretePHVariable
+    owner: ContinuousPHVariable
     domain_of:
     - QCFields
     range: Person
@@ -854,7 +766,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: qc_researcher_institution
-    owner: DiscretePHVariable
+    owner: ContinuousPHVariable
     domain_of:
     - QCFields
     range: string
@@ -863,7 +775,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: standard_identifier
-    owner: DiscretePHVariable
+    owner: ContinuousPHVariable
     domain_of:
     - Variable
     range: VocabularyItemReference
@@ -877,7 +789,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: dataset_variable_name
-    owner: DiscretePHVariable
+    owner: ContinuousPHVariable
     domain_of:
     - Variable
     range: string
@@ -890,7 +802,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: dataset_variable_name_qc_flag
-    owner: DiscretePHVariable
+    owner: ContinuousPHVariable
     domain_of:
     - Variable
     range: string
@@ -901,7 +813,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: long_name
-    owner: DiscretePHVariable
+    owner: ContinuousPHVariable
     domain_of:
     - Variable
     range: string
@@ -913,7 +825,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: units
-    owner: DiscretePHVariable
+    owner: ContinuousPHVariable
     domain_of:
     - Variable
     range: string
@@ -924,7 +836,7 @@ attributes:
     title: Method Reference
     from_schema: Variable
     alias: method_reference
-    owner: DiscretePHVariable
+    owner: ContinuousPHVariable
     domain_of:
     - Calibration
     - Variable
@@ -936,7 +848,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: measurement_researcher
-    owner: DiscretePHVariable
+    owner: ContinuousPHVariable
     domain_of:
     - Variable
     range: Person
@@ -947,7 +859,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: other_detailed_information
-    owner: DiscretePHVariable
+    owner: ContinuousPHVariable
     domain_of:
     - Variable
     range: string

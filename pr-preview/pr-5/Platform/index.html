@@ -349,6 +349,7 @@ attributes:
   platform_type:
     name: platform_type
     description: 'Controlled vocabularies for the types of the platform: https://www.ncei.noaa.gov/access/ocean-carbon-acidification-data-system/vocabularies/platform-types.html'
+    title: Platform Type
     from_schema: Platform
     rank: 1000
     domain_of:
@@ -364,6 +365,7 @@ attributes:
       and the “platform_id” term within the Climate and Forecast (CF) metadata conventions
       (https://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html).
       e.g., ICES platform code (e.g., 33RO).
+    title: Platform ID
     from_schema: Platform
     rank: 1000
     domain_of:
@@ -372,6 +374,7 @@ attributes:
   owner:
     name: owner
     description: Institution that owns the platform.
+    title: Owner
     from_schema: Platform
     rank: 1000
     domain_of:
@@ -380,6 +383,7 @@ attributes:
   country:
     name: country
     description: Country to which the platform belongs.
+    title: Country
     from_schema: Platform
     domain_of:
     - Organization
@@ -401,6 +405,7 @@ attributes:
   platform_type:
     name: platform_type
     description: 'Controlled vocabularies for the types of the platform: https://www.ncei.noaa.gov/access/ocean-carbon-acidification-data-system/vocabularies/platform-types.html'
+    title: Platform Type
     from_schema: Platform
     rank: 1000
     alias: platform_type
@@ -418,6 +423,7 @@ attributes:
       and the “platform_id” term within the Climate and Forecast (CF) metadata conventions
       (https://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html).
       e.g., ICES platform code (e.g., 33RO).
+    title: Platform ID
     from_schema: Platform
     rank: 1000
     alias: platform_id
@@ -428,6 +434,7 @@ attributes:
   owner:
     name: owner
     description: Institution that owns the platform.
+    title: Owner
     from_schema: Platform
     rank: 1000
     alias: owner
@@ -438,6 +445,7 @@ attributes:
   country:
     name: country
     description: Country to which the platform belongs.
+    title: Country
     from_schema: Platform
     alias: country
     owner: Platform
