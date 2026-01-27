@@ -165,6 +165,7 @@ classes:
           [https://ror.org](https://ror.org) to search for the organization and find the appropriate ROR URL.
       name:
         description: "Name of the organization"
+        required: true
     attributes:
       country:
         title: Country

@@ -33,6 +33,7 @@ classes:
         description: "Contact email address."
         range: string
         pattern: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+        required: true
       identifier_type:
         title: Researcher ID Type
         description: "Type of Researcher ID (e.g., ORCID, ResearcherID)."

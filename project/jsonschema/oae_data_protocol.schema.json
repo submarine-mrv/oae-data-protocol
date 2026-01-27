@@ -137,9 +137,9 @@
         "AppropriateUseQuality": {
             "description": "",
             "enum": [
-                "WEATHER_QUALITY",
-                "CLIMATE_QUALITY",
-                "OTHER"
+                "weather_quality",
+                "climate_quality",
+                "other"
             ],
             "title": "AppropriateUseQuality",
             "type": "string"
@@ -688,6 +688,145 @@
                 "units"
             ],
             "title": "ContinuousMeasuredVariable",
+            "type": "object"
+        },
+        "ContinuousPHVariable": {
+            "additionalProperties": false,
+            "description": "pH measured variable from continuous autonomous sensor",
+            "properties": {
+                "analyzing_method": {
+                    "description": "Additional information describing how the sample was analyzed. DOIs provided as applicable.",
+                    "title": "Analyzing Method",
+                    "type": "string"
+                },
+                "appropriate_use_quality": {
+                    "$ref": "#/$defs/AppropriateUseQuality",
+                    "description": "Climate quality is defined as measurements of quality sufficient to assess long term trends with a defined level of confidence. Weather quality is defined as measurements of quality sufficient to identify relative spatial patterns and short term variation.\nFor more details, refer to Newton J.A., Feely R. A., Jewett E. B., Williamson P. & Mathis J., 2015. Global Ocean Acidification Observing Network: Requirements and Governance Plan. Second Edition, GOA-ON, http://www.goa-on.org/docs/GOA-ON_plan_print.pdf.",
+                    "title": "Weather or climate quality"
+                },
+                "calculation_software_version": {
+                    "description": "Version of the software used to calculate reported values from raw values.",
+                    "title": "Software version for the calculation",
+                    "type": "string"
+                },
+                "dataset_variable_name": {
+                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
+                    "title": "Dataset variable name",
+                    "type": "string"
+                },
+                "dataset_variable_name_qc_flag": {
+                    "description": "If applicable, the column header name used for the quality control flag corresponding to this variable.",
+                    "title": "Dataset variable name (Quality Flag)",
+                    "type": "string"
+                },
+                "field_replicate_information": {
+                    "description": "Repetition of sample collection and measurement, e.g., triplicate samples.",
+                    "title": "Field replicate information",
+                    "type": "string"
+                },
+                "genesis": {
+                    "$ref": "#/$defs/GenesisType"
+                },
+                "long_name": {
+                    "description": "Full descriptive name of the variable.",
+                    "title": "Variable full name",
+                    "type": "string"
+                },
+                "measurement_researcher": {
+                    "$ref": "#/$defs/Person",
+                    "description": "The name of the PI whose research team measured or derived this parameter.",
+                    "title": "Researcher who measured the variable"
+                },
+                "method_reference": {
+                    "description": "Citation for the method used.",
+                    "title": "Method Reference",
+                    "type": "string"
+                },
+                "missing_value_indicators": {
+                    "description": "The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.",
+                    "title": "Missing value indicators",
+                    "type": "string"
+                },
+                "observation_type": {
+                    "$ref": "#/$defs/ObservationType",
+                    "title": "Observation Type"
+                },
+                "other_detailed_information": {
+                    "description": "Any additional information about this variable.",
+                    "title": "Other Detailed Information",
+                    "type": "string"
+                },
+                "qc_researcher": {
+                    "$ref": "#/$defs/Person",
+                    "description": "The name of the PI whose research team QCed this parameter.",
+                    "title": "Researcher who QCed this variable"
+                },
+                "qc_researcher_institution": {
+                    "description": "The institution of the PI whose research team QCed this parameter.",
+                    "title": "QC Researcher Institution",
+                    "type": "string"
+                },
+                "qc_steps_taken": {
+                    "description": "Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).\nIf quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.",
+                    "title": "QC steps taken",
+                    "type": "string"
+                },
+                "raw_data_calculation_method": {
+                    "description": "The method used to calculate reported values from raw sensor data.",
+                    "title": "Method to calculate reported values from raw data",
+                    "type": "string"
+                },
+                "sampling": {
+                    "$ref": "#/$defs/SamplingType"
+                },
+                "sampling_instrument_type": {
+                    "$ref": "#/$defs/SamplingInstrumentType",
+                    "title": "Sampling instrument type"
+                },
+                "sampling_instrument_type_custom": {
+                    "title": "Sampling instrument type (custom)",
+                    "type": "string"
+                },
+                "sampling_method": {
+                    "description": "Method used to collect samples.",
+                    "title": "Sampling Method",
+                    "type": "string"
+                },
+                "standard_identifier": {
+                    "$ref": "#/$defs/VocabularyItemReference"
+                },
+                "uncertainty": {
+                    "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.\nIf uncertainty is provided as a variable, please list the column header name here.",
+                    "title": "Uncertainty",
+                    "type": "string"
+                },
+                "uncertainty_definition": {
+                    "description": "A description of the uncertainties involved in this method.",
+                    "title": "How was the uncertainty defined",
+                    "type": "string"
+                },
+                "units": {
+                    "description": "Unit of measurement for this variable.",
+                    "title": "Unit",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "raw_data_calculation_method",
+                "sampling_method",
+                "analyzing_method",
+                "observation_type",
+                "sampling",
+                "genesis",
+                "qc_steps_taken",
+                "uncertainty",
+                "uncertainty_definition",
+                "missing_value_indicators",
+                "dataset_variable_name",
+                "long_name",
+                "units"
+            ],
+            "title": "ContinuousPHVariable",
             "type": "object"
         },
         "DataProductType": {
@@ -1427,8 +1566,8 @@
         "GenesisType": {
             "description": "",
             "enum": [
-                "MEASURED",
-                "CALCULATED"
+                "measured",
+                "calculated"
             ],
             "title": "GenesisType",
             "type": "string"
@@ -2206,14 +2345,14 @@
         "ObservationType": {
             "description": "",
             "enum": [
-                "PROFILE",
-                "SURFACE_UNDERWAY",
-                "TIME_SERIES",
-                "LABORATORY_EXPERIMENTS",
-                "MESOCOSM",
-                "FIELD_EXPERIMENTS",
-                "NATURAL_ANALOGUES",
-                "MODEL_OUTPUTS"
+                "profile",
+                "surface_underway",
+                "time_series",
+                "laboratory_experiments",
+                "mesocosm",
+                "field_experiments",
+                "natural_analogues",
+                "model_outputs"
             ],
             "title": "ObservationType",
             "type": "string"
@@ -2360,6 +2499,9 @@
                     "type": "string"
                 }
             },
+            "required": [
+                "name"
+            ],
             "title": "Organization",
             "type": "object"
         },
@@ -2590,7 +2732,8 @@
                 }
             },
             "required": [
-                "name"
+                "name",
+                "email"
             ],
             "title": "Person",
             "type": "object"
@@ -2965,8 +3108,8 @@
         "SamplingType": {
             "description": "",
             "enum": [
-                "DISCRETE",
-                "CONTINUOUS"
+                "discrete",
+                "continuous"
             ],
             "title": "SamplingType",
             "type": "string"

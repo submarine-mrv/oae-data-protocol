@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-01-23T01:41:45
+# Generation date: 2026-01-26T22:43:32
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -280,16 +280,18 @@ class Organization(YAMLRoot):
     class_name: ClassVar[str] = "Organization"
     class_model_uri: ClassVar[URIRef] = OAE.Organization
 
+    name: str = None
     identifier: Optional[str] = None
-    name: Optional[str] = None
     country: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.name):
+            self.MissingRequiredField("name")
+        if not isinstance(self.name, str):
+            self.name = str(self.name)
+
         if self.identifier is not None and not isinstance(self.identifier, str):
             self.identifier = str(self.identifier)
-
-        if self.name is not None and not isinstance(self.name, str):
-            self.name = str(self.name)
 
         if self.country is not None and not isinstance(self.country, str):
             self.country = str(self.country)
@@ -1081,9 +1083,9 @@ class Person(YAMLRoot):
     class_model_uri: ClassVar[URIRef] = OAE.Person
 
     name: str = None
+    email: str = None
     affiliation: Optional[Union[dict, Organization]] = None
     phone: Optional[str] = None
-    email: Optional[str] = None
     identifier_type: Optional[Union[str, "ResearcherIDType"]] = None
     identifier: Optional[str] = None
     role: Optional[str] = None
@@ -1094,14 +1096,16 @@ class Person(YAMLRoot):
         if not isinstance(self.name, str):
             self.name = str(self.name)
 
+        if self._is_empty(self.email):
+            self.MissingRequiredField("email")
+        if not isinstance(self.email, str):
+            self.email = str(self.email)
+
         if self.affiliation is not None and not isinstance(self.affiliation, Organization):
             self.affiliation = Organization(**as_dict(self.affiliation))
 
         if self.phone is not None and not isinstance(self.phone, str):
             self.phone = str(self.phone)
-
-        if self.email is not None and not isinstance(self.email, str):
-            self.email = str(self.email)
 
         if self.identifier_type is not None and not isinstance(self.identifier_type, ResearcherIDType):
             self.identifier_type = ResearcherIDType(self.identifier_type)
@@ -1417,6 +1421,40 @@ class CalculatedVariable(Variable):
 
         if self.qc_researcher_institution is not None and not isinstance(self.qc_researcher_institution, str):
             self.qc_researcher_institution = str(self.qc_researcher_institution)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class ContinuousPHVariable(ContinuousMeasuredVariable):
+    """
+    pH measured variable from continuous autonomous sensor
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["ContinuousPHVariable"]
+    class_class_curie: ClassVar[str] = "oae:ContinuousPHVariable"
+    class_name: ClassVar[str] = "ContinuousPHVariable"
+    class_model_uri: ClassVar[URIRef] = OAE.ContinuousPHVariable
+
+    dataset_variable_name: str = None
+    long_name: str = None
+    units: str = None
+    sampling_method: str = None
+    analyzing_method: str = None
+    observation_type: Union[str, "ObservationType"] = None
+    sampling: Union[str, "SamplingType"] = None
+    genesis: Union[str, "GenesisType"] = None
+    qc_steps_taken: str = None
+    uncertainty: str = None
+    uncertainty_definition: str = None
+    missing_value_indicators: str = None
+    raw_data_calculation_method: str = None
+    appropriate_use_quality: Optional[Union[str, "AppropriateUseQuality"]] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self.appropriate_use_quality is not None and not isinstance(self.appropriate_use_quality, AppropriateUseQuality):
+            self.appropriate_use_quality = AppropriateUseQuality(self.appropriate_use_quality)
 
         super().__post_init__(**kwargs)
 
@@ -3223,8 +3261,8 @@ class ResearcherIDType(EnumDefinitionImpl):
 
 class SamplingType(EnumDefinitionImpl):
 
-    DISCRETE = PermissibleValue(text="DISCRETE")
-    CONTINUOUS = PermissibleValue(text="CONTINUOUS")
+    discrete = PermissibleValue(text="discrete")
+    continuous = PermissibleValue(text="continuous")
 
     _defn = EnumDefinition(
         name="SamplingType",
@@ -3232,8 +3270,8 @@ class SamplingType(EnumDefinitionImpl):
 
 class GenesisType(EnumDefinitionImpl):
 
-    MEASURED = PermissibleValue(text="MEASURED")
-    CALCULATED = PermissibleValue(text="CALCULATED")
+    measured = PermissibleValue(text="measured")
+    calculated = PermissibleValue(text="calculated")
 
     _defn = EnumDefinition(
         name="GenesisType",
@@ -3241,14 +3279,14 @@ class GenesisType(EnumDefinitionImpl):
 
 class ObservationType(EnumDefinitionImpl):
 
-    PROFILE = PermissibleValue(text="PROFILE")
-    SURFACE_UNDERWAY = PermissibleValue(text="SURFACE_UNDERWAY")
-    TIME_SERIES = PermissibleValue(text="TIME_SERIES")
-    LABORATORY_EXPERIMENTS = PermissibleValue(text="LABORATORY_EXPERIMENTS")
-    MESOCOSM = PermissibleValue(text="MESOCOSM")
-    FIELD_EXPERIMENTS = PermissibleValue(text="FIELD_EXPERIMENTS")
-    NATURAL_ANALOGUES = PermissibleValue(text="NATURAL_ANALOGUES")
-    MODEL_OUTPUTS = PermissibleValue(text="MODEL_OUTPUTS")
+    profile = PermissibleValue(text="profile")
+    surface_underway = PermissibleValue(text="surface_underway")
+    time_series = PermissibleValue(text="time_series")
+    laboratory_experiments = PermissibleValue(text="laboratory_experiments")
+    mesocosm = PermissibleValue(text="mesocosm")
+    field_experiments = PermissibleValue(text="field_experiments")
+    natural_analogues = PermissibleValue(text="natural_analogues")
+    model_outputs = PermissibleValue(text="model_outputs")
 
     _defn = EnumDefinition(
         name="ObservationType",
@@ -3256,9 +3294,9 @@ class ObservationType(EnumDefinitionImpl):
 
 class AppropriateUseQuality(EnumDefinitionImpl):
 
-    WEATHER_QUALITY = PermissibleValue(text="WEATHER_QUALITY")
-    CLIMATE_QUALITY = PermissibleValue(text="CLIMATE_QUALITY")
-    OTHER = PermissibleValue(text="OTHER")
+    weather_quality = PermissibleValue(text="weather_quality")
+    climate_quality = PermissibleValue(text="climate_quality")
+    other = PermissibleValue(text="other")
 
     _defn = EnumDefinition(
         name="AppropriateUseQuality",
@@ -3725,7 +3763,7 @@ slots.person__phone = Slot(uri=OAE.phone, name="person__phone", curie=OAE.curie(
                    pattern=re.compile(r'^\+?[0-9\s\-\(\)]+$'))
 
 slots.person__email = Slot(uri=OAE.email, name="person__email", curie=OAE.curie('email'),
-                   model_uri=OAE.person__email, domain=None, range=Optional[str],
+                   model_uri=OAE.person__email, domain=None, range=str,
                    pattern=re.compile(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'))
 
 slots.person__identifier_type = Slot(uri=OAE.identifier_type, name="person__identifier_type", curie=OAE.curie('identifier_type'),
@@ -3978,7 +4016,7 @@ slots.Organization_identifier = Slot(uri=SCHEMA.identifier, name="Organization_i
                    model_uri=OAE.Organization_identifier, domain=Organization, range=Optional[str])
 
 slots.Organization_name = Slot(uri=SCHEMA.name, name="Organization_name", curie=SCHEMA.curie('name'),
-                   model_uri=OAE.Organization_name, domain=Organization, range=Optional[str])
+                   model_uri=OAE.Organization_name, domain=Organization, range=str)
 
 slots.Project_temporal_coverage = Slot(uri=SCHEMA.temporalCoverage, name="Project_temporal_coverage", curie=SCHEMA.curie('temporalCoverage'),
                    model_uri=OAE.Project_temporal_coverage, domain=Project, range=str,

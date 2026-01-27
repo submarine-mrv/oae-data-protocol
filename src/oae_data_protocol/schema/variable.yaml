@@ -172,9 +172,16 @@ classes:
         required: true
 
   # =============================================================================
-  # pH Variable Class
+  # pH Variable Classes
   # =============================================================================
-  # TODO: Ask Jacki what about continuous pH variables? How are they different?
+
+  ContinuousPHVariable:
+    description: >-
+      pH measured variable from continuous autonomous sensor
+    is_a: ContinuousMeasuredVariable
+    slots:
+      - appropriate_use_quality
+
   DiscretePHVariable:
     description: >-
       pH measured variable with dye-based spectrophotometric measurement.
@@ -352,27 +359,27 @@ slots:
 enums:
   SamplingType:
     permissible_values:
-      DISCRETE:
-      CONTINUOUS:
+      discrete:
+      continuous:
   GenesisType:
     permissible_values:
-      MEASURED:
-      CALCULATED:
+      measured:
+      calculated:
   ObservationType:
     permissible_values:
-      PROFILE:
-      SURFACE_UNDERWAY:
-      TIME_SERIES:
-      LABORATORY_EXPERIMENTS:
-      MESOCOSM:
-      FIELD_EXPERIMENTS:
-      NATURAL_ANALOGUES:
-      MODEL_OUTPUTS:
+      profile:
+      surface_underway:
+      time_series:
+      laboratory_experiments:
+      mesocosm:
+      field_experiments:
+      natural_analogues:
+      model_outputs:
   AppropriateUseQuality:
     permissible_values:
-      WEATHER_QUALITY:
-      CLIMATE_QUALITY:
-      OTHER:
+      weather_quality:
+      climate_quality:
+      other:
 
 
 # NOTE: CalibrationFields mixin is no longer needed as calibration is now
