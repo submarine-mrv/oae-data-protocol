@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-01-27T10:57:12
+# Generation date: 2026-01-27T11:16:57
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -1227,12 +1227,12 @@ class ObservedPropertyVariable(Variable):
     observation_type: Union[str, "ObservationType"] = None
     sampling: Union[str, "SamplingType"] = None
     genesis: Union[str, "GenesisType"] = None
+    sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
     qc_steps_taken: str = None
     uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
     field_replicate_information: Optional[str] = None
-    sampling_instrument_type: Optional[Union[str, "SamplingInstrumentType"]] = None
     sampling_instrument_type_custom: Optional[str] = None
     qc_researcher: Optional[Union[dict, Person]] = None
     qc_researcher_institution: Optional[str] = None
@@ -1268,6 +1268,11 @@ class ObservedPropertyVariable(Variable):
         if not isinstance(self.genesis, GenesisType):
             self.genesis = GenesisType(self.genesis)
 
+        if self._is_empty(self.sampling_instrument_type):
+            self.MissingRequiredField("sampling_instrument_type")
+        if not isinstance(self.sampling_instrument_type, SamplingInstrumentType):
+            self.sampling_instrument_type = SamplingInstrumentType(self.sampling_instrument_type)
+
         if self._is_empty(self.qc_steps_taken):
             self.MissingRequiredField("qc_steps_taken")
         if not isinstance(self.qc_steps_taken, str):
@@ -1290,9 +1295,6 @@ class ObservedPropertyVariable(Variable):
 
         if self.field_replicate_information is not None and not isinstance(self.field_replicate_information, str):
             self.field_replicate_information = str(self.field_replicate_information)
-
-        if self.sampling_instrument_type is not None and not isinstance(self.sampling_instrument_type, SamplingInstrumentType):
-            self.sampling_instrument_type = SamplingInstrumentType(self.sampling_instrument_type)
 
         if self.sampling_instrument_type_custom is not None and not isinstance(self.sampling_instrument_type_custom, str):
             self.sampling_instrument_type_custom = str(self.sampling_instrument_type_custom)
@@ -1328,6 +1330,7 @@ class DiscreteMeasuredVariable(ObservedPropertyVariable):
     observation_type: Union[str, "ObservationType"] = None
     sampling: Union[str, "SamplingType"] = None
     genesis: Union[str, "GenesisType"] = None
+    sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
     qc_steps_taken: str = None
     uncertainty: str = None
     uncertainty_definition: str = None
@@ -1354,6 +1357,7 @@ class ContinuousMeasuredVariable(ObservedPropertyVariable):
     observation_type: Union[str, "ObservationType"] = None
     sampling: Union[str, "SamplingType"] = None
     genesis: Union[str, "GenesisType"] = None
+    sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
     qc_steps_taken: str = None
     uncertainty: str = None
     uncertainty_definition: str = None
@@ -1444,6 +1448,7 @@ class ContinuousPHVariable(ContinuousMeasuredVariable):
     observation_type: Union[str, "ObservationType"] = None
     sampling: Union[str, "SamplingType"] = None
     genesis: Union[str, "GenesisType"] = None
+    sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
     qc_steps_taken: str = None
     uncertainty: str = None
     uncertainty_definition: str = None
@@ -1479,17 +1484,23 @@ class DiscretePHVariable(DiscreteMeasuredVariable):
     observation_type: Union[str, "ObservationType"] = None
     sampling: Union[str, "SamplingType"] = None
     genesis: Union[str, "GenesisType"] = None
+    sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
     qc_steps_taken: str = None
     uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
+    measurement_temperature: str = None
     ph_reported_temperature: str = None
     analyzing_instrument: Union[dict, "PHInstrument"] = None
     appropriate_use_quality: Optional[Union[str, "AppropriateUseQuality"]] = None
-    measurement_temperature: Optional[str] = None
     temperature_correction_method: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.measurement_temperature):
+            self.MissingRequiredField("measurement_temperature")
+        if not isinstance(self.measurement_temperature, str):
+            self.measurement_temperature = str(self.measurement_temperature)
+
         if self._is_empty(self.ph_reported_temperature):
             self.MissingRequiredField("ph_reported_temperature")
         if not isinstance(self.ph_reported_temperature, str):
@@ -1502,9 +1513,6 @@ class DiscretePHVariable(DiscreteMeasuredVariable):
 
         if self.appropriate_use_quality is not None and not isinstance(self.appropriate_use_quality, AppropriateUseQuality):
             self.appropriate_use_quality = AppropriateUseQuality(self.appropriate_use_quality)
-
-        if self.measurement_temperature is not None and not isinstance(self.measurement_temperature, str):
-            self.measurement_temperature = str(self.measurement_temperature)
 
         if self.temperature_correction_method is not None and not isinstance(self.temperature_correction_method, str):
             self.temperature_correction_method = str(self.temperature_correction_method)
@@ -1534,6 +1542,7 @@ class HPLCVariable(ObservedPropertyVariable):
     observation_type: Union[str, "ObservationType"] = None
     sampling: Union[str, "SamplingType"] = None
     genesis: Union[str, "GenesisType"] = None
+    sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
     qc_steps_taken: str = None
     uncertainty: str = None
     uncertainty_definition: str = None
@@ -1560,6 +1569,7 @@ class SedimentVariable(ObservedPropertyVariable):
     observation_type: Union[str, "ObservationType"] = None
     sampling: Union[str, "SamplingType"] = None
     genesis: Union[str, "GenesisType"] = None
+    sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
     qc_steps_taken: str = None
     uncertainty: str = None
     uncertainty_definition: str = None
@@ -1586,6 +1596,7 @@ class PhysiologicalVariable(ObservedPropertyVariable):
     observation_type: Union[str, "ObservationType"] = None
     sampling: Union[str, "SamplingType"] = None
     genesis: Union[str, "GenesisType"] = None
+    sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
     qc_steps_taken: str = None
     uncertainty: str = None
     uncertainty_definition: str = None
@@ -2121,22 +2132,18 @@ class PHCalibration(Calibration):
     class_model_uri: ClassVar[URIRef] = OAE.PHCalibration
 
     technique_description: str = None
-    dye_type_and_manufacturer: str = None
-    dye_purified: Union[bool, Bool] = None
+    dye_type_and_manufacturer: Optional[str] = None
+    dye_purified: Optional[Union[bool, Bool]] = None
     correction_for_unpurified_dye: Optional[str] = None
     dye_correction_method: Optional[str] = None
     ph_of_standards: Optional[str] = None
     calibration_temperature: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.dye_type_and_manufacturer):
-            self.MissingRequiredField("dye_type_and_manufacturer")
-        if not isinstance(self.dye_type_and_manufacturer, str):
+        if self.dye_type_and_manufacturer is not None and not isinstance(self.dye_type_and_manufacturer, str):
             self.dye_type_and_manufacturer = str(self.dye_type_and_manufacturer)
 
-        if self._is_empty(self.dye_purified):
-            self.MissingRequiredField("dye_purified")
-        if not isinstance(self.dye_purified, Bool):
+        if self.dye_purified is not None and not isinstance(self.dye_purified, Bool):
             self.dye_purified = Bool(self.dye_purified)
 
         if self.correction_for_unpurified_dye is not None and not isinstance(self.correction_for_unpurified_dye, str):
@@ -3820,7 +3827,7 @@ slots.observedPropertyVariable__genesis = Slot(uri=OAE.genesis, name="observedPr
                    model_uri=OAE.observedPropertyVariable__genesis, domain=None, range=Union[str, "GenesisType"])
 
 slots.observedPropertyVariable__sampling_instrument_type = Slot(uri=OAE.sampling_instrument_type, name="observedPropertyVariable__sampling_instrument_type", curie=OAE.curie('sampling_instrument_type'),
-                   model_uri=OAE.observedPropertyVariable__sampling_instrument_type, domain=None, range=Optional[Union[str, "SamplingInstrumentType"]])
+                   model_uri=OAE.observedPropertyVariable__sampling_instrument_type, domain=None, range=Union[str, "SamplingInstrumentType"])
 
 slots.observedPropertyVariable__sampling_instrument_type_custom = Slot(uri=OAE.sampling_instrument_type_custom, name="observedPropertyVariable__sampling_instrument_type_custom", curie=OAE.curie('sampling_instrument_type_custom'),
                    model_uri=OAE.observedPropertyVariable__sampling_instrument_type_custom, domain=None, range=Optional[str])
@@ -3835,7 +3842,7 @@ slots.calculatedVariable__calculation_method_and_parameters = Slot(uri=OAE.calcu
                    model_uri=OAE.calculatedVariable__calculation_method_and_parameters, domain=None, range=str)
 
 slots.discretePHVariable__measurement_temperature = Slot(uri=OAE.measurement_temperature, name="discretePHVariable__measurement_temperature", curie=OAE.curie('measurement_temperature'),
-                   model_uri=OAE.discretePHVariable__measurement_temperature, domain=None, range=Optional[str])
+                   model_uri=OAE.discretePHVariable__measurement_temperature, domain=None, range=str)
 
 slots.discretePHVariable__temperature_correction_method = Slot(uri=OAE.temperature_correction_method, name="discretePHVariable__temperature_correction_method", curie=OAE.curie('temperature_correction_method'),
                    model_uri=OAE.discretePHVariable__temperature_correction_method, domain=None, range=Optional[str])
@@ -3970,10 +3977,10 @@ slots.cRMCalibration__crm_batch_number = Slot(uri=OAE.crm_batch_number, name="cR
                    model_uri=OAE.cRMCalibration__crm_batch_number, domain=None, range=str)
 
 slots.pHCalibration__dye_type_and_manufacturer = Slot(uri=OAE.dye_type_and_manufacturer, name="pHCalibration__dye_type_and_manufacturer", curie=OAE.curie('dye_type_and_manufacturer'),
-                   model_uri=OAE.pHCalibration__dye_type_and_manufacturer, domain=None, range=str)
+                   model_uri=OAE.pHCalibration__dye_type_and_manufacturer, domain=None, range=Optional[str])
 
 slots.pHCalibration__dye_purified = Slot(uri=OAE.dye_purified, name="pHCalibration__dye_purified", curie=OAE.curie('dye_purified'),
-                   model_uri=OAE.pHCalibration__dye_purified, domain=None, range=Union[bool, Bool])
+                   model_uri=OAE.pHCalibration__dye_purified, domain=None, range=Optional[Union[bool, Bool]])
 
 slots.pHCalibration__correction_for_unpurified_dye = Slot(uri=OAE.correction_for_unpurified_dye, name="pHCalibration__correction_for_unpurified_dye", curie=OAE.curie('correction_for_unpurified_dye'),
                    model_uri=OAE.pHCalibration__correction_for_unpurified_dye, domain=None, range=Optional[str])

@@ -72,12 +72,10 @@ classes:
         title: Type of dye and manufacturer information
         description: Type of indicator dye and any detailed information about it, e.g., its manufacturer.
         range: string
-        required: true
       dye_purified:
         title: Dye purified
         description: Whether the dye has been purified.
         range: boolean
-        required: true
       correction_for_unpurified_dye:
         title: Correction for unpurified dye
         description: Correction method applied if dye was not purified.
