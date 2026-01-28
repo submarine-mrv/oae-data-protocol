@@ -1,0 +1,157 @@
+id: Calibration
+name: Calibration
+description: >-
+  Calibration type hierarchy for scientific instruments.
+  See docs/dev/noaa-xsd-fields-not-included.md for XSD fields not yet included.
+
+prefixes:
+  oae: "https://example.org/oae#"
+  schema: "http://schema.org/"
+
+default_prefix: oae
+
+imports:
+  - linkml:types
+
+classes:
+  # Base calibration class
+  Calibration:
+    description: >-
+      Base calibration information for instruments.
+    slots:
+      - calibration_location
+    attributes:
+      technique_description:
+        title: Calibration technique description
+        description: Details of the calibration technique used.
+        range: string
+        required: true
+      method_reference:
+        title: Calibration method reference
+        description: Citation or reference for the calibration method.
+        range: string
+      frequency:
+        title: Frequency of calibration
+        description: How often the instrument was calibrated.
+        range: string
+      last_calibration_date:
+        title: Last calibration date (UTC)
+        description: Date and time of most recent calibration in UTC.
+        range: datetime
+      calibration_certificates:
+        title: Calibration certificate information
+        description: >-
+          Information about calibration certificates. Ideally, the certificate
+          should be made available in a PDF file with filename listed here.
+        range: string
+
+  # CRM Calibration for DIC and TA instruments
+  CRMCalibration:
+    description: >-
+      Calibration using Certified Reference Materials, used for DIC and TA instruments.
+    is_a: Calibration
+    attributes:
+      crm_manufacturer:
+        title: CRM manufacturer
+        description: Manufacturer of the Certified Reference Material (e.g., Scripps, JAMSTEC).
+        range: string
+        required: true
+      crm_batch_number:
+        title: CRM batch number
+        description: Batch number of the Certified Reference Material.
+        range: string
+        required: true
+
+  # pH Calibration with dye information
+  pHCalibration:
+    description: >-
+      pH instrument calibration with dye information.
+    is_a: Calibration
+    attributes:
+      dye_type_and_manufacturer:
+        title: Type of dye and manufacturer information
+        description: Type of indicator dye and any detailed information about it, e.g., its manufacturer.
+        range: string
+      dye_purified:
+        title: Dye purified
+        description: Whether the dye has been purified.
+        range: boolean
+      correction_for_unpurified_dye:
+        title: Correction for unpurified dye
+        description: Correction method applied if dye was not purified.
+        range: string
+      dye_correction_method:
+        title: Dye correction method
+        description: Method used to correct for dye effects.
+        range: string
+      ph_of_standards:
+        title: pH of standards
+        description: pH values of the calibration standards used.
+        range: string
+      calibration_temperature:
+        title: Calibration temperature
+        description: Temperature at which calibration was performed.
+        range: string
+        # TODO: Change to DimensionedQuantity in Phase 3
+
+  # CO2 Calibration with standard gases
+  CO2Calibration:
+    description: >-
+      CO2 gas detector calibration with standard gas information.
+    is_a: Calibration
+    attributes:
+      calibration_temperature:
+        title: Calibration temperature
+        description: Temperature at which calibration was performed.
+        range: string
+        # TODO: Change to DimensionedQuantity in Phase 3
+      standard_gases:
+        title: Standard gases
+        description: Standard gases used for calibration.
+        range: StandardGas
+        multivalued: true
+        inlined_as_list: true
+      wmo_traceable:
+        title: WMO traceable
+        description: Whether standard gases are traceable to WMO standards.
+        range: boolean
+        required: true
+
+  # Supporting class for CO2 calibration
+  StandardGas:
+    description: >-
+      Standard gas used for CO2 calibration.
+    attributes:
+      manufacturer:
+        title: Manufacturer
+        description: Manufacturer of the standard gas.
+        range: string
+        required: true
+      concentration:
+        title: Concentration
+        description: CO2 concentration of the standard gas.
+        range: string
+        required: true
+        # TODO: Change to DimensionedQuantity in Phase 3
+      uncertainty:
+        title: Uncertainty
+        description: Uncertainty of the standard gas concentration.
+        range: string
+        required: true
+        # TODO: Change to DimensionedQuantity in Phase 3
+slots:
+  calibration_location:
+    title: Calibration location
+    description: Factory calibration, lab calibration, or field calibration.
+    range: CalibrationLocation
+
+enums:
+  CalibrationLocation:
+    description: Where the calibration was performed.
+    permissible_values:
+      factory:
+        description: Factory calibration performed by manufacturer.
+      lab:
+        description: Laboratory calibration.
+      field:
+        description: Field calibration performed during deployment.

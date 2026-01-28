@@ -5,27 +5,127 @@ default_prefix: oae
 
 classes:
   Dataset:
-    description: "A dataset related to an OAE experiment. Generally following guidelines & best practices as outlined in [science-on-schema.org](https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md)"
-    attributes:
-      url:
-        slot_uri: schema:url
-        description: "Location of a page describing the dataset."
-        range: string
-      temporal_coverage:
-        slot_uri: schema:temporalCoverage
-        description: "The temporal coverage of the dataset."
-        range: string
-      spatial_coverage:
-        slot_uri: schema:spatialCoverage
-        description: "The spatial coverage of the dataset."
-        range: string
+    description: >-
+      A dataset related to an OAE experiment. Generally following guidelines & best practices as outlined in
+      [science-on-schema.org](https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md)
     slots:
-      - description
       - name
-      - identifier
+      - description
+      - project_id
+      - experiment_id
+      - temporal_coverage
     slot_usage:
-      identifier:
-        range: Doi
+      - name:
+          title: Dataset Title
+          range: string
+          required: true
+          description: >-
+            A brief descriptive sentence that summarizes the content of a dataset. Here is one example:
+            
+            "Dissolved inorganic carbon, total alkalinity, pH, temperature, salinity and other variables collected from
+            profile and discrete sample observations using CTD, Niskin bottle, and other instruments from R/V Wecoma in
+            the U.S. West Coast California Current System during the 2011 West Coast Ocean Acidification Cruise
+            (WCOA2011) from 2011-08-12 to 2011-08-30"
+      - description:
+          range: string
+          required: true
+          description: >-
+            The abstract of a dataset is a brief summary that provides an overview of the dataset's content, purpose,
+            and scope. It is used to provide context and background information to users who are interested in using the
+            dataset. An abstract may include information such as the dataset's source, how the data was collected or
+            generated, the variables or attributes included in the dataset, and any limitations or restrictions on the
+            use of the data. It may also include information on how the data can be accessed or used.
+      - project_id:
+          # TODO: Consider making the "required: true" general for all implementations of project_id
+          required: true
+      - experiment_id:
+          # TODO: Consider making the "required: true" general for all implementations of experiment_id
+          required: true
+    attributes:
+      dataset_type:
+        # TODO: Add pre/post condition slots for _custom field rendering
+        title: Dataset Type
+        description: >-
+          Selected controlled vocabularies for data types relevant to mCDR have been referenced from NASA’s SeaBASS
+          metadata system and are provided below, for additional data types of optical characteristics see the [SeaBASS
+          controlled definitions list](https://seabass.gsfc.nasa.gov/wiki/metadataheaders#data_type). Additional data
+          types have been included to meet the needs of mCDR field projects.
+        range: DatasetType
+        required: true
+      dataset_type_custom:
+        title: Dataset Type (Custom)
+        description: >-
+          Custom "data type" when an appropriate value is not found in the controlled vocabulary list for mCDR Data Type
+          and the corresponding `data_type` field is set to "other".
+        range: string
+      data_submitter:
+        title: Data Submitter
+        range: Person
+      author_list_for_citation:
+        title: Author List (for citation)
+        range: string
+        description: >-
+          Author list in the format of Lastname1, Firstname1 Middlename1; Lastname2, Firstname2 Middlename2; ...
+      license:
+        title: License
+        slot_uri: schema:license
+        description: >-
+          Link a Dataset to its license to document legal constraints by adding a schema:license property. The guide
+          recommends providing a URL that unambiguously identifies a specific version of the license used, but for many
+          licenses it is hard to determine what that URL should be. Thus, we recommend that the license URL be drawn
+          from the [SPDX license list](https://spdx.org/licenses/), which provides a curated list of licenses and their properties that is well
+          maintained. For each SPDX entry, SPDX provides a canonical URL for the license (e.g.,
+          http://spdx.org/licenses/CC0-1.0), a unique licenseId (e.g., CC0-1.0), and other metadata about the license.
+        range: uri
+      fair_use_data_request:
+        title: Fair Use Data Request
+        description: A statement from the data producer regarding how this dataset should be used.
+        range: string
+      data_product_type:
+        title: Data Product Type
+        description: >-
+          "Controlled vocabulary" One of the three choices: (a) Originally collected dataset (e.g., a dataset collected
+          from a research cruise or laboratory experiment), (b) Data compilation product (e.g., SOCAT, GLODAP), or
+          (c) Derived product (e.g., gridded products, or model output).
+        range: DataProductType
+        required: true
+      qc_flag_scheme:
+        title: QC Flag Scheme
+        description: >-
+          Describe what the quality control flags stand for, e.g.,
+            0 = interpolated or calculated data
+            1 = not evaluated/quality unknown
+            2 = acceptable
+            3 = questionable
+            4 = known bad
+            6 = median of replicates
+            9 = missing value"
+        range: string
+      platform_info:
+        title: Platform Information
+        range: Platform
+        required: true
+      calibration_files:
+        title: Calibration Files
+        description: >-
+          A list of supplementary file names containing coefficients and techniques used to
+          calibrate the instruments used in data collection. The named files can be found within the relevant documents
+          folder accompanying the submitted data files.
+        range: string
+        multivalued: true
+      variables:
+        title: Variables
+        slot_uri: schema:variableMeasured
+        range: Variable
+        multivalued: true
+      filenames:
+        # TODO: Should be upgraded to be compatilbe with schema:distribution
+        # https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md#distributions
+        title: Filenames
+        range: string
+        required: true
+        multivalued: true
+
     exact_mappings:
       - "schema:Dataset"
       - "dcat:Dataset"

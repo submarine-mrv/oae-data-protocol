@@ -9,6 +9,8 @@ default_prefix: oae
 
 classes:
   Person:
+    # TODO: This schema should be expanded to support full address and other fields required for dataset data submitter
+    # TODO: Identifiers should be added and elevated so that they can be referenced in other schemas (project, dataset)
     description: "Information about a researcher or investigator involved in the experiment."
     class_uri: schema:Person
     attributes:
@@ -31,6 +33,7 @@ classes:
         description: "Contact email address."
         range: string
         pattern: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+        required: true
       identifier_type:
         title: Researcher ID Type
         description: "Type of Researcher ID (e.g., ORCID, ResearcherID)."

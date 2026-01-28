@@ -6,25 +6,53 @@ prefixes:
 default_prefix: oae
 
 enums:
-  ObservationType:
-    description: "Types of observational data collected in ocean carbon and acidification studies, as defined in OCADS controlled vocabulary hosted at https://www.ncei.noaa.gov/access/ocean-carbon-acidification-data-system/vocabularies/observation-types.html"
+  DatasetType:
+    description: "Type of dataset being submitted. This usually "
     permissible_values:
-      profile:
-        description: "Discrete water samples collected at specific ocean locations and depths, analyzed for parameters like dissolved inorganic carbon, total alkalinity, dissolved oxygen, and nutrients. Can also refer to continuous measurements using autonomous sensors mounted on a CTD rosette."
-      surface_underway:
-        description: "Continuous measurements of oceanographic variables at the ocean surface using sensors, often in flow-through systems onboard research vessels or ships of opportunity, to obtain real-time information about the ocean's physical and chemical conditions, such as temperature, salinity, and fCO₂."
-      time_series:
-        description: "Continuous measurements of oceanographic variables using autonomous or remotely operated platforms, including time-series moorings, uncrewed surface vehicles (USVs, eg- Saildrones), profiling floats (eg- Argo), and autonomous underwater vehicles (AUVs, eg- gliders)."
-      laboratory_experiments:
-        description: "Scientific investigations where researchers manipulate parameters of the carbonate system in laboratory aquariums to simulate future ocean alkalinity enhancement (OAE) conditions and observe the responses of selected marine organisms."
-      mesocosms:
-        description: "Studies conducted in large, controlled outdoor tanks or enclosures that simulate natural ocean conditions, allowing examination of multiple interacting factors affecting marine communities' responses to OAE, including physical processes and complex biological interactions."
-      field_experiments:
-        description: "Studies involving the manipulation of total alkalinity and carbon dioxide levels in seawater at natural coastal or offshore sites, followed by monitoring the responses of the surrounding marine ecosystem."
-      natural_analogues:
-        description: "Studies utilizing natural gradients in carbonate chemistry and other relevant parameters to assess the sensitivity of ocean systems to future OAE conditions, evaluating marine species' and ecosystems' long-term acclimation and adaptation to enhanced total alkalinity."
-      model_outputs:
-        description: "Outputs from mathematical models that simulate Earth system processes, used to replicate real-world scenarios and assess the impacts of different policies related to ocean carbon and alkalinity."
+      dosing:
+        description: "Variables such as dosing_onoff, dosing_rate, and flow_rate should be included here."
+      cast:
+        description: "Vertical profiles (e.g., optical packages, CTD)"
+      bottle:
+        description: "Any other types of measurements from water samples collected at discrete depths (e.g., nutrients)"
+      flow_thru:
+        description: "Continuous data (e.g., shipboard, underway flow through system)"
+      pigment:
+        description: "For laboratory measured pigment data (e.g. fluorometry, spectrophotometry, HPLC)"
+      marine_snow_catcher:
+        description: "For various types of marine snow catcher data"
+      mooring:
+        description: "Moored and buoy data"
+      drifter:
+        description: "Drifter and drogue data"
+      airborne:
+        description: "Measurements made via an aircraft"
+      diver:
+        description: "For measurements made by a diver"
+      auv:
+        description: "Measurements made by an autonomous underwater vehicle"
+      asv:
+        description: "Measurements made by an autonomous surface vehicle"
+      experimental:
+        description: >-
+          Measurements that have a non-geospatial aspect (e.g., incubations or other laboratory measurements, etc.)
+      sediment_trap:
+        description: "Measurements from a sediment trap platform"
+      taxonomy:
+        description: >-
+          Data whose purpose is the classification or annotation of phytoplankton, zooplankton, or other marine groups.
+      sediment:
+        description: "Measurements from sediment samples (e.g., core samples, grab samples)"
+      model_output:
+        description: "Data output from model experiments"
+      socioeconomic:
+        description: "Information (quantitative or qualitative) from socioeconomic studies"
+      net_tow:
+        description: "For measurements captured via net (e.g., zooplankton via MOCNESS)"
+      other:
+        description: >-
+          For data types not included in the controlled vocabulary. Please fill in a the `dataset_type_custom` field
+          with a more specific name for the custom mCDR data type.
   MCDRPathway:
     title: MCDR Pathway
     description: "Type of marine Carbon Dioxide Removal (mCDR) pathways."
@@ -196,3 +224,11 @@ enums:
         description: "Nahcolite (NaHCO₃) used as an alkalinity source."
       other:
         description: "Enter a custom value in the field provided"
+  DataProductType:
+    permissible_values:
+      originally_collected_dataset:
+        description: A dataset collected from a research cruise or laboratory experiment
+      data_compilation_product:
+        description: (e.g., SOCAT, GLODAP)
+      derived_product:
+        description: (e.g. gridded products, or model output).
