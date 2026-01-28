@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-01-27T20:07:46
+# Generation date: 2026-01-27T20:56:41
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -312,10 +312,10 @@ class Project(YAMLRoot):
     class_model_uri: ClassVar[URIRef] = OAE.Project
 
     project_id: str = None
+    description: str = None
     temporal_coverage: str = None
     spatial_coverage: Union[dict, SpatialCoverage] = None
     mcdr_pathway: Union[str, "MCDRPathway"] = None
-    description: Optional[str] = None
     experiments: Optional[Union[Union[dict, "Experiment"], List[Union[dict, "Experiment"]]]] = empty_list()
     sea_names: Optional[Union[Union[str, "SeaNames"], List[Union[str, "SeaNames"]]]] = empty_list()
     physical_site_description: Optional[str] = None
@@ -334,6 +334,11 @@ class Project(YAMLRoot):
         if not isinstance(self.project_id, str):
             self.project_id = str(self.project_id)
 
+        if self._is_empty(self.description):
+            self.MissingRequiredField("description")
+        if not isinstance(self.description, str):
+            self.description = str(self.description)
+
         if self._is_empty(self.temporal_coverage):
             self.MissingRequiredField("temporal_coverage")
         if not isinstance(self.temporal_coverage, str):
@@ -348,9 +353,6 @@ class Project(YAMLRoot):
             self.MissingRequiredField("mcdr_pathway")
         if not isinstance(self.mcdr_pathway, MCDRPathway):
             self.mcdr_pathway = MCDRPathway(self.mcdr_pathway)
-
-        if self.description is not None and not isinstance(self.description, str):
-            self.description = str(self.description)
 
         self._normalize_inlined_as_dict(slot_name="experiments", slot_type=Experiment, key_name="description", keyed=False)
 
@@ -4085,7 +4087,7 @@ slots.Project_project_id = Slot(uri=OAE.project_id, name="Project_project_id", c
                    model_uri=OAE.Project_project_id, domain=Project, range=str)
 
 slots.Project_description = Slot(uri=SCHEMA.description, name="Project_description", curie=SCHEMA.curie('description'),
-                   model_uri=OAE.Project_description, domain=Project, range=Optional[str])
+                   model_uri=OAE.Project_description, domain=Project, range=str)
 
 slots.MonetaryGrant_name = Slot(uri=SCHEMA.name, name="MonetaryGrant_name", curie=SCHEMA.curie('name'),
                    model_uri=OAE.MonetaryGrant_name, domain=MonetaryGrant, range=Optional[str])

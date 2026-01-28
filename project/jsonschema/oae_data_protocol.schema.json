@@ -3184,6 +3184,7 @@
             },
             "required": [
                 "project_id",
+                "description",
                 "temporal_coverage",
                 "spatial_coverage",
                 "mcdr_pathway"
