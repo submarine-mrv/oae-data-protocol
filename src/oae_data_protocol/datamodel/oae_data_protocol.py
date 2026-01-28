@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-01-27T11:22:29
+# Generation date: 2026-01-27T19:02:48
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -1012,6 +1012,9 @@ class DosingConcentration(YAMLRoot):
 
         if self.amount is not None and not isinstance(self.amount, float):
             self.amount = float(self.amount)
+
+        if self.unit is not None and not isinstance(self.unit, MassConcentrationUnit):
+            self.unit = MassConcentrationUnit(self.unit)
 
         super().__post_init__(**kwargs)
 
@@ -3255,6 +3258,49 @@ class MassConcentrationUnit(EnumDefinitionImpl):
     _defn = EnumDefinition(
         name="MassConcentrationUnit",
     )
+
+    @classmethod
+    def _addvals(cls):
+        setattr(cls, "unit:KiloGM-PER-M3",
+            PermissibleValue(
+                text="unit:KiloGM-PER-M3",
+                meaning=UNIT["KiloGM-PER-M3"]))
+        setattr(cls, "unit:MicroGM-PER-L",
+            PermissibleValue(
+                text="unit:MicroGM-PER-L",
+                meaning=UNIT["MicroGM-PER-L"]))
+        setattr(cls, "unit:MicroGM-PER-L-DAY",
+            PermissibleValue(
+                text="unit:MicroGM-PER-L-DAY",
+                meaning=UNIT["MicroGM-PER-L-DAY"]))
+        setattr(cls, "unit:MicroGM-PER-MilliL",
+            PermissibleValue(
+                text="unit:MicroGM-PER-MilliL",
+                meaning=UNIT["MicroGM-PER-MilliL"]))
+        setattr(cls, "unit:MilliGM-PER-L",
+            PermissibleValue(
+                text="unit:MilliGM-PER-L",
+                meaning=UNIT["MilliGM-PER-L"]))
+        setattr(cls, "unit:MilliGM-PER-M3",
+            PermissibleValue(
+                text="unit:MilliGM-PER-M3",
+                meaning=UNIT["MilliGM-PER-M3"]))
+        setattr(cls, "unit:MilliGM-PER-MilliL",
+            PermissibleValue(
+                text="unit:MilliGM-PER-MilliL",
+                meaning=UNIT["MilliGM-PER-MilliL"]))
+        setattr(cls, "unit:NanoGM-PER-L",
+            PermissibleValue(
+                text="unit:NanoGM-PER-L",
+                meaning=UNIT["NanoGM-PER-L"]))
+        setattr(cls, "unit:NanoGM-PER-MilliL",
+            PermissibleValue(
+                text="unit:NanoGM-PER-MilliL",
+                meaning=UNIT["NanoGM-PER-MilliL"]))
+        setattr(cls, "unit:PicoGM-PER-MilliL",
+            PermissibleValue(
+                text="unit:PicoGM-PER-MilliL",
+                meaning=UNIT["PicoGM-PER-MilliL"]))
 
 class ResearcherIDType(EnumDefinitionImpl):
 

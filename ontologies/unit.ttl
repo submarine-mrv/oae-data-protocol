@@ -32,9 +32,6 @@
   owl:imports <http://qudt.org/3.1.7/vocab/sou> ;
   owl:versionIRI <http://qudt.org/3.1.7/vocab/unit> ;
 .
-qudt:hasQuantityKind
-  rdf:type owl:ObjectProperty ;
-.
 <http://qudt.org/vocab/unit/2PiRAD>
   a qudt:Unit ;
   dcterms:isReplacedBy unit:REV ;
@@ -87445,3 +87442,4 @@ vaem:GMD_QUDT-UNITS-ALL
   rdfs:isDefinedBy <http://qudt.org/3.1.7/vocab/unit> ;
   rdfs:label "QUDT Unit of Measure Vocabulary Metadata Version 3.1.7" ;
 .
+qudt:hasQuantityKind rdf:type owl:ObjectProperty .
