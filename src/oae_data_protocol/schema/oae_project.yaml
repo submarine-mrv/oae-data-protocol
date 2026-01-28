@@ -12,6 +12,7 @@ classes:
     description: "A project conducting OAE field trials or modeling."
     slots:
       - project_id
+      - description
       - temporal_coverage
       - spatial_coverage
     slot_usage:

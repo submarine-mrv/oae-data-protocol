@@ -3087,6 +3087,11 @@
                     "title": "Co-located Operations",
                     "type": "string"
                 },
+                "description": {
+                    "description": "A narrative description of the project. For example, what were the goals of the project? What were the research questions? What were the processes to achieve these goals and answer these questions? Who were the key stakeholders, organizers, project leaders? Was this building off a previous or ongoing project, or is this a new region/experiment/mechanistic study?\nIf there are relevant regulatory parameters and/or limits to dosing trials at this location, these may be described here.",
+                    "title": "Project Description",
+                    "type": "string"
+                },
                 "experiments": {
                     "items": {
                         "$ref": "#/$defs/Experiment"

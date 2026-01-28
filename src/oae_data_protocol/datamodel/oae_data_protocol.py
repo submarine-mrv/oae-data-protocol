@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-01-27T19:47:22
+# Generation date: 2026-01-27T20:07:46
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -315,6 +315,7 @@ class Project(YAMLRoot):
     temporal_coverage: str = None
     spatial_coverage: Union[dict, SpatialCoverage] = None
     mcdr_pathway: Union[str, "MCDRPathway"] = None
+    description: Optional[str] = None
     experiments: Optional[Union[Union[dict, "Experiment"], List[Union[dict, "Experiment"]]]] = empty_list()
     sea_names: Optional[Union[Union[str, "SeaNames"], List[Union[str, "SeaNames"]]]] = empty_list()
     physical_site_description: Optional[str] = None
@@ -326,7 +327,6 @@ class Project(YAMLRoot):
     research_project: Optional[str] = None
     funding: Optional[Union[Union[dict, "MonetaryGrant"], List[Union[dict, "MonetaryGrant"]]]] = empty_list()
     additional_details: Optional[str] = None
-    description: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.project_id):
@@ -348,6 +348,9 @@ class Project(YAMLRoot):
             self.MissingRequiredField("mcdr_pathway")
         if not isinstance(self.mcdr_pathway, MCDRPathway):
             self.mcdr_pathway = MCDRPathway(self.mcdr_pathway)
+
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
 
         self._normalize_inlined_as_dict(slot_name="experiments", slot_type=Experiment, key_name="description", keyed=False)
 
@@ -381,9 +384,6 @@ class Project(YAMLRoot):
 
         if self.additional_details is not None and not isinstance(self.additional_details, str):
             self.additional_details = str(self.additional_details)
-
-        if self.description is not None and not isinstance(self.description, str):
-            self.description = str(self.description)
 
         super().__post_init__(**kwargs)
 
