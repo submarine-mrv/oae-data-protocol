@@ -376,35 +376,15 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Intervention/">Intervention</a></td>
-<td>Additional metadata that applies to experiments where an intervention, such a...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Tracer/">Tracer</a></td>
-<td>Additional metadata that applies to experiments where a tracer study was cond...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Experiment/">Experiment</a></td>
-<td>Experiment metadata applies to a specific study but remains consistent across...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../InterventionWithTracer/">InterventionWithTracer</a></td>
-<td>Additional metadata that applies to hybrid experiments where an intervention ...</td>
-<td>no</td>
+<td><a href="../Dataset/">Dataset</a></td>
+<td>A dataset related to an OAE experiment</td>
+<td>yes</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>
-<p>Range: <a href="../String/">String</a></p>
-</li>
-<li>
-<p>Required: True</p>
-</li>
+<li>Range: <a href="../String/">String</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -444,11 +424,9 @@ title: Experiment ID
 from_schema: OAEDataManagementProtocol
 rank: 1000
 alias: experiment_id
-owner: Experiment
 domain_of:
-- Experiment
+- Dataset
 range: string
-required: true
 
 </code></pre>
 

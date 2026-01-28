@@ -254,7 +254,7 @@
 </tr>
 <tr>
 <td><a href="../name/">name</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
 <td>Name of the organization</td>
 <td>direct</td>
 </tr>
@@ -333,6 +333,7 @@ slot_usage:
   name:
     name: name
     description: Name of the organization
+    required: true
 attributes:
   country:
     name: country
@@ -342,6 +343,7 @@ attributes:
     rank: 1000
     domain_of:
     - Organization
+    - Platform
     range: string
 class_uri: schema:Organization
 
@@ -360,6 +362,7 @@ slot_usage:
   name:
     name: name
     description: Name of the organization
+    required: true
 attributes:
   country:
     name: country
@@ -371,6 +374,7 @@ attributes:
     owner: Organization
     domain_of:
     - Organization
+    - Platform
     range: string
   identifier:
     name: identifier
@@ -393,6 +397,7 @@ attributes:
     title: Name
     from_schema: OAEDataManagementProtocol
     rank: 1000
+    slot_uri: schema:name
     alias: name
     owner: Organization
     domain_of:
@@ -402,7 +407,10 @@ attributes:
     - MonetaryGrant
     - Experiment
     - Person
+    - Dataset
+    - Platform
     range: string
+    required: true
 class_uri: schema:Organization
 
 </code></pre>

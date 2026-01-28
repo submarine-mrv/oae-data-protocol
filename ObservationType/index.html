@@ -290,6 +290,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#slots" class="md-nav__link">
+    <span class="md-ellipsis">
+      Slots
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#identifier-and-mapping-information" class="md-nav__link">
     <span class="md-ellipsis">
       Identifier and Mapping Information
@@ -342,7 +351,6 @@
 
 
 <h1 id="enum-observationtype">Enum: ObservationType</h1>
-<p><em>Types of observational data collected in ocean carbon and acidification studies, as defined in OCADS controlled vocabulary hosted at https://www.ncei.noaa.gov/access/ocean-carbon-acidification-data-system/vocabularies/observation-types.html</em></p>
 <p>URI: <a href="./">ObservationType</a></p>
 <h2 id="permissible-values">Permissible Values</h2>
 <table>
@@ -357,42 +365,57 @@
 <tr>
 <td>profile</td>
 <td>None</td>
-<td>Discrete water samples collected at specific ocean locations and depths, anal...</td>
+<td></td>
 </tr>
 <tr>
 <td>surface_underway</td>
 <td>None</td>
-<td>Continuous measurements of oceanographic variables at the ocean surface using...</td>
+<td></td>
 </tr>
 <tr>
 <td>time_series</td>
 <td>None</td>
-<td>Continuous measurements of oceanographic variables using autonomous or remote...</td>
+<td></td>
 </tr>
 <tr>
 <td>laboratory_experiments</td>
 <td>None</td>
-<td>Scientific investigations where researchers manipulate parameters of the carb...</td>
+<td></td>
 </tr>
 <tr>
-<td>mesocosms</td>
+<td>mesocosm</td>
 <td>None</td>
-<td>Studies conducted in large, controlled outdoor tanks or enclosures that simul...</td>
+<td></td>
 </tr>
 <tr>
 <td>field_experiments</td>
 <td>None</td>
-<td>Studies involving the manipulation of total alkalinity and carbon dioxide lev...</td>
+<td></td>
 </tr>
 <tr>
 <td>natural_analogues</td>
 <td>None</td>
-<td>Studies utilizing natural gradients in carbonate chemistry and other relevant...</td>
+<td></td>
 </tr>
 <tr>
 <td>model_outputs</td>
 <td>None</td>
-<td>Outputs from mathematical models that simulate Earth system processes, used t...</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="slots">Slots</h2>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../observation_type/">observation_type</a></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -405,56 +428,25 @@
 <details>
 
 <pre><code class="language-yaml">name: ObservationType
-description: Types of observational data collected in ocean carbon and acidification
-  studies, as defined in OCADS controlled vocabulary hosted at https://www.ncei.noaa.gov/access/ocean-carbon-acidification-data-system/vocabularies/observation-types.html
 from_schema: OAEDataManagementProtocol
 rank: 1000
 permissible_values:
   profile:
     text: profile
-    description: Discrete water samples collected at specific ocean locations and
-      depths, analyzed for parameters like dissolved inorganic carbon, total alkalinity,
-      dissolved oxygen, and nutrients. Can also refer to continuous measurements using
-      autonomous sensors mounted on a CTD rosette.
   surface_underway:
     text: surface_underway
-    description: Continuous measurements of oceanographic variables at the ocean surface
-      using sensors, often in flow-through systems onboard research vessels or ships
-      of opportunity, to obtain real-time information about the ocean's physical and
-      chemical conditions, such as temperature, salinity, and fCO₂.
   time_series:
     text: time_series
-    description: Continuous measurements of oceanographic variables using autonomous
-      or remotely operated platforms, including time-series moorings, uncrewed surface
-      vehicles (USVs, eg- Saildrones), profiling floats (eg- Argo), and autonomous
-      underwater vehicles (AUVs, eg- gliders).
   laboratory_experiments:
     text: laboratory_experiments
-    description: Scientific investigations where researchers manipulate parameters
-      of the carbonate system in laboratory aquariums to simulate future ocean alkalinity
-      enhancement (OAE) conditions and observe the responses of selected marine organisms.
-  mesocosms:
-    text: mesocosms
-    description: Studies conducted in large, controlled outdoor tanks or enclosures
-      that simulate natural ocean conditions, allowing examination of multiple interacting
-      factors affecting marine communities' responses to OAE, including physical processes
-      and complex biological interactions.
+  mesocosm:
+    text: mesocosm
   field_experiments:
     text: field_experiments
-    description: Studies involving the manipulation of total alkalinity and carbon
-      dioxide levels in seawater at natural coastal or offshore sites, followed by
-      monitoring the responses of the surrounding marine ecosystem.
   natural_analogues:
     text: natural_analogues
-    description: Studies utilizing natural gradients in carbonate chemistry and other
-      relevant parameters to assess the sensitivity of ocean systems to future OAE
-      conditions, evaluating marine species' and ecosystems' long-term acclimation
-      and adaptation to enhanced total alkalinity.
   model_outputs:
     text: model_outputs
-    description: Outputs from mathematical models that simulate Earth system processes,
-      used to replicate real-world scenarios and assess the impacts of different policies
-      related to ocean carbon and alkalinity.
 
 </code></pre>
 

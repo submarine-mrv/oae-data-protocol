@@ -361,7 +361,7 @@
 
 <h1 id="slot-description-description">Slot: Description (description)</h1>
 <p><em>A narrative description of the thing.</em></p>
-<p>URI: <a href="https://example.org/oae#description">oae:description</a></p>
+<p>URI: <a href="http://schema.org/description">schema:description</a></p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -375,18 +375,8 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Intervention/">Intervention</a></td>
-<td>Additional metadata that applies to experiments where an intervention, such a...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Experiment/">Experiment</a></td>
-<td>Experiment metadata applies to a specific study but remains consistent across...</td>
-<td>yes</td>
-</tr>
-<tr>
-<td><a href="../InterventionWithTracer/">InterventionWithTracer</a></td>
-<td>Additional metadata that applies to hybrid experiments where an intervention ...</td>
+<td><a href="../VocabularyItemReference/">VocabularyItemReference</a></td>
+<td></td>
 <td>no</td>
 </tr>
 <tr>
@@ -397,6 +387,26 @@
 <tr>
 <td><a href="../ExternalProject/">ExternalProject</a></td>
 <td>A research project that is not directly managed by the OAE project, but whose...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Intervention/">Intervention</a></td>
+<td>Additional metadata that applies to experiments where an intervention, such a...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Experiment/">Experiment</a></td>
+<td>Experiment metadata applies to a specific study but remains consistent across...</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../Dataset/">Dataset</a></td>
+<td>A dataset related to an OAE experiment</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../InterventionWithTracer/">InterventionWithTracer</a></td>
+<td>Additional metadata that applies to hybrid experiments where an intervention ...</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -421,7 +431,7 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>oae:description</td>
+<td>schema:description</td>
 </tr>
 <tr>
 <td>native</td>
@@ -437,10 +447,13 @@ description: A narrative description of the thing.
 title: Description
 from_schema: OAEDataManagementProtocol
 rank: 1000
+slot_uri: schema:description
 alias: description
 domain_of:
 - ExternalProject
 - Experiment
+- VocabularyItemReference
+- Dataset
 range: string
 
 </code></pre>
