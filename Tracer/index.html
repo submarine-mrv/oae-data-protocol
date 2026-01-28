@@ -275,6 +275,8 @@
 
       Tracer : end_datetime
 
+      Tracer : experiment_id
+
       Tracer : experiment_type
 
 
@@ -455,6 +457,12 @@
 <td><a href="../permits/">permits</a></td>
 <td>* <br/> <a href="../Permit/">Permit</a></td>
 <td>Associated permit number(s)</td>
+<td><a href="../Experiment/">Experiment</a></td>
+</tr>
+<tr>
+<td><a href="../experiment_id/">experiment_id</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>The experiment to which the data belong</td>
 <td><a href="../Experiment/">Experiment</a></td>
 </tr>
 <tr>
@@ -710,6 +718,7 @@ attributes:
     alias: description
     owner: Tracer
     domain_of:
+    - Project
     - ExternalProject
     - Experiment
     - VocabularyItemReference
@@ -758,6 +767,24 @@ attributes:
     multivalued: true
     inlined: true
     inlined_as_list: true
+  experiment_id:
+    name: experiment_id
+    description: 'The experiment to which the data belong. Any naming convention that
+      produces a unique ID is usable. The recommended naming convention is:
+
+      Project ID + Experiment type + Optional numerical indicator to differentiate
+      between various experiments of the same type for a project. A two digit consecutive
+      number beginning with 01'
+    title: Experiment ID
+    from_schema: OAEDataManagementProtocol
+    rank: 1000
+    alias: experiment_id
+    owner: Tracer
+    domain_of:
+    - Experiment
+    - Dataset
+    range: string
+    required: true
   experiment_type:
     name: experiment_type
     description: The type of mCDR experiment conducted. See Controlled Vocabularies

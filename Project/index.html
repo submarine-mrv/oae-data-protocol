@@ -231,6 +231,8 @@
 
       Project : colocated_operations
 
+      Project : description
+
       Project : experiments
 
 
@@ -317,6 +319,12 @@
 <td><a href="../project_id/">project_id</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>The project to which the submitted data belong</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../description/">description</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>A narrative description of the project</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -463,6 +471,7 @@ broad_mappings:
 - schema:ResearchProject
 slots:
 - project_id
+- description
 - temporal_coverage
 - spatial_coverage
 slot_usage:
@@ -487,6 +496,7 @@ slot_usage:
       If there are relevant regulatory parameters and/or limits to dosing trials at
       this location, these may be described here.'
     title: Project Description
+    required: true
 attributes:
   experiments:
     name: experiments
@@ -674,6 +684,7 @@ slot_usage:
       If there are relevant regulatory parameters and/or limits to dosing trials at
       this location, these may be described here.'
     title: Project Description
+    required: true
 attributes:
   experiments:
     name: experiments
@@ -870,6 +881,30 @@ attributes:
     owner: Project
     domain_of:
     - Project
+    - Dataset
+    range: string
+    required: true
+  description:
+    name: description
+    description: 'A narrative description of the project. For example, what were the
+      goals of the project? What were the research questions? What were the processes
+      to achieve these goals and answer these questions? Who were the key stakeholders,
+      organizers, project leaders? Was this building off a previous or ongoing project,
+      or is this a new region/experiment/mechanistic study?
+
+      If there are relevant regulatory parameters and/or limits to dosing trials at
+      this location, these may be described here.'
+    title: Project Description
+    from_schema: OAEDataManagementProtocol
+    rank: 1000
+    slot_uri: schema:description
+    alias: description
+    owner: Project
+    domain_of:
+    - Project
+    - ExternalProject
+    - Experiment
+    - VocabularyItemReference
     - Dataset
     range: string
     required: true
