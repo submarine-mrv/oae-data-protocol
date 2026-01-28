@@ -238,6 +238,8 @@
 
       CalculatedVariable : dataset_variable_name_qc_flag
 
+      CalculatedVariable : dataset_variable_name_raw
+
       CalculatedVariable : long_name
 
       CalculatedVariable : measurement_researcher
@@ -361,6 +363,12 @@
 <td><a href="../dataset_variable_name_qc_flag/">dataset_variable_name_qc_flag</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>If applicable, the column header name used for the quality control flag corre...</td>
+<td><a href="../Variable/">Variable</a></td>
+</tr>
+<tr>
+<td><a href="../dataset_variable_name_raw/">dataset_variable_name_raw</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>If applicable, the column header name used for the raw data corresponding to ...</td>
 <td><a href="../Variable/">Variable</a></td>
 </tr>
 <tr>
@@ -581,6 +589,18 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: dataset_variable_name_qc_flag
+    owner: CalculatedVariable
+    domain_of:
+    - Variable
+    range: string
+  dataset_variable_name_raw:
+    name: dataset_variable_name_raw
+    description: If applicable, the column header name used for the raw data corresponding
+      to this variable.
+    title: Dataset variable name (raw)
+    from_schema: Variable
+    rank: 1000
+    alias: dataset_variable_name_raw
     owner: CalculatedVariable
     domain_of:
     - Variable

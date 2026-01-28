@@ -230,11 +230,22 @@
       ObservedPropertyVariable &lt;|-- HPLCVariable
         click ObservedPropertyVariable href "../ObservedPropertyVariable"
 
+      HPLCVariable : analyzing_instrument
+
+
+
+
+    HPLCVariable --&gt; "1" AnalyzingInstrument : analyzing_instrument
+    click AnalyzingInstrument href "../AnalyzingInstrument"
+
+
       HPLCVariable : analyzing_method
 
       HPLCVariable : dataset_variable_name
 
       HPLCVariable : dataset_variable_name_qc_flag
+
+      HPLCVariable : dataset_variable_name_raw
 
       HPLCVariable : field_replicate_information
 
@@ -300,7 +311,7 @@
 
 
 
-    HPLCVariable --&gt; "0..1" SamplingInstrumentType : sampling_instrument_type
+    HPLCVariable --&gt; "1" SamplingInstrumentType : sampling_instrument_type
     click SamplingInstrumentType href "../SamplingInstrumentType"
 
 
@@ -347,6 +358,12 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="../analyzing_instrument/">analyzing_instrument</a></td>
+<td>1 <br/> <a href="../AnalyzingInstrument/">AnalyzingInstrument</a></td>
+<td>Instrument used to analyze the water samples or measure the water body contin...</td>
+<td><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
+</tr>
+<tr>
 <td><a href="../sampling_method/">sampling_method</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>Method used to collect samples</td>
@@ -384,7 +401,7 @@
 </tr>
 <tr>
 <td><a href="../sampling_instrument_type/">sampling_instrument_type</a></td>
-<td>0..1 <br/> <a href="../SamplingInstrumentType/">SamplingInstrumentType</a></td>
+<td>1 <br/> <a href="../SamplingInstrumentType/">SamplingInstrumentType</a></td>
 <td></td>
 <td><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
 </tr>
@@ -446,6 +463,12 @@
 <td><a href="../dataset_variable_name_qc_flag/">dataset_variable_name_qc_flag</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>If applicable, the column header name used for the quality control flag corre...</td>
+<td><a href="../Variable/">Variable</a></td>
+</tr>
+<tr>
+<td><a href="../dataset_variable_name_raw/">dataset_variable_name_raw</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>If applicable, the column header name used for the raw data corresponding to ...</td>
 <td><a href="../Variable/">Variable</a></td>
 </tr>
 <tr>
@@ -524,6 +547,19 @@ description: HPLC (High-Performance Liquid Chromatography) measured variable for
 from_schema: OAEDataManagementProtocol
 is_a: ObservedPropertyVariable
 attributes:
+  analyzing_instrument:
+    name: analyzing_instrument
+    description: Instrument used to analyze the water samples or measure the water
+      body continuously. Instrument includes calibration information.
+    title: Analyzing instrument
+    from_schema: OAEDataManagementProtocol
+    rank: 1000
+    alias: analyzing_instrument
+    owner: HPLCVariable
+    domain_of:
+    - ObservedPropertyVariable
+    range: AnalyzingInstrument
+    required: true
   sampling_method:
     name: sampling_method
     description: Method used to collect samples.
@@ -602,6 +638,7 @@ attributes:
     domain_of:
     - ObservedPropertyVariable
     range: SamplingInstrumentType
+    required: true
   sampling_instrument_type_custom:
     name: sampling_instrument_type_custom
     title: Sampling instrument type (custom)
@@ -725,6 +762,18 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: dataset_variable_name_qc_flag
+    owner: HPLCVariable
+    domain_of:
+    - Variable
+    range: string
+  dataset_variable_name_raw:
+    name: dataset_variable_name_raw
+    description: If applicable, the column header name used for the raw data corresponding
+      to this variable.
+    title: Dataset variable name (raw)
+    from_schema: Variable
+    rank: 1000
+    alias: dataset_variable_name_raw
     owner: HPLCVariable
     domain_of:
     - Variable

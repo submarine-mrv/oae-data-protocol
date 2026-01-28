@@ -244,7 +244,7 @@
 
 
 
-    PHCalibration --&gt; "1" CalibrationLocation : calibration_location
+    PHCalibration --&gt; "0..1" CalibrationLocation : calibration_location
     click CalibrationLocation href "../CalibrationLocation"
 
 
@@ -290,13 +290,13 @@
 <tbody>
 <tr>
 <td><a href="../dye_type_and_manufacturer/">dye_type_and_manufacturer</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Type of indicator dye and any detailed information about it, e</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../dye_purified/">dye_purified</a></td>
-<td>1 <br/> <a href="../Boolean/">Boolean</a></td>
+<td>0..1 <br/> <a href="../Boolean/">Boolean</a></td>
 <td>Whether the dye has been purified</td>
 <td>direct</td>
 </tr>
@@ -326,7 +326,7 @@
 </tr>
 <tr>
 <td><a href="../calibration_location/">calibration_location</a></td>
-<td>1 <br/> <a href="../CalibrationLocation/">CalibrationLocation</a></td>
+<td>0..1 <br/> <a href="../CalibrationLocation/">CalibrationLocation</a></td>
 <td>Factory calibration, lab calibration, or field calibration</td>
 <td><a href="../Calibration/">Calibration</a></td>
 </tr>
@@ -413,10 +413,6 @@
 description: pH instrument calibration with dye information.
 from_schema: OAEDataManagementProtocol
 is_a: Calibration
-slot_usage:
-  calibration_location:
-    name: calibration_location
-    required: true
 attributes:
   dye_type_and_manufacturer:
     name: dye_type_and_manufacturer
@@ -428,7 +424,6 @@ attributes:
     domain_of:
     - pHCalibration
     range: string
-    required: true
   dye_purified:
     name: dye_purified
     description: Whether the dye has been purified.
@@ -438,7 +433,6 @@ attributes:
     domain_of:
     - pHCalibration
     range: boolean
-    required: true
   correction_for_unpurified_dye:
     name: correction_for_unpurified_dye
     description: Correction method applied if dye was not purified.
@@ -485,10 +479,6 @@ attributes:
 description: pH instrument calibration with dye information.
 from_schema: OAEDataManagementProtocol
 is_a: Calibration
-slot_usage:
-  calibration_location:
-    name: calibration_location
-    required: true
 attributes:
   dye_type_and_manufacturer:
     name: dye_type_and_manufacturer
@@ -502,7 +492,6 @@ attributes:
     domain_of:
     - pHCalibration
     range: string
-    required: true
   dye_purified:
     name: dye_purified
     description: Whether the dye has been purified.
@@ -514,7 +503,6 @@ attributes:
     domain_of:
     - pHCalibration
     range: boolean
-    required: true
   correction_for_unpurified_dye:
     name: correction_for_unpurified_dye
     description: Correction method applied if dye was not purified.
@@ -571,7 +559,6 @@ attributes:
     domain_of:
     - Calibration
     range: CalibrationLocation
-    required: true
   technique_description:
     name: technique_description
     description: Details of the calibration technique used.

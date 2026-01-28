@@ -254,6 +254,8 @@
 
       DiscretePHVariable : dataset_variable_name_qc_flag
 
+      DiscretePHVariable : dataset_variable_name_raw
+
       DiscretePHVariable : field_replicate_information
 
       DiscretePHVariable : genesis
@@ -322,7 +324,7 @@
 
 
 
-    DiscretePHVariable --&gt; "0..1" SamplingInstrumentType : sampling_instrument_type
+    DiscretePHVariable --&gt; "1" SamplingInstrumentType : sampling_instrument_type
     click SamplingInstrumentType href "../SamplingInstrumentType"
 
 
@@ -381,7 +383,7 @@
 </tr>
 <tr>
 <td><a href="../measurement_temperature/">measurement_temperature</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
 <td>Temperature at which pH was measured</td>
 <td>direct</td>
 </tr>
@@ -401,7 +403,7 @@
 <td><a href="../analyzing_instrument/">analyzing_instrument</a></td>
 <td>1 <br/> <a href="../PHInstrument/">PHInstrument</a></td>
 <td>pH instrument with dye-based calibration used for measurements</td>
-<td><a href="../DiscreteMeasuredVariable/">DiscreteMeasuredVariable</a></td>
+<td><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
 </tr>
 <tr>
 <td><a href="../sampling_method/">sampling_method</a></td>
@@ -441,7 +443,7 @@
 </tr>
 <tr>
 <td><a href="../sampling_instrument_type/">sampling_instrument_type</a></td>
-<td>0..1 <br/> <a href="../SamplingInstrumentType/">SamplingInstrumentType</a></td>
+<td>1 <br/> <a href="../SamplingInstrumentType/">SamplingInstrumentType</a></td>
 <td></td>
 <td><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
 </tr>
@@ -503,6 +505,12 @@
 <td><a href="../dataset_variable_name_qc_flag/">dataset_variable_name_qc_flag</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>If applicable, the column header name used for the quality control flag corre...</td>
+<td><a href="../Variable/">Variable</a></td>
+</tr>
+<tr>
+<td><a href="../dataset_variable_name_raw/">dataset_variable_name_raw</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>If applicable, the column header name used for the raw data corresponding to ...</td>
 <td><a href="../Variable/">Variable</a></td>
 </tr>
 <tr>
@@ -587,6 +595,7 @@ attributes:
     domain_of:
     - DiscretePHVariable
     range: string
+    required: true
   temperature_correction_method:
     name: temperature_correction_method
     description: Method used to correct pH for temperature.
@@ -634,6 +643,7 @@ attributes:
     domain_of:
     - DiscretePHVariable
     range: string
+    required: true
   temperature_correction_method:
     name: temperature_correction_method
     description: Method used to correct pH for temperature.
@@ -686,7 +696,7 @@ attributes:
     alias: analyzing_instrument
     owner: DiscretePHVariable
     domain_of:
-    - DiscreteMeasuredVariable
+    - ObservedPropertyVariable
     range: PHInstrument
     required: true
   sampling_method:
@@ -767,6 +777,7 @@ attributes:
     domain_of:
     - ObservedPropertyVariable
     range: SamplingInstrumentType
+    required: true
   sampling_instrument_type_custom:
     name: sampling_instrument_type_custom
     title: Sampling instrument type (custom)
@@ -890,6 +901,18 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: dataset_variable_name_qc_flag
+    owner: DiscretePHVariable
+    domain_of:
+    - Variable
+    range: string
+  dataset_variable_name_raw:
+    name: dataset_variable_name_raw
+    description: If applicable, the column header name used for the raw data corresponding
+      to this variable.
+    title: Dataset variable name (raw)
+    from_schema: Variable
+    rank: 1000
+    alias: dataset_variable_name_raw
     owner: DiscretePHVariable
     domain_of:
     - Variable

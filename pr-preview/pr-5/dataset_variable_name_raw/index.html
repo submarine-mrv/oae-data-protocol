@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://clevinson.github.io/oae-data-protocol/uncertainty_definition/">
+        <link rel="canonical" href="https://clevinson.github.io/oae-data-protocol/dataset_variable_name_raw/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: How was the uncertainty defined (uncertainty_definition) - oae-data-protocol</title>
+        <title>Slot: Dataset variable name (raw) (dataset_variable_name_raw) - oae-data-protocol</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-how-was-the-uncertainty-defined-uncertainty_definition" class="md-skip">
+        <a href="#slot-dataset-variable-name-raw-dataset_variable_name_raw" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: How was the uncertainty defined (uncertainty_definition)
+              Slot: Dataset variable name (raw) (dataset_variable_name_raw)
             
           </span>
         </div>
@@ -359,9 +359,9 @@
   
 
 
-<h1 id="slot-how-was-the-uncertainty-defined-uncertainty_definition">Slot: How was the uncertainty defined (uncertainty_definition)</h1>
-<p><em>A description of the uncertainties involved in this method.</em></p>
-<p>URI: <a href="https://example.org/oae#uncertainty_definition">oae:uncertainty_definition</a></p>
+<h1 id="slot-dataset-variable-name-raw-dataset_variable_name_raw">Slot: Dataset variable name (raw) (dataset_variable_name_raw)</h1>
+<p><em>If applicable, the column header name used for the raw data corresponding to this variable.</em></p>
+<p>URI: <a href="https://example.org/oae#dataset_variable_name_raw">oae:dataset_variable_name_raw</a></p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -380,14 +380,29 @@
 <td>no</td>
 </tr>
 <tr>
+<td><a href="../NonMeasuredVariable/">NonMeasuredVariable</a></td>
+<td>Non-measured variable for data from external sources (e</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../DiscreteMeasuredVariable/">DiscreteMeasuredVariable</a></td>
 <td>Analyzing instrument information fields, only applied to discretely measured ...</td>
 <td>no</td>
 </tr>
 <tr>
+<td><a href="../Variable/">Variable</a></td>
+<td>Base class for all variable types</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../SocioeconomicVariable/">SocioeconomicVariable</a></td>
+<td>Socioeconomic variable for social and economic data</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
 <td>Variable that is directly measured in-situ using instruments</td>
-<td>yes</td>
+<td>no</td>
 </tr>
 <tr>
 <td><a href="../DiscretePHVariable/">DiscretePHVariable</a></td>
@@ -397,11 +412,6 @@
 <tr>
 <td><a href="../PhysiologicalVariable/">PhysiologicalVariable</a></td>
 <td>Physiological response measured variable for organism response data</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../QCFields/">QCFields</a></td>
-<td>Quality control fields applicable to measured and calculated variables</td>
 <td>no</td>
 </tr>
 <tr>
@@ -446,25 +456,27 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>oae:uncertainty_definition</td>
+<td>oae:dataset_variable_name_raw</td>
 </tr>
 <tr>
 <td>native</td>
-<td>oae:uncertainty_definition</td>
+<td>oae:dataset_variable_name_raw</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: uncertainty_definition
-description: A description of the uncertainties involved in this method.
-title: How was the uncertainty defined
+<pre><code class="language-yaml">name: dataset_variable_name_raw
+description: If applicable, the column header name used for the raw data corresponding
+  to this variable.
+title: Dataset variable name (raw)
 from_schema: OAEDataManagementProtocol
 rank: 1000
-alias: uncertainty_definition
+alias: dataset_variable_name_raw
+owner: Variable
 domain_of:
-- QCFields
+- Variable
 range: string
 
 </code></pre>
