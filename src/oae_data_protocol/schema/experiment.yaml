@@ -17,6 +17,7 @@ classes:
       - spatial_coverage
       - vertical_coverage
       - permits
+      - experiment_id
     slot_usage:
       experiment_id:
         required: true

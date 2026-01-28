@@ -137,3 +137,5 @@ dmypy.json
 # Claude AI instruction set
 CLAUDE.md
 .beads/
+
+examples/

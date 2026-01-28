@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-01-27T19:02:48
+# Generation date: 2026-01-27T19:47:22
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -561,11 +561,11 @@ class Experiment(YAMLRoot):
 
     description: str = None
     spatial_coverage: Union[dict, SpatialCoverage] = None
+    experiment_id: str = None
     experiment_type: Union[str, "ExperimentType"] = None
     investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     end_datetime: Union[str, XSDDateTime] = None
-    experiment_id: str = None
     name: Optional[str] = None
     vertical_coverage: Optional[Union[dict, VerticalExtent]] = None
     permits: Optional[Union[Union[dict, Permit], List[Union[dict, Permit]]]] = empty_list()
@@ -583,6 +583,11 @@ class Experiment(YAMLRoot):
             self.MissingRequiredField("spatial_coverage")
         if not isinstance(self.spatial_coverage, SpatialCoverage):
             self.spatial_coverage = SpatialCoverage(**as_dict(self.spatial_coverage))
+
+        if self._is_empty(self.experiment_id):
+            self.MissingRequiredField("experiment_id")
+        if not isinstance(self.experiment_id, str):
+            self.experiment_id = str(self.experiment_id)
 
         if self._is_empty(self.experiment_type):
             self.MissingRequiredField("experiment_type")
@@ -604,11 +609,6 @@ class Experiment(YAMLRoot):
             self.MissingRequiredField("end_datetime")
         if not isinstance(self.end_datetime, XSDDateTime):
             self.end_datetime = XSDDateTime(self.end_datetime)
-
-        if self._is_empty(self.experiment_id):
-            self.MissingRequiredField("experiment_id")
-        if not isinstance(self.experiment_id, str):
-            self.experiment_id = str(self.experiment_id)
 
         if self.name is not None and not isinstance(self.name, str):
             self.name = str(self.name)
@@ -648,11 +648,11 @@ class Intervention(Experiment):
 
     description: str = None
     spatial_coverage: Union[dict, SpatialCoverage] = None
+    experiment_id: str = None
     experiment_type: Union[str, "ExperimentType"] = None
     investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     end_datetime: Union[str, XSDDateTime] = None
-    experiment_id: str = None
     alkalinity_feedstock_processing: Union[str, "AlkalinityFeedstockProcessing"] = None
     alkalinity_feedstock_form: Union[str, "AlkalinityFeedstockForm"] = None
     alkalinity_feedstock: Union[str, "FeedstockType"] = None
@@ -758,11 +758,11 @@ class Tracer(Experiment):
 
     description: str = None
     spatial_coverage: Union[dict, SpatialCoverage] = None
+    experiment_id: str = None
     experiment_type: Union[str, "ExperimentType"] = None
     investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     end_datetime: Union[str, XSDDateTime] = None
-    experiment_id: str = None
     tracer_form: Union[str, "TracerForm"] = None
     tracer_details: str = None
     tracer_concentration: Union[dict, "DosingConcentration"] = None
@@ -837,11 +837,11 @@ class InterventionWithTracer(Intervention):
 
     description: str = None
     spatial_coverage: Union[dict, SpatialCoverage] = None
+    experiment_id: str = None
     experiment_type: Union[str, "ExperimentType"] = None
     investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     end_datetime: Union[str, XSDDateTime] = None
-    experiment_id: str = None
     alkalinity_feedstock_processing: Union[str, "AlkalinityFeedstockProcessing"] = None
     alkalinity_feedstock_form: Union[str, "AlkalinityFeedstockForm"] = None
     alkalinity_feedstock: Union[str, "FeedstockType"] = None
