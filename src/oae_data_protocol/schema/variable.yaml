@@ -185,16 +185,16 @@ classes:
     description: >-
       pH measured variable from continuous autonomous sensor
     is_a: ContinuousMeasuredVariable
-    slots:
-      - appropriate_use_quality
+    mixins:
+      - MeasuredPHFields
 
   DiscretePHVariable:
     description: >-
       pH measured variable with dye-based spectrophotometric measurement.
       Reference: OAPMetadata XSD variables.xsd - pH_measured
     is_a: DiscreteMeasuredVariable
-    slots:
-      - appropriate_use_quality
+    mixins:
+      - MeasuredPHFields
     slot_usage:
       analyzing_instrument:
         range: PHInstrument
@@ -216,6 +216,44 @@ classes:
         range: string
         required: true
         # TODO: Change to DimensionedQuantity in Phase 3
+
+  # =============================================================================
+  # TA Variable Class
+  # =============================================================================
+  ContinuousTAVariable:
+    description: >-
+      Total Alkalinity (TA) measured variable from continuous autonomous sensor
+    is_a: ContinuousMeasuredVariable
+    mixins:
+      - MeasuredTAFields
+
+  DiscreteTAVariable:
+    description: >-
+      Total Alkalinity (TA) measured variable from discrete bottle samples
+    is_a: ObservedPropertyVariable
+    mixins:
+      - MeasuredTAFields
+    slots:
+      - sample_preservation
+      - blank_correction_magnitude
+    slot_usage:
+      analyzing_instrument:
+        range: CRMInstrument
+        description: CRM-calibrated instrument used to analyze TA samples.
+    attributes:
+      titration_type:
+        title: Titration type
+        description: Type of the titration used to determine alkalinity.
+        range: string
+        required: true
+      titration_cell_type:
+        title: Cell type
+        description: Whether the titration cell is open or closed.
+        range: TitrationCellType
+      curve_fitting_method:
+        title: Curve fitting method
+        description: Curve fitting method used to determine the alkalinity.
+        range: string
 
   # =============================================================================
   # HPLC Variable Class
@@ -279,12 +317,54 @@ classes:
         description: Citation or DOI for the source data.
         range: string
 
+  # =============================================================================
+  # Supporting Classes for Variables
+  # =============================================================================
+  SamplePreservation:
+    description: >-
+      Sample preservation information for DIC and TA measurements.
+      Reference: OAPMetadata XSD variables.xsd - sample_preservation
+    attributes:
+      preservative:
+        title: Preservative used
+        description: As described, e.g., Mercury Chloride.
+        range: string
+        required: true
+      volume:
+        title: Preservative volume
+        description: The volume of preservative used.
+        range: string
+        required: true
+      correction_description:
+        title: Preservative correction description
+        description: Description of how the preservative effect was corrected for.
+        range: string
 
 
 
   # =============================================================================
   # Mixin Classes
   # =============================================================================
+
+  MeasuredTAFields:
+    mixin: true
+    description: Fields applied to all measured TA variable types (discrete and continuous)
+    slots:
+      - appropriate_use_quality
+      - concentration_basis
+
+  MeasuredDICFields:
+    mixin: true
+    description: Fields applied to all measured DIC variable types (discrete and continuous)
+    slots:
+      - appropriate_use_quality
+      - concentration_basis
+
+  MeasuredPHFields:
+    mixin: true
+    description: Fields applied to all measured pH variable types (discrete and continuous)
+    slots:
+      - appropriate_use_quality
 
   # Quality Control Fields - All vars except socioeconomic
   QCFields:
@@ -316,6 +396,23 @@ slots:
       Instrument used to analyze the water samples or measure the water body
       continuously. Instrument includes calibration information.
     range: AnalyzingInstrument
+    required: true
+
+  # TA & DIC relevant slots
+  sample_preservation:
+    title: Sample preservation
+    description: How the samples were preserved for analysis.
+    range: SamplePreservation
+    required: true
+  blank_correction_magnitude:
+    title: Magnitude of blank correction
+    description: Whether the reported variables were corrected for blank, and if so, how they were corrected.
+    range: string
+    required: true
+  concentration_basis:
+    title: Per-volume vs per-mass based units
+    description: Whether measurements are expressed per unit volume or per unit mass (for DIC, TA, etc.)
+    range: ConcentrationBasis
     required: true
 
   # QC Related slots
@@ -387,6 +484,17 @@ enums:
       weather_quality:
       climate_quality:
       other:
+  TitrationCellType:
+    permissible_values:
+      open:
+      closed:
+  ConcentrationBasis:
+    description: Whether concentration measurements are expressed per unit volume or per unit mass.
+    permissible_values:
+      per_volume:
+        description: Concentration expressed per unit volume (e.g., μmol/L, mmol/L)
+      per_mass:
+        description: Concentration expressed per unit mass (e.g., μmol/kg-seawater)
 
 
 # NOTE: CalibrationFields mixin is no longer needed as calibration is now
@@ -417,28 +525,7 @@ enums:
 #    range: string
 #    required: true
 #
-#  # =============================================================================
-#  # Supporting Classes for Variables
-#  # =============================================================================
-#  SamplePreservation:
-#    description: >-
-#      Sample preservation information for DIC and TA measurements.
-#      Reference: OAPMetadata XSD variables.xsd - sample_preservation
-#    attributes:
-#      preservative:
-#        title: Preservative used
-#        description: The preservative used to preserve the samples.
-#        range: string
-#        required: true
-#      volume:
-#        title: Preservative volume
-#        description: The volume of preservative used.
-#        range: string
-#        required: true
-#      correction_description:
-#        title: Preservative correction description
-#        description: Description of how the preservative effect was corrected for.
-#        range: string
+
 #  # =============================================================================
 #  # DIC Variable Class
 #  # =============================================================================
@@ -458,32 +545,7 @@ enums:
 #        range: CRMInstrument
 #        description: CRM-calibrated instrument used to analyze DIC samples.
 
-#  # =============================================================================
-#  # TA Variable Class
-#  # =============================================================================
-#  TAVariable:
-#    description: >-
-#      Total Alkalinity (TA) measured variable.
-#      Reference: OAPMetadata XSD variables.xsd - TA_measured
-#    is_a: ObservedPropertyVariable
-#    slots:
-#      - sample_preservation
-#      - blank_correction
-#    slot_usage:
-#      analyzing_instrument:
-#        range: CRMInstrument
-#        description: CRM-calibrated instrument used to analyze TA samples.
-#    attributes:
-#      cell_type:
-#        title: Cell type
-#        description: Type of titration cell used for TA analysis (open or closed).
-#        range: string
-#        required: true
-#      curve_fitting:
-#        title: Curve fitting method
-#        description: The curve fitting method used for TA determination.
-#        range: string
-#        required: true
+
 #  # =============================================================================
 #  # CO2 Variable Classes
 #  # =============================================================================
