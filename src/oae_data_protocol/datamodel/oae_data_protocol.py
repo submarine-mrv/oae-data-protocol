@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-01-28T21:41:36
+# Generation date: 2026-01-28T23:13:20
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -1597,7 +1597,7 @@ class DiscreteTAVariable(ObservedPropertyVariable):
     uncertainty_definition: str = None
     missing_value_indicators: str = None
     sample_preservation: Union[dict, "SamplePreservation"] = None
-    blank_correction_magnitude: str = None
+    blank_correction: str = None
     titration_type: str = None
     analyzing_instrument: Union[dict, "CRMInstrument"] = None
     concentration_basis: Union[str, "ConcentrationBasis"] = None
@@ -1611,10 +1611,10 @@ class DiscreteTAVariable(ObservedPropertyVariable):
         if not isinstance(self.sample_preservation, SamplePreservation):
             self.sample_preservation = SamplePreservation(**as_dict(self.sample_preservation))
 
-        if self._is_empty(self.blank_correction_magnitude):
-            self.MissingRequiredField("blank_correction_magnitude")
-        if not isinstance(self.blank_correction_magnitude, str):
-            self.blank_correction_magnitude = str(self.blank_correction_magnitude)
+        if self._is_empty(self.blank_correction):
+            self.MissingRequiredField("blank_correction")
+        if not isinstance(self.blank_correction, str):
+            self.blank_correction = str(self.blank_correction)
 
         if self._is_empty(self.titration_type):
             self.MissingRequiredField("titration_type")
@@ -1636,6 +1636,107 @@ class DiscreteTAVariable(ObservedPropertyVariable):
 
         if self.curve_fitting_method is not None and not isinstance(self.curve_fitting_method, str):
             self.curve_fitting_method = str(self.curve_fitting_method)
+
+        if self.appropriate_use_quality is not None and not isinstance(self.appropriate_use_quality, AppropriateUseQuality):
+            self.appropriate_use_quality = AppropriateUseQuality(self.appropriate_use_quality)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class ContinuousDICVariable(ContinuousMeasuredVariable):
+    """
+    Dissolved Inorganic Carbon (DIC) measured variable from continuous autonomous sensor.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["ContinuousDICVariable"]
+    class_class_curie: ClassVar[str] = "oae:ContinuousDICVariable"
+    class_name: ClassVar[str] = "ContinuousDICVariable"
+    class_model_uri: ClassVar[URIRef] = OAE.ContinuousDICVariable
+
+    dataset_variable_name: str = None
+    long_name: str = None
+    units: str = None
+    analyzing_instrument: Union[dict, "AnalyzingInstrument"] = None
+    sampling_method: str = None
+    analyzing_method: str = None
+    observation_type: Union[str, "ObservationType"] = None
+    sampling: Union[str, "SamplingType"] = None
+    genesis: Union[str, "GenesisType"] = None
+    sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
+    qc_steps_taken: str = None
+    uncertainty: str = None
+    uncertainty_definition: str = None
+    missing_value_indicators: str = None
+    raw_data_calculation_method: str = None
+    concentration_basis: Union[str, "ConcentrationBasis"] = None
+    appropriate_use_quality: Optional[Union[str, "AppropriateUseQuality"]] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.concentration_basis):
+            self.MissingRequiredField("concentration_basis")
+        if not isinstance(self.concentration_basis, ConcentrationBasis):
+            self.concentration_basis = ConcentrationBasis(self.concentration_basis)
+
+        if self.appropriate_use_quality is not None and not isinstance(self.appropriate_use_quality, AppropriateUseQuality):
+            self.appropriate_use_quality = AppropriateUseQuality(self.appropriate_use_quality)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class DiscreteDICVariable(ObservedPropertyVariable):
+    """
+    Dissolved Inorganic Carbon (DIC) measured variable from discrete bottle samples. Uses CRM-calibrated instrument
+    and includes sample preservation information. Reference: OAPMetadata XSD variables.xsd - DIC_measured
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["DiscreteDICVariable"]
+    class_class_curie: ClassVar[str] = "oae:DiscreteDICVariable"
+    class_name: ClassVar[str] = "DiscreteDICVariable"
+    class_model_uri: ClassVar[URIRef] = OAE.DiscreteDICVariable
+
+    dataset_variable_name: str = None
+    long_name: str = None
+    units: str = None
+    sampling_method: str = None
+    analyzing_method: str = None
+    observation_type: Union[str, "ObservationType"] = None
+    sampling: Union[str, "SamplingType"] = None
+    genesis: Union[str, "GenesisType"] = None
+    sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
+    qc_steps_taken: str = None
+    uncertainty: str = None
+    uncertainty_definition: str = None
+    missing_value_indicators: str = None
+    sample_preservation: Union[dict, "SamplePreservation"] = None
+    blank_correction: str = None
+    analyzing_instrument: Union[dict, "CRMInstrument"] = None
+    concentration_basis: Union[str, "ConcentrationBasis"] = None
+    appropriate_use_quality: Optional[Union[str, "AppropriateUseQuality"]] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.sample_preservation):
+            self.MissingRequiredField("sample_preservation")
+        if not isinstance(self.sample_preservation, SamplePreservation):
+            self.sample_preservation = SamplePreservation(**as_dict(self.sample_preservation))
+
+        if self._is_empty(self.blank_correction):
+            self.MissingRequiredField("blank_correction")
+        if not isinstance(self.blank_correction, str):
+            self.blank_correction = str(self.blank_correction)
+
+        if self._is_empty(self.analyzing_instrument):
+            self.MissingRequiredField("analyzing_instrument")
+        if not isinstance(self.analyzing_instrument, CRMInstrument):
+            self.analyzing_instrument = CRMInstrument(**as_dict(self.analyzing_instrument))
+
+        if self._is_empty(self.concentration_basis):
+            self.MissingRequiredField("concentration_basis")
+        if not isinstance(self.concentration_basis, ConcentrationBasis):
+            self.concentration_basis = ConcentrationBasis(self.concentration_basis)
 
         if self.appropriate_use_quality is not None and not isinstance(self.appropriate_use_quality, AppropriateUseQuality):
             self.appropriate_use_quality = AppropriateUseQuality(self.appropriate_use_quality)
@@ -3768,8 +3869,8 @@ slots.analyzing_instrument = Slot(uri=OAE.analyzing_instrument, name="analyzing_
 slots.sample_preservation = Slot(uri=OAE.sample_preservation, name="sample_preservation", curie=OAE.curie('sample_preservation'),
                    model_uri=OAE.sample_preservation, domain=None, range=Union[dict, SamplePreservation])
 
-slots.blank_correction_magnitude = Slot(uri=OAE.blank_correction_magnitude, name="blank_correction_magnitude", curie=OAE.curie('blank_correction_magnitude'),
-                   model_uri=OAE.blank_correction_magnitude, domain=None, range=str)
+slots.blank_correction = Slot(uri=OAE.blank_correction, name="blank_correction", curie=OAE.curie('blank_correction'),
+                   model_uri=OAE.blank_correction, domain=None, range=str)
 
 slots.concentration_basis = Slot(uri=OAE.concentration_basis, name="concentration_basis", curie=OAE.curie('concentration_basis'),
                    model_uri=OAE.concentration_basis, domain=None, range=Union[str, "ConcentrationBasis"])
@@ -4322,6 +4423,9 @@ slots.DiscretePHVariable_analyzing_instrument = Slot(uri=OAE.analyzing_instrumen
 
 slots.DiscreteTAVariable_analyzing_instrument = Slot(uri=OAE.analyzing_instrument, name="DiscreteTAVariable_analyzing_instrument", curie=OAE.curie('analyzing_instrument'),
                    model_uri=OAE.DiscreteTAVariable_analyzing_instrument, domain=DiscreteTAVariable, range=Union[dict, "CRMInstrument"])
+
+slots.DiscreteDICVariable_analyzing_instrument = Slot(uri=OAE.analyzing_instrument, name="DiscreteDICVariable_analyzing_instrument", curie=OAE.curie('analyzing_instrument'),
+                   model_uri=OAE.DiscreteDICVariable_analyzing_instrument, domain=DiscreteDICVariable, range=Union[dict, "CRMInstrument"])
 
 slots.Dataset_name = Slot(uri=SCHEMA.name, name="Dataset_name", curie=SCHEMA.curie('name'),
                    model_uri=OAE.Dataset_name, domain=Dataset, range=str)

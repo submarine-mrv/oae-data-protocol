@@ -235,7 +235,7 @@ classes:
       - MeasuredTAFields
     slots:
       - sample_preservation
-      - blank_correction_magnitude
+      - blank_correction
     slot_usage:
       analyzing_instrument:
         range: CRMInstrument
@@ -254,6 +254,32 @@ classes:
         title: Curve fitting method
         description: Curve fitting method used to determine the alkalinity.
         range: string
+
+  # =============================================================================
+  # DIC Variable Class
+  # =============================================================================
+  ContinuousDICVariable:
+    description: >-
+      Dissolved Inorganic Carbon (DIC) measured variable from continuous autonomous sensor.
+    is_a: ContinuousMeasuredVariable
+    mixins:
+      - MeasuredDICFields
+  DiscreteDICVariable:
+    description: >-
+      Dissolved Inorganic Carbon (DIC) measured variable from discrete bottle samples.
+      Uses CRM-calibrated instrument and includes sample preservation information.
+      Reference: OAPMetadata XSD variables.xsd - DIC_measured
+    is_a: ObservedPropertyVariable
+    mixins:
+      - MeasuredDICFields
+    slots:
+      - sample_preservation
+      - blank_correction
+    slot_usage:
+      analyzing_instrument:
+        range: CRMInstrument
+        description: CRM-calibrated instrument used to analyze DIC samples.
+
 
   # =============================================================================
   # HPLC Variable Class
@@ -404,7 +430,7 @@ slots:
     description: How the samples were preserved for analysis.
     range: SamplePreservation
     required: true
-  blank_correction_magnitude:
+  blank_correction:
     title: Magnitude of blank correction
     description: Whether the reported variables were corrected for blank, and if so, how they were corrected.
     range: string
@@ -525,25 +551,6 @@ enums:
 #    range: string
 #    required: true
 #
-
-#  # =============================================================================
-#  # DIC Variable Class
-#  # =============================================================================
-#  DICVariable:
-#    description: >-
-#      Dissolved Inorganic Carbon (DIC) measured variable.
-#      Uses CRM-calibrated instrument and includes sample preservation information.
-#      Reference: OAPMetadata XSD variables.xsd - DIC_measured
-#    is_a: ObservedPropertyVariable
-#    mixins:
-#      - WeatherClimateFields
-#    slots:
-#      - sample_preservation
-#      - blank_correction
-#    slot_usage:
-#      analyzing_instrument:
-#        range: CRMInstrument
-#        description: CRM-calibrated instrument used to analyze DIC samples.
 
 
 #  # =============================================================================
