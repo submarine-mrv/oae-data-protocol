@@ -37,6 +37,12 @@ classes:
       project:
         range: Project
       # TODO: Decide if version & git hashes should be required
+      experiments:
+        range: Experiment
+        multivalued: true
+      datasets:
+        range: Dataset
+        multivalued: true
       version:
         range: string
         description: "Version of the oae-data-protocol"

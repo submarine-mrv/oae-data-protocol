@@ -61,6 +61,7 @@ classes:
       data_submitter:
         title: Data Submitter
         range: Person
+        required: true
       author_list_for_citation:
         title: Author List (for citation)
         range: string

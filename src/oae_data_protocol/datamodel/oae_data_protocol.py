@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-01-28T23:13:20
+# Generation date: 2026-01-29T23:45:12
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -100,6 +100,8 @@ class Container(YAMLRoot):
     class_model_uri: ClassVar[URIRef] = OAE.Container
 
     project: Optional[Union[dict, "Project"]] = None
+    experiments: Optional[Union[Union[dict, "Experiment"], List[Union[dict, "Experiment"]]]] = empty_list()
+    datasets: Optional[Union[Union[dict, "Dataset"], List[Union[dict, "Dataset"]]]] = empty_list()
     version: Optional[str] = None
     protocol_git_hash: Optional[str] = None
     metadata_builder_git_hash: Optional[str] = None
@@ -107,6 +109,10 @@ class Container(YAMLRoot):
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self.project is not None and not isinstance(self.project, Project):
             self.project = Project(**as_dict(self.project))
+
+        self._normalize_inlined_as_dict(slot_name="experiments", slot_type=Experiment, key_name="description", keyed=False)
+
+        self._normalize_inlined_as_dict(slot_name="datasets", slot_type=Dataset, key_name="name", keyed=False)
 
         if self.version is not None and not isinstance(self.version, str):
             self.version = str(self.version)
@@ -563,6 +569,7 @@ class Experiment(YAMLRoot):
 
     description: str = None
     spatial_coverage: Union[dict, SpatialCoverage] = None
+    project_id: str = None
     experiment_id: str = None
     experiment_type: Union[str, "ExperimentType"] = None
     investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
@@ -585,6 +592,11 @@ class Experiment(YAMLRoot):
             self.MissingRequiredField("spatial_coverage")
         if not isinstance(self.spatial_coverage, SpatialCoverage):
             self.spatial_coverage = SpatialCoverage(**as_dict(self.spatial_coverage))
+
+        if self._is_empty(self.project_id):
+            self.MissingRequiredField("project_id")
+        if not isinstance(self.project_id, str):
+            self.project_id = str(self.project_id)
 
         if self._is_empty(self.experiment_id):
             self.MissingRequiredField("experiment_id")
@@ -650,6 +662,7 @@ class Intervention(Experiment):
 
     description: str = None
     spatial_coverage: Union[dict, SpatialCoverage] = None
+    project_id: str = None
     experiment_id: str = None
     experiment_type: Union[str, "ExperimentType"] = None
     investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
@@ -760,6 +773,7 @@ class Tracer(Experiment):
 
     description: str = None
     spatial_coverage: Union[dict, SpatialCoverage] = None
+    project_id: str = None
     experiment_id: str = None
     experiment_type: Union[str, "ExperimentType"] = None
     investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
@@ -839,6 +853,7 @@ class InterventionWithTracer(Intervention):
 
     description: str = None
     spatial_coverage: Union[dict, SpatialCoverage] = None
+    project_id: str = None
     experiment_id: str = None
     experiment_type: Union[str, "ExperimentType"] = None
     investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
@@ -2042,11 +2057,11 @@ class Dataset(YAMLRoot):
     experiment_id: str = None
     temporal_coverage: str = None
     dataset_type: Union[str, "DatasetType"] = None
+    data_submitter: Union[dict, Person] = None
     data_product_type: Union[str, "DataProductType"] = None
     platform_info: Union[dict, "Platform"] = None
     filenames: Union[str, List[str]] = None
     dataset_type_custom: Optional[str] = None
-    data_submitter: Optional[Union[dict, Person]] = None
     author_list_for_citation: Optional[str] = None
     license: Optional[Union[str, URI]] = None
     fair_use_data_request: Optional[str] = None
@@ -2085,6 +2100,11 @@ class Dataset(YAMLRoot):
         if not isinstance(self.dataset_type, DatasetType):
             self.dataset_type = DatasetType(self.dataset_type)
 
+        if self._is_empty(self.data_submitter):
+            self.MissingRequiredField("data_submitter")
+        if not isinstance(self.data_submitter, Person):
+            self.data_submitter = Person(**as_dict(self.data_submitter))
+
         if self._is_empty(self.data_product_type):
             self.MissingRequiredField("data_product_type")
         if not isinstance(self.data_product_type, DataProductType):
@@ -2103,9 +2123,6 @@ class Dataset(YAMLRoot):
 
         if self.dataset_type_custom is not None and not isinstance(self.dataset_type_custom, str):
             self.dataset_type_custom = str(self.dataset_type_custom)
-
-        if self.data_submitter is not None and not isinstance(self.data_submitter, Person):
-            self.data_submitter = Person(**as_dict(self.data_submitter))
 
         if self.author_list_for_citation is not None and not isinstance(self.author_list_for_citation, str):
             self.author_list_for_citation = str(self.author_list_for_citation)
@@ -3896,6 +3913,12 @@ slots.calibration_location = Slot(uri=OAE.calibration_location, name="calibratio
 slots.container__project = Slot(uri=OAE.project, name="container__project", curie=OAE.curie('project'),
                    model_uri=OAE.container__project, domain=None, range=Optional[Union[dict, Project]])
 
+slots.container__experiments = Slot(uri=OAE.experiments, name="container__experiments", curie=OAE.curie('experiments'),
+                   model_uri=OAE.container__experiments, domain=None, range=Optional[Union[Union[dict, Experiment], List[Union[dict, Experiment]]]])
+
+slots.container__datasets = Slot(uri=OAE.datasets, name="container__datasets", curie=OAE.curie('datasets'),
+                   model_uri=OAE.container__datasets, domain=None, range=Optional[Union[Union[dict, Dataset], List[Union[dict, Dataset]]]])
+
 slots.container__version = Slot(uri=OAE.version, name="container__version", curie=OAE.curie('version'),
                    model_uri=OAE.container__version, domain=None, range=Optional[str])
 
@@ -4226,7 +4249,7 @@ slots.dataset__dataset_type_custom = Slot(uri=OAE.dataset_type_custom, name="dat
                    model_uri=OAE.dataset__dataset_type_custom, domain=None, range=Optional[str])
 
 slots.dataset__data_submitter = Slot(uri=OAE.data_submitter, name="dataset__data_submitter", curie=OAE.curie('data_submitter'),
-                   model_uri=OAE.dataset__data_submitter, domain=None, range=Optional[Union[dict, Person]])
+                   model_uri=OAE.dataset__data_submitter, domain=None, range=Union[dict, Person])
 
 slots.dataset__author_list_for_citation = Slot(uri=OAE.author_list_for_citation, name="dataset__author_list_for_citation", curie=OAE.curie('author_list_for_citation'),
                    model_uri=OAE.dataset__author_list_for_citation, domain=None, range=Optional[str])
@@ -4390,6 +4413,9 @@ slots.MonetaryGrant_name = Slot(uri=SCHEMA.name, name="MonetaryGrant_name", curi
 
 slots.MonetaryGrant_identifier = Slot(uri=SCHEMA.identifier, name="MonetaryGrant_identifier", curie=SCHEMA.curie('identifier'),
                    model_uri=OAE.MonetaryGrant_identifier, domain=MonetaryGrant, range=Optional[str])
+
+slots.Experiment_project_id = Slot(uri=OAE.project_id, name="Experiment_project_id", curie=OAE.curie('project_id'),
+                   model_uri=OAE.Experiment_project_id, domain=Experiment, range=str)
 
 slots.Experiment_experiment_id = Slot(uri=OAE.experiment_id, name="Experiment_experiment_id", curie=OAE.curie('experiment_id'),
                    model_uri=OAE.Experiment_experiment_id, domain=Experiment, range=str)
