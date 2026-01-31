@@ -1409,6 +1409,7 @@
                     "items": {
                         "type": "string"
                     },
+                    "minItems": 1,
                     "title": "Filenames",
                     "type": "array"
                 },
