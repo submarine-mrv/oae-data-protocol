@@ -12,14 +12,15 @@ imports:
   - instrument
 
 classes:
-  # =============================================================================
-  # Base Variable Class
-  # =============================================================================
-  Variable:
-    description: >-
-      Base class for all variable types. Contains common identification
-      and description fields shared by all variables.
-      Reference: OAPMetadata XSD variables.xsd - variable, basic_variable
+
+  # ==============================================================================
+  # BaseVariable Abstract Class (subclasses: Variable, NonMeasuredVariable)
+  # ==============================================================================
+  BaseVariable:
+    abstract: true
+    description: Basic variable fields across all (including non-measured) variables
+    slots:
+      - units
     attributes:
       standard_identifier:
         range: VocabularyItemReference
@@ -32,6 +33,35 @@ classes:
           [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).
         range: string
         required: true
+      long_name:
+        title: Variable full name
+        description: Full descriptive name of the variable.
+        range: string
+        required: true
+
+  # =============================================================================
+  # Non-Measured Variable Class
+  # =============================================================================
+  NonMeasuredVariable:
+    description: >-
+      Non-measured variable for data from external sources (e.g., satellite,
+      model outputs, published data) that are not directly measured by the
+      project but included in the dataset.
+    is_a: BaseVariable
+
+  # =============================================================================
+  # Variable Class (subclasses: ObservedProperty, Calculated, Socioeconomic)
+  # =============================================================================
+  Variable:
+    description: >-
+      Base class for all variable types. Contains common identification
+      and description fields shared by all variables.
+      Reference: OAPMetadata XSD variables.xsd - variable, basic_variable
+    is_a: BaseVariable
+    slot_usage:
+      units:
+        required: true
+    attributes:
       dataset_variable_name_qc_flag:
         title: Dataset variable name (Quality Flag)
         description: >-
@@ -42,17 +72,6 @@ classes:
         description: >-
           If applicable, the column header name used for the raw data corresponding to this variable.
         range: string
-      long_name:
-        title: Variable full name
-        description: Full descriptive name of the variable.
-        range: string
-        required: true
-      units:
-        title: Unit
-        description: Unit of measurement for this variable.
-        range: string
-        required: true
-        # TODO: Upgrade this to controlled vocab with QUDT
       method_reference:
         title: Method Reference
         description: Citation for the method used.
@@ -66,20 +85,10 @@ classes:
         description: Any additional information about this variable.
         range: string
 
-  VocabularyItemReference:
-    slots:
-      - description
-    attributes:
-      term:
-        range: string
-        required: true
-      uri:
-        range: uriorcurie
-        required: true
 
-  # =============================================================================
-  # ObservedPropertyVariable Class
-  # =============================================================================
+  # =====================================================================================
+  # ObservedPropertyVariable Class (subclasses: DiscreteMeasuredVariable, ContinuousMeasuredVariable)
+  # =====================================================================================
   ObservedPropertyVariable:
     description: >-
       Variable that is directly measured in-situ using instruments.
@@ -133,7 +142,7 @@ classes:
         range: string
 
   # =============================================================================
-  # DiscreteMeasuredVariable Class  - All vars except socioeconomic
+  # DiscreteMeasuredVariable Class (pH, DIC, TA, pCO2/fCO2, physiological, sediment, HPLC)
   # =============================================================================
   DiscreteMeasuredVariable:
     is_a: ObservedPropertyVariable
@@ -141,7 +150,9 @@ classes:
       Analyzing instrument information fields, only applied to discretely measured variables.
       The instrument type can be narrowed in subclasses using slot_usage.
 
-  # Continuous specific fields - All vars except HPLC, socioeconomic, disc pCO2 fCO2
+  # =============================================================================
+  # ContinuousMeasuredVariable Class (pH, DIC, TA, xCO2/pCO2/fCO2, physiological, sediment)
+  # =============================================================================
   ContinuousMeasuredVariable:
     is_a: ObservedPropertyVariable
     description: >-
@@ -280,6 +291,21 @@ classes:
         range: CRMInstrument
         description: CRM-calibrated instrument used to analyze DIC samples.
 
+  # =============================================================================
+  # Sediment Variable Class
+  # =============================================================================
+  ContinuousSedimentVariable:
+    description: >-
+      Measured sediment variable collected from continuous autonomous sensor
+    is_a: ContinuousMeasuredVariable
+    mixins:
+      - MeasuredSedimentFields
+  DiscreteSedimentVariable:
+    description: >-
+      Measured sediment variable collected from discrete bottle samples
+    is_a: DiscreteMeasuredVariable
+    mixins:
+      - MeasuredSedimentFields
 
   # =============================================================================
   # HPLC Variable Class
@@ -288,19 +314,10 @@ classes:
     description: >-
       HPLC (High-Performance Liquid Chromatography) measured variable for
       pigment analysis. Always measured, not calculated.
-    is_a: ObservedPropertyVariable
+    is_a:
     attributes:
       # HPLC-specific fields to be added per Excel spec
 
-  # =============================================================================
-  # Sediment Variable Class
-  # =============================================================================
-  SedimentVariable:
-    description: >-
-      Sediment measured variable for seafloor/sediment sampling data.
-    is_a: ObservedPropertyVariable
-    attributes:
-      # Sediment-specific fields to be added per Excel spec
 
   # =============================================================================
   # Physiological Variable Class
@@ -323,25 +340,8 @@ classes:
     attributes:
       # Socioeconomic-specific fields to be added per Excel spec
 
-  # =============================================================================
-  # Non-Measured Variable Class
-  # =============================================================================
-  NonMeasuredVariable:
-    description: >-
-      Non-measured variable for data from external sources (e.g., satellite,
-      model outputs, published data) that are not directly measured by the
-      project but included in the dataset.
-    is_a: Variable
-    attributes:
-      data_source:
-        title: Data source
-        description: Source of the non-measured data (e.g., satellite mission, model name).
-        range: string
-        required: true
-      source_reference:
-        title: Source reference
-        description: Citation or DOI for the source data.
-        range: string
+
+
 
   # =============================================================================
   # Supporting Classes for Variables
@@ -366,11 +366,24 @@ classes:
         description: Description of how the preservative effect was corrected for.
         range: string
 
+  VocabularyItemReference:
+    slots:
+      - description
+    attributes:
+      term:
+        range: string
+        required: true
+      uri:
+        range: uriorcurie
+        required: true
+
 
 
   # =============================================================================
   # Mixin Classes
   # =============================================================================
+
+
 
   MeasuredTAFields:
     mixin: true
@@ -391,6 +404,29 @@ classes:
     description: Fields applied to all measured pH variable types (discrete and continuous)
     slots:
       - appropriate_use_quality
+
+  MeasuredSedimentFields:
+    mixin: true
+    description: Fields applied to all measured sediment variable types (discrete and continuous)
+    attributes:
+      sediment_type:
+        description: e.g., mud, sand, etc.
+        range: string
+        required: true
+      sediment_sampling_method:
+        description: e.g., sediment core, grab sampling, dredging, etc.
+        range: string
+        required: true
+      sediment_sampling_depth:
+        # TODO: add booleean field to designate if sampling depth is provided as a variable
+        description: Depth that sediment was collected below sediment surface. It is recommended to include as a variable with data rather than here.
+        range: string
+        required: true
+      sediment_sampling_water_depth:
+        # TODO: add booleean field to designate if sampling water depth is provided as a variable
+        description: Water depth where sediment was collected.  It is recommended to include as a variable with data rather than here.
+        range: string
+        required: true
 
   # Quality Control Fields - All vars except socioeconomic
   QCFields:
@@ -415,6 +451,14 @@ classes:
 
 
 slots:
+  # units is common to all variable types, but not required for non-measured variables, so we designate
+  # that distinction via required:true slot_usage in Variable class
+  units:
+    title: Unit
+    description: Unit of measurement for this variable.
+    range: string
+    # TODO: Upgrade this to controlled vocab with QUDT
+
   # DiscreteMeasuredVariable slots
   analyzing_instrument:
     title: Analyzing instrument
@@ -521,36 +565,6 @@ enums:
         description: Concentration expressed per unit volume (e.g., μmol/L, mmol/L)
       per_mass:
         description: Concentration expressed per unit mass (e.g., μmol/kg-seawater)
-
-
-# NOTE: CalibrationFields mixin is no longer needed as calibration is now
-# embedded in each instrument type. Left commented for reference.
-# CalibrationFields:
-#   mixin: true
-#   description: DEPRECATED - Calibration is now part of Instrument types.
-
-# NOTE: SamplingFields mixin functionality is now split:
-# - measured_or_calculated -> determined by MeasuredVariable vs CalculatedVariable
-# - calculation_method_and_parameters -> moved to CalculatedVariable
-# Left commented for reference.
-# SamplingFields:
-#   mixin: true
-#   description: DEPRECATED - Use MeasuredVariable or CalculatedVariable instead.
-
-## =============================================================================
-## Slots used for DIC and TA
-## =============================================================================
-#slots:
-#  sample_preservation:
-#    title: Sample preservation
-#    description: How the samples were preserved for analysis.
-#    range: SamplePreservation
-#  blank_correction:
-#    title: Magnitude of blank correction
-#    description: The magnitude of the blank correction applied to the measurements.
-#    range: string
-#    required: true
-#
 
 
 #  # =============================================================================

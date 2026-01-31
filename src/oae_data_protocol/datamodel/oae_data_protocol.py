@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-01-29T23:45:12
+# Generation date: 2026-01-30T23:10:24
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -1140,7 +1140,60 @@ class Person(YAMLRoot):
 
 
 @dataclass(repr=False)
-class Variable(YAMLRoot):
+class BaseVariable(YAMLRoot):
+    """
+    Basic variable fields across all (including non-measured) variables
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["BaseVariable"]
+    class_class_curie: ClassVar[str] = "oae:BaseVariable"
+    class_name: ClassVar[str] = "BaseVariable"
+    class_model_uri: ClassVar[URIRef] = OAE.BaseVariable
+
+    dataset_variable_name: str = None
+    long_name: str = None
+    units: Optional[str] = None
+    standard_identifier: Optional[Union[dict, "VocabularyItemReference"]] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.dataset_variable_name):
+            self.MissingRequiredField("dataset_variable_name")
+        if not isinstance(self.dataset_variable_name, str):
+            self.dataset_variable_name = str(self.dataset_variable_name)
+
+        if self._is_empty(self.long_name):
+            self.MissingRequiredField("long_name")
+        if not isinstance(self.long_name, str):
+            self.long_name = str(self.long_name)
+
+        if self.units is not None and not isinstance(self.units, str):
+            self.units = str(self.units)
+
+        if self.standard_identifier is not None and not isinstance(self.standard_identifier, VocabularyItemReference):
+            self.standard_identifier = VocabularyItemReference(**as_dict(self.standard_identifier))
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class NonMeasuredVariable(BaseVariable):
+    """
+    Non-measured variable for data from external sources (e.g., satellite, model outputs, published data) that are not
+    directly measured by the project but included in the dataset.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["NonMeasuredVariable"]
+    class_class_curie: ClassVar[str] = "oae:NonMeasuredVariable"
+    class_name: ClassVar[str] = "NonMeasuredVariable"
+    class_model_uri: ClassVar[URIRef] = OAE.NonMeasuredVariable
+
+    dataset_variable_name: str = None
+    long_name: str = None
+
+@dataclass(repr=False)
+class Variable(BaseVariable):
     """
     Base class for all variable types. Contains common identification and description fields shared by all variables.
     Reference: OAPMetadata XSD variables.xsd - variable, basic_variable
@@ -1155,7 +1208,6 @@ class Variable(YAMLRoot):
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
-    standard_identifier: Optional[Union[dict, "VocabularyItemReference"]] = None
     dataset_variable_name_qc_flag: Optional[str] = None
     dataset_variable_name_raw: Optional[str] = None
     method_reference: Optional[str] = None
@@ -1163,23 +1215,10 @@ class Variable(YAMLRoot):
     other_detailed_information: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.dataset_variable_name):
-            self.MissingRequiredField("dataset_variable_name")
-        if not isinstance(self.dataset_variable_name, str):
-            self.dataset_variable_name = str(self.dataset_variable_name)
-
-        if self._is_empty(self.long_name):
-            self.MissingRequiredField("long_name")
-        if not isinstance(self.long_name, str):
-            self.long_name = str(self.long_name)
-
         if self._is_empty(self.units):
             self.MissingRequiredField("units")
         if not isinstance(self.units, str):
             self.units = str(self.units)
-
-        if self.standard_identifier is not None and not isinstance(self.standard_identifier, VocabularyItemReference):
-            self.standard_identifier = VocabularyItemReference(**as_dict(self.standard_identifier))
 
         if self.dataset_variable_name_qc_flag is not None and not isinstance(self.dataset_variable_name_qc_flag, str):
             self.dataset_variable_name_qc_flag = str(self.dataset_variable_name_qc_flag)
@@ -1195,36 +1234,6 @@ class Variable(YAMLRoot):
 
         if self.other_detailed_information is not None and not isinstance(self.other_detailed_information, str):
             self.other_detailed_information = str(self.other_detailed_information)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class VocabularyItemReference(YAMLRoot):
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OAE["VocabularyItemReference"]
-    class_class_curie: ClassVar[str] = "oae:VocabularyItemReference"
-    class_name: ClassVar[str] = "VocabularyItemReference"
-    class_model_uri: ClassVar[URIRef] = OAE.VocabularyItemReference
-
-    term: str = None
-    uri: Union[str, URIorCURIE] = None
-    description: Optional[str] = None
-
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.term):
-            self.MissingRequiredField("term")
-        if not isinstance(self.term, str):
-            self.term = str(self.term)
-
-        if self._is_empty(self.uri):
-            self.MissingRequiredField("uri")
-        if not isinstance(self.uri, URIorCURIE):
-            self.uri = URIorCURIE(self.uri)
-
-        if self.description is not None and not isinstance(self.description, str):
-            self.description = str(self.description)
 
         super().__post_init__(**kwargs)
 
@@ -1760,7 +1769,117 @@ class DiscreteDICVariable(ObservedPropertyVariable):
 
 
 @dataclass(repr=False)
-class HPLCVariable(ObservedPropertyVariable):
+class ContinuousSedimentVariable(ContinuousMeasuredVariable):
+    """
+    Measured sediment variable collected from continuous autonomous sensor
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["ContinuousSedimentVariable"]
+    class_class_curie: ClassVar[str] = "oae:ContinuousSedimentVariable"
+    class_name: ClassVar[str] = "ContinuousSedimentVariable"
+    class_model_uri: ClassVar[URIRef] = OAE.ContinuousSedimentVariable
+
+    dataset_variable_name: str = None
+    long_name: str = None
+    units: str = None
+    analyzing_instrument: Union[dict, "AnalyzingInstrument"] = None
+    sampling_method: str = None
+    analyzing_method: str = None
+    observation_type: Union[str, "ObservationType"] = None
+    sampling: Union[str, "SamplingType"] = None
+    genesis: Union[str, "GenesisType"] = None
+    sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
+    qc_steps_taken: str = None
+    uncertainty: str = None
+    uncertainty_definition: str = None
+    missing_value_indicators: str = None
+    raw_data_calculation_method: str = None
+    sediment_type: str = None
+    sediment_sampling_method: str = None
+    sediment_sampling_depth: str = None
+    sediment_sampling_water_depth: str = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.sediment_type):
+            self.MissingRequiredField("sediment_type")
+        if not isinstance(self.sediment_type, str):
+            self.sediment_type = str(self.sediment_type)
+
+        if self._is_empty(self.sediment_sampling_method):
+            self.MissingRequiredField("sediment_sampling_method")
+        if not isinstance(self.sediment_sampling_method, str):
+            self.sediment_sampling_method = str(self.sediment_sampling_method)
+
+        if self._is_empty(self.sediment_sampling_depth):
+            self.MissingRequiredField("sediment_sampling_depth")
+        if not isinstance(self.sediment_sampling_depth, str):
+            self.sediment_sampling_depth = str(self.sediment_sampling_depth)
+
+        if self._is_empty(self.sediment_sampling_water_depth):
+            self.MissingRequiredField("sediment_sampling_water_depth")
+        if not isinstance(self.sediment_sampling_water_depth, str):
+            self.sediment_sampling_water_depth = str(self.sediment_sampling_water_depth)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class DiscreteSedimentVariable(DiscreteMeasuredVariable):
+    """
+    Measured sediment variable collected from discrete bottle samples
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["DiscreteSedimentVariable"]
+    class_class_curie: ClassVar[str] = "oae:DiscreteSedimentVariable"
+    class_name: ClassVar[str] = "DiscreteSedimentVariable"
+    class_model_uri: ClassVar[URIRef] = OAE.DiscreteSedimentVariable
+
+    dataset_variable_name: str = None
+    long_name: str = None
+    units: str = None
+    analyzing_instrument: Union[dict, "AnalyzingInstrument"] = None
+    sampling_method: str = None
+    analyzing_method: str = None
+    observation_type: Union[str, "ObservationType"] = None
+    sampling: Union[str, "SamplingType"] = None
+    genesis: Union[str, "GenesisType"] = None
+    sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
+    qc_steps_taken: str = None
+    uncertainty: str = None
+    uncertainty_definition: str = None
+    missing_value_indicators: str = None
+    sediment_type: str = None
+    sediment_sampling_method: str = None
+    sediment_sampling_depth: str = None
+    sediment_sampling_water_depth: str = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.sediment_type):
+            self.MissingRequiredField("sediment_type")
+        if not isinstance(self.sediment_type, str):
+            self.sediment_type = str(self.sediment_type)
+
+        if self._is_empty(self.sediment_sampling_method):
+            self.MissingRequiredField("sediment_sampling_method")
+        if not isinstance(self.sediment_sampling_method, str):
+            self.sediment_sampling_method = str(self.sediment_sampling_method)
+
+        if self._is_empty(self.sediment_sampling_depth):
+            self.MissingRequiredField("sediment_sampling_depth")
+        if not isinstance(self.sediment_sampling_depth, str):
+            self.sediment_sampling_depth = str(self.sediment_sampling_depth)
+
+        if self._is_empty(self.sediment_sampling_water_depth):
+            self.MissingRequiredField("sediment_sampling_water_depth")
+        if not isinstance(self.sediment_sampling_water_depth, str):
+            self.sediment_sampling_water_depth = str(self.sediment_sampling_water_depth)
+
+        super().__post_init__(**kwargs)
+
+
+class HPLCVariable(YAMLRoot):
     """
     HPLC (High-Performance Liquid Chromatography) measured variable for pigment analysis. Always measured, not
     calculated.
@@ -1772,47 +1891,6 @@ class HPLCVariable(ObservedPropertyVariable):
     class_name: ClassVar[str] = "HPLCVariable"
     class_model_uri: ClassVar[URIRef] = OAE.HPLCVariable
 
-    dataset_variable_name: str = None
-    long_name: str = None
-    units: str = None
-    analyzing_instrument: Union[dict, "AnalyzingInstrument"] = None
-    sampling_method: str = None
-    analyzing_method: str = None
-    observation_type: Union[str, "ObservationType"] = None
-    sampling: Union[str, "SamplingType"] = None
-    genesis: Union[str, "GenesisType"] = None
-    sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
-    qc_steps_taken: str = None
-    uncertainty: str = None
-    uncertainty_definition: str = None
-    missing_value_indicators: str = None
-
-@dataclass(repr=False)
-class SedimentVariable(ObservedPropertyVariable):
-    """
-    Sediment measured variable for seafloor/sediment sampling data.
-    """
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OAE["SedimentVariable"]
-    class_class_curie: ClassVar[str] = "oae:SedimentVariable"
-    class_name: ClassVar[str] = "SedimentVariable"
-    class_model_uri: ClassVar[URIRef] = OAE.SedimentVariable
-
-    dataset_variable_name: str = None
-    long_name: str = None
-    units: str = None
-    analyzing_instrument: Union[dict, "AnalyzingInstrument"] = None
-    sampling_method: str = None
-    analyzing_method: str = None
-    observation_type: Union[str, "ObservationType"] = None
-    sampling: Union[str, "SamplingType"] = None
-    genesis: Union[str, "GenesisType"] = None
-    sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
-    qc_steps_taken: str = None
-    uncertainty: str = None
-    uncertainty_definition: str = None
-    missing_value_indicators: str = None
 
 @dataclass(repr=False)
 class PhysiologicalVariable(ObservedPropertyVariable):
@@ -1858,37 +1936,6 @@ class SocioeconomicVariable(Variable):
     units: str = None
 
 @dataclass(repr=False)
-class NonMeasuredVariable(Variable):
-    """
-    Non-measured variable for data from external sources (e.g., satellite, model outputs, published data) that are not
-    directly measured by the project but included in the dataset.
-    """
-    _inherited_slots: ClassVar[List[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = OAE["NonMeasuredVariable"]
-    class_class_curie: ClassVar[str] = "oae:NonMeasuredVariable"
-    class_name: ClassVar[str] = "NonMeasuredVariable"
-    class_model_uri: ClassVar[URIRef] = OAE.NonMeasuredVariable
-
-    dataset_variable_name: str = None
-    long_name: str = None
-    units: str = None
-    data_source: str = None
-    source_reference: Optional[str] = None
-
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.data_source):
-            self.MissingRequiredField("data_source")
-        if not isinstance(self.data_source, str):
-            self.data_source = str(self.data_source)
-
-        if self.source_reference is not None and not isinstance(self.source_reference, str):
-            self.source_reference = str(self.source_reference)
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
 class SamplePreservation(YAMLRoot):
     """
     Sample preservation information for DIC and TA measurements. Reference: OAPMetadata XSD variables.xsd -
@@ -1918,6 +1965,36 @@ class SamplePreservation(YAMLRoot):
 
         if self.correction_description is not None and not isinstance(self.correction_description, str):
             self.correction_description = str(self.correction_description)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class VocabularyItemReference(YAMLRoot):
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["VocabularyItemReference"]
+    class_class_curie: ClassVar[str] = "oae:VocabularyItemReference"
+    class_name: ClassVar[str] = "VocabularyItemReference"
+    class_model_uri: ClassVar[URIRef] = OAE.VocabularyItemReference
+
+    term: str = None
+    uri: Union[str, URIorCURIE] = None
+    description: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.term):
+            self.MissingRequiredField("term")
+        if not isinstance(self.term, str):
+            self.term = str(self.term)
+
+        if self._is_empty(self.uri):
+            self.MissingRequiredField("uri")
+        if not isinstance(self.uri, URIorCURIE):
+            self.uri = URIorCURIE(self.uri)
+
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
 
         super().__post_init__(**kwargs)
 
@@ -1993,6 +2070,47 @@ class MeasuredPHFields(YAMLRoot):
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self.appropriate_use_quality is not None and not isinstance(self.appropriate_use_quality, AppropriateUseQuality):
             self.appropriate_use_quality = AppropriateUseQuality(self.appropriate_use_quality)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class MeasuredSedimentFields(YAMLRoot):
+    """
+    Fields applied to all measured sediment variable types (discrete and continuous)
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["MeasuredSedimentFields"]
+    class_class_curie: ClassVar[str] = "oae:MeasuredSedimentFields"
+    class_name: ClassVar[str] = "MeasuredSedimentFields"
+    class_model_uri: ClassVar[URIRef] = OAE.MeasuredSedimentFields
+
+    sediment_type: str = None
+    sediment_sampling_method: str = None
+    sediment_sampling_depth: str = None
+    sediment_sampling_water_depth: str = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.sediment_type):
+            self.MissingRequiredField("sediment_type")
+        if not isinstance(self.sediment_type, str):
+            self.sediment_type = str(self.sediment_type)
+
+        if self._is_empty(self.sediment_sampling_method):
+            self.MissingRequiredField("sediment_sampling_method")
+        if not isinstance(self.sediment_sampling_method, str):
+            self.sediment_sampling_method = str(self.sediment_sampling_method)
+
+        if self._is_empty(self.sediment_sampling_depth):
+            self.MissingRequiredField("sediment_sampling_depth")
+        if not isinstance(self.sediment_sampling_depth, str):
+            self.sediment_sampling_depth = str(self.sediment_sampling_depth)
+
+        if self._is_empty(self.sediment_sampling_water_depth):
+            self.MissingRequiredField("sediment_sampling_water_depth")
+        if not isinstance(self.sediment_sampling_water_depth, str):
+            self.sediment_sampling_water_depth = str(self.sediment_sampling_water_depth)
 
         super().__post_init__(**kwargs)
 
@@ -3880,6 +3998,9 @@ slots.is_provided_as_a_file = Slot(uri=OAE.is_provided_as_a_file, name="is_provi
 slots.is_derived_value = Slot(uri=OAE.is_derived_value, name="is_derived_value", curie=OAE.curie('is_derived_value'),
                    model_uri=OAE.is_derived_value, domain=None, range=Union[bool, Bool])
 
+slots.units = Slot(uri=OAE.units, name="units", curie=OAE.curie('units'),
+                   model_uri=OAE.units, domain=None, range=Optional[str])
+
 slots.analyzing_instrument = Slot(uri=OAE.analyzing_instrument, name="analyzing_instrument", curie=OAE.curie('analyzing_instrument'),
                    model_uri=OAE.analyzing_instrument, domain=None, range=Union[dict, AnalyzingInstrument])
 
@@ -4137,23 +4258,20 @@ slots.person__identifier = Slot(uri=OAE.identifier, name="person__identifier", c
 slots.person__role = Slot(uri=OAE.role, name="person__role", curie=OAE.curie('role'),
                    model_uri=OAE.person__role, domain=None, range=Optional[str])
 
-slots.variable__standard_identifier = Slot(uri=OAE.standard_identifier, name="variable__standard_identifier", curie=OAE.curie('standard_identifier'),
-                   model_uri=OAE.variable__standard_identifier, domain=None, range=Optional[Union[dict, VocabularyItemReference]])
+slots.baseVariable__standard_identifier = Slot(uri=OAE.standard_identifier, name="baseVariable__standard_identifier", curie=OAE.curie('standard_identifier'),
+                   model_uri=OAE.baseVariable__standard_identifier, domain=None, range=Optional[Union[dict, VocabularyItemReference]])
 
-slots.variable__dataset_variable_name = Slot(uri=OAE.dataset_variable_name, name="variable__dataset_variable_name", curie=OAE.curie('dataset_variable_name'),
-                   model_uri=OAE.variable__dataset_variable_name, domain=None, range=str)
+slots.baseVariable__dataset_variable_name = Slot(uri=OAE.dataset_variable_name, name="baseVariable__dataset_variable_name", curie=OAE.curie('dataset_variable_name'),
+                   model_uri=OAE.baseVariable__dataset_variable_name, domain=None, range=str)
+
+slots.baseVariable__long_name = Slot(uri=OAE.long_name, name="baseVariable__long_name", curie=OAE.curie('long_name'),
+                   model_uri=OAE.baseVariable__long_name, domain=None, range=str)
 
 slots.variable__dataset_variable_name_qc_flag = Slot(uri=OAE.dataset_variable_name_qc_flag, name="variable__dataset_variable_name_qc_flag", curie=OAE.curie('dataset_variable_name_qc_flag'),
                    model_uri=OAE.variable__dataset_variable_name_qc_flag, domain=None, range=Optional[str])
 
 slots.variable__dataset_variable_name_raw = Slot(uri=OAE.dataset_variable_name_raw, name="variable__dataset_variable_name_raw", curie=OAE.curie('dataset_variable_name_raw'),
                    model_uri=OAE.variable__dataset_variable_name_raw, domain=None, range=Optional[str])
-
-slots.variable__long_name = Slot(uri=OAE.long_name, name="variable__long_name", curie=OAE.curie('long_name'),
-                   model_uri=OAE.variable__long_name, domain=None, range=str)
-
-slots.variable__units = Slot(uri=OAE.units, name="variable__units", curie=OAE.curie('units'),
-                   model_uri=OAE.variable__units, domain=None, range=str)
 
 slots.variable__method_reference = Slot(uri=OAE.method_reference, name="variable__method_reference", curie=OAE.curie('method_reference'),
                    model_uri=OAE.variable__method_reference, domain=None, range=Optional[str])
@@ -4163,12 +4281,6 @@ slots.variable__measurement_researcher = Slot(uri=OAE.measurement_researcher, na
 
 slots.variable__other_detailed_information = Slot(uri=OAE.other_detailed_information, name="variable__other_detailed_information", curie=OAE.curie('other_detailed_information'),
                    model_uri=OAE.variable__other_detailed_information, domain=None, range=Optional[str])
-
-slots.vocabularyItemReference__term = Slot(uri=OAE.term, name="vocabularyItemReference__term", curie=OAE.curie('term'),
-                   model_uri=OAE.vocabularyItemReference__term, domain=None, range=str)
-
-slots.vocabularyItemReference__uri = Slot(uri=OAE.uri, name="vocabularyItemReference__uri", curie=OAE.curie('uri'),
-                   model_uri=OAE.vocabularyItemReference__uri, domain=None, range=Union[str, URIorCURIE])
 
 slots.observedPropertyVariable__sampling_method = Slot(uri=OAE.sampling_method, name="observedPropertyVariable__sampling_method", curie=OAE.curie('sampling_method'),
                    model_uri=OAE.observedPropertyVariable__sampling_method, domain=None, range=str)
@@ -4221,12 +4333,6 @@ slots.discreteTAVariable__titration_cell_type = Slot(uri=OAE.titration_cell_type
 slots.discreteTAVariable__curve_fitting_method = Slot(uri=OAE.curve_fitting_method, name="discreteTAVariable__curve_fitting_method", curie=OAE.curie('curve_fitting_method'),
                    model_uri=OAE.discreteTAVariable__curve_fitting_method, domain=None, range=Optional[str])
 
-slots.nonMeasuredVariable__data_source = Slot(uri=OAE.data_source, name="nonMeasuredVariable__data_source", curie=OAE.curie('data_source'),
-                   model_uri=OAE.nonMeasuredVariable__data_source, domain=None, range=str)
-
-slots.nonMeasuredVariable__source_reference = Slot(uri=OAE.source_reference, name="nonMeasuredVariable__source_reference", curie=OAE.curie('source_reference'),
-                   model_uri=OAE.nonMeasuredVariable__source_reference, domain=None, range=Optional[str])
-
 slots.samplePreservation__preservative = Slot(uri=OAE.preservative, name="samplePreservation__preservative", curie=OAE.curie('preservative'),
                    model_uri=OAE.samplePreservation__preservative, domain=None, range=str)
 
@@ -4235,6 +4341,24 @@ slots.samplePreservation__volume = Slot(uri=OAE.volume, name="samplePreservation
 
 slots.samplePreservation__correction_description = Slot(uri=OAE.correction_description, name="samplePreservation__correction_description", curie=OAE.curie('correction_description'),
                    model_uri=OAE.samplePreservation__correction_description, domain=None, range=Optional[str])
+
+slots.vocabularyItemReference__term = Slot(uri=OAE.term, name="vocabularyItemReference__term", curie=OAE.curie('term'),
+                   model_uri=OAE.vocabularyItemReference__term, domain=None, range=str)
+
+slots.vocabularyItemReference__uri = Slot(uri=OAE.uri, name="vocabularyItemReference__uri", curie=OAE.curie('uri'),
+                   model_uri=OAE.vocabularyItemReference__uri, domain=None, range=Union[str, URIorCURIE])
+
+slots.measuredSedimentFields__sediment_type = Slot(uri=OAE.sediment_type, name="measuredSedimentFields__sediment_type", curie=OAE.curie('sediment_type'),
+                   model_uri=OAE.measuredSedimentFields__sediment_type, domain=None, range=str)
+
+slots.measuredSedimentFields__sediment_sampling_method = Slot(uri=OAE.sediment_sampling_method, name="measuredSedimentFields__sediment_sampling_method", curie=OAE.curie('sediment_sampling_method'),
+                   model_uri=OAE.measuredSedimentFields__sediment_sampling_method, domain=None, range=str)
+
+slots.measuredSedimentFields__sediment_sampling_depth = Slot(uri=OAE.sediment_sampling_depth, name="measuredSedimentFields__sediment_sampling_depth", curie=OAE.curie('sediment_sampling_depth'),
+                   model_uri=OAE.measuredSedimentFields__sediment_sampling_depth, domain=None, range=str)
+
+slots.measuredSedimentFields__sediment_sampling_water_depth = Slot(uri=OAE.sediment_sampling_water_depth, name="measuredSedimentFields__sediment_sampling_water_depth", curie=OAE.curie('sediment_sampling_water_depth'),
+                   model_uri=OAE.measuredSedimentFields__sediment_sampling_water_depth, domain=None, range=str)
 
 slots.qCFields__qc_researcher = Slot(uri=OAE.qc_researcher, name="qCFields__qc_researcher", curie=OAE.curie('qc_researcher'),
                    model_uri=OAE.qCFields__qc_researcher, domain=None, range=Optional[Union[dict, Person]])
@@ -4431,6 +4555,9 @@ slots.Experiment_spatial_coverage = Slot(uri=SCHEMA.spatialCoverage, name="Exper
 
 slots.Experiment_vertical_coverage = Slot(uri=OAE.vertical_coverage, name="Experiment_vertical_coverage", curie=OAE.curie('vertical_coverage'),
                    model_uri=OAE.Experiment_vertical_coverage, domain=Experiment, range=Optional[Union[dict, VerticalExtent]])
+
+slots.Variable_units = Slot(uri=OAE.units, name="Variable_units", curie=OAE.curie('units'),
+                   model_uri=OAE.Variable_units, domain=Variable, range=str)
 
 slots.ObservedPropertyVariable_qc_steps_taken = Slot(uri=OAE.qc_steps_taken, name="ObservedPropertyVariable_qc_steps_taken", curie=OAE.curie('qc_steps_taken'),
                    model_uri=OAE.ObservedPropertyVariable_qc_steps_taken, domain=ObservedPropertyVariable, range=str)
