@@ -465,6 +465,74 @@
 <td>None</td>
 </tr>
 <tr>
+<td><a href="BaseVariable/">BaseVariable</a></td>
+<td>Basic variable fields across all (including non-measured) variables</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="NonMeasuredVariable/">NonMeasuredVariable</a></td>
+<td>Non-measured variable for data from external sources (e.g., satellite, model outputs, published data) that are not directly measured by the project but included in the dataset.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Variable/">Variable</a></td>
+<td>Base class for all variable types. Contains common identification and description fields shared by all variables. Reference: OAPMetadata XSD variables.xsd - variable, basic_variable</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CalculatedVariable/">CalculatedVariable</a></td>
+<td>Variable that is calculated or derived from other variables.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
+<td>Variable that is directly measured in-situ using instruments. Reference: OAPMetadata XSD variables.xsd - basic_measured_observation_base</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ContinuousMeasuredVariable/">ContinuousMeasuredVariable</a></td>
+<td>Fields for continuous sampling information.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ContinuousDICVariable/">ContinuousDICVariable</a></td>
+<td>Dissolved Inorganic Carbon (DIC) measured variable from continuous autonomous sensor.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ContinuousPHVariable/">ContinuousPHVariable</a></td>
+<td>pH measured variable from continuous autonomous sensor</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ContinuousSedimentVariable/">ContinuousSedimentVariable</a></td>
+<td>Measured sediment variable collected from continuous autonomous sensor</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ContinuousTAVariable/">ContinuousTAVariable</a></td>
+<td>Total Alkalinity (TA) measured variable from continuous autonomous sensor</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DiscreteDICVariable/">DiscreteDICVariable</a></td>
+<td>Dissolved Inorganic Carbon (DIC) measured variable from discrete bottle samples. Uses CRM-calibrated instrument and includes sample preservation information. Reference: OAPMetadata XSD variables.xsd - DIC_measured</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DiscreteMeasuredVariable/">DiscreteMeasuredVariable</a></td>
+<td>Analyzing instrument information fields, only applied to discretely measured variables. The instrument type can be narrowed in subclasses using slot_usage.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DiscretePHVariable/">DiscretePHVariable</a></td>
+<td>pH measured variable with dye-based spectrophotometric measurement. Reference: OAPMetadata XSD variables.xsd - pH_measured</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DiscreteSedimentVariable/">DiscreteSedimentVariable</a></td>
+<td>Measured sediment variable collected from discrete bottle samples</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DiscreteTAVariable/">DiscreteTAVariable</a></td>
+<td>Total Alkalinity (TA) measured variable from discrete bottle samples</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="PhysiologicalVariable/">PhysiologicalVariable</a></td>
+<td>Physiological response measured variable for organism response data.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="SocioeconomicVariable/">SocioeconomicVariable</a></td>
+<td>Socioeconomic variable for social and economic data. Note: Does NOT include QCFields mixin as QC is not applicable.</td>
+</tr>
+<tr>
 <td><a href="Calibration/">Calibration</a></td>
 <td>Base calibration information for instruments.</td>
 </tr>
@@ -525,6 +593,10 @@
 <td>The geographic shape of a place. A GeoShape can be described using several properties whose values are based on latitude/longitude pairs. Either whitespace or commas can be used to separate latitude and longitude; whitespace should be used when writing a list of several such points. (imported from schema.org)</td>
 </tr>
 <tr>
+<td><a href="HPLCVariable/">HPLCVariable</a></td>
+<td>HPLC (High-Performance Liquid Chromatography) measured variable for pigment analysis. Always measured, not calculated.</td>
+</tr>
+<tr>
 <td><a href="InterventionDetails/">InterventionDetails</a></td>
 <td>An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are  specific to an Experiment with type "Intervention"</td>
 </tr>
@@ -535,6 +607,10 @@
 <tr>
 <td><a href="MeasuredPHFields/">MeasuredPHFields</a></td>
 <td>Fields applied to all measured pH variable types (discrete and continuous)</td>
+</tr>
+<tr>
+<td><a href="MeasuredSedimentFields/">MeasuredSedimentFields</a></td>
+<td>Fields applied to all measured sediment variable types (discrete and continuous)</td>
 </tr>
 <tr>
 <td><a href="MeasuredTAFields/">MeasuredTAFields</a></td>
@@ -599,70 +675,6 @@
 <tr>
 <td><a href="TracerDetails/">TracerDetails</a></td>
 <td>An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are  specific to an Experiment with type "Tracer"</td>
-</tr>
-<tr>
-<td><a href="Variable/">Variable</a></td>
-<td>Base class for all variable types. Contains common identification and description fields shared by all variables. Reference: OAPMetadata XSD variables.xsd - variable, basic_variable</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CalculatedVariable/">CalculatedVariable</a></td>
-<td>Variable that is calculated or derived from other variables.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="NonMeasuredVariable/">NonMeasuredVariable</a></td>
-<td>Non-measured variable for data from external sources (e.g., satellite, model outputs, published data) that are not directly measured by the project but included in the dataset.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
-<td>Variable that is directly measured in-situ using instruments. Reference: OAPMetadata XSD variables.xsd - basic_measured_observation_base</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ContinuousMeasuredVariable/">ContinuousMeasuredVariable</a></td>
-<td>Fields for continuous sampling information.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ContinuousDICVariable/">ContinuousDICVariable</a></td>
-<td>Dissolved Inorganic Carbon (DIC) measured variable from continuous autonomous sensor.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ContinuousPHVariable/">ContinuousPHVariable</a></td>
-<td>pH measured variable from continuous autonomous sensor</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ContinuousTAVariable/">ContinuousTAVariable</a></td>
-<td>Total Alkalinity (TA) measured variable from continuous autonomous sensor</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DiscreteDICVariable/">DiscreteDICVariable</a></td>
-<td>Dissolved Inorganic Carbon (DIC) measured variable from discrete bottle samples. Uses CRM-calibrated instrument and includes sample preservation information. Reference: OAPMetadata XSD variables.xsd - DIC_measured</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DiscreteMeasuredVariable/">DiscreteMeasuredVariable</a></td>
-<td>Analyzing instrument information fields, only applied to discretely measured variables. The instrument type can be narrowed in subclasses using slot_usage.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DiscretePHVariable/">DiscretePHVariable</a></td>
-<td>pH measured variable with dye-based spectrophotometric measurement. Reference: OAPMetadata XSD variables.xsd - pH_measured</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DiscreteTAVariable/">DiscreteTAVariable</a></td>
-<td>Total Alkalinity (TA) measured variable from discrete bottle samples</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="HPLCVariable/">HPLCVariable</a></td>
-<td>HPLC (High-Performance Liquid Chromatography) measured variable for pigment analysis. Always measured, not calculated.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="PhysiologicalVariable/">PhysiologicalVariable</a></td>
-<td>Physiological response measured variable for organism response data.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="SedimentVariable/">SedimentVariable</a></td>
-<td>Sediment measured variable for seafloor/sediment sampling data.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="SocioeconomicVariable/">SocioeconomicVariable</a></td>
-<td>Socioeconomic variable for social and economic data. Note: Does NOT include QCFields mixin as QC is not applicable.</td>
 </tr>
 <tr>
 <td><a href="VerticalExtent/">VerticalExtent</a></td>
@@ -840,10 +852,6 @@
 <td>"Controlled vocabulary" One of the three choices: (a) Originally collected da...</td>
 </tr>
 <tr>
-<td><a href="data_source/">data_source</a></td>
-<td>Source of the non-measured data (e</td>
-</tr>
-<tr>
 <td><a href="data_submitter/">data_submitter</a></td>
 <td></td>
 </tr>
@@ -866,6 +874,10 @@
 <tr>
 <td><a href="dataset_variable_name_raw/">dataset_variable_name_raw</a></td>
 <td>If applicable, the column header name used for the raw data corresponding to ...</td>
+</tr>
+<tr>
+<td><a href="datasets/">datasets</a></td>
+<td></td>
 </tr>
 <tr>
 <td><a href="description/">description</a></td>
@@ -1216,6 +1228,22 @@
 <td>Names of the seas where the data collection takes place, See Controlled Vocab...</td>
 </tr>
 <tr>
+<td><a href="sediment_sampling_depth/">sediment_sampling_depth</a></td>
+<td>Depth that sediment was collected below sediment surface</td>
+</tr>
+<tr>
+<td><a href="sediment_sampling_method/">sediment_sampling_method</a></td>
+<td>e</td>
+</tr>
+<tr>
+<td><a href="sediment_sampling_water_depth/">sediment_sampling_water_depth</a></td>
+<td>Water depth where sediment was collected</td>
+</tr>
+<tr>
+<td><a href="sediment_type/">sediment_type</a></td>
+<td>e</td>
+</tr>
+<tr>
 <td><a href="serial_number/">serial_number</a></td>
 <td>Serial number of the instrument</td>
 </tr>
@@ -1226,10 +1254,6 @@
 <tr>
 <td><a href="social_research_conducted_to_date/">social_research_conducted_to_date</a></td>
 <td>A description of any social research conducted to date</td>
-</tr>
-<tr>
-<td><a href="source_reference/">source_reference</a></td>
-<td>Citation or DOI for the source data</td>
 </tr>
 <tr>
 <td><a href="spatial_coverage/">spatial_coverage</a></td>

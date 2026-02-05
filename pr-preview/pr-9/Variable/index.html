@@ -234,14 +234,17 @@
 <div class="mermaid"> classDiagram
     class Variable
     click Variable href "../Variable"
+      BaseVariable &lt;|-- Variable
+        click BaseVariable href "../BaseVariable"
+
+
       Variable &lt;|-- ObservedPropertyVariable
         click ObservedPropertyVariable href "../ObservedPropertyVariable"
       Variable &lt;|-- CalculatedVariable
         click CalculatedVariable href "../CalculatedVariable"
       Variable &lt;|-- SocioeconomicVariable
         click SocioeconomicVariable href "../SocioeconomicVariable"
-      Variable &lt;|-- NonMeasuredVariable
-        click NonMeasuredVariable href "../NonMeasuredVariable"
+
 
       Variable : dataset_variable_name
 
@@ -279,11 +282,13 @@
 </div>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
+<li><a href="../BaseVariable/">BaseVariable</a><ul>
 <li><strong>Variable</strong><ul>
 <li><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a> [ <a href="../QCFields/">QCFields</a>]</li>
 <li><a href="../CalculatedVariable/">CalculatedVariable</a> [ <a href="../QCFields/">QCFields</a>]</li>
 <li><a href="../SocioeconomicVariable/">SocioeconomicVariable</a></li>
-<li><a href="../NonMeasuredVariable/">NonMeasuredVariable</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -299,18 +304,6 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../standard_identifier/">standard_identifier</a></td>
-<td>0..1 <br/> <a href="../VocabularyItemReference/">VocabularyItemReference</a></td>
-<td></td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../dataset_variable_name/">dataset_variable_name</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>The name for the variable as it is identified in the dataset data file</td>
-<td>direct</td>
-</tr>
-<tr>
 <td><a href="../dataset_variable_name_qc_flag/">dataset_variable_name_qc_flag</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>If applicable, the column header name used for the quality control flag corre...</td>
@@ -320,18 +313,6 @@
 <td><a href="../dataset_variable_name_raw/">dataset_variable_name_raw</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>If applicable, the column header name used for the raw data corresponding to ...</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../long_name/">long_name</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>Full descriptive name of the variable</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../units/">units</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>Unit of measurement for this variable</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -351,6 +332,30 @@
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Any additional information about this variable</td>
 <td>direct</td>
+</tr>
+<tr>
+<td><a href="../units/">units</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>Unit of measurement for this variable</td>
+<td><a href="../BaseVariable/">BaseVariable</a></td>
+</tr>
+<tr>
+<td><a href="../standard_identifier/">standard_identifier</a></td>
+<td>0..1 <br/> <a href="../VocabularyItemReference/">VocabularyItemReference</a></td>
+<td></td>
+<td><a href="../BaseVariable/">BaseVariable</a></td>
+</tr>
+<tr>
+<td><a href="../dataset_variable_name/">dataset_variable_name</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>The name for the variable as it is identified in the dataset data file</td>
+<td><a href="../BaseVariable/">BaseVariable</a></td>
+</tr>
+<tr>
+<td><a href="../long_name/">long_name</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>Full descriptive name of the variable</td>
+<td><a href="../BaseVariable/">BaseVariable</a></td>
 </tr>
 </tbody>
 </table>
@@ -406,27 +411,12 @@ description: 'Base class for all variable types. Contains common identification 
   description fields shared by all variables. Reference: OAPMetadata XSD variables.xsd
   - variable, basic_variable'
 from_schema: OAEDataManagementProtocol
-attributes:
-  standard_identifier:
-    name: standard_identifier
-    from_schema: Variable
-    rank: 1000
-    domain_of:
-    - Variable
-    range: VocabularyItemReference
-  dataset_variable_name:
-    name: dataset_variable_name
-    description: The name for the variable as it is identified in the dataset data
-      file. This could be the column header in a CSV or the variable name in a NetCDF
-      file. Standard common recommended column header names can be found in protocol
-      documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).
-    title: Dataset variable name
-    from_schema: Variable
-    rank: 1000
-    domain_of:
-    - Variable
-    range: string
+is_a: BaseVariable
+slot_usage:
+  units:
+    name: units
     required: true
+attributes:
   dataset_variable_name_qc_flag:
     name: dataset_variable_name_qc_flag
     description: If applicable, the column header name used for the quality control
@@ -447,26 +437,6 @@ attributes:
     domain_of:
     - Variable
     range: string
-  long_name:
-    name: long_name
-    description: Full descriptive name of the variable.
-    title: Variable full name
-    from_schema: Variable
-    rank: 1000
-    domain_of:
-    - Variable
-    range: string
-    required: true
-  units:
-    name: units
-    description: Unit of measurement for this variable.
-    title: Unit
-    from_schema: Variable
-    rank: 1000
-    domain_of:
-    - Variable
-    range: string
-    required: true
   method_reference:
     name: method_reference
     description: Citation for the method used.
@@ -504,31 +474,12 @@ description: 'Base class for all variable types. Contains common identification 
   description fields shared by all variables. Reference: OAPMetadata XSD variables.xsd
   - variable, basic_variable'
 from_schema: OAEDataManagementProtocol
-attributes:
-  standard_identifier:
-    name: standard_identifier
-    from_schema: Variable
-    rank: 1000
-    alias: standard_identifier
-    owner: Variable
-    domain_of:
-    - Variable
-    range: VocabularyItemReference
-  dataset_variable_name:
-    name: dataset_variable_name
-    description: The name for the variable as it is identified in the dataset data
-      file. This could be the column header in a CSV or the variable name in a NetCDF
-      file. Standard common recommended column header names can be found in protocol
-      documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).
-    title: Dataset variable name
-    from_schema: Variable
-    rank: 1000
-    alias: dataset_variable_name
-    owner: Variable
-    domain_of:
-    - Variable
-    range: string
+is_a: BaseVariable
+slot_usage:
+  units:
+    name: units
     required: true
+attributes:
   dataset_variable_name_qc_flag:
     name: dataset_variable_name_qc_flag
     description: If applicable, the column header name used for the quality control
@@ -553,30 +504,6 @@ attributes:
     domain_of:
     - Variable
     range: string
-  long_name:
-    name: long_name
-    description: Full descriptive name of the variable.
-    title: Variable full name
-    from_schema: Variable
-    rank: 1000
-    alias: long_name
-    owner: Variable
-    domain_of:
-    - Variable
-    range: string
-    required: true
-  units:
-    name: units
-    description: Unit of measurement for this variable.
-    title: Unit
-    from_schema: Variable
-    rank: 1000
-    alias: units
-    owner: Variable
-    domain_of:
-    - Variable
-    range: string
-    required: true
   method_reference:
     name: method_reference
     description: Citation for the method used.
@@ -610,6 +537,54 @@ attributes:
     domain_of:
     - Variable
     range: string
+  units:
+    name: units
+    description: Unit of measurement for this variable.
+    title: Unit
+    from_schema: OAEDataManagementProtocol
+    rank: 1000
+    alias: units
+    owner: Variable
+    domain_of:
+    - BaseVariable
+    range: string
+    required: true
+  standard_identifier:
+    name: standard_identifier
+    from_schema: Variable
+    rank: 1000
+    alias: standard_identifier
+    owner: Variable
+    domain_of:
+    - BaseVariable
+    range: VocabularyItemReference
+  dataset_variable_name:
+    name: dataset_variable_name
+    description: The name for the variable as it is identified in the dataset data
+      file. This could be the column header in a CSV or the variable name in a NetCDF
+      file. Standard common recommended column header names can be found in protocol
+      documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).
+    title: Dataset variable name
+    from_schema: Variable
+    rank: 1000
+    alias: dataset_variable_name
+    owner: Variable
+    domain_of:
+    - BaseVariable
+    range: string
+    required: true
+  long_name:
+    name: long_name
+    description: Full descriptive name of the variable.
+    title: Variable full name
+    from_schema: Variable
+    rank: 1000
+    alias: long_name
+    owner: Variable
+    domain_of:
+    - BaseVariable
+    range: string
+    required: true
 
 </code></pre>
 </details>

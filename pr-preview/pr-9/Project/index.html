@@ -502,8 +502,8 @@ attributes:
     name: experiments
     title: Related Experiments
     from_schema: Project
-    rank: 1000
     domain_of:
+    - Container
     - Project
     range: Experiment
     recommended: true
@@ -690,10 +690,10 @@ attributes:
     name: experiments
     title: Related Experiments
     from_schema: Project
-    rank: 1000
     alias: experiments
     owner: Project
     domain_of:
+    - Container
     - Project
     range: Experiment
     recommended: true
@@ -881,6 +881,7 @@ attributes:
     owner: Project
     domain_of:
     - Project
+    - Experiment
     - Dataset
     range: string
     required: true

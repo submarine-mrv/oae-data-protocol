@@ -5,10 +5,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://clevinson.github.io/oae-data-protocol/SedimentVariable/" rel="canonical"/>
+<link href="https://clevinson.github.io/oae-data-protocol/ContinuousSedimentVariable/" rel="canonical"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.6.7" name="generator"/>
-<title>Class: SedimentVariable - oae-data-protocol</title>
+<title>Class: ContinuousSedimentVariable - oae-data-protocol</title>
 <link href="../assets/stylesheets/main.8608ea7d.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
@@ -23,7 +23,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#class-sedimentvariable">
+<a class="md-skip" href="#class-continuoussedimentvariable">
           Skip to content
         </a>
 </div>
@@ -47,7 +47,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Class: SedimentVariable
+              Class: ContinuousSedimentVariable
             
           </span>
 </div>
@@ -221,126 +221,146 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="class-sedimentvariable">Class: SedimentVariable</h1>
-<p><em>Sediment measured variable for seafloor/sediment sampling data.</em></p>
-<p>URI: <a href="https://example.org/oae#SedimentVariable">oae:SedimentVariable</a></p>
+<h1 id="class-continuoussedimentvariable">Class: ContinuousSedimentVariable</h1>
+<p><em>Measured sediment variable collected from continuous autonomous sensor</em></p>
+<p>URI: <a href="https://example.org/oae#ContinuousSedimentVariable">oae:ContinuousSedimentVariable</a></p>
 <div class="mermaid"> classDiagram
-    class SedimentVariable
-    click SedimentVariable href "../SedimentVariable"
-      ObservedPropertyVariable &lt;|-- SedimentVariable
-        click ObservedPropertyVariable href "../ObservedPropertyVariable"
+    class ContinuousSedimentVariable
+    click ContinuousSedimentVariable href "../ContinuousSedimentVariable"
+      MeasuredSedimentFields &lt;|-- ContinuousSedimentVariable
+        click MeasuredSedimentFields href "../MeasuredSedimentFields"
+      ContinuousMeasuredVariable &lt;|-- ContinuousSedimentVariable
+        click ContinuousMeasuredVariable href "../ContinuousMeasuredVariable"
 
-      SedimentVariable : analyzing_instrument
+      ContinuousSedimentVariable : analyzing_instrument
 
 
 
 
-    SedimentVariable --&gt; "1" AnalyzingInstrument : analyzing_instrument
+    ContinuousSedimentVariable --&gt; "1" AnalyzingInstrument : analyzing_instrument
     click AnalyzingInstrument href "../AnalyzingInstrument"
 
 
-      SedimentVariable : analyzing_method
+      ContinuousSedimentVariable : analyzing_method
 
-      SedimentVariable : dataset_variable_name
+      ContinuousSedimentVariable : calculation_software_version
 
-      SedimentVariable : dataset_variable_name_qc_flag
+      ContinuousSedimentVariable : dataset_variable_name
 
-      SedimentVariable : dataset_variable_name_raw
+      ContinuousSedimentVariable : dataset_variable_name_qc_flag
 
-      SedimentVariable : field_replicate_information
+      ContinuousSedimentVariable : dataset_variable_name_raw
 
-      SedimentVariable : genesis
+      ContinuousSedimentVariable : field_replicate_information
+
+      ContinuousSedimentVariable : genesis
 
 
 
 
-    SedimentVariable --&gt; "1" GenesisType : genesis
+    ContinuousSedimentVariable --&gt; "1" GenesisType : genesis
     click GenesisType href "../GenesisType"
 
 
-      SedimentVariable : long_name
+      ContinuousSedimentVariable : long_name
 
-      SedimentVariable : measurement_researcher
-
-
+      ContinuousSedimentVariable : measurement_researcher
 
 
-    SedimentVariable --&gt; "0..1" Person : measurement_researcher
+
+
+    ContinuousSedimentVariable --&gt; "0..1" Person : measurement_researcher
     click Person href "../Person"
 
 
-      SedimentVariable : method_reference
+      ContinuousSedimentVariable : method_reference
 
-      SedimentVariable : missing_value_indicators
+      ContinuousSedimentVariable : missing_value_indicators
 
-      SedimentVariable : observation_type
-
-
+      ContinuousSedimentVariable : observation_type
 
 
-    SedimentVariable --&gt; "1" ObservationType : observation_type
+
+
+    ContinuousSedimentVariable --&gt; "1" ObservationType : observation_type
     click ObservationType href "../ObservationType"
 
 
-      SedimentVariable : other_detailed_information
+      ContinuousSedimentVariable : other_detailed_information
 
-      SedimentVariable : qc_researcher
-
-
+      ContinuousSedimentVariable : qc_researcher
 
 
-    SedimentVariable --&gt; "0..1" Person : qc_researcher
+
+
+    ContinuousSedimentVariable --&gt; "0..1" Person : qc_researcher
     click Person href "../Person"
 
 
-      SedimentVariable : qc_researcher_institution
+      ContinuousSedimentVariable : qc_researcher_institution
 
-      SedimentVariable : qc_steps_taken
+      ContinuousSedimentVariable : qc_steps_taken
 
-      SedimentVariable : sampling
+      ContinuousSedimentVariable : raw_data_calculation_method
+
+      ContinuousSedimentVariable : sampling
 
 
 
 
-    SedimentVariable --&gt; "1" SamplingType : sampling
+    ContinuousSedimentVariable --&gt; "1" SamplingType : sampling
     click SamplingType href "../SamplingType"
 
 
-      SedimentVariable : sampling_instrument_type
+      ContinuousSedimentVariable : sampling_instrument_type
 
 
 
 
-    SedimentVariable --&gt; "1" SamplingInstrumentType : sampling_instrument_type
+    ContinuousSedimentVariable --&gt; "1" SamplingInstrumentType : sampling_instrument_type
     click SamplingInstrumentType href "../SamplingInstrumentType"
 
 
-      SedimentVariable : sampling_instrument_type_custom
+      ContinuousSedimentVariable : sampling_instrument_type_custom
 
-      SedimentVariable : sampling_method
+      ContinuousSedimentVariable : sampling_method
 
-      SedimentVariable : standard_identifier
+      ContinuousSedimentVariable : sediment_sampling_depth
+
+      ContinuousSedimentVariable : sediment_sampling_method
+
+      ContinuousSedimentVariable : sediment_sampling_water_depth
+
+      ContinuousSedimentVariable : sediment_type
+
+      ContinuousSedimentVariable : standard_identifier
 
 
 
 
-    SedimentVariable --&gt; "0..1" VocabularyItemReference : standard_identifier
+    ContinuousSedimentVariable --&gt; "0..1" VocabularyItemReference : standard_identifier
     click VocabularyItemReference href "../VocabularyItemReference"
 
 
-      SedimentVariable : uncertainty
+      ContinuousSedimentVariable : uncertainty
 
-      SedimentVariable : uncertainty_definition
+      ContinuousSedimentVariable : uncertainty_definition
 
-      SedimentVariable : units
+      ContinuousSedimentVariable : units
 
 
 </div>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
+<li><a href="../BaseVariable/">BaseVariable</a><ul>
 <li><a href="../Variable/">Variable</a><ul>
 <li><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a> [ <a href="../QCFields/">QCFields</a>]<ul>
-<li><strong>SedimentVariable</strong></li>
+<li><a href="../ContinuousMeasuredVariable/">ContinuousMeasuredVariable</a><ul>
+<li><strong>ContinuousSedimentVariable</strong> [ <a href="../MeasuredSedimentFields/">MeasuredSedimentFields</a>]</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -357,6 +377,42 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><a href="../sediment_type/">sediment_type</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>e</td>
+<td><a href="../MeasuredSedimentFields/">MeasuredSedimentFields</a></td>
+</tr>
+<tr>
+<td><a href="../sediment_sampling_method/">sediment_sampling_method</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>e</td>
+<td><a href="../MeasuredSedimentFields/">MeasuredSedimentFields</a></td>
+</tr>
+<tr>
+<td><a href="../sediment_sampling_depth/">sediment_sampling_depth</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>Depth that sediment was collected below sediment surface</td>
+<td><a href="../MeasuredSedimentFields/">MeasuredSedimentFields</a></td>
+</tr>
+<tr>
+<td><a href="../sediment_sampling_water_depth/">sediment_sampling_water_depth</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>Water depth where sediment was collected</td>
+<td><a href="../MeasuredSedimentFields/">MeasuredSedimentFields</a></td>
+</tr>
+<tr>
+<td><a href="../raw_data_calculation_method/">raw_data_calculation_method</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>The method used to calculate reported values from raw sensor data</td>
+<td><a href="../ContinuousMeasuredVariable/">ContinuousMeasuredVariable</a></td>
+</tr>
+<tr>
+<td><a href="../calculation_software_version/">calculation_software_version</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Version of the software used to calculate reported values from raw values</td>
+<td><a href="../ContinuousMeasuredVariable/">ContinuousMeasuredVariable</a></td>
+</tr>
 <tr>
 <td><a href="../analyzing_instrument/">analyzing_instrument</a></td>
 <td>1 <br/> <a href="../AnalyzingInstrument/">AnalyzingInstrument</a></td>
@@ -448,18 +504,6 @@
 <td><a href="../QCFields/">QCFields</a></td>
 </tr>
 <tr>
-<td><a href="../standard_identifier/">standard_identifier</a></td>
-<td>0..1 <br/> <a href="../VocabularyItemReference/">VocabularyItemReference</a></td>
-<td></td>
-<td><a href="../Variable/">Variable</a></td>
-</tr>
-<tr>
-<td><a href="../dataset_variable_name/">dataset_variable_name</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>The name for the variable as it is identified in the dataset data file</td>
-<td><a href="../Variable/">Variable</a></td>
-</tr>
-<tr>
 <td><a href="../dataset_variable_name_qc_flag/">dataset_variable_name_qc_flag</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>If applicable, the column header name used for the quality control flag corre...</td>
@@ -469,18 +513,6 @@
 <td><a href="../dataset_variable_name_raw/">dataset_variable_name_raw</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>If applicable, the column header name used for the raw data corresponding to ...</td>
-<td><a href="../Variable/">Variable</a></td>
-</tr>
-<tr>
-<td><a href="../long_name/">long_name</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>Full descriptive name of the variable</td>
-<td><a href="../Variable/">Variable</a></td>
-</tr>
-<tr>
-<td><a href="../units/">units</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>Unit of measurement for this variable</td>
 <td><a href="../Variable/">Variable</a></td>
 </tr>
 <tr>
@@ -501,6 +533,30 @@
 <td>Any additional information about this variable</td>
 <td><a href="../Variable/">Variable</a></td>
 </tr>
+<tr>
+<td><a href="../units/">units</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>Unit of measurement for this variable</td>
+<td><a href="../BaseVariable/">BaseVariable</a></td>
+</tr>
+<tr>
+<td><a href="../standard_identifier/">standard_identifier</a></td>
+<td>0..1 <br/> <a href="../VocabularyItemReference/">VocabularyItemReference</a></td>
+<td></td>
+<td><a href="../BaseVariable/">BaseVariable</a></td>
+</tr>
+<tr>
+<td><a href="../dataset_variable_name/">dataset_variable_name</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>The name for the variable as it is identified in the dataset data file</td>
+<td><a href="../BaseVariable/">BaseVariable</a></td>
+</tr>
+<tr>
+<td><a href="../long_name/">long_name</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>Full descriptive name of the variable</td>
+<td><a href="../BaseVariable/">BaseVariable</a></td>
+</tr>
 </tbody>
 </table>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
@@ -519,11 +575,11 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>oae:SedimentVariable</td>
+<td>oae:ContinuousSedimentVariable</td>
 </tr>
 <tr>
 <td>native</td>
-<td>oae:SedimentVariable</td>
+<td>oae:ContinuousSedimentVariable</td>
 </tr>
 </tbody>
 </table>
@@ -531,20 +587,94 @@
 <!-- TODO: investigate https://stackoverflow.com/questions/37606292/how-to-create-tabbed-code-blocks-in-mkdocs-or-sphinx -->
 <h3 id="direct">Direct</h3>
 <details>
-<pre><code class="language-yaml">name: SedimentVariable
-description: Sediment measured variable for seafloor/sediment sampling data.
+<pre><code class="language-yaml">name: ContinuousSedimentVariable
+description: Measured sediment variable collected from continuous autonomous sensor
 from_schema: OAEDataManagementProtocol
-is_a: ObservedPropertyVariable
+is_a: ContinuousMeasuredVariable
+mixins:
+- MeasuredSedimentFields
 
 </code></pre>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
-<pre><code class="language-yaml">name: SedimentVariable
-description: Sediment measured variable for seafloor/sediment sampling data.
+<pre><code class="language-yaml">name: ContinuousSedimentVariable
+description: Measured sediment variable collected from continuous autonomous sensor
 from_schema: OAEDataManagementProtocol
-is_a: ObservedPropertyVariable
+is_a: ContinuousMeasuredVariable
+mixins:
+- MeasuredSedimentFields
 attributes:
+  sediment_type:
+    name: sediment_type
+    description: e.g., mud, sand, etc.
+    from_schema: Variable
+    rank: 1000
+    alias: sediment_type
+    owner: ContinuousSedimentVariable
+    domain_of:
+    - MeasuredSedimentFields
+    range: string
+    required: true
+  sediment_sampling_method:
+    name: sediment_sampling_method
+    description: e.g., sediment core, grab sampling, dredging, etc.
+    from_schema: Variable
+    rank: 1000
+    alias: sediment_sampling_method
+    owner: ContinuousSedimentVariable
+    domain_of:
+    - MeasuredSedimentFields
+    range: string
+    required: true
+  sediment_sampling_depth:
+    name: sediment_sampling_depth
+    description: Depth that sediment was collected below sediment surface. It is recommended
+      to include as a variable with data rather than here.
+    from_schema: Variable
+    rank: 1000
+    alias: sediment_sampling_depth
+    owner: ContinuousSedimentVariable
+    domain_of:
+    - MeasuredSedimentFields
+    range: string
+    required: true
+  sediment_sampling_water_depth:
+    name: sediment_sampling_water_depth
+    description: Water depth where sediment was collected.  It is recommended to include
+      as a variable with data rather than here.
+    from_schema: Variable
+    rank: 1000
+    alias: sediment_sampling_water_depth
+    owner: ContinuousSedimentVariable
+    domain_of:
+    - MeasuredSedimentFields
+    range: string
+    required: true
+  raw_data_calculation_method:
+    name: raw_data_calculation_method
+    description: The method used to calculate reported values from raw sensor data.
+    title: Method to calculate reported values from raw data
+    from_schema: Variable
+    rank: 1000
+    alias: raw_data_calculation_method
+    owner: ContinuousSedimentVariable
+    domain_of:
+    - ContinuousMeasuredVariable
+    range: string
+    required: true
+  calculation_software_version:
+    name: calculation_software_version
+    description: Version of the software used to calculate reported values from raw
+      values.
+    title: Software version for the calculation
+    from_schema: Variable
+    rank: 1000
+    alias: calculation_software_version
+    owner: ContinuousSedimentVariable
+    domain_of:
+    - ContinuousMeasuredVariable
+    range: string
   analyzing_instrument:
     name: analyzing_instrument
     description: Instrument used to analyze the water samples or measure the water
@@ -553,7 +683,7 @@ attributes:
     from_schema: OAEDataManagementProtocol
     rank: 1000
     alias: analyzing_instrument
-    owner: SedimentVariable
+    owner: ContinuousSedimentVariable
     domain_of:
     - ObservedPropertyVariable
     range: AnalyzingInstrument
@@ -565,7 +695,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: sampling_method
-    owner: SedimentVariable
+    owner: ContinuousSedimentVariable
     domain_of:
     - ObservedPropertyVariable
     range: string
@@ -578,7 +708,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: field_replicate_information
-    owner: SedimentVariable
+    owner: ContinuousSedimentVariable
     domain_of:
     - ObservedPropertyVariable
     range: string
@@ -590,7 +720,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: analyzing_method
-    owner: SedimentVariable
+    owner: ContinuousSedimentVariable
     domain_of:
     - ObservedPropertyVariable
     range: string
@@ -601,7 +731,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: observation_type
-    owner: SedimentVariable
+    owner: ContinuousSedimentVariable
     domain_of:
     - ObservedPropertyVariable
     range: ObservationType
@@ -611,7 +741,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: sampling
-    owner: SedimentVariable
+    owner: ContinuousSedimentVariable
     domain_of:
     - ObservedPropertyVariable
     range: SamplingType
@@ -621,7 +751,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: genesis
-    owner: SedimentVariable
+    owner: ContinuousSedimentVariable
     domain_of:
     - ObservedPropertyVariable
     range: GenesisType
@@ -632,7 +762,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: sampling_instrument_type
-    owner: SedimentVariable
+    owner: ContinuousSedimentVariable
     domain_of:
     - ObservedPropertyVariable
     range: SamplingInstrumentType
@@ -643,7 +773,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: sampling_instrument_type_custom
-    owner: SedimentVariable
+    owner: ContinuousSedimentVariable
     domain_of:
     - ObservedPropertyVariable
     range: string
@@ -658,7 +788,7 @@ attributes:
     from_schema: OAEDataManagementProtocol
     rank: 1000
     alias: qc_steps_taken
-    owner: SedimentVariable
+    owner: ContinuousSedimentVariable
     domain_of:
     - QCFields
     range: string
@@ -674,7 +804,7 @@ attributes:
     from_schema: OAEDataManagementProtocol
     rank: 1000
     alias: uncertainty
-    owner: SedimentVariable
+    owner: ContinuousSedimentVariable
     domain_of:
     - StandardGas
     - CO2GasDetector
@@ -688,7 +818,7 @@ attributes:
     from_schema: OAEDataManagementProtocol
     rank: 1000
     alias: uncertainty_definition
-    owner: SedimentVariable
+    owner: ContinuousSedimentVariable
     domain_of:
     - QCFields
     range: string
@@ -701,7 +831,7 @@ attributes:
     from_schema: OAEDataManagementProtocol
     rank: 1000
     alias: missing_value_indicators
-    owner: SedimentVariable
+    owner: ContinuousSedimentVariable
     domain_of:
     - QCFields
     range: string
@@ -713,7 +843,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: qc_researcher
-    owner: SedimentVariable
+    owner: ContinuousSedimentVariable
     domain_of:
     - QCFields
     range: Person
@@ -724,34 +854,10 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: qc_researcher_institution
-    owner: SedimentVariable
+    owner: ContinuousSedimentVariable
     domain_of:
     - QCFields
     range: string
-  standard_identifier:
-    name: standard_identifier
-    from_schema: Variable
-    rank: 1000
-    alias: standard_identifier
-    owner: SedimentVariable
-    domain_of:
-    - Variable
-    range: VocabularyItemReference
-  dataset_variable_name:
-    name: dataset_variable_name
-    description: The name for the variable as it is identified in the dataset data
-      file. This could be the column header in a CSV or the variable name in a NetCDF
-      file. Standard common recommended column header names can be found in protocol
-      documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).
-    title: Dataset variable name
-    from_schema: Variable
-    rank: 1000
-    alias: dataset_variable_name
-    owner: SedimentVariable
-    domain_of:
-    - Variable
-    range: string
-    required: true
   dataset_variable_name_qc_flag:
     name: dataset_variable_name_qc_flag
     description: If applicable, the column header name used for the quality control
@@ -760,7 +866,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: dataset_variable_name_qc_flag
-    owner: SedimentVariable
+    owner: ContinuousSedimentVariable
     domain_of:
     - Variable
     range: string
@@ -772,41 +878,17 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: dataset_variable_name_raw
-    owner: SedimentVariable
+    owner: ContinuousSedimentVariable
     domain_of:
     - Variable
     range: string
-  long_name:
-    name: long_name
-    description: Full descriptive name of the variable.
-    title: Variable full name
-    from_schema: Variable
-    rank: 1000
-    alias: long_name
-    owner: SedimentVariable
-    domain_of:
-    - Variable
-    range: string
-    required: true
-  units:
-    name: units
-    description: Unit of measurement for this variable.
-    title: Unit
-    from_schema: Variable
-    rank: 1000
-    alias: units
-    owner: SedimentVariable
-    domain_of:
-    - Variable
-    range: string
-    required: true
   method_reference:
     name: method_reference
     description: Citation for the method used.
     title: Method Reference
     from_schema: Variable
     alias: method_reference
-    owner: SedimentVariable
+    owner: ContinuousSedimentVariable
     domain_of:
     - Calibration
     - Variable
@@ -818,7 +900,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: measurement_researcher
-    owner: SedimentVariable
+    owner: ContinuousSedimentVariable
     domain_of:
     - Variable
     range: Person
@@ -829,10 +911,58 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: other_detailed_information
-    owner: SedimentVariable
+    owner: ContinuousSedimentVariable
     domain_of:
     - Variable
     range: string
+  units:
+    name: units
+    description: Unit of measurement for this variable.
+    title: Unit
+    from_schema: OAEDataManagementProtocol
+    rank: 1000
+    alias: units
+    owner: ContinuousSedimentVariable
+    domain_of:
+    - BaseVariable
+    range: string
+    required: true
+  standard_identifier:
+    name: standard_identifier
+    from_schema: Variable
+    rank: 1000
+    alias: standard_identifier
+    owner: ContinuousSedimentVariable
+    domain_of:
+    - BaseVariable
+    range: VocabularyItemReference
+  dataset_variable_name:
+    name: dataset_variable_name
+    description: The name for the variable as it is identified in the dataset data
+      file. This could be the column header in a CSV or the variable name in a NetCDF
+      file. Standard common recommended column header names can be found in protocol
+      documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).
+    title: Dataset variable name
+    from_schema: Variable
+    rank: 1000
+    alias: dataset_variable_name
+    owner: ContinuousSedimentVariable
+    domain_of:
+    - BaseVariable
+    range: string
+    required: true
+  long_name:
+    name: long_name
+    description: Full descriptive name of the variable.
+    title: Variable full name
+    from_schema: Variable
+    rank: 1000
+    alias: long_name
+    owner: ContinuousSedimentVariable
+    domain_of:
+    - BaseVariable
+    range: string
+    required: true
 
 </code></pre>
 </details>

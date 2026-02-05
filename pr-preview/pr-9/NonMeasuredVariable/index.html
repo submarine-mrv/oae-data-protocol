@@ -227,33 +227,12 @@
 <div class="mermaid"> classDiagram
     class NonMeasuredVariable
     click NonMeasuredVariable href "../NonMeasuredVariable"
-      Variable &lt;|-- NonMeasuredVariable
-        click Variable href "../Variable"
-
-      NonMeasuredVariable : data_source
+      BaseVariable &lt;|-- NonMeasuredVariable
+        click BaseVariable href "../BaseVariable"
 
       NonMeasuredVariable : dataset_variable_name
 
-      NonMeasuredVariable : dataset_variable_name_qc_flag
-
-      NonMeasuredVariable : dataset_variable_name_raw
-
       NonMeasuredVariable : long_name
-
-      NonMeasuredVariable : measurement_researcher
-
-
-
-
-    NonMeasuredVariable --&gt; "0..1" Person : measurement_researcher
-    click Person href "../Person"
-
-
-      NonMeasuredVariable : method_reference
-
-      NonMeasuredVariable : other_detailed_information
-
-      NonMeasuredVariable : source_reference
 
       NonMeasuredVariable : standard_identifier
 
@@ -270,7 +249,7 @@
 </div>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
-<li><a href="../Variable/">Variable</a><ul>
+<li><a href="../BaseVariable/">BaseVariable</a><ul>
 <li><strong>NonMeasuredVariable</strong></li>
 </ul>
 </li>
@@ -287,70 +266,28 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../data_source/">data_source</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>Source of the non-measured data (e</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../source_reference/">source_reference</a></td>
+<td><a href="../units/">units</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Citation or DOI for the source data</td>
-<td>direct</td>
+<td>Unit of measurement for this variable</td>
+<td><a href="../BaseVariable/">BaseVariable</a></td>
 </tr>
 <tr>
 <td><a href="../standard_identifier/">standard_identifier</a></td>
 <td>0..1 <br/> <a href="../VocabularyItemReference/">VocabularyItemReference</a></td>
 <td></td>
-<td><a href="../Variable/">Variable</a></td>
+<td><a href="../BaseVariable/">BaseVariable</a></td>
 </tr>
 <tr>
 <td><a href="../dataset_variable_name/">dataset_variable_name</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>The name for the variable as it is identified in the dataset data file</td>
-<td><a href="../Variable/">Variable</a></td>
-</tr>
-<tr>
-<td><a href="../dataset_variable_name_qc_flag/">dataset_variable_name_qc_flag</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>If applicable, the column header name used for the quality control flag corre...</td>
-<td><a href="../Variable/">Variable</a></td>
-</tr>
-<tr>
-<td><a href="../dataset_variable_name_raw/">dataset_variable_name_raw</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>If applicable, the column header name used for the raw data corresponding to ...</td>
-<td><a href="../Variable/">Variable</a></td>
+<td><a href="../BaseVariable/">BaseVariable</a></td>
 </tr>
 <tr>
 <td><a href="../long_name/">long_name</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>Full descriptive name of the variable</td>
-<td><a href="../Variable/">Variable</a></td>
-</tr>
-<tr>
-<td><a href="../units/">units</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>Unit of measurement for this variable</td>
-<td><a href="../Variable/">Variable</a></td>
-</tr>
-<tr>
-<td><a href="../method_reference/">method_reference</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Citation for the method used</td>
-<td><a href="../Variable/">Variable</a></td>
-</tr>
-<tr>
-<td><a href="../measurement_researcher/">measurement_researcher</a></td>
-<td>0..1 <br/> <a href="../Person/">Person</a></td>
-<td>The name of the PI whose research team measured or derived this parameter</td>
-<td><a href="../Variable/">Variable</a></td>
-</tr>
-<tr>
-<td><a href="../other_detailed_information/">other_detailed_information</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Any additional information about this variable</td>
-<td><a href="../Variable/">Variable</a></td>
+<td><a href="../BaseVariable/">BaseVariable</a></td>
 </tr>
 </tbody>
 </table>
@@ -387,27 +324,7 @@ description: Non-measured variable for data from external sources (e.g., satelli
   model outputs, published data) that are not directly measured by the project but
   included in the dataset.
 from_schema: OAEDataManagementProtocol
-is_a: Variable
-attributes:
-  data_source:
-    name: data_source
-    description: Source of the non-measured data (e.g., satellite mission, model name).
-    title: Data source
-    from_schema: Variable
-    rank: 1000
-    domain_of:
-    - NonMeasuredVariable
-    range: string
-    required: true
-  source_reference:
-    name: source_reference
-    description: Citation or DOI for the source data.
-    title: Source reference
-    from_schema: Variable
-    rank: 1000
-    domain_of:
-    - NonMeasuredVariable
-    range: string
+is_a: BaseVariable
 
 </code></pre>
 </details>
@@ -418,30 +335,18 @@ description: Non-measured variable for data from external sources (e.g., satelli
   model outputs, published data) that are not directly measured by the project but
   included in the dataset.
 from_schema: OAEDataManagementProtocol
-is_a: Variable
+is_a: BaseVariable
 attributes:
-  data_source:
-    name: data_source
-    description: Source of the non-measured data (e.g., satellite mission, model name).
-    title: Data source
-    from_schema: Variable
+  units:
+    name: units
+    description: Unit of measurement for this variable.
+    title: Unit
+    from_schema: OAEDataManagementProtocol
     rank: 1000
-    alias: data_source
+    alias: units
     owner: NonMeasuredVariable
     domain_of:
-    - NonMeasuredVariable
-    range: string
-    required: true
-  source_reference:
-    name: source_reference
-    description: Citation or DOI for the source data.
-    title: Source reference
-    from_schema: Variable
-    rank: 1000
-    alias: source_reference
-    owner: NonMeasuredVariable
-    domain_of:
-    - NonMeasuredVariable
+    - BaseVariable
     range: string
   standard_identifier:
     name: standard_identifier
@@ -450,7 +355,7 @@ attributes:
     alias: standard_identifier
     owner: NonMeasuredVariable
     domain_of:
-    - Variable
+    - BaseVariable
     range: VocabularyItemReference
   dataset_variable_name:
     name: dataset_variable_name
@@ -464,33 +369,9 @@ attributes:
     alias: dataset_variable_name
     owner: NonMeasuredVariable
     domain_of:
-    - Variable
+    - BaseVariable
     range: string
     required: true
-  dataset_variable_name_qc_flag:
-    name: dataset_variable_name_qc_flag
-    description: If applicable, the column header name used for the quality control
-      flag corresponding to this variable.
-    title: Dataset variable name (Quality Flag)
-    from_schema: Variable
-    rank: 1000
-    alias: dataset_variable_name_qc_flag
-    owner: NonMeasuredVariable
-    domain_of:
-    - Variable
-    range: string
-  dataset_variable_name_raw:
-    name: dataset_variable_name_raw
-    description: If applicable, the column header name used for the raw data corresponding
-      to this variable.
-    title: Dataset variable name (raw)
-    from_schema: Variable
-    rank: 1000
-    alias: dataset_variable_name_raw
-    owner: NonMeasuredVariable
-    domain_of:
-    - Variable
-    range: string
   long_name:
     name: long_name
     description: Full descriptive name of the variable.
@@ -500,54 +381,9 @@ attributes:
     alias: long_name
     owner: NonMeasuredVariable
     domain_of:
-    - Variable
+    - BaseVariable
     range: string
     required: true
-  units:
-    name: units
-    description: Unit of measurement for this variable.
-    title: Unit
-    from_schema: Variable
-    rank: 1000
-    alias: units
-    owner: NonMeasuredVariable
-    domain_of:
-    - Variable
-    range: string
-    required: true
-  method_reference:
-    name: method_reference
-    description: Citation for the method used.
-    title: Method Reference
-    from_schema: Variable
-    alias: method_reference
-    owner: NonMeasuredVariable
-    domain_of:
-    - Calibration
-    - Variable
-    range: string
-  measurement_researcher:
-    name: measurement_researcher
-    description: The name of the PI whose research team measured or derived this parameter.
-    title: Researcher who measured the variable
-    from_schema: Variable
-    rank: 1000
-    alias: measurement_researcher
-    owner: NonMeasuredVariable
-    domain_of:
-    - Variable
-    range: Person
-  other_detailed_information:
-    name: other_detailed_information
-    description: Any additional information about this variable.
-    title: Other Detailed Information
-    from_schema: Variable
-    rank: 1000
-    alias: other_detailed_information
-    owner: NonMeasuredVariable
-    domain_of:
-    - Variable
-    range: string
 
 </code></pre>
 </details>

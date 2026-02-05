@@ -355,10 +355,13 @@
 </div>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
+<li><a href="../BaseVariable/">BaseVariable</a><ul>
 <li><a href="../Variable/">Variable</a><ul>
 <li><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a> [ <a href="../QCFields/">QCFields</a>]<ul>
 <li><a href="../DiscreteMeasuredVariable/">DiscreteMeasuredVariable</a><ul>
 <li><strong>DiscretePHVariable</strong> [ <a href="../MeasuredPHFields/">MeasuredPHFields</a>]</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -492,18 +495,6 @@
 <td><a href="../QCFields/">QCFields</a></td>
 </tr>
 <tr>
-<td><a href="../standard_identifier/">standard_identifier</a></td>
-<td>0..1 <br/> <a href="../VocabularyItemReference/">VocabularyItemReference</a></td>
-<td></td>
-<td><a href="../Variable/">Variable</a></td>
-</tr>
-<tr>
-<td><a href="../dataset_variable_name/">dataset_variable_name</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>The name for the variable as it is identified in the dataset data file</td>
-<td><a href="../Variable/">Variable</a></td>
-</tr>
-<tr>
 <td><a href="../dataset_variable_name_qc_flag/">dataset_variable_name_qc_flag</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>If applicable, the column header name used for the quality control flag corre...</td>
@@ -513,18 +504,6 @@
 <td><a href="../dataset_variable_name_raw/">dataset_variable_name_raw</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>If applicable, the column header name used for the raw data corresponding to ...</td>
-<td><a href="../Variable/">Variable</a></td>
-</tr>
-<tr>
-<td><a href="../long_name/">long_name</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>Full descriptive name of the variable</td>
-<td><a href="../Variable/">Variable</a></td>
-</tr>
-<tr>
-<td><a href="../units/">units</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>Unit of measurement for this variable</td>
 <td><a href="../Variable/">Variable</a></td>
 </tr>
 <tr>
@@ -544,6 +523,30 @@
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Any additional information about this variable</td>
 <td><a href="../Variable/">Variable</a></td>
+</tr>
+<tr>
+<td><a href="../units/">units</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>Unit of measurement for this variable</td>
+<td><a href="../BaseVariable/">BaseVariable</a></td>
+</tr>
+<tr>
+<td><a href="../standard_identifier/">standard_identifier</a></td>
+<td>0..1 <br/> <a href="../VocabularyItemReference/">VocabularyItemReference</a></td>
+<td></td>
+<td><a href="../BaseVariable/">BaseVariable</a></td>
+</tr>
+<tr>
+<td><a href="../dataset_variable_name/">dataset_variable_name</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>The name for the variable as it is identified in the dataset data file</td>
+<td><a href="../BaseVariable/">BaseVariable</a></td>
+</tr>
+<tr>
+<td><a href="../long_name/">long_name</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>Full descriptive name of the variable</td>
+<td><a href="../BaseVariable/">BaseVariable</a></td>
 </tr>
 </tbody>
 </table>
@@ -874,30 +877,6 @@ attributes:
     domain_of:
     - QCFields
     range: string
-  standard_identifier:
-    name: standard_identifier
-    from_schema: Variable
-    rank: 1000
-    alias: standard_identifier
-    owner: DiscretePHVariable
-    domain_of:
-    - Variable
-    range: VocabularyItemReference
-  dataset_variable_name:
-    name: dataset_variable_name
-    description: The name for the variable as it is identified in the dataset data
-      file. This could be the column header in a CSV or the variable name in a NetCDF
-      file. Standard common recommended column header names can be found in protocol
-      documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).
-    title: Dataset variable name
-    from_schema: Variable
-    rank: 1000
-    alias: dataset_variable_name
-    owner: DiscretePHVariable
-    domain_of:
-    - Variable
-    range: string
-    required: true
   dataset_variable_name_qc_flag:
     name: dataset_variable_name_qc_flag
     description: If applicable, the column header name used for the quality control
@@ -922,30 +901,6 @@ attributes:
     domain_of:
     - Variable
     range: string
-  long_name:
-    name: long_name
-    description: Full descriptive name of the variable.
-    title: Variable full name
-    from_schema: Variable
-    rank: 1000
-    alias: long_name
-    owner: DiscretePHVariable
-    domain_of:
-    - Variable
-    range: string
-    required: true
-  units:
-    name: units
-    description: Unit of measurement for this variable.
-    title: Unit
-    from_schema: Variable
-    rank: 1000
-    alias: units
-    owner: DiscretePHVariable
-    domain_of:
-    - Variable
-    range: string
-    required: true
   method_reference:
     name: method_reference
     description: Citation for the method used.
@@ -979,6 +934,54 @@ attributes:
     domain_of:
     - Variable
     range: string
+  units:
+    name: units
+    description: Unit of measurement for this variable.
+    title: Unit
+    from_schema: OAEDataManagementProtocol
+    rank: 1000
+    alias: units
+    owner: DiscretePHVariable
+    domain_of:
+    - BaseVariable
+    range: string
+    required: true
+  standard_identifier:
+    name: standard_identifier
+    from_schema: Variable
+    rank: 1000
+    alias: standard_identifier
+    owner: DiscretePHVariable
+    domain_of:
+    - BaseVariable
+    range: VocabularyItemReference
+  dataset_variable_name:
+    name: dataset_variable_name
+    description: The name for the variable as it is identified in the dataset data
+      file. This could be the column header in a CSV or the variable name in a NetCDF
+      file. Standard common recommended column header names can be found in protocol
+      documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).
+    title: Dataset variable name
+    from_schema: Variable
+    rank: 1000
+    alias: dataset_variable_name
+    owner: DiscretePHVariable
+    domain_of:
+    - BaseVariable
+    range: string
+    required: true
+  long_name:
+    name: long_name
+    description: Full descriptive name of the variable.
+    title: Variable full name
+    from_schema: Variable
+    rank: 1000
+    alias: long_name
+    owner: DiscretePHVariable
+    domain_of:
+    - BaseVariable
+    range: string
+    required: true
 
 </code></pre>
 </details>
