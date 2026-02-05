@@ -32,7 +32,20 @@
                     "type": "string"
                 },
                 "calibration": {
-                    "$ref": "#/$defs/Calibration",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Calibration"
+                        },
+                        {
+                            "$ref": "#/$defs/CRMCalibration"
+                        },
+                        {
+                            "$ref": "#/$defs/PHCalibration"
+                        },
+                        {
+                            "$ref": "#/$defs/CO2Calibration"
+                        }
+                    ],
                     "description": "Calibration information for this instrument.",
                     "title": "Calibration"
                 },
@@ -538,7 +551,20 @@
                 },
                 "experiments": {
                     "items": {
-                        "$ref": "#/$defs/Experiment"
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/Experiment"
+                            },
+                            {
+                                "$ref": "#/$defs/Intervention"
+                            },
+                            {
+                                "$ref": "#/$defs/Tracer"
+                            },
+                            {
+                                "$ref": "#/$defs/InterventionWithTracer"
+                            }
+                        ]
                     },
                     "type": [
                         "array",
@@ -569,7 +595,20 @@
             "description": "Dissolved Inorganic Carbon (DIC) measured variable from continuous autonomous sensor.",
             "properties": {
                 "analyzing_instrument": {
-                    "$ref": "#/$defs/AnalyzingInstrument",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/AnalyzingInstrument"
+                        },
+                        {
+                            "$ref": "#/$defs/PHInstrument"
+                        },
+                        {
+                            "$ref": "#/$defs/CRMInstrument"
+                        },
+                        {
+                            "$ref": "#/$defs/CO2GasDetector"
+                        }
+                    ],
                     "description": "Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.",
                     "title": "Analyzing instrument"
                 },
@@ -726,7 +765,20 @@
             "description": "Fields for continuous sampling information.",
             "properties": {
                 "analyzing_instrument": {
-                    "$ref": "#/$defs/AnalyzingInstrument",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/AnalyzingInstrument"
+                        },
+                        {
+                            "$ref": "#/$defs/PHInstrument"
+                        },
+                        {
+                            "$ref": "#/$defs/CRMInstrument"
+                        },
+                        {
+                            "$ref": "#/$defs/CO2GasDetector"
+                        }
+                    ],
                     "description": "Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.",
                     "title": "Analyzing instrument"
                 },
@@ -872,7 +924,20 @@
             "description": "pH measured variable from continuous autonomous sensor",
             "properties": {
                 "analyzing_instrument": {
-                    "$ref": "#/$defs/AnalyzingInstrument",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/AnalyzingInstrument"
+                        },
+                        {
+                            "$ref": "#/$defs/PHInstrument"
+                        },
+                        {
+                            "$ref": "#/$defs/CRMInstrument"
+                        },
+                        {
+                            "$ref": "#/$defs/CO2GasDetector"
+                        }
+                    ],
                     "description": "Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.",
                     "title": "Analyzing instrument"
                 },
@@ -1023,7 +1088,20 @@
             "description": "Measured sediment variable collected from continuous autonomous sensor",
             "properties": {
                 "analyzing_instrument": {
-                    "$ref": "#/$defs/AnalyzingInstrument",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/AnalyzingInstrument"
+                        },
+                        {
+                            "$ref": "#/$defs/PHInstrument"
+                        },
+                        {
+                            "$ref": "#/$defs/CRMInstrument"
+                        },
+                        {
+                            "$ref": "#/$defs/CO2GasDetector"
+                        }
+                    ],
                     "description": "Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.",
                     "title": "Analyzing instrument"
                 },
@@ -1189,7 +1267,20 @@
             "description": "Total Alkalinity (TA) measured variable from continuous autonomous sensor",
             "properties": {
                 "analyzing_instrument": {
-                    "$ref": "#/$defs/AnalyzingInstrument",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/AnalyzingInstrument"
+                        },
+                        {
+                            "$ref": "#/$defs/PHInstrument"
+                        },
+                        {
+                            "$ref": "#/$defs/CRMInstrument"
+                        },
+                        {
+                            "$ref": "#/$defs/CO2GasDetector"
+                        }
+                    ],
                     "description": "Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.",
                     "title": "Analyzing instrument"
                 },
@@ -1445,7 +1536,53 @@
                 },
                 "variables": {
                     "items": {
-                        "$ref": "#/$defs/Variable"
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/Variable"
+                            },
+                            {
+                                "$ref": "#/$defs/ObservedPropertyVariable"
+                            },
+                            {
+                                "$ref": "#/$defs/CalculatedVariable"
+                            },
+                            {
+                                "$ref": "#/$defs/SocioeconomicVariable"
+                            },
+                            {
+                                "$ref": "#/$defs/DiscreteMeasuredVariable"
+                            },
+                            {
+                                "$ref": "#/$defs/ContinuousMeasuredVariable"
+                            },
+                            {
+                                "$ref": "#/$defs/DiscreteTAVariable"
+                            },
+                            {
+                                "$ref": "#/$defs/DiscreteDICVariable"
+                            },
+                            {
+                                "$ref": "#/$defs/PhysiologicalVariable"
+                            },
+                            {
+                                "$ref": "#/$defs/ContinuousPHVariable"
+                            },
+                            {
+                                "$ref": "#/$defs/ContinuousTAVariable"
+                            },
+                            {
+                                "$ref": "#/$defs/ContinuousDICVariable"
+                            },
+                            {
+                                "$ref": "#/$defs/ContinuousSedimentVariable"
+                            },
+                            {
+                                "$ref": "#/$defs/DiscretePHVariable"
+                            },
+                            {
+                                "$ref": "#/$defs/DiscreteSedimentVariable"
+                            }
+                        ]
                     },
                     "title": "Variables",
                     "type": [
@@ -1659,7 +1796,20 @@
             "description": "Analyzing instrument information fields, only applied to discretely measured variables. The instrument type can be narrowed in subclasses using slot_usage.",
             "properties": {
                 "analyzing_instrument": {
-                    "$ref": "#/$defs/AnalyzingInstrument",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/AnalyzingInstrument"
+                        },
+                        {
+                            "$ref": "#/$defs/PHInstrument"
+                        },
+                        {
+                            "$ref": "#/$defs/CRMInstrument"
+                        },
+                        {
+                            "$ref": "#/$defs/CO2GasDetector"
+                        }
+                    ],
                     "description": "Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.",
                     "title": "Analyzing instrument"
                 },
@@ -1951,7 +2101,20 @@
             "description": "Measured sediment variable collected from discrete bottle samples",
             "properties": {
                 "analyzing_instrument": {
-                    "$ref": "#/$defs/AnalyzingInstrument",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/AnalyzingInstrument"
+                        },
+                        {
+                            "$ref": "#/$defs/PHInstrument"
+                        },
+                        {
+                            "$ref": "#/$defs/CRMInstrument"
+                        },
+                        {
+                            "$ref": "#/$defs/CO2GasDetector"
+                        }
+                    ],
                     "description": "Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.",
                     "title": "Analyzing instrument"
                 },
@@ -3215,7 +3378,20 @@
             "description": "Variable that is directly measured in-situ using instruments. Reference: OAPMetadata XSD variables.xsd - basic_measured_observation_base",
             "properties": {
                 "analyzing_instrument": {
-                    "$ref": "#/$defs/AnalyzingInstrument",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/AnalyzingInstrument"
+                        },
+                        {
+                            "$ref": "#/$defs/PHInstrument"
+                        },
+                        {
+                            "$ref": "#/$defs/CRMInstrument"
+                        },
+                        {
+                            "$ref": "#/$defs/CO2GasDetector"
+                        }
+                    ],
                     "description": "Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.",
                     "title": "Analyzing instrument"
                 },
@@ -3597,7 +3773,20 @@
             "description": "Physiological response measured variable for organism response data.",
             "properties": {
                 "analyzing_instrument": {
-                    "$ref": "#/$defs/AnalyzingInstrument",
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/AnalyzingInstrument"
+                        },
+                        {
+                            "$ref": "#/$defs/PHInstrument"
+                        },
+                        {
+                            "$ref": "#/$defs/CRMInstrument"
+                        },
+                        {
+                            "$ref": "#/$defs/CO2GasDetector"
+                        }
+                    ],
                     "description": "Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.",
                     "title": "Analyzing instrument"
                 },
@@ -3850,7 +4039,20 @@
                 },
                 "experiments": {
                     "items": {
-                        "$ref": "#/$defs/Experiment"
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/Experiment"
+                            },
+                            {
+                                "$ref": "#/$defs/Intervention"
+                            },
+                            {
+                                "$ref": "#/$defs/Tracer"
+                            },
+                            {
+                                "$ref": "#/$defs/InterventionWithTracer"
+                            }
+                        ]
                     },
                     "title": "Related Experiments",
                     "type": [
@@ -4551,7 +4753,20 @@
         },
         "experiments": {
             "items": {
-                "$ref": "#/$defs/Experiment"
+                "anyOf": [
+                    {
+                        "$ref": "#/$defs/Experiment"
+                    },
+                    {
+                        "$ref": "#/$defs/Intervention"
+                    },
+                    {
+                        "$ref": "#/$defs/Tracer"
+                    },
+                    {
+                        "$ref": "#/$defs/InterventionWithTracer"
+                    }
+                ]
             },
             "type": [
                 "array",
