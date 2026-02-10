@@ -61,6 +61,7 @@ classes:
       data_submitter:
         title: Data Submitter
         range: Person
+        required: true
       author_list_for_citation:
         title: Author List (for citation)
         range: string
@@ -125,6 +126,10 @@ classes:
         range: string
         required: true
         multivalued: true
+        # TODO: workaround since JSON Schema treats [] values as satisfying the "required" constraint
+        # It might be nice to fix this in a linkml PR to have minItems=1 automatically set for required lists in the
+        # JSONSchema generator
+        minimum_cardinality: 1
 
     exact_mappings:
       - "schema:Dataset"
