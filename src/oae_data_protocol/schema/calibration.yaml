@@ -67,6 +67,8 @@ classes:
     description: >-
       pH instrument calibration with dye information.
     is_a: Calibration
+    slots:
+      - calibration_temperature
     attributes:
       dye_type_and_manufacturer:
         title: Type of dye and manufacturer information
@@ -88,34 +90,21 @@ classes:
         title: pH of standards
         description: pH values of the calibration standards used.
         range: string
-      calibration_temperature:
-        title: Calibration temperature
-        description: Temperature at which calibration was performed.
-        range: string
-        # TODO: Change to DimensionedQuantity in Phase 3
 
   # CO2 Calibration with standard gases
   CO2Calibration:
     description: >-
       CO2 gas detector calibration with standard gas information.
     is_a: Calibration
+    slots:
+      - calibration_temperature
     attributes:
-      calibration_temperature:
-        title: Calibration temperature
-        description: Temperature at which calibration was performed.
-        range: string
-        # TODO: Change to DimensionedQuantity in Phase 3
-      standard_gases:
-        title: Standard gases
+      standard_gase_info:
+        title: Standard gas information
         description: Standard gases used for calibration.
         range: StandardGas
         multivalued: true
         inlined_as_list: true
-      wmo_traceable:
-        title: WMO traceable
-        description: Whether standard gases are traceable to WMO standards.
-        range: boolean
-        required: true
 
   # Supporting class for CO2 calibration
   StandardGas:
@@ -129,21 +118,41 @@ classes:
         required: true
       concentration:
         title: Concentration
-        description: CO2 concentration of the standard gas.
+        description: Concentrations of the CO2 standard gases that are used to calibrate the CO2 sensor, e.g., 260, 350, 510ppm.
         range: string
         required: true
-        # TODO: Change to DimensionedQuantity in Phase 3
+        # TODO: Change to DimensionedQuantity?
       uncertainty:
         title: Uncertainty
-        description: Uncertainty of the standard gas concentration.
+        description: Uncertainties of the CO2 standard gas, e.g., 0.5%.
         range: string
-        required: true
-        # TODO: Change to DimensionedQuantity in Phase 3
+        # TODO: Change to DimensionedQuantity?
+
+#  # CO2 Calibration with standard gases (for continuous/sensor measured xCO2/pCO2/fCO2)
+#  ContinuousCO2Calibration:
+#    description: >-
+#      ....
+#    is_a: CO2Calibration
+
+#  # Supporting class for continuous/sensor measured CO2 calibration
+#  ContinuousStandardGas:
+#    description: >-
+#      Standard gas used for CO2 calibration of continuous/sensor measured CO2 (xCO2/pCO2/fCO2)
+#    is_a: StandardGas
+
+
+
+
 slots:
   calibration_location:
     title: Calibration location
     description: Factory calibration, lab calibration, or field calibration.
     range: CalibrationLocation
+  calibration_temperature:
+    title: Calibration temperature
+    description: Temperature at which calibration was performed.
+    range: string
+    # TODO: Change to DimensionedQuantity?
 
 enums:
   CalibrationLocation:

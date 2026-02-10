@@ -308,39 +308,101 @@ classes:
       - MeasuredSedimentFields
 
   # =============================================================================
-  # HPLC Variable Class
+  # CO2 Variable Classes
   # =============================================================================
-  HPLCVariable:
+  CO2DiscreteVariable:
     description: >-
-      HPLC (High-Performance Liquid Chromatography) measured variable for
-      pigment analysis. Always measured, not calculated.
-    is_a:
-    attributes:
-      # HPLC-specific fields to be added per Excel spec
-
-
-  # =============================================================================
-  # Physiological Variable Class
-  # =============================================================================
-  PhysiologicalVariable:
-    description: >-
-      Physiological response measured variable for organism response data.
+      CO2 discrete (bottle) measured variable (pCO2/fCO2).
+      Reference: OAPMetadata XSD variables.xsd - co2_discrete
     is_a: ObservedPropertyVariable
+    mixins:
+      - MeasuredCO2Fields
+    slot_usage:
+      analyzing_instrument:
+        range: CO2GasDetector
+        description: CO2 gas detector with standard gas calibration.
     attributes:
-      # Physiological-specific fields to be added per Excel spec
+      storage_method:
+        title: Storage method
+        description: How the samples were stored before the measurement.
+        range: string
+        required: true
+      seawater_volume:
+        title: Seawater volume
+        description: Volume (in mL) of seawater in the flask.
+        range: integer
+        # TODO: Change to DimensionedQuantity?
+      headspace_volume:
+        title: Headspace volume
+        description: Volume (in mL) of headspace (water displaced in the flask plus volume of the tubing).
+        range: integer
+        # TODO: Change to DimensionedQuantity?
+      measurement_temperature:
+        title: Temperature of measurement
+        description: Temperature at which the samples were analyzed in Celsius.
+        range: integer
+        required: true
+        # TODO: Change to DimensionedQuantity?
 
-  # =============================================================================
-  # Socioeconomic Variable Class
-  # =============================================================================
-  SocioeconomicVariable:
-    description: >-
-      Socioeconomic variable for social and economic data.
-      Note: Does NOT include QCFields mixin as QC is not applicable.
-    is_a: Variable
-    attributes:
-      # Socioeconomic-specific fields to be added per Excel spec
+  #
+  #  CO2ContinuousVariable:
+  #    description: >-
+  #      CO2 sensor measured variable.
+  #      Reference: OAPMetadata XSD variables.xsd - co2_continuous
+  #    is_a: CO2Variable
+  #    mixins:
+  #      - DiscreteOrContinuousFields
+  #    attributes:
+  #      co2_drying_method:
+  #        title: CO2 drying method
+  #        description: Method used to dry the CO2 sample.
+  #        range: string
+  #      xco2_pco2_calculation_method:
+  #        title: xCO2 to pCO2 calculation method
+  #        description: Method used to calculate pCO2 from xCO2.
+  #        range: string
+  #      pco2_fco2_calculation_method:
+  #        title: pCO2 to fCO2 calculation method
+  #        description: Method used to calculate fCO2 from pCO2.
+  #        range: string
+  #      # TODO: Add Equilibrator and SensorMeasurement fields in Phase 2
+  #      # See docs/dev/noaa-xsd-fields-not-included.md
+  #
 
 
+
+#  # =============================================================================
+#  # HPLC Variable Class
+#  # =============================================================================
+#  HPLCVariable:
+#    description: >-
+#      HPLC (High-Performance Liquid Chromatography) measured variable for
+#      pigment analysis. Always measured, not calculated.
+#    is_a:
+#    attributes:
+#      # HPLC-specific fields to be added per Excel spec
+#
+#
+#  # =============================================================================
+#  # Physiological Variable Class
+#  # =============================================================================
+#  PhysiologicalVariable:
+#    description: >-
+#      Physiological response measured variable for organism response data.
+#    is_a: ObservedPropertyVariable
+#    attributes:
+#      # Physiological-specific fields to be added per Excel spec
+#
+#  # =============================================================================
+#  # Socioeconomic Variable Class
+#  # =============================================================================
+#  SocioeconomicVariable:
+#    description: >-
+#      Socioeconomic variable for social and economic data.
+#      Note: Does NOT include QCFields mixin as QC is not applicable.
+#    is_a: Variable
+#    attributes:
+#      # Socioeconomic-specific fields to be added per Excel spec
 
 
   # =============================================================================
@@ -427,6 +489,21 @@ classes:
         description: Water depth where sediment was collected.  It is recommended to include as a variable with data rather than here.
         range: string
         required: true
+
+  MeasuredCO2Fields:
+    mixin: true
+    description: Fields applied to all measured CO2 variable types (discrete and continuous)
+    slots:
+      - appropriate_use_quality
+    attributes:
+      water_vapor_correction_method:
+        title: Water vapor correction method
+        description: How the water vapor pressure inside the equilibrator was determined.
+        range: string
+      temperature_correction_method:
+        title: Temperature correction method
+        description: How the temperature effect was corrected.
+        range: string
 
   # Quality Control Fields - All vars except socioeconomic
   QCFields:
@@ -567,82 +644,3 @@ enums:
         description: Concentration expressed per unit mass (e.g., μmol/kg-seawater)
 
 
-#  # =============================================================================
-#  # CO2 Variable Classes
-#  # =============================================================================
-#  CO2Variable:
-#    description: >-
-#      Abstract base class for CO2 measured variables (both continuous and discrete).
-#      Reference: OAPMetadata XSD variables.xsd - co2_measured_base
-#    abstract: true
-#    is_a: ObservedPropertyVariable
-#    mixins:
-#      - WeatherClimateFields
-#    slot_usage:
-#      analyzing_instrument:
-#        range: CO2GasDetector
-#        description: CO2 gas detector with standard gas calibration.
-#    attributes:
-#      water_vapor_correction:
-#        title: Water vapor correction
-#        description: Method used to correct for water vapor.
-#        range: string
-#        required: true
-#      temperature_correction_method:
-#        title: Temperature correction method
-#        description: Method used to correct CO2 for temperature.
-#        range: string
-#        required: true
-#
-#  CO2ContinuousVariable:
-#    description: >-
-#      CO2 sensor measured variable.
-#      Reference: OAPMetadata XSD variables.xsd - co2_continuous
-#    is_a: CO2Variable
-#    mixins:
-#      - DiscreteOrContinuousFields
-#    attributes:
-#      co2_drying_method:
-#        title: CO2 drying method
-#        description: Method used to dry the CO2 sample.
-#        range: string
-#      xco2_pco2_calculation_method:
-#        title: xCO2 to pCO2 calculation method
-#        description: Method used to calculate pCO2 from xCO2.
-#        range: string
-#      pco2_fco2_calculation_method:
-#        title: pCO2 to fCO2 calculation method
-#        description: Method used to calculate fCO2 from pCO2.
-#        range: string
-#      # TODO: Add Equilibrator and SensorMeasurement fields in Phase 2
-#      # See docs/dev/noaa-xsd-fields-not-included.md
-#
-#  CO2DiscreteVariable:
-#    description: >-
-#      CO2 discrete (bottle) measured variable.
-#      Reference: OAPMetadata XSD variables.xsd - co2_discrete
-#    is_a: CO2Variable
-#    attributes:
-#      storage_method:
-#        title: Storage method
-#        description: How samples were stored prior to analysis.
-#        range: string
-#        required: true
-#      seawater_volume:
-#        title: Seawater volume
-#        description: Volume of seawater in the sample.
-#        range: string
-#        required: true
-#        # TODO: Change to DimensionedQuantity in Phase 3
-#      headspace_volume:
-#        title: Headspace volume
-#        description: Volume of headspace in the sample container.
-#        range: string
-#        required: true
-#        # TODO: Change to DimensionedQuantity in Phase 3
-#      measurement_temperature:
-#        title: Measurement temperature
-#        description: Temperature at which CO2 was measured.
-#        range: string
-#        required: true
-#        # TODO: Change to DimensionedQuantity in Phase 3

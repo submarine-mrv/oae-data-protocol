@@ -22,6 +22,9 @@ classes:
   AnalyzingInstrument:
     description: >-
       Base class for scientific instruments used in analyzing samples for measurement.
+    slots:
+      - manufacturer
+      - model
     attributes:
       instrument_type:
         title: Instrument type
@@ -31,14 +34,6 @@ classes:
         required: true
       instrument_type_custom:
         title: Instrument type (custom)
-        range: string
-      manufacturer:
-        title: Manufacturer
-        description: Manufacturer name of the instrument.
-        range: string
-      model:
-        title: Model
-        description: Model number or name of the instrument.
         range: string
       serial_number:
         title: Serial number
@@ -92,7 +87,20 @@ classes:
     description: >-
       CO2 gas detector with standard gas calibration.
     is_a: AnalyzingInstrument
+    slot_usage:
+      analyzing_instrument_type:
+        equals_string: "gas_analyzer"
+      manufacturer:
+        required: true
+        description: Manufacture of the CO2 sensor
+      model:
+        description: Model number of the CO2 sensor, e.g., 6262
     attributes:
+      detector_type:
+        title: Detector Type
+        description: Type of the CO2 gas detector
+        range: string
+        required: true
       calibration:
         title: Calibration
         description: CO2 calibration information for this instrument.
@@ -106,6 +114,16 @@ classes:
         title: Uncertainty
         description: Uncertainty of the CO2 sensor.
         range: string
+
+slots:
+  manufacturer:
+    title: Manufacturer
+    description: Manufacturer name of the instrument.
+    range: string
+  model:
+    title: Model
+    description: Model number or name of the instrument.
+    range: string
 
 enums:
   SamplingInstrumentType:
@@ -324,4 +342,8 @@ enums:
         description: >-
           Environmental DNA (eDNA) samplers: used to collect and analyze genetic material shed by marine organisms,
           which can provide information about their distribution, abundance, and diversity.
+      gas_analyzer:
+        # TODO: Add description and URI (in meaning metaslot)
+        description: >-
+          TBD
       other:
