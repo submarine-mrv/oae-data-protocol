@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-02-09T21:58:46
+# Generation date: 2026-02-09T22:03:44
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -1878,7 +1878,7 @@ class DiscreteSedimentVariable(DiscreteMeasuredVariable):
 
 
 @dataclass(repr=False)
-class DiscreteCO2Variable(ObservedPropertyVariable):
+class DiscreteCO2Variable(DiscreteMeasuredVariable):
     """
     CO2 discrete (bottle) measured variable (pCO2/fCO2). Reference: OAPMetadata XSD variables.xsd - co2_discrete
     """

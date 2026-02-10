@@ -1466,6 +1466,11 @@
             "additionalProperties": false,
             "description": "CO2 discrete (bottle) measured variable (pCO2/fCO2). Reference: OAPMetadata XSD variables.xsd - co2_discrete",
             "properties": {
+                "analyzing_instrument": {
+                    "$ref": "#/$defs/CO2GasDetector",
+                    "description": "CO2 gas detector with standard gas calibration.",
+                    "title": "Analyzing instrument"
+                },
                 "analyzing_method": {
                     "description": "Additional information describing how the sample was analyzed. DOIs provided as applicable.",
                     "title": "Analyzing Method",
@@ -1617,6 +1622,7 @@
                 "storage_method",
                 "measurement_temperature",
                 "co2_reported_temperature",
+                "analyzing_instrument",
                 "sampling_method",
                 "analyzing_method",
                 "observation_type",
