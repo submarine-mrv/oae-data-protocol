@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-02-09T20:54:25
+# Generation date: 2026-02-09T20:58:20
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -1880,16 +1880,16 @@ class DiscreteSedimentVariable(DiscreteMeasuredVariable):
 
 
 @dataclass(repr=False)
-class CO2DiscreteVariable(ObservedPropertyVariable):
+class DiscreteCO2Variable(ObservedPropertyVariable):
     """
     CO2 discrete (bottle) measured variable (pCO2/fCO2). Reference: OAPMetadata XSD variables.xsd - co2_discrete
     """
     _inherited_slots: ClassVar[List[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = OAE["CO2DiscreteVariable"]
-    class_class_curie: ClassVar[str] = "oae:CO2DiscreteVariable"
-    class_name: ClassVar[str] = "CO2DiscreteVariable"
-    class_model_uri: ClassVar[URIRef] = OAE.CO2DiscreteVariable
+    class_class_uri: ClassVar[URIRef] = OAE["DiscreteCO2Variable"]
+    class_class_curie: ClassVar[str] = "oae:DiscreteCO2Variable"
+    class_name: ClassVar[str] = "DiscreteCO2Variable"
+    class_model_uri: ClassVar[URIRef] = OAE.DiscreteCO2Variable
 
     dataset_variable_name: str = None
     long_name: str = None
@@ -4398,17 +4398,17 @@ slots.discreteTAVariable__titration_cell_type = Slot(uri=OAE.titration_cell_type
 slots.discreteTAVariable__curve_fitting_method = Slot(uri=OAE.curve_fitting_method, name="discreteTAVariable__curve_fitting_method", curie=OAE.curie('curve_fitting_method'),
                    model_uri=OAE.discreteTAVariable__curve_fitting_method, domain=None, range=Optional[str])
 
-slots.cO2DiscreteVariable__storage_method = Slot(uri=OAE.storage_method, name="cO2DiscreteVariable__storage_method", curie=OAE.curie('storage_method'),
-                   model_uri=OAE.cO2DiscreteVariable__storage_method, domain=None, range=str)
+slots.discreteCO2Variable__storage_method = Slot(uri=OAE.storage_method, name="discreteCO2Variable__storage_method", curie=OAE.curie('storage_method'),
+                   model_uri=OAE.discreteCO2Variable__storage_method, domain=None, range=str)
 
-slots.cO2DiscreteVariable__seawater_volume = Slot(uri=OAE.seawater_volume, name="cO2DiscreteVariable__seawater_volume", curie=OAE.curie('seawater_volume'),
-                   model_uri=OAE.cO2DiscreteVariable__seawater_volume, domain=None, range=Optional[int])
+slots.discreteCO2Variable__seawater_volume = Slot(uri=OAE.seawater_volume, name="discreteCO2Variable__seawater_volume", curie=OAE.curie('seawater_volume'),
+                   model_uri=OAE.discreteCO2Variable__seawater_volume, domain=None, range=Optional[int])
 
-slots.cO2DiscreteVariable__headspace_volume = Slot(uri=OAE.headspace_volume, name="cO2DiscreteVariable__headspace_volume", curie=OAE.curie('headspace_volume'),
-                   model_uri=OAE.cO2DiscreteVariable__headspace_volume, domain=None, range=Optional[int])
+slots.discreteCO2Variable__headspace_volume = Slot(uri=OAE.headspace_volume, name="discreteCO2Variable__headspace_volume", curie=OAE.curie('headspace_volume'),
+                   model_uri=OAE.discreteCO2Variable__headspace_volume, domain=None, range=Optional[int])
 
-slots.cO2DiscreteVariable__measurement_temperature = Slot(uri=OAE.measurement_temperature, name="cO2DiscreteVariable__measurement_temperature", curie=OAE.curie('measurement_temperature'),
-                   model_uri=OAE.cO2DiscreteVariable__measurement_temperature, domain=None, range=int)
+slots.discreteCO2Variable__measurement_temperature = Slot(uri=OAE.measurement_temperature, name="discreteCO2Variable__measurement_temperature", curie=OAE.curie('measurement_temperature'),
+                   model_uri=OAE.discreteCO2Variable__measurement_temperature, domain=None, range=int)
 
 slots.samplePreservation__preservative = Slot(uri=OAE.preservative, name="samplePreservation__preservative", curie=OAE.curie('preservative'),
                    model_uri=OAE.samplePreservation__preservative, domain=None, range=str)
@@ -4654,8 +4654,8 @@ slots.DiscreteTAVariable_analyzing_instrument = Slot(uri=OAE.analyzing_instrumen
 slots.DiscreteDICVariable_analyzing_instrument = Slot(uri=OAE.analyzing_instrument, name="DiscreteDICVariable_analyzing_instrument", curie=OAE.curie('analyzing_instrument'),
                    model_uri=OAE.DiscreteDICVariable_analyzing_instrument, domain=DiscreteDICVariable, range=Union[dict, "CRMInstrument"])
 
-slots.CO2DiscreteVariable_analyzing_instrument = Slot(uri=OAE.analyzing_instrument, name="CO2DiscreteVariable_analyzing_instrument", curie=OAE.curie('analyzing_instrument'),
-                   model_uri=OAE.CO2DiscreteVariable_analyzing_instrument, domain=CO2DiscreteVariable, range=Union[dict, "CO2GasDetector"])
+slots.DiscreteCO2Variable_analyzing_instrument = Slot(uri=OAE.analyzing_instrument, name="DiscreteCO2Variable_analyzing_instrument", curie=OAE.curie('analyzing_instrument'),
+                   model_uri=OAE.DiscreteCO2Variable_analyzing_instrument, domain=DiscreteCO2Variable, range=Union[dict, "CO2GasDetector"])
 
 slots.Dataset_name = Slot(uri=SCHEMA.name, name="Dataset_name", curie=SCHEMA.curie('name'),
                    model_uri=OAE.Dataset_name, domain=Dataset, range=str)

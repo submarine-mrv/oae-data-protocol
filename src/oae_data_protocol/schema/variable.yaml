@@ -310,7 +310,7 @@ classes:
   # =============================================================================
   # CO2 Variable Classes
   # =============================================================================
-  CO2DiscreteVariable:
+  DiscreteCO2Variable:
     description: >-
       CO2 discrete (bottle) measured variable (pCO2/fCO2).
       Reference: OAPMetadata XSD variables.xsd - co2_discrete
