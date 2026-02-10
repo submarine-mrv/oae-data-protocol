@@ -103,8 +103,6 @@ classes:
         title: Standard gas information
         description: Standard gases used for calibration.
         range: StandardGas
-        multivalued: true
-        inlined_as_list: true
 
   # Supporting class for CO2 calibration
   StandardGas:
