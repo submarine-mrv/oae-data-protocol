@@ -314,7 +314,7 @@ classes:
     description: >-
       CO2 discrete (bottle) measured variable (pCO2/fCO2).
       Reference: OAPMetadata XSD variables.xsd - co2_discrete
-    is_a: ObservedPropertyVariable
+    is_a: DiscreteCO2Variable
     mixins:
       - MeasuredCO2Fields
     slot_usage:
