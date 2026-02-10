@@ -111,18 +111,18 @@ classes:
       Standard gas used for CO2 calibration.
     attributes:
       manufacturer:
-        title: Manufacturer
+        title: Standard Gas Manufacturer
         description: Manufacturer of the standard gas.
         range: string
         required: true
       concentration:
-        title: Concentration
+        title: Standard Gas Concentration
         description: Concentrations of the CO2 standard gases that are used to calibrate the CO2 sensor, e.g., 260, 350, 510ppm.
         range: string
         required: true
         # TODO: Change to DimensionedQuantity?
       uncertainty:
-        title: Uncertainty
+        title: Standard Gas Uncertainty
         description: Uncertainties of the CO2 standard gas, e.g., 0.5%.
         range: string
         # TODO: Change to DimensionedQuantity?

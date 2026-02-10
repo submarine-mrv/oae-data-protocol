@@ -4323,17 +4323,17 @@
             "properties": {
                 "concentration": {
                     "description": "Concentrations of the CO2 standard gases that are used to calibrate the CO2 sensor, e.g., 260, 350, 510ppm.",
-                    "title": "Concentration",
+                    "title": "Standard Gas Concentration",
                     "type": "string"
                 },
                 "manufacturer": {
                     "description": "Manufacturer of the standard gas.",
-                    "title": "Manufacturer",
+                    "title": "Standard Gas Manufacturer",
                     "type": "string"
                 },
                 "uncertainty": {
                     "description": "Uncertainties of the CO2 standard gas, e.g., 0.5%.",
-                    "title": "Uncertainty",
+                    "title": "Standard Gas Uncertainty",
                     "type": "string"
                 }
             },
