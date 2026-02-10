@@ -76,7 +76,6 @@
             },
             "required": [
                 "instrument_type",
-                "precision",
                 "accuracy"
             ],
             "title": "AnalyzingInstrument",
@@ -273,7 +272,6 @@
             "required": [
                 "calibration",
                 "instrument_type",
-                "precision",
                 "accuracy"
             ],
             "title": "CO2GasDetector",
@@ -388,7 +386,6 @@
             "required": [
                 "calibration",
                 "instrument_type",
-                "precision",
                 "accuracy"
             ],
             "title": "CRMInstrument",
@@ -1605,7 +1602,6 @@
             },
             "required": [
                 "instrument_type",
-                "precision",
                 "accuracy"
             ],
             "title": "GenericInstrument",
@@ -2733,7 +2729,6 @@
             "required": [
                 "calibration",
                 "instrument_type",
-                "precision",
                 "accuracy"
             ],
             "title": "PHInstrument",
@@ -3557,7 +3552,6 @@
             },
             "required": [
                 "instrument_type",
-                "precision",
                 "accuracy"
             ],
             "title": "Sensor",

@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-02-10T09:17:38
+# Generation date: 2026-02-10T09:42:23
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -1853,12 +1853,12 @@ class Instrument(YAMLRoot):
     class_model_uri: ClassVar[URIRef] = OAE.Instrument
 
     instrument_type: Union[str, "AnalyzingInstrumentType"] = None
-    precision: str = None
     accuracy: str = None
     instrument_type_custom: Optional[str] = None
     manufacturer: Optional[str] = None
     model: Optional[str] = None
     serial_number: Optional[str] = None
+    precision: Optional[str] = None
     calibration: Optional[Union[dict, "Calibration"]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
@@ -1866,11 +1866,6 @@ class Instrument(YAMLRoot):
             self.MissingRequiredField("instrument_type")
         if not isinstance(self.instrument_type, AnalyzingInstrumentType):
             self.instrument_type = AnalyzingInstrumentType(self.instrument_type)
-
-        if self._is_empty(self.precision):
-            self.MissingRequiredField("precision")
-        if not isinstance(self.precision, str):
-            self.precision = str(self.precision)
 
         if self._is_empty(self.accuracy):
             self.MissingRequiredField("accuracy")
@@ -1888,6 +1883,9 @@ class Instrument(YAMLRoot):
 
         if self.serial_number is not None and not isinstance(self.serial_number, str):
             self.serial_number = str(self.serial_number)
+
+        if self.precision is not None and not isinstance(self.precision, str):
+            self.precision = str(self.precision)
 
         if self.calibration is not None and not isinstance(self.calibration, Calibration):
             self.calibration = Calibration(**as_dict(self.calibration))
@@ -1907,7 +1905,6 @@ class AnalyzingInstrument(Instrument):
     class_name: ClassVar[str] = "AnalyzingInstrument"
     class_model_uri: ClassVar[URIRef] = OAE.AnalyzingInstrument
 
-    precision: str = None
     accuracy: str = None
     instrument_type: Union[str, "AnalyzingInstrumentType"] = None
 
@@ -1932,7 +1929,6 @@ class PHInstrument(AnalyzingInstrument):
     class_name: ClassVar[str] = "PHInstrument"
     class_model_uri: ClassVar[URIRef] = OAE.PHInstrument
 
-    precision: str = None
     accuracy: str = None
     instrument_type: Union[str, "AnalyzingInstrumentType"] = None
     calibration: Union[dict, "PHCalibration"] = None
@@ -1959,7 +1955,6 @@ class CRMInstrument(Instrument):
     class_model_uri: ClassVar[URIRef] = OAE.CRMInstrument
 
     instrument_type: Union[str, "AnalyzingInstrumentType"] = None
-    precision: str = None
     accuracy: str = None
     calibration: Union[dict, "CRMCalibration"] = None
 
@@ -1985,7 +1980,6 @@ class CO2GasDetector(Instrument):
     class_model_uri: ClassVar[URIRef] = OAE.CO2GasDetector
 
     instrument_type: Union[str, "AnalyzingInstrumentType"] = None
-    precision: str = None
     accuracy: str = None
     calibration: Union[dict, "CO2Calibration"] = None
     resolution: Optional[str] = None
@@ -2019,7 +2013,6 @@ class Sensor(Instrument):
     class_model_uri: ClassVar[URIRef] = OAE.Sensor
 
     instrument_type: Union[str, "AnalyzingInstrumentType"] = None
-    precision: str = None
     accuracy: str = None
     calibration: Optional[Union[dict, "Calibration"]] = None
 
@@ -2044,7 +2037,6 @@ class GenericInstrument(Instrument):
     class_model_uri: ClassVar[URIRef] = OAE.GenericInstrument
 
     instrument_type: Union[str, "AnalyzingInstrumentType"] = None
-    precision: str = None
     accuracy: str = None
     calibration: Optional[Union[dict, "Calibration"]] = None
 
@@ -3981,7 +3973,7 @@ slots.instrument__serial_number = Slot(uri=OAE.serial_number, name="instrument__
                    model_uri=OAE.instrument__serial_number, domain=None, range=Optional[str])
 
 slots.instrument__precision = Slot(uri=OAE.precision, name="instrument__precision", curie=OAE.curie('precision'),
-                   model_uri=OAE.instrument__precision, domain=None, range=str)
+                   model_uri=OAE.instrument__precision, domain=None, range=Optional[str])
 
 slots.instrument__accuracy = Slot(uri=OAE.accuracy, name="instrument__accuracy", curie=OAE.curie('accuracy'),
                    model_uri=OAE.instrument__accuracy, domain=None, range=str)

@@ -52,7 +52,6 @@ classes:
         title: Precision
         description: Precision of the instrument measurements.
         range: string
-        required: true
         # TODO: Change to DimensionedQuantity in Phase 3
       accuracy:
         title: Accuracy
