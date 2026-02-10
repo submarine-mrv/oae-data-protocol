@@ -99,7 +99,8 @@ classes:
     slots:
       - calibration_temperature
     attributes:
-      standard_gase_info:
+      # TODO: Standard gas is an array in NOAA's OAPMetadata schema, can it be multivalued for us?
+      standard_gas_info:
         title: Standard gas information
         description: Standard gases used for calibration.
         range: StandardGas

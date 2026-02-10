@@ -172,7 +172,7 @@
                     "title": "Calibration method reference",
                     "type": "string"
                 },
-                "standard_gase_info": {
+                "standard_gas_info": {
                     "$ref": "#/$defs/StandardGas",
                     "description": "Standard gases used for calibration.",
                     "title": "Standard gas information"
