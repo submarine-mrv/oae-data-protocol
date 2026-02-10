@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-02-09T21:22:26
+# Generation date: 2026-02-09T21:51:49
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -1596,7 +1596,7 @@ class ContinuousTAVariable(ContinuousMeasuredVariable):
 
 
 @dataclass(repr=False)
-class DiscreteTAVariable(ObservedPropertyVariable):
+class DiscreteTAVariable(DiscreteMeasuredVariable):
     """
     Total Alkalinity (TA) measured variable from discrete bottle samples
     """
@@ -1710,7 +1710,7 @@ class ContinuousDICVariable(ContinuousMeasuredVariable):
 
 
 @dataclass(repr=False)
-class DiscreteDICVariable(ObservedPropertyVariable):
+class DiscreteDICVariable(DiscreteMeasuredVariable):
     """
     Dissolved Inorganic Carbon (DIC) measured variable from discrete bottle samples. Uses CRM-calibrated instrument
     and includes sample preservation information. Reference: OAPMetadata XSD variables.xsd - DIC_measured
@@ -1907,6 +1907,7 @@ class DiscreteCO2Variable(ObservedPropertyVariable):
     storage_method: str = None
     measurement_temperature: int = None
     analyzing_instrument: Union[dict, "CO2GasDetector"] = None
+    co2_reported_temperature: str = None
     seawater_volume: Optional[int] = None
     headspace_volume: Optional[int] = None
     appropriate_use_quality: Optional[Union[str, "AppropriateUseQuality"]] = None
@@ -1929,6 +1930,11 @@ class DiscreteCO2Variable(ObservedPropertyVariable):
         if not isinstance(self.analyzing_instrument, CO2GasDetector):
             self.analyzing_instrument = CO2GasDetector(**as_dict(self.analyzing_instrument))
 
+        if self._is_empty(self.co2_reported_temperature):
+            self.MissingRequiredField("co2_reported_temperature")
+        if not isinstance(self.co2_reported_temperature, str):
+            self.co2_reported_temperature = str(self.co2_reported_temperature)
+
         if self.seawater_volume is not None and not isinstance(self.seawater_volume, int):
             self.seawater_volume = int(self.seawater_volume)
 
@@ -1943,6 +1949,48 @@ class DiscreteCO2Variable(ObservedPropertyVariable):
 
         if self.temperature_correction_method is not None and not isinstance(self.temperature_correction_method, str):
             self.temperature_correction_method = str(self.temperature_correction_method)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class HPLCVariable(DiscreteMeasuredVariable):
+    """
+    HPLC (High-Performance Liquid Chromatography) measured variable for pigment analysis. Always measured, not
+    calculated.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["HPLCVariable"]
+    class_class_curie: ClassVar[str] = "oae:HPLCVariable"
+    class_name: ClassVar[str] = "HPLCVariable"
+    class_model_uri: ClassVar[URIRef] = OAE.HPLCVariable
+
+    dataset_variable_name: str = None
+    long_name: str = None
+    units: str = None
+    analyzing_instrument: Union[dict, "AnalyzingInstrument"] = None
+    sampling_method: str = None
+    analyzing_method: str = None
+    observation_type: Union[str, "ObservationType"] = None
+    sampling: Union[str, "SamplingType"] = None
+    genesis: Union[str, "GenesisType"] = None
+    sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
+    qc_steps_taken: str = None
+    uncertainty: str = None
+    uncertainty_definition: str = None
+    missing_value_indicators: str = None
+    hplc_lab: str = None
+    hplc_lab_technician: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.hplc_lab):
+            self.MissingRequiredField("hplc_lab")
+        if not isinstance(self.hplc_lab, str):
+            self.hplc_lab = str(self.hplc_lab)
+
+        if self.hplc_lab_technician is not None and not isinstance(self.hplc_lab_technician, str):
+            self.hplc_lab_technician = str(self.hplc_lab_technician)
 
         super().__post_init__(**kwargs)
 
@@ -2139,11 +2187,17 @@ class MeasuredCO2Fields(YAMLRoot):
     class_name: ClassVar[str] = "MeasuredCO2Fields"
     class_model_uri: ClassVar[URIRef] = OAE.MeasuredCO2Fields
 
+    co2_reported_temperature: str = None
     appropriate_use_quality: Optional[Union[str, "AppropriateUseQuality"]] = None
     water_vapor_correction_method: Optional[str] = None
     temperature_correction_method: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.co2_reported_temperature):
+            self.MissingRequiredField("co2_reported_temperature")
+        if not isinstance(self.co2_reported_temperature, str):
+            self.co2_reported_temperature = str(self.co2_reported_temperature)
+
         if self.appropriate_use_quality is not None and not isinstance(self.appropriate_use_quality, AppropriateUseQuality):
             self.appropriate_use_quality = AppropriateUseQuality(self.appropriate_use_quality)
 
@@ -4409,6 +4463,12 @@ slots.discreteCO2Variable__headspace_volume = Slot(uri=OAE.headspace_volume, nam
 slots.discreteCO2Variable__measurement_temperature = Slot(uri=OAE.measurement_temperature, name="discreteCO2Variable__measurement_temperature", curie=OAE.curie('measurement_temperature'),
                    model_uri=OAE.discreteCO2Variable__measurement_temperature, domain=None, range=int)
 
+slots.hPLCVariable__hplc_lab = Slot(uri=OAE.hplc_lab, name="hPLCVariable__hplc_lab", curie=OAE.curie('hplc_lab'),
+                   model_uri=OAE.hPLCVariable__hplc_lab, domain=None, range=str)
+
+slots.hPLCVariable__hplc_lab_technician = Slot(uri=OAE.hplc_lab_technician, name="hPLCVariable__hplc_lab_technician", curie=OAE.curie('hplc_lab_technician'),
+                   model_uri=OAE.hPLCVariable__hplc_lab_technician, domain=None, range=Optional[str])
+
 slots.samplePreservation__preservative = Slot(uri=OAE.preservative, name="samplePreservation__preservative", curie=OAE.curie('preservative'),
                    model_uri=OAE.samplePreservation__preservative, domain=None, range=str)
 
@@ -4435,6 +4495,9 @@ slots.measuredSedimentFields__sediment_sampling_depth = Slot(uri=OAE.sediment_sa
 
 slots.measuredSedimentFields__sediment_sampling_water_depth = Slot(uri=OAE.sediment_sampling_water_depth, name="measuredSedimentFields__sediment_sampling_water_depth", curie=OAE.curie('sediment_sampling_water_depth'),
                    model_uri=OAE.measuredSedimentFields__sediment_sampling_water_depth, domain=None, range=str)
+
+slots.measuredCO2Fields__co2_reported_temperature = Slot(uri=OAE.co2_reported_temperature, name="measuredCO2Fields__co2_reported_temperature", curie=OAE.curie('co2_reported_temperature'),
+                   model_uri=OAE.measuredCO2Fields__co2_reported_temperature, domain=None, range=str)
 
 slots.measuredCO2Fields__water_vapor_correction_method = Slot(uri=OAE.water_vapor_correction_method, name="measuredCO2Fields__water_vapor_correction_method", curie=OAE.curie('water_vapor_correction_method'),
                    model_uri=OAE.measuredCO2Fields__water_vapor_correction_method, domain=None, range=Optional[str])

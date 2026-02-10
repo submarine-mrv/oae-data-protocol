@@ -241,7 +241,7 @@ classes:
   DiscreteTAVariable:
     description: >-
       Total Alkalinity (TA) measured variable from discrete bottle samples
-    is_a: ObservedPropertyVariable
+    is_a: DiscreteMeasuredVariable
     mixins:
       - MeasuredTAFields
     slots:
@@ -280,7 +280,7 @@ classes:
       Dissolved Inorganic Carbon (DIC) measured variable from discrete bottle samples.
       Uses CRM-calibrated instrument and includes sample preservation information.
       Reference: OAPMetadata XSD variables.xsd - DIC_measured
-    is_a: ObservedPropertyVariable
+    is_a: DiscreteMeasuredVariable
     mixins:
       - MeasuredDICFields
     slots:
@@ -344,43 +344,35 @@ classes:
         required: true
         # TODO: Change to DimensionedQuantity?
 
-  #
-  #  CO2ContinuousVariable:
-  #    description: >-
-  #      CO2 sensor measured variable.
-  #      Reference: OAPMetadata XSD variables.xsd - co2_continuous
-  #    is_a: CO2Variable
-  #    mixins:
-  #      - DiscreteOrContinuousFields
-  #    attributes:
-  #      co2_drying_method:
-  #        title: CO2 drying method
-  #        description: Method used to dry the CO2 sample.
-  #        range: string
-  #      xco2_pco2_calculation_method:
-  #        title: xCO2 to pCO2 calculation method
-  #        description: Method used to calculate pCO2 from xCO2.
-  #        range: string
-  #      pco2_fco2_calculation_method:
-  #        title: pCO2 to fCO2 calculation method
-  #        description: Method used to calculate fCO2 from pCO2.
-  #        range: string
-  #      # TODO: Add Equilibrator and SensorMeasurement fields in Phase 2
-  #      # See docs/dev/noaa-xsd-fields-not-included.md
-  #
+
+  # =============================================================================
+  # HPLC Variable Class
+  # =============================================================================
+  HPLCVariable:
+    description: >-
+      HPLC (High-Performance Liquid Chromatography) measured variable for
+      pigment analysis. Always measured, not calculated.
+    is_a: DiscreteMeasuredVariable
+    attributes:
+      hplc_lab:
+        title: HPLC Lab
+        description: The name of the lab where the HPLC analysis was run (e.g., 'NASA_GSFC'
+        range: string
+        required: true
+      hplc_lab_technician:
+        title: HPLC Lab Technician
+        description: Name and contact information for HPLC technician.
+        range: string
 
 
-
-#  # =============================================================================
-#  # HPLC Variable Class
-#  # =============================================================================
-#  HPLCVariable:
+#  ContinuousCO2Variable:
 #    description: >-
-#      HPLC (High-Performance Liquid Chromatography) measured variable for
-#      pigment analysis. Always measured, not calculated.
-#    is_a:
-#    attributes:
-#      # HPLC-specific fields to be added per Excel spec
+#      CO2 sensor measured variable
+#      Reference: OAPMetadata XSD variables.xsd - co2_continuous
+#    is_a: Continuous
+
+
+
 #
 #
 #  # =============================================================================
@@ -496,6 +488,13 @@ classes:
     slots:
       - appropriate_use_quality
     attributes:
+      # TODO: The spreadsheet has different field names for pCO2/fCO2 reported temp (and none for xCO2). Is one co2_reported_temperature field sufficient?
+      co2_reported_temperature:
+        title: Temperature at which CO2 was reported
+        description: In Celsius. The input could be a constant temperature value, or something like, in-situ temperature, temperature of analysis, etc.
+        # TODO: in the spreadsheet it says co2_reported_temperature should be number, but also says it can be descriptive?
+        range: string
+        required: true
       water_vapor_correction_method:
         title: Water vapor correction method
         description: How the water vapor pressure inside the equilibrator was determined.
