@@ -1315,7 +1315,7 @@
                     "type": "boolean"
                 },
                 "is_provided_as_a_file": {
-                    "description": "Indicates that the field in question is provided as a file. The value used here is intended to be a summary range or general area of coverage.",
+                    "description": "Select \u2018Variable\u2019 if the concentration varies over time, or \u2018Fixed Value\u2019 if it is constant. Note: Variable concentrations must be provided in a data file.",
                     "type": "boolean"
                 },
                 "unit": {
@@ -1408,14 +1408,6 @@
                     "description": "The type of mCDR experiment conducted. See Controlled Vocabularies section for definitions.",
                     "title": "mCDR Experiment Type"
                 },
-                "investigators": {
-                    "description": "Provide details for each investigator including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.",
-                    "items": {
-                        "$ref": "#/$defs/Person"
-                    },
-                    "title": "Investigators",
-                    "type": "array"
-                },
                 "meteorological_and_tidal_data": {
                     "description": "Include links to relevant open datasets if referenced in the experiment but not provided in the submission.",
                     "items": {
@@ -1443,6 +1435,14 @@
                         "null"
                     ]
                 },
+                "principal_investigators": {
+                    "description": "Provide details for each principal investigator (PI) including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.",
+                    "items": {
+                        "$ref": "#/$defs/Person"
+                    },
+                    "title": "Principal Investigators",
+                    "type": "array"
+                },
                 "spatial_coverage": {
                     "$ref": "#/$defs/SpatialCoverage",
                     "description": "Latitude/longitude bounds of observed data in experiment, provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]",
@@ -1465,7 +1465,7 @@
                 "spatial_coverage",
                 "experiment_id",
                 "experiment_type",
-                "investigators",
+                "principal_investigators",
                 "start_datetime",
                 "end_datetime"
             ],
@@ -1957,14 +1957,6 @@
                     "description": "The type of mCDR experiment conducted. See Controlled Vocabularies section for definitions.",
                     "title": "mCDR Experiment Type"
                 },
-                "investigators": {
-                    "description": "Provide details for each investigator including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.",
-                    "items": {
-                        "$ref": "#/$defs/Person"
-                    },
-                    "title": "Investigators",
-                    "type": "array"
-                },
                 "meteorological_and_tidal_data": {
                     "description": "Include links to relevant open datasets if referenced in the experiment but not provided in the submission.",
                     "items": {
@@ -1991,6 +1983,14 @@
                         "array",
                         "null"
                     ]
+                },
+                "principal_investigators": {
+                    "description": "Provide details for each principal investigator (PI) including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.",
+                    "items": {
+                        "$ref": "#/$defs/Person"
+                    },
+                    "title": "Principal Investigators",
+                    "type": "array"
                 },
                 "spatial_coverage": {
                     "$ref": "#/$defs/SpatialCoverage",
@@ -2027,7 +2027,7 @@
                 "spatial_coverage",
                 "experiment_id",
                 "experiment_type",
-                "investigators",
+                "principal_investigators",
                 "start_datetime",
                 "end_datetime"
             ],
@@ -2186,14 +2186,6 @@
                     "description": "The type of mCDR experiment conducted. See Controlled Vocabularies section for definitions.",
                     "title": "mCDR Experiment Type"
                 },
-                "investigators": {
-                    "description": "Provide details for each investigator including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.",
-                    "items": {
-                        "$ref": "#/$defs/Person"
-                    },
-                    "title": "Investigators",
-                    "type": "array"
-                },
                 "meteorological_and_tidal_data": {
                     "description": "Include links to relevant open datasets if referenced in the experiment but not provided in the submission.",
                     "items": {
@@ -2220,6 +2212,14 @@
                         "array",
                         "null"
                     ]
+                },
+                "principal_investigators": {
+                    "description": "Provide details for each principal investigator (PI) including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.",
+                    "items": {
+                        "$ref": "#/$defs/Person"
+                    },
+                    "title": "Principal Investigators",
+                    "type": "array"
                 },
                 "spatial_coverage": {
                     "$ref": "#/$defs/SpatialCoverage",
@@ -2274,7 +2274,7 @@
                 "spatial_coverage",
                 "experiment_id",
                 "experiment_type",
-                "investigators",
+                "principal_investigators",
                 "start_datetime",
                 "end_datetime"
             ],
@@ -3735,14 +3735,6 @@
                     "description": "The type of mCDR experiment conducted. See Controlled Vocabularies section for definitions.",
                     "title": "mCDR Experiment Type"
                 },
-                "investigators": {
-                    "description": "Provide details for each investigator including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.",
-                    "items": {
-                        "$ref": "#/$defs/Person"
-                    },
-                    "title": "Investigators",
-                    "type": "array"
-                },
                 "meteorological_and_tidal_data": {
                     "description": "Include links to relevant open datasets if referenced in the experiment but not provided in the submission.",
                     "items": {
@@ -3769,6 +3761,14 @@
                         "array",
                         "null"
                     ]
+                },
+                "principal_investigators": {
+                    "description": "Provide details for each principal investigator (PI) including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.",
+                    "items": {
+                        "$ref": "#/$defs/Person"
+                    },
+                    "title": "Principal Investigators",
+                    "type": "array"
                 },
                 "spatial_coverage": {
                     "$ref": "#/$defs/SpatialCoverage",
@@ -3816,7 +3816,7 @@
                 "spatial_coverage",
                 "experiment_id",
                 "experiment_type",
-                "investigators",
+                "principal_investigators",
                 "start_datetime",
                 "end_datetime"
             ],

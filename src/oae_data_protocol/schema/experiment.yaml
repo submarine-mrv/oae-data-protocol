@@ -47,10 +47,10 @@ classes:
         # TODO: Make sure this gets handled correctly -- we want multiple options
         # multivalued: true
         required: true
-      investigators:
-        title: Investigators
+      principal_investigators:
+        title: Principal Investigators
         description: >-
-          Provide details for each investigator including: Name, institutional information (name, address),
+          Provide details for each principal investigator (PI) including: Name, institutional information (name, address),
           phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.
         range: Person
         multivalued: true
@@ -240,6 +240,9 @@ classes:
     slots:
       - is_derived_value
       - is_provided_as_a_file
+    slot_usage:
+      is_provided_as_a_file:
+        description: "Select ‘Variable’ if the concentration varies over time, or ‘Fixed Value’ if it is constant. Note: Variable concentrations must be provided in a data file."
 
   DosingDetails:
     mixin: true

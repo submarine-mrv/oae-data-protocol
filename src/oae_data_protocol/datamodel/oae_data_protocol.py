@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-01-27T20:56:41
+# Generation date: 2026-02-10T09:17:38
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -565,7 +565,7 @@ class Experiment(YAMLRoot):
     spatial_coverage: Union[dict, SpatialCoverage] = None
     experiment_id: str = None
     experiment_type: Union[str, "ExperimentType"] = None
-    investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
+    principal_investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     end_datetime: Union[str, XSDDateTime] = None
     name: Optional[str] = None
@@ -596,11 +596,11 @@ class Experiment(YAMLRoot):
         if not isinstance(self.experiment_type, ExperimentType):
             self.experiment_type = ExperimentType(self.experiment_type)
 
-        if self._is_empty(self.investigators):
-            self.MissingRequiredField("investigators")
-        if not isinstance(self.investigators, list):
-            self.investigators = [self.investigators] if self.investigators is not None else []
-        self.investigators = [v if isinstance(v, Person) else Person(**as_dict(v)) for v in self.investigators]
+        if self._is_empty(self.principal_investigators):
+            self.MissingRequiredField("principal_investigators")
+        if not isinstance(self.principal_investigators, list):
+            self.principal_investigators = [self.principal_investigators] if self.principal_investigators is not None else []
+        self.principal_investigators = [v if isinstance(v, Person) else Person(**as_dict(v)) for v in self.principal_investigators]
 
         if self._is_empty(self.start_datetime):
             self.MissingRequiredField("start_datetime")
@@ -652,7 +652,7 @@ class Intervention(Experiment):
     spatial_coverage: Union[dict, SpatialCoverage] = None
     experiment_id: str = None
     experiment_type: Union[str, "ExperimentType"] = None
-    investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
+    principal_investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     end_datetime: Union[str, XSDDateTime] = None
     alkalinity_feedstock_processing: Union[str, "AlkalinityFeedstockProcessing"] = None
@@ -762,7 +762,7 @@ class Tracer(Experiment):
     spatial_coverage: Union[dict, SpatialCoverage] = None
     experiment_id: str = None
     experiment_type: Union[str, "ExperimentType"] = None
-    investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
+    principal_investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     end_datetime: Union[str, XSDDateTime] = None
     tracer_form: Union[str, "TracerForm"] = None
@@ -841,7 +841,7 @@ class InterventionWithTracer(Intervention):
     spatial_coverage: Union[dict, SpatialCoverage] = None
     experiment_id: str = None
     experiment_type: Union[str, "ExperimentType"] = None
-    investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
+    principal_investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     end_datetime: Union[str, XSDDateTime] = None
     alkalinity_feedstock_processing: Union[str, "AlkalinityFeedstockProcessing"] = None
@@ -3729,8 +3729,8 @@ slots.permit__approval_document = Slot(uri=OAE.approval_document, name="permit__
 slots.experiment__experiment_type = Slot(uri=OAE.experiment_type, name="experiment__experiment_type", curie=OAE.curie('experiment_type'),
                    model_uri=OAE.experiment__experiment_type, domain=None, range=Union[str, "ExperimentType"])
 
-slots.experiment__investigators = Slot(uri=OAE.investigators, name="experiment__investigators", curie=OAE.curie('investigators'),
-                   model_uri=OAE.experiment__investigators, domain=None, range=Union[Union[dict, Person], List[Union[dict, Person]]])
+slots.experiment__principal_investigators = Slot(uri=OAE.principal_investigators, name="experiment__principal_investigators", curie=OAE.curie('principal_investigators'),
+                   model_uri=OAE.experiment__principal_investigators, domain=None, range=Union[Union[dict, Person], List[Union[dict, Person]]])
 
 slots.experiment__start_datetime = Slot(uri=OAE.start_datetime, name="experiment__start_datetime", curie=OAE.curie('start_datetime'),
                    model_uri=OAE.experiment__start_datetime, domain=None, range=Union[str, XSDDateTime])
@@ -4109,6 +4109,9 @@ slots.Experiment_spatial_coverage = Slot(uri=SCHEMA.spatialCoverage, name="Exper
 
 slots.Experiment_vertical_coverage = Slot(uri=OAE.vertical_coverage, name="Experiment_vertical_coverage", curie=OAE.curie('vertical_coverage'),
                    model_uri=OAE.Experiment_vertical_coverage, domain=Experiment, range=Optional[Union[dict, VerticalExtent]])
+
+slots.DosingConcentration_is_provided_as_a_file = Slot(uri=OAE.is_provided_as_a_file, name="DosingConcentration_is_provided_as_a_file", curie=OAE.curie('is_provided_as_a_file'),
+                   model_uri=OAE.DosingConcentration_is_provided_as_a_file, domain=DosingConcentration, range=Union[bool, Bool])
 
 slots.ObservedPropertyVariable_qc_steps_taken = Slot(uri=OAE.qc_steps_taken, name="ObservedPropertyVariable_qc_steps_taken", curie=OAE.curie('qc_steps_taken'),
                    model_uri=OAE.ObservedPropertyVariable_qc_steps_taken, domain=ObservedPropertyVariable, range=str)
