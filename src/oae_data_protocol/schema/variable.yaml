@@ -370,6 +370,7 @@ classes:
 #      CO2 sensor measured variable
 #      Reference: OAPMetadata XSD variables.xsd - co2_continuous
 #    is_a: Continuous
+# TODO: investigate how to handle Continuous variable given that we need gas detector / analyzing instrument
 
 
 

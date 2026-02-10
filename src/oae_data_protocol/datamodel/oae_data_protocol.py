@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-02-09T21:51:49
+# Generation date: 2026-02-09T21:52:51
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
