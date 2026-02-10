@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-02-09T20:58:20
+# Generation date: 2026-02-09T21:08:45
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -2630,15 +2630,14 @@ class CO2Calibration(Calibration):
 
     technique_description: str = None
     calibration_temperature: Optional[str] = None
-    standard_gase_info: Optional[Union[Union[dict, "StandardGas"], List[Union[dict, "StandardGas"]]]] = empty_list()
+    standard_gase_info: Optional[Union[dict, "StandardGas"]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self.calibration_temperature is not None and not isinstance(self.calibration_temperature, str):
             self.calibration_temperature = str(self.calibration_temperature)
 
-        if not isinstance(self.standard_gase_info, list):
-            self.standard_gase_info = [self.standard_gase_info] if self.standard_gase_info is not None else []
-        self.standard_gase_info = [v if isinstance(v, StandardGas) else StandardGas(**as_dict(v)) for v in self.standard_gase_info]
+        if self.standard_gase_info is not None and not isinstance(self.standard_gase_info, StandardGas):
+            self.standard_gase_info = StandardGas(**as_dict(self.standard_gase_info))
 
         super().__post_init__(**kwargs)
 
@@ -4570,7 +4569,7 @@ slots.pHCalibration__ph_of_standards = Slot(uri=OAE.ph_of_standards, name="pHCal
                    model_uri=OAE.pHCalibration__ph_of_standards, domain=None, range=Optional[str])
 
 slots.cO2Calibration__standard_gase_info = Slot(uri=OAE.standard_gase_info, name="cO2Calibration__standard_gase_info", curie=OAE.curie('standard_gase_info'),
-                   model_uri=OAE.cO2Calibration__standard_gase_info, domain=None, range=Optional[Union[Union[dict, StandardGas], List[Union[dict, StandardGas]]]])
+                   model_uri=OAE.cO2Calibration__standard_gase_info, domain=None, range=Optional[Union[dict, StandardGas]])
 
 slots.standardGas__manufacturer = Slot(uri=OAE.manufacturer, name="standardGas__manufacturer", curie=OAE.curie('manufacturer'),
                    model_uri=OAE.standardGas__manufacturer, domain=None, range=str)

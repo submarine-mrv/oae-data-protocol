@@ -173,15 +173,9 @@
                     "type": "string"
                 },
                 "standard_gase_info": {
+                    "$ref": "#/$defs/StandardGas",
                     "description": "Standard gases used for calibration.",
-                    "items": {
-                        "$ref": "#/$defs/StandardGas"
-                    },
-                    "title": "Standard gas information",
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    "title": "Standard gas information"
                 },
                 "technique_description": {
                     "description": "Details of the calibration technique used.",
