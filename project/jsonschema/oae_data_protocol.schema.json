@@ -203,7 +203,7 @@
                     "title": "Calibration"
                 },
                 "detector_type": {
-                    "description": "Type of the CO2 gas detector",
+                    "description": "Type of the CO2 gas detector (E.g., Infrared)",
                     "title": "Detector Type",
                     "type": "string"
                 },
@@ -4579,13 +4579,27 @@
             "description": "The vertical extent of a place or structure in meters.",
             "properties": {
                 "max_depth_in_m": {
-                    "description": "Maximum depth of observation in meters. Use negative numbers for depths below sea level, and positive numbers for above sea level.",
+                    "description": "Maximum depth of observation in meters. Use negative numbers for depths below sea level.",
+                    "maximum": 0,
                     "title": "Maximum Depth (in meters)",
                     "type": "number"
                 },
+                "max_height_in_m": {
+                    "description": "Maximum height of observation (in meters) for above ground aerial coverage.",
+                    "minimum": 0,
+                    "title": "Maximum Height (in meters)",
+                    "type": "number"
+                },
                 "min_depth_in_m": {
-                    "description": "Minimum depth of observation in meters. Use negative numbers for depths below sea level, and positive numbers for above sea level.",
+                    "description": "Minimum depth of observation in meters. Use negative numbers for depths below sea level.",
+                    "maximum": 0,
                     "title": "Minimum Depth (in meters)",
+                    "type": "number"
+                },
+                "min_height_in_m": {
+                    "description": "Minimum height of observation (in meters) for above ground aerial coverage.",
+                    "minimum": 0,
+                    "title": "Minimum Height (in meters)",
                     "type": "number"
                 }
             },
