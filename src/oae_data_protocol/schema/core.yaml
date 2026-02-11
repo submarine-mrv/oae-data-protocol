@@ -147,12 +147,24 @@ classes:
     attributes:
       min_depth_in_m:
         title: Minimum Depth (in meters)
-        description: "Minimum depth of observation in meters. Use negative numbers for depths below sea level, and positive numbers for above sea level."
+        description: "Minimum depth of observation in meters. Use negative numbers for depths below sea level."
         range: float
+        maximum_value: 0
       max_depth_in_m:
         title: Maximum Depth (in meters)
-        description: "Maximum depth of observation in meters. Use negative numbers for depths below sea level, and positive numbers for above sea level."
+        description: "Maximum depth of observation in meters. Use negative numbers for depths below sea level."
         range: float
+        maximum_value: 0
+      min_height_in_m:
+        title: Minimum Height (in meters)
+        description: "Minimum height of observation (in meters) for above ground aerial coverage."
+        range: float
+        minimum_value: 0
+      max_height_in_m:
+        title: Maximum Height (in meters)
+        description: "Maximum height of observation (in meters) for above ground aerial coverage."
+        range: float
+        minimum_value: 0
   Organization:
     class_uri: schema:Organization
     slots:
