@@ -229,7 +229,11 @@
     click VerticalExtent href "../VerticalExtent"
       VerticalExtent : max_depth_in_m
 
+      VerticalExtent : max_height_in_m
+
       VerticalExtent : min_depth_in_m
+
+      VerticalExtent : min_height_in_m
 
 
 </div>
@@ -255,6 +259,18 @@
 <td><a href="../max_depth_in_m/">max_depth_in_m</a></td>
 <td>0..1 <br/> <a href="../Float/">Float</a></td>
 <td>Maximum depth of observation in meters</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../min_height_in_m/">min_height_in_m</a></td>
+<td>0..1 <br/> <a href="../Float/">Float</a></td>
+<td>Minimum height of observation (in meters) for above ground aerial coverage</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../max_height_in_m/">max_height_in_m</a></td>
+<td>0..1 <br/> <a href="../Float/">Float</a></td>
+<td>Maximum height of observation (in meters) for above ground aerial coverage</td>
 <td>direct</td>
 </tr>
 </tbody>
@@ -331,23 +347,47 @@ attributes:
   min_depth_in_m:
     name: min_depth_in_m
     description: Minimum depth of observation in meters. Use negative numbers for
-      depths below sea level, and positive numbers for above sea level.
+      depths below sea level.
     title: Minimum Depth (in meters)
     from_schema: Core
     rank: 1000
     domain_of:
     - VerticalExtent
     range: float
+    maximum_value: 0
   max_depth_in_m:
     name: max_depth_in_m
     description: Maximum depth of observation in meters. Use negative numbers for
-      depths below sea level, and positive numbers for above sea level.
+      depths below sea level.
     title: Maximum Depth (in meters)
     from_schema: Core
     rank: 1000
     domain_of:
     - VerticalExtent
     range: float
+    maximum_value: 0
+  min_height_in_m:
+    name: min_height_in_m
+    description: Minimum height of observation (in meters) for above ground aerial
+      coverage.
+    title: Minimum Height (in meters)
+    from_schema: Core
+    rank: 1000
+    domain_of:
+    - VerticalExtent
+    range: float
+    minimum_value: 0
+  max_height_in_m:
+    name: max_height_in_m
+    description: Maximum height of observation (in meters) for above ground aerial
+      coverage.
+    title: Maximum Height (in meters)
+    from_schema: Core
+    rank: 1000
+    domain_of:
+    - VerticalExtent
+    range: float
+    minimum_value: 0
 
 </code></pre>
 </details>
@@ -360,7 +400,7 @@ attributes:
   min_depth_in_m:
     name: min_depth_in_m
     description: Minimum depth of observation in meters. Use negative numbers for
-      depths below sea level, and positive numbers for above sea level.
+      depths below sea level.
     title: Minimum Depth (in meters)
     from_schema: Core
     rank: 1000
@@ -369,10 +409,11 @@ attributes:
     domain_of:
     - VerticalExtent
     range: float
+    maximum_value: 0
   max_depth_in_m:
     name: max_depth_in_m
     description: Maximum depth of observation in meters. Use negative numbers for
-      depths below sea level, and positive numbers for above sea level.
+      depths below sea level.
     title: Maximum Depth (in meters)
     from_schema: Core
     rank: 1000
@@ -381,6 +422,33 @@ attributes:
     domain_of:
     - VerticalExtent
     range: float
+    maximum_value: 0
+  min_height_in_m:
+    name: min_height_in_m
+    description: Minimum height of observation (in meters) for above ground aerial
+      coverage.
+    title: Minimum Height (in meters)
+    from_schema: Core
+    rank: 1000
+    alias: min_height_in_m
+    owner: VerticalExtent
+    domain_of:
+    - VerticalExtent
+    range: float
+    minimum_value: 0
+  max_height_in_m:
+    name: max_height_in_m
+    description: Maximum height of observation (in meters) for above ground aerial
+      coverage.
+    title: Maximum Height (in meters)
+    from_schema: Core
+    rank: 1000
+    alias: max_height_in_m
+    owner: VerticalExtent
+    domain_of:
+    - VerticalExtent
+    range: float
+    minimum_value: 0
 
 </code></pre>
 </details>

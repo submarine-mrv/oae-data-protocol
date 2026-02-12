@@ -296,7 +296,7 @@
 <tr>
 <td><a href="../detector_type/">detector_type</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
-<td>Type of the CO2 gas detector</td>
+<td>Type of the CO2 gas detector (E</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -349,7 +349,7 @@
 </tr>
 <tr>
 <td><a href="../precision/">precision</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Precision of the instrument measurements</td>
 <td><a href="../AnalyzingInstrument/">AnalyzingInstrument</a></td>
 </tr>
@@ -426,7 +426,7 @@ slot_usage:
 attributes:
   detector_type:
     name: detector_type
-    description: Type of the CO2 gas detector
+    description: Type of the CO2 gas detector (E.g., Infrared)
     title: Detector Type
     from_schema: Instrument
     rank: 1000
@@ -488,7 +488,7 @@ slot_usage:
 attributes:
   detector_type:
     name: detector_type
-    description: Type of the CO2 gas detector
+    description: Type of the CO2 gas detector (E.g., Infrared)
     title: Detector Type
     from_schema: Instrument
     rank: 1000
@@ -603,7 +603,6 @@ attributes:
     domain_of:
     - AnalyzingInstrument
     range: string
-    required: true
   accuracy:
     name: accuracy
     description: Accuracy of the instrument measurements.

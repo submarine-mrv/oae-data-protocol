@@ -286,15 +286,6 @@
     click ExperimentType href "../ExperimentType"
 
 
-      Tracer : investigators
-
-
-
-
-    Tracer --&gt; "1..*" Person : investigators
-    click Person href "../Person"
-
-
       Tracer : meteorological_and_tidal_data
 
 
@@ -313,6 +304,15 @@
 
     Tracer --&gt; "*" Permit : permits
     click Permit href "../Permit"
+
+
+      Tracer : principal_investigators
+
+
+
+
+    Tracer --&gt; "1..*" Person : principal_investigators
+    click Person href "../Person"
 
 
       Tracer : project_id
@@ -480,9 +480,9 @@
 <td><a href="../Experiment/">Experiment</a></td>
 </tr>
 <tr>
-<td><a href="../investigators/">investigators</a></td>
+<td><a href="../principal_investigators/">principal_investigators</a></td>
 <td>1..* <br/> <a href="../Person/">Person</a></td>
-<td>Provide details for each investigator including: Name, institutional informat...</td>
+<td>Provide details for each principal investigator (PI) including: Name, institu...</td>
 <td><a href="../Experiment/">Experiment</a></td>
 </tr>
 <tr>
@@ -827,15 +827,15 @@ attributes:
     - Experiment
     range: ExperimentType
     required: true
-  investigators:
-    name: investigators
-    description: 'Provide details for each investigator including: Name, institutional
-      information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher
-      ID, and role.'
-    title: Investigators
+  principal_investigators:
+    name: principal_investigators
+    description: 'Provide details for each principal investigator (PI) including:
+      Name, institutional information (name, address), phone, email, ID type (e.g.,
+      ORCID, etc), researcher ID, and role.'
+    title: Principal Investigators
     from_schema: Experiment
     rank: 1000
-    alias: investigators
+    alias: principal_investigators
     owner: Tracer
     domain_of:
     - Experiment

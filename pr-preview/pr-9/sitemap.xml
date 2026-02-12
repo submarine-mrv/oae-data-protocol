@@ -753,10 +753,6 @@
          <lastmod>2026-02-12</lastmod>
     </url>
     <url>
-         <loc>https://clevinson.github.io/oae-data-protocol/investigators/</loc>
-         <lastmod>2026-02-12</lastmod>
-    </url>
-    <url>
          <loc>https://clevinson.github.io/oae-data-protocol/is_derived_value/</loc>
          <lastmod>2026-02-12</lastmod>
     </url>
@@ -797,6 +793,10 @@
          <lastmod>2026-02-12</lastmod>
     </url>
     <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/max_height_in_m/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
          <loc>https://clevinson.github.io/oae-data-protocol/mcdr_pathway/</loc>
          <lastmod>2026-02-12</lastmod>
     </url>
@@ -822,6 +822,10 @@
     </url>
     <url>
          <loc>https://clevinson.github.io/oae-data-protocol/min_depth_in_m/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/min_height_in_m/</loc>
          <lastmod>2026-02-12</lastmod>
     </url>
     <url>
@@ -902,6 +906,10 @@
     </url>
     <url>
          <loc>https://clevinson.github.io/oae-data-protocol/previous_or_ongoing_colocated_research/</loc>
+         <lastmod>2026-02-12</lastmod>
+    </url>
+    <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/principal_investigators/</loc>
          <lastmod>2026-02-12</lastmod>
     </url>
     <url>
