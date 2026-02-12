@@ -229,8 +229,8 @@
     click DiscreteTAVariable href "../DiscreteTAVariable"
       MeasuredTAFields &lt;|-- DiscreteTAVariable
         click MeasuredTAFields href "../MeasuredTAFields"
-      ObservedPropertyVariable &lt;|-- DiscreteTAVariable
-        click ObservedPropertyVariable href "../ObservedPropertyVariable"
+      DiscreteMeasuredVariable &lt;|-- DiscreteTAVariable
+        click DiscreteMeasuredVariable href "../DiscreteMeasuredVariable"
 
       DiscreteTAVariable : analyzing_instrument
 
@@ -385,7 +385,10 @@
 <li><a href="../BaseVariable/">BaseVariable</a><ul>
 <li><a href="../Variable/">Variable</a><ul>
 <li><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a> [ <a href="../QCFields/">QCFields</a>]<ul>
+<li><a href="../DiscreteMeasuredVariable/">DiscreteMeasuredVariable</a><ul>
 <li><strong>DiscreteTAVariable</strong> [ <a href="../MeasuredTAFields/">MeasuredTAFields</a>]</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -450,7 +453,7 @@
 <td><a href="../analyzing_instrument/">analyzing_instrument</a></td>
 <td>1 <br/> <a href="../CRMInstrument/">CRMInstrument</a></td>
 <td>CRM-calibrated instrument used to analyze TA samples</td>
-<td><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
+<td><a href="../DiscreteMeasuredVariable/">DiscreteMeasuredVariable</a></td>
 </tr>
 <tr>
 <td><a href="../sampling_method/">sampling_method</a></td>
@@ -623,7 +626,7 @@
 <pre><code class="language-yaml">name: DiscreteTAVariable
 description: Total Alkalinity (TA) measured variable from discrete bottle samples
 from_schema: OAEDataManagementProtocol
-is_a: ObservedPropertyVariable
+is_a: DiscreteMeasuredVariable
 mixins:
 - MeasuredTAFields
 slots:
@@ -671,7 +674,7 @@ attributes:
 <pre><code class="language-yaml">name: DiscreteTAVariable
 description: Total Alkalinity (TA) measured variable from discrete bottle samples
 from_schema: OAEDataManagementProtocol
-is_a: ObservedPropertyVariable
+is_a: DiscreteMeasuredVariable
 mixins:
 - MeasuredTAFields
 slot_usage:
@@ -760,6 +763,7 @@ attributes:
     - MeasuredTAFields
     - MeasuredDICFields
     - MeasuredPHFields
+    - MeasuredCO2Fields
     range: AppropriateUseQuality
   concentration_basis:
     name: concentration_basis
@@ -784,7 +788,7 @@ attributes:
     alias: analyzing_instrument
     owner: DiscreteTAVariable
     domain_of:
-    - ObservedPropertyVariable
+    - DiscreteMeasuredVariable
     range: CRMInstrument
     required: true
   sampling_method:

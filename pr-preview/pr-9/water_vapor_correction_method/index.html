@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://clevinson.github.io/oae-data-protocol/standard_gases/">
+        <link rel="canonical" href="https://clevinson.github.io/oae-data-protocol/water_vapor_correction_method/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: Standard gases (standard_gases) - oae-data-protocol</title>
+        <title>Slot: Water vapor correction method (water_vapor_correction_method) - oae-data-protocol</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-standard-gases-standard_gases" class="md-skip">
+        <a href="#slot-water-vapor-correction-method-water_vapor_correction_method" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: Standard gases (standard_gases)
+              Slot: Water vapor correction method (water_vapor_correction_method)
             
           </span>
         </div>
@@ -359,9 +359,9 @@
   
 
 
-<h1 id="slot-standard-gases-standard_gases">Slot: Standard gases (standard_gases)</h1>
-<p><em>Standard gases used for calibration.</em></p>
-<p>URI: <a href="https://example.org/oae#standard_gases">oae:standard_gases</a></p>
+<h1 id="slot-water-vapor-correction-method-water_vapor_correction_method">Slot: Water vapor correction method (water_vapor_correction_method)</h1>
+<p><em>How the water vapor pressure inside the equilibrator was determined.</em></p>
+<p>URI: <a href="https://example.org/oae#water_vapor_correction_method">oae:water_vapor_correction_method</a></p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -375,20 +375,20 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../CO2Calibration/">CO2Calibration</a></td>
-<td>CO2 gas detector calibration with standard gas information</td>
+<td><a href="../MeasuredCO2Fields/">MeasuredCO2Fields</a></td>
+<td>Fields applied to all measured CO2 variable types (discrete and continuous)</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../DiscreteCO2Variable/">DiscreteCO2Variable</a></td>
+<td>CO2 discrete (bottle) measured variable (pCO2/fCO2)</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>
-<p>Range: <a href="../StandardGas/">StandardGas</a></p>
-</li>
-<li>
-<p>Multivalued: True</p>
-</li>
+<li>Range: <a href="../String/">String</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -406,30 +406,27 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>oae:standard_gases</td>
+<td>oae:water_vapor_correction_method</td>
 </tr>
 <tr>
 <td>native</td>
-<td>oae:standard_gases</td>
+<td>oae:water_vapor_correction_method</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: standard_gases
-description: Standard gases used for calibration.
-title: Standard gases
+<pre><code class="language-yaml">name: water_vapor_correction_method
+description: How the water vapor pressure inside the equilibrator was determined.
+title: Water vapor correction method
 from_schema: OAEDataManagementProtocol
 rank: 1000
-alias: standard_gases
-owner: CO2Calibration
+alias: water_vapor_correction_method
+owner: MeasuredCO2Fields
 domain_of:
-- CO2Calibration
-range: StandardGas
-multivalued: true
-inlined: true
-inlined_as_list: true
+- MeasuredCO2Fields
+range: string
 
 </code></pre>
 

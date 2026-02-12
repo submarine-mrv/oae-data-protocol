@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: calibration_temperature - oae-data-protocol</title>
+        <title>Slot: Calibration temperature (calibration_temperature) - oae-data-protocol</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-calibration_temperature" class="md-skip">
+        <a href="#slot-calibration-temperature-calibration_temperature" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: calibration_temperature
+              Slot: Calibration temperature (calibration_temperature)
             
           </span>
         </div>
@@ -305,6 +305,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Identifier and Mapping Information">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      Schema Source
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -344,7 +359,8 @@
   
 
 
-<h1 id="slot-calibration_temperature">Slot: calibration_temperature</h1>
+<h1 id="slot-calibration-temperature-calibration_temperature">Slot: Calibration temperature (calibration_temperature)</h1>
+<p><em>Temperature at which calibration was performed.</em></p>
 <p>URI: <a href="https://example.org/oae#calibration_temperature">oae:calibration_temperature</a></p>
 <!-- no inheritance hierarchy -->
 
@@ -372,9 +388,13 @@
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: NONE</li>
+<li>Range: <a href="../String/">String</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
+<h3 id="schema-source">Schema Source</h3>
+<ul>
+<li>from schema: OAEDataManagementProtocol</li>
+</ul>
 <h2 id="mappings">Mappings</h2>
 <table>
 <thead>
@@ -398,10 +418,15 @@
 <details>
 
 <pre><code class="language-yaml">name: calibration_temperature
+description: Temperature at which calibration was performed.
+title: Calibration temperature
+from_schema: OAEDataManagementProtocol
+rank: 1000
 alias: calibration_temperature
 domain_of:
 - pHCalibration
 - CO2Calibration
+range: string
 
 </code></pre>
 

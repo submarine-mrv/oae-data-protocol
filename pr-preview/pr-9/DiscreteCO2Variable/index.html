@@ -5,10 +5,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://clevinson.github.io/oae-data-protocol/PhysiologicalVariable/" rel="canonical"/>
+<link href="https://clevinson.github.io/oae-data-protocol/DiscreteCO2Variable/" rel="canonical"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.6.7" name="generator"/>
-<title>Class: PhysiologicalVariable - oae-data-protocol</title>
+<title>Class: DiscreteCO2Variable - oae-data-protocol</title>
 <link href="../assets/stylesheets/main.8608ea7d.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
@@ -23,7 +23,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#class-physiologicalvariable">
+<a class="md-skip" href="#class-discreteco2variable">
           Skip to content
         </a>
 </div>
@@ -47,7 +47,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Class: PhysiologicalVariable
+              Class: DiscreteCO2Variable
             
           </span>
 </div>
@@ -221,118 +221,143 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="class-physiologicalvariable">Class: PhysiologicalVariable</h1>
-<p><em>Physiological response measured variable for organism response data.</em></p>
-<p>URI: <a href="https://example.org/oae#PhysiologicalVariable">oae:PhysiologicalVariable</a></p>
+<h1 id="class-discreteco2variable">Class: DiscreteCO2Variable</h1>
+<p><em>CO2 discrete (bottle) measured variable (pCO2/fCO2). Reference: OAPMetadata XSD variables.xsd - co2_discrete</em></p>
+<p>URI: <a href="https://example.org/oae#DiscreteCO2Variable">oae:DiscreteCO2Variable</a></p>
 <div class="mermaid"> classDiagram
-    class PhysiologicalVariable
-    click PhysiologicalVariable href "../PhysiologicalVariable"
-      ObservedPropertyVariable &lt;|-- PhysiologicalVariable
-        click ObservedPropertyVariable href "../ObservedPropertyVariable"
+    class DiscreteCO2Variable
+    click DiscreteCO2Variable href "../DiscreteCO2Variable"
+      MeasuredCO2Fields &lt;|-- DiscreteCO2Variable
+        click MeasuredCO2Fields href "../MeasuredCO2Fields"
+      DiscreteMeasuredVariable &lt;|-- DiscreteCO2Variable
+        click DiscreteMeasuredVariable href "../DiscreteMeasuredVariable"
 
-      PhysiologicalVariable : analyzing_instrument
-
-
-
-
-    PhysiologicalVariable --&gt; "1" AnalyzingInstrument : analyzing_instrument
-    click AnalyzingInstrument href "../AnalyzingInstrument"
-
-
-      PhysiologicalVariable : analyzing_method
-
-      PhysiologicalVariable : dataset_variable_name
-
-      PhysiologicalVariable : dataset_variable_name_qc_flag
-
-      PhysiologicalVariable : dataset_variable_name_raw
-
-      PhysiologicalVariable : field_replicate_information
-
-      PhysiologicalVariable : genesis
+      DiscreteCO2Variable : analyzing_instrument
 
 
 
 
-    PhysiologicalVariable --&gt; "1" GenesisType : genesis
+    DiscreteCO2Variable --&gt; "1" CO2GasDetector : analyzing_instrument
+    click CO2GasDetector href "../CO2GasDetector"
+
+
+      DiscreteCO2Variable : analyzing_method
+
+      DiscreteCO2Variable : appropriate_use_quality
+
+
+
+
+    DiscreteCO2Variable --&gt; "0..1" AppropriateUseQuality : appropriate_use_quality
+    click AppropriateUseQuality href "../AppropriateUseQuality"
+
+
+      DiscreteCO2Variable : co2_reported_temperature
+
+      DiscreteCO2Variable : dataset_variable_name
+
+      DiscreteCO2Variable : dataset_variable_name_qc_flag
+
+      DiscreteCO2Variable : dataset_variable_name_raw
+
+      DiscreteCO2Variable : field_replicate_information
+
+      DiscreteCO2Variable : genesis
+
+
+
+
+    DiscreteCO2Variable --&gt; "1" GenesisType : genesis
     click GenesisType href "../GenesisType"
 
 
-      PhysiologicalVariable : long_name
+      DiscreteCO2Variable : headspace_volume
 
-      PhysiologicalVariable : measurement_researcher
+      DiscreteCO2Variable : long_name
+
+      DiscreteCO2Variable : measurement_researcher
 
 
 
 
-    PhysiologicalVariable --&gt; "0..1" Person : measurement_researcher
+    DiscreteCO2Variable --&gt; "0..1" Person : measurement_researcher
     click Person href "../Person"
 
 
-      PhysiologicalVariable : method_reference
+      DiscreteCO2Variable : measurement_temperature
 
-      PhysiologicalVariable : missing_value_indicators
+      DiscreteCO2Variable : method_reference
 
-      PhysiologicalVariable : observation_type
+      DiscreteCO2Variable : missing_value_indicators
+
+      DiscreteCO2Variable : observation_type
 
 
 
 
-    PhysiologicalVariable --&gt; "1" ObservationType : observation_type
+    DiscreteCO2Variable --&gt; "1" ObservationType : observation_type
     click ObservationType href "../ObservationType"
 
 
-      PhysiologicalVariable : other_detailed_information
+      DiscreteCO2Variable : other_detailed_information
 
-      PhysiologicalVariable : qc_researcher
-
-
+      DiscreteCO2Variable : qc_researcher
 
 
-    PhysiologicalVariable --&gt; "0..1" Person : qc_researcher
+
+
+    DiscreteCO2Variable --&gt; "0..1" Person : qc_researcher
     click Person href "../Person"
 
 
-      PhysiologicalVariable : qc_researcher_institution
+      DiscreteCO2Variable : qc_researcher_institution
 
-      PhysiologicalVariable : qc_steps_taken
+      DiscreteCO2Variable : qc_steps_taken
 
-      PhysiologicalVariable : sampling
-
-
+      DiscreteCO2Variable : sampling
 
 
-    PhysiologicalVariable --&gt; "1" SamplingType : sampling
+
+
+    DiscreteCO2Variable --&gt; "1" SamplingType : sampling
     click SamplingType href "../SamplingType"
 
 
-      PhysiologicalVariable : sampling_instrument_type
+      DiscreteCO2Variable : sampling_instrument_type
 
 
 
 
-    PhysiologicalVariable --&gt; "1" SamplingInstrumentType : sampling_instrument_type
+    DiscreteCO2Variable --&gt; "1" SamplingInstrumentType : sampling_instrument_type
     click SamplingInstrumentType href "../SamplingInstrumentType"
 
 
-      PhysiologicalVariable : sampling_instrument_type_custom
+      DiscreteCO2Variable : sampling_instrument_type_custom
 
-      PhysiologicalVariable : sampling_method
+      DiscreteCO2Variable : sampling_method
 
-      PhysiologicalVariable : standard_identifier
+      DiscreteCO2Variable : seawater_volume
+
+      DiscreteCO2Variable : standard_identifier
 
 
 
 
-    PhysiologicalVariable --&gt; "0..1" VocabularyItemReference : standard_identifier
+    DiscreteCO2Variable --&gt; "0..1" VocabularyItemReference : standard_identifier
     click VocabularyItemReference href "../VocabularyItemReference"
 
 
-      PhysiologicalVariable : uncertainty
+      DiscreteCO2Variable : storage_method
 
-      PhysiologicalVariable : uncertainty_definition
+      DiscreteCO2Variable : temperature_correction_method
 
-      PhysiologicalVariable : units
+      DiscreteCO2Variable : uncertainty
+
+      DiscreteCO2Variable : uncertainty_definition
+
+      DiscreteCO2Variable : units
+
+      DiscreteCO2Variable : water_vapor_correction_method
 
 
 </div>
@@ -341,7 +366,10 @@
 <li><a href="../BaseVariable/">BaseVariable</a><ul>
 <li><a href="../Variable/">Variable</a><ul>
 <li><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a> [ <a href="../QCFields/">QCFields</a>]<ul>
-<li><strong>PhysiologicalVariable</strong></li>
+<li><a href="../DiscreteMeasuredVariable/">DiscreteMeasuredVariable</a><ul>
+<li><strong>DiscreteCO2Variable</strong> [ <a href="../MeasuredCO2Fields/">MeasuredCO2Fields</a>]</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -361,10 +389,58 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="../storage_method/">storage_method</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>How the samples were stored before the measurement</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../seawater_volume/">seawater_volume</a></td>
+<td>0..1 <br/> <a href="../Integer/">Integer</a></td>
+<td>Volume (in mL) of seawater in the flask</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../headspace_volume/">headspace_volume</a></td>
+<td>0..1 <br/> <a href="../Integer/">Integer</a></td>
+<td>Volume (in mL) of headspace (water displaced in the flask plus volume of the ...</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../measurement_temperature/">measurement_temperature</a></td>
+<td>1 <br/> <a href="../Integer/">Integer</a></td>
+<td>Temperature at which the samples were analyzed in Celsius</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../appropriate_use_quality/">appropriate_use_quality</a></td>
+<td>0..1 <br/> <a href="../AppropriateUseQuality/">AppropriateUseQuality</a></td>
+<td>Climate quality is defined as measurements of quality sufficient to assess lo...</td>
+<td><a href="../MeasuredCO2Fields/">MeasuredCO2Fields</a></td>
+</tr>
+<tr>
+<td><a href="../co2_reported_temperature/">co2_reported_temperature</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>In Celsius</td>
+<td><a href="../MeasuredCO2Fields/">MeasuredCO2Fields</a></td>
+</tr>
+<tr>
+<td><a href="../water_vapor_correction_method/">water_vapor_correction_method</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>How the water vapor pressure inside the equilibrator was determined</td>
+<td><a href="../MeasuredCO2Fields/">MeasuredCO2Fields</a></td>
+</tr>
+<tr>
+<td><a href="../temperature_correction_method/">temperature_correction_method</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>How the temperature effect was corrected</td>
+<td><a href="../MeasuredCO2Fields/">MeasuredCO2Fields</a></td>
+</tr>
+<tr>
 <td><a href="../analyzing_instrument/">analyzing_instrument</a></td>
-<td>1 <br/> <a href="../AnalyzingInstrument/">AnalyzingInstrument</a></td>
-<td>Instrument used to analyze the water samples or measure the water body contin...</td>
-<td><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
+<td>1 <br/> <a href="../CO2GasDetector/">CO2GasDetector</a></td>
+<td>CO2 gas detector with standard gas calibration</td>
+<td><a href="../DiscreteMeasuredVariable/">DiscreteMeasuredVariable</a></td>
 </tr>
 <tr>
 <td><a href="../sampling_method/">sampling_method</a></td>
@@ -522,11 +598,11 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>oae:PhysiologicalVariable</td>
+<td>oae:DiscreteCO2Variable</td>
 </tr>
 <tr>
 <td>native</td>
-<td>oae:PhysiologicalVariable</td>
+<td>oae:DiscreteCO2Variable</td>
 </tr>
 </tbody>
 </table>
@@ -534,32 +610,190 @@
 <!-- TODO: investigate https://stackoverflow.com/questions/37606292/how-to-create-tabbed-code-blocks-in-mkdocs-or-sphinx -->
 <h3 id="direct">Direct</h3>
 <details>
-<pre><code class="language-yaml">name: PhysiologicalVariable
-description: Physiological response measured variable for organism response data.
+<pre><code class="language-yaml">name: DiscreteCO2Variable
+description: 'CO2 discrete (bottle) measured variable (pCO2/fCO2). Reference: OAPMetadata
+  XSD variables.xsd - co2_discrete'
 from_schema: OAEDataManagementProtocol
-is_a: ObservedPropertyVariable
+is_a: DiscreteMeasuredVariable
+mixins:
+- MeasuredCO2Fields
+slot_usage:
+  analyzing_instrument:
+    name: analyzing_instrument
+    description: CO2 gas detector with standard gas calibration.
+    range: CO2GasDetector
+attributes:
+  storage_method:
+    name: storage_method
+    description: How the samples were stored before the measurement.
+    title: Storage method
+    from_schema: Variable
+    rank: 1000
+    domain_of:
+    - DiscreteCO2Variable
+    range: string
+    required: true
+  seawater_volume:
+    name: seawater_volume
+    description: Volume (in mL) of seawater in the flask.
+    title: Seawater volume
+    from_schema: Variable
+    rank: 1000
+    domain_of:
+    - DiscreteCO2Variable
+    range: integer
+  headspace_volume:
+    name: headspace_volume
+    description: Volume (in mL) of headspace (water displaced in the flask plus volume
+      of the tubing).
+    title: Headspace volume
+    from_schema: Variable
+    rank: 1000
+    domain_of:
+    - DiscreteCO2Variable
+    range: integer
+  measurement_temperature:
+    name: measurement_temperature
+    description: Temperature at which the samples were analyzed in Celsius.
+    title: Temperature of measurement
+    from_schema: Variable
+    domain_of:
+    - DiscretePHVariable
+    - DiscreteCO2Variable
+    range: integer
+    required: true
 
 </code></pre>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
-<pre><code class="language-yaml">name: PhysiologicalVariable
-description: Physiological response measured variable for organism response data.
+<pre><code class="language-yaml">name: DiscreteCO2Variable
+description: 'CO2 discrete (bottle) measured variable (pCO2/fCO2). Reference: OAPMetadata
+  XSD variables.xsd - co2_discrete'
 from_schema: OAEDataManagementProtocol
-is_a: ObservedPropertyVariable
-attributes:
+is_a: DiscreteMeasuredVariable
+mixins:
+- MeasuredCO2Fields
+slot_usage:
   analyzing_instrument:
     name: analyzing_instrument
-    description: Instrument used to analyze the water samples or measure the water
-      body continuously. Instrument includes calibration information.
+    description: CO2 gas detector with standard gas calibration.
+    range: CO2GasDetector
+attributes:
+  storage_method:
+    name: storage_method
+    description: How the samples were stored before the measurement.
+    title: Storage method
+    from_schema: Variable
+    rank: 1000
+    alias: storage_method
+    owner: DiscreteCO2Variable
+    domain_of:
+    - DiscreteCO2Variable
+    range: string
+    required: true
+  seawater_volume:
+    name: seawater_volume
+    description: Volume (in mL) of seawater in the flask.
+    title: Seawater volume
+    from_schema: Variable
+    rank: 1000
+    alias: seawater_volume
+    owner: DiscreteCO2Variable
+    domain_of:
+    - DiscreteCO2Variable
+    range: integer
+  headspace_volume:
+    name: headspace_volume
+    description: Volume (in mL) of headspace (water displaced in the flask plus volume
+      of the tubing).
+    title: Headspace volume
+    from_schema: Variable
+    rank: 1000
+    alias: headspace_volume
+    owner: DiscreteCO2Variable
+    domain_of:
+    - DiscreteCO2Variable
+    range: integer
+  measurement_temperature:
+    name: measurement_temperature
+    description: Temperature at which the samples were analyzed in Celsius.
+    title: Temperature of measurement
+    from_schema: Variable
+    alias: measurement_temperature
+    owner: DiscreteCO2Variable
+    domain_of:
+    - DiscretePHVariable
+    - DiscreteCO2Variable
+    range: integer
+    required: true
+  appropriate_use_quality:
+    name: appropriate_use_quality
+    description: 'Climate quality is defined as measurements of quality sufficient
+      to assess long term trends with a defined level of confidence. Weather quality
+      is defined as measurements of quality sufficient to identify relative spatial
+      patterns and short term variation.
+
+      For more details, refer to Newton J.A., Feely R. A., Jewett E. B., Williamson
+      P. &amp; Mathis J., 2015. Global Ocean Acidification Observing Network: Requirements
+      and Governance Plan. Second Edition, GOA-ON, http://www.goa-on.org/docs/GOA-ON_plan_print.pdf.'
+    title: Weather or climate quality
+    from_schema: OAEDataManagementProtocol
+    rank: 1000
+    alias: appropriate_use_quality
+    owner: DiscreteCO2Variable
+    domain_of:
+    - MeasuredTAFields
+    - MeasuredDICFields
+    - MeasuredPHFields
+    - MeasuredCO2Fields
+    range: AppropriateUseQuality
+  co2_reported_temperature:
+    name: co2_reported_temperature
+    description: In Celsius. The input could be a constant temperature value, or something
+      like, in-situ temperature, temperature of analysis, etc.
+    title: Temperature at which CO2 was reported
+    from_schema: Variable
+    rank: 1000
+    alias: co2_reported_temperature
+    owner: DiscreteCO2Variable
+    domain_of:
+    - MeasuredCO2Fields
+    range: string
+    required: true
+  water_vapor_correction_method:
+    name: water_vapor_correction_method
+    description: How the water vapor pressure inside the equilibrator was determined.
+    title: Water vapor correction method
+    from_schema: Variable
+    rank: 1000
+    alias: water_vapor_correction_method
+    owner: DiscreteCO2Variable
+    domain_of:
+    - MeasuredCO2Fields
+    range: string
+  temperature_correction_method:
+    name: temperature_correction_method
+    description: How the temperature effect was corrected.
+    title: Temperature correction method
+    from_schema: Variable
+    alias: temperature_correction_method
+    owner: DiscreteCO2Variable
+    domain_of:
+    - DiscretePHVariable
+    - MeasuredCO2Fields
+    range: string
+  analyzing_instrument:
+    name: analyzing_instrument
+    description: CO2 gas detector with standard gas calibration.
     title: Analyzing instrument
     from_schema: OAEDataManagementProtocol
     rank: 1000
     alias: analyzing_instrument
-    owner: PhysiologicalVariable
+    owner: DiscreteCO2Variable
     domain_of:
-    - ObservedPropertyVariable
-    range: AnalyzingInstrument
+    - DiscreteMeasuredVariable
+    range: CO2GasDetector
     required: true
   sampling_method:
     name: sampling_method
@@ -568,7 +802,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: sampling_method
-    owner: PhysiologicalVariable
+    owner: DiscreteCO2Variable
     domain_of:
     - ObservedPropertyVariable
     range: string
@@ -581,7 +815,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: field_replicate_information
-    owner: PhysiologicalVariable
+    owner: DiscreteCO2Variable
     domain_of:
     - ObservedPropertyVariable
     range: string
@@ -593,7 +827,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: analyzing_method
-    owner: PhysiologicalVariable
+    owner: DiscreteCO2Variable
     domain_of:
     - ObservedPropertyVariable
     range: string
@@ -604,7 +838,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: observation_type
-    owner: PhysiologicalVariable
+    owner: DiscreteCO2Variable
     domain_of:
     - ObservedPropertyVariable
     range: ObservationType
@@ -614,7 +848,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: sampling
-    owner: PhysiologicalVariable
+    owner: DiscreteCO2Variable
     domain_of:
     - ObservedPropertyVariable
     range: SamplingType
@@ -624,7 +858,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: genesis
-    owner: PhysiologicalVariable
+    owner: DiscreteCO2Variable
     domain_of:
     - ObservedPropertyVariable
     range: GenesisType
@@ -635,7 +869,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: sampling_instrument_type
-    owner: PhysiologicalVariable
+    owner: DiscreteCO2Variable
     domain_of:
     - ObservedPropertyVariable
     range: SamplingInstrumentType
@@ -646,7 +880,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: sampling_instrument_type_custom
-    owner: PhysiologicalVariable
+    owner: DiscreteCO2Variable
     domain_of:
     - ObservedPropertyVariable
     range: string
@@ -661,7 +895,7 @@ attributes:
     from_schema: OAEDataManagementProtocol
     rank: 1000
     alias: qc_steps_taken
-    owner: PhysiologicalVariable
+    owner: DiscreteCO2Variable
     domain_of:
     - QCFields
     range: string
@@ -677,7 +911,7 @@ attributes:
     from_schema: OAEDataManagementProtocol
     rank: 1000
     alias: uncertainty
-    owner: PhysiologicalVariable
+    owner: DiscreteCO2Variable
     domain_of:
     - StandardGas
     - CO2GasDetector
@@ -691,7 +925,7 @@ attributes:
     from_schema: OAEDataManagementProtocol
     rank: 1000
     alias: uncertainty_definition
-    owner: PhysiologicalVariable
+    owner: DiscreteCO2Variable
     domain_of:
     - QCFields
     range: string
@@ -704,7 +938,7 @@ attributes:
     from_schema: OAEDataManagementProtocol
     rank: 1000
     alias: missing_value_indicators
-    owner: PhysiologicalVariable
+    owner: DiscreteCO2Variable
     domain_of:
     - QCFields
     range: string
@@ -716,7 +950,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: qc_researcher
-    owner: PhysiologicalVariable
+    owner: DiscreteCO2Variable
     domain_of:
     - QCFields
     range: Person
@@ -727,7 +961,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: qc_researcher_institution
-    owner: PhysiologicalVariable
+    owner: DiscreteCO2Variable
     domain_of:
     - QCFields
     range: string
@@ -739,7 +973,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: dataset_variable_name_qc_flag
-    owner: PhysiologicalVariable
+    owner: DiscreteCO2Variable
     domain_of:
     - Variable
     range: string
@@ -751,7 +985,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: dataset_variable_name_raw
-    owner: PhysiologicalVariable
+    owner: DiscreteCO2Variable
     domain_of:
     - Variable
     range: string
@@ -761,7 +995,7 @@ attributes:
     title: Method Reference
     from_schema: Variable
     alias: method_reference
-    owner: PhysiologicalVariable
+    owner: DiscreteCO2Variable
     domain_of:
     - Calibration
     - Variable
@@ -773,7 +1007,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: measurement_researcher
-    owner: PhysiologicalVariable
+    owner: DiscreteCO2Variable
     domain_of:
     - Variable
     range: Person
@@ -784,7 +1018,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: other_detailed_information
-    owner: PhysiologicalVariable
+    owner: DiscreteCO2Variable
     domain_of:
     - Variable
     range: string
@@ -795,7 +1029,7 @@ attributes:
     from_schema: OAEDataManagementProtocol
     rank: 1000
     alias: units
-    owner: PhysiologicalVariable
+    owner: DiscreteCO2Variable
     domain_of:
     - BaseVariable
     range: string
@@ -805,7 +1039,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: standard_identifier
-    owner: PhysiologicalVariable
+    owner: DiscreteCO2Variable
     domain_of:
     - BaseVariable
     range: VocabularyItemReference
@@ -819,7 +1053,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: dataset_variable_name
-    owner: PhysiologicalVariable
+    owner: DiscreteCO2Variable
     domain_of:
     - BaseVariable
     range: string
@@ -831,7 +1065,7 @@ attributes:
     from_schema: Variable
     rank: 1000
     alias: long_name
-    owner: PhysiologicalVariable
+    owner: DiscreteCO2Variable
     domain_of:
     - BaseVariable
     range: string

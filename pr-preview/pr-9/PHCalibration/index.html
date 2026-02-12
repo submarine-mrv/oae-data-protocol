@@ -289,6 +289,12 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="../calibration_temperature/">calibration_temperature</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Temperature at which calibration was performed</td>
+<td>direct</td>
+</tr>
+<tr>
 <td><a href="../dye_type_and_manufacturer/">dye_type_and_manufacturer</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Type of indicator dye and any detailed information about it, e</td>
@@ -316,12 +322,6 @@
 <td><a href="../ph_of_standards/">ph_of_standards</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>pH values of the calibration standards used</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../calibration_temperature/">calibration_temperature</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Temperature at which calibration was performed</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -413,6 +413,8 @@
 description: pH instrument calibration with dye information.
 from_schema: OAEDataManagementProtocol
 is_a: Calibration
+slots:
+- calibration_temperature
 attributes:
   dye_type_and_manufacturer:
     name: dye_type_and_manufacturer
@@ -459,16 +461,6 @@ attributes:
     rank: 1000
     domain_of:
     - pHCalibration
-    range: string
-  calibration_temperature:
-    name: calibration_temperature
-    description: Temperature at which calibration was performed.
-    title: Calibration temperature
-    from_schema: Calibration
-    rank: 1000
-    domain_of:
-    - pHCalibration
-    - CO2Calibration
     range: string
 
 </code></pre>
@@ -540,7 +532,7 @@ attributes:
     name: calibration_temperature
     description: Temperature at which calibration was performed.
     title: Calibration temperature
-    from_schema: Calibration
+    from_schema: OAEDataManagementProtocol
     rank: 1000
     alias: calibration_temperature
     owner: pHCalibration

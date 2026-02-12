@@ -233,8 +233,16 @@
 
       DiscreteMeasuredVariable &lt;|-- DiscretePHVariable
         click DiscretePHVariable href "../DiscretePHVariable"
+      DiscreteMeasuredVariable &lt;|-- DiscreteTAVariable
+        click DiscreteTAVariable href "../DiscreteTAVariable"
+      DiscreteMeasuredVariable &lt;|-- DiscreteDICVariable
+        click DiscreteDICVariable href "../DiscreteDICVariable"
       DiscreteMeasuredVariable &lt;|-- DiscreteSedimentVariable
         click DiscreteSedimentVariable href "../DiscreteSedimentVariable"
+      DiscreteMeasuredVariable &lt;|-- DiscreteCO2Variable
+        click DiscreteCO2Variable href "../DiscreteCO2Variable"
+      DiscreteMeasuredVariable &lt;|-- HPLCVariable
+        click HPLCVariable href "../HPLCVariable"
 
 
       DiscreteMeasuredVariable : analyzing_instrument
@@ -350,7 +358,11 @@
 <li><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a> [ <a href="../QCFields/">QCFields</a>]<ul>
 <li><strong>DiscreteMeasuredVariable</strong><ul>
 <li><a href="../DiscretePHVariable/">DiscretePHVariable</a> [ <a href="../MeasuredPHFields/">MeasuredPHFields</a>]</li>
+<li><a href="../DiscreteTAVariable/">DiscreteTAVariable</a> [ <a href="../MeasuredTAFields/">MeasuredTAFields</a>]</li>
+<li><a href="../DiscreteDICVariable/">DiscreteDICVariable</a> [ <a href="../MeasuredDICFields/">MeasuredDICFields</a>]</li>
 <li><a href="../DiscreteSedimentVariable/">DiscreteSedimentVariable</a> [ <a href="../MeasuredSedimentFields/">MeasuredSedimentFields</a>]</li>
+<li><a href="../DiscreteCO2Variable/">DiscreteCO2Variable</a> [ <a href="../MeasuredCO2Fields/">MeasuredCO2Fields</a>]</li>
+<li><a href="../HPLCVariable/">HPLCVariable</a></li>
 </ul>
 </li>
 </ul>
@@ -375,7 +387,7 @@
 <td><a href="../analyzing_instrument/">analyzing_instrument</a></td>
 <td>1 <br/> <a href="../AnalyzingInstrument/">AnalyzingInstrument</a></td>
 <td>Instrument used to analyze the water samples or measure the water body contin...</td>
-<td><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
+<td>direct</td>
 </tr>
 <tr>
 <td><a href="../sampling_method/">sampling_method</a></td>
@@ -550,6 +562,8 @@ description: Analyzing instrument information fields, only applied to discretely
   variables. The instrument type can be narrowed in subclasses using slot_usage.
 from_schema: OAEDataManagementProtocol
 is_a: ObservedPropertyVariable
+slots:
+- analyzing_instrument
 
 </code></pre>
 </details>
@@ -571,7 +585,7 @@ attributes:
     alias: analyzing_instrument
     owner: DiscreteMeasuredVariable
     domain_of:
-    - ObservedPropertyVariable
+    - DiscreteMeasuredVariable
     range: AnalyzingInstrument
     required: true
   sampling_method:

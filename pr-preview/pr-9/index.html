@@ -505,12 +505,16 @@
 <td>Total Alkalinity (TA) measured variable from continuous autonomous sensor</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DiscreteDICVariable/">DiscreteDICVariable</a></td>
-<td>Dissolved Inorganic Carbon (DIC) measured variable from discrete bottle samples. Uses CRM-calibrated instrument and includes sample preservation information. Reference: OAPMetadata XSD variables.xsd - DIC_measured</td>
-</tr>
-<tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DiscreteMeasuredVariable/">DiscreteMeasuredVariable</a></td>
 <td>Analyzing instrument information fields, only applied to discretely measured variables. The instrument type can be narrowed in subclasses using slot_usage.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DiscreteCO2Variable/">DiscreteCO2Variable</a></td>
+<td>CO2 discrete (bottle) measured variable (pCO2/fCO2). Reference: OAPMetadata XSD variables.xsd - co2_discrete</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DiscreteDICVariable/">DiscreteDICVariable</a></td>
+<td>Dissolved Inorganic Carbon (DIC) measured variable from discrete bottle samples. Uses CRM-calibrated instrument and includes sample preservation information. Reference: OAPMetadata XSD variables.xsd - DIC_measured</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DiscretePHVariable/">DiscretePHVariable</a></td>
@@ -521,16 +525,12 @@
 <td>Measured sediment variable collected from discrete bottle samples</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DiscreteTAVariable/">DiscreteTAVariable</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DiscreteTAVariable/">DiscreteTAVariable</a></td>
 <td>Total Alkalinity (TA) measured variable from discrete bottle samples</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="PhysiologicalVariable/">PhysiologicalVariable</a></td>
-<td>Physiological response measured variable for organism response data.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="SocioeconomicVariable/">SocioeconomicVariable</a></td>
-<td>Socioeconomic variable for social and economic data. Note: Does NOT include QCFields mixin as QC is not applicable.</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="HPLCVariable/">HPLCVariable</a></td>
+<td>HPLC (High-Performance Liquid Chromatography) measured variable for pigment analysis. Always measured, not calculated.</td>
 </tr>
 <tr>
 <td><a href="Calibration/">Calibration</a></td>
@@ -593,12 +593,12 @@
 <td>The geographic shape of a place. A GeoShape can be described using several properties whose values are based on latitude/longitude pairs. Either whitespace or commas can be used to separate latitude and longitude; whitespace should be used when writing a list of several such points. (imported from schema.org)</td>
 </tr>
 <tr>
-<td><a href="HPLCVariable/">HPLCVariable</a></td>
-<td>HPLC (High-Performance Liquid Chromatography) measured variable for pigment analysis. Always measured, not calculated.</td>
-</tr>
-<tr>
 <td><a href="InterventionDetails/">InterventionDetails</a></td>
 <td>An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are  specific to an Experiment with type "Intervention"</td>
+</tr>
+<tr>
+<td><a href="MeasuredCO2Fields/">MeasuredCO2Fields</a></td>
+<td>Fields applied to all measured CO2 variable types (discrete and continuous)</td>
 </tr>
 <tr>
 <td><a href="MeasuredDICFields/">MeasuredDICFields</a></td>
@@ -808,12 +808,16 @@
 <td>e</td>
 </tr>
 <tr>
+<td><a href="co2_reported_temperature/">co2_reported_temperature</a></td>
+<td>In Celsius</td>
+</tr>
+<tr>
 <td><a href="colocated_operations/">colocated_operations</a></td>
 <td>A description is required if any nearby operations exist that may influence t...</td>
 </tr>
 <tr>
 <td><a href="concentration/">concentration</a></td>
-<td>CO2 concentration of the standard gas</td>
+<td>Concentrations of the CO2 standard gases that are used to calibrate the CO2 s...</td>
 </tr>
 <tr>
 <td><a href="concentration_basis/">concentration_basis</a></td>
@@ -882,6 +886,10 @@
 <tr>
 <td><a href="description/">description</a></td>
 <td>A narrative description of the thing</td>
+</tr>
+<tr>
+<td><a href="detector_type/">detector_type</a></td>
+<td>Type of the CO2 gas detector</td>
 </tr>
 <tr>
 <td><a href="dosing_delivery_type/">dosing_delivery_type</a></td>
@@ -984,6 +992,18 @@
 <td>Entities that have a somewhat fixed, physical extension</td>
 </tr>
 <tr>
+<td><a href="headspace_volume/">headspace_volume</a></td>
+<td>Volume (in mL) of headspace (water displaced in the flask plus volume of the ...</td>
+</tr>
+<tr>
+<td><a href="hplc_lab/">hplc_lab</a></td>
+<td>The name of the lab where the HPLC analysis was run (e</td>
+</tr>
+<tr>
+<td><a href="hplc_lab_technician/">hplc_lab_technician</a></td>
+<td>Name and contact information for HPLC technician</td>
+</tr>
+<tr>
 <td><a href="identifier/">identifier</a></td>
 <td>A unique identifier for the thing</td>
 </tr>
@@ -1037,7 +1057,7 @@
 </tr>
 <tr>
 <td><a href="manufacturer/">manufacturer</a></td>
-<td>Manufacturer of the standard gas</td>
+<td>Manufacturer name of the instrument</td>
 </tr>
 <tr>
 <td><a href="max_depth_in_m/">max_depth_in_m</a></td>
@@ -1228,6 +1248,10 @@
 <td>Names of the seas where the data collection takes place, See Controlled Vocab...</td>
 </tr>
 <tr>
+<td><a href="seawater_volume/">seawater_volume</a></td>
+<td>Volume (in mL) of seawater in the flask</td>
+</tr>
+<tr>
 <td><a href="sediment_sampling_depth/">sediment_sampling_depth</a></td>
 <td>Depth that sediment was collected below sediment surface</td>
 </tr>
@@ -1260,7 +1284,7 @@
 <td>Latitude/longitude bounds of project site (e</td>
 </tr>
 <tr>
-<td><a href="standard_gases/">standard_gases</a></td>
+<td><a href="standard_gas_info/">standard_gas_info</a></td>
 <td>Standard gases used for calibration</td>
 </tr>
 <tr>
@@ -1274,6 +1298,10 @@
 <tr>
 <td><a href="start_datetime/">start_datetime</a></td>
 <td>Start date and time of experiment in UTC ISO-8601</td>
+</tr>
+<tr>
+<td><a href="storage_method/">storage_method</a></td>
+<td>How the samples were stored before the measurement</td>
 </tr>
 <tr>
 <td><a href="technique_description/">technique_description</a></td>
@@ -1356,8 +1384,8 @@
 <td>The volume of preservative used</td>
 </tr>
 <tr>
-<td><a href="wmo_traceable/">wmo_traceable</a></td>
-<td>Whether standard gases are traceable to WMO standards</td>
+<td><a href="water_vapor_correction_method/">water_vapor_correction_method</a></td>
+<td>How the water vapor pressure inside the equilibrator was determined</td>
 </tr>
 </tbody>
 </table>

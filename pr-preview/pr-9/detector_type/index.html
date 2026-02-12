@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://clevinson.github.io/oae-data-protocol/wmo_traceable/">
+        <link rel="canonical" href="https://clevinson.github.io/oae-data-protocol/detector_type/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: WMO traceable (wmo_traceable) - oae-data-protocol</title>
+        <title>Slot: Detector Type (detector_type) - oae-data-protocol</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-wmo-traceable-wmo_traceable" class="md-skip">
+        <a href="#slot-detector-type-detector_type" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: WMO traceable (wmo_traceable)
+              Slot: Detector Type (detector_type)
             
           </span>
         </div>
@@ -359,9 +359,9 @@
   
 
 
-<h1 id="slot-wmo-traceable-wmo_traceable">Slot: WMO traceable (wmo_traceable)</h1>
-<p><em>Whether standard gases are traceable to WMO standards.</em></p>
-<p>URI: <a href="https://example.org/oae#wmo_traceable">oae:wmo_traceable</a></p>
+<h1 id="slot-detector-type-detector_type">Slot: Detector Type (detector_type)</h1>
+<p><em>Type of the CO2 gas detector</em></p>
+<p>URI: <a href="https://example.org/oae#detector_type">oae:detector_type</a></p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -375,8 +375,8 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../CO2Calibration/">CO2Calibration</a></td>
-<td>CO2 gas detector calibration with standard gas information</td>
+<td><a href="../CO2GasDetector/">CO2GasDetector</a></td>
+<td>CO2 gas detector with standard gas calibration</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -384,7 +384,7 @@
 <h2 id="properties">Properties</h2>
 <ul>
 <li>
-<p>Range: <a href="../Boolean/">Boolean</a></p>
+<p>Range: <a href="../String/">String</a></p>
 </li>
 <li>
 <p>Required: True</p>
@@ -406,27 +406,27 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>oae:wmo_traceable</td>
+<td>oae:detector_type</td>
 </tr>
 <tr>
 <td>native</td>
-<td>oae:wmo_traceable</td>
+<td>oae:detector_type</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: wmo_traceable
-description: Whether standard gases are traceable to WMO standards.
-title: WMO traceable
+<pre><code class="language-yaml">name: detector_type
+description: Type of the CO2 gas detector
+title: Detector Type
 from_schema: OAEDataManagementProtocol
 rank: 1000
-alias: wmo_traceable
-owner: CO2Calibration
+alias: detector_type
+owner: CO2GasDetector
 domain_of:
-- CO2Calibration
-range: boolean
+- CO2GasDetector
+range: string
 required: true
 
 </code></pre>

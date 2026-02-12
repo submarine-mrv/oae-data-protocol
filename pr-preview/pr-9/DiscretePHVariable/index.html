@@ -408,7 +408,7 @@
 <td><a href="../analyzing_instrument/">analyzing_instrument</a></td>
 <td>1 <br/> <a href="../PHInstrument/">PHInstrument</a></td>
 <td>pH instrument with dye-based calibration used for measurements</td>
-<td><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
+<td><a href="../DiscreteMeasuredVariable/">DiscreteMeasuredVariable</a></td>
 </tr>
 <tr>
 <td><a href="../sampling_method/">sampling_method</a></td>
@@ -599,6 +599,7 @@ attributes:
     rank: 1000
     domain_of:
     - DiscretePHVariable
+    - DiscreteCO2Variable
     range: string
     required: true
   temperature_correction_method:
@@ -609,6 +610,7 @@ attributes:
     rank: 1000
     domain_of:
     - DiscretePHVariable
+    - MeasuredCO2Fields
     range: string
   ph_reported_temperature:
     name: ph_reported_temperature
@@ -649,6 +651,7 @@ attributes:
     owner: DiscretePHVariable
     domain_of:
     - DiscretePHVariable
+    - DiscreteCO2Variable
     range: string
     required: true
   temperature_correction_method:
@@ -661,6 +664,7 @@ attributes:
     owner: DiscretePHVariable
     domain_of:
     - DiscretePHVariable
+    - MeasuredCO2Fields
     range: string
   ph_reported_temperature:
     name: ph_reported_temperature
@@ -694,6 +698,7 @@ attributes:
     - MeasuredTAFields
     - MeasuredDICFields
     - MeasuredPHFields
+    - MeasuredCO2Fields
     range: AppropriateUseQuality
   analyzing_instrument:
     name: analyzing_instrument
@@ -704,7 +709,7 @@ attributes:
     alias: analyzing_instrument
     owner: DiscretePHVariable
     domain_of:
-    - ObservedPropertyVariable
+    - DiscreteMeasuredVariable
     range: PHInstrument
     required: true
   sampling_method:

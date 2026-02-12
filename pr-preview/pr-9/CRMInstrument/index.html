@@ -294,18 +294,6 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../instrument_type/">instrument_type</a></td>
-<td>1 <br/> <a href="../AnalyzingInstrumentType/">AnalyzingInstrumentType</a></td>
-<td>Type of instrument used to analyze samples or measure continuously</td>
-<td><a href="../AnalyzingInstrument/">AnalyzingInstrument</a></td>
-</tr>
-<tr>
-<td><a href="../instrument_type_custom/">instrument_type_custom</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td></td>
-<td><a href="../AnalyzingInstrument/">AnalyzingInstrument</a></td>
-</tr>
-<tr>
 <td><a href="../manufacturer/">manufacturer</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Manufacturer name of the instrument</td>
@@ -315,6 +303,18 @@
 <td><a href="../model/">model</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Model number or name of the instrument</td>
+<td><a href="../AnalyzingInstrument/">AnalyzingInstrument</a></td>
+</tr>
+<tr>
+<td><a href="../instrument_type/">instrument_type</a></td>
+<td>1 <br/> <a href="../AnalyzingInstrumentType/">AnalyzingInstrumentType</a></td>
+<td>Type of instrument used to analyze samples or measure continuously</td>
+<td><a href="../AnalyzingInstrument/">AnalyzingInstrument</a></td>
+</tr>
+<tr>
+<td><a href="../instrument_type_custom/">instrument_type_custom</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td></td>
 <td><a href="../AnalyzingInstrument/">AnalyzingInstrument</a></td>
 </tr>
 <tr>
@@ -433,6 +433,29 @@ attributes:
     - CO2GasDetector
     range: CRMCalibration
     required: true
+  manufacturer:
+    name: manufacturer
+    description: Manufacturer name of the instrument.
+    title: Manufacturer
+    from_schema: OAEDataManagementProtocol
+    rank: 1000
+    alias: manufacturer
+    owner: CRMInstrument
+    domain_of:
+    - StandardGas
+    - AnalyzingInstrument
+    range: string
+  model:
+    name: model
+    description: Model number or name of the instrument.
+    title: Model
+    from_schema: OAEDataManagementProtocol
+    rank: 1000
+    alias: model
+    owner: CRMInstrument
+    domain_of:
+    - AnalyzingInstrument
+    range: string
   instrument_type:
     name: instrument_type
     description: Type of instrument used to analyze samples or measure continuously.
@@ -451,28 +474,6 @@ attributes:
     from_schema: Instrument
     rank: 1000
     alias: instrument_type_custom
-    owner: CRMInstrument
-    domain_of:
-    - AnalyzingInstrument
-    range: string
-  manufacturer:
-    name: manufacturer
-    description: Manufacturer name of the instrument.
-    title: Manufacturer
-    from_schema: Instrument
-    alias: manufacturer
-    owner: CRMInstrument
-    domain_of:
-    - StandardGas
-    - AnalyzingInstrument
-    range: string
-  model:
-    name: model
-    description: Model number or name of the instrument.
-    title: Model
-    from_schema: Instrument
-    rank: 1000
-    alias: model
     owner: CRMInstrument
     domain_of:
     - AnalyzingInstrument

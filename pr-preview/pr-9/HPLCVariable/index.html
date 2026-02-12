@@ -151,6 +151,13 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
+<a class="md-nav__link" href="#inheritance">
+<span class="md-ellipsis">
+      Inheritance
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#slots">
 <span class="md-ellipsis">
       Slots
@@ -220,9 +227,135 @@
 <div class="mermaid"> classDiagram
     class HPLCVariable
     click HPLCVariable href "../HPLCVariable"
+      DiscreteMeasuredVariable &lt;|-- HPLCVariable
+        click DiscreteMeasuredVariable href "../DiscreteMeasuredVariable"
+
+      HPLCVariable : analyzing_instrument
+
+
+
+
+    HPLCVariable --&gt; "1" AnalyzingInstrument : analyzing_instrument
+    click AnalyzingInstrument href "../AnalyzingInstrument"
+
+
+      HPLCVariable : analyzing_method
+
+      HPLCVariable : dataset_variable_name
+
+      HPLCVariable : dataset_variable_name_qc_flag
+
+      HPLCVariable : dataset_variable_name_raw
+
+      HPLCVariable : field_replicate_information
+
+      HPLCVariable : genesis
+
+
+
+
+    HPLCVariable --&gt; "1" GenesisType : genesis
+    click GenesisType href "../GenesisType"
+
+
+      HPLCVariable : hplc_lab
+
+      HPLCVariable : hplc_lab_technician
+
+      HPLCVariable : long_name
+
+      HPLCVariable : measurement_researcher
+
+
+
+
+    HPLCVariable --&gt; "0..1" Person : measurement_researcher
+    click Person href "../Person"
+
+
+      HPLCVariable : method_reference
+
+      HPLCVariable : missing_value_indicators
+
+      HPLCVariable : observation_type
+
+
+
+
+    HPLCVariable --&gt; "1" ObservationType : observation_type
+    click ObservationType href "../ObservationType"
+
+
+      HPLCVariable : other_detailed_information
+
+      HPLCVariable : qc_researcher
+
+
+
+
+    HPLCVariable --&gt; "0..1" Person : qc_researcher
+    click Person href "../Person"
+
+
+      HPLCVariable : qc_researcher_institution
+
+      HPLCVariable : qc_steps_taken
+
+      HPLCVariable : sampling
+
+
+
+
+    HPLCVariable --&gt; "1" SamplingType : sampling
+    click SamplingType href "../SamplingType"
+
+
+      HPLCVariable : sampling_instrument_type
+
+
+
+
+    HPLCVariable --&gt; "1" SamplingInstrumentType : sampling_instrument_type
+    click SamplingInstrumentType href "../SamplingInstrumentType"
+
+
+      HPLCVariable : sampling_instrument_type_custom
+
+      HPLCVariable : sampling_method
+
+      HPLCVariable : standard_identifier
+
+
+
+
+    HPLCVariable --&gt; "0..1" VocabularyItemReference : standard_identifier
+    click VocabularyItemReference href "../VocabularyItemReference"
+
+
+      HPLCVariable : uncertainty
+
+      HPLCVariable : uncertainty_definition
+
+      HPLCVariable : units
+
 
 </div>
-<!-- no inheritance hierarchy -->
+<h2 id="inheritance">Inheritance</h2>
+<ul>
+<li><a href="../BaseVariable/">BaseVariable</a><ul>
+<li><a href="../Variable/">Variable</a><ul>
+<li><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a> [ <a href="../QCFields/">QCFields</a>]<ul>
+<li><a href="../DiscreteMeasuredVariable/">DiscreteMeasuredVariable</a><ul>
+<li><strong>HPLCVariable</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <h2 id="slots">Slots</h2>
 <table>
 <thead>
@@ -235,10 +368,160 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="../hplc_lab/">hplc_lab</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>The name of the lab where the HPLC analysis was run (e</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../hplc_lab_technician/">hplc_lab_technician</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Name and contact information for HPLC technician</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../analyzing_instrument/">analyzing_instrument</a></td>
+<td>1 <br/> <a href="../AnalyzingInstrument/">AnalyzingInstrument</a></td>
+<td>Instrument used to analyze the water samples or measure the water body contin...</td>
+<td><a href="../DiscreteMeasuredVariable/">DiscreteMeasuredVariable</a></td>
+</tr>
+<tr>
+<td><a href="../sampling_method/">sampling_method</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>Method used to collect samples</td>
+<td><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
+</tr>
+<tr>
+<td><a href="../field_replicate_information/">field_replicate_information</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Repetition of sample collection and measurement, e</td>
+<td><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
+</tr>
+<tr>
+<td><a href="../analyzing_method/">analyzing_method</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>Additional information describing how the sample was analyzed</td>
+<td><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
+</tr>
+<tr>
+<td><a href="../observation_type/">observation_type</a></td>
+<td>1 <br/> <a href="../ObservationType/">ObservationType</a></td>
 <td></td>
+<td><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
+</tr>
+<tr>
+<td><a href="../sampling/">sampling</a></td>
+<td>1 <br/> <a href="../SamplingType/">SamplingType</a></td>
 <td></td>
+<td><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
+</tr>
+<tr>
+<td><a href="../genesis/">genesis</a></td>
+<td>1 <br/> <a href="../GenesisType/">GenesisType</a></td>
 <td></td>
+<td><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
+</tr>
+<tr>
+<td><a href="../sampling_instrument_type/">sampling_instrument_type</a></td>
+<td>1 <br/> <a href="../SamplingInstrumentType/">SamplingInstrumentType</a></td>
 <td></td>
+<td><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
+</tr>
+<tr>
+<td><a href="../sampling_instrument_type_custom/">sampling_instrument_type_custom</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td></td>
+<td><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
+</tr>
+<tr>
+<td><a href="../qc_steps_taken/">qc_steps_taken</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>Describe what QC steps have been taken to improve the quality of the data (e</td>
+<td><a href="../QCFields/">QCFields</a></td>
+</tr>
+<tr>
+<td><a href="../uncertainty/">uncertainty</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>It is recommended to provide uncertainty for each data point in the data file</td>
+<td><a href="../QCFields/">QCFields</a></td>
+</tr>
+<tr>
+<td><a href="../uncertainty_definition/">uncertainty_definition</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>A description of the uncertainties involved in this method</td>
+<td><a href="../QCFields/">QCFields</a></td>
+</tr>
+<tr>
+<td><a href="../missing_value_indicators/">missing_value_indicators</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>The indicator used to represent missing values in the data file, e</td>
+<td><a href="../QCFields/">QCFields</a></td>
+</tr>
+<tr>
+<td><a href="../qc_researcher/">qc_researcher</a></td>
+<td>0..1 <br/> <a href="../Person/">Person</a></td>
+<td>The name of the PI whose research team QCed this parameter</td>
+<td><a href="../QCFields/">QCFields</a></td>
+</tr>
+<tr>
+<td><a href="../qc_researcher_institution/">qc_researcher_institution</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>The institution of the PI whose research team QCed this parameter</td>
+<td><a href="../QCFields/">QCFields</a></td>
+</tr>
+<tr>
+<td><a href="../dataset_variable_name_qc_flag/">dataset_variable_name_qc_flag</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>If applicable, the column header name used for the quality control flag corre...</td>
+<td><a href="../Variable/">Variable</a></td>
+</tr>
+<tr>
+<td><a href="../dataset_variable_name_raw/">dataset_variable_name_raw</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>If applicable, the column header name used for the raw data corresponding to ...</td>
+<td><a href="../Variable/">Variable</a></td>
+</tr>
+<tr>
+<td><a href="../method_reference/">method_reference</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Citation for the method used</td>
+<td><a href="../Variable/">Variable</a></td>
+</tr>
+<tr>
+<td><a href="../measurement_researcher/">measurement_researcher</a></td>
+<td>0..1 <br/> <a href="../Person/">Person</a></td>
+<td>The name of the PI whose research team measured or derived this parameter</td>
+<td><a href="../Variable/">Variable</a></td>
+</tr>
+<tr>
+<td><a href="../other_detailed_information/">other_detailed_information</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Any additional information about this variable</td>
+<td><a href="../Variable/">Variable</a></td>
+</tr>
+<tr>
+<td><a href="../units/">units</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>Unit of measurement for this variable</td>
+<td><a href="../BaseVariable/">BaseVariable</a></td>
+</tr>
+<tr>
+<td><a href="../standard_identifier/">standard_identifier</a></td>
+<td>0..1 <br/> <a href="../VocabularyItemReference/">VocabularyItemReference</a></td>
+<td></td>
+<td><a href="../BaseVariable/">BaseVariable</a></td>
+</tr>
+<tr>
+<td><a href="../dataset_variable_name/">dataset_variable_name</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>The name for the variable as it is identified in the dataset data file</td>
+<td><a href="../BaseVariable/">BaseVariable</a></td>
+</tr>
+<tr>
+<td><a href="../long_name/">long_name</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>Full descriptive name of the variable</td>
+<td><a href="../BaseVariable/">BaseVariable</a></td>
 </tr>
 </tbody>
 </table>
@@ -274,6 +557,27 @@
 description: HPLC (High-Performance Liquid Chromatography) measured variable for pigment
   analysis. Always measured, not calculated.
 from_schema: OAEDataManagementProtocol
+is_a: DiscreteMeasuredVariable
+attributes:
+  hplc_lab:
+    name: hplc_lab
+    description: The name of the lab where the HPLC analysis was run (e.g., 'NASA_GSFC'
+    title: HPLC Lab
+    from_schema: Variable
+    rank: 1000
+    domain_of:
+    - HPLCVariable
+    range: string
+    required: true
+  hplc_lab_technician:
+    name: hplc_lab_technician
+    description: Name and contact information for HPLC technician.
+    title: HPLC Lab Technician
+    from_schema: Variable
+    rank: 1000
+    domain_of:
+    - HPLCVariable
+    range: string
 
 </code></pre>
 </details>
@@ -283,6 +587,319 @@ from_schema: OAEDataManagementProtocol
 description: HPLC (High-Performance Liquid Chromatography) measured variable for pigment
   analysis. Always measured, not calculated.
 from_schema: OAEDataManagementProtocol
+is_a: DiscreteMeasuredVariable
+attributes:
+  hplc_lab:
+    name: hplc_lab
+    description: The name of the lab where the HPLC analysis was run (e.g., 'NASA_GSFC'
+    title: HPLC Lab
+    from_schema: Variable
+    rank: 1000
+    alias: hplc_lab
+    owner: HPLCVariable
+    domain_of:
+    - HPLCVariable
+    range: string
+    required: true
+  hplc_lab_technician:
+    name: hplc_lab_technician
+    description: Name and contact information for HPLC technician.
+    title: HPLC Lab Technician
+    from_schema: Variable
+    rank: 1000
+    alias: hplc_lab_technician
+    owner: HPLCVariable
+    domain_of:
+    - HPLCVariable
+    range: string
+  analyzing_instrument:
+    name: analyzing_instrument
+    description: Instrument used to analyze the water samples or measure the water
+      body continuously. Instrument includes calibration information.
+    title: Analyzing instrument
+    from_schema: OAEDataManagementProtocol
+    rank: 1000
+    alias: analyzing_instrument
+    owner: HPLCVariable
+    domain_of:
+    - DiscreteMeasuredVariable
+    range: AnalyzingInstrument
+    required: true
+  sampling_method:
+    name: sampling_method
+    description: Method used to collect samples.
+    title: Sampling Method
+    from_schema: Variable
+    rank: 1000
+    alias: sampling_method
+    owner: HPLCVariable
+    domain_of:
+    - ObservedPropertyVariable
+    range: string
+    required: true
+  field_replicate_information:
+    name: field_replicate_information
+    description: Repetition of sample collection and measurement, e.g., triplicate
+      samples.
+    title: Field replicate information
+    from_schema: Variable
+    rank: 1000
+    alias: field_replicate_information
+    owner: HPLCVariable
+    domain_of:
+    - ObservedPropertyVariable
+    range: string
+  analyzing_method:
+    name: analyzing_method
+    description: Additional information describing how the sample was analyzed. DOIs
+      provided as applicable.
+    title: Analyzing Method
+    from_schema: Variable
+    rank: 1000
+    alias: analyzing_method
+    owner: HPLCVariable
+    domain_of:
+    - ObservedPropertyVariable
+    range: string
+    required: true
+  observation_type:
+    name: observation_type
+    title: Observation Type
+    from_schema: Variable
+    rank: 1000
+    alias: observation_type
+    owner: HPLCVariable
+    domain_of:
+    - ObservedPropertyVariable
+    range: ObservationType
+    required: true
+  sampling:
+    name: sampling
+    from_schema: Variable
+    rank: 1000
+    alias: sampling
+    owner: HPLCVariable
+    domain_of:
+    - ObservedPropertyVariable
+    range: SamplingType
+    required: true
+  genesis:
+    name: genesis
+    from_schema: Variable
+    rank: 1000
+    alias: genesis
+    owner: HPLCVariable
+    domain_of:
+    - ObservedPropertyVariable
+    range: GenesisType
+    required: true
+  sampling_instrument_type:
+    name: sampling_instrument_type
+    title: Sampling instrument type
+    from_schema: Variable
+    rank: 1000
+    alias: sampling_instrument_type
+    owner: HPLCVariable
+    domain_of:
+    - ObservedPropertyVariable
+    range: SamplingInstrumentType
+    required: true
+  sampling_instrument_type_custom:
+    name: sampling_instrument_type_custom
+    title: Sampling instrument type (custom)
+    from_schema: Variable
+    rank: 1000
+    alias: sampling_instrument_type_custom
+    owner: HPLCVariable
+    domain_of:
+    - ObservedPropertyVariable
+    range: string
+  qc_steps_taken:
+    name: qc_steps_taken
+    description: 'Describe what QC steps have been taken to improve the quality of
+      the data (e.g., DOI, software and settings used, outlier removal, etc.).
+
+      If quality control procedures are described in a separate document uploaded
+      with the data, provide the name of the document here.'
+    title: QC steps taken
+    from_schema: OAEDataManagementProtocol
+    rank: 1000
+    alias: qc_steps_taken
+    owner: HPLCVariable
+    domain_of:
+    - QCFields
+    range: string
+    required: true
+  uncertainty:
+    name: uncertainty
+    description: 'It is recommended to provide uncertainty for each data point in
+      the data file. Else provide a single value representative of the dataset.
+
+      If uncertainty is provided as a variable, please list the column header name
+      here.'
+    title: Uncertainty
+    from_schema: OAEDataManagementProtocol
+    rank: 1000
+    alias: uncertainty
+    owner: HPLCVariable
+    domain_of:
+    - StandardGas
+    - CO2GasDetector
+    - QCFields
+    range: string
+    required: true
+  uncertainty_definition:
+    name: uncertainty_definition
+    description: A description of the uncertainties involved in this method.
+    title: How was the uncertainty defined
+    from_schema: OAEDataManagementProtocol
+    rank: 1000
+    alias: uncertainty_definition
+    owner: HPLCVariable
+    domain_of:
+    - QCFields
+    range: string
+    required: true
+  missing_value_indicators:
+    name: missing_value_indicators
+    description: The indicator used to represent missing values in the data file,
+      e.g., -999, NaN, etc.
+    title: Missing value indicators
+    from_schema: OAEDataManagementProtocol
+    rank: 1000
+    alias: missing_value_indicators
+    owner: HPLCVariable
+    domain_of:
+    - QCFields
+    range: string
+    required: true
+  qc_researcher:
+    name: qc_researcher
+    description: The name of the PI whose research team QCed this parameter.
+    title: Researcher who QCed this variable
+    from_schema: Variable
+    rank: 1000
+    alias: qc_researcher
+    owner: HPLCVariable
+    domain_of:
+    - QCFields
+    range: Person
+  qc_researcher_institution:
+    name: qc_researcher_institution
+    description: The institution of the PI whose research team QCed this parameter.
+    title: QC Researcher Institution
+    from_schema: Variable
+    rank: 1000
+    alias: qc_researcher_institution
+    owner: HPLCVariable
+    domain_of:
+    - QCFields
+    range: string
+  dataset_variable_name_qc_flag:
+    name: dataset_variable_name_qc_flag
+    description: If applicable, the column header name used for the quality control
+      flag corresponding to this variable.
+    title: Dataset variable name (Quality Flag)
+    from_schema: Variable
+    rank: 1000
+    alias: dataset_variable_name_qc_flag
+    owner: HPLCVariable
+    domain_of:
+    - Variable
+    range: string
+  dataset_variable_name_raw:
+    name: dataset_variable_name_raw
+    description: If applicable, the column header name used for the raw data corresponding
+      to this variable.
+    title: Dataset variable name (raw)
+    from_schema: Variable
+    rank: 1000
+    alias: dataset_variable_name_raw
+    owner: HPLCVariable
+    domain_of:
+    - Variable
+    range: string
+  method_reference:
+    name: method_reference
+    description: Citation for the method used.
+    title: Method Reference
+    from_schema: Variable
+    alias: method_reference
+    owner: HPLCVariable
+    domain_of:
+    - Calibration
+    - Variable
+    range: string
+  measurement_researcher:
+    name: measurement_researcher
+    description: The name of the PI whose research team measured or derived this parameter.
+    title: Researcher who measured the variable
+    from_schema: Variable
+    rank: 1000
+    alias: measurement_researcher
+    owner: HPLCVariable
+    domain_of:
+    - Variable
+    range: Person
+  other_detailed_information:
+    name: other_detailed_information
+    description: Any additional information about this variable.
+    title: Other Detailed Information
+    from_schema: Variable
+    rank: 1000
+    alias: other_detailed_information
+    owner: HPLCVariable
+    domain_of:
+    - Variable
+    range: string
+  units:
+    name: units
+    description: Unit of measurement for this variable.
+    title: Unit
+    from_schema: OAEDataManagementProtocol
+    rank: 1000
+    alias: units
+    owner: HPLCVariable
+    domain_of:
+    - BaseVariable
+    range: string
+    required: true
+  standard_identifier:
+    name: standard_identifier
+    from_schema: Variable
+    rank: 1000
+    alias: standard_identifier
+    owner: HPLCVariable
+    domain_of:
+    - BaseVariable
+    range: VocabularyItemReference
+  dataset_variable_name:
+    name: dataset_variable_name
+    description: The name for the variable as it is identified in the dataset data
+      file. This could be the column header in a CSV or the variable name in a NetCDF
+      file. Standard common recommended column header names can be found in protocol
+      documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).
+    title: Dataset variable name
+    from_schema: Variable
+    rank: 1000
+    alias: dataset_variable_name
+    owner: HPLCVariable
+    domain_of:
+    - BaseVariable
+    range: string
+    required: true
+  long_name:
+    name: long_name
+    description: Full descriptive name of the variable.
+    title: Variable full name
+    from_schema: Variable
+    rank: 1000
+    alias: long_name
+    owner: HPLCVariable
+    domain_of:
+    - BaseVariable
+    range: string
+    required: true
 
 </code></pre>
 </details>

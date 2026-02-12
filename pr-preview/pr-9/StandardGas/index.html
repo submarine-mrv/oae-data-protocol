@@ -256,13 +256,13 @@
 <tr>
 <td><a href="../concentration/">concentration</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
-<td>CO2 concentration of the standard gas</td>
+<td>Concentrations of the CO2 standard gases that are used to calibrate the CO2 s...</td>
 <td>direct</td>
 </tr>
 <tr>
 <td><a href="../uncertainty/">uncertainty</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>Uncertainty of the standard gas concentration</td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Uncertainties of the CO2 standard gas, e</td>
 <td>direct</td>
 </tr>
 </tbody>
@@ -280,7 +280,7 @@
 <tbody>
 <tr>
 <td><a href="../CO2Calibration/">CO2Calibration</a></td>
-<td><a href="../standard_gases/">standard_gases</a></td>
+<td><a href="../standard_gas_info/">standard_gas_info</a></td>
 <td>range</td>
 <td><a href="./">StandardGas</a></td>
 </tr>
@@ -321,9 +321,8 @@ attributes:
   manufacturer:
     name: manufacturer
     description: Manufacturer of the standard gas.
-    title: Manufacturer
+    title: Standard Gas Manufacturer
     from_schema: Calibration
-    rank: 1000
     domain_of:
     - StandardGas
     - AnalyzingInstrument
@@ -331,8 +330,9 @@ attributes:
     required: true
   concentration:
     name: concentration
-    description: CO2 concentration of the standard gas.
-    title: Concentration
+    description: Concentrations of the CO2 standard gases that are used to calibrate
+      the CO2 sensor, e.g., 260, 350, 510ppm.
+    title: Standard Gas Concentration
     from_schema: Calibration
     rank: 1000
     domain_of:
@@ -341,15 +341,14 @@ attributes:
     required: true
   uncertainty:
     name: uncertainty
-    description: Uncertainty of the standard gas concentration.
-    title: Uncertainty
+    description: Uncertainties of the CO2 standard gas, e.g., 0.5%.
+    title: Standard Gas Uncertainty
     from_schema: Calibration
     domain_of:
     - StandardGas
     - CO2GasDetector
     - QCFields
     range: string
-    required: true
 
 </code></pre>
 </details>
@@ -362,9 +361,8 @@ attributes:
   manufacturer:
     name: manufacturer
     description: Manufacturer of the standard gas.
-    title: Manufacturer
+    title: Standard Gas Manufacturer
     from_schema: Calibration
-    rank: 1000
     alias: manufacturer
     owner: StandardGas
     domain_of:
@@ -374,8 +372,9 @@ attributes:
     required: true
   concentration:
     name: concentration
-    description: CO2 concentration of the standard gas.
-    title: Concentration
+    description: Concentrations of the CO2 standard gases that are used to calibrate
+      the CO2 sensor, e.g., 260, 350, 510ppm.
+    title: Standard Gas Concentration
     from_schema: Calibration
     rank: 1000
     alias: concentration
@@ -386,8 +385,8 @@ attributes:
     required: true
   uncertainty:
     name: uncertainty
-    description: Uncertainty of the standard gas concentration.
-    title: Uncertainty
+    description: Uncertainties of the CO2 standard gas, e.g., 0.5%.
+    title: Standard Gas Uncertainty
     from_schema: Calibration
     alias: uncertainty
     owner: StandardGas
@@ -396,7 +395,6 @@ attributes:
     - CO2GasDetector
     - QCFields
     range: string
-    required: true
 
 </code></pre>
 </details>

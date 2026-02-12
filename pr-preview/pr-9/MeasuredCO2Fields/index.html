@@ -5,10 +5,10 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://clevinson.github.io/oae-data-protocol/SocioeconomicVariable/" rel="canonical"/>
+<link href="https://clevinson.github.io/oae-data-protocol/MeasuredCO2Fields/" rel="canonical"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.6.7" name="generator"/>
-<title>Class: SocioeconomicVariable - oae-data-protocol</title>
+<title>Class: MeasuredCO2Fields - oae-data-protocol</title>
 <link href="../assets/stylesheets/main.8608ea7d.min.css" rel="stylesheet"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
@@ -23,7 +23,7 @@
 <input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
 <label class="md-overlay" for="__drawer"></label>
 <div data-md-component="skip">
-<a class="md-skip" href="#class-socioeconomicvariable">
+<a class="md-skip" href="#class-measuredco2fields">
           Skip to content
         </a>
 </div>
@@ -47,7 +47,7 @@
 <div class="md-header__topic" data-md-component="header-topic">
 <span class="md-ellipsis">
             
-              Class: SocioeconomicVariable
+              Class: MeasuredCO2Fields
             
           </span>
 </div>
@@ -151,16 +151,16 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#inheritance">
+<a class="md-nav__link" href="#slots">
 <span class="md-ellipsis">
-      Inheritance
+      Slots
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#slots">
+<a class="md-nav__link" href="#mixin-usage">
 <span class="md-ellipsis">
-      Slots
+      Mixin Usage
     </span>
 </a>
 </li>
@@ -221,59 +221,33 @@
 </div>
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
-<h1 id="class-socioeconomicvariable">Class: SocioeconomicVariable</h1>
-<p><em>Socioeconomic variable for social and economic data. Note: Does NOT include QCFields mixin as QC is not applicable.</em></p>
-<p>URI: <a href="https://example.org/oae#SocioeconomicVariable">oae:SocioeconomicVariable</a></p>
+<h1 id="class-measuredco2fields">Class: MeasuredCO2Fields</h1>
+<p><em>Fields applied to all measured CO2 variable types (discrete and continuous)</em></p>
+<p>URI: <a href="https://example.org/oae#MeasuredCO2Fields">oae:MeasuredCO2Fields</a></p>
 <div class="mermaid"> classDiagram
-    class SocioeconomicVariable
-    click SocioeconomicVariable href "../SocioeconomicVariable"
-      Variable &lt;|-- SocioeconomicVariable
-        click Variable href "../Variable"
+    class MeasuredCO2Fields
+    click MeasuredCO2Fields href "../MeasuredCO2Fields"
+      MeasuredCO2Fields &lt;|-- DiscreteCO2Variable
+        click DiscreteCO2Variable href "../DiscreteCO2Variable"
 
-      SocioeconomicVariable : dataset_variable_name
-
-      SocioeconomicVariable : dataset_variable_name_qc_flag
-
-      SocioeconomicVariable : dataset_variable_name_raw
-
-      SocioeconomicVariable : long_name
-
-      SocioeconomicVariable : measurement_researcher
+      MeasuredCO2Fields : appropriate_use_quality
 
 
 
 
-    SocioeconomicVariable --&gt; "0..1" Person : measurement_researcher
-    click Person href "../Person"
+    MeasuredCO2Fields --&gt; "0..1" AppropriateUseQuality : appropriate_use_quality
+    click AppropriateUseQuality href "../AppropriateUseQuality"
 
 
-      SocioeconomicVariable : method_reference
+      MeasuredCO2Fields : co2_reported_temperature
 
-      SocioeconomicVariable : other_detailed_information
+      MeasuredCO2Fields : temperature_correction_method
 
-      SocioeconomicVariable : standard_identifier
-
-
-
-
-    SocioeconomicVariable --&gt; "0..1" VocabularyItemReference : standard_identifier
-    click VocabularyItemReference href "../VocabularyItemReference"
-
-
-      SocioeconomicVariable : units
+      MeasuredCO2Fields : water_vapor_correction_method
 
 
 </div>
-<h2 id="inheritance">Inheritance</h2>
-<ul>
-<li><a href="../BaseVariable/">BaseVariable</a><ul>
-<li><a href="../Variable/">Variable</a><ul>
-<li><strong>SocioeconomicVariable</strong></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<!-- no inheritance hierarchy -->
 <h2 id="slots">Slots</h2>
 <table>
 <thead>
@@ -286,58 +260,43 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../dataset_variable_name_qc_flag/">dataset_variable_name_qc_flag</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>If applicable, the column header name used for the quality control flag corre...</td>
-<td><a href="../Variable/">Variable</a></td>
+<td><a href="../appropriate_use_quality/">appropriate_use_quality</a></td>
+<td>0..1 <br/> <a href="../AppropriateUseQuality/">AppropriateUseQuality</a></td>
+<td>Climate quality is defined as measurements of quality sufficient to assess lo...</td>
+<td>direct</td>
 </tr>
 <tr>
-<td><a href="../dataset_variable_name_raw/">dataset_variable_name_raw</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>If applicable, the column header name used for the raw data corresponding to ...</td>
-<td><a href="../Variable/">Variable</a></td>
-</tr>
-<tr>
-<td><a href="../method_reference/">method_reference</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Citation for the method used</td>
-<td><a href="../Variable/">Variable</a></td>
-</tr>
-<tr>
-<td><a href="../measurement_researcher/">measurement_researcher</a></td>
-<td>0..1 <br/> <a href="../Person/">Person</a></td>
-<td>The name of the PI whose research team measured or derived this parameter</td>
-<td><a href="../Variable/">Variable</a></td>
-</tr>
-<tr>
-<td><a href="../other_detailed_information/">other_detailed_information</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Any additional information about this variable</td>
-<td><a href="../Variable/">Variable</a></td>
-</tr>
-<tr>
-<td><a href="../units/">units</a></td>
+<td><a href="../co2_reported_temperature/">co2_reported_temperature</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
-<td>Unit of measurement for this variable</td>
-<td><a href="../BaseVariable/">BaseVariable</a></td>
+<td>In Celsius</td>
+<td>direct</td>
 </tr>
 <tr>
-<td><a href="../standard_identifier/">standard_identifier</a></td>
-<td>0..1 <br/> <a href="../VocabularyItemReference/">VocabularyItemReference</a></td>
-<td></td>
-<td><a href="../BaseVariable/">BaseVariable</a></td>
+<td><a href="../water_vapor_correction_method/">water_vapor_correction_method</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>How the water vapor pressure inside the equilibrator was determined</td>
+<td>direct</td>
 </tr>
 <tr>
-<td><a href="../dataset_variable_name/">dataset_variable_name</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>The name for the variable as it is identified in the dataset data file</td>
-<td><a href="../BaseVariable/">BaseVariable</a></td>
+<td><a href="../temperature_correction_method/">temperature_correction_method</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>How the temperature effect was corrected</td>
+<td>direct</td>
 </tr>
+</tbody>
+</table>
+<h2 id="mixin-usage">Mixin Usage</h2>
+<table>
+<thead>
 <tr>
-<td><a href="../long_name/">long_name</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>Full descriptive name of the variable</td>
-<td><a href="../BaseVariable/">BaseVariable</a></td>
+<th>mixed into</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../DiscreteCO2Variable/">DiscreteCO2Variable</a></td>
+<td>CO2 discrete (bottle) measured variable (pCO2/fCO2)</td>
 </tr>
 </tbody>
 </table>
@@ -357,11 +316,11 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>oae:SocioeconomicVariable</td>
+<td>oae:MeasuredCO2Fields</td>
 </tr>
 <tr>
 <td>native</td>
-<td>oae:SocioeconomicVariable</td>
+<td>oae:MeasuredCO2Fields</td>
 </tr>
 </tbody>
 </table>
@@ -369,127 +328,108 @@
 <!-- TODO: investigate https://stackoverflow.com/questions/37606292/how-to-create-tabbed-code-blocks-in-mkdocs-or-sphinx -->
 <h3 id="direct">Direct</h3>
 <details>
-<pre><code class="language-yaml">name: SocioeconomicVariable
-description: 'Socioeconomic variable for social and economic data. Note: Does NOT
-  include QCFields mixin as QC is not applicable.'
+<pre><code class="language-yaml">name: MeasuredCO2Fields
+description: Fields applied to all measured CO2 variable types (discrete and continuous)
 from_schema: OAEDataManagementProtocol
-is_a: Variable
+mixin: true
+slots:
+- appropriate_use_quality
+attributes:
+  co2_reported_temperature:
+    name: co2_reported_temperature
+    description: In Celsius. The input could be a constant temperature value, or something
+      like, in-situ temperature, temperature of analysis, etc.
+    title: Temperature at which CO2 was reported
+    from_schema: Variable
+    rank: 1000
+    domain_of:
+    - MeasuredCO2Fields
+    range: string
+    required: true
+  water_vapor_correction_method:
+    name: water_vapor_correction_method
+    description: How the water vapor pressure inside the equilibrator was determined.
+    title: Water vapor correction method
+    from_schema: Variable
+    rank: 1000
+    domain_of:
+    - MeasuredCO2Fields
+    range: string
+  temperature_correction_method:
+    name: temperature_correction_method
+    description: How the temperature effect was corrected.
+    title: Temperature correction method
+    from_schema: Variable
+    domain_of:
+    - DiscretePHVariable
+    - MeasuredCO2Fields
+    range: string
 
 </code></pre>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
-<pre><code class="language-yaml">name: SocioeconomicVariable
-description: 'Socioeconomic variable for social and economic data. Note: Does NOT
-  include QCFields mixin as QC is not applicable.'
+<pre><code class="language-yaml">name: MeasuredCO2Fields
+description: Fields applied to all measured CO2 variable types (discrete and continuous)
 from_schema: OAEDataManagementProtocol
-is_a: Variable
+mixin: true
 attributes:
-  dataset_variable_name_qc_flag:
-    name: dataset_variable_name_qc_flag
-    description: If applicable, the column header name used for the quality control
-      flag corresponding to this variable.
-    title: Dataset variable name (Quality Flag)
+  co2_reported_temperature:
+    name: co2_reported_temperature
+    description: In Celsius. The input could be a constant temperature value, or something
+      like, in-situ temperature, temperature of analysis, etc.
+    title: Temperature at which CO2 was reported
     from_schema: Variable
     rank: 1000
-    alias: dataset_variable_name_qc_flag
-    owner: SocioeconomicVariable
+    alias: co2_reported_temperature
+    owner: MeasuredCO2Fields
     domain_of:
-    - Variable
+    - MeasuredCO2Fields
     range: string
-  dataset_variable_name_raw:
-    name: dataset_variable_name_raw
-    description: If applicable, the column header name used for the raw data corresponding
-      to this variable.
-    title: Dataset variable name (raw)
+    required: true
+  water_vapor_correction_method:
+    name: water_vapor_correction_method
+    description: How the water vapor pressure inside the equilibrator was determined.
+    title: Water vapor correction method
     from_schema: Variable
     rank: 1000
-    alias: dataset_variable_name_raw
-    owner: SocioeconomicVariable
+    alias: water_vapor_correction_method
+    owner: MeasuredCO2Fields
     domain_of:
-    - Variable
+    - MeasuredCO2Fields
     range: string
-  method_reference:
-    name: method_reference
-    description: Citation for the method used.
-    title: Method Reference
+  temperature_correction_method:
+    name: temperature_correction_method
+    description: How the temperature effect was corrected.
+    title: Temperature correction method
     from_schema: Variable
-    alias: method_reference
-    owner: SocioeconomicVariable
+    alias: temperature_correction_method
+    owner: MeasuredCO2Fields
     domain_of:
-    - Calibration
-    - Variable
+    - DiscretePHVariable
+    - MeasuredCO2Fields
     range: string
-  measurement_researcher:
-    name: measurement_researcher
-    description: The name of the PI whose research team measured or derived this parameter.
-    title: Researcher who measured the variable
-    from_schema: Variable
-    rank: 1000
-    alias: measurement_researcher
-    owner: SocioeconomicVariable
-    domain_of:
-    - Variable
-    range: Person
-  other_detailed_information:
-    name: other_detailed_information
-    description: Any additional information about this variable.
-    title: Other Detailed Information
-    from_schema: Variable
-    rank: 1000
-    alias: other_detailed_information
-    owner: SocioeconomicVariable
-    domain_of:
-    - Variable
-    range: string
-  units:
-    name: units
-    description: Unit of measurement for this variable.
-    title: Unit
+  appropriate_use_quality:
+    name: appropriate_use_quality
+    description: 'Climate quality is defined as measurements of quality sufficient
+      to assess long term trends with a defined level of confidence. Weather quality
+      is defined as measurements of quality sufficient to identify relative spatial
+      patterns and short term variation.
+
+      For more details, refer to Newton J.A., Feely R. A., Jewett E. B., Williamson
+      P. &amp; Mathis J., 2015. Global Ocean Acidification Observing Network: Requirements
+      and Governance Plan. Second Edition, GOA-ON, http://www.goa-on.org/docs/GOA-ON_plan_print.pdf.'
+    title: Weather or climate quality
     from_schema: OAEDataManagementProtocol
     rank: 1000
-    alias: units
-    owner: SocioeconomicVariable
+    alias: appropriate_use_quality
+    owner: MeasuredCO2Fields
     domain_of:
-    - BaseVariable
-    range: string
-    required: true
-  standard_identifier:
-    name: standard_identifier
-    from_schema: Variable
-    rank: 1000
-    alias: standard_identifier
-    owner: SocioeconomicVariable
-    domain_of:
-    - BaseVariable
-    range: VocabularyItemReference
-  dataset_variable_name:
-    name: dataset_variable_name
-    description: The name for the variable as it is identified in the dataset data
-      file. This could be the column header in a CSV or the variable name in a NetCDF
-      file. Standard common recommended column header names can be found in protocol
-      documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).
-    title: Dataset variable name
-    from_schema: Variable
-    rank: 1000
-    alias: dataset_variable_name
-    owner: SocioeconomicVariable
-    domain_of:
-    - BaseVariable
-    range: string
-    required: true
-  long_name:
-    name: long_name
-    description: Full descriptive name of the variable.
-    title: Variable full name
-    from_schema: Variable
-    rank: 1000
-    alias: long_name
-    owner: SocioeconomicVariable
-    domain_of:
-    - BaseVariable
-    range: string
-    required: true
+    - MeasuredTAFields
+    - MeasuredDICFields
+    - MeasuredPHFields
+    - MeasuredCO2Fields
+    range: AppropriateUseQuality
 
 </code></pre>
 </details>
