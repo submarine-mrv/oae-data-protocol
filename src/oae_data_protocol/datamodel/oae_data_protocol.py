@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-02-09T22:29:42
+# Generation date: 2026-02-10T20:37:31
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -266,6 +266,8 @@ class VerticalExtent(YAMLRoot):
 
     min_depth_in_m: Optional[float] = None
     max_depth_in_m: Optional[float] = None
+    min_height_in_m: Optional[float] = None
+    max_height_in_m: Optional[float] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self.min_depth_in_m is not None and not isinstance(self.min_depth_in_m, float):
@@ -273,6 +275,12 @@ class VerticalExtent(YAMLRoot):
 
         if self.max_depth_in_m is not None and not isinstance(self.max_depth_in_m, float):
             self.max_depth_in_m = float(self.max_depth_in_m)
+
+        if self.min_height_in_m is not None and not isinstance(self.min_height_in_m, float):
+            self.min_height_in_m = float(self.min_height_in_m)
+
+        if self.max_height_in_m is not None and not isinstance(self.max_height_in_m, float):
+            self.max_height_in_m = float(self.max_height_in_m)
 
         super().__post_init__(**kwargs)
 
@@ -572,7 +580,7 @@ class Experiment(YAMLRoot):
     project_id: str = None
     experiment_id: str = None
     experiment_type: Union[str, "ExperimentType"] = None
-    investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
+    principal_investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     end_datetime: Union[str, XSDDateTime] = None
     name: Optional[str] = None
@@ -608,11 +616,11 @@ class Experiment(YAMLRoot):
         if not isinstance(self.experiment_type, ExperimentType):
             self.experiment_type = ExperimentType(self.experiment_type)
 
-        if self._is_empty(self.investigators):
-            self.MissingRequiredField("investigators")
-        if not isinstance(self.investigators, list):
-            self.investigators = [self.investigators] if self.investigators is not None else []
-        self.investigators = [v if isinstance(v, Person) else Person(**as_dict(v)) for v in self.investigators]
+        if self._is_empty(self.principal_investigators):
+            self.MissingRequiredField("principal_investigators")
+        if not isinstance(self.principal_investigators, list):
+            self.principal_investigators = [self.principal_investigators] if self.principal_investigators is not None else []
+        self.principal_investigators = [v if isinstance(v, Person) else Person(**as_dict(v)) for v in self.principal_investigators]
 
         if self._is_empty(self.start_datetime):
             self.MissingRequiredField("start_datetime")
@@ -665,7 +673,7 @@ class Intervention(Experiment):
     project_id: str = None
     experiment_id: str = None
     experiment_type: Union[str, "ExperimentType"] = None
-    investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
+    principal_investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     end_datetime: Union[str, XSDDateTime] = None
     alkalinity_feedstock_processing: Union[str, "AlkalinityFeedstockProcessing"] = None
@@ -776,7 +784,7 @@ class Tracer(Experiment):
     project_id: str = None
     experiment_id: str = None
     experiment_type: Union[str, "ExperimentType"] = None
-    investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
+    principal_investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     end_datetime: Union[str, XSDDateTime] = None
     tracer_form: Union[str, "TracerForm"] = None
@@ -856,7 +864,7 @@ class InterventionWithTracer(Intervention):
     project_id: str = None
     experiment_id: str = None
     experiment_type: Union[str, "ExperimentType"] = None
-    investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
+    principal_investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     end_datetime: Union[str, XSDDateTime] = None
     alkalinity_feedstock_processing: Union[str, "AlkalinityFeedstockProcessing"] = None
@@ -2405,12 +2413,12 @@ class AnalyzingInstrument(YAMLRoot):
     class_model_uri: ClassVar[URIRef] = OAE.AnalyzingInstrument
 
     instrument_type: Union[str, "AnalyzingInstrumentType"] = None
-    precision: str = None
     accuracy: str = None
     manufacturer: Optional[str] = None
     model: Optional[str] = None
     instrument_type_custom: Optional[str] = None
     serial_number: Optional[str] = None
+    precision: Optional[str] = None
     calibration: Optional[Union[dict, "Calibration"]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
@@ -2418,11 +2426,6 @@ class AnalyzingInstrument(YAMLRoot):
             self.MissingRequiredField("instrument_type")
         if not isinstance(self.instrument_type, AnalyzingInstrumentType):
             self.instrument_type = AnalyzingInstrumentType(self.instrument_type)
-
-        if self._is_empty(self.precision):
-            self.MissingRequiredField("precision")
-        if not isinstance(self.precision, str):
-            self.precision = str(self.precision)
 
         if self._is_empty(self.accuracy):
             self.MissingRequiredField("accuracy")
@@ -2440,6 +2443,9 @@ class AnalyzingInstrument(YAMLRoot):
 
         if self.serial_number is not None and not isinstance(self.serial_number, str):
             self.serial_number = str(self.serial_number)
+
+        if self.precision is not None and not isinstance(self.precision, str):
+            self.precision = str(self.precision)
 
         if self.calibration is not None and not isinstance(self.calibration, Calibration):
             self.calibration = Calibration(**as_dict(self.calibration))
@@ -2460,7 +2466,6 @@ class PHInstrument(AnalyzingInstrument):
     class_model_uri: ClassVar[URIRef] = OAE.PHInstrument
 
     instrument_type: Union[str, "AnalyzingInstrumentType"] = None
-    precision: str = None
     accuracy: str = None
     calibration: Union[dict, "PHCalibration"] = None
 
@@ -2486,7 +2491,6 @@ class CRMInstrument(AnalyzingInstrument):
     class_model_uri: ClassVar[URIRef] = OAE.CRMInstrument
 
     instrument_type: Union[str, "AnalyzingInstrumentType"] = None
-    precision: str = None
     accuracy: str = None
     calibration: Union[dict, "CRMCalibration"] = None
 
@@ -2512,7 +2516,6 @@ class CO2GasDetector(AnalyzingInstrument):
     class_model_uri: ClassVar[URIRef] = OAE.CO2GasDetector
 
     instrument_type: Union[str, "AnalyzingInstrumentType"] = None
-    precision: str = None
     accuracy: str = None
     detector_type: str = None
     calibration: Union[dict, "CO2Calibration"] = None
@@ -4186,6 +4189,12 @@ slots.verticalExtent__min_depth_in_m = Slot(uri=OAE.min_depth_in_m, name="vertic
 slots.verticalExtent__max_depth_in_m = Slot(uri=OAE.max_depth_in_m, name="verticalExtent__max_depth_in_m", curie=OAE.curie('max_depth_in_m'),
                    model_uri=OAE.verticalExtent__max_depth_in_m, domain=None, range=Optional[float])
 
+slots.verticalExtent__min_height_in_m = Slot(uri=OAE.min_height_in_m, name="verticalExtent__min_height_in_m", curie=OAE.curie('min_height_in_m'),
+                   model_uri=OAE.verticalExtent__min_height_in_m, domain=None, range=Optional[float])
+
+slots.verticalExtent__max_height_in_m = Slot(uri=OAE.max_height_in_m, name="verticalExtent__max_height_in_m", curie=OAE.curie('max_height_in_m'),
+                   model_uri=OAE.verticalExtent__max_height_in_m, domain=None, range=Optional[float])
+
 slots.organization__country = Slot(uri=OAE.country, name="organization__country", curie=OAE.curie('country'),
                    model_uri=OAE.organization__country, domain=None, range=Optional[str])
 
@@ -4273,8 +4282,8 @@ slots.permit__approval_document = Slot(uri=OAE.approval_document, name="permit__
 slots.experiment__experiment_type = Slot(uri=OAE.experiment_type, name="experiment__experiment_type", curie=OAE.curie('experiment_type'),
                    model_uri=OAE.experiment__experiment_type, domain=None, range=Union[str, "ExperimentType"])
 
-slots.experiment__investigators = Slot(uri=OAE.investigators, name="experiment__investigators", curie=OAE.curie('investigators'),
-                   model_uri=OAE.experiment__investigators, domain=None, range=Union[Union[dict, Person], List[Union[dict, Person]]])
+slots.experiment__principal_investigators = Slot(uri=OAE.principal_investigators, name="experiment__principal_investigators", curie=OAE.curie('principal_investigators'),
+                   model_uri=OAE.experiment__principal_investigators, domain=None, range=Union[Union[dict, Person], List[Union[dict, Person]]])
 
 slots.experiment__start_datetime = Slot(uri=OAE.start_datetime, name="experiment__start_datetime", curie=OAE.curie('start_datetime'),
                    model_uri=OAE.experiment__start_datetime, domain=None, range=Union[str, XSDDateTime])
@@ -4567,7 +4576,7 @@ slots.analyzingInstrument__serial_number = Slot(uri=OAE.serial_number, name="ana
                    model_uri=OAE.analyzingInstrument__serial_number, domain=None, range=Optional[str])
 
 slots.analyzingInstrument__precision = Slot(uri=OAE.precision, name="analyzingInstrument__precision", curie=OAE.curie('precision'),
-                   model_uri=OAE.analyzingInstrument__precision, domain=None, range=str)
+                   model_uri=OAE.analyzingInstrument__precision, domain=None, range=Optional[str])
 
 slots.analyzingInstrument__accuracy = Slot(uri=OAE.accuracy, name="analyzingInstrument__accuracy", curie=OAE.curie('accuracy'),
                    model_uri=OAE.analyzingInstrument__accuracy, domain=None, range=str)
@@ -4689,6 +4698,9 @@ slots.Experiment_spatial_coverage = Slot(uri=SCHEMA.spatialCoverage, name="Exper
 
 slots.Experiment_vertical_coverage = Slot(uri=OAE.vertical_coverage, name="Experiment_vertical_coverage", curie=OAE.curie('vertical_coverage'),
                    model_uri=OAE.Experiment_vertical_coverage, domain=Experiment, range=Optional[Union[dict, VerticalExtent]])
+
+slots.DosingConcentration_is_provided_as_a_file = Slot(uri=OAE.is_provided_as_a_file, name="DosingConcentration_is_provided_as_a_file", curie=OAE.curie('is_provided_as_a_file'),
+                   model_uri=OAE.DosingConcentration_is_provided_as_a_file, domain=DosingConcentration, range=Union[bool, Bool])
 
 slots.Variable_units = Slot(uri=OAE.units, name="Variable_units", curie=OAE.curie('units'),
                    model_uri=OAE.Variable_units, domain=Variable, range=str)

@@ -43,7 +43,6 @@ classes:
         title: Precision
         description: Precision of the instrument measurements.
         range: string
-        required: true
         # TODO: Change to DimensionedQuantity in Phase 3
       accuracy:
         title: Accuracy
@@ -98,7 +97,7 @@ classes:
     attributes:
       detector_type:
         title: Detector Type
-        description: Type of the CO2 gas detector
+        description: Type of the CO2 gas detector (E.g., Infrared)
         range: string
         required: true
       calibration:
