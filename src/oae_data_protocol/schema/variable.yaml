@@ -458,21 +458,29 @@ classes:
     description: Fields applied to all measured sediment variable types (discrete and continuous)
     attributes:
       sediment_type:
+        title: Sediment Type
         description: e.g., mud, sand, etc.
         range: string
         required: true
       sediment_sampling_method:
+        title: Sediment Sampling Method
         description: e.g., sediment core, grab sampling, dredging, etc.
         range: string
         required: true
       sediment_sampling_depth:
         # TODO: add booleean field to designate if sampling depth is provided as a variable, via provided_as_a_file flag?
-        description: Depth that sediment was collected below sediment surface. It is recommended to include as a variable with data rather than here.
+        title: Sediment Sampling Depth
+        description: >-
+          Depth that sediment was collected below sediment surface. If provided as a variable (recommended), please list
+          the column header name here.
         range: string
         required: true
       sediment_sampling_water_depth:
         # TODO: add booleean field to designate if sampling water depth is provided as a variable, via provided_as_a_file flag?
-        description: Water depth where sediment was collected.  It is recommended to include as a variable with data rather than here.
+        title: Sediment Sampling Water Depth
+        description: >-
+          Water depth where sediment was collected. If provided as a variable (recommended), please list the column
+          header name here.
         range: string
         required: true
 

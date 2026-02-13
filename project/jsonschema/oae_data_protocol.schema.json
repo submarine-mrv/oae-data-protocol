@@ -1119,19 +1119,23 @@
                     "type": "string"
                 },
                 "sediment_sampling_depth": {
-                    "description": "Depth that sediment was collected below sediment surface. It is recommended to include as a variable with data rather than here.",
+                    "description": "Depth that sediment was collected below sediment surface. If provided as a variable (recommended), please list the column header name here.",
+                    "title": "Sediment Sampling Depth",
                     "type": "string"
                 },
                 "sediment_sampling_method": {
                     "description": "e.g., sediment core, grab sampling, dredging, etc.",
+                    "title": "Sediment Sampling Method",
                     "type": "string"
                 },
                 "sediment_sampling_water_depth": {
-                    "description": "Water depth where sediment was collected.  It is recommended to include as a variable with data rather than here.",
+                    "description": "Water depth where sediment was collected. If provided as a variable (recommended), please list the column header name here.",
+                    "title": "Sediment Sampling Water Depth",
                     "type": "string"
                 },
                 "sediment_type": {
                     "description": "e.g., mud, sand, etc.",
+                    "title": "Sediment Type",
                     "type": "string"
                 },
                 "standard_identifier": {
@@ -2215,19 +2219,23 @@
                     "type": "string"
                 },
                 "sediment_sampling_depth": {
-                    "description": "Depth that sediment was collected below sediment surface. It is recommended to include as a variable with data rather than here.",
+                    "description": "Depth that sediment was collected below sediment surface. If provided as a variable (recommended), please list the column header name here.",
+                    "title": "Sediment Sampling Depth",
                     "type": "string"
                 },
                 "sediment_sampling_method": {
                     "description": "e.g., sediment core, grab sampling, dredging, etc.",
+                    "title": "Sediment Sampling Method",
                     "type": "string"
                 },
                 "sediment_sampling_water_depth": {
-                    "description": "Water depth where sediment was collected.  It is recommended to include as a variable with data rather than here.",
+                    "description": "Water depth where sediment was collected. If provided as a variable (recommended), please list the column header name here.",
+                    "title": "Sediment Sampling Water Depth",
                     "type": "string"
                 },
                 "sediment_type": {
                     "description": "e.g., mud, sand, etc.",
+                    "title": "Sediment Type",
                     "type": "string"
                 },
                 "standard_identifier": {
