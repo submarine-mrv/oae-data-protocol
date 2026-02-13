@@ -239,6 +239,15 @@
         click ContinuousMeasuredVariable href "../ContinuousMeasuredVariable"
 
 
+      ObservedPropertyVariable : analyzing_instrument
+
+
+
+
+    ObservedPropertyVariable --&gt; "1" AnalyzingInstrument : analyzing_instrument
+    click AnalyzingInstrument href "../AnalyzingInstrument"
+
+
       ObservedPropertyVariable : analyzing_method
 
       ObservedPropertyVariable : dataset_variable_name
@@ -361,6 +370,12 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><a href="../analyzing_instrument/">analyzing_instrument</a></td>
+<td>1 <br/> <a href="../AnalyzingInstrument/">AnalyzingInstrument</a></td>
+<td>Instrument used to analyze the water samples or measure the water body contin...</td>
+<td>direct</td>
+</tr>
 <tr>
 <td><a href="../sampling_method/">sampling_method</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
@@ -536,6 +551,8 @@ from_schema: OAEDataManagementProtocol
 is_a: Variable
 mixins:
 - QCFields
+slots:
+- analyzing_instrument
 slot_usage:
   qc_steps_taken:
     name: qc_steps_taken
@@ -738,6 +755,19 @@ attributes:
     domain_of:
     - ObservedPropertyVariable
     range: string
+  analyzing_instrument:
+    name: analyzing_instrument
+    description: Instrument used to analyze the water samples or measure the water
+      body continuously. Instrument includes calibration information.
+    title: Analyzing instrument
+    from_schema: OAEDataManagementProtocol
+    rank: 1000
+    alias: analyzing_instrument
+    owner: ObservedPropertyVariable
+    domain_of:
+    - ObservedPropertyVariable
+    range: AnalyzingInstrument
+    required: true
   qc_steps_taken:
     name: qc_steps_taken
     description: 'Describe what QC steps have been taken to improve the quality of

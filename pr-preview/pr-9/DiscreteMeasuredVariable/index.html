@@ -387,7 +387,7 @@
 <td><a href="../analyzing_instrument/">analyzing_instrument</a></td>
 <td>1 <br/> <a href="../AnalyzingInstrument/">AnalyzingInstrument</a></td>
 <td>Instrument used to analyze the water samples or measure the water body contin...</td>
-<td>direct</td>
+<td><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
 </tr>
 <tr>
 <td><a href="../sampling_method/">sampling_method</a></td>
@@ -562,8 +562,6 @@ description: Analyzing instrument information fields, only applied to discretely
   variables. The instrument type can be narrowed in subclasses using slot_usage.
 from_schema: OAEDataManagementProtocol
 is_a: ObservedPropertyVariable
-slots:
-- analyzing_instrument
 
 </code></pre>
 </details>
@@ -585,7 +583,7 @@ attributes:
     alias: analyzing_instrument
     owner: DiscreteMeasuredVariable
     domain_of:
-    - DiscreteMeasuredVariable
+    - ObservedPropertyVariable
     range: AnalyzingInstrument
     required: true
   sampling_method:
