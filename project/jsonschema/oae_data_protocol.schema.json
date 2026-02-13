@@ -561,6 +561,11 @@
             "additionalProperties": false,
             "description": "Dissolved Inorganic Carbon (DIC) measured variable from continuous autonomous sensor.",
             "properties": {
+                "analyzing_instrument": {
+                    "$ref": "#/$defs/AnalyzingInstrument",
+                    "description": "Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.",
+                    "title": "Analyzing instrument"
+                },
                 "analyzing_method": {
                     "description": "Additional information describing how the sample was analyzed. DOIs provided as applicable.",
                     "title": "Analyzing Method",
@@ -691,6 +696,7 @@
             "required": [
                 "concentration_basis",
                 "raw_data_calculation_method",
+                "analyzing_instrument",
                 "sampling_method",
                 "analyzing_method",
                 "observation_type",
@@ -712,6 +718,11 @@
             "additionalProperties": false,
             "description": "Fields for continuous sampling information.",
             "properties": {
+                "analyzing_instrument": {
+                    "$ref": "#/$defs/AnalyzingInstrument",
+                    "description": "Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.",
+                    "title": "Analyzing instrument"
+                },
                 "analyzing_method": {
                     "description": "Additional information describing how the sample was analyzed. DOIs provided as applicable.",
                     "title": "Analyzing Method",
@@ -831,6 +842,7 @@
             },
             "required": [
                 "raw_data_calculation_method",
+                "analyzing_instrument",
                 "sampling_method",
                 "analyzing_method",
                 "observation_type",
@@ -852,6 +864,11 @@
             "additionalProperties": false,
             "description": "pH measured variable from continuous autonomous sensor",
             "properties": {
+                "analyzing_instrument": {
+                    "$ref": "#/$defs/AnalyzingInstrument",
+                    "description": "Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.",
+                    "title": "Analyzing instrument"
+                },
                 "analyzing_method": {
                     "description": "Additional information describing how the sample was analyzed. DOIs provided as applicable.",
                     "title": "Analyzing Method",
@@ -976,6 +993,7 @@
             },
             "required": [
                 "raw_data_calculation_method",
+                "analyzing_instrument",
                 "sampling_method",
                 "analyzing_method",
                 "observation_type",
@@ -997,6 +1015,11 @@
             "additionalProperties": false,
             "description": "Measured sediment variable collected from continuous autonomous sensor",
             "properties": {
+                "analyzing_instrument": {
+                    "$ref": "#/$defs/AnalyzingInstrument",
+                    "description": "Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.",
+                    "title": "Analyzing instrument"
+                },
                 "analyzing_method": {
                     "description": "Additional information describing how the sample was analyzed. DOIs provided as applicable.",
                     "title": "Analyzing Method",
@@ -1136,6 +1159,7 @@
                 "sediment_sampling_depth",
                 "sediment_sampling_water_depth",
                 "raw_data_calculation_method",
+                "analyzing_instrument",
                 "sampling_method",
                 "analyzing_method",
                 "observation_type",
@@ -1157,6 +1181,11 @@
             "additionalProperties": false,
             "description": "Total Alkalinity (TA) measured variable from continuous autonomous sensor",
             "properties": {
+                "analyzing_instrument": {
+                    "$ref": "#/$defs/AnalyzingInstrument",
+                    "description": "Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.",
+                    "title": "Analyzing instrument"
+                },
                 "analyzing_method": {
                     "description": "Additional information describing how the sample was analyzed. DOIs provided as applicable.",
                     "title": "Analyzing Method",
@@ -1287,6 +1316,7 @@
             "required": [
                 "concentration_basis",
                 "raw_data_calculation_method",
+                "analyzing_instrument",
                 "sampling_method",
                 "analyzing_method",
                 "observation_type",
@@ -3495,6 +3525,11 @@
             "additionalProperties": false,
             "description": "Variable that is directly measured in-situ using instruments. Reference: OAPMetadata XSD variables.xsd - basic_measured_observation_base",
             "properties": {
+                "analyzing_instrument": {
+                    "$ref": "#/$defs/AnalyzingInstrument",
+                    "description": "Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.",
+                    "title": "Analyzing instrument"
+                },
                 "analyzing_method": {
                     "description": "Additional information describing how the sample was analyzed. DOIs provided as applicable.",
                     "title": "Analyzing Method",
@@ -3603,6 +3638,7 @@
                 }
             },
             "required": [
+                "analyzing_instrument",
                 "sampling_method",
                 "analyzing_method",
                 "observation_type",

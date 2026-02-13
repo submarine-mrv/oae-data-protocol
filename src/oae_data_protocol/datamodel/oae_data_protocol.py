@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-02-10T20:37:31
+# Generation date: 2026-02-12T13:39:45
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -1262,6 +1262,7 @@ class ObservedPropertyVariable(Variable):
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
+    analyzing_instrument: Union[dict, "AnalyzingInstrument"] = None
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
@@ -1278,6 +1279,11 @@ class ObservedPropertyVariable(Variable):
     qc_researcher_institution: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.analyzing_instrument):
+            self.MissingRequiredField("analyzing_instrument")
+        if not isinstance(self.analyzing_instrument, AnalyzingInstrument):
+            self.analyzing_instrument = AnalyzingInstrument(**as_dict(self.analyzing_instrument))
+
         if self._is_empty(self.sampling_method):
             self.MissingRequiredField("sampling_method")
         if not isinstance(self.sampling_method, str):
@@ -1359,6 +1365,7 @@ class DiscreteMeasuredVariable(ObservedPropertyVariable):
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
+    analyzing_instrument: Union[dict, "AnalyzingInstrument"] = None
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
@@ -1369,16 +1376,6 @@ class DiscreteMeasuredVariable(ObservedPropertyVariable):
     uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
-    analyzing_instrument: Union[dict, "AnalyzingInstrument"] = None
-
-    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.analyzing_instrument):
-            self.MissingRequiredField("analyzing_instrument")
-        if not isinstance(self.analyzing_instrument, AnalyzingInstrument):
-            self.analyzing_instrument = AnalyzingInstrument(**as_dict(self.analyzing_instrument))
-
-        super().__post_init__(**kwargs)
-
 
 @dataclass(repr=False)
 class ContinuousMeasuredVariable(ObservedPropertyVariable):
@@ -1395,6 +1392,7 @@ class ContinuousMeasuredVariable(ObservedPropertyVariable):
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
+    analyzing_instrument: Union[dict, "AnalyzingInstrument"] = None
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
@@ -1485,6 +1483,7 @@ class ContinuousPHVariable(ContinuousMeasuredVariable):
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
+    analyzing_instrument: Union[dict, "AnalyzingInstrument"] = None
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
@@ -1577,6 +1576,7 @@ class ContinuousTAVariable(ContinuousMeasuredVariable):
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
+    analyzing_instrument: Union[dict, "AnalyzingInstrument"] = None
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
@@ -1690,6 +1690,7 @@ class ContinuousDICVariable(ContinuousMeasuredVariable):
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
+    analyzing_instrument: Union[dict, "AnalyzingInstrument"] = None
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
@@ -1790,6 +1791,7 @@ class ContinuousSedimentVariable(ContinuousMeasuredVariable):
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
+    analyzing_instrument: Union[dict, "AnalyzingInstrument"] = None
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
@@ -1845,6 +1847,7 @@ class DiscreteSedimentVariable(DiscreteMeasuredVariable):
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
+    analyzing_instrument: Union[dict, "AnalyzingInstrument"] = None
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
@@ -1855,7 +1858,6 @@ class DiscreteSedimentVariable(DiscreteMeasuredVariable):
     uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
-    analyzing_instrument: Union[dict, "AnalyzingInstrument"] = None
     sediment_type: str = None
     sediment_sampling_method: str = None
     sediment_sampling_depth: str = None
@@ -1975,6 +1977,7 @@ class HPLCVariable(DiscreteMeasuredVariable):
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
+    analyzing_instrument: Union[dict, "AnalyzingInstrument"] = None
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
@@ -1985,7 +1988,6 @@ class HPLCVariable(DiscreteMeasuredVariable):
     uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
-    analyzing_instrument: Union[dict, "AnalyzingInstrument"] = None
     hplc_lab: str = None
     hplc_lab_technician: Optional[str] = None
 

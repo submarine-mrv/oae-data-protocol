@@ -12,7 +12,6 @@ imports:
   - instrument
 
 classes:
-
   # ==============================================================================
   # BaseVariable Abstract Class (subclasses: Variable, NonMeasuredVariable)
   # ==============================================================================
@@ -96,6 +95,8 @@ classes:
     is_a: Variable
     mixins:
       - QCFields
+    slots:
+      - analyzing_instrument
     slot_usage:
       qc_steps_taken:
         required: true
@@ -147,8 +148,6 @@ classes:
     description: >-
       Analyzing instrument information fields, only applied to discretely measured variables.
       The instrument type can be narrowed in subclasses using slot_usage.
-    slots:
-      - analyzing_instrument
 
   # =============================================================================
   # ContinuousMeasuredVariable Class (pH, DIC, TA, xCO2/pCO2/fCO2, physiological, sediment)
@@ -370,11 +369,6 @@ classes:
 #      CO2 sensor measured variable
 #      Reference: OAPMetadata XSD variables.xsd - co2_continuous
 #    is_a: Continuous
-# TODO: investigate how to handle Continuous variable given that we need gas detector / analyzing instrument
-
-
-
-#
 #
 #  # =============================================================================
 #  # Physiological Variable Class
@@ -439,7 +433,6 @@ classes:
   # =============================================================================
 
 
-
   MeasuredTAFields:
     mixin: true
     description: Fields applied to all measured TA variable types (discrete and continuous)
@@ -473,12 +466,12 @@ classes:
         range: string
         required: true
       sediment_sampling_depth:
-        # TODO: add booleean field to designate if sampling depth is provided as a variable
+        # TODO: add booleean field to designate if sampling depth is provided as a variable, via provided_as_a_file flag?
         description: Depth that sediment was collected below sediment surface. It is recommended to include as a variable with data rather than here.
         range: string
         required: true
       sediment_sampling_water_depth:
-        # TODO: add booleean field to designate if sampling water depth is provided as a variable
+        # TODO: add booleean field to designate if sampling water depth is provided as a variable, via provided_as_a_file flag?
         description: Water depth where sediment was collected.  It is recommended to include as a variable with data rather than here.
         range: string
         required: true
