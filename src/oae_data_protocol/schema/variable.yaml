@@ -129,6 +129,7 @@ classes:
       sampling:
         range: SamplingType
         required: true
+      # TODO: Can restrict genesis to be ONLY 'measured'
       genesis:
         range: GenesisType
         required: true
@@ -177,6 +178,10 @@ classes:
     mixins:
       - QCFields
     attributes:
+      # TODO: Can restrict genesis to be ONLY 'calculated'
+      genesis:
+        range: GenesisType
+        required: true
       calculation_method_and_parameters:
         title: Calculated Method And Parameters
         description: >-

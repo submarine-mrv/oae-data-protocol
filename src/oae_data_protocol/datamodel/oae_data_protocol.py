@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-02-12T22:56:39
+# Generation date: 2026-02-13T00:53:17
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -1433,6 +1433,7 @@ class CalculatedVariable(Variable):
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
+    genesis: Union[str, "GenesisType"] = None
     calculation_method_and_parameters: str = None
     qc_steps_taken: Optional[str] = None
     uncertainty: Optional[str] = None
@@ -1442,6 +1443,11 @@ class CalculatedVariable(Variable):
     qc_researcher_institution: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.genesis):
+            self.MissingRequiredField("genesis")
+        if not isinstance(self.genesis, GenesisType):
+            self.genesis = GenesisType(self.genesis)
+
         if self._is_empty(self.calculation_method_and_parameters):
             self.MissingRequiredField("calculation_method_and_parameters")
         if not isinstance(self.calculation_method_and_parameters, str):
@@ -4438,6 +4444,9 @@ slots.continuousMeasuredVariable__raw_data_calculation_method = Slot(uri=OAE.raw
 
 slots.continuousMeasuredVariable__calculation_software_version = Slot(uri=OAE.calculation_software_version, name="continuousMeasuredVariable__calculation_software_version", curie=OAE.curie('calculation_software_version'),
                    model_uri=OAE.continuousMeasuredVariable__calculation_software_version, domain=None, range=Optional[str])
+
+slots.calculatedVariable__genesis = Slot(uri=OAE.genesis, name="calculatedVariable__genesis", curie=OAE.curie('genesis'),
+                   model_uri=OAE.calculatedVariable__genesis, domain=None, range=Union[str, "GenesisType"])
 
 slots.calculatedVariable__calculation_method_and_parameters = Slot(uri=OAE.calculation_method_and_parameters, name="calculatedVariable__calculation_method_and_parameters", curie=OAE.curie('calculation_method_and_parameters'),
                    model_uri=OAE.calculatedVariable__calculation_method_and_parameters, domain=None, range=str)

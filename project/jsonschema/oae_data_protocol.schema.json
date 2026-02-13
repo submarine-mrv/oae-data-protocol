@@ -387,6 +387,9 @@
                     "title": "Dataset variable name (raw)",
                     "type": "string"
                 },
+                "genesis": {
+                    "$ref": "#/$defs/GenesisType"
+                },
                 "long_name": {
                     "description": "Full descriptive name of the variable.",
                     "title": "Variable full name",
@@ -447,6 +450,7 @@
                 }
             },
             "required": [
+                "genesis",
                 "calculation_method_and_parameters",
                 "units",
                 "dataset_variable_name",
