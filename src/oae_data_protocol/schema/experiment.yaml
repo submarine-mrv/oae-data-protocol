@@ -9,7 +9,10 @@ default_prefix: oae
 
 classes:
   Experiment:
-    abstract: true
+    # TODO: We may want to revert to set 'abstract: true' again once we set `include_range_class_descendents: true`
+    # As of right now, setting Experiment to abstract means we don't get it in the JSON Schema at all and it breaks
+    # downstream usage
+    # abstract: true
     description: >-
       Abstract base class for all experiment types. Contains fields common to both in-situ and model experiments.
     slots:

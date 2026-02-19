@@ -1352,6 +1352,80 @@
             "title": "DataProductType",
             "type": "string"
         },
+        "Dataset": {
+            "additionalProperties": false,
+            "description": "Abstract base class for all dataset types. Contains fields common to both field/observational and model simulation datasets. Generally following guidelines & best practices as outlined in [science-on-schema.org](https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md)",
+            "properties": {
+                "author_list_for_citation": {
+                    "description": "Author list in the format of Lastname1, Firstname1 Middlename1; Lastname2, Firstname2 Middlename2; ...",
+                    "title": "Author List (for citation)",
+                    "type": "string"
+                },
+                "data_submitter": {
+                    "$ref": "#/$defs/Person",
+                    "title": "Data Submitter"
+                },
+                "dataset_type": {
+                    "$ref": "#/$defs/DatasetType",
+                    "description": "Selected controlled vocabularies for data types relevant to mCDR have been referenced from NASA's SeaBASS metadata system and are provided below, for additional data types of optical characteristics see the [SeaBASS controlled definitions list](https://seabass.gsfc.nasa.gov/wiki/metadataheaders#data_type). Additional data types have been included to meet the needs of mCDR field projects.",
+                    "title": "Dataset Type"
+                },
+                "dataset_type_custom": {
+                    "description": "Custom \"data type\" when an appropriate value is not found in the controlled vocabulary list for mCDR Data Type and the corresponding `data_type` field is set to \"other\".",
+                    "title": "Dataset Type (Custom)",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "The abstract of a dataset is a brief summary that provides an overview of the dataset's content, purpose, and scope. It is used to provide context and background information to users who are interested in using the dataset. An abstract may include information such as the dataset's source, how the data was collected or generated, the variables or attributes included in the dataset, and any limitations or restrictions on the use of the data. It may also include information on how the data can be accessed or used.",
+                    "title": "Description",
+                    "type": "string"
+                },
+                "experiment_id": {
+                    "description": "The experiment to which the data belong. Any naming convention that produces a unique ID is usable. The recommended naming convention is:\nProject ID + Experiment type + Optional numerical indicator to differentiate between various experiments of the same type for a project. A two digit consecutive number beginning with 01",
+                    "title": "Experiment ID",
+                    "type": "string"
+                },
+                "fair_use_data_request": {
+                    "description": "A statement from the data producer regarding how this dataset should be used.",
+                    "title": "Fair Use Data Request",
+                    "type": "string"
+                },
+                "filenames": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 1,
+                    "title": "Filenames",
+                    "type": "array"
+                },
+                "license": {
+                    "description": "Link a Dataset to its license to document legal constraints by adding a schema:license property. The guide recommends providing a URL that unambiguously identifies a specific version of the license used, but for many licenses it is hard to determine what that URL should be. Thus, we recommend that the license URL be drawn from the [SPDX license list](https://spdx.org/licenses/), which provides a curated list of licenses and their properties that is well maintained. For each SPDX entry, SPDX provides a canonical URL for the license (e.g., http://spdx.org/licenses/CC0-1.0), a unique licenseId (e.g., CC0-1.0), and other metadata about the license.",
+                    "title": "License",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A brief descriptive sentence that summarizes the content of a dataset. Here is one example:\n\"Dissolved inorganic carbon, total alkalinity, pH, temperature, salinity and other variables collected from profile and discrete sample observations using CTD, Niskin bottle, and other instruments from R/V Wecoma in the U.S. West Coast California Current System during the 2011 West Coast Ocean Acidification Cruise (WCOA2011) from 2011-08-12 to 2011-08-30\"",
+                    "title": "Dataset Title",
+                    "type": "string"
+                },
+                "project_id": {
+                    "description": "The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.\nIf no Project ID has been assigned, one may be generated by combining: lead organizer surname and first initial or company, a unique date, and location.\nAny method that creates a unique ID that will link all project data is acceptable.",
+                    "title": "Project ID",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name",
+                "description",
+                "project_id",
+                "experiment_id",
+                "dataset_type",
+                "data_submitter",
+                "filenames"
+            ],
+            "title": "Dataset",
+            "type": "object"
+        },
         "DatasetType": {
             "description": "Type of dataset being submitted. This usually",
             "enum": [
@@ -2409,6 +2483,74 @@
             ],
             "title": "EquilibrationStatus",
             "type": "string"
+        },
+        "Experiment": {
+            "additionalProperties": false,
+            "description": "Abstract base class for all experiment types. Contains fields common to both in-situ and model experiments.",
+            "properties": {
+                "description": {
+                    "description": "A narrative description of the experiment. For example, what part of the project do these data represent (e.g., baseline, intervention, control) and what do they contribute to the overall project? Are all project research questions listed in Project description relevant? What were the processes to achieve these goals and answer these questions? Data submitters are encouraged to note any significant changes to the original experimental plan due to unforeseen circumstances here.",
+                    "title": "Experiment Description",
+                    "type": "string"
+                },
+                "end_datetime": {
+                    "description": "End date and time of experiment in UTC ISO-8601",
+                    "format": "date-time",
+                    "title": "End Date and Time",
+                    "type": "string"
+                },
+                "experiment_id": {
+                    "description": "The experiment to which the data belong. Any naming convention that produces a unique ID is usable. The recommended naming convention is:\nProject ID + Experiment type + Optional numerical indicator to differentiate between various experiments of the same type for a project. A two digit consecutive number beginning with 01",
+                    "title": "Experiment ID",
+                    "type": "string"
+                },
+                "experiment_type": {
+                    "$ref": "#/$defs/ExperimentType",
+                    "description": "The type of mCDR experiment conducted. See Controlled Vocabularies section for definitions.",
+                    "title": "mCDR Experiment Type"
+                },
+                "name": {
+                    "description": "Optional common name for experiment.",
+                    "title": "Name",
+                    "type": "string"
+                },
+                "principal_investigators": {
+                    "description": "Provide details for each principal investigator (PI) including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.",
+                    "items": {
+                        "$ref": "#/$defs/Person"
+                    },
+                    "title": "Principal Investigators",
+                    "type": "array"
+                },
+                "project_id": {
+                    "description": "The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.\nIf no Project ID has been assigned, one may be generated by combining: lead organizer surname and first initial or company, a unique date, and location.\nAny method that creates a unique ID that will link all project data is acceptable.",
+                    "title": "Project ID",
+                    "type": "string"
+                },
+                "spatial_coverage": {
+                    "$ref": "#/$defs/SpatialCoverage",
+                    "description": "Latitude/longitude bounds of observed data in experiment, provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]",
+                    "title": "Spatial Coverage"
+                },
+                "start_datetime": {
+                    "description": "Start date and time of experiment in UTC ISO-8601",
+                    "format": "date-time",
+                    "title": "Start Date and Time",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "description",
+                "spatial_coverage",
+                "project_id",
+                "experiment_id",
+                "experiment_type",
+                "principal_investigators",
+                "start_datetime",
+                "end_datetime"
+            ],
+            "title": "Experiment",
+            "type": "object"
         },
         "ExperimentType": {
             "description": "Types of mCDR experiments",
