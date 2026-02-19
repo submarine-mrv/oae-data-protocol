@@ -13,7 +13,7 @@ This repository provides machine-readable schemas and data standards for the pro
 
 **For Protocol Compliance**: As of the v1.0 protocol launch (August 25, 2025), projects seeking to comply with the protocol guidelines should use the Excel templates available on the [protocol website](http://carbontosea.org/oae-data-protocol/1-0-0/). These templates are also available in the [`templates/excel`](./templates/excel) directory of this repository.
 
-**Beta Testing**: Organizations and researchers interested in testing the software tooling under development in this repository should contact [jacki@submarine.earth](mailto:jacki@submarine.earth).
+**Beta Testing**: Organizations and researchers interested in testing the software tooling under development in this repository should contact [data@carbontosea.org](mailto:data@carbontosea.org).
 
 ## What's Inside
 
