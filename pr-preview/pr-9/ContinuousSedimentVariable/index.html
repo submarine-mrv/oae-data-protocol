@@ -608,6 +608,7 @@ attributes:
   sediment_type:
     name: sediment_type
     description: e.g., mud, sand, etc.
+    title: Sediment Type
     from_schema: Variable
     rank: 1000
     alias: sediment_type
@@ -619,6 +620,7 @@ attributes:
   sediment_sampling_method:
     name: sediment_sampling_method
     description: e.g., sediment core, grab sampling, dredging, etc.
+    title: Sediment Sampling Method
     from_schema: Variable
     rank: 1000
     alias: sediment_sampling_method
@@ -629,8 +631,9 @@ attributes:
     required: true
   sediment_sampling_depth:
     name: sediment_sampling_depth
-    description: Depth that sediment was collected below sediment surface. It is recommended
-      to include as a variable with data rather than here.
+    description: Depth that sediment was collected below sediment surface. If provided
+      as a variable (recommended), please list the column header name here.
+    title: Sediment Sampling Depth
     from_schema: Variable
     rank: 1000
     alias: sediment_sampling_depth
@@ -641,8 +644,9 @@ attributes:
     required: true
   sediment_sampling_water_depth:
     name: sediment_sampling_water_depth
-    description: Water depth where sediment was collected.  It is recommended to include
-      as a variable with data rather than here.
+    description: Water depth where sediment was collected. If provided as a variable
+      (recommended), please list the column header name here.
+    title: Sediment Sampling Water Depth
     from_schema: Variable
     rank: 1000
     alias: sediment_sampling_water_depth
@@ -754,6 +758,7 @@ attributes:
     owner: ContinuousSedimentVariable
     domain_of:
     - ObservedPropertyVariable
+    - CalculatedVariable
     range: GenesisType
     required: true
   sampling_instrument_type:

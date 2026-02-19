@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: sediment_sampling_water_depth - oae-data-protocol</title>
+        <title>Slot: Sediment Sampling Water Depth (sediment_sampling_water_depth) - oae-data-protocol</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-sediment_sampling_water_depth" class="md-skip">
+        <a href="#slot-sediment-sampling-water-depth-sediment_sampling_water_depth" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: sediment_sampling_water_depth
+              Slot: Sediment Sampling Water Depth (sediment_sampling_water_depth)
             
           </span>
         </div>
@@ -359,8 +359,8 @@
   
 
 
-<h1 id="slot-sediment_sampling_water_depth">Slot: sediment_sampling_water_depth</h1>
-<p><em>Water depth where sediment was collected.  It is recommended to include as a variable with data rather than here.</em></p>
+<h1 id="slot-sediment-sampling-water-depth-sediment_sampling_water_depth">Slot: Sediment Sampling Water Depth (sediment_sampling_water_depth)</h1>
+<p><em>Water depth where sediment was collected. If provided as a variable (recommended), please list the column header name here.</em></p>
 <p>URI: <a href="https://example.org/oae#sediment_sampling_water_depth">oae:sediment_sampling_water_depth</a></p>
 <!-- no inheritance hierarchy -->
 
@@ -375,8 +375,8 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../MeasuredSedimentFields/">MeasuredSedimentFields</a></td>
-<td>Fields applied to all measured sediment variable types (discrete and continuo...</td>
+<td><a href="../ContinuousSedimentVariable/">ContinuousSedimentVariable</a></td>
+<td>Measured sediment variable collected from continuous autonomous sensor</td>
 <td>no</td>
 </tr>
 <tr>
@@ -385,8 +385,8 @@
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../ContinuousSedimentVariable/">ContinuousSedimentVariable</a></td>
-<td>Measured sediment variable collected from continuous autonomous sensor</td>
+<td><a href="../MeasuredSedimentFields/">MeasuredSedimentFields</a></td>
+<td>Fields applied to all measured sediment variable types (discrete and continuo...</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -428,8 +428,9 @@
 <details>
 
 <pre><code class="language-yaml">name: sediment_sampling_water_depth
-description: Water depth where sediment was collected.  It is recommended to include
-  as a variable with data rather than here.
+description: Water depth where sediment was collected. If provided as a variable (recommended),
+  please list the column header name here.
+title: Sediment Sampling Water Depth
 from_schema: OAEDataManagementProtocol
 rank: 1000
 alias: sediment_sampling_water_depth

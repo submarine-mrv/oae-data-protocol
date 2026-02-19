@@ -240,6 +240,15 @@
 
       CalculatedVariable : dataset_variable_name_raw
 
+      CalculatedVariable : genesis
+
+
+
+
+    CalculatedVariable --&gt; "1" GenesisType : genesis
+    click GenesisType href "../GenesisType"
+
+
       CalculatedVariable : long_name
 
       CalculatedVariable : measurement_researcher
@@ -308,6 +317,12 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><a href="../genesis/">genesis</a></td>
+<td>1 <br/> <a href="../GenesisType/">GenesisType</a></td>
+<td></td>
+<td>direct</td>
+</tr>
 <tr>
 <td><a href="../calculation_method_and_parameters/">calculation_method_and_parameters</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
@@ -441,6 +456,14 @@ is_a: Variable
 mixins:
 - QCFields
 attributes:
+  genesis:
+    name: genesis
+    from_schema: Variable
+    domain_of:
+    - ObservedPropertyVariable
+    - CalculatedVariable
+    range: GenesisType
+    required: true
   calculation_method_and_parameters:
     name: calculation_method_and_parameters
     description: 'Information about how the variable was calculated and the parameters
@@ -467,6 +490,16 @@ is_a: Variable
 mixins:
 - QCFields
 attributes:
+  genesis:
+    name: genesis
+    from_schema: Variable
+    alias: genesis
+    owner: CalculatedVariable
+    domain_of:
+    - ObservedPropertyVariable
+    - CalculatedVariable
+    range: GenesisType
+    required: true
   calculation_method_and_parameters:
     name: calculation_method_and_parameters
     description: 'Information about how the variable was calculated and the parameters
