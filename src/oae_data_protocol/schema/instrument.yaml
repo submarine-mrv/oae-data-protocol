@@ -18,31 +18,22 @@ imports:
   - calibration
 
 classes:
-  # Abstract base instrument class
-  Instrument:
+  # Abstract base analyzing instrument class
+  AnalyzingInstrument:
     description: >-
-      Base class for scientific instruments used in measurements.
-    abstract: true
+      Base class for scientific instruments used in analyzing samples for measurement.
+    slots:
+      - manufacturer
+      - model
     attributes:
       instrument_type:
         title: Instrument type
         description: >-
           Type of instrument used to analyze samples or measure continuously.
         range: AnalyzingInstrumentType
-        any_of:
-          - range: AnalyzingInstrumentType
-          - range: SamplingInstrumentType
         required: true
       instrument_type_custom:
         title: Instrument type (custom)
-        range: string
-      manufacturer:
-        title: Manufacturer
-        description: Manufacturer name of the instrument.
-        range: string
-      model:
-        title: Model
-        description: Model number or name of the instrument.
         range: string
       serial_number:
         title: Serial number
@@ -52,7 +43,6 @@ classes:
         title: Precision
         description: Precision of the instrument measurements.
         range: string
-        required: true
         # TODO: Change to DimensionedQuantity in Phase 3
       accuracy:
         title: Accuracy
@@ -65,14 +55,6 @@ classes:
         description: Calibration information for this instrument.
         range: Calibration
 
-  AnalyzingInstrument:
-    is_a:
-      Instrument
-    description: >-
-      Subclass of Instrument used for analyzing samples
-    slot_usage:
-      instrument_type:
-        range: AnalyzingInstrumentType
 
   # pH Instrument with dye-based calibration
   PHInstrument:
@@ -91,7 +73,7 @@ classes:
     description: >-
       Instrument calibrated with Certified Reference Materials, used for DIC and TA measurements.
     #TODO: Should this be analyzing instrument?
-    is_a: Instrument
+    is_a: AnalyzingInstrument
     attributes:
       calibration:
         title: Calibration
@@ -103,9 +85,21 @@ classes:
   CO2GasDetector:
     description: >-
       CO2 gas detector with standard gas calibration.
-    #TODO: Should this be analyzing instrument?
-    is_a: Instrument
+    is_a: AnalyzingInstrument
+    slot_usage:
+      analyzing_instrument_type:
+        equals_string: "gas_analyzer"
+      manufacturer:
+        required: true
+        description: Manufacture of the CO2 sensor
+      model:
+        description: Model number of the CO2 sensor, e.g., 6262
     attributes:
+      detector_type:
+        title: Detector Type
+        description: Type of the CO2 gas detector (E.g., Infrared)
+        range: string
+        required: true
       calibration:
         title: Calibration
         description: CO2 calibration information for this instrument.
@@ -120,31 +114,15 @@ classes:
         description: Uncertainty of the CO2 sensor.
         range: string
 
-  # Generic sensor with basic calibration
-  Sensor:
-    description: >-
-      Generic sensor with basic calibration information.
-      Used for auxiliary measurements like temperature, pressure, etc.
-    #TODO: Should this be analyzing instrument?
-    is_a: Instrument
-    attributes:
-      calibration:
-        title: Calibration
-        description: Calibration information for this sensor.
-        range: Calibration
-
-  # Concrete generic instrument for backward compatibility
-  GenericInstrument:
-    description: >-
-      Generic instrument for cases that don't fit specialized instrument types.
-      Provides backward compatibility and flexibility.
-    #TODO: Should this be analyzing instrument?
-    is_a: Instrument
-    attributes:
-      calibration:
-        title: Calibration
-        description: Calibration information for this instrument.
-        range: Calibration
+slots:
+  manufacturer:
+    title: Manufacturer
+    description: Manufacturer name of the instrument.
+    range: string
+  model:
+    title: Model
+    description: Model number or name of the instrument.
+    range: string
 
 enums:
   SamplingInstrumentType:
@@ -363,4 +341,8 @@ enums:
         description: >-
           Environmental DNA (eDNA) samplers: used to collect and analyze genetic material shed by marine organisms,
           which can provide information about their distribution, abundance, and diversity.
+      gas_analyzer:
+        # TODO: Add description and URI (in meaning metaslot)
+        description: >-
+          TBD
       other:
