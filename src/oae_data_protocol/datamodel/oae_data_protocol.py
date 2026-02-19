@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-02-18T20:28:48
+# Generation date: 2026-02-18T21:43:16
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -2294,7 +2294,8 @@ class QCFields(YAMLRoot):
 @dataclass(repr=False)
 class Dataset(YAMLRoot):
     """
-    A dataset related to an OAE experiment. Generally following guidelines & best practices as outlined in
+    Abstract base class for all dataset types. Contains fields common to both field/observational and model simulation
+    datasets. Generally following guidelines & best practices as outlined in
     [science-on-schema.org](https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md)
     """
     _inherited_slots: ClassVar[List[str]] = []
@@ -2308,19 +2309,13 @@ class Dataset(YAMLRoot):
     description: str = None
     project_id: str = None
     experiment_id: str = None
-    temporal_coverage: str = None
     dataset_type: Union[str, "DatasetType"] = None
     data_submitter: Union[dict, Person] = None
-    data_product_type: Union[str, "DataProductType"] = None
-    platform_info: Union[dict, "Platform"] = None
     filenames: Union[str, List[str]] = None
     dataset_type_custom: Optional[str] = None
     author_list_for_citation: Optional[str] = None
     license: Optional[Union[str, URI]] = None
     fair_use_data_request: Optional[str] = None
-    qc_flag_scheme: Optional[str] = None
-    calibration_files: Optional[Union[str, List[str]]] = empty_list()
-    variables: Optional[Union[Union[dict, Variable], List[Union[dict, Variable]]]] = empty_list()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.name):
@@ -2343,11 +2338,6 @@ class Dataset(YAMLRoot):
         if not isinstance(self.experiment_id, str):
             self.experiment_id = str(self.experiment_id)
 
-        if self._is_empty(self.temporal_coverage):
-            self.MissingRequiredField("temporal_coverage")
-        if not isinstance(self.temporal_coverage, str):
-            self.temporal_coverage = str(self.temporal_coverage)
-
         if self._is_empty(self.dataset_type):
             self.MissingRequiredField("dataset_type")
         if not isinstance(self.dataset_type, DatasetType):
@@ -2357,16 +2347,6 @@ class Dataset(YAMLRoot):
             self.MissingRequiredField("data_submitter")
         if not isinstance(self.data_submitter, Person):
             self.data_submitter = Person(**as_dict(self.data_submitter))
-
-        if self._is_empty(self.data_product_type):
-            self.MissingRequiredField("data_product_type")
-        if not isinstance(self.data_product_type, DataProductType):
-            self.data_product_type = DataProductType(self.data_product_type)
-
-        if self._is_empty(self.platform_info):
-            self.MissingRequiredField("platform_info")
-        if not isinstance(self.platform_info, Platform):
-            self.platform_info = Platform(**as_dict(self.platform_info))
 
         if self._is_empty(self.filenames):
             self.MissingRequiredField("filenames")
@@ -2386,6 +2366,52 @@ class Dataset(YAMLRoot):
         if self.fair_use_data_request is not None and not isinstance(self.fair_use_data_request, str):
             self.fair_use_data_request = str(self.fair_use_data_request)
 
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class FieldDataset(Dataset):
+    """
+    A field or observational dataset related to an OAE experiment. Contains fields specific to in-situ data collection
+    such as platform information, calibration files, QC flags, and measured variables.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["FieldDataset"]
+    class_class_curie: ClassVar[str] = "oae:FieldDataset"
+    class_name: ClassVar[str] = "FieldDataset"
+    class_model_uri: ClassVar[URIRef] = OAE.FieldDataset
+
+    name: str = None
+    description: str = None
+    project_id: str = None
+    experiment_id: str = None
+    dataset_type: Union[str, "DatasetType"] = None
+    data_submitter: Union[dict, Person] = None
+    filenames: Union[str, List[str]] = None
+    temporal_coverage: str = None
+    data_product_type: Union[str, "DataProductType"] = None
+    platform_info: Union[dict, "Platform"] = None
+    qc_flag_scheme: Optional[str] = None
+    calibration_files: Optional[Union[str, List[str]]] = empty_list()
+    variables: Optional[Union[Union[dict, Variable], List[Union[dict, Variable]]]] = empty_list()
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.temporal_coverage):
+            self.MissingRequiredField("temporal_coverage")
+        if not isinstance(self.temporal_coverage, str):
+            self.temporal_coverage = str(self.temporal_coverage)
+
+        if self._is_empty(self.data_product_type):
+            self.MissingRequiredField("data_product_type")
+        if not isinstance(self.data_product_type, DataProductType):
+            self.data_product_type = DataProductType(self.data_product_type)
+
+        if self._is_empty(self.platform_info):
+            self.MissingRequiredField("platform_info")
+        if not isinstance(self.platform_info, Platform):
+            self.platform_info = Platform(**as_dict(self.platform_info))
+
         if self.qc_flag_scheme is not None and not isinstance(self.qc_flag_scheme, str):
             self.qc_flag_scheme = str(self.qc_flag_scheme)
 
@@ -2394,6 +2420,115 @@ class Dataset(YAMLRoot):
         self.calibration_files = [v if isinstance(v, str) else str(v) for v in self.calibration_files]
 
         self._normalize_inlined_as_dict(slot_name="variables", slot_type=Variable, key_name="dataset_variable_name", keyed=False)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class ModelSimulationDataset(Dataset):
+    """
+    A model simulation output dataset. Contains fields specific to computational model output including simulation
+    configuration, output variables, and hardware information.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["ModelSimulationDataset"]
+    class_class_curie: ClassVar[str] = "oae:ModelSimulationDataset"
+    class_name: ClassVar[str] = "ModelSimulationDataset"
+    class_model_uri: ClassVar[URIRef] = OAE.ModelSimulationDataset
+
+    name: str = None
+    description: str = None
+    project_id: str = None
+    experiment_id: str = None
+    dataset_type: Union[str, "DatasetType"] = None
+    data_submitter: Union[dict, Person] = None
+    filenames: Union[str, List[str]] = None
+    simulation_type: Union[str, "SimulationType"] = None
+    start_datetime: Union[str, XSDDateTime] = None
+    end_datetime: Union[str, XSDDateTime] = None
+    spin_up_protocol: Optional[str] = None
+    output_frequency: Optional[str] = None
+    time_stepping_scheme: Optional[str] = None
+    alkalinity_perturbation_description: Optional[str] = None
+    hardware_configuration: Optional[Union[dict, "HardwareConfiguration"]] = None
+    model_output_variables: Optional[Union[Union[str, "ModelSimulationVariable"], List[Union[str, "ModelSimulationVariable"]]]] = empty_list()
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.simulation_type):
+            self.MissingRequiredField("simulation_type")
+        if not isinstance(self.simulation_type, SimulationType):
+            self.simulation_type = SimulationType(self.simulation_type)
+
+        if self._is_empty(self.start_datetime):
+            self.MissingRequiredField("start_datetime")
+        if not isinstance(self.start_datetime, XSDDateTime):
+            self.start_datetime = XSDDateTime(self.start_datetime)
+
+        if self._is_empty(self.end_datetime):
+            self.MissingRequiredField("end_datetime")
+        if not isinstance(self.end_datetime, XSDDateTime):
+            self.end_datetime = XSDDateTime(self.end_datetime)
+
+        if self.spin_up_protocol is not None and not isinstance(self.spin_up_protocol, str):
+            self.spin_up_protocol = str(self.spin_up_protocol)
+
+        if self.output_frequency is not None and not isinstance(self.output_frequency, str):
+            self.output_frequency = str(self.output_frequency)
+
+        if self.time_stepping_scheme is not None and not isinstance(self.time_stepping_scheme, str):
+            self.time_stepping_scheme = str(self.time_stepping_scheme)
+
+        if self.alkalinity_perturbation_description is not None and not isinstance(self.alkalinity_perturbation_description, str):
+            self.alkalinity_perturbation_description = str(self.alkalinity_perturbation_description)
+
+        if self.hardware_configuration is not None and not isinstance(self.hardware_configuration, HardwareConfiguration):
+            self.hardware_configuration = HardwareConfiguration(**as_dict(self.hardware_configuration))
+
+        if not isinstance(self.model_output_variables, list):
+            self.model_output_variables = [self.model_output_variables] if self.model_output_variables is not None else []
+        self.model_output_variables = [v if isinstance(v, ModelSimulationVariable) else ModelSimulationVariable(v) for v in self.model_output_variables]
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class HardwareConfiguration(YAMLRoot):
+    """
+    Details about the computational hardware used to run a model simulation.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["HardwareConfiguration"]
+    class_class_curie: ClassVar[str] = "oae:HardwareConfiguration"
+    class_name: ClassVar[str] = "HardwareConfiguration"
+    class_model_uri: ClassVar[URIRef] = OAE.HardwareConfiguration
+
+    machine: Optional[str] = None
+    operating_system: Optional[str] = None
+    cpu_gpu_details: Optional[str] = None
+    memory: Optional[str] = None
+    storage: Optional[str] = None
+    parallelization: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self.machine is not None and not isinstance(self.machine, str):
+            self.machine = str(self.machine)
+
+        if self.operating_system is not None and not isinstance(self.operating_system, str):
+            self.operating_system = str(self.operating_system)
+
+        if self.cpu_gpu_details is not None and not isinstance(self.cpu_gpu_details, str):
+            self.cpu_gpu_details = str(self.cpu_gpu_details)
+
+        if self.memory is not None and not isinstance(self.memory, str):
+            self.memory = str(self.memory)
+
+        if self.storage is not None and not isinstance(self.storage, str):
+            self.storage = str(self.storage)
+
+        if self.parallelization is not None and not isinstance(self.parallelization, str):
+            self.parallelization = str(self.parallelization)
 
         super().__post_init__(**kwargs)
 
@@ -3341,6 +3476,62 @@ class DataProductType(EnumDefinitionImpl):
 
     _defn = EnumDefinition(
         name="DataProductType",
+    )
+
+class SimulationType(EnumDefinitionImpl):
+    """
+    Type of model simulation dataset
+    """
+    counterfactual = PermissibleValue(
+        text="counterfactual",
+        description="Control/baseline simulation without alkalinity perturbation")
+    perturbation = PermissibleValue(
+        text="perturbation",
+        description="Simulation with alkalinity perturbation applied")
+
+    _defn = EnumDefinition(
+        name="SimulationType",
+        description="Type of model simulation dataset",
+    )
+
+class ModelSimulationVariable(EnumDefinitionImpl):
+    """
+    Variables commonly included in model simulation output datasets
+    """
+    air_sea_co2_flux = PermissibleValue(
+        text="air_sea_co2_flux",
+        description="Air-sea exchange of carbon dioxide")
+    dissolved_inorganic_carbon = PermissibleValue(
+        text="dissolved_inorganic_carbon",
+        description="Dissolved inorganic carbon (DIC)")
+    total_alkalinity = PermissibleValue(
+        text="total_alkalinity",
+        description="Total alkalinity (TA)")
+    temperature = PermissibleValue(
+        text="temperature",
+        description="Temperature")
+    salinity = PermissibleValue(
+        text="salinity",
+        description="Salinity")
+    ph = PermissibleValue(
+        text="ph",
+        description="pH of seawater")
+    phytoplankton = PermissibleValue(
+        text="phytoplankton",
+        description="Phytoplankton biomass or concentration")
+    horizontal_velocity = PermissibleValue(
+        text="horizontal_velocity",
+        description="Horizontal velocity components (u, v)")
+    vertical_velocity = PermissibleValue(
+        text="vertical_velocity",
+        description="Vertical velocity component (w)")
+    other = PermissibleValue(
+        text="other",
+        description="Other model output variable not listed above")
+
+    _defn = EnumDefinition(
+        name="ModelSimulationVariable",
+        description="Variables commonly included in model simulation output datasets",
     )
 
 class SeaNames(EnumDefinitionImpl):
@@ -4817,23 +5008,68 @@ slots.dataset__license = Slot(uri=SCHEMA.license, name="dataset__license", curie
 slots.dataset__fair_use_data_request = Slot(uri=OAE.fair_use_data_request, name="dataset__fair_use_data_request", curie=OAE.curie('fair_use_data_request'),
                    model_uri=OAE.dataset__fair_use_data_request, domain=None, range=Optional[str])
 
-slots.dataset__data_product_type = Slot(uri=OAE.data_product_type, name="dataset__data_product_type", curie=OAE.curie('data_product_type'),
-                   model_uri=OAE.dataset__data_product_type, domain=None, range=Union[str, "DataProductType"])
-
-slots.dataset__qc_flag_scheme = Slot(uri=OAE.qc_flag_scheme, name="dataset__qc_flag_scheme", curie=OAE.curie('qc_flag_scheme'),
-                   model_uri=OAE.dataset__qc_flag_scheme, domain=None, range=Optional[str])
-
-slots.dataset__platform_info = Slot(uri=OAE.platform_info, name="dataset__platform_info", curie=OAE.curie('platform_info'),
-                   model_uri=OAE.dataset__platform_info, domain=None, range=Union[dict, Platform])
-
-slots.dataset__calibration_files = Slot(uri=OAE.calibration_files, name="dataset__calibration_files", curie=OAE.curie('calibration_files'),
-                   model_uri=OAE.dataset__calibration_files, domain=None, range=Optional[Union[str, List[str]]])
-
-slots.dataset__variables = Slot(uri=SCHEMA.variableMeasured, name="dataset__variables", curie=SCHEMA.curie('variableMeasured'),
-                   model_uri=OAE.dataset__variables, domain=None, range=Optional[Union[Union[dict, Variable], List[Union[dict, Variable]]]])
-
 slots.dataset__filenames = Slot(uri=OAE.filenames, name="dataset__filenames", curie=OAE.curie('filenames'),
                    model_uri=OAE.dataset__filenames, domain=None, range=Union[str, List[str]])
+
+slots.fieldDataset__data_product_type = Slot(uri=OAE.data_product_type, name="fieldDataset__data_product_type", curie=OAE.curie('data_product_type'),
+                   model_uri=OAE.fieldDataset__data_product_type, domain=None, range=Union[str, "DataProductType"])
+
+slots.fieldDataset__qc_flag_scheme = Slot(uri=OAE.qc_flag_scheme, name="fieldDataset__qc_flag_scheme", curie=OAE.curie('qc_flag_scheme'),
+                   model_uri=OAE.fieldDataset__qc_flag_scheme, domain=None, range=Optional[str])
+
+slots.fieldDataset__platform_info = Slot(uri=OAE.platform_info, name="fieldDataset__platform_info", curie=OAE.curie('platform_info'),
+                   model_uri=OAE.fieldDataset__platform_info, domain=None, range=Union[dict, Platform])
+
+slots.fieldDataset__calibration_files = Slot(uri=OAE.calibration_files, name="fieldDataset__calibration_files", curie=OAE.curie('calibration_files'),
+                   model_uri=OAE.fieldDataset__calibration_files, domain=None, range=Optional[Union[str, List[str]]])
+
+slots.fieldDataset__variables = Slot(uri=SCHEMA.variableMeasured, name="fieldDataset__variables", curie=SCHEMA.curie('variableMeasured'),
+                   model_uri=OAE.fieldDataset__variables, domain=None, range=Optional[Union[Union[dict, Variable], List[Union[dict, Variable]]]])
+
+slots.modelSimulationDataset__simulation_type = Slot(uri=OAE.simulation_type, name="modelSimulationDataset__simulation_type", curie=OAE.curie('simulation_type'),
+                   model_uri=OAE.modelSimulationDataset__simulation_type, domain=None, range=Union[str, "SimulationType"])
+
+slots.modelSimulationDataset__spin_up_protocol = Slot(uri=OAE.spin_up_protocol, name="modelSimulationDataset__spin_up_protocol", curie=OAE.curie('spin_up_protocol'),
+                   model_uri=OAE.modelSimulationDataset__spin_up_protocol, domain=None, range=Optional[str])
+
+slots.modelSimulationDataset__start_datetime = Slot(uri=OAE.start_datetime, name="modelSimulationDataset__start_datetime", curie=OAE.curie('start_datetime'),
+                   model_uri=OAE.modelSimulationDataset__start_datetime, domain=None, range=Union[str, XSDDateTime])
+
+slots.modelSimulationDataset__end_datetime = Slot(uri=OAE.end_datetime, name="modelSimulationDataset__end_datetime", curie=OAE.curie('end_datetime'),
+                   model_uri=OAE.modelSimulationDataset__end_datetime, domain=None, range=Union[str, XSDDateTime])
+
+slots.modelSimulationDataset__output_frequency = Slot(uri=OAE.output_frequency, name="modelSimulationDataset__output_frequency", curie=OAE.curie('output_frequency'),
+                   model_uri=OAE.modelSimulationDataset__output_frequency, domain=None, range=Optional[str])
+
+slots.modelSimulationDataset__time_stepping_scheme = Slot(uri=OAE.time_stepping_scheme, name="modelSimulationDataset__time_stepping_scheme", curie=OAE.curie('time_stepping_scheme'),
+                   model_uri=OAE.modelSimulationDataset__time_stepping_scheme, domain=None, range=Optional[str])
+
+slots.modelSimulationDataset__alkalinity_perturbation_description = Slot(uri=OAE.alkalinity_perturbation_description, name="modelSimulationDataset__alkalinity_perturbation_description", curie=OAE.curie('alkalinity_perturbation_description'),
+                   model_uri=OAE.modelSimulationDataset__alkalinity_perturbation_description, domain=None, range=Optional[str])
+
+slots.modelSimulationDataset__hardware_configuration = Slot(uri=OAE.hardware_configuration, name="modelSimulationDataset__hardware_configuration", curie=OAE.curie('hardware_configuration'),
+                   model_uri=OAE.modelSimulationDataset__hardware_configuration, domain=None, range=Optional[Union[dict, HardwareConfiguration]])
+
+slots.modelSimulationDataset__model_output_variables = Slot(uri=OAE.model_output_variables, name="modelSimulationDataset__model_output_variables", curie=OAE.curie('model_output_variables'),
+                   model_uri=OAE.modelSimulationDataset__model_output_variables, domain=None, range=Optional[Union[Union[str, "ModelSimulationVariable"], List[Union[str, "ModelSimulationVariable"]]]])
+
+slots.hardwareConfiguration__machine = Slot(uri=OAE.machine, name="hardwareConfiguration__machine", curie=OAE.curie('machine'),
+                   model_uri=OAE.hardwareConfiguration__machine, domain=None, range=Optional[str])
+
+slots.hardwareConfiguration__operating_system = Slot(uri=OAE.operating_system, name="hardwareConfiguration__operating_system", curie=OAE.curie('operating_system'),
+                   model_uri=OAE.hardwareConfiguration__operating_system, domain=None, range=Optional[str])
+
+slots.hardwareConfiguration__cpu_gpu_details = Slot(uri=OAE.cpu_gpu_details, name="hardwareConfiguration__cpu_gpu_details", curie=OAE.curie('cpu_gpu_details'),
+                   model_uri=OAE.hardwareConfiguration__cpu_gpu_details, domain=None, range=Optional[str])
+
+slots.hardwareConfiguration__memory = Slot(uri=OAE.memory, name="hardwareConfiguration__memory", curie=OAE.curie('memory'),
+                   model_uri=OAE.hardwareConfiguration__memory, domain=None, range=Optional[str])
+
+slots.hardwareConfiguration__storage = Slot(uri=OAE.storage, name="hardwareConfiguration__storage", curie=OAE.curie('storage'),
+                   model_uri=OAE.hardwareConfiguration__storage, domain=None, range=Optional[str])
+
+slots.hardwareConfiguration__parallelization = Slot(uri=OAE.parallelization, name="hardwareConfiguration__parallelization", curie=OAE.curie('parallelization'),
+                   model_uri=OAE.hardwareConfiguration__parallelization, domain=None, range=Optional[str])
 
 slots.platform__platform_type = Slot(uri=OAE.platform_type, name="platform__platform_type", curie=OAE.curie('platform_type'),
                    model_uri=OAE.platform__platform_type, domain=None, range=Union[str, "PlatformType"])
