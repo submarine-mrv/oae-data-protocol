@@ -227,6 +227,8 @@
 <div class="mermaid"> classDiagram
     class DiscretePHVariable
     click DiscretePHVariable href "../DiscretePHVariable"
+      MeasuredPHFields &lt;|-- DiscretePHVariable
+        click MeasuredPHFields href "../MeasuredPHFields"
       DiscreteMeasuredVariable &lt;|-- DiscretePHVariable
         click DiscreteMeasuredVariable href "../DiscreteMeasuredVariable"
 
@@ -353,10 +355,13 @@
 </div>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
+<li><a href="../BaseVariable/">BaseVariable</a><ul>
 <li><a href="../Variable/">Variable</a><ul>
 <li><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a> [ <a href="../QCFields/">QCFields</a>]<ul>
 <li><a href="../DiscreteMeasuredVariable/">DiscreteMeasuredVariable</a><ul>
-<li><strong>DiscretePHVariable</strong></li>
+<li><strong>DiscretePHVariable</strong> [ <a href="../MeasuredPHFields/">MeasuredPHFields</a>]</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -376,12 +381,6 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../appropriate_use_quality/">appropriate_use_quality</a></td>
-<td>0..1 <br/> <a href="../AppropriateUseQuality/">AppropriateUseQuality</a></td>
-<td>Climate quality is defined as measurements of quality sufficient to assess lo...</td>
-<td>direct</td>
-</tr>
-<tr>
 <td><a href="../measurement_temperature/">measurement_temperature</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>Temperature at which pH was measured</td>
@@ -398,6 +397,12 @@
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>The input could be a constant temperature value, or something like, in-situ t...</td>
 <td>direct</td>
+</tr>
+<tr>
+<td><a href="../appropriate_use_quality/">appropriate_use_quality</a></td>
+<td>0..1 <br/> <a href="../AppropriateUseQuality/">AppropriateUseQuality</a></td>
+<td>Climate quality is defined as measurements of quality sufficient to assess lo...</td>
+<td><a href="../MeasuredPHFields/">MeasuredPHFields</a></td>
 </tr>
 <tr>
 <td><a href="../analyzing_instrument/">analyzing_instrument</a></td>
@@ -490,18 +495,6 @@
 <td><a href="../QCFields/">QCFields</a></td>
 </tr>
 <tr>
-<td><a href="../standard_identifier/">standard_identifier</a></td>
-<td>0..1 <br/> <a href="../VocabularyItemReference/">VocabularyItemReference</a></td>
-<td></td>
-<td><a href="../Variable/">Variable</a></td>
-</tr>
-<tr>
-<td><a href="../dataset_variable_name/">dataset_variable_name</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>The name for the variable as it is identified in the dataset data file</td>
-<td><a href="../Variable/">Variable</a></td>
-</tr>
-<tr>
 <td><a href="../dataset_variable_name_qc_flag/">dataset_variable_name_qc_flag</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>If applicable, the column header name used for the quality control flag corre...</td>
@@ -511,18 +504,6 @@
 <td><a href="../dataset_variable_name_raw/">dataset_variable_name_raw</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>If applicable, the column header name used for the raw data corresponding to ...</td>
-<td><a href="../Variable/">Variable</a></td>
-</tr>
-<tr>
-<td><a href="../long_name/">long_name</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>Full descriptive name of the variable</td>
-<td><a href="../Variable/">Variable</a></td>
-</tr>
-<tr>
-<td><a href="../units/">units</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>Unit of measurement for this variable</td>
 <td><a href="../Variable/">Variable</a></td>
 </tr>
 <tr>
@@ -542,6 +523,30 @@
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Any additional information about this variable</td>
 <td><a href="../Variable/">Variable</a></td>
+</tr>
+<tr>
+<td><a href="../units/">units</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>Unit of measurement for this variable</td>
+<td><a href="../BaseVariable/">BaseVariable</a></td>
+</tr>
+<tr>
+<td><a href="../standard_identifier/">standard_identifier</a></td>
+<td>0..1 <br/> <a href="../VocabularyItemReference/">VocabularyItemReference</a></td>
+<td></td>
+<td><a href="../BaseVariable/">BaseVariable</a></td>
+</tr>
+<tr>
+<td><a href="../dataset_variable_name/">dataset_variable_name</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>The name for the variable as it is identified in the dataset data file</td>
+<td><a href="../BaseVariable/">BaseVariable</a></td>
+</tr>
+<tr>
+<td><a href="../long_name/">long_name</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>Full descriptive name of the variable</td>
+<td><a href="../BaseVariable/">BaseVariable</a></td>
 </tr>
 </tbody>
 </table>
@@ -578,8 +583,8 @@ description: 'pH measured variable with dye-based spectrophotometric measurement
   Reference: OAPMetadata XSD variables.xsd - pH_measured'
 from_schema: OAEDataManagementProtocol
 is_a: DiscreteMeasuredVariable
-slots:
-- appropriate_use_quality
+mixins:
+- MeasuredPHFields
 slot_usage:
   analyzing_instrument:
     name: analyzing_instrument
@@ -594,6 +599,7 @@ attributes:
     rank: 1000
     domain_of:
     - DiscretePHVariable
+    - DiscreteCO2Variable
     range: string
     required: true
   temperature_correction_method:
@@ -604,6 +610,7 @@ attributes:
     rank: 1000
     domain_of:
     - DiscretePHVariable
+    - MeasuredCO2Fields
     range: string
   ph_reported_temperature:
     name: ph_reported_temperature
@@ -626,6 +633,8 @@ description: 'pH measured variable with dye-based spectrophotometric measurement
   Reference: OAPMetadata XSD variables.xsd - pH_measured'
 from_schema: OAEDataManagementProtocol
 is_a: DiscreteMeasuredVariable
+mixins:
+- MeasuredPHFields
 slot_usage:
   analyzing_instrument:
     name: analyzing_instrument
@@ -642,6 +651,7 @@ attributes:
     owner: DiscretePHVariable
     domain_of:
     - DiscretePHVariable
+    - DiscreteCO2Variable
     range: string
     required: true
   temperature_correction_method:
@@ -654,6 +664,7 @@ attributes:
     owner: DiscretePHVariable
     domain_of:
     - DiscretePHVariable
+    - MeasuredCO2Fields
     range: string
   ph_reported_temperature:
     name: ph_reported_temperature
@@ -684,8 +695,10 @@ attributes:
     alias: appropriate_use_quality
     owner: DiscretePHVariable
     domain_of:
-    - ContinuousPHVariable
-    - DiscretePHVariable
+    - MeasuredTAFields
+    - MeasuredDICFields
+    - MeasuredPHFields
+    - MeasuredCO2Fields
     range: AppropriateUseQuality
   analyzing_instrument:
     name: analyzing_instrument
@@ -765,6 +778,7 @@ attributes:
     owner: DiscretePHVariable
     domain_of:
     - ObservedPropertyVariable
+    - CalculatedVariable
     range: GenesisType
     required: true
   sampling_instrument_type:
@@ -869,30 +883,6 @@ attributes:
     domain_of:
     - QCFields
     range: string
-  standard_identifier:
-    name: standard_identifier
-    from_schema: Variable
-    rank: 1000
-    alias: standard_identifier
-    owner: DiscretePHVariable
-    domain_of:
-    - Variable
-    range: VocabularyItemReference
-  dataset_variable_name:
-    name: dataset_variable_name
-    description: The name for the variable as it is identified in the dataset data
-      file. This could be the column header in a CSV or the variable name in a NetCDF
-      file. Standard common recommended column header names can be found in protocol
-      documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).
-    title: Dataset variable name
-    from_schema: Variable
-    rank: 1000
-    alias: dataset_variable_name
-    owner: DiscretePHVariable
-    domain_of:
-    - Variable
-    range: string
-    required: true
   dataset_variable_name_qc_flag:
     name: dataset_variable_name_qc_flag
     description: If applicable, the column header name used for the quality control
@@ -917,30 +907,6 @@ attributes:
     domain_of:
     - Variable
     range: string
-  long_name:
-    name: long_name
-    description: Full descriptive name of the variable.
-    title: Variable full name
-    from_schema: Variable
-    rank: 1000
-    alias: long_name
-    owner: DiscretePHVariable
-    domain_of:
-    - Variable
-    range: string
-    required: true
-  units:
-    name: units
-    description: Unit of measurement for this variable.
-    title: Unit
-    from_schema: Variable
-    rank: 1000
-    alias: units
-    owner: DiscretePHVariable
-    domain_of:
-    - Variable
-    range: string
-    required: true
   method_reference:
     name: method_reference
     description: Citation for the method used.
@@ -974,6 +940,54 @@ attributes:
     domain_of:
     - Variable
     range: string
+  units:
+    name: units
+    description: Unit of measurement for this variable.
+    title: Unit
+    from_schema: OAEDataManagementProtocol
+    rank: 1000
+    alias: units
+    owner: DiscretePHVariable
+    domain_of:
+    - BaseVariable
+    range: string
+    required: true
+  standard_identifier:
+    name: standard_identifier
+    from_schema: Variable
+    rank: 1000
+    alias: standard_identifier
+    owner: DiscretePHVariable
+    domain_of:
+    - BaseVariable
+    range: VocabularyItemReference
+  dataset_variable_name:
+    name: dataset_variable_name
+    description: The name for the variable as it is identified in the dataset data
+      file. This could be the column header in a CSV or the variable name in a NetCDF
+      file. Standard common recommended column header names can be found in protocol
+      documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).
+    title: Dataset variable name
+    from_schema: Variable
+    rank: 1000
+    alias: dataset_variable_name
+    owner: DiscretePHVariable
+    domain_of:
+    - BaseVariable
+    range: string
+    required: true
+  long_name:
+    name: long_name
+    description: Full descriptive name of the variable.
+    title: Variable full name
+    from_schema: Variable
+    rank: 1000
+    alias: long_name
+    owner: DiscretePHVariable
+    domain_of:
+    - BaseVariable
+    range: string
+    required: true
 
 </code></pre>
 </details>

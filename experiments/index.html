@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: Related Experiments (experiments) - oae-data-protocol</title>
+        <title>Slot: experiments - oae-data-protocol</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-related-experiments-experiments" class="md-skip">
+        <a href="#slot-experiments" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: Related Experiments (experiments)
+              Slot: experiments
             
           </span>
         </div>
@@ -305,21 +305,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Identifier and Mapping Information">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#schema-source" class="md-nav__link">
-    <span class="md-ellipsis">
-      Schema Source
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -359,7 +344,7 @@
   
 
 
-<h1 id="slot-related-experiments-experiments">Slot: Related Experiments (experiments)</h1>
+<h1 id="slot-experiments">Slot: experiments</h1>
 <p>URI: <a href="https://example.org/oae#experiments">oae:experiments</a></p>
 <!-- no inheritance hierarchy -->
 
@@ -378,25 +363,18 @@
 <td>A project conducting OAE field trials or modeling</td>
 <td>no</td>
 </tr>
+<tr>
+<td><a href="../Container/">Container</a></td>
+<td></td>
+<td>no</td>
+</tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>
-<p>Range: <a href="../Experiment/">Experiment</a></p>
-</li>
-<li>
-<p>Multivalued: True</p>
-</li>
-<li>
-<p>Recommended: True</p>
-</li>
+<li>Range: NONE</li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
-<h3 id="schema-source">Schema Source</h3>
-<ul>
-<li>from schema: OAEDataManagementProtocol</li>
-</ul>
 <h2 id="mappings">Mappings</h2>
 <table>
 <thead>
@@ -420,16 +398,10 @@
 <details>
 
 <pre><code class="language-yaml">name: experiments
-title: Related Experiments
-from_schema: OAEDataManagementProtocol
-rank: 1000
 alias: experiments
-owner: Project
 domain_of:
+- Container
 - Project
-range: Experiment
-recommended: true
-multivalued: true
 
 </code></pre>
 

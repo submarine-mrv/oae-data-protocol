@@ -265,7 +265,7 @@
 <tr>
 <td><a href="../is_provided_as_a_file/">is_provided_as_a_file</a></td>
 <td>1 <br/> <a href="../Boolean/">Boolean</a></td>
-<td>Indicates that the field in question is provided as a file</td>
+<td>Select ‘Variable’ if the concentration varies over time, or ‘Fixed Value’ if ...</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -365,6 +365,12 @@ from_schema: OAEDataManagementProtocol
 slots:
 - is_derived_value
 - is_provided_as_a_file
+slot_usage:
+  is_provided_as_a_file:
+    name: is_provided_as_a_file
+    description: 'Select ‘Variable’ if the concentration varies over time, or ‘Fixed
+      Value’ if it is constant. Note: Variable concentrations must be provided in
+      a data file.'
 attributes:
   amount:
     name: amount
@@ -388,6 +394,12 @@ attributes:
 <pre><code class="language-yaml">name: DosingConcentration
 description: Details of tracer concentration information
 from_schema: OAEDataManagementProtocol
+slot_usage:
+  is_provided_as_a_file:
+    name: is_provided_as_a_file
+    description: 'Select ‘Variable’ if the concentration varies over time, or ‘Fixed
+      Value’ if it is constant. Note: Variable concentrations must be provided in
+      a data file.'
 attributes:
   amount:
     name: amount
@@ -421,8 +433,9 @@ attributes:
     required: true
   is_provided_as_a_file:
     name: is_provided_as_a_file
-    description: Indicates that the field in question is provided as a file. The value
-      used here is intended to be a summary range or general area of coverage.
+    description: 'Select ‘Variable’ if the concentration varies over time, or ‘Fixed
+      Value’ if it is constant. Note: Variable concentrations must be provided in
+      a data file.'
     from_schema: OAEDataManagementProtocol
     rank: 1000
     alias: is_provided_as_a_file

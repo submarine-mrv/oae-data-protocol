@@ -219,6 +219,24 @@
 <div class="mermaid"> classDiagram
     class Container
     click Container href "../Container"
+      Container : datasets
+
+
+
+
+    Container --&gt; "*" Dataset : datasets
+    click Dataset href "../Dataset"
+
+
+      Container : experiments
+
+
+
+
+    Container --&gt; "*" Experiment : experiments
+    click Experiment href "../Experiment"
+
+
       Container : metadata_builder_git_hash
 
       Container : project
@@ -251,6 +269,18 @@
 <tr>
 <td><a href="../project/">project</a></td>
 <td>0..1 <br/> <a href="../Project/">Project</a></td>
+<td></td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../experiments/">experiments</a></td>
+<td>* <br/> <a href="../Experiment/">Experiment</a></td>
+<td></td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../datasets/">datasets</a></td>
+<td>* <br/> <a href="../Dataset/">Dataset</a></td>
 <td></td>
 <td>direct</td>
 </tr>
@@ -312,6 +342,23 @@ attributes:
     domain_of:
     - Container
     range: Project
+  experiments:
+    name: experiments
+    from_schema: OAEDataManagementProtocol
+    rank: 1000
+    domain_of:
+    - Container
+    - Project
+    range: Experiment
+    multivalued: true
+  datasets:
+    name: datasets
+    from_schema: OAEDataManagementProtocol
+    rank: 1000
+    domain_of:
+    - Container
+    range: Dataset
+    multivalued: true
   version:
     name: version
     description: Version of the oae-data-protocol
@@ -357,6 +404,27 @@ attributes:
     domain_of:
     - Container
     range: Project
+  experiments:
+    name: experiments
+    from_schema: OAEDataManagementProtocol
+    rank: 1000
+    alias: experiments
+    owner: Container
+    domain_of:
+    - Container
+    - Project
+    range: Experiment
+    multivalued: true
+  datasets:
+    name: datasets
+    from_schema: OAEDataManagementProtocol
+    rank: 1000
+    alias: datasets
+    owner: Container
+    domain_of:
+    - Container
+    range: Dataset
+    multivalued: true
   version:
     name: version
     description: Version of the oae-data-protocol

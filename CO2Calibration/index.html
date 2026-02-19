@@ -256,18 +256,16 @@
 
       CO2Calibration : method_reference
 
-      CO2Calibration : standard_gases
+      CO2Calibration : standard_gas_info
 
 
 
 
-    CO2Calibration --&gt; "*" StandardGas : standard_gases
+    CO2Calibration --&gt; "0..1" StandardGas : standard_gas_info
     click StandardGas href "../StandardGas"
 
 
       CO2Calibration : technique_description
-
-      CO2Calibration : wmo_traceable
 
 
 </div>
@@ -296,15 +294,9 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../standard_gases/">standard_gases</a></td>
-<td>* <br/> <a href="../StandardGas/">StandardGas</a></td>
+<td><a href="../standard_gas_info/">standard_gas_info</a></td>
+<td>0..1 <br/> <a href="../StandardGas/">StandardGas</a></td>
 <td>Standard gases used for calibration</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../wmo_traceable/">wmo_traceable</a></td>
-<td>1 <br/> <a href="../Boolean/">Boolean</a></td>
-<td>Whether standard gases are traceable to WMO standards</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -396,38 +388,18 @@
 description: CO2 gas detector calibration with standard gas information.
 from_schema: OAEDataManagementProtocol
 is_a: Calibration
+slots:
+- calibration_temperature
 attributes:
-  calibration_temperature:
-    name: calibration_temperature
-    description: Temperature at which calibration was performed.
-    title: Calibration temperature
-    from_schema: Calibration
-    domain_of:
-    - pHCalibration
-    - CO2Calibration
-    range: string
-  standard_gases:
-    name: standard_gases
+  standard_gas_info:
+    name: standard_gas_info
     description: Standard gases used for calibration.
-    title: Standard gases
+    title: Standard gas information
     from_schema: Calibration
     rank: 1000
     domain_of:
     - CO2Calibration
     range: StandardGas
-    multivalued: true
-    inlined: true
-    inlined_as_list: true
-  wmo_traceable:
-    name: wmo_traceable
-    description: Whether standard gases are traceable to WMO standards.
-    title: WMO traceable
-    from_schema: Calibration
-    rank: 1000
-    domain_of:
-    - CO2Calibration
-    range: boolean
-    required: true
 
 </code></pre>
 </details>
@@ -438,43 +410,29 @@ description: CO2 gas detector calibration with standard gas information.
 from_schema: OAEDataManagementProtocol
 is_a: Calibration
 attributes:
+  standard_gas_info:
+    name: standard_gas_info
+    description: Standard gases used for calibration.
+    title: Standard gas information
+    from_schema: Calibration
+    rank: 1000
+    alias: standard_gas_info
+    owner: CO2Calibration
+    domain_of:
+    - CO2Calibration
+    range: StandardGas
   calibration_temperature:
     name: calibration_temperature
     description: Temperature at which calibration was performed.
     title: Calibration temperature
-    from_schema: Calibration
+    from_schema: OAEDataManagementProtocol
+    rank: 1000
     alias: calibration_temperature
     owner: CO2Calibration
     domain_of:
     - pHCalibration
     - CO2Calibration
     range: string
-  standard_gases:
-    name: standard_gases
-    description: Standard gases used for calibration.
-    title: Standard gases
-    from_schema: Calibration
-    rank: 1000
-    alias: standard_gases
-    owner: CO2Calibration
-    domain_of:
-    - CO2Calibration
-    range: StandardGas
-    multivalued: true
-    inlined: true
-    inlined_as_list: true
-  wmo_traceable:
-    name: wmo_traceable
-    description: Whether standard gases are traceable to WMO standards.
-    title: WMO traceable
-    from_schema: Calibration
-    rank: 1000
-    alias: wmo_traceable
-    owner: CO2Calibration
-    domain_of:
-    - CO2Calibration
-    range: boolean
-    required: true
   calibration_location:
     name: calibration_location
     description: Factory calibration, lab calibration, or field calibration.

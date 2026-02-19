@@ -229,18 +229,17 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="class-analyzinginstrument">Class: AnalyzingInstrument</h1>
-<p><em>Subclass of Instrument used for analyzing samples</em></p>
+<p><em>Base class for scientific instruments used in analyzing samples for measurement.</em></p>
 <p>URI: <a href="https://example.org/oae#AnalyzingInstrument">oae:AnalyzingInstrument</a></p>
 <div class="mermaid"> classDiagram
     class AnalyzingInstrument
     click AnalyzingInstrument href "../AnalyzingInstrument"
-      Instrument &lt;|-- AnalyzingInstrument
-        click Instrument href "../Instrument"
-
-
       AnalyzingInstrument &lt;|-- PHInstrument
         click PHInstrument href "../PHInstrument"
-
+      AnalyzingInstrument &lt;|-- CRMInstrument
+        click CRMInstrument href "../CRMInstrument"
+      AnalyzingInstrument &lt;|-- CO2GasDetector
+        click CO2GasDetector href "../CO2GasDetector"
 
       AnalyzingInstrument : accuracy
 
@@ -276,11 +275,10 @@
 </div>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
-<li><a href="../Instrument/">Instrument</a><ul>
 <li><strong>AnalyzingInstrument</strong><ul>
 <li><a href="../PHInstrument/">PHInstrument</a></li>
-</ul>
-</li>
+<li><a href="../CRMInstrument/">CRMInstrument</a></li>
+<li><a href="../CO2GasDetector/">CO2GasDetector</a></li>
 </ul>
 </li>
 </ul>
@@ -296,52 +294,52 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../instrument_type/">instrument_type</a></td>
-<td>1 <br/> <a href="../AnalyzingInstrumentType/">AnalyzingInstrumentType</a> or <br/><a href="../AnalyzingInstrumentType/">AnalyzingInstrumentType</a> or <br/><a href="../SamplingInstrumentType/">SamplingInstrumentType</a></td>
-<td>Type of instrument used to analyze samples or measure continuously</td>
-<td><a href="../Instrument/">Instrument</a></td>
-</tr>
-<tr>
-<td><a href="../instrument_type_custom/">instrument_type_custom</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td></td>
-<td><a href="../Instrument/">Instrument</a></td>
-</tr>
-<tr>
 <td><a href="../manufacturer/">manufacturer</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Manufacturer name of the instrument</td>
-<td><a href="../Instrument/">Instrument</a></td>
+<td>direct</td>
 </tr>
 <tr>
 <td><a href="../model/">model</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Model number or name of the instrument</td>
-<td><a href="../Instrument/">Instrument</a></td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../instrument_type/">instrument_type</a></td>
+<td>1 <br/> <a href="../AnalyzingInstrumentType/">AnalyzingInstrumentType</a></td>
+<td>Type of instrument used to analyze samples or measure continuously</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../instrument_type_custom/">instrument_type_custom</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td></td>
+<td>direct</td>
 </tr>
 <tr>
 <td><a href="../serial_number/">serial_number</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Serial number of the instrument</td>
-<td><a href="../Instrument/">Instrument</a></td>
+<td>direct</td>
 </tr>
 <tr>
 <td><a href="../precision/">precision</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Precision of the instrument measurements</td>
-<td><a href="../Instrument/">Instrument</a></td>
+<td>direct</td>
 </tr>
 <tr>
 <td><a href="../accuracy/">accuracy</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>Accuracy of the instrument measurements</td>
-<td><a href="../Instrument/">Instrument</a></td>
+<td>direct</td>
 </tr>
 <tr>
 <td><a href="../calibration/">calibration</a></td>
 <td>0..1 <br/> <a href="../Calibration/">Calibration</a></td>
 <td>Calibration information for this instrument</td>
-<td><a href="../Instrument/">Instrument</a></td>
+<td>direct</td>
 </tr>
 </tbody>
 </table>
@@ -381,19 +379,31 @@
 <td><a href="./">AnalyzingInstrument</a></td>
 </tr>
 <tr>
+<td><a href="../ContinuousTAVariable/">ContinuousTAVariable</a></td>
+<td><a href="../analyzing_instrument/">analyzing_instrument</a></td>
+<td>range</td>
+<td><a href="./">AnalyzingInstrument</a></td>
+</tr>
+<tr>
+<td><a href="../ContinuousDICVariable/">ContinuousDICVariable</a></td>
+<td><a href="../analyzing_instrument/">analyzing_instrument</a></td>
+<td>range</td>
+<td><a href="./">AnalyzingInstrument</a></td>
+</tr>
+<tr>
+<td><a href="../ContinuousSedimentVariable/">ContinuousSedimentVariable</a></td>
+<td><a href="../analyzing_instrument/">analyzing_instrument</a></td>
+<td>range</td>
+<td><a href="./">AnalyzingInstrument</a></td>
+</tr>
+<tr>
+<td><a href="../DiscreteSedimentVariable/">DiscreteSedimentVariable</a></td>
+<td><a href="../analyzing_instrument/">analyzing_instrument</a></td>
+<td>range</td>
+<td><a href="./">AnalyzingInstrument</a></td>
+</tr>
+<tr>
 <td><a href="../HPLCVariable/">HPLCVariable</a></td>
-<td><a href="../analyzing_instrument/">analyzing_instrument</a></td>
-<td>range</td>
-<td><a href="./">AnalyzingInstrument</a></td>
-</tr>
-<tr>
-<td><a href="../SedimentVariable/">SedimentVariable</a></td>
-<td><a href="../analyzing_instrument/">analyzing_instrument</a></td>
-<td>range</td>
-<td><a href="./">AnalyzingInstrument</a></td>
-</tr>
-<tr>
-<td><a href="../PhysiologicalVariable/">PhysiologicalVariable</a></td>
 <td><a href="../analyzing_instrument/">analyzing_instrument</a></td>
 <td>range</td>
 <td><a href="./">AnalyzingInstrument</a></td>
@@ -429,26 +439,78 @@
 <h3 id="direct">Direct</h3>
 <details>
 <pre><code class="language-yaml">name: AnalyzingInstrument
-description: Subclass of Instrument used for analyzing samples
+description: Base class for scientific instruments used in analyzing samples for measurement.
 from_schema: OAEDataManagementProtocol
-is_a: Instrument
-slot_usage:
+slots:
+- manufacturer
+- model
+attributes:
   instrument_type:
     name: instrument_type
+    description: Type of instrument used to analyze samples or measure continuously.
+    title: Instrument type
+    from_schema: Instrument
+    rank: 1000
+    domain_of:
+    - AnalyzingInstrument
     range: AnalyzingInstrumentType
+    required: true
+  instrument_type_custom:
+    name: instrument_type_custom
+    title: Instrument type (custom)
+    from_schema: Instrument
+    rank: 1000
+    domain_of:
+    - AnalyzingInstrument
+    range: string
+  serial_number:
+    name: serial_number
+    description: Serial number of the instrument.
+    title: Serial number
+    from_schema: Instrument
+    rank: 1000
+    domain_of:
+    - AnalyzingInstrument
+    range: string
+  precision:
+    name: precision
+    description: Precision of the instrument measurements.
+    title: Precision
+    from_schema: Instrument
+    rank: 1000
+    domain_of:
+    - AnalyzingInstrument
+    range: string
+  accuracy:
+    name: accuracy
+    description: Accuracy of the instrument measurements.
+    title: Accuracy
+    from_schema: Instrument
+    rank: 1000
+    domain_of:
+    - AnalyzingInstrument
+    range: string
+    required: true
+  calibration:
+    name: calibration
+    description: Calibration information for this instrument.
+    title: Calibration
+    from_schema: Instrument
+    rank: 1000
+    domain_of:
+    - AnalyzingInstrument
+    - PHInstrument
+    - CRMInstrument
+    - CO2GasDetector
+    range: Calibration
 
 </code></pre>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
 <pre><code class="language-yaml">name: AnalyzingInstrument
-description: Subclass of Instrument used for analyzing samples
+description: Base class for scientific instruments used in analyzing samples for measurement.
 from_schema: OAEDataManagementProtocol
-is_a: Instrument
-slot_usage:
-  instrument_type:
-    name: instrument_type
-    range: AnalyzingInstrumentType
 attributes:
   instrument_type:
     name: instrument_type
@@ -459,12 +521,9 @@ attributes:
     alias: instrument_type
     owner: AnalyzingInstrument
     domain_of:
-    - Instrument
+    - AnalyzingInstrument
     range: AnalyzingInstrumentType
     required: true
-    any_of:
-    - range: AnalyzingInstrumentType
-    - range: SamplingInstrumentType
   instrument_type_custom:
     name: instrument_type_custom
     title: Instrument type (custom)
@@ -473,29 +532,7 @@ attributes:
     alias: instrument_type_custom
     owner: AnalyzingInstrument
     domain_of:
-    - Instrument
-    range: string
-  manufacturer:
-    name: manufacturer
-    description: Manufacturer name of the instrument.
-    title: Manufacturer
-    from_schema: Instrument
-    alias: manufacturer
-    owner: AnalyzingInstrument
-    domain_of:
-    - StandardGas
-    - Instrument
-    range: string
-  model:
-    name: model
-    description: Model number or name of the instrument.
-    title: Model
-    from_schema: Instrument
-    rank: 1000
-    alias: model
-    owner: AnalyzingInstrument
-    domain_of:
-    - Instrument
+    - AnalyzingInstrument
     range: string
   serial_number:
     name: serial_number
@@ -506,7 +543,7 @@ attributes:
     alias: serial_number
     owner: AnalyzingInstrument
     domain_of:
-    - Instrument
+    - AnalyzingInstrument
     range: string
   precision:
     name: precision
@@ -517,9 +554,8 @@ attributes:
     alias: precision
     owner: AnalyzingInstrument
     domain_of:
-    - Instrument
+    - AnalyzingInstrument
     range: string
-    required: true
   accuracy:
     name: accuracy
     description: Accuracy of the instrument measurements.
@@ -529,7 +565,7 @@ attributes:
     alias: accuracy
     owner: AnalyzingInstrument
     domain_of:
-    - Instrument
+    - AnalyzingInstrument
     range: string
     required: true
   calibration:
@@ -541,13 +577,34 @@ attributes:
     alias: calibration
     owner: AnalyzingInstrument
     domain_of:
-    - Instrument
+    - AnalyzingInstrument
     - PHInstrument
     - CRMInstrument
     - CO2GasDetector
-    - Sensor
-    - GenericInstrument
     range: Calibration
+  manufacturer:
+    name: manufacturer
+    description: Manufacturer name of the instrument.
+    title: Manufacturer
+    from_schema: OAEDataManagementProtocol
+    rank: 1000
+    alias: manufacturer
+    owner: AnalyzingInstrument
+    domain_of:
+    - StandardGas
+    - AnalyzingInstrument
+    range: string
+  model:
+    name: model
+    description: Model number or name of the instrument.
+    title: Model
+    from_schema: OAEDataManagementProtocol
+    rank: 1000
+    alias: model
+    owner: AnalyzingInstrument
+    domain_of:
+    - AnalyzingInstrument
+    range: string
 
 </code></pre>
 </details>

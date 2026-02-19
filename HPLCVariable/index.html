@@ -227,8 +227,8 @@
 <div class="mermaid"> classDiagram
     class HPLCVariable
     click HPLCVariable href "../HPLCVariable"
-      ObservedPropertyVariable &lt;|-- HPLCVariable
-        click ObservedPropertyVariable href "../ObservedPropertyVariable"
+      DiscreteMeasuredVariable &lt;|-- HPLCVariable
+        click DiscreteMeasuredVariable href "../DiscreteMeasuredVariable"
 
       HPLCVariable : analyzing_instrument
 
@@ -257,6 +257,10 @@
     HPLCVariable --&gt; "1" GenesisType : genesis
     click GenesisType href "../GenesisType"
 
+
+      HPLCVariable : hplc_lab
+
+      HPLCVariable : hplc_lab_technician
 
       HPLCVariable : long_name
 
@@ -338,9 +342,15 @@
 </div>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
+<li><a href="../BaseVariable/">BaseVariable</a><ul>
 <li><a href="../Variable/">Variable</a><ul>
 <li><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a> [ <a href="../QCFields/">QCFields</a>]<ul>
+<li><a href="../DiscreteMeasuredVariable/">DiscreteMeasuredVariable</a><ul>
 <li><strong>HPLCVariable</strong></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -357,6 +367,18 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><a href="../hplc_lab/">hplc_lab</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>The name of the lab where the HPLC analysis was run (e</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../hplc_lab_technician/">hplc_lab_technician</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Name and contact information for HPLC technician</td>
+<td>direct</td>
+</tr>
 <tr>
 <td><a href="../analyzing_instrument/">analyzing_instrument</a></td>
 <td>1 <br/> <a href="../AnalyzingInstrument/">AnalyzingInstrument</a></td>
@@ -448,18 +470,6 @@
 <td><a href="../QCFields/">QCFields</a></td>
 </tr>
 <tr>
-<td><a href="../standard_identifier/">standard_identifier</a></td>
-<td>0..1 <br/> <a href="../VocabularyItemReference/">VocabularyItemReference</a></td>
-<td></td>
-<td><a href="../Variable/">Variable</a></td>
-</tr>
-<tr>
-<td><a href="../dataset_variable_name/">dataset_variable_name</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>The name for the variable as it is identified in the dataset data file</td>
-<td><a href="../Variable/">Variable</a></td>
-</tr>
-<tr>
 <td><a href="../dataset_variable_name_qc_flag/">dataset_variable_name_qc_flag</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>If applicable, the column header name used for the quality control flag corre...</td>
@@ -469,18 +479,6 @@
 <td><a href="../dataset_variable_name_raw/">dataset_variable_name_raw</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>If applicable, the column header name used for the raw data corresponding to ...</td>
-<td><a href="../Variable/">Variable</a></td>
-</tr>
-<tr>
-<td><a href="../long_name/">long_name</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>Full descriptive name of the variable</td>
-<td><a href="../Variable/">Variable</a></td>
-</tr>
-<tr>
-<td><a href="../units/">units</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>Unit of measurement for this variable</td>
 <td><a href="../Variable/">Variable</a></td>
 </tr>
 <tr>
@@ -500,6 +498,30 @@
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Any additional information about this variable</td>
 <td><a href="../Variable/">Variable</a></td>
+</tr>
+<tr>
+<td><a href="../units/">units</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>Unit of measurement for this variable</td>
+<td><a href="../BaseVariable/">BaseVariable</a></td>
+</tr>
+<tr>
+<td><a href="../standard_identifier/">standard_identifier</a></td>
+<td>0..1 <br/> <a href="../VocabularyItemReference/">VocabularyItemReference</a></td>
+<td></td>
+<td><a href="../BaseVariable/">BaseVariable</a></td>
+</tr>
+<tr>
+<td><a href="../dataset_variable_name/">dataset_variable_name</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>The name for the variable as it is identified in the dataset data file</td>
+<td><a href="../BaseVariable/">BaseVariable</a></td>
+</tr>
+<tr>
+<td><a href="../long_name/">long_name</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>Full descriptive name of the variable</td>
+<td><a href="../BaseVariable/">BaseVariable</a></td>
 </tr>
 </tbody>
 </table>
@@ -535,7 +557,27 @@
 description: HPLC (High-Performance Liquid Chromatography) measured variable for pigment
   analysis. Always measured, not calculated.
 from_schema: OAEDataManagementProtocol
-is_a: ObservedPropertyVariable
+is_a: DiscreteMeasuredVariable
+attributes:
+  hplc_lab:
+    name: hplc_lab
+    description: The name of the lab where the HPLC analysis was run (e.g., 'NASA_GSFC'
+    title: HPLC Lab
+    from_schema: Variable
+    rank: 1000
+    domain_of:
+    - HPLCVariable
+    range: string
+    required: true
+  hplc_lab_technician:
+    name: hplc_lab_technician
+    description: Name and contact information for HPLC technician.
+    title: HPLC Lab Technician
+    from_schema: Variable
+    rank: 1000
+    domain_of:
+    - HPLCVariable
+    range: string
 
 </code></pre>
 </details>
@@ -545,8 +587,31 @@ is_a: ObservedPropertyVariable
 description: HPLC (High-Performance Liquid Chromatography) measured variable for pigment
   analysis. Always measured, not calculated.
 from_schema: OAEDataManagementProtocol
-is_a: ObservedPropertyVariable
+is_a: DiscreteMeasuredVariable
 attributes:
+  hplc_lab:
+    name: hplc_lab
+    description: The name of the lab where the HPLC analysis was run (e.g., 'NASA_GSFC'
+    title: HPLC Lab
+    from_schema: Variable
+    rank: 1000
+    alias: hplc_lab
+    owner: HPLCVariable
+    domain_of:
+    - HPLCVariable
+    range: string
+    required: true
+  hplc_lab_technician:
+    name: hplc_lab_technician
+    description: Name and contact information for HPLC technician.
+    title: HPLC Lab Technician
+    from_schema: Variable
+    rank: 1000
+    alias: hplc_lab_technician
+    owner: HPLCVariable
+    domain_of:
+    - HPLCVariable
+    range: string
   analyzing_instrument:
     name: analyzing_instrument
     description: Instrument used to analyze the water samples or measure the water
@@ -626,6 +691,7 @@ attributes:
     owner: HPLCVariable
     domain_of:
     - ObservedPropertyVariable
+    - CalculatedVariable
     range: GenesisType
     required: true
   sampling_instrument_type:
@@ -730,30 +796,6 @@ attributes:
     domain_of:
     - QCFields
     range: string
-  standard_identifier:
-    name: standard_identifier
-    from_schema: Variable
-    rank: 1000
-    alias: standard_identifier
-    owner: HPLCVariable
-    domain_of:
-    - Variable
-    range: VocabularyItemReference
-  dataset_variable_name:
-    name: dataset_variable_name
-    description: The name for the variable as it is identified in the dataset data
-      file. This could be the column header in a CSV or the variable name in a NetCDF
-      file. Standard common recommended column header names can be found in protocol
-      documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).
-    title: Dataset variable name
-    from_schema: Variable
-    rank: 1000
-    alias: dataset_variable_name
-    owner: HPLCVariable
-    domain_of:
-    - Variable
-    range: string
-    required: true
   dataset_variable_name_qc_flag:
     name: dataset_variable_name_qc_flag
     description: If applicable, the column header name used for the quality control
@@ -778,30 +820,6 @@ attributes:
     domain_of:
     - Variable
     range: string
-  long_name:
-    name: long_name
-    description: Full descriptive name of the variable.
-    title: Variable full name
-    from_schema: Variable
-    rank: 1000
-    alias: long_name
-    owner: HPLCVariable
-    domain_of:
-    - Variable
-    range: string
-    required: true
-  units:
-    name: units
-    description: Unit of measurement for this variable.
-    title: Unit
-    from_schema: Variable
-    rank: 1000
-    alias: units
-    owner: HPLCVariable
-    domain_of:
-    - Variable
-    range: string
-    required: true
   method_reference:
     name: method_reference
     description: Citation for the method used.
@@ -835,6 +853,54 @@ attributes:
     domain_of:
     - Variable
     range: string
+  units:
+    name: units
+    description: Unit of measurement for this variable.
+    title: Unit
+    from_schema: OAEDataManagementProtocol
+    rank: 1000
+    alias: units
+    owner: HPLCVariable
+    domain_of:
+    - BaseVariable
+    range: string
+    required: true
+  standard_identifier:
+    name: standard_identifier
+    from_schema: Variable
+    rank: 1000
+    alias: standard_identifier
+    owner: HPLCVariable
+    domain_of:
+    - BaseVariable
+    range: VocabularyItemReference
+  dataset_variable_name:
+    name: dataset_variable_name
+    description: The name for the variable as it is identified in the dataset data
+      file. This could be the column header in a CSV or the variable name in a NetCDF
+      file. Standard common recommended column header names can be found in protocol
+      documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).
+    title: Dataset variable name
+    from_schema: Variable
+    rank: 1000
+    alias: dataset_variable_name
+    owner: HPLCVariable
+    domain_of:
+    - BaseVariable
+    range: string
+    required: true
+  long_name:
+    name: long_name
+    description: Full descriptive name of the variable.
+    title: Variable full name
+    from_schema: Variable
+    rank: 1000
+    alias: long_name
+    owner: HPLCVariable
+    domain_of:
+    - BaseVariable
+    range: string
+    required: true
 
 </code></pre>
 </details>

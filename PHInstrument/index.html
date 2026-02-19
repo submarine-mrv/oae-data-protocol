@@ -271,11 +271,8 @@
 </div>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
-<li><a href="../Instrument/">Instrument</a><ul>
 <li><a href="../AnalyzingInstrument/">AnalyzingInstrument</a><ul>
 <li><strong>PHInstrument</strong></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -297,46 +294,46 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../instrument_type/">instrument_type</a></td>
-<td>1 <br/> <a href="../AnalyzingInstrumentType/">AnalyzingInstrumentType</a> or <br/><a href="../AnalyzingInstrumentType/">AnalyzingInstrumentType</a> or <br/><a href="../SamplingInstrumentType/">SamplingInstrumentType</a></td>
-<td>Type of instrument used to analyze samples or measure continuously</td>
-<td><a href="../Instrument/">Instrument</a></td>
-</tr>
-<tr>
-<td><a href="../instrument_type_custom/">instrument_type_custom</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td></td>
-<td><a href="../Instrument/">Instrument</a></td>
-</tr>
-<tr>
 <td><a href="../manufacturer/">manufacturer</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Manufacturer name of the instrument</td>
-<td><a href="../Instrument/">Instrument</a></td>
+<td><a href="../AnalyzingInstrument/">AnalyzingInstrument</a></td>
 </tr>
 <tr>
 <td><a href="../model/">model</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Model number or name of the instrument</td>
-<td><a href="../Instrument/">Instrument</a></td>
+<td><a href="../AnalyzingInstrument/">AnalyzingInstrument</a></td>
+</tr>
+<tr>
+<td><a href="../instrument_type/">instrument_type</a></td>
+<td>1 <br/> <a href="../AnalyzingInstrumentType/">AnalyzingInstrumentType</a></td>
+<td>Type of instrument used to analyze samples or measure continuously</td>
+<td><a href="../AnalyzingInstrument/">AnalyzingInstrument</a></td>
+</tr>
+<tr>
+<td><a href="../instrument_type_custom/">instrument_type_custom</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td></td>
+<td><a href="../AnalyzingInstrument/">AnalyzingInstrument</a></td>
 </tr>
 <tr>
 <td><a href="../serial_number/">serial_number</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Serial number of the instrument</td>
-<td><a href="../Instrument/">Instrument</a></td>
+<td><a href="../AnalyzingInstrument/">AnalyzingInstrument</a></td>
 </tr>
 <tr>
 <td><a href="../precision/">precision</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Precision of the instrument measurements</td>
-<td><a href="../Instrument/">Instrument</a></td>
+<td><a href="../AnalyzingInstrument/">AnalyzingInstrument</a></td>
 </tr>
 <tr>
 <td><a href="../accuracy/">accuracy</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>Accuracy of the instrument measurements</td>
-<td><a href="../Instrument/">Instrument</a></td>
+<td><a href="../AnalyzingInstrument/">AnalyzingInstrument</a></td>
 </tr>
 </tbody>
 </table>
@@ -398,12 +395,10 @@ attributes:
     title: Calibration
     from_schema: Instrument
     domain_of:
-    - Instrument
+    - AnalyzingInstrument
     - PHInstrument
     - CRMInstrument
     - CO2GasDetector
-    - Sensor
-    - GenericInstrument
     range: pHCalibration
     required: true
 
@@ -424,14 +419,35 @@ attributes:
     alias: calibration
     owner: PHInstrument
     domain_of:
-    - Instrument
+    - AnalyzingInstrument
     - PHInstrument
     - CRMInstrument
     - CO2GasDetector
-    - Sensor
-    - GenericInstrument
     range: pHCalibration
     required: true
+  manufacturer:
+    name: manufacturer
+    description: Manufacturer name of the instrument.
+    title: Manufacturer
+    from_schema: OAEDataManagementProtocol
+    rank: 1000
+    alias: manufacturer
+    owner: PHInstrument
+    domain_of:
+    - StandardGas
+    - AnalyzingInstrument
+    range: string
+  model:
+    name: model
+    description: Model number or name of the instrument.
+    title: Model
+    from_schema: OAEDataManagementProtocol
+    rank: 1000
+    alias: model
+    owner: PHInstrument
+    domain_of:
+    - AnalyzingInstrument
+    range: string
   instrument_type:
     name: instrument_type
     description: Type of instrument used to analyze samples or measure continuously.
@@ -441,12 +457,9 @@ attributes:
     alias: instrument_type
     owner: PHInstrument
     domain_of:
-    - Instrument
+    - AnalyzingInstrument
     range: AnalyzingInstrumentType
     required: true
-    any_of:
-    - range: AnalyzingInstrumentType
-    - range: SamplingInstrumentType
   instrument_type_custom:
     name: instrument_type_custom
     title: Instrument type (custom)
@@ -455,29 +468,7 @@ attributes:
     alias: instrument_type_custom
     owner: PHInstrument
     domain_of:
-    - Instrument
-    range: string
-  manufacturer:
-    name: manufacturer
-    description: Manufacturer name of the instrument.
-    title: Manufacturer
-    from_schema: Instrument
-    alias: manufacturer
-    owner: PHInstrument
-    domain_of:
-    - StandardGas
-    - Instrument
-    range: string
-  model:
-    name: model
-    description: Model number or name of the instrument.
-    title: Model
-    from_schema: Instrument
-    rank: 1000
-    alias: model
-    owner: PHInstrument
-    domain_of:
-    - Instrument
+    - AnalyzingInstrument
     range: string
   serial_number:
     name: serial_number
@@ -488,7 +479,7 @@ attributes:
     alias: serial_number
     owner: PHInstrument
     domain_of:
-    - Instrument
+    - AnalyzingInstrument
     range: string
   precision:
     name: precision
@@ -499,9 +490,8 @@ attributes:
     alias: precision
     owner: PHInstrument
     domain_of:
-    - Instrument
+    - AnalyzingInstrument
     range: string
-    required: true
   accuracy:
     name: accuracy
     description: Accuracy of the instrument measurements.
@@ -511,7 +501,7 @@ attributes:
     alias: accuracy
     owner: PHInstrument
     domain_of:
-    - Instrument
+    - AnalyzingInstrument
     range: string
     required: true
 

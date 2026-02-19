@@ -445,8 +445,92 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="AnalyzingInstrument/">AnalyzingInstrument</a></td>
+<td>Base class for scientific instruments used in analyzing samples for measurement.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CO2GasDetector/">CO2GasDetector</a></td>
+<td>CO2 gas detector with standard gas calibration.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CRMInstrument/">CRMInstrument</a></td>
+<td>Instrument calibrated with Certified Reference Materials, used for DIC and TA measurements.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="PHInstrument/">PHInstrument</a></td>
+<td>pH measurement instrument with dye-based calibration.</td>
+</tr>
+<tr>
 <td><a href="Any/">Any</a></td>
 <td>None</td>
+</tr>
+<tr>
+<td><a href="BaseVariable/">BaseVariable</a></td>
+<td>Basic variable fields across all (including non-measured) variables</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="NonMeasuredVariable/">NonMeasuredVariable</a></td>
+<td>Non-measured variable for data from external sources (e.g., satellite, model outputs, published data) that are not directly measured by the project but included in the dataset.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Variable/">Variable</a></td>
+<td>Base class for all variable types. Contains common identification and description fields shared by all variables. Reference: OAPMetadata XSD variables.xsd - variable, basic_variable</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CalculatedVariable/">CalculatedVariable</a></td>
+<td>Variable that is calculated or derived from other variables.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
+<td>Variable that is directly measured in-situ using instruments. Reference: OAPMetadata XSD variables.xsd - basic_measured_observation_base</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ContinuousMeasuredVariable/">ContinuousMeasuredVariable</a></td>
+<td>Fields for continuous sampling information.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ContinuousDICVariable/">ContinuousDICVariable</a></td>
+<td>Dissolved Inorganic Carbon (DIC) measured variable from continuous autonomous sensor.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ContinuousPHVariable/">ContinuousPHVariable</a></td>
+<td>pH measured variable from continuous autonomous sensor</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ContinuousSedimentVariable/">ContinuousSedimentVariable</a></td>
+<td>Measured sediment variable collected from continuous autonomous sensor</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ContinuousTAVariable/">ContinuousTAVariable</a></td>
+<td>Total Alkalinity (TA) measured variable from continuous autonomous sensor</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DiscreteMeasuredVariable/">DiscreteMeasuredVariable</a></td>
+<td>Analyzing instrument information fields, only applied to discretely measured variables. The instrument type can be narrowed in subclasses using slot_usage.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DiscreteCO2Variable/">DiscreteCO2Variable</a></td>
+<td>CO2 discrete (bottle) measured variable (pCO2/fCO2). Reference: OAPMetadata XSD variables.xsd - co2_discrete</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DiscreteDICVariable/">DiscreteDICVariable</a></td>
+<td>Dissolved Inorganic Carbon (DIC) measured variable from discrete bottle samples. Uses CRM-calibrated instrument and includes sample preservation information. Reference: OAPMetadata XSD variables.xsd - DIC_measured</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DiscretePHVariable/">DiscretePHVariable</a></td>
+<td>pH measured variable with dye-based spectrophotometric measurement. Reference: OAPMetadata XSD variables.xsd - pH_measured</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DiscreteSedimentVariable/">DiscreteSedimentVariable</a></td>
+<td>Measured sediment variable collected from discrete bottle samples</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DiscreteTAVariable/">DiscreteTAVariable</a></td>
+<td>Total Alkalinity (TA) measured variable from discrete bottle samples</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="HPLCVariable/">HPLCVariable</a></td>
+<td>HPLC (High-Performance Liquid Chromatography) measured variable for pigment analysis. Always measured, not calculated.</td>
 </tr>
 <tr>
 <td><a href="Calibration/">Calibration</a></td>
@@ -509,36 +593,28 @@
 <td>The geographic shape of a place. A GeoShape can be described using several properties whose values are based on latitude/longitude pairs. Either whitespace or commas can be used to separate latitude and longitude; whitespace should be used when writing a list of several such points. (imported from schema.org)</td>
 </tr>
 <tr>
-<td><a href="Instrument/">Instrument</a></td>
-<td>Base class for scientific instruments used in measurements.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="AnalyzingInstrument/">AnalyzingInstrument</a></td>
-<td>Subclass of Instrument used for analyzing samples</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="PHInstrument/">PHInstrument</a></td>
-<td>pH measurement instrument with dye-based calibration.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CO2GasDetector/">CO2GasDetector</a></td>
-<td>CO2 gas detector with standard gas calibration.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CRMInstrument/">CRMInstrument</a></td>
-<td>Instrument calibrated with Certified Reference Materials, used for DIC and TA measurements.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GenericInstrument/">GenericInstrument</a></td>
-<td>Generic instrument for cases that don't fit specialized instrument types. Provides backward compatibility and flexibility.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Sensor/">Sensor</a></td>
-<td>Generic sensor with basic calibration information. Used for auxiliary measurements like temperature, pressure, etc.</td>
-</tr>
-<tr>
 <td><a href="InterventionDetails/">InterventionDetails</a></td>
 <td>An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are  specific to an Experiment with type "Intervention"</td>
+</tr>
+<tr>
+<td><a href="MeasuredCO2Fields/">MeasuredCO2Fields</a></td>
+<td>Fields applied to all measured CO2 variable types (discrete and continuous)</td>
+</tr>
+<tr>
+<td><a href="MeasuredDICFields/">MeasuredDICFields</a></td>
+<td>Fields applied to all measured DIC variable types (discrete and continuous)</td>
+</tr>
+<tr>
+<td><a href="MeasuredPHFields/">MeasuredPHFields</a></td>
+<td>Fields applied to all measured pH variable types (discrete and continuous)</td>
+</tr>
+<tr>
+<td><a href="MeasuredSedimentFields/">MeasuredSedimentFields</a></td>
+<td>Fields applied to all measured sediment variable types (discrete and continuous)</td>
+</tr>
+<tr>
+<td><a href="MeasuredTAFields/">MeasuredTAFields</a></td>
+<td>Fields applied to all measured TA variable types (discrete and continuous)</td>
 </tr>
 <tr>
 <td><a href="MonetaryGrant/">MonetaryGrant</a></td>
@@ -589,60 +665,16 @@
 <td>Quality control fields applicable to measured and calculated variables. Not applied to socioeconomic variables.</td>
 </tr>
 <tr>
+<td><a href="SamplePreservation/">SamplePreservation</a></td>
+<td>Sample preservation information for DIC and TA measurements. Reference: OAPMetadata XSD variables.xsd - sample_preservation</td>
+</tr>
+<tr>
 <td><a href="StandardGas/">StandardGas</a></td>
 <td>Standard gas used for CO2 calibration.</td>
 </tr>
 <tr>
 <td><a href="TracerDetails/">TracerDetails</a></td>
 <td>An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are  specific to an Experiment with type "Tracer"</td>
-</tr>
-<tr>
-<td><a href="Variable/">Variable</a></td>
-<td>Base class for all variable types. Contains common identification and description fields shared by all variables. Reference: OAPMetadata XSD variables.xsd - variable, basic_variable</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CalculatedVariable/">CalculatedVariable</a></td>
-<td>Variable that is calculated or derived from other variables.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="NonMeasuredVariable/">NonMeasuredVariable</a></td>
-<td>Non-measured variable for data from external sources (e.g., satellite, model outputs, published data) that are not directly measured by the project but included in the dataset.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
-<td>Variable that is directly measured in-situ using instruments. Reference: OAPMetadata XSD variables.xsd - basic_measured_observation_base</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ContinuousMeasuredVariable/">ContinuousMeasuredVariable</a></td>
-<td>Fields for continuous sampling information.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ContinuousPHVariable/">ContinuousPHVariable</a></td>
-<td>pH measured variable from continuous autonomous sensor</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DiscreteMeasuredVariable/">DiscreteMeasuredVariable</a></td>
-<td>Analyzing instrument information fields, only applied to discretely measured variables. The instrument type can be narrowed in subclasses using slot_usage.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DiscretePHVariable/">DiscretePHVariable</a></td>
-<td>pH measured variable with dye-based spectrophotometric measurement. Reference: OAPMetadata XSD variables.xsd - pH_measured</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="HPLCVariable/">HPLCVariable</a></td>
-<td>HPLC (High-Performance Liquid Chromatography) measured variable for pigment analysis. Always measured, not calculated.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="PhysiologicalVariable/">PhysiologicalVariable</a></td>
-<td>Physiological response measured variable for organism response data.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="SedimentVariable/">SedimentVariable</a></td>
-<td>Sediment measured variable for seafloor/sediment sampling data.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="SocioeconomicVariable/">SocioeconomicVariable</a></td>
-<td>Socioeconomic variable for social and economic data. Note: Does NOT include QCFields mixin as QC is not applicable.</td>
 </tr>
 <tr>
 <td><a href="VerticalExtent/">VerticalExtent</a></td>
@@ -736,6 +768,10 @@
 <td>Author list in the format of Lastname1, Firstname1 Middlename1; Lastname2, Fi...</td>
 </tr>
 <tr>
+<td><a href="blank_correction/">blank_correction</a></td>
+<td>Whether the reported variables were corrected for blank, and if so, how they ...</td>
+</tr>
+<tr>
 <td><a href="box/">box</a></td>
 <td>A box defined by two latitude-longitude points, southwest and northeast</td>
 </tr>
@@ -772,12 +808,24 @@
 <td>e</td>
 </tr>
 <tr>
+<td><a href="co2_reported_temperature/">co2_reported_temperature</a></td>
+<td>In Celsius</td>
+</tr>
+<tr>
 <td><a href="colocated_operations/">colocated_operations</a></td>
 <td>A description is required if any nearby operations exist that may influence t...</td>
 </tr>
 <tr>
 <td><a href="concentration/">concentration</a></td>
-<td>CO2 concentration of the standard gas</td>
+<td>Concentrations of the CO2 standard gases that are used to calibrate the CO2 s...</td>
+</tr>
+<tr>
+<td><a href="concentration_basis/">concentration_basis</a></td>
+<td>Whether measurements are expressed per unit volume or per unit mass (for DIC,...</td>
+</tr>
+<tr>
+<td><a href="correction_description/">correction_description</a></td>
+<td>Description of how the preservative effect was corrected for</td>
 </tr>
 <tr>
 <td><a href="correction_for_unpurified_dye/">correction_for_unpurified_dye</a></td>
@@ -796,16 +844,16 @@
 <td>Manufacturer of the Certified Reference Material (e</td>
 </tr>
 <tr>
+<td><a href="curve_fitting_method/">curve_fitting_method</a></td>
+<td>Curve fitting method used to determine the alkalinity</td>
+</tr>
+<tr>
 <td><a href="data_conflicts_and_unreported_data/">data_conflicts_and_unreported_data</a></td>
 <td>If data exist that are or have been used by the project but are not provided ...</td>
 </tr>
 <tr>
 <td><a href="data_product_type/">data_product_type</a></td>
 <td>"Controlled vocabulary" One of the three choices: (a) Originally collected da...</td>
-</tr>
-<tr>
-<td><a href="data_source/">data_source</a></td>
-<td>Source of the non-measured data (e</td>
 </tr>
 <tr>
 <td><a href="data_submitter/">data_submitter</a></td>
@@ -832,8 +880,16 @@
 <td>If applicable, the column header name used for the raw data corresponding to ...</td>
 </tr>
 <tr>
+<td><a href="datasets/">datasets</a></td>
+<td></td>
+</tr>
+<tr>
 <td><a href="description/">description</a></td>
 <td>A narrative description of the thing</td>
+</tr>
+<tr>
+<td><a href="detector_type/">detector_type</a></td>
+<td>Type of the CO2 gas detector (E</td>
 </tr>
 <tr>
 <td><a href="dosing_delivery_type/">dosing_delivery_type</a></td>
@@ -936,6 +992,18 @@
 <td>Entities that have a somewhat fixed, physical extension</td>
 </tr>
 <tr>
+<td><a href="headspace_volume/">headspace_volume</a></td>
+<td>Volume (in mL) of headspace (water displaced in the flask plus volume of the ...</td>
+</tr>
+<tr>
+<td><a href="hplc_lab/">hplc_lab</a></td>
+<td>The name of the lab where the HPLC analysis was run (e</td>
+</tr>
+<tr>
+<td><a href="hplc_lab_technician/">hplc_lab_technician</a></td>
+<td>Name and contact information for HPLC technician</td>
+</tr>
+<tr>
 <td><a href="identifier/">identifier</a></td>
 <td>A unique identifier for the thing</td>
 </tr>
@@ -950,10 +1018,6 @@
 <tr>
 <td><a href="instrument_type_custom/">instrument_type_custom</a></td>
 <td></td>
-</tr>
-<tr>
-<td><a href="investigators/">investigators</a></td>
-<td>Provide details for each investigator including: Name, institutional informat...</td>
 </tr>
 <tr>
 <td><a href="is_derived_value/">is_derived_value</a></td>
@@ -989,11 +1053,15 @@
 </tr>
 <tr>
 <td><a href="manufacturer/">manufacturer</a></td>
-<td>Manufacturer of the standard gas</td>
+<td>Manufacturer name of the instrument</td>
 </tr>
 <tr>
 <td><a href="max_depth_in_m/">max_depth_in_m</a></td>
 <td>Maximum depth of observation in meters</td>
+</tr>
+<tr>
+<td><a href="max_height_in_m/">max_height_in_m</a></td>
+<td>Maximum height of observation (in meters) for above ground aerial coverage</td>
 </tr>
 <tr>
 <td><a href="mcdr_pathway/">mcdr_pathway</a></td>
@@ -1022,6 +1090,10 @@
 <tr>
 <td><a href="min_depth_in_m/">min_depth_in_m</a></td>
 <td>Minimum depth of observation in meters</td>
+</tr>
+<tr>
+<td><a href="min_height_in_m/">min_height_in_m</a></td>
+<td>Minimum height of observation (in meters) for above ground aerial coverage</td>
 </tr>
 <tr>
 <td><a href="missing_value_indicators/">missing_value_indicators</a></td>
@@ -1096,8 +1168,16 @@
 <td>Precision of the instrument measurements</td>
 </tr>
 <tr>
+<td><a href="preservative/">preservative</a></td>
+<td>As described, e</td>
+</tr>
+<tr>
 <td><a href="previous_or_ongoing_colocated_research/">previous_or_ongoing_colocated_research</a></td>
 <td>This field is required for co-located operations that potentially impact the ...</td>
+</tr>
+<tr>
+<td><a href="principal_investigators/">principal_investigators</a></td>
+<td>Provide details for each principal investigator (PI) including: Name, institu...</td>
 </tr>
 <tr>
 <td><a href="project/">project</a></td>
@@ -1152,6 +1232,10 @@
 <td>Role of the investigator in the experiment (e</td>
 </tr>
 <tr>
+<td><a href="sample_preservation/">sample_preservation</a></td>
+<td>How the samples were preserved for analysis</td>
+</tr>
+<tr>
 <td><a href="sampling/">sampling</a></td>
 <td></td>
 </tr>
@@ -1172,6 +1256,26 @@
 <td>Names of the seas where the data collection takes place, See Controlled Vocab...</td>
 </tr>
 <tr>
+<td><a href="seawater_volume/">seawater_volume</a></td>
+<td>Volume (in mL) of seawater in the flask</td>
+</tr>
+<tr>
+<td><a href="sediment_sampling_depth/">sediment_sampling_depth</a></td>
+<td>Depth that sediment was collected below sediment surface</td>
+</tr>
+<tr>
+<td><a href="sediment_sampling_method/">sediment_sampling_method</a></td>
+<td>e</td>
+</tr>
+<tr>
+<td><a href="sediment_sampling_water_depth/">sediment_sampling_water_depth</a></td>
+<td>Water depth where sediment was collected</td>
+</tr>
+<tr>
+<td><a href="sediment_type/">sediment_type</a></td>
+<td>e</td>
+</tr>
+<tr>
 <td><a href="serial_number/">serial_number</a></td>
 <td>Serial number of the instrument</td>
 </tr>
@@ -1184,15 +1288,11 @@
 <td>A description of any social research conducted to date</td>
 </tr>
 <tr>
-<td><a href="source_reference/">source_reference</a></td>
-<td>Citation or DOI for the source data</td>
-</tr>
-<tr>
 <td><a href="spatial_coverage/">spatial_coverage</a></td>
 <td>Latitude/longitude bounds of project site (e</td>
 </tr>
 <tr>
-<td><a href="standard_gases/">standard_gases</a></td>
+<td><a href="standard_gas_info/">standard_gas_info</a></td>
 <td>Standard gases used for calibration</td>
 </tr>
 <tr>
@@ -1206,6 +1306,10 @@
 <tr>
 <td><a href="start_datetime/">start_datetime</a></td>
 <td>Start date and time of experiment in UTC ISO-8601</td>
+</tr>
+<tr>
+<td><a href="storage_method/">storage_method</a></td>
+<td>How the samples were stored before the measurement</td>
 </tr>
 <tr>
 <td><a href="technique_description/">technique_description</a></td>
@@ -1226,6 +1330,14 @@
 <tr>
 <td><a href="time_period/">time_period</a></td>
 <td>The time period during which the permit will be applicable, or expected durat...</td>
+</tr>
+<tr>
+<td><a href="titration_cell_type/">titration_cell_type</a></td>
+<td>Whether the titration cell is open or closed</td>
+</tr>
+<tr>
+<td><a href="titration_type/">titration_type</a></td>
+<td>Type of the titration used to determine alkalinity</td>
 </tr>
 <tr>
 <td><a href="tracer_concentration/">tracer_concentration</a></td>
@@ -1276,8 +1388,12 @@
 <td>Minimum and maximum depths of observation in meters</td>
 </tr>
 <tr>
-<td><a href="wmo_traceable/">wmo_traceable</a></td>
-<td>Whether standard gases are traceable to WMO standards</td>
+<td><a href="volume/">volume</a></td>
+<td>The volume of preservative used</td>
+</tr>
+<tr>
+<td><a href="water_vapor_correction_method/">water_vapor_correction_method</a></td>
+<td>How the water vapor pressure inside the equilibrator was determined</td>
 </tr>
 </tbody>
 </table>
@@ -1309,6 +1425,10 @@
 <tr>
 <td><a href="CalibrationLocation/">CalibrationLocation</a></td>
 <td>Where the calibration was performed</td>
+</tr>
+<tr>
+<td><a href="ConcentrationBasis/">ConcentrationBasis</a></td>
+<td>Whether concentration measurements are expressed per unit volume or per unit ...</td>
 </tr>
 <tr>
 <td><a href="DataProductType/">DataProductType</a></td>
@@ -1372,6 +1492,10 @@
 </tr>
 <tr>
 <td><a href="SeaNames/">SeaNames</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="TitrationCellType/">TitrationCellType</a></td>
 <td></td>
 </tr>
 <tr>
