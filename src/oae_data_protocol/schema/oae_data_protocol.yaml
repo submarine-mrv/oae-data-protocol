@@ -26,9 +26,7 @@ imports:
   - variable
   - dataset
   - platform
-#   The following were early experimental schemas and have not been
-#   udated to the v1.0 version of the protocol yet
-#   - model_simulation
+  - model
 
 classes:
   Container:

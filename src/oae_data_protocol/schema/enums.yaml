@@ -224,6 +224,27 @@ enums:
         description: "Nahcolite (NaHCO₃) used as an alkalinity source."
       other:
         description: "Enter a custom value in the field provided"
+  GridType:
+    description: "Type of grid in a multi-grid or nested model configuration"
+    permissible_values:
+      inner_grid:
+        description: "Inner (nested, higher-resolution) grid"
+      outer_grid:
+        description: "Outer (coarser-resolution) grid"
+      single_grid:
+        description: "Single grid (no nesting)"
+
+  ModelComponentType:
+    description: "Type of model component"
+    permissible_values:
+      physics:
+        description: "Physical model component (e.g., ocean circulation)"
+      bgc_ecosystem:
+        title: "BGC/Ecosystem"
+        description: "Biogeochemical or ecosystem model component"
+      other:
+        description: "Other model component (e.g., sea ice, sediment, atmosphere)"
+
   DataProductType:
     permissible_values:
       originally_collected_dataset:

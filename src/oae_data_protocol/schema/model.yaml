@@ -1,0 +1,166 @@
+id: Model
+name: Model
+prefixes:
+  oae: "https://example.org/oae#"
+  schema: "http://schema.org/"
+
+default_prefix: oae
+
+classes:
+  Model:
+    description: "A computational model experiment related to OAE."
+    is_a: Experiment
+    attributes:
+      model_configuration:
+        title: Model Configuration
+        description: "Links to model configuration files or documentation."
+        range: uri
+        multivalued: true
+      model_components:
+        title: Model Components
+        description: "Components of the model (e.g., physics, biogeochemistry)."
+        range: ModelComponent
+        multivalued: true
+        inlined_as_list: true
+      grid_details:
+        title: Grid Details
+        description: "Details about the model grid(s). Use multiple entries for nested grid configurations."
+        range: ModelGrid
+        multivalued: true
+        inlined_as_list: true
+      input_details:
+        title: Input Details
+        description: "Details about input data sources used to drive the model."
+        range: ModelInputDetails
+        inlined: true
+  ModelComponent:
+    description: "A component of a model (e.g., physics, biogeochemistry/ecosystem)."
+    slots:
+      - description
+    slot_usage:
+      description:
+        description: >-
+          A description of the model component characteristics. For physics components, this may include the version
+          of equations being solved (hydrostatic vs non-hydrostatic), tracer advection scheme, how bottom drag is
+          represented, mixed layer parameterizations, sub-grid mixing parameterizations if applicable, etc. For BGC
+          components, this may include air-sea CO2 flux parameterization, gas transfer velocity formulation, and
+          atmospheric CO2 details. Associated links to data, DOIs, or publications can be noted here, but should
+          be supplemental.
+    attributes:
+      model_component_type:
+        title: Model Component Type
+        description: "The type of model component (physics, BGC/ecosystem, or other)."
+        range: ModelComponentType
+        required: true
+      name:
+        title: Component Name
+        description: "Name of the model component (e.g., ROMS, MARBL, Oceananigans)."
+        range: string
+        required: true
+      version:
+        title: Version
+        description: "Release version of the model component."
+        range: string
+      codebase:
+        title: Codebase
+        description: "Link to model code repository."
+        range: uri
+      references:
+        title: References
+        description: "DOIs or links to publications describing the model component."
+        multivalued: true
+        range: uri
+  ModelGrid:
+    description: "Details about a model grid. Use multiple ModelGrid entries to describe nested or multi-grid configurations."
+    attributes:
+      grid_name:
+        title: Grid Name
+        description: "Name of the grid (e.g., 'inner grid', 'L1', 'global')."
+        range: string
+      grid_geometry:
+        title: Grid Geometry
+        description: "Descriptive structure of the grid (e.g., latitude-longitude, unstructured triangular, tripolar)."
+        range: string
+      grid_type:
+        title: Grid Type
+        description: "Role of this grid in a nested or multi-grid configuration."
+        range: GridType
+      region:
+        title: Region
+        description: "Region covered by the grid."
+        range: string
+      spatial_coverage:
+        title: Spatial Coverage
+        description: "Bounding box for this grid, provided as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude."
+        range: SpatialCoverage
+      arrangement:
+        title: Arrangement
+        description: "The grid arrangement of orthogonal physical quantities (e.g., Arakawa A, Arakawa B, Arakawa C)."
+        range: string
+      n_x:
+        title: "N_x"
+        description: "Number of grid points in the x-direction."
+        range: integer
+      n_y:
+        title: "N_y"
+        description: "Number of grid points in the y-direction."
+        range: integer
+      n_z:
+        title: "N_z"
+        description: "Number of vertical coordinate levels."
+        range: integer
+      n_nodes:
+        title: "N_nodes"
+        description: "Number of nodes in the grid (for unstructured grids)."
+        range: integer
+      horizontal_resolution_range:
+        title: Horizontal Resolution Range
+        description: "Description of horizontal resolution (e.g., '3.3 km', '1/12 degree')."
+        range: string
+      vertical_resolution_range:
+        title: Vertical Resolution Range
+        description: "Description of vertical resolution (e.g., 'Max. 4 m near surface, stretching to 500 m at depth')."
+        range: string
+  ModelInputDetails:
+    description: "Details about input data sources used to drive the model."
+    attributes:
+      bathymetry:
+        title: Bathymetry
+        description: "Bathymetry data source(s)."
+        range: NamedLink
+        multivalued: true
+        inlined_as_list: true
+      initial_conditions:
+        title: Initial Conditions
+        description: "Initial condition data source(s)."
+        range: NamedLink
+        multivalued: true
+        inlined_as_list: true
+      boundary_conditions:
+        title: Boundary Conditions
+        description: "Boundary condition data source(s)."
+        range: NamedLink
+        multivalued: true
+        inlined_as_list: true
+      atmospheric_forcing:
+        title: Atmospheric Forcing
+        description: "Atmospheric forcing data source(s)."
+        range: NamedLink
+        multivalued: true
+        inlined_as_list: true
+      tidal_forcing:
+        title: Tidal Forcing
+        description: "Tidal forcing data source(s)."
+        range: NamedLink
+        multivalued: true
+        inlined_as_list: true
+      river_sediment_flux_details:
+        title: River/Sediment Flux Details
+        description: "River and/or sediment flux data source(s)."
+        range: NamedLink
+        multivalued: true
+        inlined_as_list: true
+      processing_of_input_data:
+        title: Processing of Input Data
+        description: "Narrative description of any processing applied to input data before use in the model."
+        range: string
