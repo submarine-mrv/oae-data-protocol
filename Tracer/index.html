@@ -277,6 +277,15 @@
 
       Tracer : experiment_id
 
+      Tracer : experiment_leads
+
+
+
+
+    Tracer --&gt; "1..*" Person : experiment_leads
+    click Person href "../Person"
+
+
       Tracer : experiment_type
 
 
@@ -304,15 +313,6 @@
 
     Tracer --&gt; "*" Permit : permits
     click Permit href "../Permit"
-
-
-      Tracer : principal_investigators
-
-
-
-
-    Tracer --&gt; "1..*" Person : principal_investigators
-    click Person href "../Person"
 
 
       Tracer : project_id
@@ -501,9 +501,9 @@
 <td><a href="../Experiment/">Experiment</a></td>
 </tr>
 <tr>
-<td><a href="../principal_investigators/">principal_investigators</a></td>
+<td><a href="../experiment_leads/">experiment_leads</a></td>
 <td>1..* <br/> <a href="../Person/">Person</a></td>
-<td>Provide details for each principal investigator (PI) including: Name, institu...</td>
+<td>Provide details for each experiment lead / principal investigator (PI) includ...</td>
 <td><a href="../Experiment/">Experiment</a></td>
 </tr>
 <tr>
@@ -876,15 +876,15 @@ attributes:
     - Experiment
     range: ExperimentType
     required: true
-  principal_investigators:
-    name: principal_investigators
-    description: 'Provide details for each principal investigator (PI) including:
-      Name, institutional information (name, address), phone, email, ID type (e.g.,
-      ORCID, etc), researcher ID, and role.'
-    title: Principal Investigators
+  experiment_leads:
+    name: experiment_leads
+    description: 'Provide details for each experiment lead / principal investigator
+      (PI) including: Name, institutional information (name, address), phone, email,
+      ID type (e.g., ORCID, etc), researcher ID, and role.'
+    title: Experiment Lead(s)
     from_schema: Experiment
     rank: 1000
-    alias: principal_investigators
+    alias: experiment_leads
     owner: Tracer
     domain_of:
     - Experiment

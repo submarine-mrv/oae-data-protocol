@@ -761,6 +761,10 @@
          <lastmod>2026-02-23</lastmod>
     </url>
     <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/experiment_leads/</loc>
+         <lastmod>2026-02-23</lastmod>
+    </url>
+    <url>
          <loc>https://clevinson.github.io/oae-data-protocol/experiment_type/</loc>
          <lastmod>2026-02-23</lastmod>
     </url>
@@ -1073,10 +1077,6 @@
          <lastmod>2026-02-23</lastmod>
     </url>
     <url>
-         <loc>https://clevinson.github.io/oae-data-protocol/principal_investigators/</loc>
-         <lastmod>2026-02-23</lastmod>
-    </url>
-    <url>
          <loc>https://clevinson.github.io/oae-data-protocol/processing_code/</loc>
          <lastmod>2026-02-23</lastmod>
     </url>
@@ -1090,6 +1090,10 @@
     </url>
     <url>
          <loc>https://clevinson.github.io/oae-data-protocol/project_id/</loc>
+         <lastmod>2026-02-23</lastmod>
+    </url>
+    <url>
+         <loc>https://clevinson.github.io/oae-data-protocol/project_leads/</loc>
          <lastmod>2026-02-23</lastmod>
     </url>
     <url>

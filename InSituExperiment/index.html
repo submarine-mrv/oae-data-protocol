@@ -247,6 +247,15 @@
 
       InSituExperiment : experiment_id
 
+      InSituExperiment : experiment_leads
+
+
+
+
+    InSituExperiment --&gt; "1..*" Person : experiment_leads
+    click Person href "../Person"
+
+
       InSituExperiment : experiment_type
 
 
@@ -274,15 +283,6 @@
 
     InSituExperiment --&gt; "*" Permit : permits
     click Permit href "../Permit"
-
-
-      InSituExperiment : principal_investigators
-
-
-
-
-    InSituExperiment --&gt; "1..*" Person : principal_investigators
-    click Person href "../Person"
 
 
       InSituExperiment : project_id
@@ -398,9 +398,9 @@
 <td><a href="../Experiment/">Experiment</a></td>
 </tr>
 <tr>
-<td><a href="../principal_investigators/">principal_investigators</a></td>
+<td><a href="../experiment_leads/">experiment_leads</a></td>
 <td>1..* <br/> <a href="../Person/">Person</a></td>
-<td>Provide details for each principal investigator (PI) including: Name, institu...</td>
+<td>Provide details for each experiment lead / principal investigator (PI) includ...</td>
 <td><a href="../Experiment/">Experiment</a></td>
 </tr>
 <tr>
@@ -694,15 +694,15 @@ attributes:
     - Experiment
     range: ExperimentType
     required: true
-  principal_investigators:
-    name: principal_investigators
-    description: 'Provide details for each principal investigator (PI) including:
-      Name, institutional information (name, address), phone, email, ID type (e.g.,
-      ORCID, etc), researcher ID, and role.'
-    title: Principal Investigators
+  experiment_leads:
+    name: experiment_leads
+    description: 'Provide details for each experiment lead / principal investigator
+      (PI) including: Name, institutional information (name, address), phone, email,
+      ID type (e.g., ORCID, etc), researcher ID, and role.'
+    title: Experiment Lead(s)
     from_schema: Experiment
     rank: 1000
-    alias: principal_investigators
+    alias: experiment_leads
     owner: InSituExperiment
     domain_of:
     - Experiment

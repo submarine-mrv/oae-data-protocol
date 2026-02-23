@@ -273,6 +273,15 @@
 
       Project : project_id
 
+      Project : project_leads
+
+
+
+
+    Project --&gt; "1..*" Person : project_leads
+    click Person href "../Person"
+
+
       Project : public_comments
 
       Project : research_project
@@ -343,6 +352,12 @@
 <td><a href="../experiments/">experiments</a></td>
 <td>* <em>recommended</em> <br/> <a href="../Experiment/">Experiment</a></td>
 <td></td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../project_leads/">project_leads</a></td>
+<td>1..* <br/> <a href="../Person/">Person</a></td>
+<td>Provide details for each project lead / principal investigator (PI) including...</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -508,6 +523,21 @@ attributes:
     range: Experiment
     recommended: true
     multivalued: true
+  project_leads:
+    name: project_leads
+    description: 'Provide details for each project lead / principal investigator (PI)
+      including: Name, institutional information (name, address), phone, email, ID
+      type (e.g., ORCID, etc), researcher ID, and role.'
+    title: Project Lead(s)
+    from_schema: Project
+    rank: 1000
+    domain_of:
+    - Project
+    range: Person
+    required: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
   sea_names:
     name: sea_names
     description: Names of the seas where the data collection takes place, See Controlled
@@ -698,6 +728,23 @@ attributes:
     range: Experiment
     recommended: true
     multivalued: true
+  project_leads:
+    name: project_leads
+    description: 'Provide details for each project lead / principal investigator (PI)
+      including: Name, institutional information (name, address), phone, email, ID
+      type (e.g., ORCID, etc), researcher ID, and role.'
+    title: Project Lead(s)
+    from_schema: Project
+    rank: 1000
+    alias: project_leads
+    owner: Project
+    domain_of:
+    - Project
+    range: Person
+    required: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
   sea_names:
     name: sea_names
     description: Names of the seas where the data collection takes place, See Controlled
