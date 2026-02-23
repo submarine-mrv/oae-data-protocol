@@ -9,14 +9,16 @@ default_prefix: oae
 
 classes:
   Experiment:
+    # TODO: We may want to revert to set 'abstract: true' again once we set `include_range_class_descendents: true`
+    # As of right now, setting Experiment to abstract means we don't get it in the JSON Schema at all and it breaks
+    # downstream usage
+    # abstract: true
     description: >-
-      Experiment metadata applies to a specific study but remains consistent across datasets.
+      Abstract base class for all experiment types. Contains fields common to both in-situ and model experiments.
     slots:
       - name
       - description
       - spatial_coverage
-      - vertical_coverage
-      - permits
       - project_id
       - experiment_id
     slot_usage:
@@ -40,8 +42,6 @@ classes:
           Latitude/longitude bounds of observed data in experiment, provided in decimal degrees as westernmost
           longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]
         required: true
-      vertical_coverage:
-        description: Minimum and maximum depths of observations in meters.
     attributes:
       experiment_type:
         title: mCDR Experiment Type
@@ -60,15 +60,26 @@ classes:
         inlined_as_list: true
         required: true
       start_datetime:
-        title: Start Date and Time
+        title: Start Date and Time (UTC)
         description: "Start date and time of experiment in UTC ISO-8601"
         range: datetime
         required: true
       end_datetime:
-        title: End Date and Time
+        title: End Date and Time (UTC)
         description: "End date and time of experiment in UTC ISO-8601"
         range: datetime
-        required: true
+  InSituExperiment:
+    is_a: Experiment
+    description: >-
+      Experiment metadata for in-situ studies (interventions, tracer studies, etc.). Contains fields specific to
+      field-based experiments that don't apply to model experiments.
+    slots:
+      - vertical_coverage
+      - permits
+    slot_usage:
+      vertical_coverage:
+        description: Minimum and maximum depths of observations in meters.
+    attributes:
       data_conflicts_and_unreported_data:
         title: Data Conflicts and Unreported Data
         description: >-
@@ -91,7 +102,7 @@ classes:
           as digitized laboratory notebooks, blogs, etc., may be linked here.
         range: string
   Intervention:
-    is_a: Experiment
+    is_a: InSituExperiment
     mixins:
       - InterventionDetails
       - DosingDetails
@@ -118,7 +129,7 @@ classes:
 
 
   Tracer:
-    is_a: Experiment
+    is_a: InSituExperiment
     description: "Additional metadata that applies to experiments where a tracer study was conducted"
     mixins:
       - TracerDetails

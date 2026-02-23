@@ -224,6 +224,34 @@ enums:
         description: "Nahcolite (NaHCO₃) used as an alkalinity source."
       other:
         description: "Enter a custom value in the field provided"
+  GridType:
+    description: "Type of grid in a multi-grid or nested model configuration"
+    permissible_values:
+      inner_grid:
+        description: "Inner (nested, higher-resolution) grid"
+      outer_grid:
+        description: "Outer (coarser-resolution) grid"
+      single_grid:
+        description: "Single grid (no nesting)"
+
+  ModelComponentType:
+    description: "Type of model component"
+    permissible_values:
+      physics:
+        title: "Physics"
+        description: "Physical model component (e.g., ocean circulation)"
+      bgc_ecosystem:
+        title: "BGC / Ecosystem"
+        description: "Biogeochemical or ecosystem model component"
+      sea_ice:
+        title: "Sea Ice"
+        description: "Sea Ice model component"
+      atmosphere:
+        title: "Atmosphere"
+        description: "Atmosphere model component"
+      other:
+        description: "Other model component (e.g., sea ice, sediment, atmosphere)"
+
   DataProductType:
     permissible_values:
       originally_collected_dataset:
@@ -232,3 +260,39 @@ enums:
         description: (e.g., SOCAT, GLODAP)
       derived_product:
         description: (e.g. gridded products, or model output).
+
+  SimulationType:
+    description: "Type of model simulation dataset"
+    permissible_values:
+      counterfactual:
+        description: "Control/baseline simulation without alkalinity perturbation"
+      perturbation:
+        description: "Simulation with alkalinity perturbation applied"
+
+  ModelOutputVariable:
+    description: "Variables commonly included in model simulation output datasets"
+    permissible_values:
+      air_sea_co2_flux:
+        title: "Air-sea CO2 flux"
+        description: "Air-sea exchange of carbon dioxide"
+      dissolved_inorganic_carbon:
+        title: "Dissolved Inorganic Carbon"
+        description: "Dissolved inorganic carbon (DIC)"
+      total_alkalinity:
+        title: "Total Alkalinity"
+        description: "Total alkalinity (TA)"
+      temperature:
+        description: "Temperature"
+      salinity:
+        description: "Salinity"
+      ph:
+        title: "pH"
+        description: "pH of seawater"
+      phytoplankton:
+        description: "Phytoplankton biomass or concentration"
+      horizontal_velocity:
+        title: "Horizontal velocity"
+        description: "Horizontal velocity components (u, v)"
+      vertical_velocity:
+        title: "Vertical velocity"
+        description: "Vertical velocity component (w)"

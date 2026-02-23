@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-02-13T00:53:17
+# Generation date: 2026-02-22T20:18:23
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -566,7 +566,7 @@ class Permit(YAMLRoot):
 @dataclass(repr=False)
 class Experiment(YAMLRoot):
     """
-    Experiment metadata applies to a specific study but remains consistent across datasets.
+    Abstract base class for all experiment types. Contains fields common to both in-situ and model experiments.
     """
     _inherited_slots: ClassVar[List[str]] = []
 
@@ -582,13 +582,8 @@ class Experiment(YAMLRoot):
     experiment_type: Union[str, "ExperimentType"] = None
     principal_investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
-    end_datetime: Union[str, XSDDateTime] = None
     name: Optional[str] = None
-    vertical_coverage: Optional[Union[dict, VerticalExtent]] = None
-    permits: Optional[Union[Union[dict, Permit], List[Union[dict, Permit]]]] = empty_list()
-    data_conflicts_and_unreported_data: Optional[str] = None
-    meteorological_and_tidal_data: Optional[Union[Union[dict, NamedLink], List[Union[dict, NamedLink]]]] = empty_list()
-    additional_details: Optional[str] = None
+    end_datetime: Optional[Union[str, XSDDateTime]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.description):
@@ -627,14 +622,42 @@ class Experiment(YAMLRoot):
         if not isinstance(self.start_datetime, XSDDateTime):
             self.start_datetime = XSDDateTime(self.start_datetime)
 
-        if self._is_empty(self.end_datetime):
-            self.MissingRequiredField("end_datetime")
-        if not isinstance(self.end_datetime, XSDDateTime):
-            self.end_datetime = XSDDateTime(self.end_datetime)
-
         if self.name is not None and not isinstance(self.name, str):
             self.name = str(self.name)
 
+        if self.end_datetime is not None and not isinstance(self.end_datetime, XSDDateTime):
+            self.end_datetime = XSDDateTime(self.end_datetime)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class InSituExperiment(Experiment):
+    """
+    Experiment metadata for in-situ studies (interventions, tracer studies, etc.). Contains fields specific to
+    field-based experiments that don't apply to model experiments.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["InSituExperiment"]
+    class_class_curie: ClassVar[str] = "oae:InSituExperiment"
+    class_name: ClassVar[str] = "InSituExperiment"
+    class_model_uri: ClassVar[URIRef] = OAE.InSituExperiment
+
+    description: str = None
+    spatial_coverage: Union[dict, SpatialCoverage] = None
+    project_id: str = None
+    experiment_id: str = None
+    experiment_type: Union[str, "ExperimentType"] = None
+    principal_investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
+    start_datetime: Union[str, XSDDateTime] = None
+    vertical_coverage: Optional[Union[dict, VerticalExtent]] = None
+    permits: Optional[Union[Union[dict, Permit], List[Union[dict, Permit]]]] = empty_list()
+    data_conflicts_and_unreported_data: Optional[str] = None
+    meteorological_and_tidal_data: Optional[Union[Union[dict, NamedLink], List[Union[dict, NamedLink]]]] = empty_list()
+    additional_details: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self.vertical_coverage is not None and not isinstance(self.vertical_coverage, VerticalExtent):
             self.vertical_coverage = VerticalExtent(**as_dict(self.vertical_coverage))
 
@@ -656,7 +679,7 @@ class Experiment(YAMLRoot):
 
 
 @dataclass(repr=False)
-class Intervention(Experiment):
+class Intervention(InSituExperiment):
     """
     Additional metadata that applies to experiments where an intervention, such as an alkalinity addition, was
     conducted.
@@ -675,7 +698,6 @@ class Intervention(Experiment):
     experiment_type: Union[str, "ExperimentType"] = None
     principal_investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
-    end_datetime: Union[str, XSDDateTime] = None
     alkalinity_feedstock_processing: Union[str, "AlkalinityFeedstockProcessing"] = None
     alkalinity_feedstock_form: Union[str, "AlkalinityFeedstockForm"] = None
     alkalinity_feedstock: Union[str, "FeedstockType"] = None
@@ -768,7 +790,7 @@ class Intervention(Experiment):
 
 
 @dataclass(repr=False)
-class Tracer(Experiment):
+class Tracer(InSituExperiment):
     """
     Additional metadata that applies to experiments where a tracer study was conducted
     """
@@ -786,7 +808,6 @@ class Tracer(Experiment):
     experiment_type: Union[str, "ExperimentType"] = None
     principal_investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
-    end_datetime: Union[str, XSDDateTime] = None
     tracer_form: Union[str, "TracerForm"] = None
     tracer_details: str = None
     tracer_concentration: Union[dict, "DosingConcentration"] = None
@@ -866,7 +887,6 @@ class InterventionWithTracer(Intervention):
     experiment_type: Union[str, "ExperimentType"] = None
     principal_investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
-    end_datetime: Union[str, XSDDateTime] = None
     alkalinity_feedstock_processing: Union[str, "AlkalinityFeedstockProcessing"] = None
     alkalinity_feedstock_form: Union[str, "AlkalinityFeedstockForm"] = None
     alkalinity_feedstock: Union[str, "FeedstockType"] = None
@@ -2268,7 +2288,8 @@ class QCFields(YAMLRoot):
 @dataclass(repr=False)
 class Dataset(YAMLRoot):
     """
-    A dataset related to an OAE experiment. Generally following guidelines & best practices as outlined in
+    Abstract base class for all dataset types. Contains fields common to both field/observational and model simulation
+    datasets. Generally following guidelines & best practices as outlined in
     [science-on-schema.org](https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md)
     """
     _inherited_slots: ClassVar[List[str]] = []
@@ -2282,19 +2303,13 @@ class Dataset(YAMLRoot):
     description: str = None
     project_id: str = None
     experiment_id: str = None
-    temporal_coverage: str = None
     dataset_type: Union[str, "DatasetType"] = None
     data_submitter: Union[dict, Person] = None
-    data_product_type: Union[str, "DataProductType"] = None
-    platform_info: Union[dict, "Platform"] = None
     filenames: Union[str, List[str]] = None
     dataset_type_custom: Optional[str] = None
     author_list_for_citation: Optional[str] = None
     license: Optional[Union[str, URI]] = None
     fair_use_data_request: Optional[str] = None
-    qc_flag_scheme: Optional[str] = None
-    calibration_files: Optional[Union[str, List[str]]] = empty_list()
-    variables: Optional[Union[Union[dict, Variable], List[Union[dict, Variable]]]] = empty_list()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.name):
@@ -2317,11 +2332,6 @@ class Dataset(YAMLRoot):
         if not isinstance(self.experiment_id, str):
             self.experiment_id = str(self.experiment_id)
 
-        if self._is_empty(self.temporal_coverage):
-            self.MissingRequiredField("temporal_coverage")
-        if not isinstance(self.temporal_coverage, str):
-            self.temporal_coverage = str(self.temporal_coverage)
-
         if self._is_empty(self.dataset_type):
             self.MissingRequiredField("dataset_type")
         if not isinstance(self.dataset_type, DatasetType):
@@ -2331,16 +2341,6 @@ class Dataset(YAMLRoot):
             self.MissingRequiredField("data_submitter")
         if not isinstance(self.data_submitter, Person):
             self.data_submitter = Person(**as_dict(self.data_submitter))
-
-        if self._is_empty(self.data_product_type):
-            self.MissingRequiredField("data_product_type")
-        if not isinstance(self.data_product_type, DataProductType):
-            self.data_product_type = DataProductType(self.data_product_type)
-
-        if self._is_empty(self.platform_info):
-            self.MissingRequiredField("platform_info")
-        if not isinstance(self.platform_info, Platform):
-            self.platform_info = Platform(**as_dict(self.platform_info))
 
         if self._is_empty(self.filenames):
             self.MissingRequiredField("filenames")
@@ -2360,6 +2360,52 @@ class Dataset(YAMLRoot):
         if self.fair_use_data_request is not None and not isinstance(self.fair_use_data_request, str):
             self.fair_use_data_request = str(self.fair_use_data_request)
 
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class FieldDataset(Dataset):
+    """
+    A field or observational dataset related to an OAE experiment. Contains fields specific to in-situ data collection
+    such as platform information, calibration files, QC flags, and measured variables.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["FieldDataset"]
+    class_class_curie: ClassVar[str] = "oae:FieldDataset"
+    class_name: ClassVar[str] = "FieldDataset"
+    class_model_uri: ClassVar[URIRef] = OAE.FieldDataset
+
+    name: str = None
+    description: str = None
+    project_id: str = None
+    experiment_id: str = None
+    dataset_type: Union[str, "DatasetType"] = None
+    data_submitter: Union[dict, Person] = None
+    filenames: Union[str, List[str]] = None
+    temporal_coverage: str = None
+    data_product_type: Union[str, "DataProductType"] = None
+    platform_info: Union[dict, "Platform"] = None
+    qc_flag_scheme: Optional[str] = None
+    calibration_files: Optional[Union[str, List[str]]] = empty_list()
+    variables: Optional[Union[Union[dict, Variable], List[Union[dict, Variable]]]] = empty_list()
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.temporal_coverage):
+            self.MissingRequiredField("temporal_coverage")
+        if not isinstance(self.temporal_coverage, str):
+            self.temporal_coverage = str(self.temporal_coverage)
+
+        if self._is_empty(self.data_product_type):
+            self.MissingRequiredField("data_product_type")
+        if not isinstance(self.data_product_type, DataProductType):
+            self.data_product_type = DataProductType(self.data_product_type)
+
+        if self._is_empty(self.platform_info):
+            self.MissingRequiredField("platform_info")
+        if not isinstance(self.platform_info, Platform):
+            self.platform_info = Platform(**as_dict(self.platform_info))
+
         if self.qc_flag_scheme is not None and not isinstance(self.qc_flag_scheme, str):
             self.qc_flag_scheme = str(self.qc_flag_scheme)
 
@@ -2368,6 +2414,121 @@ class Dataset(YAMLRoot):
         self.calibration_files = [v if isinstance(v, str) else str(v) for v in self.calibration_files]
 
         self._normalize_inlined_as_dict(slot_name="variables", slot_type=Variable, key_name="dataset_variable_name", keyed=False)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class ModelOutputDataset(Dataset):
+    """
+    A model simulation output dataset. Contains fields specific to computational model output including simulation
+    configuration, output variables, and hardware information.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["ModelOutputDataset"]
+    class_class_curie: ClassVar[str] = "oae:ModelOutputDataset"
+    class_name: ClassVar[str] = "ModelOutputDataset"
+    class_model_uri: ClassVar[URIRef] = OAE.ModelOutputDataset
+
+    name: str = None
+    description: str = None
+    project_id: str = None
+    experiment_id: str = None
+    dataset_type: Union[str, "DatasetType"] = None
+    data_submitter: Union[dict, Person] = None
+    simulation_type: Union[str, "SimulationType"] = None
+    start_datetime: Union[str, XSDDateTime] = None
+    end_datetime: Union[str, XSDDateTime] = None
+    filenames: Union[str, List[str]] = None
+    spin_up_protocol: Optional[str] = None
+    output_frequency: Optional[str] = None
+    time_stepping_scheme: Optional[str] = None
+    alkalinity_perturbation_description: Optional[str] = None
+    hardware_configuration: Optional[Union[dict, "HardwareConfiguration"]] = None
+    model_output_variables: Optional[Union[Union[str, "ModelOutputVariable"], List[Union[str, "ModelOutputVariable"]]]] = empty_list()
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.simulation_type):
+            self.MissingRequiredField("simulation_type")
+        if not isinstance(self.simulation_type, SimulationType):
+            self.simulation_type = SimulationType(self.simulation_type)
+
+        if self._is_empty(self.start_datetime):
+            self.MissingRequiredField("start_datetime")
+        if not isinstance(self.start_datetime, XSDDateTime):
+            self.start_datetime = XSDDateTime(self.start_datetime)
+
+        if self._is_empty(self.end_datetime):
+            self.MissingRequiredField("end_datetime")
+        if not isinstance(self.end_datetime, XSDDateTime):
+            self.end_datetime = XSDDateTime(self.end_datetime)
+
+        if self._is_empty(self.filenames):
+            self.MissingRequiredField("filenames")
+        if not isinstance(self.filenames, list):
+            self.filenames = [self.filenames] if self.filenames is not None else []
+        self.filenames = [v if isinstance(v, str) else str(v) for v in self.filenames]
+
+        if self.spin_up_protocol is not None and not isinstance(self.spin_up_protocol, str):
+            self.spin_up_protocol = str(self.spin_up_protocol)
+
+        if self.output_frequency is not None and not isinstance(self.output_frequency, str):
+            self.output_frequency = str(self.output_frequency)
+
+        if self.time_stepping_scheme is not None and not isinstance(self.time_stepping_scheme, str):
+            self.time_stepping_scheme = str(self.time_stepping_scheme)
+
+        if self.alkalinity_perturbation_description is not None and not isinstance(self.alkalinity_perturbation_description, str):
+            self.alkalinity_perturbation_description = str(self.alkalinity_perturbation_description)
+
+        if self.hardware_configuration is not None and not isinstance(self.hardware_configuration, HardwareConfiguration):
+            self.hardware_configuration = HardwareConfiguration(**as_dict(self.hardware_configuration))
+
+        if not isinstance(self.model_output_variables, list):
+            self.model_output_variables = [self.model_output_variables] if self.model_output_variables is not None else []
+        self.model_output_variables = [v if isinstance(v, ModelOutputVariable) else ModelOutputVariable(v) for v in self.model_output_variables]
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class HardwareConfiguration(YAMLRoot):
+    """
+    Details about the computational hardware used to run a model simulation.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["HardwareConfiguration"]
+    class_class_curie: ClassVar[str] = "oae:HardwareConfiguration"
+    class_name: ClassVar[str] = "HardwareConfiguration"
+    class_model_uri: ClassVar[URIRef] = OAE.HardwareConfiguration
+
+    machine: Optional[str] = None
+    operating_system: Optional[str] = None
+    cpu_gpu_details: Optional[str] = None
+    memory: Optional[str] = None
+    storage: Optional[str] = None
+    parallelization: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self.machine is not None and not isinstance(self.machine, str):
+            self.machine = str(self.machine)
+
+        if self.operating_system is not None and not isinstance(self.operating_system, str):
+            self.operating_system = str(self.operating_system)
+
+        if self.cpu_gpu_details is not None and not isinstance(self.cpu_gpu_details, str):
+            self.cpu_gpu_details = str(self.cpu_gpu_details)
+
+        if self.memory is not None and not isinstance(self.memory, str):
+            self.memory = str(self.memory)
+
+        if self.storage is not None and not isinstance(self.storage, str):
+            self.storage = str(self.storage)
+
+        if self.parallelization is not None and not isinstance(self.parallelization, str):
+            self.parallelization = str(self.parallelization)
 
         super().__post_init__(**kwargs)
 
@@ -2404,6 +2565,226 @@ class Platform(YAMLRoot):
 
         if self.country is not None and not isinstance(self.country, str):
             self.country = str(self.country)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class Model(Experiment):
+    """
+    A computational model experiment related to OAE.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["Model"]
+    class_class_curie: ClassVar[str] = "oae:Model"
+    class_name: ClassVar[str] = "Model"
+    class_model_uri: ClassVar[URIRef] = OAE.Model
+
+    description: str = None
+    spatial_coverage: Union[dict, SpatialCoverage] = None
+    project_id: str = None
+    experiment_id: str = None
+    experiment_type: Union[str, "ExperimentType"] = None
+    principal_investigators: Union[Union[dict, Person], List[Union[dict, Person]]] = None
+    start_datetime: Union[str, XSDDateTime] = None
+    model_configuration: Optional[Union[Union[str, URI], List[Union[str, URI]]]] = empty_list()
+    model_components: Optional[Union[Union[dict, "ModelComponent"], List[Union[dict, "ModelComponent"]]]] = empty_list()
+    grid_details: Optional[Union[Union[dict, "ModelGrid"], List[Union[dict, "ModelGrid"]]]] = empty_list()
+    input_details: Optional[Union[dict, "ModelInputDetails"]] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if not isinstance(self.model_configuration, list):
+            self.model_configuration = [self.model_configuration] if self.model_configuration is not None else []
+        self.model_configuration = [v if isinstance(v, URI) else URI(v) for v in self.model_configuration]
+
+        if not isinstance(self.model_components, list):
+            self.model_components = [self.model_components] if self.model_components is not None else []
+        self.model_components = [v if isinstance(v, ModelComponent) else ModelComponent(**as_dict(v)) for v in self.model_components]
+
+        if not isinstance(self.grid_details, list):
+            self.grid_details = [self.grid_details] if self.grid_details is not None else []
+        self.grid_details = [v if isinstance(v, ModelGrid) else ModelGrid(**as_dict(v)) for v in self.grid_details]
+
+        if self.input_details is not None and not isinstance(self.input_details, ModelInputDetails):
+            self.input_details = ModelInputDetails(**as_dict(self.input_details))
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class ModelComponent(YAMLRoot):
+    """
+    A component of a model (e.g., physics, biogeochemistry/ecosystem).
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["ModelComponent"]
+    class_class_curie: ClassVar[str] = "oae:ModelComponent"
+    class_name: ClassVar[str] = "ModelComponent"
+    class_model_uri: ClassVar[URIRef] = OAE.ModelComponent
+
+    model_component_type: Union[str, "ModelComponentType"] = None
+    name: str = None
+    description: Optional[str] = None
+    model_component_type_custom: Optional[str] = None
+    version: Optional[str] = None
+    codebase: Optional[Union[str, URI]] = None
+    references: Optional[Union[Union[str, URI], List[Union[str, URI]]]] = empty_list()
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.model_component_type):
+            self.MissingRequiredField("model_component_type")
+        if not isinstance(self.model_component_type, ModelComponentType):
+            self.model_component_type = ModelComponentType(self.model_component_type)
+
+        if self._is_empty(self.name):
+            self.MissingRequiredField("name")
+        if not isinstance(self.name, str):
+            self.name = str(self.name)
+
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
+        if self.model_component_type_custom is not None and not isinstance(self.model_component_type_custom, str):
+            self.model_component_type_custom = str(self.model_component_type_custom)
+
+        if self.version is not None and not isinstance(self.version, str):
+            self.version = str(self.version)
+
+        if self.codebase is not None and not isinstance(self.codebase, URI):
+            self.codebase = URI(self.codebase)
+
+        if not isinstance(self.references, list):
+            self.references = [self.references] if self.references is not None else []
+        self.references = [v if isinstance(v, URI) else URI(v) for v in self.references]
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class ModelGrid(YAMLRoot):
+    """
+    Details about a model grid. Use multiple ModelGrid entries to describe nested or multi-grid configurations.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["ModelGrid"]
+    class_class_curie: ClassVar[str] = "oae:ModelGrid"
+    class_name: ClassVar[str] = "ModelGrid"
+    class_model_uri: ClassVar[URIRef] = OAE.ModelGrid
+
+    grid_type: Union[str, "GridType"] = None
+    grid_name: Optional[str] = None
+    grid_geometry: Optional[str] = None
+    region: Optional[str] = None
+    spatial_coverage: Optional[Union[dict, SpatialCoverage]] = None
+    arrangement: Optional[str] = None
+    vertical_coordinate_type: Optional[str] = None
+    n_x: Optional[int] = None
+    n_y: Optional[int] = None
+    n_z: Optional[int] = None
+    n_nodes: Optional[int] = None
+    horizontal_resolution_range: Optional[str] = None
+    vertical_resolution_range: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.grid_type):
+            self.MissingRequiredField("grid_type")
+        if not isinstance(self.grid_type, GridType):
+            self.grid_type = GridType(self.grid_type)
+
+        if self.grid_name is not None and not isinstance(self.grid_name, str):
+            self.grid_name = str(self.grid_name)
+
+        if self.grid_geometry is not None and not isinstance(self.grid_geometry, str):
+            self.grid_geometry = str(self.grid_geometry)
+
+        if self.region is not None and not isinstance(self.region, str):
+            self.region = str(self.region)
+
+        if self.spatial_coverage is not None and not isinstance(self.spatial_coverage, SpatialCoverage):
+            self.spatial_coverage = SpatialCoverage(**as_dict(self.spatial_coverage))
+
+        if self.arrangement is not None and not isinstance(self.arrangement, str):
+            self.arrangement = str(self.arrangement)
+
+        if self.vertical_coordinate_type is not None and not isinstance(self.vertical_coordinate_type, str):
+            self.vertical_coordinate_type = str(self.vertical_coordinate_type)
+
+        if self.n_x is not None and not isinstance(self.n_x, int):
+            self.n_x = int(self.n_x)
+
+        if self.n_y is not None and not isinstance(self.n_y, int):
+            self.n_y = int(self.n_y)
+
+        if self.n_z is not None and not isinstance(self.n_z, int):
+            self.n_z = int(self.n_z)
+
+        if self.n_nodes is not None and not isinstance(self.n_nodes, int):
+            self.n_nodes = int(self.n_nodes)
+
+        if self.horizontal_resolution_range is not None and not isinstance(self.horizontal_resolution_range, str):
+            self.horizontal_resolution_range = str(self.horizontal_resolution_range)
+
+        if self.vertical_resolution_range is not None and not isinstance(self.vertical_resolution_range, str):
+            self.vertical_resolution_range = str(self.vertical_resolution_range)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class ModelInputDetails(YAMLRoot):
+    """
+    Details about input data sources used to drive the model.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["ModelInputDetails"]
+    class_class_curie: ClassVar[str] = "oae:ModelInputDetails"
+    class_name: ClassVar[str] = "ModelInputDetails"
+    class_model_uri: ClassVar[URIRef] = OAE.ModelInputDetails
+
+    bathymetry: Optional[Union[Union[dict, NamedLink], List[Union[dict, NamedLink]]]] = empty_list()
+    initial_conditions: Optional[Union[Union[dict, NamedLink], List[Union[dict, NamedLink]]]] = empty_list()
+    boundary_conditions: Optional[Union[Union[dict, NamedLink], List[Union[dict, NamedLink]]]] = empty_list()
+    atmospheric_forcing: Optional[Union[Union[dict, NamedLink], List[Union[dict, NamedLink]]]] = empty_list()
+    tidal_forcing: Optional[Union[Union[dict, NamedLink], List[Union[dict, NamedLink]]]] = empty_list()
+    river_sediment_flux_details: Optional[Union[Union[dict, NamedLink], List[Union[dict, NamedLink]]]] = empty_list()
+    processing_of_input_data: Optional[str] = None
+    processing_code: Optional[Union[Union[dict, NamedLink], List[Union[dict, NamedLink]]]] = empty_list()
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if not isinstance(self.bathymetry, list):
+            self.bathymetry = [self.bathymetry] if self.bathymetry is not None else []
+        self.bathymetry = [v if isinstance(v, NamedLink) else NamedLink(**as_dict(v)) for v in self.bathymetry]
+
+        if not isinstance(self.initial_conditions, list):
+            self.initial_conditions = [self.initial_conditions] if self.initial_conditions is not None else []
+        self.initial_conditions = [v if isinstance(v, NamedLink) else NamedLink(**as_dict(v)) for v in self.initial_conditions]
+
+        if not isinstance(self.boundary_conditions, list):
+            self.boundary_conditions = [self.boundary_conditions] if self.boundary_conditions is not None else []
+        self.boundary_conditions = [v if isinstance(v, NamedLink) else NamedLink(**as_dict(v)) for v in self.boundary_conditions]
+
+        if not isinstance(self.atmospheric_forcing, list):
+            self.atmospheric_forcing = [self.atmospheric_forcing] if self.atmospheric_forcing is not None else []
+        self.atmospheric_forcing = [v if isinstance(v, NamedLink) else NamedLink(**as_dict(v)) for v in self.atmospheric_forcing]
+
+        if not isinstance(self.tidal_forcing, list):
+            self.tidal_forcing = [self.tidal_forcing] if self.tidal_forcing is not None else []
+        self.tidal_forcing = [v if isinstance(v, NamedLink) else NamedLink(**as_dict(v)) for v in self.tidal_forcing]
+
+        if not isinstance(self.river_sediment_flux_details, list):
+            self.river_sediment_flux_details = [self.river_sediment_flux_details] if self.river_sediment_flux_details is not None else []
+        self.river_sediment_flux_details = [v if isinstance(v, NamedLink) else NamedLink(**as_dict(v)) for v in self.river_sediment_flux_details]
+
+        if self.processing_of_input_data is not None and not isinstance(self.processing_of_input_data, str):
+            self.processing_of_input_data = str(self.processing_of_input_data)
+
+        if not isinstance(self.processing_code, list):
+            self.processing_code = [self.processing_code] if self.processing_code is not None else []
+        self.processing_code = [v if isinstance(v, NamedLink) else NamedLink(**as_dict(v)) for v in self.processing_code]
 
         super().__post_init__(**kwargs)
 
@@ -3057,6 +3438,50 @@ class FeedstockType(EnumDefinitionImpl):
         description="""Types of materials used for alkalinity addition, as sourced from NCEI's OCADS controlled vocabulary: https://www.ncei.noaa.gov/access/ocean-carbon-acidification-data-system/vocabularies/alkalinization-types.html""",
     )
 
+class GridType(EnumDefinitionImpl):
+    """
+    Type of grid in a multi-grid or nested model configuration
+    """
+    inner_grid = PermissibleValue(
+        text="inner_grid",
+        description="Inner (nested, higher-resolution) grid")
+    outer_grid = PermissibleValue(
+        text="outer_grid",
+        description="Outer (coarser-resolution) grid")
+    single_grid = PermissibleValue(
+        text="single_grid",
+        description="Single grid (no nesting)")
+
+    _defn = EnumDefinition(
+        name="GridType",
+        description="Type of grid in a multi-grid or nested model configuration",
+    )
+
+class ModelComponentType(EnumDefinitionImpl):
+    """
+    Type of model component
+    """
+    physics = PermissibleValue(
+        text="physics",
+        description="Physical model component (e.g., ocean circulation)")
+    bgc_ecosystem = PermissibleValue(
+        text="bgc_ecosystem",
+        description="Biogeochemical or ecosystem model component")
+    sea_ice = PermissibleValue(
+        text="sea_ice",
+        description="Sea Ice model component")
+    atmosphere = PermissibleValue(
+        text="atmosphere",
+        description="Atmosphere model component")
+    other = PermissibleValue(
+        text="other",
+        description="Other model component (e.g., sea ice, sediment, atmosphere)")
+
+    _defn = EnumDefinition(
+        name="ModelComponentType",
+        description="Type of model component",
+    )
+
 class DataProductType(EnumDefinitionImpl):
 
     originally_collected_dataset = PermissibleValue(
@@ -3071,6 +3496,59 @@ class DataProductType(EnumDefinitionImpl):
 
     _defn = EnumDefinition(
         name="DataProductType",
+    )
+
+class SimulationType(EnumDefinitionImpl):
+    """
+    Type of model simulation dataset
+    """
+    counterfactual = PermissibleValue(
+        text="counterfactual",
+        description="Control/baseline simulation without alkalinity perturbation")
+    perturbation = PermissibleValue(
+        text="perturbation",
+        description="Simulation with alkalinity perturbation applied")
+
+    _defn = EnumDefinition(
+        name="SimulationType",
+        description="Type of model simulation dataset",
+    )
+
+class ModelOutputVariable(EnumDefinitionImpl):
+    """
+    Variables commonly included in model simulation output datasets
+    """
+    air_sea_co2_flux = PermissibleValue(
+        text="air_sea_co2_flux",
+        description="Air-sea exchange of carbon dioxide")
+    dissolved_inorganic_carbon = PermissibleValue(
+        text="dissolved_inorganic_carbon",
+        description="Dissolved inorganic carbon (DIC)")
+    total_alkalinity = PermissibleValue(
+        text="total_alkalinity",
+        description="Total alkalinity (TA)")
+    temperature = PermissibleValue(
+        text="temperature",
+        description="Temperature")
+    salinity = PermissibleValue(
+        text="salinity",
+        description="Salinity")
+    ph = PermissibleValue(
+        text="ph",
+        description="pH of seawater")
+    phytoplankton = PermissibleValue(
+        text="phytoplankton",
+        description="Phytoplankton biomass or concentration")
+    horizontal_velocity = PermissibleValue(
+        text="horizontal_velocity",
+        description="Horizontal velocity components (u, v)")
+    vertical_velocity = PermissibleValue(
+        text="vertical_velocity",
+        description="Vertical velocity component (w)")
+
+    _defn = EnumDefinition(
+        name="ModelOutputVariable",
+        description="Variables commonly included in model simulation output datasets",
     )
 
 class SeaNames(EnumDefinitionImpl):
@@ -4297,16 +4775,16 @@ slots.experiment__start_datetime = Slot(uri=OAE.start_datetime, name="experiment
                    model_uri=OAE.experiment__start_datetime, domain=None, range=Union[str, XSDDateTime])
 
 slots.experiment__end_datetime = Slot(uri=OAE.end_datetime, name="experiment__end_datetime", curie=OAE.curie('end_datetime'),
-                   model_uri=OAE.experiment__end_datetime, domain=None, range=Union[str, XSDDateTime])
+                   model_uri=OAE.experiment__end_datetime, domain=None, range=Optional[Union[str, XSDDateTime]])
 
-slots.experiment__data_conflicts_and_unreported_data = Slot(uri=OAE.data_conflicts_and_unreported_data, name="experiment__data_conflicts_and_unreported_data", curie=OAE.curie('data_conflicts_and_unreported_data'),
-                   model_uri=OAE.experiment__data_conflicts_and_unreported_data, domain=None, range=Optional[str])
+slots.inSituExperiment__data_conflicts_and_unreported_data = Slot(uri=OAE.data_conflicts_and_unreported_data, name="inSituExperiment__data_conflicts_and_unreported_data", curie=OAE.curie('data_conflicts_and_unreported_data'),
+                   model_uri=OAE.inSituExperiment__data_conflicts_and_unreported_data, domain=None, range=Optional[str])
 
-slots.experiment__meteorological_and_tidal_data = Slot(uri=OAE.meteorological_and_tidal_data, name="experiment__meteorological_and_tidal_data", curie=OAE.curie('meteorological_and_tidal_data'),
-                   model_uri=OAE.experiment__meteorological_and_tidal_data, domain=None, range=Optional[Union[Union[dict, NamedLink], List[Union[dict, NamedLink]]]])
+slots.inSituExperiment__meteorological_and_tidal_data = Slot(uri=OAE.meteorological_and_tidal_data, name="inSituExperiment__meteorological_and_tidal_data", curie=OAE.curie('meteorological_and_tidal_data'),
+                   model_uri=OAE.inSituExperiment__meteorological_and_tidal_data, domain=None, range=Optional[Union[Union[dict, NamedLink], List[Union[dict, NamedLink]]]])
 
-slots.experiment__additional_details = Slot(uri=OAE.additional_details, name="experiment__additional_details", curie=OAE.curie('additional_details'),
-                   model_uri=OAE.experiment__additional_details, domain=None, range=Optional[str])
+slots.inSituExperiment__additional_details = Slot(uri=OAE.additional_details, name="inSituExperiment__additional_details", curie=OAE.curie('additional_details'),
+                   model_uri=OAE.inSituExperiment__additional_details, domain=None, range=Optional[str])
 
 slots.interventionDetails__alkalinity_feedstock_processing = Slot(uri=OAE.alkalinity_feedstock_processing, name="interventionDetails__alkalinity_feedstock_processing", curie=OAE.curie('alkalinity_feedstock_processing'),
                    model_uri=OAE.interventionDetails__alkalinity_feedstock_processing, domain=None, range=Union[str, "AlkalinityFeedstockProcessing"])
@@ -4547,23 +5025,68 @@ slots.dataset__license = Slot(uri=SCHEMA.license, name="dataset__license", curie
 slots.dataset__fair_use_data_request = Slot(uri=OAE.fair_use_data_request, name="dataset__fair_use_data_request", curie=OAE.curie('fair_use_data_request'),
                    model_uri=OAE.dataset__fair_use_data_request, domain=None, range=Optional[str])
 
-slots.dataset__data_product_type = Slot(uri=OAE.data_product_type, name="dataset__data_product_type", curie=OAE.curie('data_product_type'),
-                   model_uri=OAE.dataset__data_product_type, domain=None, range=Union[str, "DataProductType"])
-
-slots.dataset__qc_flag_scheme = Slot(uri=OAE.qc_flag_scheme, name="dataset__qc_flag_scheme", curie=OAE.curie('qc_flag_scheme'),
-                   model_uri=OAE.dataset__qc_flag_scheme, domain=None, range=Optional[str])
-
-slots.dataset__platform_info = Slot(uri=OAE.platform_info, name="dataset__platform_info", curie=OAE.curie('platform_info'),
-                   model_uri=OAE.dataset__platform_info, domain=None, range=Union[dict, Platform])
-
-slots.dataset__calibration_files = Slot(uri=OAE.calibration_files, name="dataset__calibration_files", curie=OAE.curie('calibration_files'),
-                   model_uri=OAE.dataset__calibration_files, domain=None, range=Optional[Union[str, List[str]]])
-
-slots.dataset__variables = Slot(uri=SCHEMA.variableMeasured, name="dataset__variables", curie=SCHEMA.curie('variableMeasured'),
-                   model_uri=OAE.dataset__variables, domain=None, range=Optional[Union[Union[dict, Variable], List[Union[dict, Variable]]]])
-
 slots.dataset__filenames = Slot(uri=OAE.filenames, name="dataset__filenames", curie=OAE.curie('filenames'),
                    model_uri=OAE.dataset__filenames, domain=None, range=Union[str, List[str]])
+
+slots.fieldDataset__data_product_type = Slot(uri=OAE.data_product_type, name="fieldDataset__data_product_type", curie=OAE.curie('data_product_type'),
+                   model_uri=OAE.fieldDataset__data_product_type, domain=None, range=Union[str, "DataProductType"])
+
+slots.fieldDataset__qc_flag_scheme = Slot(uri=OAE.qc_flag_scheme, name="fieldDataset__qc_flag_scheme", curie=OAE.curie('qc_flag_scheme'),
+                   model_uri=OAE.fieldDataset__qc_flag_scheme, domain=None, range=Optional[str])
+
+slots.fieldDataset__platform_info = Slot(uri=OAE.platform_info, name="fieldDataset__platform_info", curie=OAE.curie('platform_info'),
+                   model_uri=OAE.fieldDataset__platform_info, domain=None, range=Union[dict, Platform])
+
+slots.fieldDataset__calibration_files = Slot(uri=OAE.calibration_files, name="fieldDataset__calibration_files", curie=OAE.curie('calibration_files'),
+                   model_uri=OAE.fieldDataset__calibration_files, domain=None, range=Optional[Union[str, List[str]]])
+
+slots.fieldDataset__variables = Slot(uri=SCHEMA.variableMeasured, name="fieldDataset__variables", curie=SCHEMA.curie('variableMeasured'),
+                   model_uri=OAE.fieldDataset__variables, domain=None, range=Optional[Union[Union[dict, Variable], List[Union[dict, Variable]]]])
+
+slots.modelOutputDataset__simulation_type = Slot(uri=OAE.simulation_type, name="modelOutputDataset__simulation_type", curie=OAE.curie('simulation_type'),
+                   model_uri=OAE.modelOutputDataset__simulation_type, domain=None, range=Union[str, "SimulationType"])
+
+slots.modelOutputDataset__spin_up_protocol = Slot(uri=OAE.spin_up_protocol, name="modelOutputDataset__spin_up_protocol", curie=OAE.curie('spin_up_protocol'),
+                   model_uri=OAE.modelOutputDataset__spin_up_protocol, domain=None, range=Optional[str])
+
+slots.modelOutputDataset__start_datetime = Slot(uri=OAE.start_datetime, name="modelOutputDataset__start_datetime", curie=OAE.curie('start_datetime'),
+                   model_uri=OAE.modelOutputDataset__start_datetime, domain=None, range=Union[str, XSDDateTime])
+
+slots.modelOutputDataset__end_datetime = Slot(uri=OAE.end_datetime, name="modelOutputDataset__end_datetime", curie=OAE.curie('end_datetime'),
+                   model_uri=OAE.modelOutputDataset__end_datetime, domain=None, range=Union[str, XSDDateTime])
+
+slots.modelOutputDataset__output_frequency = Slot(uri=OAE.output_frequency, name="modelOutputDataset__output_frequency", curie=OAE.curie('output_frequency'),
+                   model_uri=OAE.modelOutputDataset__output_frequency, domain=None, range=Optional[str])
+
+slots.modelOutputDataset__time_stepping_scheme = Slot(uri=OAE.time_stepping_scheme, name="modelOutputDataset__time_stepping_scheme", curie=OAE.curie('time_stepping_scheme'),
+                   model_uri=OAE.modelOutputDataset__time_stepping_scheme, domain=None, range=Optional[str])
+
+slots.modelOutputDataset__alkalinity_perturbation_description = Slot(uri=OAE.alkalinity_perturbation_description, name="modelOutputDataset__alkalinity_perturbation_description", curie=OAE.curie('alkalinity_perturbation_description'),
+                   model_uri=OAE.modelOutputDataset__alkalinity_perturbation_description, domain=None, range=Optional[str])
+
+slots.modelOutputDataset__hardware_configuration = Slot(uri=OAE.hardware_configuration, name="modelOutputDataset__hardware_configuration", curie=OAE.curie('hardware_configuration'),
+                   model_uri=OAE.modelOutputDataset__hardware_configuration, domain=None, range=Optional[Union[dict, HardwareConfiguration]])
+
+slots.modelOutputDataset__model_output_variables = Slot(uri=OAE.model_output_variables, name="modelOutputDataset__model_output_variables", curie=OAE.curie('model_output_variables'),
+                   model_uri=OAE.modelOutputDataset__model_output_variables, domain=None, range=Optional[Union[Union[str, "ModelOutputVariable"], List[Union[str, "ModelOutputVariable"]]]])
+
+slots.hardwareConfiguration__machine = Slot(uri=OAE.machine, name="hardwareConfiguration__machine", curie=OAE.curie('machine'),
+                   model_uri=OAE.hardwareConfiguration__machine, domain=None, range=Optional[str])
+
+slots.hardwareConfiguration__operating_system = Slot(uri=OAE.operating_system, name="hardwareConfiguration__operating_system", curie=OAE.curie('operating_system'),
+                   model_uri=OAE.hardwareConfiguration__operating_system, domain=None, range=Optional[str])
+
+slots.hardwareConfiguration__cpu_gpu_details = Slot(uri=OAE.cpu_gpu_details, name="hardwareConfiguration__cpu_gpu_details", curie=OAE.curie('cpu_gpu_details'),
+                   model_uri=OAE.hardwareConfiguration__cpu_gpu_details, domain=None, range=Optional[str])
+
+slots.hardwareConfiguration__memory = Slot(uri=OAE.memory, name="hardwareConfiguration__memory", curie=OAE.curie('memory'),
+                   model_uri=OAE.hardwareConfiguration__memory, domain=None, range=Optional[str])
+
+slots.hardwareConfiguration__storage = Slot(uri=OAE.storage, name="hardwareConfiguration__storage", curie=OAE.curie('storage'),
+                   model_uri=OAE.hardwareConfiguration__storage, domain=None, range=Optional[str])
+
+slots.hardwareConfiguration__parallelization = Slot(uri=OAE.parallelization, name="hardwareConfiguration__parallelization", curie=OAE.curie('parallelization'),
+                   model_uri=OAE.hardwareConfiguration__parallelization, domain=None, range=Optional[str])
 
 slots.platform__platform_type = Slot(uri=OAE.platform_type, name="platform__platform_type", curie=OAE.curie('platform_type'),
                    model_uri=OAE.platform__platform_type, domain=None, range=Union[str, "PlatformType"])
@@ -4576,6 +5099,99 @@ slots.platform__owner = Slot(uri=OAE.owner, name="platform__owner", curie=OAE.cu
 
 slots.platform__country = Slot(uri=OAE.country, name="platform__country", curie=OAE.curie('country'),
                    model_uri=OAE.platform__country, domain=None, range=Optional[str])
+
+slots.model__model_configuration = Slot(uri=OAE.model_configuration, name="model__model_configuration", curie=OAE.curie('model_configuration'),
+                   model_uri=OAE.model__model_configuration, domain=None, range=Optional[Union[Union[str, URI], List[Union[str, URI]]]])
+
+slots.model__model_components = Slot(uri=OAE.model_components, name="model__model_components", curie=OAE.curie('model_components'),
+                   model_uri=OAE.model__model_components, domain=None, range=Optional[Union[Union[dict, ModelComponent], List[Union[dict, ModelComponent]]]])
+
+slots.model__grid_details = Slot(uri=OAE.grid_details, name="model__grid_details", curie=OAE.curie('grid_details'),
+                   model_uri=OAE.model__grid_details, domain=None, range=Optional[Union[Union[dict, ModelGrid], List[Union[dict, ModelGrid]]]])
+
+slots.model__input_details = Slot(uri=OAE.input_details, name="model__input_details", curie=OAE.curie('input_details'),
+                   model_uri=OAE.model__input_details, domain=None, range=Optional[Union[dict, ModelInputDetails]])
+
+slots.modelComponent__model_component_type = Slot(uri=OAE.model_component_type, name="modelComponent__model_component_type", curie=OAE.curie('model_component_type'),
+                   model_uri=OAE.modelComponent__model_component_type, domain=None, range=Union[str, "ModelComponentType"])
+
+slots.modelComponent__model_component_type_custom = Slot(uri=OAE.model_component_type_custom, name="modelComponent__model_component_type_custom", curie=OAE.curie('model_component_type_custom'),
+                   model_uri=OAE.modelComponent__model_component_type_custom, domain=None, range=Optional[str])
+
+slots.modelComponent__name = Slot(uri=OAE.name, name="modelComponent__name", curie=OAE.curie('name'),
+                   model_uri=OAE.modelComponent__name, domain=None, range=str)
+
+slots.modelComponent__version = Slot(uri=OAE.version, name="modelComponent__version", curie=OAE.curie('version'),
+                   model_uri=OAE.modelComponent__version, domain=None, range=Optional[str])
+
+slots.modelComponent__codebase = Slot(uri=OAE.codebase, name="modelComponent__codebase", curie=OAE.curie('codebase'),
+                   model_uri=OAE.modelComponent__codebase, domain=None, range=Optional[Union[str, URI]])
+
+slots.modelComponent__references = Slot(uri=OAE.references, name="modelComponent__references", curie=OAE.curie('references'),
+                   model_uri=OAE.modelComponent__references, domain=None, range=Optional[Union[Union[str, URI], List[Union[str, URI]]]])
+
+slots.modelGrid__grid_name = Slot(uri=OAE.grid_name, name="modelGrid__grid_name", curie=OAE.curie('grid_name'),
+                   model_uri=OAE.modelGrid__grid_name, domain=None, range=Optional[str])
+
+slots.modelGrid__grid_geometry = Slot(uri=OAE.grid_geometry, name="modelGrid__grid_geometry", curie=OAE.curie('grid_geometry'),
+                   model_uri=OAE.modelGrid__grid_geometry, domain=None, range=Optional[str])
+
+slots.modelGrid__grid_type = Slot(uri=OAE.grid_type, name="modelGrid__grid_type", curie=OAE.curie('grid_type'),
+                   model_uri=OAE.modelGrid__grid_type, domain=None, range=Union[str, "GridType"])
+
+slots.modelGrid__region = Slot(uri=OAE.region, name="modelGrid__region", curie=OAE.curie('region'),
+                   model_uri=OAE.modelGrid__region, domain=None, range=Optional[str])
+
+slots.modelGrid__spatial_coverage = Slot(uri=OAE.spatial_coverage, name="modelGrid__spatial_coverage", curie=OAE.curie('spatial_coverage'),
+                   model_uri=OAE.modelGrid__spatial_coverage, domain=None, range=Optional[Union[dict, SpatialCoverage]])
+
+slots.modelGrid__arrangement = Slot(uri=OAE.arrangement, name="modelGrid__arrangement", curie=OAE.curie('arrangement'),
+                   model_uri=OAE.modelGrid__arrangement, domain=None, range=Optional[str])
+
+slots.modelGrid__vertical_coordinate_type = Slot(uri=OAE.vertical_coordinate_type, name="modelGrid__vertical_coordinate_type", curie=OAE.curie('vertical_coordinate_type'),
+                   model_uri=OAE.modelGrid__vertical_coordinate_type, domain=None, range=Optional[str])
+
+slots.modelGrid__n_x = Slot(uri=OAE.n_x, name="modelGrid__n_x", curie=OAE.curie('n_x'),
+                   model_uri=OAE.modelGrid__n_x, domain=None, range=Optional[int])
+
+slots.modelGrid__n_y = Slot(uri=OAE.n_y, name="modelGrid__n_y", curie=OAE.curie('n_y'),
+                   model_uri=OAE.modelGrid__n_y, domain=None, range=Optional[int])
+
+slots.modelGrid__n_z = Slot(uri=OAE.n_z, name="modelGrid__n_z", curie=OAE.curie('n_z'),
+                   model_uri=OAE.modelGrid__n_z, domain=None, range=Optional[int])
+
+slots.modelGrid__n_nodes = Slot(uri=OAE.n_nodes, name="modelGrid__n_nodes", curie=OAE.curie('n_nodes'),
+                   model_uri=OAE.modelGrid__n_nodes, domain=None, range=Optional[int])
+
+slots.modelGrid__horizontal_resolution_range = Slot(uri=OAE.horizontal_resolution_range, name="modelGrid__horizontal_resolution_range", curie=OAE.curie('horizontal_resolution_range'),
+                   model_uri=OAE.modelGrid__horizontal_resolution_range, domain=None, range=Optional[str])
+
+slots.modelGrid__vertical_resolution_range = Slot(uri=OAE.vertical_resolution_range, name="modelGrid__vertical_resolution_range", curie=OAE.curie('vertical_resolution_range'),
+                   model_uri=OAE.modelGrid__vertical_resolution_range, domain=None, range=Optional[str])
+
+slots.modelInputDetails__bathymetry = Slot(uri=OAE.bathymetry, name="modelInputDetails__bathymetry", curie=OAE.curie('bathymetry'),
+                   model_uri=OAE.modelInputDetails__bathymetry, domain=None, range=Optional[Union[Union[dict, NamedLink], List[Union[dict, NamedLink]]]])
+
+slots.modelInputDetails__initial_conditions = Slot(uri=OAE.initial_conditions, name="modelInputDetails__initial_conditions", curie=OAE.curie('initial_conditions'),
+                   model_uri=OAE.modelInputDetails__initial_conditions, domain=None, range=Optional[Union[Union[dict, NamedLink], List[Union[dict, NamedLink]]]])
+
+slots.modelInputDetails__boundary_conditions = Slot(uri=OAE.boundary_conditions, name="modelInputDetails__boundary_conditions", curie=OAE.curie('boundary_conditions'),
+                   model_uri=OAE.modelInputDetails__boundary_conditions, domain=None, range=Optional[Union[Union[dict, NamedLink], List[Union[dict, NamedLink]]]])
+
+slots.modelInputDetails__atmospheric_forcing = Slot(uri=OAE.atmospheric_forcing, name="modelInputDetails__atmospheric_forcing", curie=OAE.curie('atmospheric_forcing'),
+                   model_uri=OAE.modelInputDetails__atmospheric_forcing, domain=None, range=Optional[Union[Union[dict, NamedLink], List[Union[dict, NamedLink]]]])
+
+slots.modelInputDetails__tidal_forcing = Slot(uri=OAE.tidal_forcing, name="modelInputDetails__tidal_forcing", curie=OAE.curie('tidal_forcing'),
+                   model_uri=OAE.modelInputDetails__tidal_forcing, domain=None, range=Optional[Union[Union[dict, NamedLink], List[Union[dict, NamedLink]]]])
+
+slots.modelInputDetails__river_sediment_flux_details = Slot(uri=OAE.river_sediment_flux_details, name="modelInputDetails__river_sediment_flux_details", curie=OAE.curie('river_sediment_flux_details'),
+                   model_uri=OAE.modelInputDetails__river_sediment_flux_details, domain=None, range=Optional[Union[Union[dict, NamedLink], List[Union[dict, NamedLink]]]])
+
+slots.modelInputDetails__processing_of_input_data = Slot(uri=OAE.processing_of_input_data, name="modelInputDetails__processing_of_input_data", curie=OAE.curie('processing_of_input_data'),
+                   model_uri=OAE.modelInputDetails__processing_of_input_data, domain=None, range=Optional[str])
+
+slots.modelInputDetails__processing_code = Slot(uri=OAE.processing_code, name="modelInputDetails__processing_code", curie=OAE.curie('processing_code'),
+                   model_uri=OAE.modelInputDetails__processing_code, domain=None, range=Optional[Union[Union[dict, NamedLink], List[Union[dict, NamedLink]]]])
 
 slots.analyzingInstrument__instrument_type = Slot(uri=OAE.instrument_type, name="analyzingInstrument__instrument_type", curie=OAE.curie('instrument_type'),
                    model_uri=OAE.analyzingInstrument__instrument_type, domain=None, range=Union[str, "AnalyzingInstrumentType"])
@@ -4707,8 +5323,8 @@ slots.Experiment_name = Slot(uri=SCHEMA.name, name="Experiment_name", curie=SCHE
 slots.Experiment_spatial_coverage = Slot(uri=SCHEMA.spatialCoverage, name="Experiment_spatial_coverage", curie=SCHEMA.curie('spatialCoverage'),
                    model_uri=OAE.Experiment_spatial_coverage, domain=Experiment, range=Union[dict, SpatialCoverage])
 
-slots.Experiment_vertical_coverage = Slot(uri=OAE.vertical_coverage, name="Experiment_vertical_coverage", curie=OAE.curie('vertical_coverage'),
-                   model_uri=OAE.Experiment_vertical_coverage, domain=Experiment, range=Optional[Union[dict, VerticalExtent]])
+slots.InSituExperiment_vertical_coverage = Slot(uri=OAE.vertical_coverage, name="InSituExperiment_vertical_coverage", curie=OAE.curie('vertical_coverage'),
+                   model_uri=OAE.InSituExperiment_vertical_coverage, domain=InSituExperiment, range=Optional[Union[dict, VerticalExtent]])
 
 slots.DosingConcentration_is_provided_as_a_file = Slot(uri=OAE.is_provided_as_a_file, name="DosingConcentration_is_provided_as_a_file", curie=OAE.curie('is_provided_as_a_file'),
                    model_uri=OAE.DosingConcentration_is_provided_as_a_file, domain=DosingConcentration, range=Union[bool, Bool])
@@ -4752,8 +5368,14 @@ slots.Dataset_project_id = Slot(uri=OAE.project_id, name="Dataset_project_id", c
 slots.Dataset_experiment_id = Slot(uri=OAE.experiment_id, name="Dataset_experiment_id", curie=OAE.curie('experiment_id'),
                    model_uri=OAE.Dataset_experiment_id, domain=Dataset, range=str)
 
+slots.ModelOutputDataset_filenames = Slot(uri=OAE.filenames, name="ModelOutputDataset_filenames", curie=OAE.curie('filenames'),
+                   model_uri=OAE.ModelOutputDataset_filenames, domain=ModelOutputDataset, range=Union[str, List[str]])
+
 slots.Platform_name = Slot(uri=SCHEMA.name, name="Platform_name", curie=SCHEMA.curie('name'),
                    model_uri=OAE.Platform_name, domain=Platform, range=Optional[str])
+
+slots.ModelComponent_description = Slot(uri=SCHEMA.description, name="ModelComponent_description", curie=SCHEMA.curie('description'),
+                   model_uri=OAE.ModelComponent_description, domain=ModelComponent, range=Optional[str])
 
 slots.CO2GasDetector_analyzing_instrument_type = Slot(uri=OAE.analyzing_instrument_type, name="CO2GasDetector_analyzing_instrument_type", curie=OAE.curie('analyzing_instrument_type'),
                    model_uri=OAE.CO2GasDetector_analyzing_instrument_type, domain=CO2GasDetector, range=Optional[str])

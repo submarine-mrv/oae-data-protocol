@@ -5,15 +5,19 @@ default_prefix: oae
 
 classes:
   Dataset:
+    # TODO: We may want to revert to set 'abstract: true' again once we set `include_range_class_descendents: true`
+    # As of right now, setting Dataset to abstract means we don't get it in the JSON Schema at all and it breaks
+    # downstream usage
+    # abstract: true
     description: >-
-      A dataset related to an OAE experiment. Generally following guidelines & best practices as outlined in
+      Abstract base class for all dataset types. Contains fields common to both field/observational and model simulation
+      datasets. Generally following guidelines & best practices as outlined in
       [science-on-schema.org](https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md)
     slots:
       - name
       - description
       - project_id
       - experiment_id
-      - temporal_coverage
     slot_usage:
       - name:
           title: Dataset Title
@@ -21,7 +25,7 @@ classes:
           required: true
           description: >-
             A brief descriptive sentence that summarizes the content of a dataset. Here is one example:
-            
+
             "Dissolved inorganic carbon, total alkalinity, pH, temperature, salinity and other variables collected from
             profile and discrete sample observations using CTD, Niskin bottle, and other instruments from R/V Wecoma in
             the U.S. West Coast California Current System during the 2011 West Coast Ocean Acidification Cruise
@@ -46,7 +50,7 @@ classes:
         # TODO: Add pre/post condition slots for _custom field rendering
         title: Dataset Type
         description: >-
-          Selected controlled vocabularies for data types relevant to mCDR have been referenced from NASA’s SeaBASS
+          Selected controlled vocabularies for data types relevant to mCDR have been referenced from NASA's SeaBASS
           metadata system and are provided below, for additional data types of optical characteristics see the [SeaBASS
           controlled definitions list](https://seabass.gsfc.nasa.gov/wiki/metadataheaders#data_type). Additional data
           types have been included to meet the needs of mCDR field projects.
@@ -82,6 +86,30 @@ classes:
         title: Fair Use Data Request
         description: A statement from the data producer regarding how this dataset should be used.
         range: string
+      filenames:
+        # TODO: Should be upgraded to be compatilbe with schema:distribution
+        # https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md#distributions
+        title: Filenames
+        range: string
+        required: true
+        multivalued: true
+        # TODO: workaround since JSON Schema treats [] values as satisfying the "required" constraint
+        # It might be nice to fix this in a linkml PR to have minItems=1 automatically set for required lists in the
+        # JSONSchema generator
+        minimum_cardinality: 1
+
+    exact_mappings:
+      - "schema:Dataset"
+      - "dcat:Dataset"
+
+  FieldDataset:
+    is_a: Dataset
+    description: >-
+      A field or observational dataset related to an OAE experiment. Contains fields specific to in-situ data
+      collection such as platform information, calibration files, QC flags, and measured variables.
+    slots:
+      - temporal_coverage
+    attributes:
       data_product_type:
         title: Data Product Type
         description: >-
@@ -119,18 +147,93 @@ classes:
         slot_uri: schema:variableMeasured
         range: Variable
         multivalued: true
-      filenames:
-        # TODO: Should be upgraded to be compatilbe with schema:distribution
-        # https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md#distributions
-        title: Filenames
-        range: string
-        required: true
-        multivalued: true
-        # TODO: workaround since JSON Schema treats [] values as satisfying the "required" constraint
-        # It might be nice to fix this in a linkml PR to have minItems=1 automatically set for required lists in the
-        # JSONSchema generator
-        minimum_cardinality: 1
 
-    exact_mappings:
-      - "schema:Dataset"
-      - "dcat:Dataset"
+  ModelOutputDataset:
+    is_a: Dataset
+    description: >-
+      A model simulation output dataset. Contains fields specific to computational model output including
+      simulation configuration, output variables, and hardware information.
+    slot_usage:
+      filenames:
+        title: Model Output Filenames
+    attributes:
+      simulation_type:
+        title: Simulation Type
+        description: "Whether this is a counterfactual (control/baseline) or perturbation simulation."
+        range: SimulationType
+        required: true
+      spin_up_protocol:
+        title: Spin-up Protocol
+        description: "Description of the model spin-up process."
+        range: string
+      start_datetime:
+        title: Start Date and Time
+        description: "Start date and time of the simulation in UTC ISO-8601."
+        range: datetime
+        required: true
+      end_datetime:
+        title: End Date and Time
+        description: "End date and time of the simulation in UTC ISO-8601."
+        range: datetime
+        required: true
+      output_frequency:
+        title: Output Frequency
+        description: "Frequency of model output (e.g., 'hourly mean', 'daily mean')."
+        range: string
+      time_stepping_scheme:
+        title: Time-stepping Scheme
+        description: "Time-stepping method and time step used in the simulation."
+        range: string
+      alkalinity_perturbation_description:
+        title: Alkalinity Perturbation Description
+        description: >-
+          Description of the alkalinity perturbation applied in the simulation. Required when simulation_type
+          is "perturbation".
+        range: string
+      hardware_configuration:
+        title: Hardware Configuration
+        description: "Details about the computational hardware used for the simulation."
+        range: HardwareConfiguration
+        inlined: true
+      model_output_variables:
+        title: Key Model Output Variables
+        description: "Checklist of variables included in the model simulation output."
+        range: ModelOutputVariable
+        multivalued: true
+    rules:
+      - preconditions:
+          slot_conditions:
+            simulation_type:
+              equals_string: "perturbation"
+        postconditions:
+          slot_conditions:
+            alkalinity_perturbation_description:
+              required: true
+
+  HardwareConfiguration:
+    description: "Details about the computational hardware used to run a model simulation."
+    attributes:
+      machine:
+        title: Machine
+        description: "Name of the machine or cluster (e.g., 'Perlmutter')."
+        range: string
+      operating_system:
+        title: Operating System
+        description: "Operating system used (e.g., 'Linux')."
+        range: string
+      cpu_gpu_details:
+        title: CPU/GPU Details
+        description: "Details about CPU/GPU hardware or link to specifications."
+        range: string
+      memory:
+        title: Memory
+        description: "Memory available (e.g., '512 GB DDR4')."
+        range: string
+      storage:
+        title: Storage
+        description: "Storage available (e.g., '44 PB')."
+        range: string
+      parallelization:
+        title: Parallelization
+        description: "Parallelization details (e.g., '3 nodes, 108 ntasks per node')."
+        range: string
