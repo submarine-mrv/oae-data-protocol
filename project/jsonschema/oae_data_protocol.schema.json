@@ -3745,6 +3745,10 @@
                     "description": "The type of model component (physics, BGC/ecosystem, or other).",
                     "title": "Model Component Type"
                 },
+                "model_component_type_custom": {
+                    "title": "Model Compoent Type (custom)",
+                    "type": "string"
+                },
                 "name": {
                     "description": "Name of the model component (e.g., ROMS, MARBL, Oceananigans).",
                     "title": "Component Name",
@@ -3809,10 +3813,6 @@
                     "$ref": "#/$defs/GridType",
                     "description": "Role of this grid in a nested or multi-grid configuration.",
                     "title": "Grid Type"
-                },
-                "grid_type_custom": {
-                    "title": "Grid Type (custom)",
-                    "type": "string"
                 },
                 "horizontal_resolution_range": {
                     "description": "Description of horizontal resolution (e.g., '3.3 km', '1/12 degree').",

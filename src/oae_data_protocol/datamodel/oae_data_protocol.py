@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-02-22T18:11:06
+# Generation date: 2026-02-22T18:22:21
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -2621,6 +2621,7 @@ class ModelComponent(YAMLRoot):
     model_component_type: Union[str, "ModelComponentType"] = None
     name: str = None
     description: Optional[str] = None
+    model_component_type_custom: Optional[str] = None
     version: Optional[str] = None
     codebase: Optional[Union[str, URI]] = None
     references: Optional[Union[Union[str, URI], List[Union[str, URI]]]] = empty_list()
@@ -2638,6 +2639,9 @@ class ModelComponent(YAMLRoot):
 
         if self.description is not None and not isinstance(self.description, str):
             self.description = str(self.description)
+
+        if self.model_component_type_custom is not None and not isinstance(self.model_component_type_custom, str):
+            self.model_component_type_custom = str(self.model_component_type_custom)
 
         if self.version is not None and not isinstance(self.version, str):
             self.version = str(self.version)
@@ -2667,7 +2671,6 @@ class ModelGrid(YAMLRoot):
     grid_type: Union[str, "GridType"] = None
     grid_name: Optional[str] = None
     grid_geometry: Optional[str] = None
-    grid_type_custom: Optional[str] = None
     region: Optional[str] = None
     spatial_coverage: Optional[Union[dict, SpatialCoverage]] = None
     arrangement: Optional[str] = None
@@ -2690,9 +2693,6 @@ class ModelGrid(YAMLRoot):
 
         if self.grid_geometry is not None and not isinstance(self.grid_geometry, str):
             self.grid_geometry = str(self.grid_geometry)
-
-        if self.grid_type_custom is not None and not isinstance(self.grid_type_custom, str):
-            self.grid_type_custom = str(self.grid_type_custom)
 
         if self.region is not None and not isinstance(self.region, str):
             self.region = str(self.region)
@@ -5112,6 +5112,9 @@ slots.model__input_details = Slot(uri=OAE.input_details, name="model__input_deta
 slots.modelComponent__model_component_type = Slot(uri=OAE.model_component_type, name="modelComponent__model_component_type", curie=OAE.curie('model_component_type'),
                    model_uri=OAE.modelComponent__model_component_type, domain=None, range=Union[str, "ModelComponentType"])
 
+slots.modelComponent__model_component_type_custom = Slot(uri=OAE.model_component_type_custom, name="modelComponent__model_component_type_custom", curie=OAE.curie('model_component_type_custom'),
+                   model_uri=OAE.modelComponent__model_component_type_custom, domain=None, range=Optional[str])
+
 slots.modelComponent__name = Slot(uri=OAE.name, name="modelComponent__name", curie=OAE.curie('name'),
                    model_uri=OAE.modelComponent__name, domain=None, range=str)
 
@@ -5132,9 +5135,6 @@ slots.modelGrid__grid_geometry = Slot(uri=OAE.grid_geometry, name="modelGrid__gr
 
 slots.modelGrid__grid_type = Slot(uri=OAE.grid_type, name="modelGrid__grid_type", curie=OAE.curie('grid_type'),
                    model_uri=OAE.modelGrid__grid_type, domain=None, range=Union[str, "GridType"])
-
-slots.modelGrid__grid_type_custom = Slot(uri=OAE.grid_type_custom, name="modelGrid__grid_type_custom", curie=OAE.curie('grid_type_custom'),
-                   model_uri=OAE.modelGrid__grid_type_custom, domain=None, range=Optional[str])
 
 slots.modelGrid__region = Slot(uri=OAE.region, name="modelGrid__region", curie=OAE.curie('region'),
                    model_uri=OAE.modelGrid__region, domain=None, range=Optional[str])

@@ -65,6 +65,9 @@ classes:
         description: "The type of model component (physics, BGC/ecosystem, or other)."
         range: ModelComponentType
         required: true
+      model_component_type_custom:
+        title: Model Compoent Type (custom)
+        range: string
       name:
         title: Component Name
         description: "Name of the model component (e.g., ROMS, MARBL, Oceananigans)."
@@ -101,9 +104,6 @@ classes:
         description: "Role of this grid in a nested or multi-grid configuration."
         range: GridType
         required: true
-      grid_type_custom:
-        title: Grid Type (custom)
-        range: string
       region:
         title: Region
         description: "Region covered by the grid."
