@@ -60,15 +60,14 @@ classes:
         inlined_as_list: true
         required: true
       start_datetime:
-        title: Start Date and Time
+        title: Start Date and Time (UTC)
         description: "Start date and time of experiment in UTC ISO-8601"
         range: datetime
         required: true
       end_datetime:
-        title: End Date and Time
+        title: End Date and Time (UTC)
         description: "End date and time of experiment in UTC ISO-8601"
         range: datetime
-        required: true
   InSituExperiment:
     is_a: Experiment
     description: >-

@@ -238,10 +238,17 @@ enums:
     description: "Type of model component"
     permissible_values:
       physics:
+        title: "Physics"
         description: "Physical model component (e.g., ocean circulation)"
       bgc_ecosystem:
-        title: "BGC/Ecosystem"
+        title: "BGC / Ecosystem"
         description: "Biogeochemical or ecosystem model component"
+      sea_ice:
+        title: "Sea Ice"
+        description: "Sea Ice model component"
+      atmosphere:
+        title: "Atmosphere"
+        description: "Atmosphere model component"
       other:
         description: "Other model component (e.g., sea ice, sediment, atmosphere)"
 
