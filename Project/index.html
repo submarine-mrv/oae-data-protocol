@@ -650,7 +650,7 @@ attributes:
     rank: 1000
     domain_of:
     - Project
-    - Experiment
+    - InSituExperiment
     range: string
 
 </code></pre>
@@ -862,7 +862,7 @@ attributes:
     owner: Project
     domain_of:
     - Project
-    - Experiment
+    - InSituExperiment
     range: string
   project_id:
     name: project_id
@@ -907,6 +907,7 @@ attributes:
     - Experiment
     - VocabularyItemReference
     - Dataset
+    - ModelComponent
     range: string
     required: true
   temporal_coverage:
@@ -921,7 +922,7 @@ attributes:
     domain_of:
     - Project
     - ExternalProject
-    - Dataset
+    - FieldDataset
     range: string
     required: true
     pattern: ^\d{4}-\d{2}-\d{2}/(\d{4}-\d{2}-\d{2}|\.\.)$
@@ -941,6 +942,7 @@ attributes:
     - Project
     - ExternalProject
     - Experiment
+    - ModelGrid
     range: SpatialCoverage
     required: true
 

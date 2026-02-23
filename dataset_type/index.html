@@ -360,7 +360,7 @@
 
 
 <h1 id="slot-dataset-type-dataset_type">Slot: Dataset Type (dataset_type)</h1>
-<p><em>Selected controlled vocabularies for data types relevant to mCDR have been referenced from NASA’s SeaBASS metadata system and are provided below, for additional data types of optical characteristics see the <a href="https://seabass.gsfc.nasa.gov/wiki/metadataheaders#data_type">SeaBASS controlled definitions list</a>. Additional data types have been included to meet the needs of mCDR field projects.</em></p>
+<p><em>Selected controlled vocabularies for data types relevant to mCDR have been referenced from NASA's SeaBASS metadata system and are provided below, for additional data types of optical characteristics see the <a href="https://seabass.gsfc.nasa.gov/wiki/metadataheaders#data_type">SeaBASS controlled definitions list</a>. Additional data types have been included to meet the needs of mCDR field projects.</em></p>
 <p>URI: <a href="https://example.org/oae#dataset_type">oae:dataset_type</a></p>
 <!-- no inheritance hierarchy -->
 
@@ -376,7 +376,17 @@
 <tbody>
 <tr>
 <td><a href="../Dataset/">Dataset</a></td>
-<td>A dataset related to an OAE experiment</td>
+<td>Abstract base class for all dataset types</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../ModelOutputDataset/">ModelOutputDataset</a></td>
+<td>A model simulation output dataset</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../FieldDataset/">FieldDataset</a></td>
+<td>A field or observational dataset related to an OAE experiment</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -419,7 +429,7 @@
 
 <pre><code class="language-yaml">name: dataset_type
 description: Selected controlled vocabularies for data types relevant to mCDR have
-  been referenced from NASA’s SeaBASS metadata system and are provided below, for
+  been referenced from NASA's SeaBASS metadata system and are provided below, for
   additional data types of optical characteristics see the [SeaBASS controlled definitions
   list](https://seabass.gsfc.nasa.gov/wiki/metadataheaders#data_type). Additional
   data types have been included to meet the needs of mCDR field projects.

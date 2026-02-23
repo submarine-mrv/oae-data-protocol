@@ -229,19 +229,15 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="class-experiment">Class: Experiment</h1>
-<p><em>Experiment metadata applies to a specific study but remains consistent across datasets.</em></p>
+<p><em>Abstract base class for all experiment types. Contains fields common to both in-situ and model experiments.</em></p>
 <p>URI: <a href="https://example.org/oae#Experiment">oae:Experiment</a></p>
 <div class="mermaid"> classDiagram
     class Experiment
     click Experiment href "../Experiment"
-      Experiment &lt;|-- Intervention
-        click Intervention href "../Intervention"
-      Experiment &lt;|-- Tracer
-        click Tracer href "../Tracer"
-
-      Experiment : additional_details
-
-      Experiment : data_conflicts_and_unreported_data
+      Experiment &lt;|-- InSituExperiment
+        click InSituExperiment href "../InSituExperiment"
+      Experiment &lt;|-- Model
+        click Model href "../Model"
 
       Experiment : description
 
@@ -258,25 +254,7 @@
     click ExperimentType href "../ExperimentType"
 
 
-      Experiment : meteorological_and_tidal_data
-
-
-
-
-    Experiment --&gt; "*" NamedLink : meteorological_and_tidal_data
-    click NamedLink href "../NamedLink"
-
-
       Experiment : name
-
-      Experiment : permits
-
-
-
-
-    Experiment --&gt; "*" Permit : permits
-    click Permit href "../Permit"
-
 
       Experiment : principal_investigators
 
@@ -300,22 +278,13 @@
 
       Experiment : start_datetime
 
-      Experiment : vertical_coverage
-
-
-
-
-    Experiment --&gt; "0..1" VerticalExtent : vertical_coverage
-    click VerticalExtent href "../VerticalExtent"
-
-
 
 </div>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><strong>Experiment</strong><ul>
-<li><a href="../Intervention/">Intervention</a> [ <a href="../InterventionDetails/">InterventionDetails</a> <a href="../DosingDetails/">DosingDetails</a>]</li>
-<li><a href="../Tracer/">Tracer</a> [ <a href="../TracerDetails/">TracerDetails</a> <a href="../DosingDetails/">DosingDetails</a>]</li>
+<li><a href="../InSituExperiment/">InSituExperiment</a></li>
+<li><a href="../Model/">Model</a></li>
 </ul>
 </li>
 </ul>
@@ -346,18 +315,6 @@
 <td><a href="../spatial_coverage/">spatial_coverage</a></td>
 <td>1 <br/> <a href="../SpatialCoverage/">SpatialCoverage</a></td>
 <td>Latitude/longitude bounds of observed data in experiment, provided in decimal...</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../vertical_coverage/">vertical_coverage</a></td>
-<td>0..1 <br/> <a href="../VerticalExtent/">VerticalExtent</a></td>
-<td>Minimum and maximum depths of observations in meters</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../permits/">permits</a></td>
-<td>* <br/> <a href="../Permit/">Permit</a></td>
-<td>Associated permit number(s)</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -392,26 +349,8 @@
 </tr>
 <tr>
 <td><a href="../end_datetime/">end_datetime</a></td>
-<td>1 <br/> <a href="../Datetime/">Datetime</a></td>
+<td>0..1 <br/> <a href="../Datetime/">Datetime</a></td>
 <td>End date and time of experiment in UTC ISO-8601</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../data_conflicts_and_unreported_data/">data_conflicts_and_unreported_data</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>If data exist that are or have been used by the project but are not provided ...</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../meteorological_and_tidal_data/">meteorological_and_tidal_data</a></td>
-<td>* <br/> <a href="../NamedLink/">NamedLink</a></td>
-<td>Include links to relevant open datasets if referenced in the experiment but n...</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../additional_details/">additional_details</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Open text area to include additional information</td>
 <td>direct</td>
 </tr>
 </tbody>
@@ -470,15 +409,13 @@
 <h3 id="direct">Direct</h3>
 <details>
 <pre><code class="language-yaml">name: Experiment
-description: Experiment metadata applies to a specific study but remains consistent
-  across datasets.
+description: Abstract base class for all experiment types. Contains fields common
+  to both in-situ and model experiments.
 from_schema: OAEDataManagementProtocol
 slots:
 - name
 - description
 - spatial_coverage
-- vertical_coverage
-- permits
 - project_id
 - experiment_id
 slot_usage:
@@ -508,9 +445,6 @@ slot_usage:
       in decimal degrees as westernmost longitude, southernmost latitude, easternmost
       longitude, northernmost latitude. [S, W, N, E]
     required: true
-  vertical_coverage:
-    name: vertical_coverage
-    description: Minimum and maximum depths of observations in meters.
 attributes:
   experiment_type:
     name: experiment_type
@@ -541,68 +475,32 @@ attributes:
   start_datetime:
     name: start_datetime
     description: Start date and time of experiment in UTC ISO-8601
-    title: Start Date and Time
+    title: Start Date and Time (UTC)
     from_schema: Experiment
     rank: 1000
     domain_of:
     - Experiment
+    - ModelOutputDataset
     range: datetime
     required: true
   end_datetime:
     name: end_datetime
     description: End date and time of experiment in UTC ISO-8601
-    title: End Date and Time
+    title: End Date and Time (UTC)
     from_schema: Experiment
     rank: 1000
     domain_of:
     - Experiment
+    - ModelOutputDataset
     range: datetime
-    required: true
-  data_conflicts_and_unreported_data:
-    name: data_conflicts_and_unreported_data
-    description: If data exist that are or have been used by the project but are not
-      provided due to conflicts (e.g., geopolitical or other), data availability (e.g.,
-      a dataset is no longer available), it may be noted here.
-    title: Data Conflicts and Unreported Data
-    from_schema: Experiment
-    rank: 1000
-    domain_of:
-    - Experiment
-    range: string
-  meteorological_and_tidal_data:
-    name: meteorological_and_tidal_data
-    description: Include links to relevant open datasets if referenced in the experiment
-      but not provided in the submission.
-    title: Meteorological and Tidal Data
-    from_schema: Experiment
-    rank: 1000
-    domain_of:
-    - Experiment
-    range: NamedLink
-    multivalued: true
-    inlined: true
-    inlined_as_list: true
-  additional_details:
-    name: additional_details
-    description: Open text area to include additional information. These may include
-      information for sediment processes data, biological data, or any other required
-      information if not included in the main metadata or data files; see General
-      Guidelines for Your Data for relevant sections of your data. Additional informational
-      files, such as digitized laboratory notebooks, blogs, etc., may be linked here.
-    title: Additional Details
-    from_schema: Experiment
-    domain_of:
-    - Project
-    - Experiment
-    range: string
 
 </code></pre>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
 <pre><code class="language-yaml">name: Experiment
-description: Experiment metadata applies to a specific study but remains consistent
-  across datasets.
+description: Abstract base class for all experiment types. Contains fields common
+  to both in-situ and model experiments.
 from_schema: OAEDataManagementProtocol
 slot_usage:
   project_id:
@@ -631,9 +529,6 @@ slot_usage:
       in decimal degrees as westernmost longitude, southernmost latitude, easternmost
       longitude, northernmost latitude. [S, W, N, E]
     required: true
-  vertical_coverage:
-    name: vertical_coverage
-    description: Minimum and maximum depths of observations in meters.
 attributes:
   experiment_type:
     name: experiment_type
@@ -668,70 +563,28 @@ attributes:
   start_datetime:
     name: start_datetime
     description: Start date and time of experiment in UTC ISO-8601
-    title: Start Date and Time
+    title: Start Date and Time (UTC)
     from_schema: Experiment
     rank: 1000
     alias: start_datetime
     owner: Experiment
     domain_of:
     - Experiment
+    - ModelOutputDataset
     range: datetime
     required: true
   end_datetime:
     name: end_datetime
     description: End date and time of experiment in UTC ISO-8601
-    title: End Date and Time
+    title: End Date and Time (UTC)
     from_schema: Experiment
     rank: 1000
     alias: end_datetime
     owner: Experiment
     domain_of:
     - Experiment
+    - ModelOutputDataset
     range: datetime
-    required: true
-  data_conflicts_and_unreported_data:
-    name: data_conflicts_and_unreported_data
-    description: If data exist that are or have been used by the project but are not
-      provided due to conflicts (e.g., geopolitical or other), data availability (e.g.,
-      a dataset is no longer available), it may be noted here.
-    title: Data Conflicts and Unreported Data
-    from_schema: Experiment
-    rank: 1000
-    alias: data_conflicts_and_unreported_data
-    owner: Experiment
-    domain_of:
-    - Experiment
-    range: string
-  meteorological_and_tidal_data:
-    name: meteorological_and_tidal_data
-    description: Include links to relevant open datasets if referenced in the experiment
-      but not provided in the submission.
-    title: Meteorological and Tidal Data
-    from_schema: Experiment
-    rank: 1000
-    alias: meteorological_and_tidal_data
-    owner: Experiment
-    domain_of:
-    - Experiment
-    range: NamedLink
-    multivalued: true
-    inlined: true
-    inlined_as_list: true
-  additional_details:
-    name: additional_details
-    description: Open text area to include additional information. These may include
-      information for sediment processes data, biological data, or any other required
-      information if not included in the main metadata or data files; see General
-      Guidelines for Your Data for relevant sections of your data. Additional informational
-      files, such as digitized laboratory notebooks, blogs, etc., may be linked here.
-    title: Additional Details
-    from_schema: Experiment
-    alias: additional_details
-    owner: Experiment
-    domain_of:
-    - Project
-    - Experiment
-    range: string
   name:
     name: name
     description: Optional common name for experiment.
@@ -750,6 +603,7 @@ attributes:
     - Person
     - Dataset
     - Platform
+    - ModelComponent
     range: string
   description:
     name: description
@@ -772,6 +626,7 @@ attributes:
     - Experiment
     - VocabularyItemReference
     - Dataset
+    - ModelComponent
     range: string
     required: true
   spatial_coverage:
@@ -789,33 +644,9 @@ attributes:
     - Project
     - ExternalProject
     - Experiment
+    - ModelGrid
     range: SpatialCoverage
     required: true
-  vertical_coverage:
-    name: vertical_coverage
-    description: Minimum and maximum depths of observations in meters.
-    title: Vertical Coverage
-    from_schema: OAEDataManagementProtocol
-    rank: 1000
-    alias: vertical_coverage
-    owner: Experiment
-    domain_of:
-    - Experiment
-    range: VerticalExtent
-  permits:
-    name: permits
-    description: Associated permit number(s).
-    title: Permits
-    from_schema: OAEDataManagementProtocol
-    rank: 1000
-    alias: permits
-    owner: Experiment
-    domain_of:
-    - Experiment
-    range: Permit
-    multivalued: true
-    inlined: true
-    inlined_as_list: true
   project_id:
     name: project_id
     description: 'The project to which the submitted data belong. A unique project

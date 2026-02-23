@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: End Date and Time (end_datetime) - oae-data-protocol</title>
+        <title>Slot: end_datetime - oae-data-protocol</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-end-date-and-time-end_datetime" class="md-skip">
+        <a href="#slot-end_datetime" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: End Date and Time (end_datetime)
+              Slot: end_datetime
             
           </span>
         </div>
@@ -305,21 +305,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Identifier and Mapping Information">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#schema-source" class="md-nav__link">
-    <span class="md-ellipsis">
-      Schema Source
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -359,8 +344,7 @@
   
 
 
-<h1 id="slot-end-date-and-time-end_datetime">Slot: End Date and Time (end_datetime)</h1>
-<p><em>End date and time of experiment in UTC ISO-8601</em></p>
+<h1 id="slot-end_datetime">Slot: end_datetime</h1>
 <p>URI: <a href="https://example.org/oae#end_datetime">oae:end_datetime</a></p>
 <!-- no inheritance hierarchy -->
 
@@ -375,13 +359,28 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="../Model/">Model</a></td>
+<td>A computational model experiment related to OAE</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../InSituExperiment/">InSituExperiment</a></td>
+<td>Experiment metadata for in-situ studies (interventions, tracer studies, etc</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../Intervention/">Intervention</a></td>
 <td>Additional metadata that applies to experiments where an intervention, such a...</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../InterventionWithTracer/">InterventionWithTracer</a></td>
-<td>Additional metadata that applies to hybrid experiments where an intervention ...</td>
+<td><a href="../Experiment/">Experiment</a></td>
+<td>Abstract base class for all experiment types</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../ModelOutputDataset/">ModelOutputDataset</a></td>
+<td>A model simulation output dataset</td>
 <td>no</td>
 </tr>
 <tr>
@@ -390,26 +389,17 @@
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../Experiment/">Experiment</a></td>
-<td>Experiment metadata applies to a specific study but remains consistent across...</td>
+<td><a href="../InterventionWithTracer/">InterventionWithTracer</a></td>
+<td>Additional metadata that applies to hybrid experiments where an intervention ...</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>
-<p>Range: <a href="../Datetime/">Datetime</a></p>
-</li>
-<li>
-<p>Required: True</p>
-</li>
+<li>Range: NONE</li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
-<h3 id="schema-source">Schema Source</h3>
-<ul>
-<li>from schema: OAEDataManagementProtocol</li>
-</ul>
 <h2 id="mappings">Mappings</h2>
 <table>
 <thead>
@@ -433,16 +423,10 @@
 <details>
 
 <pre><code class="language-yaml">name: end_datetime
-description: End date and time of experiment in UTC ISO-8601
-title: End Date and Time
-from_schema: OAEDataManagementProtocol
-rank: 1000
 alias: end_datetime
-owner: Experiment
 domain_of:
 - Experiment
-range: datetime
-required: true
+- ModelOutputDataset
 
 </code></pre>
 

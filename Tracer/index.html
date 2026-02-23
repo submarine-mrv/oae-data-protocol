@@ -231,8 +231,8 @@
         click TracerDetails href "../TracerDetails"
       DosingDetails &lt;|-- Tracer
         click DosingDetails href "../DosingDetails"
-      Experiment &lt;|-- Tracer
-        click Experiment href "../Experiment"
+      InSituExperiment &lt;|-- Tracer
+        click InSituExperiment href "../InSituExperiment"
 
       Tracer : additional_details
 
@@ -362,7 +362,10 @@
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../Experiment/">Experiment</a><ul>
+<li><a href="../InSituExperiment/">InSituExperiment</a><ul>
 <li><strong>Tracer</strong> [ <a href="../TracerDetails/">TracerDetails</a> <a href="../DosingDetails/">DosingDetails</a>]</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -432,6 +435,36 @@
 <td><a href="../DosingDetails/">DosingDetails</a></td>
 </tr>
 <tr>
+<td><a href="../vertical_coverage/">vertical_coverage</a></td>
+<td>0..1 <br/> <a href="../VerticalExtent/">VerticalExtent</a></td>
+<td>Minimum and maximum depths of observations in meters</td>
+<td><a href="../InSituExperiment/">InSituExperiment</a></td>
+</tr>
+<tr>
+<td><a href="../permits/">permits</a></td>
+<td>* <br/> <a href="../Permit/">Permit</a></td>
+<td>Associated permit number(s)</td>
+<td><a href="../InSituExperiment/">InSituExperiment</a></td>
+</tr>
+<tr>
+<td><a href="../data_conflicts_and_unreported_data/">data_conflicts_and_unreported_data</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>If data exist that are or have been used by the project but are not provided ...</td>
+<td><a href="../InSituExperiment/">InSituExperiment</a></td>
+</tr>
+<tr>
+<td><a href="../meteorological_and_tidal_data/">meteorological_and_tidal_data</a></td>
+<td>* <br/> <a href="../NamedLink/">NamedLink</a></td>
+<td>Include links to relevant open datasets if referenced in the experiment but n...</td>
+<td><a href="../InSituExperiment/">InSituExperiment</a></td>
+</tr>
+<tr>
+<td><a href="../additional_details/">additional_details</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Open text area to include additional information</td>
+<td><a href="../InSituExperiment/">InSituExperiment</a></td>
+</tr>
+<tr>
 <td><a href="../name/">name</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Optional common name for experiment</td>
@@ -447,18 +480,6 @@
 <td><a href="../spatial_coverage/">spatial_coverage</a></td>
 <td>1 <br/> <a href="../SpatialCoverage/">SpatialCoverage</a></td>
 <td>Latitude/longitude bounds of observed data in experiment, provided in decimal...</td>
-<td><a href="../Experiment/">Experiment</a></td>
-</tr>
-<tr>
-<td><a href="../vertical_coverage/">vertical_coverage</a></td>
-<td>0..1 <br/> <a href="../VerticalExtent/">VerticalExtent</a></td>
-<td>Minimum and maximum depths of observations in meters</td>
-<td><a href="../Experiment/">Experiment</a></td>
-</tr>
-<tr>
-<td><a href="../permits/">permits</a></td>
-<td>* <br/> <a href="../Permit/">Permit</a></td>
-<td>Associated permit number(s)</td>
 <td><a href="../Experiment/">Experiment</a></td>
 </tr>
 <tr>
@@ -493,26 +514,8 @@
 </tr>
 <tr>
 <td><a href="../end_datetime/">end_datetime</a></td>
-<td>1 <br/> <a href="../Datetime/">Datetime</a></td>
+<td>0..1 <br/> <a href="../Datetime/">Datetime</a></td>
 <td>End date and time of experiment in UTC ISO-8601</td>
-<td><a href="../Experiment/">Experiment</a></td>
-</tr>
-<tr>
-<td><a href="../data_conflicts_and_unreported_data/">data_conflicts_and_unreported_data</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>If data exist that are or have been used by the project but are not provided ...</td>
-<td><a href="../Experiment/">Experiment</a></td>
-</tr>
-<tr>
-<td><a href="../meteorological_and_tidal_data/">meteorological_and_tidal_data</a></td>
-<td>* <br/> <a href="../NamedLink/">NamedLink</a></td>
-<td>Include links to relevant open datasets if referenced in the experiment but n...</td>
-<td><a href="../Experiment/">Experiment</a></td>
-</tr>
-<tr>
-<td><a href="../additional_details/">additional_details</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Open text area to include additional information</td>
 <td><a href="../Experiment/">Experiment</a></td>
 </tr>
 </tbody>
@@ -549,7 +552,7 @@
 description: Additional metadata that applies to experiments where a tracer study
   was conducted
 from_schema: OAEDataManagementProtocol
-is_a: Experiment
+is_a: InSituExperiment
 mixins:
 - TracerDetails
 - DosingDetails
@@ -562,7 +565,7 @@ mixins:
 description: Additional metadata that applies to experiments where a tracer study
   was conducted
 from_schema: OAEDataManagementProtocol
-is_a: Experiment
+is_a: InSituExperiment
 mixins:
 - TracerDetails
 - DosingDetails
@@ -691,6 +694,74 @@ attributes:
     - DosingDetails
     range: string
     required: true
+  vertical_coverage:
+    name: vertical_coverage
+    description: Minimum and maximum depths of observations in meters.
+    title: Vertical Coverage
+    from_schema: OAEDataManagementProtocol
+    rank: 1000
+    alias: vertical_coverage
+    owner: Tracer
+    domain_of:
+    - InSituExperiment
+    range: VerticalExtent
+  permits:
+    name: permits
+    description: Associated permit number(s).
+    title: Permits
+    from_schema: OAEDataManagementProtocol
+    rank: 1000
+    alias: permits
+    owner: Tracer
+    domain_of:
+    - InSituExperiment
+    range: Permit
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  data_conflicts_and_unreported_data:
+    name: data_conflicts_and_unreported_data
+    description: If data exist that are or have been used by the project but are not
+      provided due to conflicts (e.g., geopolitical or other), data availability (e.g.,
+      a dataset is no longer available), it may be noted here.
+    title: Data Conflicts and Unreported Data
+    from_schema: Experiment
+    rank: 1000
+    alias: data_conflicts_and_unreported_data
+    owner: Tracer
+    domain_of:
+    - InSituExperiment
+    range: string
+  meteorological_and_tidal_data:
+    name: meteorological_and_tidal_data
+    description: Include links to relevant open datasets if referenced in the experiment
+      but not provided in the submission.
+    title: Meteorological and Tidal Data
+    from_schema: Experiment
+    rank: 1000
+    alias: meteorological_and_tidal_data
+    owner: Tracer
+    domain_of:
+    - InSituExperiment
+    range: NamedLink
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  additional_details:
+    name: additional_details
+    description: Open text area to include additional information. These may include
+      information for sediment processes data, biological data, or any other required
+      information if not included in the main metadata or data files; see General
+      Guidelines for Your Data for relevant sections of your data. Additional informational
+      files, such as digitized laboratory notebooks, blogs, etc., may be linked here.
+    title: Additional Details
+    from_schema: Experiment
+    alias: additional_details
+    owner: Tracer
+    domain_of:
+    - Project
+    - InSituExperiment
+    range: string
   name:
     name: name
     description: Optional common name for experiment.
@@ -709,6 +780,7 @@ attributes:
     - Person
     - Dataset
     - Platform
+    - ModelComponent
     range: string
   description:
     name: description
@@ -731,6 +803,7 @@ attributes:
     - Experiment
     - VocabularyItemReference
     - Dataset
+    - ModelComponent
     range: string
     required: true
   spatial_coverage:
@@ -748,33 +821,9 @@ attributes:
     - Project
     - ExternalProject
     - Experiment
+    - ModelGrid
     range: SpatialCoverage
     required: true
-  vertical_coverage:
-    name: vertical_coverage
-    description: Minimum and maximum depths of observations in meters.
-    title: Vertical Coverage
-    from_schema: OAEDataManagementProtocol
-    rank: 1000
-    alias: vertical_coverage
-    owner: Tracer
-    domain_of:
-    - Experiment
-    range: VerticalExtent
-  permits:
-    name: permits
-    description: Associated permit number(s).
-    title: Permits
-    from_schema: OAEDataManagementProtocol
-    rank: 1000
-    alias: permits
-    owner: Tracer
-    domain_of:
-    - Experiment
-    range: Permit
-    multivalued: true
-    inlined: true
-    inlined_as_list: true
   project_id:
     name: project_id
     description: 'The project to which the submitted data belong. A unique project
@@ -847,70 +896,28 @@ attributes:
   start_datetime:
     name: start_datetime
     description: Start date and time of experiment in UTC ISO-8601
-    title: Start Date and Time
+    title: Start Date and Time (UTC)
     from_schema: Experiment
     rank: 1000
     alias: start_datetime
     owner: Tracer
     domain_of:
     - Experiment
+    - ModelOutputDataset
     range: datetime
     required: true
   end_datetime:
     name: end_datetime
     description: End date and time of experiment in UTC ISO-8601
-    title: End Date and Time
+    title: End Date and Time (UTC)
     from_schema: Experiment
     rank: 1000
     alias: end_datetime
     owner: Tracer
     domain_of:
     - Experiment
+    - ModelOutputDataset
     range: datetime
-    required: true
-  data_conflicts_and_unreported_data:
-    name: data_conflicts_and_unreported_data
-    description: If data exist that are or have been used by the project but are not
-      provided due to conflicts (e.g., geopolitical or other), data availability (e.g.,
-      a dataset is no longer available), it may be noted here.
-    title: Data Conflicts and Unreported Data
-    from_schema: Experiment
-    rank: 1000
-    alias: data_conflicts_and_unreported_data
-    owner: Tracer
-    domain_of:
-    - Experiment
-    range: string
-  meteorological_and_tidal_data:
-    name: meteorological_and_tidal_data
-    description: Include links to relevant open datasets if referenced in the experiment
-      but not provided in the submission.
-    title: Meteorological and Tidal Data
-    from_schema: Experiment
-    rank: 1000
-    alias: meteorological_and_tidal_data
-    owner: Tracer
-    domain_of:
-    - Experiment
-    range: NamedLink
-    multivalued: true
-    inlined: true
-    inlined_as_list: true
-  additional_details:
-    name: additional_details
-    description: Open text area to include additional information. These may include
-      information for sediment processes data, biological data, or any other required
-      information if not included in the main metadata or data files; see General
-      Guidelines for Your Data for relevant sections of your data. Additional informational
-      files, such as digitized laboratory notebooks, blogs, etc., may be linked here.
-    title: Additional Details
-    from_schema: Experiment
-    alias: additional_details
-    owner: Tracer
-    domain_of:
-    - Project
-    - Experiment
-    range: string
 
 </code></pre>
 </details>

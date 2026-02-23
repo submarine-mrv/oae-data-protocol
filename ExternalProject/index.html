@@ -360,6 +360,7 @@ attributes:
     - Person
     - Dataset
     - Platform
+    - ModelComponent
     range: string
     required: true
   description:
@@ -373,6 +374,7 @@ attributes:
     - Experiment
     - VocabularyItemReference
     - Dataset
+    - ModelComponent
     range: string
   related_links:
     name: related_links
@@ -411,6 +413,7 @@ attributes:
     - Person
     - Dataset
     - Platform
+    - ModelComponent
     range: string
     required: true
   description:
@@ -426,6 +429,7 @@ attributes:
     - Experiment
     - VocabularyItemReference
     - Dataset
+    - ModelComponent
     range: string
   related_links:
     name: related_links
@@ -453,7 +457,7 @@ attributes:
     domain_of:
     - Project
     - ExternalProject
-    - Dataset
+    - FieldDataset
     range: string
     required: true
     pattern: ^\d{4}-\d{2}-\d{2}/(\d{4}-\d{2}-\d{2}|\.\.)$
@@ -473,6 +477,7 @@ attributes:
     - Project
     - ExternalProject
     - Experiment
+    - ModelGrid
     range: SpatialCoverage
     required: true
 

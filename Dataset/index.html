@@ -151,6 +151,13 @@
     </label>
 <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
 <li class="md-nav__item">
+<a class="md-nav__link" href="#inheritance">
+<span class="md-ellipsis">
+      Inheritance
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#slots">
 <span class="md-ellipsis">
       Slots
@@ -222,23 +229,17 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="class-dataset">Class: Dataset</h1>
-<p><em>A dataset related to an OAE experiment. Generally following guidelines &amp; best practices as outlined in <a href="https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md">science-on-schema.org</a></em></p>
+<p><em>Abstract base class for all dataset types. Contains fields common to both field/observational and model simulation datasets. Generally following guidelines &amp; best practices as outlined in <a href="https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md">science-on-schema.org</a></em></p>
 <p>URI: <a href="https://example.org/oae#Dataset">oae:Dataset</a></p>
 <div class="mermaid"> classDiagram
     class Dataset
     click Dataset href "../Dataset"
+      Dataset &lt;|-- FieldDataset
+        click FieldDataset href "../FieldDataset"
+      Dataset &lt;|-- ModelOutputDataset
+        click ModelOutputDataset href "../ModelOutputDataset"
+
       Dataset : author_list_for_citation
-
-      Dataset : calibration_files
-
-      Dataset : data_product_type
-
-
-
-
-    Dataset --&gt; "1" DataProductType : data_product_type
-    click DataProductType href "../DataProductType"
-
 
       Dataset : data_submitter
 
@@ -272,33 +273,18 @@
 
       Dataset : name
 
-      Dataset : platform_info
-
-
-
-
-    Dataset --&gt; "1" Platform : platform_info
-    click Platform href "../Platform"
-
-
       Dataset : project_id
-
-      Dataset : qc_flag_scheme
-
-      Dataset : temporal_coverage
-
-      Dataset : variables
-
-
-
-
-    Dataset --&gt; "*" Variable : variables
-    click Variable href "../Variable"
-
 
 
 </div>
-<!-- no inheritance hierarchy -->
+<h2 id="inheritance">Inheritance</h2>
+<ul>
+<li><strong>Dataset</strong><ul>
+<li><a href="../FieldDataset/">FieldDataset</a></li>
+<li><a href="../ModelOutputDataset/">ModelOutputDataset</a></li>
+</ul>
+</li>
+</ul>
 <h2 id="slots">Slots</h2>
 <table>
 <thead>
@@ -335,12 +321,6 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../temporal_coverage/">temporal_coverage</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>Start date and end date (if known) of the project in ISO-8601 interval format...</td>
-<td>direct</td>
-</tr>
-<tr>
 <td><a href="../dataset_type/">dataset_type</a></td>
 <td>1 <br/> <a href="../DatasetType/">DatasetType</a></td>
 <td>Selected controlled vocabularies for data types relevant to mCDR have been re...</td>
@@ -374,36 +354,6 @@
 <td><a href="../fair_use_data_request/">fair_use_data_request</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>A statement from the data producer regarding how this dataset should be used</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../data_product_type/">data_product_type</a></td>
-<td>1 <br/> <a href="../DataProductType/">DataProductType</a></td>
-<td>"Controlled vocabulary" One of the three choices: (a) Originally collected da...</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../qc_flag_scheme/">qc_flag_scheme</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Describe what the quality control flags stand for, e</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../platform_info/">platform_info</a></td>
-<td>1 <br/> <a href="../Platform/">Platform</a></td>
-<td></td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../calibration_files/">calibration_files</a></td>
-<td>* <br/> <a href="../String/">String</a></td>
-<td>A list of supplementary file names containing coefficients and techniques use...</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../variables/">variables</a></td>
-<td>* <br/> <a href="../Variable/">Variable</a></td>
-<td></td>
 <td>direct</td>
 </tr>
 <tr>
@@ -466,7 +416,8 @@
 <h3 id="direct">Direct</h3>
 <details>
 <pre><code class="language-yaml">name: Dataset
-description: A dataset related to an OAE experiment. Generally following guidelines
+description: Abstract base class for all dataset types. Contains fields common to
+  both field/observational and model simulation datasets. Generally following guidelines
   &amp; best practices as outlined in [science-on-schema.org](https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md)
 from_schema: OAEDataManagementProtocol
 exact_mappings:
@@ -477,7 +428,6 @@ slots:
 - description
 - project_id
 - experiment_id
-- temporal_coverage
 slot_usage:
   name:
     name: name
@@ -513,7 +463,7 @@ attributes:
   dataset_type:
     name: dataset_type
     description: Selected controlled vocabularies for data types relevant to mCDR
-      have been referenced from NASA’s SeaBASS metadata system and are provided below,
+      have been referenced from NASA's SeaBASS metadata system and are provided below,
       for additional data types of optical characteristics see the [SeaBASS controlled
       definitions list](https://seabass.gsfc.nasa.gov/wiki/metadataheaders#data_type).
       Additional data types have been included to meet the needs of mCDR field projects.
@@ -581,63 +531,6 @@ attributes:
     domain_of:
     - Dataset
     range: string
-  data_product_type:
-    name: data_product_type
-    description: '"Controlled vocabulary" One of the three choices: (a) Originally
-      collected dataset (e.g., a dataset collected from a research cruise or laboratory
-      experiment), (b) Data compilation product (e.g., SOCAT, GLODAP), or (c) Derived
-      product (e.g., gridded products, or model output).'
-    title: Data Product Type
-    from_schema: Dataset
-    rank: 1000
-    domain_of:
-    - Dataset
-    range: DataProductType
-    required: true
-  qc_flag_scheme:
-    name: qc_flag_scheme
-    description: "Describe what the quality control flags stand for, e.g.,\n  0 =\
-      \ interpolated or calculated data\n  1 = not evaluated/quality unknown\n  2\
-      \ = acceptable\n  3 = questionable\n  4 = known bad\n  6 = median of replicates\n\
-      \  9 = missing value\""
-    title: QC Flag Scheme
-    from_schema: Dataset
-    rank: 1000
-    domain_of:
-    - Dataset
-    range: string
-  platform_info:
-    name: platform_info
-    title: Platform Information
-    from_schema: Dataset
-    rank: 1000
-    domain_of:
-    - Dataset
-    range: Platform
-    required: true
-  calibration_files:
-    name: calibration_files
-    description: A list of supplementary file names containing coefficients and techniques
-      used to calibrate the instruments used in data collection. The named files can
-      be found within the relevant documents folder accompanying the submitted data
-      files.
-    title: Calibration Files
-    from_schema: Dataset
-    rank: 1000
-    domain_of:
-    - Dataset
-    range: string
-    multivalued: true
-  variables:
-    name: variables
-    title: Variables
-    from_schema: Dataset
-    rank: 1000
-    slot_uri: schema:variableMeasured
-    domain_of:
-    - Dataset
-    range: Variable
-    multivalued: true
   filenames:
     name: filenames
     title: Filenames
@@ -655,7 +548,8 @@ attributes:
 <h3 id="induced">Induced</h3>
 <details>
 <pre><code class="language-yaml">name: Dataset
-description: A dataset related to an OAE experiment. Generally following guidelines
+description: Abstract base class for all dataset types. Contains fields common to
+  both field/observational and model simulation datasets. Generally following guidelines
   &amp; best practices as outlined in [science-on-schema.org](https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md)
 from_schema: OAEDataManagementProtocol
 exact_mappings:
@@ -696,7 +590,7 @@ attributes:
   dataset_type:
     name: dataset_type
     description: Selected controlled vocabularies for data types relevant to mCDR
-      have been referenced from NASA’s SeaBASS metadata system and are provided below,
+      have been referenced from NASA's SeaBASS metadata system and are provided below,
       for additional data types of optical characteristics see the [SeaBASS controlled
       definitions list](https://seabass.gsfc.nasa.gov/wiki/metadataheaders#data_type).
       Additional data types have been included to meet the needs of mCDR field projects.
@@ -776,73 +670,6 @@ attributes:
     domain_of:
     - Dataset
     range: string
-  data_product_type:
-    name: data_product_type
-    description: '"Controlled vocabulary" One of the three choices: (a) Originally
-      collected dataset (e.g., a dataset collected from a research cruise or laboratory
-      experiment), (b) Data compilation product (e.g., SOCAT, GLODAP), or (c) Derived
-      product (e.g., gridded products, or model output).'
-    title: Data Product Type
-    from_schema: Dataset
-    rank: 1000
-    alias: data_product_type
-    owner: Dataset
-    domain_of:
-    - Dataset
-    range: DataProductType
-    required: true
-  qc_flag_scheme:
-    name: qc_flag_scheme
-    description: "Describe what the quality control flags stand for, e.g.,\n  0 =\
-      \ interpolated or calculated data\n  1 = not evaluated/quality unknown\n  2\
-      \ = acceptable\n  3 = questionable\n  4 = known bad\n  6 = median of replicates\n\
-      \  9 = missing value\""
-    title: QC Flag Scheme
-    from_schema: Dataset
-    rank: 1000
-    alias: qc_flag_scheme
-    owner: Dataset
-    domain_of:
-    - Dataset
-    range: string
-  platform_info:
-    name: platform_info
-    title: Platform Information
-    from_schema: Dataset
-    rank: 1000
-    alias: platform_info
-    owner: Dataset
-    domain_of:
-    - Dataset
-    range: Platform
-    required: true
-  calibration_files:
-    name: calibration_files
-    description: A list of supplementary file names containing coefficients and techniques
-      used to calibrate the instruments used in data collection. The named files can
-      be found within the relevant documents folder accompanying the submitted data
-      files.
-    title: Calibration Files
-    from_schema: Dataset
-    rank: 1000
-    alias: calibration_files
-    owner: Dataset
-    domain_of:
-    - Dataset
-    range: string
-    multivalued: true
-  variables:
-    name: variables
-    title: Variables
-    from_schema: Dataset
-    rank: 1000
-    slot_uri: schema:variableMeasured
-    alias: variables
-    owner: Dataset
-    domain_of:
-    - Dataset
-    range: Variable
-    multivalued: true
   filenames:
     name: filenames
     title: Filenames
@@ -881,6 +708,7 @@ attributes:
     - Person
     - Dataset
     - Platform
+    - ModelComponent
     range: string
     required: true
   description:
@@ -904,6 +732,7 @@ attributes:
     - Experiment
     - VocabularyItemReference
     - Dataset
+    - ModelComponent
     range: string
     required: true
   project_id:
@@ -945,24 +774,6 @@ attributes:
     - Dataset
     range: string
     required: true
-  temporal_coverage:
-    name: temporal_coverage
-    description: Start date and end date (if known) of the project in ISO-8601 interval
-      format (YYYY-MM-DD/YYY-MM-DD). If the end date is not known, use open-ended
-      format YYYY-MM-DD/..
-    title: Temporal Coverage
-    from_schema: OAEDataManagementProtocol
-    rank: 1000
-    slot_uri: schema:temporalCoverage
-    alias: temporal_coverage
-    owner: Dataset
-    domain_of:
-    - Project
-    - ExternalProject
-    - Dataset
-    range: string
-    required: true
-    pattern: ^\d{4}-\d{2}-\d{2}/(\d{4}-\d{2}-\d{2}|\.\.)$
 
 </code></pre>
 </details>

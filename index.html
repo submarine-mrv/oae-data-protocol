@@ -554,7 +554,15 @@
 </tr>
 <tr>
 <td><a href="Dataset/">Dataset</a></td>
-<td>A dataset related to an OAE experiment. Generally following guidelines &amp; best practices as outlined in <a href="https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md">science-on-schema.org</a></td>
+<td>Abstract base class for all dataset types. Contains fields common to both field/observational and model simulation datasets. Generally following guidelines &amp; best practices as outlined in <a href="https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md">science-on-schema.org</a></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="FieldDataset/">FieldDataset</a></td>
+<td>A field or observational dataset related to an OAE experiment. Contains fields specific to in-situ data collection such as platform information, calibration files, QC flags, and measured variables.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ModelOutputDataset/">ModelOutputDataset</a></td>
+<td>A model simulation output dataset. Contains fields specific to computational model output including simulation configuration, output variables, and hardware information.</td>
 </tr>
 <tr>
 <td><a href="DosingConcentration/">DosingConcentration</a></td>
@@ -566,19 +574,27 @@
 </tr>
 <tr>
 <td><a href="Experiment/">Experiment</a></td>
-<td>Experiment metadata applies to a specific study but remains consistent across datasets.</td>
+<td>Abstract base class for all experiment types. Contains fields common to both in-situ and model experiments.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Intervention/">Intervention</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="InSituExperiment/">InSituExperiment</a></td>
+<td>Experiment metadata for in-situ studies (interventions, tracer studies, etc.). Contains fields specific to field-based experiments that don't apply to model experiments.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Intervention/">Intervention</a></td>
 <td>Additional metadata that applies to experiments where an intervention, such as an alkalinity addition, was conducted.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="InterventionWithTracer/">InterventionWithTracer</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="InterventionWithTracer/">InterventionWithTracer</a></td>
 <td>Additional metadata that applies to hybrid experiments where an intervention was conducted simultaneously alongside a tracer study, using the same instrumentation.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Tracer/">Tracer</a></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Tracer/">Tracer</a></td>
 <td>Additional metadata that applies to experiments where a tracer study was conducted</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Model/">Model</a></td>
+<td>A computational model experiment related to OAE.</td>
 </tr>
 <tr>
 <td><a href="ExternalProject/">ExternalProject</a></td>
@@ -591,6 +607,10 @@
 <tr>
 <td><a href="GeoShape/">GeoShape</a></td>
 <td>The geographic shape of a place. A GeoShape can be described using several properties whose values are based on latitude/longitude pairs. Either whitespace or commas can be used to separate latitude and longitude; whitespace should be used when writing a list of several such points. (imported from schema.org)</td>
+</tr>
+<tr>
+<td><a href="HardwareConfiguration/">HardwareConfiguration</a></td>
+<td>Details about the computational hardware used to run a model simulation.</td>
 </tr>
 <tr>
 <td><a href="InterventionDetails/">InterventionDetails</a></td>
@@ -615,6 +635,18 @@
 <tr>
 <td><a href="MeasuredTAFields/">MeasuredTAFields</a></td>
 <td>Fields applied to all measured TA variable types (discrete and continuous)</td>
+</tr>
+<tr>
+<td><a href="ModelComponent/">ModelComponent</a></td>
+<td>A component of a model (e.g., physics, biogeochemistry/ecosystem).</td>
+</tr>
+<tr>
+<td><a href="ModelGrid/">ModelGrid</a></td>
+<td>Details about a model grid. Use multiple ModelGrid entries to describe nested or multi-grid configurations.</td>
+</tr>
+<tr>
+<td><a href="ModelInputDetails/">ModelInputDetails</a></td>
+<td>Details about input data sources used to drive the model.</td>
 </tr>
 <tr>
 <td><a href="MonetaryGrant/">MonetaryGrant</a></td>
@@ -744,6 +776,10 @@
 <td>Custom description of alkalinity feedstock processing method when 'other' is ...</td>
 </tr>
 <tr>
+<td><a href="alkalinity_perturbation_description/">alkalinity_perturbation_description</a></td>
+<td>Description of the alkalinity perturbation applied in the simulation</td>
+</tr>
+<tr>
 <td><a href="amount/">amount</a></td>
 <td></td>
 </tr>
@@ -764,12 +800,28 @@
 <td>Filename(s) of permitting documents included, separated by commas</td>
 </tr>
 <tr>
+<td><a href="arrangement/">arrangement</a></td>
+<td>The grid arrangement of orthogonal physical quantities (e</td>
+</tr>
+<tr>
+<td><a href="atmospheric_forcing/">atmospheric_forcing</a></td>
+<td>Atmospheric forcing data source(s)</td>
+</tr>
+<tr>
 <td><a href="author_list_for_citation/">author_list_for_citation</a></td>
 <td>Author list in the format of Lastname1, Firstname1 Middlename1; Lastname2, Fi...</td>
 </tr>
 <tr>
+<td><a href="bathymetry/">bathymetry</a></td>
+<td>Bathymetry data source(s)</td>
+</tr>
+<tr>
 <td><a href="blank_correction/">blank_correction</a></td>
 <td>Whether the reported variables were corrected for blank, and if so, how they ...</td>
+</tr>
+<tr>
+<td><a href="boundary_conditions/">boundary_conditions</a></td>
+<td>Boundary condition data source(s)</td>
 </tr>
 <tr>
 <td><a href="box/">box</a></td>
@@ -812,6 +864,10 @@
 <td>In Celsius</td>
 </tr>
 <tr>
+<td><a href="codebase/">codebase</a></td>
+<td>Link to model code repository</td>
+</tr>
+<tr>
 <td><a href="colocated_operations/">colocated_operations</a></td>
 <td>A description is required if any nearby operations exist that may influence t...</td>
 </tr>
@@ -834,6 +890,10 @@
 <tr>
 <td><a href="country/">country</a></td>
 <td>The country in which the organization belongs</td>
+</tr>
+<tr>
+<td><a href="cpu_gpu_details/">cpu_gpu_details</a></td>
+<td>Details about CPU/GPU hardware or link to specifications</td>
 </tr>
 <tr>
 <td><a href="crm_batch_number/">crm_batch_number</a></td>
@@ -992,8 +1052,32 @@
 <td>Entities that have a somewhat fixed, physical extension</td>
 </tr>
 <tr>
+<td><a href="grid_details/">grid_details</a></td>
+<td>Details about the model grid(s)</td>
+</tr>
+<tr>
+<td><a href="grid_geometry/">grid_geometry</a></td>
+<td>Descriptive structure of the grid (e</td>
+</tr>
+<tr>
+<td><a href="grid_name/">grid_name</a></td>
+<td>Name of the grid (e</td>
+</tr>
+<tr>
+<td><a href="grid_type/">grid_type</a></td>
+<td>Role of this grid in a nested or multi-grid configuration</td>
+</tr>
+<tr>
+<td><a href="hardware_configuration/">hardware_configuration</a></td>
+<td>Details about the computational hardware used for the simulation</td>
+</tr>
+<tr>
 <td><a href="headspace_volume/">headspace_volume</a></td>
 <td>Volume (in mL) of headspace (water displaced in the flask plus volume of the ...</td>
+</tr>
+<tr>
+<td><a href="horizontal_resolution_range/">horizontal_resolution_range</a></td>
+<td>Description of horizontal resolution (e</td>
 </tr>
 <tr>
 <td><a href="hplc_lab/">hplc_lab</a></td>
@@ -1010,6 +1094,14 @@
 <tr>
 <td><a href="identifier_type/">identifier_type</a></td>
 <td>Type of Researcher ID (e</td>
+</tr>
+<tr>
+<td><a href="initial_conditions/">initial_conditions</a></td>
+<td>Initial condition data source(s)</td>
+</tr>
+<tr>
+<td><a href="input_details/">input_details</a></td>
+<td>Details about input data sources used to drive the model</td>
 </tr>
 <tr>
 <td><a href="instrument_type/">instrument_type</a></td>
@@ -1052,6 +1144,10 @@
 <td>Longitude in decimal degrees of a location</td>
 </tr>
 <tr>
+<td><a href="machine/">machine</a></td>
+<td>Name of the machine or cluster (e</td>
+</tr>
+<tr>
 <td><a href="manufacturer/">manufacturer</a></td>
 <td>Manufacturer name of the instrument</td>
 </tr>
@@ -1074,6 +1170,10 @@
 <tr>
 <td><a href="measurement_temperature/">measurement_temperature</a></td>
 <td>Temperature at which pH was measured</td>
+</tr>
+<tr>
+<td><a href="memory/">memory</a></td>
+<td>Memory available (e</td>
 </tr>
 <tr>
 <td><a href="metadata_builder_git_hash/">metadata_builder_git_hash</a></td>
@@ -1104,6 +1204,42 @@
 <td>Model number or name of the instrument</td>
 </tr>
 <tr>
+<td><a href="model_component_type/">model_component_type</a></td>
+<td>The type of model component (physics, BGC/ecosystem, or other)</td>
+</tr>
+<tr>
+<td><a href="model_component_type_custom/">model_component_type_custom</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="model_components/">model_components</a></td>
+<td>Components of the model (e</td>
+</tr>
+<tr>
+<td><a href="model_configuration/">model_configuration</a></td>
+<td>Links to model configuration files or documentation</td>
+</tr>
+<tr>
+<td><a href="model_output_variables/">model_output_variables</a></td>
+<td>Checklist of variables included in the model simulation output</td>
+</tr>
+<tr>
+<td><a href="n_nodes/">n_nodes</a></td>
+<td>Number of nodes in the grid (for unstructured grids)</td>
+</tr>
+<tr>
+<td><a href="n_x/">n_x</a></td>
+<td>Number of grid points in the x-direction</td>
+</tr>
+<tr>
+<td><a href="n_y/">n_y</a></td>
+<td>Number of grid points in the y-direction</td>
+</tr>
+<tr>
+<td><a href="n_z/">n_z</a></td>
+<td>Number of vertical coordinate levels</td>
+</tr>
+<tr>
 <td><a href="name/">name</a></td>
 <td>A human-readable name for the thing</td>
 </tr>
@@ -1112,12 +1248,24 @@
 <td></td>
 </tr>
 <tr>
+<td><a href="operating_system/">operating_system</a></td>
+<td>Operating system used (e</td>
+</tr>
+<tr>
 <td><a href="other_detailed_information/">other_detailed_information</a></td>
 <td>Any additional information about this variable</td>
 </tr>
 <tr>
+<td><a href="output_frequency/">output_frequency</a></td>
+<td>Frequency of model output (e</td>
+</tr>
+<tr>
 <td><a href="owner/">owner</a></td>
 <td>Institution that owns the platform</td>
+</tr>
+<tr>
+<td><a href="parallelization/">parallelization</a></td>
+<td>Parallelization details (e</td>
 </tr>
 <tr>
 <td><a href="permit_id/">permit_id</a></td>
@@ -1180,6 +1328,14 @@
 <td>Provide details for each principal investigator (PI) including: Name, institu...</td>
 </tr>
 <tr>
+<td><a href="processing_code/">processing_code</a></td>
+<td>If applicable, link to any code for processing of raw forcing and input data ...</td>
+</tr>
+<tr>
+<td><a href="processing_of_input_data/">processing_of_input_data</a></td>
+<td>Narrative description of any processing applied to input data before use in t...</td>
+</tr>
+<tr>
 <td><a href="project/">project</a></td>
 <td></td>
 </tr>
@@ -1216,6 +1372,14 @@
 <td>The method used to calculate reported values from raw sensor data</td>
 </tr>
 <tr>
+<td><a href="references/">references</a></td>
+<td>Links or DOIs to any reference(s) relevant to the model components/developmen...</td>
+</tr>
+<tr>
+<td><a href="region/">region</a></td>
+<td>Region covered by the grid</td>
+</tr>
+<tr>
 <td><a href="related_links/">related_links</a></td>
 <td>Links to websites or documents related to the external research project</td>
 </tr>
@@ -1226,6 +1390,10 @@
 <tr>
 <td><a href="resolution/">resolution</a></td>
 <td>Resolution of the CO2 sensor</td>
+</tr>
+<tr>
+<td><a href="river_sediment_flux_details/">river_sediment_flux_details</a></td>
+<td>River and/or sediment flux data source(s)</td>
 </tr>
 <tr>
 <td><a href="role/">role</a></td>
@@ -1280,6 +1448,10 @@
 <td>Serial number of the instrument</td>
 </tr>
 <tr>
+<td><a href="simulation_type/">simulation_type</a></td>
+<td>Whether this is a counterfactual (control/baseline) or perturbation simulatio...</td>
+</tr>
+<tr>
 <td><a href="social_context_site_description/">social_context_site_description</a></td>
 <td>Details may include:</td>
 </tr>
@@ -1290,6 +1462,10 @@
 <tr>
 <td><a href="spatial_coverage/">spatial_coverage</a></td>
 <td>Latitude/longitude bounds of project site (e</td>
+</tr>
+<tr>
+<td><a href="spin_up_protocol/">spin_up_protocol</a></td>
+<td>Description of the model spin-up process</td>
 </tr>
 <tr>
 <td><a href="standard_gas_info/">standard_gas_info</a></td>
@@ -1306,6 +1482,10 @@
 <tr>
 <td><a href="start_datetime/">start_datetime</a></td>
 <td>Start date and time of experiment in UTC ISO-8601</td>
+</tr>
+<tr>
+<td><a href="storage/">storage</a></td>
+<td>Storage available (e</td>
 </tr>
 <tr>
 <td><a href="storage_method/">storage_method</a></td>
@@ -1328,8 +1508,16 @@
 <td></td>
 </tr>
 <tr>
+<td><a href="tidal_forcing/">tidal_forcing</a></td>
+<td>Tidal forcing data source(s)</td>
+</tr>
+<tr>
 <td><a href="time_period/">time_period</a></td>
 <td>The time period during which the permit will be applicable, or expected durat...</td>
+</tr>
+<tr>
+<td><a href="time_stepping_scheme/">time_stepping_scheme</a></td>
+<td>Time-stepping method and time step used in the simulation</td>
 </tr>
 <tr>
 <td><a href="titration_cell_type/">titration_cell_type</a></td>
@@ -1384,8 +1572,16 @@
 <td>Version of the oae-data-protocol</td>
 </tr>
 <tr>
+<td><a href="vertical_coordinate_type/">vertical_coordinate_type</a></td>
+<td>The vertical grid coordinate type (e</td>
+</tr>
+<tr>
 <td><a href="vertical_coverage/">vertical_coverage</a></td>
 <td>Minimum and maximum depths of observation in meters</td>
+</tr>
+<tr>
+<td><a href="vertical_resolution_range/">vertical_resolution_range</a></td>
+<td>Description of vertical resolution (e</td>
 </tr>
 <tr>
 <td><a href="volume/">volume</a></td>
@@ -1459,6 +1655,10 @@
 <td></td>
 </tr>
 <tr>
+<td><a href="GridType/">GridType</a></td>
+<td>Type of grid in a multi-grid or nested model configuration</td>
+</tr>
+<tr>
 <td><a href="HydrologicLocation/">HydrologicLocation</a></td>
 <td>Hydrologic location types for dosing</td>
 </tr>
@@ -1469,6 +1669,14 @@
 <tr>
 <td><a href="MCDRPathway/">MCDRPathway</a></td>
 <td>Type of marine Carbon Dioxide Removal (mCDR) pathways</td>
+</tr>
+<tr>
+<td><a href="ModelComponentType/">ModelComponentType</a></td>
+<td>Type of model component</td>
+</tr>
+<tr>
+<td><a href="ModelOutputVariable/">ModelOutputVariable</a></td>
+<td>Variables commonly included in model simulation output datasets</td>
 </tr>
 <tr>
 <td><a href="ObservationType/">ObservationType</a></td>
@@ -1493,6 +1701,10 @@
 <tr>
 <td><a href="SeaNames/">SeaNames</a></td>
 <td></td>
+</tr>
+<tr>
+<td><a href="SimulationType/">SimulationType</a></td>
+<td>Type of model simulation dataset</td>
 </tr>
 <tr>
 <td><a href="TitrationCellType/">TitrationCellType</a></td>
