@@ -3729,6 +3729,16 @@
         "ModelComponent": {
             "additionalProperties": false,
             "description": "A component of a model (e.g., physics, biogeochemistry/ecosystem).",
+            "if": {
+                "properties": {
+                    "model_component_type": {
+                        "const": "other"
+                    }
+                },
+                "required": [
+                    "model_component_type"
+                ]
+            },
             "properties": {
                 "codebase": {
                     "description": "Link to model code repository.",
@@ -3746,7 +3756,7 @@
                     "title": "Model Component Type"
                 },
                 "model_component_type_custom": {
-                    "title": "Model Compoent Type (custom)",
+                    "title": "Model Component Type (custom)",
                     "type": "string"
                 },
                 "name": {
@@ -3775,6 +3785,14 @@
                 "model_component_type",
                 "name"
             ],
+            "then": {
+                "properties": {
+                    "model_component_type_custom": {}
+                },
+                "required": [
+                    "model_component_type_custom"
+                ]
+            },
             "title": "ModelComponent",
             "type": "object"
         },

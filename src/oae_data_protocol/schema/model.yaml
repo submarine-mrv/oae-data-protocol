@@ -66,7 +66,7 @@ classes:
         range: ModelComponentType
         required: true
       model_component_type_custom:
-        title: Model Compoent Type (custom)
+        title: Model Component Type (custom)
         range: string
       name:
         title: Component Name
@@ -88,6 +88,15 @@ classes:
           specific model configuration, model validation etc.
         multivalued: true
         range: uri
+    rules:
+      - preconditions:
+          slot_conditions:
+            model_component_type:
+              equals_string: "other"
+        postconditions:
+          slot_conditions:
+            model_component_type_custom:
+              required: true
   ModelGrid:
     description: "Details about a model grid. Use multiple ModelGrid entries to describe nested or multi-grid configurations."
     attributes:
