@@ -50,10 +50,10 @@ classes:
         # TODO: Make sure this gets handled correctly -- we want multiple options
         # multivalued: true
         required: true
-      principal_investigators:
-        title: Principal Investigators
+      experiment_leads:
+        title: Experiment Lead(s)
         description: >-
-          Provide details for each principal investigator (PI) including: Name, institutional information (name, address),
+          Provide details for each experiment lead / principal investigator (PI) including: Name, institutional information (name, address),
           phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.
         range: Person
         multivalued: true

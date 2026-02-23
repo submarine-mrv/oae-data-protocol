@@ -36,6 +36,15 @@ classes:
         range: Experiment
         multivalued: true
         recommended: true
+      project_leads:
+        title: Project Lead(s)
+        description: >-
+          Provide details for each project lead / principal investigator (PI) including: Name, institutional information (name, address),
+          phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.
+        range: Person
+        multivalued: true
+        inlined_as_list: true
+        required: true
       sea_names:
         title: Sea Names
         description: "Names of the seas where the data collection takes place, See Controlled Vocabularies section for definitions."

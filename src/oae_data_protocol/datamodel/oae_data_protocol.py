@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-02-22T20:18:23
+# Generation date: 2026-02-23T01:41:55
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -329,6 +329,7 @@ class Project(YAMLRoot):
     description: str = None
     temporal_coverage: str = None
     spatial_coverage: Union[dict, SpatialCoverage] = None
+    project_leads: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     mcdr_pathway: Union[str, "MCDRPathway"] = None
     experiments: Optional[Union[Union[dict, "Experiment"], List[Union[dict, "Experiment"]]]] = empty_list()
     sea_names: Optional[Union[Union[str, "SeaNames"], List[Union[str, "SeaNames"]]]] = empty_list()
@@ -362,6 +363,12 @@ class Project(YAMLRoot):
             self.MissingRequiredField("spatial_coverage")
         if not isinstance(self.spatial_coverage, SpatialCoverage):
             self.spatial_coverage = SpatialCoverage(**as_dict(self.spatial_coverage))
+
+        if self._is_empty(self.project_leads):
+            self.MissingRequiredField("project_leads")
+        if not isinstance(self.project_leads, list):
+            self.project_leads = [self.project_leads] if self.project_leads is not None else []
+        self.project_leads = [v if isinstance(v, Person) else Person(**as_dict(v)) for v in self.project_leads]
 
         if self._is_empty(self.mcdr_pathway):
             self.MissingRequiredField("mcdr_pathway")
@@ -580,7 +587,7 @@ class Experiment(YAMLRoot):
     project_id: str = None
     experiment_id: str = None
     experiment_type: Union[str, "ExperimentType"] = None
-    principal_investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
+    experiment_leads: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     name: Optional[str] = None
     end_datetime: Optional[Union[str, XSDDateTime]] = None
@@ -611,11 +618,11 @@ class Experiment(YAMLRoot):
         if not isinstance(self.experiment_type, ExperimentType):
             self.experiment_type = ExperimentType(self.experiment_type)
 
-        if self._is_empty(self.principal_investigators):
-            self.MissingRequiredField("principal_investigators")
-        if not isinstance(self.principal_investigators, list):
-            self.principal_investigators = [self.principal_investigators] if self.principal_investigators is not None else []
-        self.principal_investigators = [v if isinstance(v, Person) else Person(**as_dict(v)) for v in self.principal_investigators]
+        if self._is_empty(self.experiment_leads):
+            self.MissingRequiredField("experiment_leads")
+        if not isinstance(self.experiment_leads, list):
+            self.experiment_leads = [self.experiment_leads] if self.experiment_leads is not None else []
+        self.experiment_leads = [v if isinstance(v, Person) else Person(**as_dict(v)) for v in self.experiment_leads]
 
         if self._is_empty(self.start_datetime):
             self.MissingRequiredField("start_datetime")
@@ -649,7 +656,7 @@ class InSituExperiment(Experiment):
     project_id: str = None
     experiment_id: str = None
     experiment_type: Union[str, "ExperimentType"] = None
-    principal_investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
+    experiment_leads: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     vertical_coverage: Optional[Union[dict, VerticalExtent]] = None
     permits: Optional[Union[Union[dict, Permit], List[Union[dict, Permit]]]] = empty_list()
@@ -696,7 +703,7 @@ class Intervention(InSituExperiment):
     project_id: str = None
     experiment_id: str = None
     experiment_type: Union[str, "ExperimentType"] = None
-    principal_investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
+    experiment_leads: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     alkalinity_feedstock_processing: Union[str, "AlkalinityFeedstockProcessing"] = None
     alkalinity_feedstock_form: Union[str, "AlkalinityFeedstockForm"] = None
@@ -806,7 +813,7 @@ class Tracer(InSituExperiment):
     project_id: str = None
     experiment_id: str = None
     experiment_type: Union[str, "ExperimentType"] = None
-    principal_investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
+    experiment_leads: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     tracer_form: Union[str, "TracerForm"] = None
     tracer_details: str = None
@@ -885,7 +892,7 @@ class InterventionWithTracer(Intervention):
     project_id: str = None
     experiment_id: str = None
     experiment_type: Union[str, "ExperimentType"] = None
-    principal_investigators: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
+    experiment_leads: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     alkalinity_feedstock_processing: Union[str, "AlkalinityFeedstockProcessing"] = None
     alkalinity_feedstock_form: Union[str, "AlkalinityFeedstockForm"] = None
@@ -2586,7 +2593,7 @@ class Model(Experiment):
     project_id: str = None
     experiment_id: str = None
     experiment_type: Union[str, "ExperimentType"] = None
-    principal_investigators: Union[Union[dict, Person], List[Union[dict, Person]]] = None
+    experiment_leads: Union[Union[dict, Person], List[Union[dict, Person]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     model_configuration: Optional[Union[Union[str, URI], List[Union[str, URI]]]] = empty_list()
     model_components: Optional[Union[Union[dict, "ModelComponent"], List[Union[dict, "ModelComponent"]]]] = empty_list()
@@ -4687,6 +4694,9 @@ slots.organization__country = Slot(uri=OAE.country, name="organization__country"
 slots.project__experiments = Slot(uri=OAE.experiments, name="project__experiments", curie=OAE.curie('experiments'),
                    model_uri=OAE.project__experiments, domain=None, range=Optional[Union[Union[dict, Experiment], List[Union[dict, Experiment]]]])
 
+slots.project__project_leads = Slot(uri=OAE.project_leads, name="project__project_leads", curie=OAE.curie('project_leads'),
+                   model_uri=OAE.project__project_leads, domain=None, range=Union[Union[dict, Person], List[Union[dict, Person]]])
+
 slots.project__sea_names = Slot(uri=OAE.sea_names, name="project__sea_names", curie=OAE.curie('sea_names'),
                    model_uri=OAE.project__sea_names, domain=None, range=Optional[Union[Union[str, "SeaNames"], List[Union[str, "SeaNames"]]]])
 
@@ -4768,8 +4778,8 @@ slots.permit__approval_document = Slot(uri=OAE.approval_document, name="permit__
 slots.experiment__experiment_type = Slot(uri=OAE.experiment_type, name="experiment__experiment_type", curie=OAE.curie('experiment_type'),
                    model_uri=OAE.experiment__experiment_type, domain=None, range=Union[str, "ExperimentType"])
 
-slots.experiment__principal_investigators = Slot(uri=OAE.principal_investigators, name="experiment__principal_investigators", curie=OAE.curie('principal_investigators'),
-                   model_uri=OAE.experiment__principal_investigators, domain=None, range=Union[Union[dict, Person], List[Union[dict, Person]]])
+slots.experiment__experiment_leads = Slot(uri=OAE.experiment_leads, name="experiment__experiment_leads", curie=OAE.curie('experiment_leads'),
+                   model_uri=OAE.experiment__experiment_leads, domain=None, range=Union[Union[dict, Person], List[Union[dict, Person]]])
 
 slots.experiment__start_datetime = Slot(uri=OAE.start_datetime, name="experiment__start_datetime", curie=OAE.curie('start_datetime'),
                    model_uri=OAE.experiment__start_datetime, domain=None, range=Union[str, XSDDateTime])
