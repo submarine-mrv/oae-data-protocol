@@ -3974,7 +3974,7 @@
             "title": "ModelInputDetails",
             "type": "object"
         },
-        "ModelSimulationDataset": {
+        "ModelOutputDataset": {
             "additionalProperties": false,
             "description": "A model simulation output dataset. Contains fields specific to computational model output including simulation configuration, output variables, and hardware information.",
             "if": {
@@ -4038,7 +4038,7 @@
                         "type": "string"
                     },
                     "minItems": 1,
-                    "title": "Filenames",
+                    "title": "Model Output Filenames",
                     "type": "array"
                 },
                 "hardware_configuration": {
@@ -4054,9 +4054,9 @@
                 "model_output_variables": {
                     "description": "Checklist of variables included in the model simulation output.",
                     "items": {
-                        "$ref": "#/$defs/ModelSimulationVariable"
+                        "$ref": "#/$defs/ModelOutputVariable"
                     },
-                    "title": "Model Output Variables",
+                    "title": "Key Model Output Variables",
                     "type": [
                         "array",
                         "null"
@@ -4119,10 +4119,10 @@
                     "alkalinity_perturbation_description"
                 ]
             },
-            "title": "ModelSimulationDataset",
+            "title": "ModelOutputDataset",
             "type": "object"
         },
-        "ModelSimulationVariable": {
+        "ModelOutputVariable": {
             "description": "Variables commonly included in model simulation output datasets",
             "enum": [
                 "air_sea_co2_flux",
@@ -4133,10 +4133,9 @@
                 "ph",
                 "phytoplankton",
                 "horizontal_velocity",
-                "vertical_velocity",
-                "other"
+                "vertical_velocity"
             ],
-            "title": "ModelSimulationVariable",
+            "title": "ModelOutputVariable",
             "type": "string"
         },
         "MonetaryGrant": {

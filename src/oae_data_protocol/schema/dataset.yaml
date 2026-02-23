@@ -148,11 +148,14 @@ classes:
         range: Variable
         multivalued: true
 
-  ModelSimulationDataset:
+  ModelOutputDataset:
     is_a: Dataset
     description: >-
       A model simulation output dataset. Contains fields specific to computational model output including
       simulation configuration, output variables, and hardware information.
+    slot_usage:
+      filenames:
+        title: Model Output Filenames
     attributes:
       simulation_type:
         title: Simulation Type
@@ -193,9 +196,9 @@ classes:
         range: HardwareConfiguration
         inlined: true
       model_output_variables:
-        title: Model Output Variables
+        title: Key Model Output Variables
         description: "Checklist of variables included in the model simulation output."
-        range: ModelSimulationVariable
+        range: ModelOutputVariable
         multivalued: true
     rules:
       - preconditions:

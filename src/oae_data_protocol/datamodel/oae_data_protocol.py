@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-02-22T19:47:55
+# Generation date: 2026-02-22T20:18:23
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -2419,17 +2419,17 @@ class FieldDataset(Dataset):
 
 
 @dataclass(repr=False)
-class ModelSimulationDataset(Dataset):
+class ModelOutputDataset(Dataset):
     """
     A model simulation output dataset. Contains fields specific to computational model output including simulation
     configuration, output variables, and hardware information.
     """
     _inherited_slots: ClassVar[List[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = OAE["ModelSimulationDataset"]
-    class_class_curie: ClassVar[str] = "oae:ModelSimulationDataset"
-    class_name: ClassVar[str] = "ModelSimulationDataset"
-    class_model_uri: ClassVar[URIRef] = OAE.ModelSimulationDataset
+    class_class_uri: ClassVar[URIRef] = OAE["ModelOutputDataset"]
+    class_class_curie: ClassVar[str] = "oae:ModelOutputDataset"
+    class_name: ClassVar[str] = "ModelOutputDataset"
+    class_model_uri: ClassVar[URIRef] = OAE.ModelOutputDataset
 
     name: str = None
     description: str = None
@@ -2437,16 +2437,16 @@ class ModelSimulationDataset(Dataset):
     experiment_id: str = None
     dataset_type: Union[str, "DatasetType"] = None
     data_submitter: Union[dict, Person] = None
-    filenames: Union[str, List[str]] = None
     simulation_type: Union[str, "SimulationType"] = None
     start_datetime: Union[str, XSDDateTime] = None
     end_datetime: Union[str, XSDDateTime] = None
+    filenames: Union[str, List[str]] = None
     spin_up_protocol: Optional[str] = None
     output_frequency: Optional[str] = None
     time_stepping_scheme: Optional[str] = None
     alkalinity_perturbation_description: Optional[str] = None
     hardware_configuration: Optional[Union[dict, "HardwareConfiguration"]] = None
-    model_output_variables: Optional[Union[Union[str, "ModelSimulationVariable"], List[Union[str, "ModelSimulationVariable"]]]] = empty_list()
+    model_output_variables: Optional[Union[Union[str, "ModelOutputVariable"], List[Union[str, "ModelOutputVariable"]]]] = empty_list()
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.simulation_type):
@@ -2463,6 +2463,12 @@ class ModelSimulationDataset(Dataset):
             self.MissingRequiredField("end_datetime")
         if not isinstance(self.end_datetime, XSDDateTime):
             self.end_datetime = XSDDateTime(self.end_datetime)
+
+        if self._is_empty(self.filenames):
+            self.MissingRequiredField("filenames")
+        if not isinstance(self.filenames, list):
+            self.filenames = [self.filenames] if self.filenames is not None else []
+        self.filenames = [v if isinstance(v, str) else str(v) for v in self.filenames]
 
         if self.spin_up_protocol is not None and not isinstance(self.spin_up_protocol, str):
             self.spin_up_protocol = str(self.spin_up_protocol)
@@ -2481,7 +2487,7 @@ class ModelSimulationDataset(Dataset):
 
         if not isinstance(self.model_output_variables, list):
             self.model_output_variables = [self.model_output_variables] if self.model_output_variables is not None else []
-        self.model_output_variables = [v if isinstance(v, ModelSimulationVariable) else ModelSimulationVariable(v) for v in self.model_output_variables]
+        self.model_output_variables = [v if isinstance(v, ModelOutputVariable) else ModelOutputVariable(v) for v in self.model_output_variables]
 
         super().__post_init__(**kwargs)
 
@@ -3508,7 +3514,7 @@ class SimulationType(EnumDefinitionImpl):
         description="Type of model simulation dataset",
     )
 
-class ModelSimulationVariable(EnumDefinitionImpl):
+class ModelOutputVariable(EnumDefinitionImpl):
     """
     Variables commonly included in model simulation output datasets
     """
@@ -3539,12 +3545,9 @@ class ModelSimulationVariable(EnumDefinitionImpl):
     vertical_velocity = PermissibleValue(
         text="vertical_velocity",
         description="Vertical velocity component (w)")
-    other = PermissibleValue(
-        text="other",
-        description="Other model output variable not listed above")
 
     _defn = EnumDefinition(
-        name="ModelSimulationVariable",
+        name="ModelOutputVariable",
         description="Variables commonly included in model simulation output datasets",
     )
 
@@ -5040,32 +5043,32 @@ slots.fieldDataset__calibration_files = Slot(uri=OAE.calibration_files, name="fi
 slots.fieldDataset__variables = Slot(uri=SCHEMA.variableMeasured, name="fieldDataset__variables", curie=SCHEMA.curie('variableMeasured'),
                    model_uri=OAE.fieldDataset__variables, domain=None, range=Optional[Union[Union[dict, Variable], List[Union[dict, Variable]]]])
 
-slots.modelSimulationDataset__simulation_type = Slot(uri=OAE.simulation_type, name="modelSimulationDataset__simulation_type", curie=OAE.curie('simulation_type'),
-                   model_uri=OAE.modelSimulationDataset__simulation_type, domain=None, range=Union[str, "SimulationType"])
+slots.modelOutputDataset__simulation_type = Slot(uri=OAE.simulation_type, name="modelOutputDataset__simulation_type", curie=OAE.curie('simulation_type'),
+                   model_uri=OAE.modelOutputDataset__simulation_type, domain=None, range=Union[str, "SimulationType"])
 
-slots.modelSimulationDataset__spin_up_protocol = Slot(uri=OAE.spin_up_protocol, name="modelSimulationDataset__spin_up_protocol", curie=OAE.curie('spin_up_protocol'),
-                   model_uri=OAE.modelSimulationDataset__spin_up_protocol, domain=None, range=Optional[str])
+slots.modelOutputDataset__spin_up_protocol = Slot(uri=OAE.spin_up_protocol, name="modelOutputDataset__spin_up_protocol", curie=OAE.curie('spin_up_protocol'),
+                   model_uri=OAE.modelOutputDataset__spin_up_protocol, domain=None, range=Optional[str])
 
-slots.modelSimulationDataset__start_datetime = Slot(uri=OAE.start_datetime, name="modelSimulationDataset__start_datetime", curie=OAE.curie('start_datetime'),
-                   model_uri=OAE.modelSimulationDataset__start_datetime, domain=None, range=Union[str, XSDDateTime])
+slots.modelOutputDataset__start_datetime = Slot(uri=OAE.start_datetime, name="modelOutputDataset__start_datetime", curie=OAE.curie('start_datetime'),
+                   model_uri=OAE.modelOutputDataset__start_datetime, domain=None, range=Union[str, XSDDateTime])
 
-slots.modelSimulationDataset__end_datetime = Slot(uri=OAE.end_datetime, name="modelSimulationDataset__end_datetime", curie=OAE.curie('end_datetime'),
-                   model_uri=OAE.modelSimulationDataset__end_datetime, domain=None, range=Union[str, XSDDateTime])
+slots.modelOutputDataset__end_datetime = Slot(uri=OAE.end_datetime, name="modelOutputDataset__end_datetime", curie=OAE.curie('end_datetime'),
+                   model_uri=OAE.modelOutputDataset__end_datetime, domain=None, range=Union[str, XSDDateTime])
 
-slots.modelSimulationDataset__output_frequency = Slot(uri=OAE.output_frequency, name="modelSimulationDataset__output_frequency", curie=OAE.curie('output_frequency'),
-                   model_uri=OAE.modelSimulationDataset__output_frequency, domain=None, range=Optional[str])
+slots.modelOutputDataset__output_frequency = Slot(uri=OAE.output_frequency, name="modelOutputDataset__output_frequency", curie=OAE.curie('output_frequency'),
+                   model_uri=OAE.modelOutputDataset__output_frequency, domain=None, range=Optional[str])
 
-slots.modelSimulationDataset__time_stepping_scheme = Slot(uri=OAE.time_stepping_scheme, name="modelSimulationDataset__time_stepping_scheme", curie=OAE.curie('time_stepping_scheme'),
-                   model_uri=OAE.modelSimulationDataset__time_stepping_scheme, domain=None, range=Optional[str])
+slots.modelOutputDataset__time_stepping_scheme = Slot(uri=OAE.time_stepping_scheme, name="modelOutputDataset__time_stepping_scheme", curie=OAE.curie('time_stepping_scheme'),
+                   model_uri=OAE.modelOutputDataset__time_stepping_scheme, domain=None, range=Optional[str])
 
-slots.modelSimulationDataset__alkalinity_perturbation_description = Slot(uri=OAE.alkalinity_perturbation_description, name="modelSimulationDataset__alkalinity_perturbation_description", curie=OAE.curie('alkalinity_perturbation_description'),
-                   model_uri=OAE.modelSimulationDataset__alkalinity_perturbation_description, domain=None, range=Optional[str])
+slots.modelOutputDataset__alkalinity_perturbation_description = Slot(uri=OAE.alkalinity_perturbation_description, name="modelOutputDataset__alkalinity_perturbation_description", curie=OAE.curie('alkalinity_perturbation_description'),
+                   model_uri=OAE.modelOutputDataset__alkalinity_perturbation_description, domain=None, range=Optional[str])
 
-slots.modelSimulationDataset__hardware_configuration = Slot(uri=OAE.hardware_configuration, name="modelSimulationDataset__hardware_configuration", curie=OAE.curie('hardware_configuration'),
-                   model_uri=OAE.modelSimulationDataset__hardware_configuration, domain=None, range=Optional[Union[dict, HardwareConfiguration]])
+slots.modelOutputDataset__hardware_configuration = Slot(uri=OAE.hardware_configuration, name="modelOutputDataset__hardware_configuration", curie=OAE.curie('hardware_configuration'),
+                   model_uri=OAE.modelOutputDataset__hardware_configuration, domain=None, range=Optional[Union[dict, HardwareConfiguration]])
 
-slots.modelSimulationDataset__model_output_variables = Slot(uri=OAE.model_output_variables, name="modelSimulationDataset__model_output_variables", curie=OAE.curie('model_output_variables'),
-                   model_uri=OAE.modelSimulationDataset__model_output_variables, domain=None, range=Optional[Union[Union[str, "ModelSimulationVariable"], List[Union[str, "ModelSimulationVariable"]]]])
+slots.modelOutputDataset__model_output_variables = Slot(uri=OAE.model_output_variables, name="modelOutputDataset__model_output_variables", curie=OAE.curie('model_output_variables'),
+                   model_uri=OAE.modelOutputDataset__model_output_variables, domain=None, range=Optional[Union[Union[str, "ModelOutputVariable"], List[Union[str, "ModelOutputVariable"]]]])
 
 slots.hardwareConfiguration__machine = Slot(uri=OAE.machine, name="hardwareConfiguration__machine", curie=OAE.curie('machine'),
                    model_uri=OAE.hardwareConfiguration__machine, domain=None, range=Optional[str])
@@ -5364,6 +5367,9 @@ slots.Dataset_project_id = Slot(uri=OAE.project_id, name="Dataset_project_id", c
 
 slots.Dataset_experiment_id = Slot(uri=OAE.experiment_id, name="Dataset_experiment_id", curie=OAE.curie('experiment_id'),
                    model_uri=OAE.Dataset_experiment_id, domain=Dataset, range=str)
+
+slots.ModelOutputDataset_filenames = Slot(uri=OAE.filenames, name="ModelOutputDataset_filenames", curie=OAE.curie('filenames'),
+                   model_uri=OAE.ModelOutputDataset_filenames, domain=ModelOutputDataset, range=Union[str, List[str]])
 
 slots.Platform_name = Slot(uri=SCHEMA.name, name="Platform_name", curie=SCHEMA.curie('name'),
                    model_uri=OAE.Platform_name, domain=Platform, range=Optional[str])

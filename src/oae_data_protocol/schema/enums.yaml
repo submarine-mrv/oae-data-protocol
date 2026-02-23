@@ -269,7 +269,7 @@ enums:
       perturbation:
         description: "Simulation with alkalinity perturbation applied"
 
-  ModelSimulationVariable:
+  ModelOutputVariable:
     description: "Variables commonly included in model simulation output datasets"
     permissible_values:
       air_sea_co2_flux:
@@ -296,5 +296,3 @@ enums:
       vertical_velocity:
         title: "Vertical velocity"
         description: "Vertical velocity component (w)"
-      other:
-        description: "Other model output variable not listed above"
