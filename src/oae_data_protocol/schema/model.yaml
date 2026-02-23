@@ -126,7 +126,7 @@ classes:
         description: "The grid arrangement of orthogonal physical quantities (e.g., Arakawa A, Arakawa B, Arakawa C)."
         range: string
       vertical_coordinate_type:
-        title: Veritical coordinate type
+        title: Vertical coordinate type
         description: >-
           The vertical grid coordinate type (e.g. z-coordinate, z*-coordinate, terrain-following coordinate,
           isopycnal coordinate)

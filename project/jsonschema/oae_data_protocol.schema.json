@@ -3869,7 +3869,7 @@
                 },
                 "vertical_coordinate_type": {
                     "description": "The vertical grid coordinate type (e.g. z-coordinate, z*-coordinate, terrain-following coordinate, isopycnal coordinate)",
-                    "title": "Veritical coordinate type",
+                    "title": "Vertical coordinate type",
                     "type": "string"
                 },
                 "vertical_resolution_range": {
