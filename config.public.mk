@@ -30,4 +30,5 @@ LINKML_GENERATORS_OWL_ARGS=
 
 ## pass args to trigger experimental java/typescript generation
 LINKML_GENERATORS_JAVA_ARGS=
-LINKML_GENERATORS_TYPESCRIPT_ARGS=
+LINKML_GENERATORS_TYPESCRIPT_ARGS=--output $(DEST)/typescript/oae_data_protocol.ts
+

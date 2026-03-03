@@ -194,6 +194,34 @@ export enum FeedstockType {
     /** Enter a custom value in the field provided */
     other = "other",
 };
+/**
+* Type of grid in a multi-grid or nested model configuration
+*/
+export enum GridType {
+    
+    /** Inner (nested, higher-resolution) grid */
+    inner_grid = "inner_grid",
+    /** Outer (coarser-resolution) grid */
+    outer_grid = "outer_grid",
+    /** Single grid (no nesting) */
+    single_grid = "single_grid",
+};
+/**
+* Type of model component
+*/
+export enum ModelComponentType {
+    
+    /** Physical model component (e.g., ocean circulation) */
+    Physics = "physics",
+    /** Biogeochemical or ecosystem model component */
+    BGC_SOLIDUS_Ecosystem = "bgc_ecosystem",
+    /** Sea Ice model component */
+    Sea_Ice = "sea_ice",
+    /** Atmosphere model component */
+    Atmosphere = "atmosphere",
+    /** Other model component (e.g., sea ice, sediment, atmosphere) */
+    other = "other",
+};
 
 export enum DataProductType {
     
@@ -203,6 +231,40 @@ export enum DataProductType {
     data_compilation_product = "data_compilation_product",
     /** (e.g. gridded products, or model output). */
     derived_product = "derived_product",
+};
+/**
+* Type of model simulation dataset
+*/
+export enum SimulationType {
+    
+    /** Control/baseline simulation without alkalinity perturbation */
+    counterfactual = "counterfactual",
+    /** Simulation with alkalinity perturbation applied */
+    perturbation = "perturbation",
+};
+/**
+* Variables commonly included in model simulation output datasets
+*/
+export enum ModelOutputVariable {
+    
+    /** Air-sea exchange of carbon dioxide */
+    Air_sea_CO2_flux = "air_sea_co2_flux",
+    /** Dissolved inorganic carbon (DIC) */
+    Dissolved_Inorganic_Carbon = "dissolved_inorganic_carbon",
+    /** Total alkalinity (TA) */
+    Total_Alkalinity = "total_alkalinity",
+    /** Temperature */
+    temperature = "temperature",
+    /** Salinity */
+    salinity = "salinity",
+    /** pH of seawater */
+    pH = "ph",
+    /** Phytoplankton biomass or concentration */
+    phytoplankton = "phytoplankton",
+    /** Horizontal velocity components (u, v) */
+    Horizontal_velocity = "horizontal_velocity",
+    /** Vertical velocity component (w) */
+    Vertical_velocity = "vertical_velocity",
 };
 
 export enum SeaNames {
@@ -501,6 +563,8 @@ export enum AnalyzingInstrumentType {
     flow_cytometers = "flow_cytometers",
     /** Environmental DNA (eDNA) samplers: used to collect and analyze genetic material shed by marine organisms, which can provide information about their distribution, abundance, and diversity. */
     edna_sampler = "edna_sampler",
+    /** TBD */
+    gas_analyzer = "gas_analyzer",
     other = "other",
 };
 
@@ -613,10 +677,14 @@ export interface GeoCoordinates {
  * The vertical extent of a place or structure in meters.
  */
 export interface VerticalExtent {
-    /** Minimum depth of observation in meters. Use negative numbers for depths below sea level, and positive numbers for above sea level. */
+    /** Minimum depth of observation in meters. Use negative numbers for depths below sea level. */
     min_depth_in_m?: number,
-    /** Maximum depth of observation in meters. Use negative numbers for depths below sea level, and positive numbers for above sea level. */
+    /** Maximum depth of observation in meters. Use negative numbers for depths below sea level. */
     max_depth_in_m?: number,
+    /** Minimum height of observation (in meters) for above ground aerial coverage. */
+    min_height_in_m?: number,
+    /** Maximum height of observation (in meters) for above ground aerial coverage. */
+    max_height_in_m?: number,
 }
 
 
@@ -647,6 +715,8 @@ If there are relevant regulatory parameters and/or limits to dosing trials at th
     /** Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities) provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E] */
     spatial_coverage: SpatialCoverage,
     experiments?: Experiment[],
+    /** Provide details for each project lead / principal investigator (PI) including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role. */
+    project_leads: Person[],
     /** Names of the seas where the data collection takes place, See Controlled Vocabularies section for definitions. */
     sea_names?: string,
     /** Provide information to help characterize the field site and provide context when interpreting the data. For example, descriptions of tidal patterns, climatological conditions, notable geological characteristics, the geographical and marine setting (coastal, intertidal, island region, sheltered environment), and characteristic meteorological events. If possible based on the file type of this submission, please include useful maps or figures here.
@@ -744,7 +814,7 @@ export interface Permit {
 
 
 /**
- * Experiment metadata applies to a specific study but remains consistent across datasets.
+ * Abstract base class for all experiment types. Contains fields common to both in-situ and model experiments.
  */
 export interface Experiment {
     /** Optional common name for experiment. */
@@ -753,10 +823,6 @@ export interface Experiment {
     description: string,
     /** Latitude/longitude bounds of observed data in experiment, provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E] */
     spatial_coverage: SpatialCoverage,
-    /** Minimum and maximum depths of observations in meters. */
-    vertical_coverage?: VerticalExtent,
-    /** Associated permit number(s). */
-    permits?: Permit[],
     /** The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.
 If no Project ID has been assigned, one may be generated by combining: lead organizer surname and first initial or company, a unique date, and location.
 Any method that creates a unique ID that will link all project data is acceptable. */
@@ -766,12 +832,23 @@ Project ID + Experiment type + Optional numerical indicator to differentiate bet
     experiment_id: string,
     /** The type of mCDR experiment conducted. See Controlled Vocabularies section for definitions. */
     experiment_type: string,
-    /** Provide details for each investigator including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role. */
-    investigators: Person[],
+    /** Provide details for each experiment lead / principal investigator (PI) including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role. */
+    experiment_leads: Person[],
     /** Start date and time of experiment in UTC ISO-8601 */
     start_datetime: string,
     /** End date and time of experiment in UTC ISO-8601 */
-    end_datetime: string,
+    end_datetime?: string,
+}
+
+
+/**
+ * Experiment metadata for in-situ studies (interventions, tracer studies, etc.). Contains fields specific to field-based experiments that don't apply to model experiments.
+ */
+export interface InSituExperiment extends Experiment {
+    /** Minimum and maximum depths of observations in meters. */
+    vertical_coverage?: VerticalExtent,
+    /** Associated permit number(s). */
+    permits?: Permit[],
     /** If data exist that are or have been used by the project but are not provided due to conflicts (e.g., geopolitical or other), data availability (e.g., a dataset is no longer available), it may be noted here. */
     data_conflicts_and_unreported_data?: string,
     /** Include links to relevant open datasets if referenced in the experiment but not provided in the submission. */
@@ -784,14 +861,14 @@ Project ID + Experiment type + Optional numerical indicator to differentiate bet
 /**
  * Additional metadata that applies to experiments where an intervention, such as an alkalinity addition, was conducted.
  */
-export interface Intervention extends Experiment, InterventionDetails, DosingDetails {
+export interface Intervention extends InSituExperiment, InterventionDetails, DosingDetails {
 }
 
 
 /**
  * Additional metadata that applies to experiments where a tracer study was conducted
  */
-export interface Tracer extends Experiment, TracerDetails, DosingDetails {
+export interface Tracer extends InSituExperiment, TracerDetails, DosingDetails {
 }
 
 
@@ -847,7 +924,7 @@ export interface TracerDetails {
 export interface DosingConcentration {
     /** Indicates that the field in question is a derived value as opposed to one measured directly. */
     is_derived_value: boolean,
-    /** Indicates that the field in question is provided as a file. The value used here is intended to be a summary range or general area of coverage. */
+    /** Select ‘Variable’ if the concentration varies over time, or ‘Fixed Value’ if it is constant. Note: Variable concentrations must be provided in a data file. */
     is_provided_as_a_file: boolean,
     amount?: number,
     unit?: string,
@@ -929,6 +1006,8 @@ export interface CRMCalibration extends Calibration {
  * pH instrument calibration with dye information.
  */
 export interface PHCalibration extends Calibration {
+    /** Temperature at which calibration was performed. */
+    calibration_temperature?: string,
     /** Type of indicator dye and any detailed information about it, e.g., its manufacturer. */
     dye_type_and_manufacturer?: string,
     /** Whether the dye has been purified. */
@@ -939,8 +1018,6 @@ export interface PHCalibration extends Calibration {
     dye_correction_method?: string,
     /** pH values of the calibration standards used. */
     ph_of_standards?: string,
-    /** Temperature at which calibration was performed. */
-    calibration_temperature?: string,
 }
 
 
@@ -951,9 +1028,7 @@ export interface CO2Calibration extends Calibration {
     /** Temperature at which calibration was performed. */
     calibration_temperature?: string,
     /** Standard gases used for calibration. */
-    standard_gases?: StandardGas[],
-    /** Whether standard gases are traceable to WMO standards. */
-    wmo_traceable: boolean,
+    standard_gas_info?: StandardGas,
 }
 
 
@@ -963,10 +1038,10 @@ export interface CO2Calibration extends Calibration {
 export interface StandardGas {
     /** Manufacturer of the standard gas. */
     manufacturer: string,
-    /** CO2 concentration of the standard gas. */
+    /** Concentrations of the CO2 standard gases that are used to calibrate the CO2 sensor, e.g., 260, 350, 510ppm. */
     concentration: string,
-    /** Uncertainty of the standard gas concentration. */
-    uncertainty: string,
+    /** Uncertainties of the CO2 standard gas, e.g., 0.5%. */
+    uncertainty?: string,
 }
 
 
@@ -974,17 +1049,17 @@ export interface StandardGas {
  * Base class for scientific instruments used in analyzing samples for measurement.
  */
 export interface AnalyzingInstrument {
-    /** Type of instrument used to analyze samples or measure continuously. */
-    instrument_type: string,
-    instrument_type_custom?: string,
     /** Manufacturer name of the instrument. */
     manufacturer?: string,
     /** Model number or name of the instrument. */
     model?: string,
+    /** Type of instrument used to analyze samples or measure continuously. */
+    instrument_type: string,
+    instrument_type_custom?: string,
     /** Serial number of the instrument. */
     serial_number?: string,
     /** Precision of the instrument measurements. */
-    precision: string,
+    precision?: string,
     /** Accuracy of the instrument measurements. */
     accuracy: string,
     /** Calibration information for this instrument. */
@@ -1014,6 +1089,8 @@ export interface CRMInstrument extends AnalyzingInstrument {
  * CO2 gas detector with standard gas calibration.
  */
 export interface CO2GasDetector extends AnalyzingInstrument {
+    /** Type of the CO2 gas detector (E.g., Infrared) */
+    detector_type: string,
     /** CO2 calibration information for this instrument. */
     calibration: CO2Calibration,
     /** Resolution of the CO2 sensor. */
@@ -1103,6 +1180,7 @@ export interface ContinuousMeasuredVariable extends ObservedPropertyVariable {
  * Variable that is calculated or derived from other variables.
  */
 export interface CalculatedVariable extends Variable, QCFields {
+    genesis: string,
     /** Information about how the variable was calculated and the parameters used in calculation, e.g.: Calculation software = CO2SYSv1 (MATLAB)  Input variables =  pH and DIC (column header names 'ph_t_insitu' and 'dic' in associated dataset file) Additional information = the dissociation constants of Lueker et al., 2000 for carbonic acid, etc. */
     calculation_method_and_parameters: string,
 }
@@ -1138,7 +1216,7 @@ export interface ContinuousTAVariable extends ContinuousMeasuredVariable, Measur
 /**
  * Total Alkalinity (TA) measured variable from discrete bottle samples
  */
-export interface DiscreteTAVariable extends ObservedPropertyVariable, MeasuredTAFields {
+export interface DiscreteTAVariable extends DiscreteMeasuredVariable, MeasuredTAFields {
     /** How the samples were preserved for analysis. */
     sample_preservation: SamplePreservation,
     /** Whether the reported variables were corrected for blank, and if so, how they were corrected. */
@@ -1162,7 +1240,7 @@ export interface ContinuousDICVariable extends ContinuousMeasuredVariable, Measu
 /**
  * Dissolved Inorganic Carbon (DIC) measured variable from discrete bottle samples. Uses CRM-calibrated instrument and includes sample preservation information. Reference: OAPMetadata XSD variables.xsd - DIC_measured
  */
-export interface DiscreteDICVariable extends ObservedPropertyVariable, MeasuredDICFields {
+export interface DiscreteDICVariable extends DiscreteMeasuredVariable, MeasuredDICFields {
     /** How the samples were preserved for analysis. */
     sample_preservation: SamplePreservation,
     /** Whether the reported variables were corrected for blank, and if so, how they were corrected. */
@@ -1185,23 +1263,28 @@ export interface DiscreteSedimentVariable extends DiscreteMeasuredVariable, Meas
 
 
 /**
+ * CO2 discrete (bottle) measured variable (pCO2/fCO2). Reference: OAPMetadata XSD variables.xsd - co2_discrete
+ */
+export interface DiscreteCO2Variable extends DiscreteMeasuredVariable, MeasuredCO2Fields {
+    /** How the samples were stored before the measurement. */
+    storage_method: string,
+    /** Volume (in mL) of seawater in the flask. */
+    seawater_volume?: number,
+    /** Volume (in mL) of headspace (water displaced in the flask plus volume of the tubing). */
+    headspace_volume?: number,
+    /** Temperature at which the samples were analyzed in Celsius. */
+    measurement_temperature: number,
+}
+
+
+/**
  * HPLC (High-Performance Liquid Chromatography) measured variable for pigment analysis. Always measured, not calculated.
  */
-export interface HPLCVariable {
-}
-
-
-/**
- * Physiological response measured variable for organism response data.
- */
-export interface PhysiologicalVariable extends ObservedPropertyVariable {
-}
-
-
-/**
- * Socioeconomic variable for social and economic data. Note: Does NOT include QCFields mixin as QC is not applicable.
- */
-export interface SocioeconomicVariable extends Variable {
+export interface HPLCVariable extends DiscreteMeasuredVariable {
+    /** The name of the lab where the HPLC analysis was run (e.g., 'NASA_GSFC' */
+    hplc_lab: string,
+    /** Name and contact information for HPLC technician. */
+    hplc_lab_technician?: string,
 }
 
 
@@ -1269,10 +1352,26 @@ export interface MeasuredSedimentFields {
     sediment_type: string,
     /** e.g., sediment core, grab sampling, dredging, etc. */
     sediment_sampling_method: string,
-    /** Depth that sediment was collected below sediment surface. It is recommended to include as a variable with data rather than here. */
+    /** Depth that sediment was collected below sediment surface. If provided as a variable (recommended), please list the column header name here. */
     sediment_sampling_depth: string,
-    /** Water depth where sediment was collected.  It is recommended to include as a variable with data rather than here. */
+    /** Water depth where sediment was collected. If provided as a variable (recommended), please list the column header name here. */
     sediment_sampling_water_depth: string,
+}
+
+
+/**
+ * Fields applied to all measured CO2 variable types (discrete and continuous)
+ */
+export interface MeasuredCO2Fields {
+    /** Climate quality is defined as measurements of quality sufficient to assess long term trends with a defined level of confidence. Weather quality is defined as measurements of quality sufficient to identify relative spatial patterns and short term variation.
+For more details, refer to Newton J.A., Feely R. A., Jewett E. B., Williamson P. & Mathis J., 2015. Global Ocean Acidification Observing Network: Requirements and Governance Plan. Second Edition, GOA-ON, http://www.goa-on.org/docs/GOA-ON_plan_print.pdf. */
+    appropriate_use_quality?: string,
+    /** In Celsius. The input could be a constant temperature value, or something like, in-situ temperature, temperature of analysis, etc. */
+    co2_reported_temperature: string,
+    /** How the water vapor pressure inside the equilibrator was determined. */
+    water_vapor_correction_method?: string,
+    /** How the temperature effect was corrected. */
+    temperature_correction_method?: string,
 }
 
 
@@ -1298,7 +1397,7 @@ If uncertainty is provided as a variable, please list the column header name her
 
 
 /**
- * A dataset related to an OAE experiment. Generally following guidelines & best practices as outlined in [science-on-schema.org](https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md)
+ * Abstract base class for all dataset types. Contains fields common to both field/observational and model simulation datasets. Generally following guidelines & best practices as outlined in [science-on-schema.org](https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md)
  */
 export interface Dataset {
     /** A brief descriptive sentence that summarizes the content of a dataset. Here is one example:
@@ -1313,9 +1412,7 @@ Any method that creates a unique ID that will link all project data is acceptabl
     /** The experiment to which the data belong. Any naming convention that produces a unique ID is usable. The recommended naming convention is:
 Project ID + Experiment type + Optional numerical indicator to differentiate between various experiments of the same type for a project. A two digit consecutive number beginning with 01 */
     experiment_id: string,
-    /** Start date and end date (if known) of the project in ISO-8601 interval format (YYYY-MM-DD/YYY-MM-DD). If the end date is not known, use open-ended format YYYY-MM-DD/.. */
-    temporal_coverage: string,
-    /** Selected controlled vocabularies for data types relevant to mCDR have been referenced from NASA’s SeaBASS metadata system and are provided below, for additional data types of optical characteristics see the [SeaBASS controlled definitions list](https://seabass.gsfc.nasa.gov/wiki/metadataheaders#data_type). Additional data types have been included to meet the needs of mCDR field projects. */
+    /** Selected controlled vocabularies for data types relevant to mCDR have been referenced from NASA's SeaBASS metadata system and are provided below, for additional data types of optical characteristics see the [SeaBASS controlled definitions list](https://seabass.gsfc.nasa.gov/wiki/metadataheaders#data_type). Additional data types have been included to meet the needs of mCDR field projects. */
     dataset_type: string,
     /** Custom "data type" when an appropriate value is not found in the controlled vocabulary list for mCDR Data Type and the corresponding `data_type` field is set to "other". */
     dataset_type_custom?: string,
@@ -1326,6 +1423,16 @@ Project ID + Experiment type + Optional numerical indicator to differentiate bet
     license?: string,
     /** A statement from the data producer regarding how this dataset should be used. */
     fair_use_data_request?: string,
+    filenames: string[],
+}
+
+
+/**
+ * A field or observational dataset related to an OAE experiment. Contains fields specific to in-situ data collection such as platform information, calibration files, QC flags, and measured variables.
+ */
+export interface FieldDataset extends Dataset {
+    /** Start date and end date (if known) of the project in ISO-8601 interval format (YYYY-MM-DD/YYY-MM-DD). If the end date is not known, use open-ended format YYYY-MM-DD/.. */
+    temporal_coverage: string,
     /** "Controlled vocabulary" One of the three choices: (a) Originally collected dataset (e.g., a dataset collected from a research cruise or laboratory experiment), (b) Data compilation product (e.g., SOCAT, GLODAP), or (c) Derived product (e.g., gridded products, or model output). */
     data_product_type: string,
     /** Describe what the quality control flags stand for, e.g.,
@@ -1341,7 +1448,50 @@ Project ID + Experiment type + Optional numerical indicator to differentiate bet
     /** A list of supplementary file names containing coefficients and techniques used to calibrate the instruments used in data collection. The named files can be found within the relevant documents folder accompanying the submitted data files. */
     calibration_files?: string[],
     variables?: Variable[],
-    filenames: string[],
+}
+
+
+/**
+ * A model simulation output dataset. Contains fields specific to computational model output including simulation configuration, output variables, and hardware information.
+ */
+export interface ModelOutputDataset extends Dataset {
+    /** Whether this is a counterfactual (control/baseline) or perturbation simulation. */
+    simulation_type: string,
+    /** Description of the model spin-up process. */
+    spin_up_protocol?: string,
+    /** Start date and time of the simulation in UTC ISO-8601. */
+    start_datetime: string,
+    /** End date and time of the simulation in UTC ISO-8601. */
+    end_datetime: string,
+    /** Frequency of model output (e.g., 'hourly mean', 'daily mean'). */
+    output_frequency?: string,
+    /** Time-stepping method and time step used in the simulation. */
+    time_stepping_scheme?: string,
+    /** Description of the alkalinity perturbation applied in the simulation. Required when simulation_type is "perturbation". */
+    alkalinity_perturbation_description?: string,
+    /** Details about the computational hardware used for the simulation. */
+    hardware_configuration?: HardwareConfiguration,
+    /** Checklist of variables included in the model simulation output. */
+    model_output_variables?: string,
+}
+
+
+/**
+ * Details about the computational hardware used to run a model simulation.
+ */
+export interface HardwareConfiguration {
+    /** Name of the machine or cluster (e.g., 'Perlmutter'). */
+    machine?: string,
+    /** Operating system used (e.g., 'Linux'). */
+    operating_system?: string,
+    /** Details about CPU/GPU hardware or link to specifications. */
+    cpu_gpu_details?: string,
+    /** Memory available (e.g., '512 GB DDR4'). */
+    memory?: string,
+    /** Storage available (e.g., '44 PB'). */
+    storage?: string,
+    /** Parallelization details (e.g., '3 nodes, 108 ntasks per node'). */
+    parallelization?: string,
 }
 
 
@@ -1357,6 +1507,100 @@ export interface Platform {
     owner?: string,
     /** Country to which the platform belongs. */
     country?: string,
+}
+
+
+/**
+ * A computational model experiment related to OAE.
+ */
+export interface Model extends Experiment {
+    /** Links to model configuration files or documentation. */
+    model_configuration?: string[],
+    /** Components of the model (e.g., physics, biogeochemistry). */
+    model_components?: ModelComponent[],
+    /** Details about the model grid(s). Use multiple entries for nested grid configurations. */
+    grid_details?: ModelGrid[],
+    /** Details about input data sources used to drive the model. */
+    input_details?: ModelInputDetails,
+}
+
+
+/**
+ * A component of a model (e.g., physics, biogeochemistry/ecosystem).
+ */
+export interface ModelComponent {
+    /** A description of the model component characteristics.
+For physics components, this should include the version of equations being solved (hydrostatic vs non-hydrostatic), tracer advection scheme, how bottom drag is represented, mixed layer parameterizations, sub-grid mixing parameterizations if applicable, etc.
+For BGC components, this should include details of which parameters are modeled explicitly, derived carbonate system parameters, advection scheme for biological tracers, CO₂ solver protocol (e.g., CO₂SYS), links to data/code with biological model parameters (e.g., growth and mortality rates), etc. Equations for each explicitly modeled parameter should be provided (can be links to publications), and it should be noted if any equations or parameter values (e.g. growth rates) were modified. Description and/or references of air-sea CO₂ flux parameterization used, gas transfer velocity formulation and atmospheric CO₂ details (e.g., fixed or time varying, and if time varying which data were used). Also include details on whether dissolution and precipitation of calcium carbonate are considered, how exchanges between sediment and overlying water are represented (if applicable), and whether active feedbacks between biological processes and the carbonate system are represented.
+Associated links to data, DOIs, or publications can be noted here, but should be supplemental. */
+    description?: string,
+    /** The type of model component (physics, BGC/ecosystem, or other). */
+    model_component_type: string,
+    model_component_type_custom?: string,
+    /** Name of the model component (e.g., ROMS, MARBL, Oceananigans). */
+    name: string,
+    /** Release version of the model component. */
+    version?: string,
+    /** Link to model code repository. */
+    codebase?: string,
+    /** Links or DOIs to any reference(s) relevant to the model components/development, specific model configuration, model validation etc. */
+    references?: string[],
+}
+
+
+/**
+ * Details about a model grid. Use multiple ModelGrid entries to describe nested or multi-grid configurations.
+ */
+export interface ModelGrid {
+    /** Name of the grid (e.g., 'inner grid', 'L1', 'global'). */
+    grid_name?: string,
+    /** Descriptive structure of the grid (e.g., latitude-longitude, unstructured triangular, tripolar). */
+    grid_geometry?: string,
+    /** Role of this grid in a nested or multi-grid configuration. */
+    grid_type: string,
+    /** Region covered by the grid. */
+    region?: string,
+    /** Bounding box for this grid, provided as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. */
+    spatial_coverage?: SpatialCoverage,
+    /** The grid arrangement of orthogonal physical quantities (e.g., Arakawa A, Arakawa B, Arakawa C). */
+    arrangement?: string,
+    /** The vertical grid coordinate type (e.g. z-coordinate, z*-coordinate, terrain-following coordinate, isopycnal coordinate) */
+    vertical_coordinate_type?: string,
+    /** Number of grid points in the x-direction. */
+    n_x?: number,
+    /** Number of grid points in the y-direction. */
+    n_y?: number,
+    /** Number of vertical coordinate levels. */
+    n_z?: number,
+    /** Number of nodes in the grid (for unstructured grids). */
+    n_nodes?: number,
+    /** Description of horizontal resolution (e.g., '3.3 km', '1/12 degree'). */
+    horizontal_resolution_range?: string,
+    /** Description of vertical resolution (e.g., 'Max. 4 m near surface, stretching to 500 m at depth'). */
+    vertical_resolution_range?: string,
+}
+
+
+/**
+ * Details about input data sources used to drive the model.
+ */
+export interface ModelInputDetails {
+    /** Bathymetry data source(s). */
+    bathymetry?: NamedLink[],
+    /** Initial condition data source(s). */
+    initial_conditions?: NamedLink[],
+    /** Boundary condition data source(s). */
+    boundary_conditions?: NamedLink[],
+    /** Atmospheric forcing data source(s). */
+    atmospheric_forcing?: NamedLink[],
+    /** Tidal forcing data source(s). */
+    tidal_forcing?: NamedLink[],
+    /** River and/or sediment flux data source(s). */
+    river_sediment_flux_details?: NamedLink[],
+    /** Narrative description of any processing applied to input data before use in the model. */
+    processing_of_input_data?: string,
+    /** If applicable, link to any code for processing of raw forcing and input data listed in the fields above. */
+    processing_code?: NamedLink[],
 }
 
 

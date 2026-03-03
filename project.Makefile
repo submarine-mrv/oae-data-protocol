@@ -21,6 +21,3 @@ ontologies/unit.ttl:
 
 enums: ontologies/sea_names.ttl ontologies/unit.ttl ontologies/platform_types.ttl
 	$(RUN) vskit expand -s src/oae_data_protocol/schema/dynamic_enums.yaml -o src/oae_data_protocol/schema/dynamic_enums_expanded.yaml --config vskit-config.yaml
-
-gen-all: gen-project
-	$(RUN) gen-typescript --output $(DEST)/typescript/oae_data_protocol.ts $(SOURCE_SCHEMA_PATH)
