@@ -184,11 +184,11 @@ classes:
         title: Time-stepping Scheme
         description: "Time-stepping method and time step used in the simulation."
         range: string
-      alkalinity_perturbation_description:
-        title: Alkalinity Perturbation Description
+      mcdr_forcing_description:
+        title: Description of mCDR Forcing
         description: >-
-          Description of the alkalinity perturbation applied in the simulation. Required when simulation_type
-          is "perturbation".
+          Description of the mCDR forcing applied in the simulation (e.g., the alkalinity perturbation).
+          Required when simulation_type is "perturbation".
         range: string
       hardware_configuration:
         title: Hardware Configuration

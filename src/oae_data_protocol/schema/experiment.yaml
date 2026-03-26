@@ -47,9 +47,13 @@ classes:
         title: mCDR Experiment Type
         description: "The type of mCDR experiment conducted. See Controlled Vocabularies section for definitions."
         range: ExperimentType
-        # TODO: Make sure this gets handled correctly -- we want multiple options
-        # multivalued: true
+        multivalued: true
         required: true
+      public_comments:
+        title: Public Comments
+        description: "If possible, please provide public comments concatenated into a single pdf"
+        range: string
+        recommended: true
       experiment_leads:
         title: Experiment Lead(s)
         description: >-
@@ -134,6 +138,15 @@ classes:
     mixins:
       - TracerDetails
       - DosingDetails
+    rules:
+      - preconditions:
+          slot_conditions:
+            tracer_form:
+              equals_string: "other"
+        postconditions:
+          slot_conditions:
+            tracer_form_custom:
+              required: true
 
   InterventionWithTracer:
     is_a: Intervention
@@ -142,6 +155,15 @@ classes:
     description: >-
       Additional metadata that applies to hybrid experiments where an intervention was conducted simultaneously
       alongside a tracer study, using the same instrumentation.
+    rules:
+      - preconditions:
+          slot_conditions:
+            tracer_form:
+              equals_string: "other"
+        postconditions:
+          slot_conditions:
+            tracer_form_custom:
+              required: true
 
   InterventionDetails:
     description: >- 
@@ -227,6 +249,11 @@ classes:
         description: "The form of tracer upon delivery to the ocean (e.g. gas or dye-release)"
         range: TracerForm
         required: true
+      tracer_form_custom:
+        title: Tracer Form (Custom)
+        description: >-
+          If "other" was selected for Tracer Form, please specify the custom tracer form here.
+        range: string
       tracer_details:
         title: Tracer Details
         description: "state the kind of tracer used (e.g. rhodamine, or a specific gas)"

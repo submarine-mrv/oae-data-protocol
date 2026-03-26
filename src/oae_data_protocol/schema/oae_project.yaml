@@ -92,11 +92,6 @@ classes:
         description: >-
           A description is required if any nearby operations exist that may influence the waters over the time period covered by this data. This might be a nearby mCDR project, a facility that discharges water with different characteristics than the inflow (e.g., a desalination plant), frequent boating operations, etc.
         range: string
-      public_comments:
-        title: Public Comments
-        description: "If possible, please provide public comments concatenated into a single pdf"
-        range: string
-        recommended: true
       research_project:
         title: Research Project
         description: >-
