@@ -740,8 +740,6 @@ Links to relevant datasets, cruise reports, etc may be provided here. */
     previous_or_ongoing_colocated_research?: ExternalProject[],
     /** A description is required if any nearby operations exist that may influence the waters over the time period covered by this data. This might be a nearby mCDR project, a facility that discharges water with different characteristics than the inflow (e.g., a desalination plant), frequent boating operations, etc. */
     colocated_operations?: string,
-    /** If possible, please provide public comments concatenated into a single pdf */
-    public_comments?: string,
     /** Project, which the data collection is part of. For example, West Coast Ocean Acidification (WCOA) Project. */
     research_project?: string,
     /** Include the name of the funder, funder country, project title, project ID, and the project start and end dates. If there is no funding source (e.g., in the case of commercial projects), leave this field empty. */
@@ -832,6 +830,8 @@ Project ID + Experiment type + Optional numerical indicator to differentiate bet
     experiment_id: string,
     /** The type of mCDR experiment conducted. See Controlled Vocabularies section for definitions. */
     experiment_type: string,
+    /** If possible, please provide public comments concatenated into a single pdf */
+    public_comments?: string,
     /** Provide details for each experiment lead / principal investigator (PI) including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role. */
     experiment_leads: Person[],
     /** Start date and time of experiment in UTC ISO-8601 */
@@ -911,6 +911,8 @@ See Controlled Vocabularies section for selected examples (this list is not exha
 export interface TracerDetails {
     /** The form of tracer upon delivery to the ocean (e.g. gas or dye-release) */
     tracer_form: string,
+    /** If "other" was selected for Tracer Form, please specify the custom tracer form here. */
+    tracer_form_custom?: string,
     /** state the kind of tracer used (e.g. rhodamine, or a specific gas) */
     tracer_details: string,
     /** Fixed concentration or provide link/source to tracer concentration separately in the dosing file. Please include whether concentration is directly measured or a derived value. If this is a variable included with  your data, please note so here as 'tracer concentration provided as a variable' and use 'tracer_concentration' for your column header name. */
@@ -1467,8 +1469,8 @@ export interface ModelOutputDataset extends Dataset {
     output_frequency?: string,
     /** Time-stepping method and time step used in the simulation. */
     time_stepping_scheme?: string,
-    /** Description of the alkalinity perturbation applied in the simulation. Required when simulation_type is "perturbation". */
-    alkalinity_perturbation_description?: string,
+    /** Description of the mCDR forcing applied in the simulation (e.g., the alkalinity perturbation). Required when simulation_type is "perturbation". */
+    mcdr_forcing_description?: string,
     /** Details about the computational hardware used for the simulation. */
     hardware_configuration?: HardwareConfiguration,
     /** Checklist of variables included in the model simulation output. */

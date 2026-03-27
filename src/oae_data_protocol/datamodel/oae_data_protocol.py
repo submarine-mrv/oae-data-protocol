@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-03-03T11:14:00
+# Generation date: 2026-03-26T10:03:52
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -338,7 +338,6 @@ class Project(YAMLRoot):
     social_research_conducted_to_date: Optional[str] = None
     previous_or_ongoing_colocated_research: Optional[Union[Union[dict, "ExternalProject"], List[Union[dict, "ExternalProject"]]]] = empty_list()
     colocated_operations: Optional[str] = None
-    public_comments: Optional[str] = None
     research_project: Optional[str] = None
     funding: Optional[Union[Union[dict, "MonetaryGrant"], List[Union[dict, "MonetaryGrant"]]]] = empty_list()
     additional_details: Optional[str] = None
@@ -394,9 +393,6 @@ class Project(YAMLRoot):
 
         if self.colocated_operations is not None and not isinstance(self.colocated_operations, str):
             self.colocated_operations = str(self.colocated_operations)
-
-        if self.public_comments is not None and not isinstance(self.public_comments, str):
-            self.public_comments = str(self.public_comments)
 
         if self.research_project is not None and not isinstance(self.research_project, str):
             self.research_project = str(self.research_project)
@@ -586,10 +582,11 @@ class Experiment(YAMLRoot):
     spatial_coverage: Union[dict, SpatialCoverage] = None
     project_id: str = None
     experiment_id: str = None
-    experiment_type: Union[str, "ExperimentType"] = None
+    experiment_type: Union[Union[str, "ExperimentType"], List[Union[str, "ExperimentType"]]] = None
     experiment_leads: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     name: Optional[str] = None
+    public_comments: Optional[str] = None
     end_datetime: Optional[Union[str, XSDDateTime]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
@@ -615,8 +612,9 @@ class Experiment(YAMLRoot):
 
         if self._is_empty(self.experiment_type):
             self.MissingRequiredField("experiment_type")
-        if not isinstance(self.experiment_type, ExperimentType):
-            self.experiment_type = ExperimentType(self.experiment_type)
+        if not isinstance(self.experiment_type, list):
+            self.experiment_type = [self.experiment_type] if self.experiment_type is not None else []
+        self.experiment_type = [v if isinstance(v, ExperimentType) else ExperimentType(v) for v in self.experiment_type]
 
         if self._is_empty(self.experiment_leads):
             self.MissingRequiredField("experiment_leads")
@@ -631,6 +629,9 @@ class Experiment(YAMLRoot):
 
         if self.name is not None and not isinstance(self.name, str):
             self.name = str(self.name)
+
+        if self.public_comments is not None and not isinstance(self.public_comments, str):
+            self.public_comments = str(self.public_comments)
 
         if self.end_datetime is not None and not isinstance(self.end_datetime, XSDDateTime):
             self.end_datetime = XSDDateTime(self.end_datetime)
@@ -655,7 +656,7 @@ class InSituExperiment(Experiment):
     spatial_coverage: Union[dict, SpatialCoverage] = None
     project_id: str = None
     experiment_id: str = None
-    experiment_type: Union[str, "ExperimentType"] = None
+    experiment_type: Union[Union[str, "ExperimentType"], List[Union[str, "ExperimentType"]]] = None
     experiment_leads: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     vertical_coverage: Optional[Union[dict, VerticalExtent]] = None
@@ -702,7 +703,7 @@ class Intervention(InSituExperiment):
     spatial_coverage: Union[dict, SpatialCoverage] = None
     project_id: str = None
     experiment_id: str = None
-    experiment_type: Union[str, "ExperimentType"] = None
+    experiment_type: Union[Union[str, "ExperimentType"], List[Union[str, "ExperimentType"]]] = None
     experiment_leads: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     alkalinity_feedstock_processing: Union[str, "AlkalinityFeedstockProcessing"] = None
@@ -812,7 +813,7 @@ class Tracer(InSituExperiment):
     spatial_coverage: Union[dict, SpatialCoverage] = None
     project_id: str = None
     experiment_id: str = None
-    experiment_type: Union[str, "ExperimentType"] = None
+    experiment_type: Union[Union[str, "ExperimentType"], List[Union[str, "ExperimentType"]]] = None
     experiment_leads: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     tracer_form: Union[str, "TracerForm"] = None
@@ -824,6 +825,7 @@ class Tracer(InSituExperiment):
     dosing_depth: str = None
     dosing_regimen: str = None
     dosing_description: str = None
+    tracer_form_custom: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.tracer_form):
@@ -871,6 +873,9 @@ class Tracer(InSituExperiment):
         if not isinstance(self.dosing_description, str):
             self.dosing_description = str(self.dosing_description)
 
+        if self.tracer_form_custom is not None and not isinstance(self.tracer_form_custom, str):
+            self.tracer_form_custom = str(self.tracer_form_custom)
+
         super().__post_init__(**kwargs)
 
 
@@ -891,7 +896,7 @@ class InterventionWithTracer(Intervention):
     spatial_coverage: Union[dict, SpatialCoverage] = None
     project_id: str = None
     experiment_id: str = None
-    experiment_type: Union[str, "ExperimentType"] = None
+    experiment_type: Union[Union[str, "ExperimentType"], List[Union[str, "ExperimentType"]]] = None
     experiment_leads: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     alkalinity_feedstock_processing: Union[str, "AlkalinityFeedstockProcessing"] = None
@@ -910,6 +915,7 @@ class InterventionWithTracer(Intervention):
     tracer_form: Union[str, "TracerForm"] = None
     tracer_details: str = None
     tracer_concentration: Union[dict, "DosingConcentration"] = None
+    tracer_form_custom: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.tracer_form):
@@ -926,6 +932,9 @@ class InterventionWithTracer(Intervention):
             self.MissingRequiredField("tracer_concentration")
         if not isinstance(self.tracer_concentration, DosingConcentration):
             self.tracer_concentration = DosingConcentration(**as_dict(self.tracer_concentration))
+
+        if self.tracer_form_custom is not None and not isinstance(self.tracer_form_custom, str):
+            self.tracer_form_custom = str(self.tracer_form_custom)
 
         super().__post_init__(**kwargs)
 
@@ -1014,6 +1023,7 @@ class TracerDetails(YAMLRoot):
     tracer_form: Union[str, "TracerForm"] = None
     tracer_details: str = None
     tracer_concentration: Union[dict, "DosingConcentration"] = None
+    tracer_form_custom: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.tracer_form):
@@ -1030,6 +1040,9 @@ class TracerDetails(YAMLRoot):
             self.MissingRequiredField("tracer_concentration")
         if not isinstance(self.tracer_concentration, DosingConcentration):
             self.tracer_concentration = DosingConcentration(**as_dict(self.tracer_concentration))
+
+        if self.tracer_form_custom is not None and not isinstance(self.tracer_form_custom, str):
+            self.tracer_form_custom = str(self.tracer_form_custom)
 
         super().__post_init__(**kwargs)
 
@@ -2451,7 +2464,7 @@ class ModelOutputDataset(Dataset):
     spin_up_protocol: Optional[str] = None
     output_frequency: Optional[str] = None
     time_stepping_scheme: Optional[str] = None
-    alkalinity_perturbation_description: Optional[str] = None
+    mcdr_forcing_description: Optional[str] = None
     hardware_configuration: Optional[Union[dict, "HardwareConfiguration"]] = None
     model_output_variables: Optional[Union[Union[str, "ModelOutputVariable"], List[Union[str, "ModelOutputVariable"]]]] = empty_list()
 
@@ -2486,8 +2499,8 @@ class ModelOutputDataset(Dataset):
         if self.time_stepping_scheme is not None and not isinstance(self.time_stepping_scheme, str):
             self.time_stepping_scheme = str(self.time_stepping_scheme)
 
-        if self.alkalinity_perturbation_description is not None and not isinstance(self.alkalinity_perturbation_description, str):
-            self.alkalinity_perturbation_description = str(self.alkalinity_perturbation_description)
+        if self.mcdr_forcing_description is not None and not isinstance(self.mcdr_forcing_description, str):
+            self.mcdr_forcing_description = str(self.mcdr_forcing_description)
 
         if self.hardware_configuration is not None and not isinstance(self.hardware_configuration, HardwareConfiguration):
             self.hardware_configuration = HardwareConfiguration(**as_dict(self.hardware_configuration))
@@ -2592,7 +2605,7 @@ class Model(Experiment):
     spatial_coverage: Union[dict, SpatialCoverage] = None
     project_id: str = None
     experiment_id: str = None
-    experiment_type: Union[str, "ExperimentType"] = None
+    experiment_type: Union[Union[str, "ExperimentType"], List[Union[str, "ExperimentType"]]] = None
     experiment_leads: Union[Union[dict, Person], List[Union[dict, Person]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     model_configuration: Optional[Union[Union[str, URI], List[Union[str, URI]]]] = empty_list()
@@ -4718,9 +4731,6 @@ slots.project__previous_or_ongoing_colocated_research = Slot(uri=OAE.previous_or
 slots.project__colocated_operations = Slot(uri=OAE.colocated_operations, name="project__colocated_operations", curie=OAE.curie('colocated_operations'),
                    model_uri=OAE.project__colocated_operations, domain=None, range=Optional[str])
 
-slots.project__public_comments = Slot(uri=OAE.public_comments, name="project__public_comments", curie=OAE.curie('public_comments'),
-                   model_uri=OAE.project__public_comments, domain=None, range=Optional[str])
-
 slots.project__research_project = Slot(uri=OAE.research_project, name="project__research_project", curie=OAE.curie('research_project'),
                    model_uri=OAE.project__research_project, domain=None, range=Optional[str])
 
@@ -4776,7 +4786,10 @@ slots.permit__approval_document = Slot(uri=OAE.approval_document, name="permit__
                    model_uri=OAE.permit__approval_document, domain=None, range=str)
 
 slots.experiment__experiment_type = Slot(uri=OAE.experiment_type, name="experiment__experiment_type", curie=OAE.curie('experiment_type'),
-                   model_uri=OAE.experiment__experiment_type, domain=None, range=Union[str, "ExperimentType"])
+                   model_uri=OAE.experiment__experiment_type, domain=None, range=Union[Union[str, "ExperimentType"], List[Union[str, "ExperimentType"]]])
+
+slots.experiment__public_comments = Slot(uri=OAE.public_comments, name="experiment__public_comments", curie=OAE.curie('public_comments'),
+                   model_uri=OAE.experiment__public_comments, domain=None, range=Optional[str])
 
 slots.experiment__experiment_leads = Slot(uri=OAE.experiment_leads, name="experiment__experiment_leads", curie=OAE.curie('experiment_leads'),
                    model_uri=OAE.experiment__experiment_leads, domain=None, range=Union[Union[dict, Person], List[Union[dict, Person]]])
@@ -4825,6 +4838,9 @@ slots.interventionDetails__alkalinity_dosing_effluent_density = Slot(uri=OAE.alk
 
 slots.tracerDetails__tracer_form = Slot(uri=OAE.tracer_form, name="tracerDetails__tracer_form", curie=OAE.curie('tracer_form'),
                    model_uri=OAE.tracerDetails__tracer_form, domain=None, range=Union[str, "TracerForm"])
+
+slots.tracerDetails__tracer_form_custom = Slot(uri=OAE.tracer_form_custom, name="tracerDetails__tracer_form_custom", curie=OAE.curie('tracer_form_custom'),
+                   model_uri=OAE.tracerDetails__tracer_form_custom, domain=None, range=Optional[str])
 
 slots.tracerDetails__tracer_details = Slot(uri=OAE.tracer_details, name="tracerDetails__tracer_details", curie=OAE.curie('tracer_details'),
                    model_uri=OAE.tracerDetails__tracer_details, domain=None, range=str)
@@ -5071,8 +5087,8 @@ slots.modelOutputDataset__output_frequency = Slot(uri=OAE.output_frequency, name
 slots.modelOutputDataset__time_stepping_scheme = Slot(uri=OAE.time_stepping_scheme, name="modelOutputDataset__time_stepping_scheme", curie=OAE.curie('time_stepping_scheme'),
                    model_uri=OAE.modelOutputDataset__time_stepping_scheme, domain=None, range=Optional[str])
 
-slots.modelOutputDataset__alkalinity_perturbation_description = Slot(uri=OAE.alkalinity_perturbation_description, name="modelOutputDataset__alkalinity_perturbation_description", curie=OAE.curie('alkalinity_perturbation_description'),
-                   model_uri=OAE.modelOutputDataset__alkalinity_perturbation_description, domain=None, range=Optional[str])
+slots.modelOutputDataset__mcdr_forcing_description = Slot(uri=OAE.mcdr_forcing_description, name="modelOutputDataset__mcdr_forcing_description", curie=OAE.curie('mcdr_forcing_description'),
+                   model_uri=OAE.modelOutputDataset__mcdr_forcing_description, domain=None, range=Optional[str])
 
 slots.modelOutputDataset__hardware_configuration = Slot(uri=OAE.hardware_configuration, name="modelOutputDataset__hardware_configuration", curie=OAE.curie('hardware_configuration'),
                    model_uri=OAE.modelOutputDataset__hardware_configuration, domain=None, range=Optional[Union[dict, HardwareConfiguration]])
