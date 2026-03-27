@@ -342,7 +342,7 @@
 
 
 
-    InterventionWithTracer --&gt; "1" ExperimentType : experiment_type
+    InterventionWithTracer --&gt; "1..*" ExperimentType : experiment_type
     click ExperimentType href "../ExperimentType"
 
 
@@ -367,6 +367,8 @@
 
 
       InterventionWithTracer : project_id
+
+      InterventionWithTracer : public_comments
 
       InterventionWithTracer : spatial_coverage
 
@@ -398,6 +400,8 @@
     InterventionWithTracer --&gt; "1" TracerForm : tracer_form
     click TracerForm href "../TracerForm"
 
+
+      InterventionWithTracer : tracer_form_custom
 
       InterventionWithTracer : vertical_coverage
 
@@ -438,6 +442,12 @@
 <td><a href="../tracer_form/">tracer_form</a></td>
 <td>1 <br/> <a href="../TracerForm/">TracerForm</a></td>
 <td>The form of tracer upon delivery to the ocean (e</td>
+<td><a href="../TracerDetails/">TracerDetails</a></td>
+</tr>
+<tr>
+<td><a href="../tracer_form_custom/">tracer_form_custom</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>If "other" was selected for Tracer Form, please specify the custom tracer for...</td>
 <td><a href="../TracerDetails/">TracerDetails</a></td>
 </tr>
 <tr>
@@ -604,8 +614,14 @@
 </tr>
 <tr>
 <td><a href="../experiment_type/">experiment_type</a></td>
-<td>1 <br/> <a href="../ExperimentType/">ExperimentType</a></td>
+<td>1..* <br/> <a href="../ExperimentType/">ExperimentType</a></td>
 <td>The type of mCDR experiment conducted</td>
+<td><a href="../Experiment/">Experiment</a></td>
+</tr>
+<tr>
+<td><a href="../public_comments/">public_comments</a></td>
+<td>0..1 <em>recommended</em> <br/> <a href="../String/">String</a></td>
+<td>If possible, please provide public comments concatenated into a single pdf</td>
 <td><a href="../Experiment/">Experiment</a></td>
 </tr>
 <tr>
@@ -663,6 +679,17 @@ from_schema: OAEDataManagementProtocol
 is_a: Intervention
 mixins:
 - TracerDetails
+rules:
+- preconditions:
+    slot_conditions:
+      tracer_form:
+        name: tracer_form
+        equals_string: other
+  postconditions:
+    slot_conditions:
+      tracer_form_custom:
+        name: tracer_form_custom
+        required: true
 
 </code></pre>
 </details>
@@ -688,6 +715,18 @@ attributes:
     - TracerDetails
     range: TracerForm
     required: true
+  tracer_form_custom:
+    name: tracer_form_custom
+    description: If "other" was selected for Tracer Form, please specify the custom
+      tracer form here.
+    title: Tracer Form (Custom)
+    from_schema: Experiment
+    rank: 1000
+    alias: tracer_form_custom
+    owner: InterventionWithTracer
+    domain_of:
+    - TracerDetails
+    range: string
   tracer_details:
     name: tracer_details
     description: state the kind of tracer used (e.g. rhodamine, or a specific gas)
@@ -1113,6 +1152,20 @@ attributes:
     - Experiment
     range: ExperimentType
     required: true
+    multivalued: true
+  public_comments:
+    name: public_comments
+    description: If possible, please provide public comments concatenated into a single
+      pdf
+    title: Public Comments
+    from_schema: Experiment
+    rank: 1000
+    alias: public_comments
+    owner: InterventionWithTracer
+    domain_of:
+    - Experiment
+    range: string
+    recommended: true
   experiment_leads:
     name: experiment_leads
     description: 'Provide details for each experiment lead / principal investigator
@@ -1155,6 +1208,17 @@ attributes:
     - Experiment
     - ModelOutputDataset
     range: datetime
+rules:
+- preconditions:
+    slot_conditions:
+      tracer_form:
+        name: tracer_form
+        equals_string: other
+  postconditions:
+    slot_conditions:
+      tracer_form_custom:
+        name: tracer_form_custom
+        required: true
 
 </code></pre>
 </details>

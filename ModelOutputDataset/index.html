@@ -230,8 +230,6 @@
       Dataset &lt;|-- ModelOutputDataset
         click Dataset href "../Dataset"
 
-      ModelOutputDataset : alkalinity_perturbation_description
-
       ModelOutputDataset : author_list_for_citation
 
       ModelOutputDataset : data_submitter
@@ -274,6 +272,8 @@
 
 
       ModelOutputDataset : license
+
+      ModelOutputDataset : mcdr_forcing_description
 
       ModelOutputDataset : model_output_variables
 
@@ -362,9 +362,9 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../alkalinity_perturbation_description/">alkalinity_perturbation_description</a></td>
+<td><a href="../mcdr_forcing_description/">mcdr_forcing_description</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Description of the alkalinity perturbation applied in the simulation</td>
+<td>Description of the mCDR forcing applied in the simulation (e</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -544,11 +544,11 @@ attributes:
     domain_of:
     - ModelOutputDataset
     range: string
-  alkalinity_perturbation_description:
-    name: alkalinity_perturbation_description
-    description: Description of the alkalinity perturbation applied in the simulation.
-      Required when simulation_type is "perturbation".
-    title: Alkalinity Perturbation Description
+  mcdr_forcing_description:
+    name: mcdr_forcing_description
+    description: Description of the mCDR forcing applied in the simulation (e.g.,
+      the alkalinity perturbation). Required when simulation_type is "perturbation".
+    title: Description of mCDR Forcing
     from_schema: Dataset
     rank: 1000
     domain_of:
@@ -671,14 +671,14 @@ attributes:
     domain_of:
     - ModelOutputDataset
     range: string
-  alkalinity_perturbation_description:
-    name: alkalinity_perturbation_description
-    description: Description of the alkalinity perturbation applied in the simulation.
-      Required when simulation_type is "perturbation".
-    title: Alkalinity Perturbation Description
+  mcdr_forcing_description:
+    name: mcdr_forcing_description
+    description: Description of the mCDR forcing applied in the simulation (e.g.,
+      the alkalinity perturbation). Required when simulation_type is "perturbation".
+    title: Description of mCDR Forcing
     from_schema: Dataset
     rank: 1000
-    alias: alkalinity_perturbation_description
+    alias: mcdr_forcing_description
     owner: ModelOutputDataset
     domain_of:
     - ModelOutputDataset

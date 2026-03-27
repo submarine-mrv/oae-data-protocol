@@ -261,7 +261,7 @@
 
 
 
-    InSituExperiment --&gt; "1" ExperimentType : experiment_type
+    InSituExperiment --&gt; "1..*" ExperimentType : experiment_type
     click ExperimentType href "../ExperimentType"
 
 
@@ -286,6 +286,8 @@
 
 
       InSituExperiment : project_id
+
+      InSituExperiment : public_comments
 
       InSituExperiment : spatial_coverage
 
@@ -393,8 +395,14 @@
 </tr>
 <tr>
 <td><a href="../experiment_type/">experiment_type</a></td>
-<td>1 <br/> <a href="../ExperimentType/">ExperimentType</a></td>
+<td>1..* <br/> <a href="../ExperimentType/">ExperimentType</a></td>
 <td>The type of mCDR experiment conducted</td>
+<td><a href="../Experiment/">Experiment</a></td>
+</tr>
+<tr>
+<td><a href="../public_comments/">public_comments</a></td>
+<td>0..1 <em>recommended</em> <br/> <a href="../String/">String</a></td>
+<td>If possible, please provide public comments concatenated into a single pdf</td>
 <td><a href="../Experiment/">Experiment</a></td>
 </tr>
 <tr>
@@ -694,6 +702,20 @@ attributes:
     - Experiment
     range: ExperimentType
     required: true
+    multivalued: true
+  public_comments:
+    name: public_comments
+    description: If possible, please provide public comments concatenated into a single
+      pdf
+    title: Public Comments
+    from_schema: Experiment
+    rank: 1000
+    alias: public_comments
+    owner: InSituExperiment
+    domain_of:
+    - Experiment
+    range: string
+    recommended: true
   experiment_leads:
     name: experiment_leads
     description: 'Provide details for each experiment lead / principal investigator
