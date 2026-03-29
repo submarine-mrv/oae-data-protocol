@@ -4178,10 +4178,10 @@
             ],
             "then": {
                 "properties": {
-                    "alkalinity_perturbation_description": {}
+                    "mcdr_forcing_description": {}
                 },
                 "required": [
-                    "alkalinity_perturbation_description"
+                    "mcdr_forcing_description"
                 ]
             },
             "title": "ModelOutputDataset",
