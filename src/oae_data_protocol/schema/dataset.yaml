@@ -207,7 +207,7 @@ classes:
               equals_string: "perturbation"
         postconditions:
           slot_conditions:
-            alkalinity_perturbation_description:
+            mcdr_forcing_description:
               required: true
 
   HardwareConfiguration:
