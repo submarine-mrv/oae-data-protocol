@@ -344,12 +344,12 @@
     click Person href "../Person"
 
 
-      Intervention : experiment_type
+      Intervention : experiment_types
 
 
 
 
-    Intervention --&gt; "1..*" ExperimentType : experiment_type
+    Intervention --&gt; "1..*" ExperimentType : experiment_types
     click ExperimentType href "../ExperimentType"
 
 
@@ -574,15 +574,15 @@
 <td><a href="../Experiment/">Experiment</a></td>
 </tr>
 <tr>
-<td><a href="../experiment_type/">experiment_type</a></td>
+<td><a href="../experiment_types/">experiment_types</a></td>
 <td>1..* <br/> <a href="../ExperimentType/">ExperimentType</a></td>
-<td>The type of mCDR experiment conducted</td>
+<td>The type(s) of mCDR experiment conducted</td>
 <td><a href="../Experiment/">Experiment</a></td>
 </tr>
 <tr>
 <td><a href="../public_comments/">public_comments</a></td>
 <td>0..1 <em>recommended</em> <br/> <a href="../String/">String</a></td>
-<td>If possible, please provide public comments concatenated into a single pdf</td>
+<td>File name(s) of public comment related documents</td>
 <td><a href="../Experiment/">Experiment</a></td>
 </tr>
 <tr>
@@ -1060,14 +1060,14 @@ attributes:
     - Dataset
     range: string
     required: true
-  experiment_type:
-    name: experiment_type
-    description: The type of mCDR experiment conducted. See Controlled Vocabularies
+  experiment_types:
+    name: experiment_types
+    description: The type(s) of mCDR experiment conducted. See Controlled Vocabularies
       section for definitions.
-    title: mCDR Experiment Type
+    title: mCDR Experiment Type(s)
     from_schema: Experiment
     rank: 1000
-    alias: experiment_type
+    alias: experiment_types
     owner: Intervention
     domain_of:
     - Experiment
@@ -1076,8 +1076,8 @@ attributes:
     multivalued: true
   public_comments:
     name: public_comments
-    description: If possible, please provide public comments concatenated into a single
-      pdf
+    description: File name(s) of public comment related documents. If possible, please
+      provide public comments concatenated into a single pdf
     title: Public Comments
     from_schema: Experiment
     rank: 1000

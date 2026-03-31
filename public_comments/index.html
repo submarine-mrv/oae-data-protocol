@@ -360,7 +360,7 @@
 
 
 <h1 id="slot-public-comments-public_comments">Slot: Public Comments (public_comments)</h1>
-<p><em>If possible, please provide public comments concatenated into a single pdf</em></p>
+<p><em>File name(s) of public comment related documents. If possible, please provide public comments concatenated into a single pdf</em></p>
 <p>URI: <a href="https://example.org/oae#public_comments">oae:public_comments</a></p>
 <!-- no inheritance hierarchy -->
 
@@ -375,13 +375,18 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="../Intervention/">Intervention</a></td>
+<td>Additional metadata that applies to experiments where an intervention, such a...</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../InSituExperiment/">InSituExperiment</a></td>
 <td>Experiment metadata for in-situ studies (interventions, tracer studies, etc</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../Experiment/">Experiment</a></td>
-<td>Abstract base class for all experiment types</td>
+<td><a href="../Model/">Model</a></td>
+<td>A computational model experiment related to OAE</td>
 <td>no</td>
 </tr>
 <tr>
@@ -390,18 +395,13 @@
 <td>no</td>
 </tr>
 <tr>
+<td><a href="../Experiment/">Experiment</a></td>
+<td>Abstract base class for all experiment types</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../Tracer/">Tracer</a></td>
 <td>Additional metadata that applies to experiments where a tracer study was cond...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Intervention/">Intervention</a></td>
-<td>Additional metadata that applies to experiments where an intervention, such a...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Model/">Model</a></td>
-<td>A computational model experiment related to OAE</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -443,8 +443,8 @@
 <details>
 
 <pre><code class="language-yaml">name: public_comments
-description: If possible, please provide public comments concatenated into a single
-  pdf
+description: File name(s) of public comment related documents. If possible, please
+  provide public comments concatenated into a single pdf
 title: Public Comments
 from_schema: OAEDataManagementProtocol
 rank: 1000

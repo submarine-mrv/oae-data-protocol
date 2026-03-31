@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://clevinson.github.io/oae-data-protocol/experiment_type/">
+        <link rel="canonical" href="https://clevinson.github.io/oae-data-protocol/experiment_types/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: mCDR Experiment Type (experiment_type) - oae-data-protocol</title>
+        <title>Slot: mCDR Experiment Type(s) (experiment_types) - oae-data-protocol</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-mcdr-experiment-type-experiment_type" class="md-skip">
+        <a href="#slot-mcdr-experiment-types-experiment_types" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: mCDR Experiment Type (experiment_type)
+              Slot: mCDR Experiment Type(s) (experiment_types)
             
           </span>
         </div>
@@ -359,9 +359,9 @@
   
 
 
-<h1 id="slot-mcdr-experiment-type-experiment_type">Slot: mCDR Experiment Type (experiment_type)</h1>
-<p><em>The type of mCDR experiment conducted. See Controlled Vocabularies section for definitions.</em></p>
-<p>URI: <a href="https://example.org/oae#experiment_type">oae:experiment_type</a></p>
+<h1 id="slot-mcdr-experiment-types-experiment_types">Slot: mCDR Experiment Type(s) (experiment_types)</h1>
+<p><em>The type(s) of mCDR experiment conducted. See Controlled Vocabularies section for definitions.</em></p>
+<p>URI: <a href="https://example.org/oae#experiment_types">oae:experiment_types</a></p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -375,13 +375,18 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="../Intervention/">Intervention</a></td>
+<td>Additional metadata that applies to experiments where an intervention, such a...</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../InSituExperiment/">InSituExperiment</a></td>
 <td>Experiment metadata for in-situ studies (interventions, tracer studies, etc</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../Experiment/">Experiment</a></td>
-<td>Abstract base class for all experiment types</td>
+<td><a href="../Model/">Model</a></td>
+<td>A computational model experiment related to OAE</td>
 <td>no</td>
 </tr>
 <tr>
@@ -390,18 +395,13 @@
 <td>no</td>
 </tr>
 <tr>
+<td><a href="../Experiment/">Experiment</a></td>
+<td>Abstract base class for all experiment types</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../Tracer/">Tracer</a></td>
 <td>Additional metadata that applies to experiments where a tracer study was cond...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Intervention/">Intervention</a></td>
-<td>Additional metadata that applies to experiments where an intervention, such a...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Model/">Model</a></td>
-<td>A computational model experiment related to OAE</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -434,24 +434,24 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>oae:experiment_type</td>
+<td>oae:experiment_types</td>
 </tr>
 <tr>
 <td>native</td>
-<td>oae:experiment_type</td>
+<td>oae:experiment_types</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: experiment_type
-description: The type of mCDR experiment conducted. See Controlled Vocabularies section
-  for definitions.
-title: mCDR Experiment Type
+<pre><code class="language-yaml">name: experiment_types
+description: The type(s) of mCDR experiment conducted. See Controlled Vocabularies
+  section for definitions.
+title: mCDR Experiment Type(s)
 from_schema: OAEDataManagementProtocol
 rank: 1000
-alias: experiment_type
+alias: experiment_types
 owner: Experiment
 domain_of:
 - Experiment
