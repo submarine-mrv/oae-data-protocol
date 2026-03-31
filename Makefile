@@ -129,7 +129,7 @@ gen-project: $(PYMODEL)
 	$(RUN) gen-project ${CONFIG_YAML} -d $(DEST) $(SOURCE_SCHEMA_PATH)
 	mv $(DEST)/*.py $(PYMODEL)
 	$(RUN) python scripts/inject_version_metadata.py
-
+	$(MAKE) gen-validation-schema
 
 # non-empty arg triggers owl (workaround https://github.com/linkml/linkml/issues/1453)
 ifneq ($(strip ${GEN_OWL_ARGS}),)
@@ -145,6 +145,18 @@ ifneq ($(strip ${GEN_TS_ARGS}),)
 	mkdir -p ${DEST}/typescript || true
 	$(RUN) gen-typescript ${GEN_TS_ARGS} $(SOURCE_SCHEMA_PATH) >${DEST}/typescript/${SCHEMA_NAME}.ts
 endif
+
+gen-validation-schema:
+	$(RUN) python -c "from linkml.generators.jsonschemagen import JsonSchemaGenerator; \
+		gen = JsonSchemaGenerator( \
+			'$(SOURCE_SCHEMA_PATH)', \
+			top_class='Container', \
+			include_range_class_descendants=True, \
+			not_closed=True, \
+			title_from='title'); \
+		print(gen.serialize())" \
+		> $(DEST)/jsonschema/$(SCHEMA_NAME).validation.schema.json
+	@echo "✓ Generated validation schema (with range class descendants)"
 
 test: test-schema test-python test-examples
 

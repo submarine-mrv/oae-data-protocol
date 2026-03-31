@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-03-30T19:45:07
+# Generation date: 2026-03-31T11:42:07
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -1202,6 +1202,7 @@ class BaseVariable(YAMLRoot):
     dataset_variable_name: str = None
     long_name: str = None
     units: Optional[str] = None
+    schema_class: Optional[str] = None
     standard_identifier: Optional[Union[dict, "VocabularyItemReference"]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
@@ -1218,10 +1219,30 @@ class BaseVariable(YAMLRoot):
         if self.units is not None and not isinstance(self.units, str):
             self.units = str(self.units)
 
+        self.schema_class = str(self.class_name)
+
         if self.standard_identifier is not None and not isinstance(self.standard_identifier, VocabularyItemReference):
             self.standard_identifier = VocabularyItemReference(**as_dict(self.standard_identifier))
 
         super().__post_init__(**kwargs)
+        self.unknown_schema_class = str(self.class_name)
+
+
+    def __new__(cls, *args, **kwargs):
+
+        type_designator = "schema_class"
+        if not type_designator in kwargs:
+            return super().__new__(cls,*args,**kwargs)
+        else:
+            type_designator_value = kwargs[type_designator]
+            target_cls = cls._class_for("class_name", type_designator_value)
+
+
+            if target_cls is None:
+                raise ValueError(f"Wrong type designator value: class {cls.__name__} "
+                                 f"has no subclass with ['class_name']='{kwargs[type_designator]}'")
+            return super().__new__(target_cls,*args,**kwargs)
+
 
 
 @dataclass(repr=False)
@@ -1239,6 +1260,12 @@ class NonMeasuredVariable(BaseVariable):
 
     dataset_variable_name: str = None
     long_name: str = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+
+        super().__post_init__(**kwargs)
+        self.unknown_schema_class = str(self.class_name)
+
 
 @dataclass(repr=False)
 class Variable(BaseVariable):
@@ -1284,6 +1311,7 @@ class Variable(BaseVariable):
             self.other_detailed_information = str(self.other_detailed_information)
 
         super().__post_init__(**kwargs)
+        self.unknown_schema_class = str(self.class_name)
 
 
 @dataclass(repr=False)
@@ -1387,6 +1415,7 @@ class ObservedPropertyVariable(Variable):
             self.qc_researcher_institution = str(self.qc_researcher_institution)
 
         super().__post_init__(**kwargs)
+        self.unknown_schema_class = str(self.class_name)
 
 
 @dataclass(repr=False)
@@ -1416,6 +1445,12 @@ class DiscreteMeasuredVariable(ObservedPropertyVariable):
     uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+
+        super().__post_init__(**kwargs)
+        self.unknown_schema_class = str(self.class_name)
+
 
 @dataclass(repr=False)
 class ContinuousMeasuredVariable(ObservedPropertyVariable):
@@ -1456,6 +1491,7 @@ class ContinuousMeasuredVariable(ObservedPropertyVariable):
             self.calculation_software_version = str(self.calculation_software_version)
 
         super().__post_init__(**kwargs)
+        self.unknown_schema_class = str(self.class_name)
 
 
 @dataclass(repr=False)
@@ -1512,6 +1548,7 @@ class CalculatedVariable(Variable):
             self.qc_researcher_institution = str(self.qc_researcher_institution)
 
         super().__post_init__(**kwargs)
+        self.unknown_schema_class = str(self.class_name)
 
 
 @dataclass(repr=False)
@@ -1548,6 +1585,7 @@ class ContinuousPHVariable(ContinuousMeasuredVariable):
             self.appropriate_use_quality = AppropriateUseQuality(self.appropriate_use_quality)
 
         super().__post_init__(**kwargs)
+        self.unknown_schema_class = str(self.class_name)
 
 
 @dataclass(repr=False)
@@ -1605,6 +1643,7 @@ class DiscretePHVariable(DiscreteMeasuredVariable):
             self.appropriate_use_quality = AppropriateUseQuality(self.appropriate_use_quality)
 
         super().__post_init__(**kwargs)
+        self.unknown_schema_class = str(self.class_name)
 
 
 @dataclass(repr=False)
@@ -1647,6 +1686,7 @@ class ContinuousTAVariable(ContinuousMeasuredVariable):
             self.appropriate_use_quality = AppropriateUseQuality(self.appropriate_use_quality)
 
         super().__post_init__(**kwargs)
+        self.unknown_schema_class = str(self.class_name)
 
 
 @dataclass(repr=False)
@@ -1719,6 +1759,7 @@ class DiscreteTAVariable(DiscreteMeasuredVariable):
             self.appropriate_use_quality = AppropriateUseQuality(self.appropriate_use_quality)
 
         super().__post_init__(**kwargs)
+        self.unknown_schema_class = str(self.class_name)
 
 
 @dataclass(repr=False)
@@ -1761,6 +1802,7 @@ class ContinuousDICVariable(ContinuousMeasuredVariable):
             self.appropriate_use_quality = AppropriateUseQuality(self.appropriate_use_quality)
 
         super().__post_init__(**kwargs)
+        self.unknown_schema_class = str(self.class_name)
 
 
 @dataclass(repr=False)
@@ -1820,6 +1862,7 @@ class DiscreteDICVariable(DiscreteMeasuredVariable):
             self.appropriate_use_quality = AppropriateUseQuality(self.appropriate_use_quality)
 
         super().__post_init__(**kwargs)
+        self.unknown_schema_class = str(self.class_name)
 
 
 @dataclass(repr=False)
@@ -1876,6 +1919,7 @@ class ContinuousSedimentVariable(ContinuousMeasuredVariable):
             self.sediment_sampling_water_depth = str(self.sediment_sampling_water_depth)
 
         super().__post_init__(**kwargs)
+        self.unknown_schema_class = str(self.class_name)
 
 
 @dataclass(repr=False)
@@ -1931,6 +1975,7 @@ class DiscreteSedimentVariable(DiscreteMeasuredVariable):
             self.sediment_sampling_water_depth = str(self.sediment_sampling_water_depth)
 
         super().__post_init__(**kwargs)
+        self.unknown_schema_class = str(self.class_name)
 
 
 @dataclass(repr=False)
@@ -2005,6 +2050,7 @@ class DiscreteCO2Variable(DiscreteMeasuredVariable):
             self.temperature_correction_method = str(self.temperature_correction_method)
 
         super().__post_init__(**kwargs)
+        self.unknown_schema_class = str(self.class_name)
 
 
 @dataclass(repr=False)
@@ -2047,6 +2093,7 @@ class HPLCVariable(DiscreteMeasuredVariable):
             self.hplc_lab_technician = str(self.hplc_lab_technician)
 
         super().__post_init__(**kwargs)
+        self.unknown_schema_class = str(self.class_name)
 
 
 @dataclass(repr=False)
@@ -4894,6 +4941,9 @@ slots.person__identifier = Slot(uri=OAE.identifier, name="person__identifier", c
 
 slots.person__role = Slot(uri=OAE.role, name="person__role", curie=OAE.curie('role'),
                    model_uri=OAE.person__role, domain=None, range=Optional[str])
+
+slots.baseVariable__schema_class = Slot(uri=OAE.schema_class, name="baseVariable__schema_class", curie=OAE.curie('schema_class'),
+                   model_uri=OAE.baseVariable__schema_class, domain=None, range=Optional[str])
 
 slots.baseVariable__standard_identifier = Slot(uri=OAE.standard_identifier, name="baseVariable__standard_identifier", curie=OAE.curie('standard_identifier'),
                    model_uri=OAE.baseVariable__standard_identifier, domain=None, range=Optional[Union[dict, VocabularyItemReference]])
