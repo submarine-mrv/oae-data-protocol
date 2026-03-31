@@ -112,7 +112,7 @@ create-data-harmonizer:
 	npm init data-harmonizer $(SOURCE_SCHEMA_PATH)
 
 all: site
-site: gen-project gendoc
+site: gen-project gen-validation-schema gendoc
 %.yaml: gen-project
 deploy: all mkd-gh-deploy
 
@@ -125,11 +125,12 @@ gen-examples:
 
 # generates all project files
 
+gen-schemas: gen-project gen-validation-schema
+
 gen-project: $(PYMODEL)
 	$(RUN) gen-project ${CONFIG_YAML} -d $(DEST) $(SOURCE_SCHEMA_PATH)
 	mv $(DEST)/*.py $(PYMODEL)
 	$(RUN) python scripts/inject_version_metadata.py
-	$(MAKE) gen-validation-schema
 
 # non-empty arg triggers owl (workaround https://github.com/linkml/linkml/issues/1453)
 ifneq ($(strip ${GEN_OWL_ARGS}),)
