@@ -828,9 +828,9 @@ Any method that creates a unique ID that will link all project data is acceptabl
     /** The experiment to which the data belong. Any naming convention that produces a unique ID is usable. The recommended naming convention is:
 Project ID + Experiment type + Optional numerical indicator to differentiate between various experiments of the same type for a project. A two digit consecutive number beginning with 01 */
     experiment_id: string,
-    /** The type of mCDR experiment conducted. See Controlled Vocabularies section for definitions. */
-    experiment_type: string,
-    /** If possible, please provide public comments concatenated into a single pdf */
+    /** The type(s) of mCDR experiment conducted. See Controlled Vocabularies section for definitions. */
+    experiment_types: string,
+    /** File name(s) of public comment related documents. If possible, please provide public comments concatenated into a single pdf */
     public_comments?: string,
     /** Provide details for each experiment lead / principal investigator (PI) including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role. */
     experiment_leads: Person[],

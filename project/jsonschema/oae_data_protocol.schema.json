@@ -2512,12 +2512,12 @@
                     "title": "Experiment Lead(s)",
                     "type": "array"
                 },
-                "experiment_type": {
-                    "description": "The type of mCDR experiment conducted. See Controlled Vocabularies section for definitions.",
+                "experiment_types": {
+                    "description": "The type(s) of mCDR experiment conducted. See Controlled Vocabularies section for definitions.",
                     "items": {
                         "$ref": "#/$defs/ExperimentType"
                     },
-                    "title": "mCDR Experiment Type",
+                    "title": "mCDR Experiment Type(s)",
                     "type": "array"
                 },
                 "name": {
@@ -2531,7 +2531,7 @@
                     "type": "string"
                 },
                 "public_comments": {
-                    "description": "If possible, please provide public comments concatenated into a single pdf",
+                    "description": "File name(s) of public comment related documents. If possible, please provide public comments concatenated into a single pdf",
                     "title": "Public Comments",
                     "type": "string"
                 },
@@ -2552,7 +2552,7 @@
                 "spatial_coverage",
                 "project_id",
                 "experiment_id",
-                "experiment_type",
+                "experiment_types",
                 "experiment_leads",
                 "start_datetime"
             ],
@@ -3047,12 +3047,12 @@
                     "title": "Experiment Lead(s)",
                     "type": "array"
                 },
-                "experiment_type": {
-                    "description": "The type of mCDR experiment conducted. See Controlled Vocabularies section for definitions.",
+                "experiment_types": {
+                    "description": "The type(s) of mCDR experiment conducted. See Controlled Vocabularies section for definitions.",
                     "items": {
                         "$ref": "#/$defs/ExperimentType"
                     },
-                    "title": "mCDR Experiment Type",
+                    "title": "mCDR Experiment Type(s)",
                     "type": "array"
                 },
                 "meteorological_and_tidal_data": {
@@ -3088,7 +3088,7 @@
                     "type": "string"
                 },
                 "public_comments": {
-                    "description": "If possible, please provide public comments concatenated into a single pdf",
+                    "description": "File name(s) of public comment related documents. If possible, please provide public comments concatenated into a single pdf",
                     "title": "Public Comments",
                     "type": "string"
                 },
@@ -3114,7 +3114,7 @@
                 "spatial_coverage",
                 "project_id",
                 "experiment_id",
-                "experiment_type",
+                "experiment_types",
                 "experiment_leads",
                 "start_datetime"
             ],
@@ -3276,12 +3276,12 @@
                     "title": "Experiment Lead(s)",
                     "type": "array"
                 },
-                "experiment_type": {
-                    "description": "The type of mCDR experiment conducted. See Controlled Vocabularies section for definitions.",
+                "experiment_types": {
+                    "description": "The type(s) of mCDR experiment conducted. See Controlled Vocabularies section for definitions.",
                     "items": {
                         "$ref": "#/$defs/ExperimentType"
                     },
-                    "title": "mCDR Experiment Type",
+                    "title": "mCDR Experiment Type(s)",
                     "type": "array"
                 },
                 "meteorological_and_tidal_data": {
@@ -3317,7 +3317,7 @@
                     "type": "string"
                 },
                 "public_comments": {
-                    "description": "If possible, please provide public comments concatenated into a single pdf",
+                    "description": "File name(s) of public comment related documents. If possible, please provide public comments concatenated into a single pdf",
                     "title": "Public Comments",
                     "type": "string"
                 },
@@ -3356,7 +3356,7 @@
                 "spatial_coverage",
                 "project_id",
                 "experiment_id",
-                "experiment_type",
+                "experiment_types",
                 "experiment_leads",
                 "start_datetime"
             ],
@@ -3538,12 +3538,12 @@
                     "title": "Experiment Lead(s)",
                     "type": "array"
                 },
-                "experiment_type": {
-                    "description": "The type of mCDR experiment conducted. See Controlled Vocabularies section for definitions.",
+                "experiment_types": {
+                    "description": "The type(s) of mCDR experiment conducted. See Controlled Vocabularies section for definitions.",
                     "items": {
                         "$ref": "#/$defs/ExperimentType"
                     },
-                    "title": "mCDR Experiment Type",
+                    "title": "mCDR Experiment Type(s)",
                     "type": "array"
                 },
                 "meteorological_and_tidal_data": {
@@ -3579,7 +3579,7 @@
                     "type": "string"
                 },
                 "public_comments": {
-                    "description": "If possible, please provide public comments concatenated into a single pdf",
+                    "description": "File name(s) of public comment related documents. If possible, please provide public comments concatenated into a single pdf",
                     "title": "Public Comments",
                     "type": "string"
                 },
@@ -3641,7 +3641,7 @@
                 "spatial_coverage",
                 "project_id",
                 "experiment_id",
-                "experiment_type",
+                "experiment_types",
                 "experiment_leads",
                 "start_datetime"
             ],
@@ -3706,12 +3706,12 @@
                     "title": "Experiment Lead(s)",
                     "type": "array"
                 },
-                "experiment_type": {
-                    "description": "The type of mCDR experiment conducted. See Controlled Vocabularies section for definitions.",
+                "experiment_types": {
+                    "description": "The type(s) of mCDR experiment conducted. See Controlled Vocabularies section for definitions.",
                     "items": {
                         "$ref": "#/$defs/ExperimentType"
                     },
-                    "title": "mCDR Experiment Type",
+                    "title": "mCDR Experiment Type(s)",
                     "type": "array"
                 },
                 "grid_details": {
@@ -3763,7 +3763,7 @@
                     "type": "string"
                 },
                 "public_comments": {
-                    "description": "If possible, please provide public comments concatenated into a single pdf",
+                    "description": "File name(s) of public comment related documents. If possible, please provide public comments concatenated into a single pdf",
                     "title": "Public Comments",
                     "type": "string"
                 },
@@ -3784,7 +3784,7 @@
                 "spatial_coverage",
                 "project_id",
                 "experiment_id",
-                "experiment_type",
+                "experiment_types",
                 "experiment_leads",
                 "start_datetime"
             ],
@@ -5256,12 +5256,12 @@
                     "title": "Experiment Lead(s)",
                     "type": "array"
                 },
-                "experiment_type": {
-                    "description": "The type of mCDR experiment conducted. See Controlled Vocabularies section for definitions.",
+                "experiment_types": {
+                    "description": "The type(s) of mCDR experiment conducted. See Controlled Vocabularies section for definitions.",
                     "items": {
                         "$ref": "#/$defs/ExperimentType"
                     },
-                    "title": "mCDR Experiment Type",
+                    "title": "mCDR Experiment Type(s)",
                     "type": "array"
                 },
                 "meteorological_and_tidal_data": {
@@ -5297,7 +5297,7 @@
                     "type": "string"
                 },
                 "public_comments": {
-                    "description": "If possible, please provide public comments concatenated into a single pdf",
+                    "description": "File name(s) of public comment related documents. If possible, please provide public comments concatenated into a single pdf",
                     "title": "Public Comments",
                     "type": "string"
                 },
@@ -5352,7 +5352,7 @@
                 "spatial_coverage",
                 "project_id",
                 "experiment_id",
-                "experiment_type",
+                "experiment_types",
                 "experiment_leads",
                 "start_datetime"
             ],

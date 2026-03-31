@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-03-29T13:58:46
+# Generation date: 2026-03-30T19:45:07
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -582,7 +582,7 @@ class Experiment(YAMLRoot):
     spatial_coverage: Union[dict, SpatialCoverage] = None
     project_id: str = None
     experiment_id: str = None
-    experiment_type: Union[Union[str, "ExperimentType"], List[Union[str, "ExperimentType"]]] = None
+    experiment_types: Union[Union[str, "ExperimentType"], List[Union[str, "ExperimentType"]]] = None
     experiment_leads: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     name: Optional[str] = None
@@ -610,11 +610,11 @@ class Experiment(YAMLRoot):
         if not isinstance(self.experiment_id, str):
             self.experiment_id = str(self.experiment_id)
 
-        if self._is_empty(self.experiment_type):
-            self.MissingRequiredField("experiment_type")
-        if not isinstance(self.experiment_type, list):
-            self.experiment_type = [self.experiment_type] if self.experiment_type is not None else []
-        self.experiment_type = [v if isinstance(v, ExperimentType) else ExperimentType(v) for v in self.experiment_type]
+        if self._is_empty(self.experiment_types):
+            self.MissingRequiredField("experiment_types")
+        if not isinstance(self.experiment_types, list):
+            self.experiment_types = [self.experiment_types] if self.experiment_types is not None else []
+        self.experiment_types = [v if isinstance(v, ExperimentType) else ExperimentType(v) for v in self.experiment_types]
 
         if self._is_empty(self.experiment_leads):
             self.MissingRequiredField("experiment_leads")
@@ -656,7 +656,7 @@ class InSituExperiment(Experiment):
     spatial_coverage: Union[dict, SpatialCoverage] = None
     project_id: str = None
     experiment_id: str = None
-    experiment_type: Union[Union[str, "ExperimentType"], List[Union[str, "ExperimentType"]]] = None
+    experiment_types: Union[Union[str, "ExperimentType"], List[Union[str, "ExperimentType"]]] = None
     experiment_leads: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     vertical_coverage: Optional[Union[dict, VerticalExtent]] = None
@@ -703,7 +703,7 @@ class Intervention(InSituExperiment):
     spatial_coverage: Union[dict, SpatialCoverage] = None
     project_id: str = None
     experiment_id: str = None
-    experiment_type: Union[Union[str, "ExperimentType"], List[Union[str, "ExperimentType"]]] = None
+    experiment_types: Union[Union[str, "ExperimentType"], List[Union[str, "ExperimentType"]]] = None
     experiment_leads: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     alkalinity_feedstock_processing: Union[str, "AlkalinityFeedstockProcessing"] = None
@@ -813,7 +813,7 @@ class Tracer(InSituExperiment):
     spatial_coverage: Union[dict, SpatialCoverage] = None
     project_id: str = None
     experiment_id: str = None
-    experiment_type: Union[Union[str, "ExperimentType"], List[Union[str, "ExperimentType"]]] = None
+    experiment_types: Union[Union[str, "ExperimentType"], List[Union[str, "ExperimentType"]]] = None
     experiment_leads: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     tracer_form: Union[str, "TracerForm"] = None
@@ -896,7 +896,7 @@ class InterventionWithTracer(Intervention):
     spatial_coverage: Union[dict, SpatialCoverage] = None
     project_id: str = None
     experiment_id: str = None
-    experiment_type: Union[Union[str, "ExperimentType"], List[Union[str, "ExperimentType"]]] = None
+    experiment_types: Union[Union[str, "ExperimentType"], List[Union[str, "ExperimentType"]]] = None
     experiment_leads: Union[Union[dict, "Person"], List[Union[dict, "Person"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     alkalinity_feedstock_processing: Union[str, "AlkalinityFeedstockProcessing"] = None
@@ -2605,7 +2605,7 @@ class Model(Experiment):
     spatial_coverage: Union[dict, SpatialCoverage] = None
     project_id: str = None
     experiment_id: str = None
-    experiment_type: Union[Union[str, "ExperimentType"], List[Union[str, "ExperimentType"]]] = None
+    experiment_types: Union[Union[str, "ExperimentType"], List[Union[str, "ExperimentType"]]] = None
     experiment_leads: Union[Union[dict, Person], List[Union[dict, Person]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     model_configuration: Optional[Union[Union[str, URI], List[Union[str, URI]]]] = empty_list()
@@ -4785,8 +4785,8 @@ slots.permit__time_period = Slot(uri=OAE.time_period, name="permit__time_period"
 slots.permit__approval_document = Slot(uri=OAE.approval_document, name="permit__approval_document", curie=OAE.curie('approval_document'),
                    model_uri=OAE.permit__approval_document, domain=None, range=str)
 
-slots.experiment__experiment_type = Slot(uri=OAE.experiment_type, name="experiment__experiment_type", curie=OAE.curie('experiment_type'),
-                   model_uri=OAE.experiment__experiment_type, domain=None, range=Union[Union[str, "ExperimentType"], List[Union[str, "ExperimentType"]]])
+slots.experiment__experiment_types = Slot(uri=OAE.experiment_types, name="experiment__experiment_types", curie=OAE.curie('experiment_types'),
+                   model_uri=OAE.experiment__experiment_types, domain=None, range=Union[Union[str, "ExperimentType"], List[Union[str, "ExperimentType"]]])
 
 slots.experiment__public_comments = Slot(uri=OAE.public_comments, name="experiment__public_comments", curie=OAE.curie('public_comments'),
                    model_uri=OAE.experiment__public_comments, domain=None, range=Optional[str])

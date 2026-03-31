@@ -43,22 +43,24 @@ classes:
           longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]
         required: true
     attributes:
-      experiment_type:
-        title: mCDR Experiment Type
-        description: "The type of mCDR experiment conducted. See Controlled Vocabularies section for definitions."
+      experiment_types:
+        title: mCDR Experiment Type(s)
+        description: "The type(s) of mCDR experiment conducted. See Controlled Vocabularies section for definitions."
         range: ExperimentType
         multivalued: true
         required: true
       public_comments:
         title: Public Comments
-        description: "If possible, please provide public comments concatenated into a single pdf"
+        description: >-
+          File name(s) of public comment related documents. If possible, please provide public comments concatenated
+          into a single pdf
         range: string
         recommended: true
       experiment_leads:
         title: Experiment Lead(s)
         description: >-
-          Provide details for each experiment lead / principal investigator (PI) including: Name, institutional information (name, address),
-          phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.
+          Provide details for each experiment lead / principal investigator (PI) including: Name, institutional
+          information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.
         range: Person
         multivalued: true
         inlined_as_list: true
@@ -283,7 +285,9 @@ classes:
       - is_provided_as_a_file
     slot_usage:
       is_provided_as_a_file:
-        description: "Select ‘Variable’ if the concentration varies over time, or ‘Fixed Value’ if it is constant. Note: Variable concentrations must be provided in a data file."
+        description: >-
+          Select ‘Variable’ if the concentration varies over time, or ‘Fixed Value’ if it is constant. Note: Variable
+          concentrations must be provided in a data file.
 
   DosingDetails:
     mixin: true
