@@ -322,12 +322,6 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../genesis/">genesis</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td></td>
-<td>direct</td>
-</tr>
-<tr>
 <td><a href="../calculation_method_and_parameters/">calculation_method_and_parameters</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>Information about how the variable was calculated and the parameters used in ...</td>
@@ -368,6 +362,12 @@
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>The institution of the PI whose research team QCed this parameter</td>
 <td><a href="../QCFields/">QCFields</a></td>
+</tr>
+<tr>
+<td><a href="../genesis/">genesis</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td></td>
+<td><a href="../InSituVariable/">InSituVariable</a></td>
 </tr>
 <tr>
 <td><a href="../dataset_variable_name_qc_flag/">dataset_variable_name_qc_flag</a></td>
@@ -471,16 +471,12 @@ from_schema: OAEDataManagementProtocol
 is_a: InSituVariable
 mixins:
 - QCFields
-attributes:
+slot_usage:
   genesis:
     name: genesis
-    from_schema: Variable
-    domain_of:
-    - MeasuredVariable
-    - CalculatedVariable
     range: string
-    required: true
     equals_string: calculated
+attributes:
   calculation_method_and_parameters:
     name: calculation_method_and_parameters
     description: 'Information about how the variable was calculated and the parameters
@@ -506,18 +502,12 @@ from_schema: OAEDataManagementProtocol
 is_a: InSituVariable
 mixins:
 - QCFields
-attributes:
+slot_usage:
   genesis:
     name: genesis
-    from_schema: Variable
-    alias: genesis
-    owner: CalculatedVariable
-    domain_of:
-    - MeasuredVariable
-    - CalculatedVariable
     range: string
-    required: true
     equals_string: calculated
+attributes:
   calculation_method_and_parameters:
     name: calculation_method_and_parameters
     description: 'Information about how the variable was calculated and the parameters
@@ -611,6 +601,17 @@ attributes:
     domain_of:
     - QCFields
     range: string
+  genesis:
+    name: genesis
+    from_schema: Variable
+    rank: 1000
+    alias: genesis
+    owner: CalculatedVariable
+    domain_of:
+    - InSituVariable
+    range: string
+    required: true
+    equals_string: calculated
   dataset_variable_name_qc_flag:
     name: dataset_variable_name_qc_flag
     description: If applicable, the column header name used for the quality control

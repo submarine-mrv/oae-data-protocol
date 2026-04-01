@@ -424,12 +424,6 @@
 <td><a href="../MeasuredVariable/">MeasuredVariable</a></td>
 </tr>
 <tr>
-<td><a href="../genesis/">genesis</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td></td>
-<td><a href="../MeasuredVariable/">MeasuredVariable</a></td>
-</tr>
-<tr>
 <td><a href="../sampling_instrument_type/">sampling_instrument_type</a></td>
 <td>1 <br/> <a href="../SamplingInstrumentType/">SamplingInstrumentType</a></td>
 <td></td>
@@ -476,6 +470,12 @@
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>The institution of the PI whose research team QCed this parameter</td>
 <td><a href="../QCFields/">QCFields</a></td>
+</tr>
+<tr>
+<td><a href="../genesis/">genesis</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td></td>
+<td><a href="../InSituVariable/">InSituVariable</a></td>
 </tr>
 <tr>
 <td><a href="../dataset_variable_name_qc_flag/">dataset_variable_name_qc_flag</a></td>
@@ -723,18 +723,6 @@ attributes:
     range: string
     required: true
     equals_string: discrete
-  genesis:
-    name: genesis
-    from_schema: Variable
-    rank: 1000
-    alias: genesis
-    owner: DiscreteSedimentVariable
-    domain_of:
-    - MeasuredVariable
-    - CalculatedVariable
-    range: string
-    required: true
-    equals_string: measured
   sampling_instrument_type:
     name: sampling_instrument_type
     title: Sampling instrument type
@@ -837,6 +825,17 @@ attributes:
     domain_of:
     - QCFields
     range: string
+  genesis:
+    name: genesis
+    from_schema: Variable
+    rank: 1000
+    alias: genesis
+    owner: DiscreteSedimentVariable
+    domain_of:
+    - InSituVariable
+    range: string
+    required: true
+    equals_string: measured
   dataset_variable_name_qc_flag:
     name: dataset_variable_name_qc_flag
     description: If applicable, the column header name used for the quality control

@@ -243,6 +243,15 @@
 
       InSituVariable : dataset_variable_name_raw
 
+      InSituVariable : genesis
+
+
+
+
+    InSituVariable --&gt; "1" GenesisType : genesis
+    click GenesisType href "../GenesisType"
+
+
       InSituVariable : long_name
 
       InSituVariable : measurement_researcher
@@ -304,6 +313,12 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><a href="../genesis/">genesis</a></td>
+<td>1 <br/> <a href="../GenesisType/">GenesisType</a></td>
+<td></td>
+<td>direct</td>
+</tr>
 <tr>
 <td><a href="../dataset_variable_name_qc_flag/">dataset_variable_name_qc_flag</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
@@ -410,6 +425,14 @@ slot_usage:
     name: units
     required: true
 attributes:
+  genesis:
+    name: genesis
+    from_schema: Variable
+    rank: 1000
+    domain_of:
+    - InSituVariable
+    range: GenesisType
+    required: true
   dataset_variable_name_qc_flag:
     name: dataset_variable_name_qc_flag
     description: If applicable, the column header name used for the quality control
@@ -472,6 +495,16 @@ slot_usage:
     name: units
     required: true
 attributes:
+  genesis:
+    name: genesis
+    from_schema: Variable
+    rank: 1000
+    alias: genesis
+    owner: InSituVariable
+    domain_of:
+    - InSituVariable
+    range: GenesisType
+    required: true
   dataset_variable_name_qc_flag:
     name: dataset_variable_name_qc_flag
     description: If applicable, the column header name used for the quality control
