@@ -1108,6 +1108,8 @@ export interface CO2GasDetector extends AnalyzingInstrument {
 export interface BaseVariable {
     /** Unit of measurement for this variable. */
     units?: string,
+    /** The schema class name for this variable (e.g., "DiscretePHVariable"). Auto-populated by the metadata builder. */
+    schema_class?: string,
     standard_identifier?: VocabularyItemReference,
     /** The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name). */
     dataset_variable_name: string,

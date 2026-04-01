@@ -21,6 +21,11 @@ classes:
     slots:
       - units
     attributes:
+      schema_class:
+        designates_type: true
+        range: string
+        description: >-
+          The schema class name for this variable (e.g., "DiscretePHVariable").
       standard_identifier:
         range: VocabularyItemReference
       dataset_variable_name:
