@@ -340,6 +340,15 @@
 
       HPLCVariable : units
 
+      HPLCVariable : variable_type
+
+
+
+
+    HPLCVariable --&gt; "1" VariableType : variable_type
+    click VariableType href "../VariableType"
+
+
 
 </div>
 <h2 id="inheritance">Inheritance</h2>
@@ -511,6 +520,12 @@
 <td><a href="../schema_class/">schema_class</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>The schema class name for this variable (e</td>
+<td><a href="../BaseVariable/">BaseVariable</a></td>
+</tr>
+<tr>
+<td><a href="../variable_type/">variable_type</a></td>
+<td>1 <br/> <a href="../VariableType/">VariableType</a></td>
+<td>High-level classification of the variable</td>
 <td><a href="../BaseVariable/">BaseVariable</a></td>
 </tr>
 <tr>
@@ -876,6 +891,7 @@ attributes:
   schema_class:
     name: schema_class
     description: The schema class name for this variable (e.g., "DiscretePHVariable").
+      Auto-populated by the metadata builder.
     from_schema: Variable
     rank: 1000
     designates_type: true
@@ -884,6 +900,20 @@ attributes:
     domain_of:
     - BaseVariable
     range: string
+  variable_type:
+    name: variable_type
+    description: High-level classification of the variable. Determines which standard
+      identifiers are available and, combined with genesis and sampling, which schema
+      class to use.
+    title: Variable Type
+    from_schema: Variable
+    rank: 1000
+    alias: variable_type
+    owner: HPLCVariable
+    domain_of:
+    - BaseVariable
+    range: VariableType
+    required: true
   standard_identifier:
     name: standard_identifier
     from_schema: Variable

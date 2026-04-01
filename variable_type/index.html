@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://clevinson.github.io/oae-data-protocol/sampling_instrument_type_custom/">
+        <link rel="canonical" href="https://clevinson.github.io/oae-data-protocol/variable_type/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: Sampling instrument type (custom) (sampling_instrument_type_custom) - oae-data-protocol</title>
+        <title>Slot: Variable Type (variable_type) - oae-data-protocol</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-sampling-instrument-type-custom-sampling_instrument_type_custom" class="md-skip">
+        <a href="#slot-variable-type-variable_type" class="md-skip">
           Skip to content
         </a>
       
@@ -102,7 +102,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: Sampling instrument type (custom) (sampling_instrument_type_custom)
+              Slot: Variable Type (variable_type)
             
           </span>
         </div>
@@ -359,8 +359,9 @@
   
 
 
-<h1 id="slot-sampling-instrument-type-custom-sampling_instrument_type_custom">Slot: Sampling instrument type (custom) (sampling_instrument_type_custom)</h1>
-<p>URI: <a href="https://example.org/oae#sampling_instrument_type_custom">oae:sampling_instrument_type_custom</a></p>
+<h1 id="slot-variable-type-variable_type">Slot: Variable Type (variable_type)</h1>
+<p><em>High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.</em></p>
+<p>URI: <a href="https://example.org/oae#variable_type">oae:variable_type</a></p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -394,13 +395,13 @@
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../HPLCVariable/">HPLCVariable</a></td>
-<td>HPLC (High-Performance Liquid Chromatography) measured variable for pigment a...</td>
+<td><a href="../Variable/">Variable</a></td>
+<td>Base class for all variable types</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../DiscretePHVariable/">DiscretePHVariable</a></td>
-<td>pH measured variable with dye-based spectrophotometric measurement</td>
+<td><a href="../HPLCVariable/">HPLCVariable</a></td>
+<td>HPLC (High-Performance Liquid Chromatography) measured variable for pigment a...</td>
 <td>no</td>
 </tr>
 <tr>
@@ -409,8 +410,18 @@
 <td>no</td>
 </tr>
 <tr>
+<td><a href="../NonMeasuredVariable/">NonMeasuredVariable</a></td>
+<td>Non-measured variable for data from external sources (e</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../ContinuousPHVariable/">ContinuousPHVariable</a></td>
 <td>pH measured variable from continuous autonomous sensor</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../DiscretePHVariable/">DiscretePHVariable</a></td>
+<td>pH measured variable with dye-based spectrophotometric measurement</td>
 <td>no</td>
 </tr>
 <tr>
@@ -429,6 +440,16 @@
 <td>no</td>
 </tr>
 <tr>
+<td><a href="../CalculatedVariable/">CalculatedVariable</a></td>
+<td>Variable that is calculated or derived from other variables</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../BaseVariable/">BaseVariable</a></td>
+<td>Basic variable fields across all (including non-measured) variables</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
 <td>Variable that is directly measured in-situ using instruments</td>
 <td>no</td>
@@ -442,7 +463,12 @@
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../String/">String</a></li>
+<li>
+<p>Range: <a href="../VariableType/">VariableType</a></p>
+</li>
+<li>
+<p>Required: True</p>
+</li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -460,26 +486,30 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>oae:sampling_instrument_type_custom</td>
+<td>oae:variable_type</td>
 </tr>
 <tr>
 <td>native</td>
-<td>oae:sampling_instrument_type_custom</td>
+<td>oae:variable_type</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 
-<pre><code class="language-yaml">name: sampling_instrument_type_custom
-title: Sampling instrument type (custom)
+<pre><code class="language-yaml">name: variable_type
+description: High-level classification of the variable. Determines which standard
+  identifiers are available and, combined with genesis and sampling, which schema
+  class to use.
+title: Variable Type
 from_schema: OAEDataManagementProtocol
 rank: 1000
-alias: sampling_instrument_type_custom
-owner: ObservedPropertyVariable
+alias: variable_type
+owner: BaseVariable
 domain_of:
-- ObservedPropertyVariable
-range: string
+- BaseVariable
+range: VariableType
+required: true
 
 </code></pre>
 
