@@ -388,7 +388,8 @@
                     "type": "string"
                 },
                 "genesis": {
-                    "$ref": "#/$defs/GenesisType"
+                    "const": "calculated",
+                    "type": "string"
                 },
                 "long_name": {
                     "description": "Full descriptive name of the variable.",
@@ -462,9 +463,10 @@
                 }
             },
             "required": [
-                "genesis",
                 "calculation_method_and_parameters",
+                "genesis",
                 "units",
+                "schema_class",
                 "variable_type",
                 "dataset_variable_name",
                 "long_name"
@@ -541,19 +543,13 @@
                     "items": {
                         "$ref": "#/$defs/Dataset"
                     },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    "type": "array"
                 },
                 "experiments": {
                     "items": {
                         "$ref": "#/$defs/Experiment"
                     },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    "type": "array"
                 },
                 "metadata_builder_git_hash": {
                     "description": "Git commit hash of the metadata-builder UI",
@@ -624,7 +620,8 @@
                     "type": "string"
                 },
                 "genesis": {
-                    "$ref": "#/$defs/GenesisType"
+                    "const": "measured",
+                    "type": "string"
                 },
                 "long_name": {
                     "description": "Full descriptive name of the variable.",
@@ -676,7 +673,8 @@
                     "type": "string"
                 },
                 "sampling": {
-                    "$ref": "#/$defs/SamplingType"
+                    "const": "continuous",
+                    "type": "string"
                 },
                 "sampling_instrument_type": {
                     "$ref": "#/$defs/SamplingInstrumentType",
@@ -717,9 +715,10 @@
                     "type": "string"
                 },
                 "variable_type": {
-                    "$ref": "#/$defs/VariableType",
+                    "const": "dic",
                     "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
-                    "title": "Variable Type"
+                    "title": "Variable Type",
+                    "type": "string"
                 }
             },
             "required": [
@@ -730,13 +729,14 @@
                 "analyzing_method",
                 "observation_type",
                 "sampling",
-                "genesis",
                 "sampling_instrument_type",
                 "qc_steps_taken",
                 "uncertainty",
                 "uncertainty_definition",
                 "missing_value_indicators",
+                "genesis",
                 "units",
+                "schema_class",
                 "variable_type",
                 "dataset_variable_name",
                 "long_name"
@@ -784,7 +784,8 @@
                     "type": "string"
                 },
                 "genesis": {
-                    "$ref": "#/$defs/GenesisType"
+                    "const": "measured",
+                    "type": "string"
                 },
                 "long_name": {
                     "description": "Full descriptive name of the variable.",
@@ -836,7 +837,8 @@
                     "type": "string"
                 },
                 "sampling": {
-                    "$ref": "#/$defs/SamplingType"
+                    "const": "continuous",
+                    "type": "string"
                 },
                 "sampling_instrument_type": {
                     "$ref": "#/$defs/SamplingInstrumentType",
@@ -889,13 +891,14 @@
                 "analyzing_method",
                 "observation_type",
                 "sampling",
-                "genesis",
                 "sampling_instrument_type",
                 "qc_steps_taken",
                 "uncertainty",
                 "uncertainty_definition",
                 "missing_value_indicators",
+                "genesis",
                 "units",
+                "schema_class",
                 "variable_type",
                 "dataset_variable_name",
                 "long_name"
@@ -948,7 +951,8 @@
                     "type": "string"
                 },
                 "genesis": {
-                    "$ref": "#/$defs/GenesisType"
+                    "const": "measured",
+                    "type": "string"
                 },
                 "long_name": {
                     "description": "Full descriptive name of the variable.",
@@ -1000,7 +1004,8 @@
                     "type": "string"
                 },
                 "sampling": {
-                    "$ref": "#/$defs/SamplingType"
+                    "const": "continuous",
+                    "type": "string"
                 },
                 "sampling_instrument_type": {
                     "$ref": "#/$defs/SamplingInstrumentType",
@@ -1041,9 +1046,10 @@
                     "type": "string"
                 },
                 "variable_type": {
-                    "$ref": "#/$defs/VariableType",
+                    "const": "pH",
                     "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
-                    "title": "Variable Type"
+                    "title": "Variable Type",
+                    "type": "string"
                 }
             },
             "required": [
@@ -1053,13 +1059,14 @@
                 "analyzing_method",
                 "observation_type",
                 "sampling",
-                "genesis",
                 "sampling_instrument_type",
                 "qc_steps_taken",
                 "uncertainty",
                 "uncertainty_definition",
                 "missing_value_indicators",
+                "genesis",
                 "units",
+                "schema_class",
                 "variable_type",
                 "dataset_variable_name",
                 "long_name"
@@ -1107,7 +1114,8 @@
                     "type": "string"
                 },
                 "genesis": {
-                    "$ref": "#/$defs/GenesisType"
+                    "const": "measured",
+                    "type": "string"
                 },
                 "long_name": {
                     "description": "Full descriptive name of the variable.",
@@ -1159,7 +1167,8 @@
                     "type": "string"
                 },
                 "sampling": {
-                    "$ref": "#/$defs/SamplingType"
+                    "const": "continuous",
+                    "type": "string"
                 },
                 "sampling_instrument_type": {
                     "$ref": "#/$defs/SamplingInstrumentType",
@@ -1220,9 +1229,10 @@
                     "type": "string"
                 },
                 "variable_type": {
-                    "$ref": "#/$defs/VariableType",
+                    "const": "sediment",
                     "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
-                    "title": "Variable Type"
+                    "title": "Variable Type",
+                    "type": "string"
                 }
             },
             "required": [
@@ -1236,13 +1246,14 @@
                 "analyzing_method",
                 "observation_type",
                 "sampling",
-                "genesis",
                 "sampling_instrument_type",
                 "qc_steps_taken",
                 "uncertainty",
                 "uncertainty_definition",
                 "missing_value_indicators",
+                "genesis",
                 "units",
+                "schema_class",
                 "variable_type",
                 "dataset_variable_name",
                 "long_name"
@@ -1300,7 +1311,8 @@
                     "type": "string"
                 },
                 "genesis": {
-                    "$ref": "#/$defs/GenesisType"
+                    "const": "measured",
+                    "type": "string"
                 },
                 "long_name": {
                     "description": "Full descriptive name of the variable.",
@@ -1352,7 +1364,8 @@
                     "type": "string"
                 },
                 "sampling": {
-                    "$ref": "#/$defs/SamplingType"
+                    "const": "continuous",
+                    "type": "string"
                 },
                 "sampling_instrument_type": {
                     "$ref": "#/$defs/SamplingInstrumentType",
@@ -1393,9 +1406,10 @@
                     "type": "string"
                 },
                 "variable_type": {
-                    "$ref": "#/$defs/VariableType",
+                    "const": "ta",
                     "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
-                    "title": "Variable Type"
+                    "title": "Variable Type",
+                    "type": "string"
                 }
             },
             "required": [
@@ -1406,13 +1420,14 @@
                 "analyzing_method",
                 "observation_type",
                 "sampling",
-                "genesis",
                 "sampling_instrument_type",
                 "qc_steps_taken",
                 "uncertainty",
                 "uncertainty_definition",
                 "missing_value_indicators",
+                "genesis",
                 "units",
+                "schema_class",
                 "variable_type",
                 "dataset_variable_name",
                 "long_name"
@@ -1576,7 +1591,8 @@
                     "type": "string"
                 },
                 "genesis": {
-                    "$ref": "#/$defs/GenesisType"
+                    "const": "measured",
+                    "type": "string"
                 },
                 "headspace_volume": {
                     "description": "Volume (in mL) of headspace (water displaced in the flask plus volume of the tubing).",
@@ -1633,7 +1649,8 @@
                     "type": "string"
                 },
                 "sampling": {
-                    "$ref": "#/$defs/SamplingType"
+                    "const": "discrete",
+                    "type": "string"
                 },
                 "sampling_instrument_type": {
                     "$ref": "#/$defs/SamplingInstrumentType",
@@ -1689,9 +1706,10 @@
                     "type": "string"
                 },
                 "variable_type": {
-                    "$ref": "#/$defs/VariableType",
+                    "const": "co2",
                     "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
-                    "title": "Variable Type"
+                    "title": "Variable Type",
+                    "type": "string"
                 },
                 "water_vapor_correction_method": {
                     "description": "How the water vapor pressure inside the equilibrator was determined.",
@@ -1708,13 +1726,14 @@
                 "analyzing_method",
                 "observation_type",
                 "sampling",
-                "genesis",
                 "sampling_instrument_type",
                 "qc_steps_taken",
                 "uncertainty",
                 "uncertainty_definition",
                 "missing_value_indicators",
+                "genesis",
                 "units",
+                "schema_class",
                 "variable_type",
                 "dataset_variable_name",
                 "long_name"
@@ -1772,7 +1791,8 @@
                     "type": "string"
                 },
                 "genesis": {
-                    "$ref": "#/$defs/GenesisType"
+                    "const": "measured",
+                    "type": "string"
                 },
                 "long_name": {
                     "description": "Full descriptive name of the variable.",
@@ -1824,7 +1844,8 @@
                     "title": "Sample preservation"
                 },
                 "sampling": {
-                    "$ref": "#/$defs/SamplingType"
+                    "const": "discrete",
+                    "type": "string"
                 },
                 "sampling_instrument_type": {
                     "$ref": "#/$defs/SamplingInstrumentType",
@@ -1865,9 +1886,10 @@
                     "type": "string"
                 },
                 "variable_type": {
-                    "$ref": "#/$defs/VariableType",
+                    "const": "dic",
                     "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
-                    "title": "Variable Type"
+                    "title": "Variable Type",
+                    "type": "string"
                 }
             },
             "required": [
@@ -1879,13 +1901,14 @@
                 "analyzing_method",
                 "observation_type",
                 "sampling",
-                "genesis",
                 "sampling_instrument_type",
                 "qc_steps_taken",
                 "uncertainty",
                 "uncertainty_definition",
                 "missing_value_indicators",
+                "genesis",
                 "units",
+                "schema_class",
                 "variable_type",
                 "dataset_variable_name",
                 "long_name"
@@ -1928,7 +1951,8 @@
                     "type": "string"
                 },
                 "genesis": {
-                    "$ref": "#/$defs/GenesisType"
+                    "const": "measured",
+                    "type": "string"
                 },
                 "long_name": {
                     "description": "Full descriptive name of the variable.",
@@ -1975,7 +1999,8 @@
                     "type": "string"
                 },
                 "sampling": {
-                    "$ref": "#/$defs/SamplingType"
+                    "const": "discrete",
+                    "type": "string"
                 },
                 "sampling_instrument_type": {
                     "$ref": "#/$defs/SamplingInstrumentType",
@@ -2027,13 +2052,14 @@
                 "analyzing_method",
                 "observation_type",
                 "sampling",
-                "genesis",
                 "sampling_instrument_type",
                 "qc_steps_taken",
                 "uncertainty",
                 "uncertainty_definition",
                 "missing_value_indicators",
+                "genesis",
                 "units",
+                "schema_class",
                 "variable_type",
                 "dataset_variable_name",
                 "long_name"
@@ -2081,7 +2107,8 @@
                     "type": "string"
                 },
                 "genesis": {
-                    "$ref": "#/$defs/GenesisType"
+                    "const": "measured",
+                    "type": "string"
                 },
                 "long_name": {
                     "description": "Full descriptive name of the variable.",
@@ -2138,7 +2165,8 @@
                     "type": "string"
                 },
                 "sampling": {
-                    "$ref": "#/$defs/SamplingType"
+                    "const": "discrete",
+                    "type": "string"
                 },
                 "sampling_instrument_type": {
                     "$ref": "#/$defs/SamplingInstrumentType",
@@ -2184,9 +2212,10 @@
                     "type": "string"
                 },
                 "variable_type": {
-                    "$ref": "#/$defs/VariableType",
+                    "const": "pH",
                     "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
-                    "title": "Variable Type"
+                    "title": "Variable Type",
+                    "type": "string"
                 }
             },
             "required": [
@@ -2197,13 +2226,14 @@
                 "analyzing_method",
                 "observation_type",
                 "sampling",
-                "genesis",
                 "sampling_instrument_type",
                 "qc_steps_taken",
                 "uncertainty",
                 "uncertainty_definition",
                 "missing_value_indicators",
+                "genesis",
                 "units",
+                "schema_class",
                 "variable_type",
                 "dataset_variable_name",
                 "long_name"
@@ -2246,7 +2276,8 @@
                     "type": "string"
                 },
                 "genesis": {
-                    "$ref": "#/$defs/GenesisType"
+                    "const": "measured",
+                    "type": "string"
                 },
                 "long_name": {
                     "description": "Full descriptive name of the variable.",
@@ -2293,7 +2324,8 @@
                     "type": "string"
                 },
                 "sampling": {
-                    "$ref": "#/$defs/SamplingType"
+                    "const": "discrete",
+                    "type": "string"
                 },
                 "sampling_instrument_type": {
                     "$ref": "#/$defs/SamplingInstrumentType",
@@ -2354,9 +2386,10 @@
                     "type": "string"
                 },
                 "variable_type": {
-                    "$ref": "#/$defs/VariableType",
+                    "const": "sediment",
                     "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
-                    "title": "Variable Type"
+                    "title": "Variable Type",
+                    "type": "string"
                 }
             },
             "required": [
@@ -2369,13 +2402,14 @@
                 "analyzing_method",
                 "observation_type",
                 "sampling",
-                "genesis",
                 "sampling_instrument_type",
                 "qc_steps_taken",
                 "uncertainty",
                 "uncertainty_definition",
                 "missing_value_indicators",
+                "genesis",
                 "units",
+                "schema_class",
                 "variable_type",
                 "dataset_variable_name",
                 "long_name"
@@ -2438,7 +2472,8 @@
                     "type": "string"
                 },
                 "genesis": {
-                    "$ref": "#/$defs/GenesisType"
+                    "const": "measured",
+                    "type": "string"
                 },
                 "long_name": {
                     "description": "Full descriptive name of the variable.",
@@ -2490,7 +2525,8 @@
                     "title": "Sample preservation"
                 },
                 "sampling": {
-                    "$ref": "#/$defs/SamplingType"
+                    "const": "discrete",
+                    "type": "string"
                 },
                 "sampling_instrument_type": {
                     "$ref": "#/$defs/SamplingInstrumentType",
@@ -2541,9 +2577,10 @@
                     "type": "string"
                 },
                 "variable_type": {
-                    "$ref": "#/$defs/VariableType",
+                    "const": "ta",
                     "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
-                    "title": "Variable Type"
+                    "title": "Variable Type",
+                    "type": "string"
                 }
             },
             "required": [
@@ -2556,13 +2593,14 @@
                 "analyzing_method",
                 "observation_type",
                 "sampling",
-                "genesis",
                 "sampling_instrument_type",
                 "qc_steps_taken",
                 "uncertainty",
                 "uncertainty_definition",
                 "missing_value_indicators",
+                "genesis",
                 "units",
+                "schema_class",
                 "variable_type",
                 "dataset_variable_name",
                 "long_name"
@@ -2748,10 +2786,7 @@
                         "type": "string"
                     },
                     "title": "Related Links",
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    "type": "array"
                 },
                 "spatial_coverage": {
                     "$ref": "#/$defs/SpatialCoverage",
@@ -2809,10 +2844,7 @@
                         "type": "string"
                     },
                     "title": "Calibration Files",
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    "type": "array"
                 },
                 "data_product_type": {
                     "$ref": "#/$defs/DataProductType",
@@ -2940,10 +2972,7 @@
                         ]
                     },
                     "title": "Variables",
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    "type": "array"
                 }
             },
             "required": [
@@ -3053,7 +3082,8 @@
                     "type": "string"
                 },
                 "genesis": {
-                    "$ref": "#/$defs/GenesisType"
+                    "const": "measured",
+                    "type": "string"
                 },
                 "hplc_lab": {
                     "description": "The name of the lab where the HPLC analysis was run (e.g., 'NASA_GSFC'",
@@ -3110,7 +3140,8 @@
                     "type": "string"
                 },
                 "sampling": {
-                    "$ref": "#/$defs/SamplingType"
+                    "const": "discrete",
+                    "type": "string"
                 },
                 "sampling_instrument_type": {
                     "$ref": "#/$defs/SamplingInstrumentType",
@@ -3151,9 +3182,10 @@
                     "type": "string"
                 },
                 "variable_type": {
-                    "$ref": "#/$defs/VariableType",
+                    "const": "hplc",
                     "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
-                    "title": "Variable Type"
+                    "title": "Variable Type",
+                    "type": "string"
                 }
             },
             "required": [
@@ -3163,13 +3195,14 @@
                 "analyzing_method",
                 "observation_type",
                 "sampling",
-                "genesis",
                 "sampling_instrument_type",
                 "qc_steps_taken",
                 "uncertainty",
                 "uncertainty_definition",
                 "missing_value_indicators",
+                "genesis",
                 "units",
+                "schema_class",
                 "variable_type",
                 "dataset_variable_name",
                 "long_name"
@@ -3279,10 +3312,7 @@
                         "$ref": "#/$defs/NamedLink"
                     },
                     "title": "Meteorological and Tidal Data",
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    "type": "array"
                 },
                 "name": {
                     "description": "Optional common name for experiment.",
@@ -3295,10 +3325,7 @@
                         "$ref": "#/$defs/Permit"
                     },
                     "title": "Permits",
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    "type": "array"
                 },
                 "project_id": {
                     "description": "The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.\nIf no Project ID has been assigned, one may be generated by combining: lead organizer surname and first initial or company, a unique date, and location.\nAny method that creates a unique ID that will link all project data is acceptable.",
@@ -3358,6 +3385,9 @@
                     "title": "Dataset variable name (raw)",
                     "type": "string"
                 },
+                "genesis": {
+                    "$ref": "#/$defs/GenesisType"
+                },
                 "long_name": {
                     "description": "Full descriptive name of the variable.",
                     "title": "Variable full name",
@@ -3400,7 +3430,9 @@
                 }
             },
             "required": [
+                "genesis",
                 "units",
+                "schema_class",
                 "variable_type",
                 "dataset_variable_name",
                 "long_name"
@@ -3577,10 +3609,7 @@
                         "$ref": "#/$defs/NamedLink"
                     },
                     "title": "Meteorological and Tidal Data",
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    "type": "array"
                 },
                 "name": {
                     "description": "Optional common name for experiment.",
@@ -3593,10 +3622,7 @@
                         "$ref": "#/$defs/Permit"
                     },
                     "title": "Permits",
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    "type": "array"
                 },
                 "project_id": {
                     "description": "The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.\nIf no Project ID has been assigned, one may be generated by combining: lead organizer surname and first initial or company, a unique date, and location.\nAny method that creates a unique ID that will link all project data is acceptable.",
@@ -3839,10 +3865,7 @@
                         "$ref": "#/$defs/NamedLink"
                     },
                     "title": "Meteorological and Tidal Data",
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    "type": "array"
                 },
                 "name": {
                     "description": "Optional common name for experiment.",
@@ -3855,10 +3878,7 @@
                         "$ref": "#/$defs/Permit"
                     },
                     "title": "Permits",
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    "type": "array"
                 },
                 "project_id": {
                     "description": "The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.\nIf no Project ID has been assigned, one may be generated by combining: lead organizer surname and first initial or company, a unique date, and location.\nAny method that creates a unique ID that will link all project data is acceptable.",
@@ -4000,7 +4020,8 @@
                     "type": "string"
                 },
                 "genesis": {
-                    "$ref": "#/$defs/GenesisType"
+                    "const": "measured",
+                    "type": "string"
                 },
                 "long_name": {
                     "description": "Full descriptive name of the variable.",
@@ -4099,13 +4120,14 @@
                 "analyzing_method",
                 "observation_type",
                 "sampling",
-                "genesis",
                 "sampling_instrument_type",
                 "qc_steps_taken",
                 "uncertainty",
                 "uncertainty_definition",
                 "missing_value_indicators",
+                "genesis",
                 "units",
+                "schema_class",
                 "variable_type",
                 "dataset_variable_name",
                 "long_name"
@@ -4155,10 +4177,7 @@
                         "$ref": "#/$defs/ModelGrid"
                     },
                     "title": "Grid Details",
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    "type": "array"
                 },
                 "input_details": {
                     "$ref": "#/$defs/ModelInputDetails",
@@ -4171,10 +4190,7 @@
                         "$ref": "#/$defs/ModelComponent"
                     },
                     "title": "Model Components",
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    "type": "array"
                 },
                 "model_configuration": {
                     "description": "Links to model configuration files or documentation.",
@@ -4182,10 +4198,7 @@
                         "type": "string"
                     },
                     "title": "Model Configuration",
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    "type": "array"
                 },
                 "name": {
                     "description": "Optional common name for experiment.",
@@ -4270,10 +4283,7 @@
                         "type": "string"
                     },
                     "title": "References",
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    "type": "array"
                 },
                 "version": {
                     "description": "Release version of the model component.",
@@ -4394,10 +4404,7 @@
                         "$ref": "#/$defs/NamedLink"
                     },
                     "title": "Atmospheric Forcing",
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    "type": "array"
                 },
                 "bathymetry": {
                     "description": "Bathymetry data source(s).",
@@ -4405,10 +4412,7 @@
                         "$ref": "#/$defs/NamedLink"
                     },
                     "title": "Bathymetry",
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    "type": "array"
                 },
                 "boundary_conditions": {
                     "description": "Boundary condition data source(s).",
@@ -4416,10 +4420,7 @@
                         "$ref": "#/$defs/NamedLink"
                     },
                     "title": "Boundary Conditions",
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    "type": "array"
                 },
                 "initial_conditions": {
                     "description": "Initial condition data source(s).",
@@ -4427,10 +4428,7 @@
                         "$ref": "#/$defs/NamedLink"
                     },
                     "title": "Initial Conditions",
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    "type": "array"
                 },
                 "processing_code": {
                     "description": "If applicable, link to any code for processing of raw forcing and input data listed in the fields above.",
@@ -4438,10 +4436,7 @@
                         "$ref": "#/$defs/NamedLink"
                     },
                     "title": "Processing code",
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    "type": "array"
                 },
                 "processing_of_input_data": {
                     "description": "Narrative description of any processing applied to input data before use in the model.",
@@ -4454,10 +4449,7 @@
                         "$ref": "#/$defs/NamedLink"
                     },
                     "title": "River/Sediment Flux Details",
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    "type": "array"
                 },
                 "tidal_forcing": {
                     "description": "Tidal forcing data source(s).",
@@ -4465,10 +4457,7 @@
                         "$ref": "#/$defs/NamedLink"
                     },
                     "title": "Tidal Forcing",
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    "type": "array"
                 }
             },
             "title": "ModelInputDetails",
@@ -4557,10 +4546,7 @@
                         "$ref": "#/$defs/ModelOutputVariable"
                     },
                     "title": "Key Model Output Variables",
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    "type": "array"
                 },
                 "name": {
                     "description": "A brief descriptive sentence that summarizes the content of a dataset. Here is one example:\n\"Dissolved inorganic carbon, total alkalinity, pH, temperature, salinity and other variables collected from profile and discrete sample observations using CTD, Niskin bottle, and other instruments from R/V Wecoma in the U.S. West Coast California Current System during the 2011 West Coast Ocean Acidification Cruise (WCOA2011) from 2011-08-12 to 2011-08-30\"",
@@ -4721,12 +4707,14 @@
                     "type": "string"
                 },
                 "variable_type": {
-                    "$ref": "#/$defs/VariableType",
+                    "const": "non_measured",
                     "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
-                    "title": "Variable Type"
+                    "title": "Variable Type",
+                    "type": "string"
                 }
             },
             "required": [
+                "schema_class",
                 "variable_type",
                 "dataset_variable_name",
                 "long_name"
@@ -5121,10 +5109,7 @@
                         "$ref": "#/$defs/Experiment"
                     },
                     "title": "Related Experiments",
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    "type": "array"
                 },
                 "funding": {
                     "description": "Include the name of the funder, funder country, project title, project ID, and the project start and end dates. If there is no funding source (e.g., in the case of commercial projects), leave this field empty.",
@@ -5132,10 +5117,7 @@
                         "$ref": "#/$defs/MonetaryGrant"
                     },
                     "title": "Funding Info",
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    "type": "array"
                 },
                 "mcdr_pathway": {
                     "$ref": "#/$defs/MCDRPathway",
@@ -5153,10 +5135,7 @@
                         "$ref": "#/$defs/ExternalProject"
                     },
                     "title": "Previous or Ongoing Co-located Research",
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    "type": "array"
                 },
                 "project_id": {
                     "description": "The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.\nIf no Project ID has been assigned, one may be generated by combining: lead organizer surname and first initial or company, a unique date, and location.\nAny method that creates a unique ID that will link all project data is acceptable.",
@@ -5182,10 +5161,7 @@
                         "$ref": "#/$defs/SeaNames"
                     },
                     "title": "Sea Names",
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    "type": "array"
                 },
                 "social_context_site_description": {
                     "description": "Details may include:\n  - Commercial, recreational, ecological, and cultural uses of study site\n  - Industrial site history\n  - Demographics of site area\n  - Notable events that may impact local sentiment to mCDR (for example: site had significant toxic spill in past decade, local positive support for offshore wind farming, frequent HAB site) -Ecologically protected species, economically significant operations in the marine environment\n  - In study areas with nearby state or federal jurisdiction borders, potential conflicts with other countries or permits from foreign governments should be described.\n  - Links to relevant social science surveys, engaged community groups, etc.",
@@ -5583,10 +5559,7 @@
                         "$ref": "#/$defs/NamedLink"
                     },
                     "title": "Meteorological and Tidal Data",
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    "type": "array"
                 },
                 "name": {
                     "description": "Optional common name for experiment.",
@@ -5599,10 +5572,7 @@
                         "$ref": "#/$defs/Permit"
                     },
                     "title": "Permits",
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    "type": "array"
                 },
                 "project_id": {
                     "description": "The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.\nIf no Project ID has been assigned, one may be generated by combining: lead organizer surname and first initial or company, a unique date, and location.\nAny method that creates a unique ID that will link all project data is acceptable.",
@@ -5771,19 +5741,13 @@
             "items": {
                 "$ref": "#/$defs/Dataset"
             },
-            "type": [
-                "array",
-                "null"
-            ]
+            "type": "array"
         },
         "experiments": {
             "items": {
                 "$ref": "#/$defs/Experiment"
             },
-            "type": [
-                "array",
-                "null"
-            ]
+            "type": "array"
         },
         "metadata_builder_git_hash": {
             "description": "Git commit hash of the metadata-builder UI",
