@@ -266,13 +266,6 @@
 
       DiscreteMeasuredVariable : genesis
 
-
-
-
-    DiscreteMeasuredVariable --&gt; "1" GenesisType : genesis
-    click GenesisType href "../GenesisType"
-
-
       DiscreteMeasuredVariable : long_name
 
       DiscreteMeasuredVariable : measurement_researcher
@@ -313,13 +306,6 @@
       DiscreteMeasuredVariable : qc_steps_taken
 
       DiscreteMeasuredVariable : sampling
-
-
-
-
-    DiscreteMeasuredVariable --&gt; "1" SamplingType : sampling
-    click SamplingType href "../SamplingType"
-
 
       DiscreteMeasuredVariable : sampling_instrument_type
 
@@ -426,13 +412,7 @@
 </tr>
 <tr>
 <td><a href="../sampling/">sampling</a></td>
-<td>1 <br/> <a href="../SamplingType/">SamplingType</a></td>
-<td></td>
-<td><a href="../MeasuredVariable/">MeasuredVariable</a></td>
-</tr>
-<tr>
-<td><a href="../genesis/">genesis</a></td>
-<td>1 <br/> <a href="../GenesisType/">GenesisType</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
 <td></td>
 <td><a href="../MeasuredVariable/">MeasuredVariable</a></td>
 </tr>
@@ -485,6 +465,12 @@
 <td><a href="../QCFields/">QCFields</a></td>
 </tr>
 <tr>
+<td><a href="../genesis/">genesis</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td></td>
+<td><a href="../InSituVariable/">InSituVariable</a></td>
+</tr>
+<tr>
 <td><a href="../dataset_variable_name_qc_flag/">dataset_variable_name_qc_flag</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>If applicable, the column header name used for the quality control flag corre...</td>
@@ -522,7 +508,7 @@
 </tr>
 <tr>
 <td><a href="../schema_class/">schema_class</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
 <td>The schema class name for this variable (e</td>
 <td><a href="../Variable/">Variable</a></td>
 </tr>
@@ -585,6 +571,11 @@ description: Analyzing instrument information fields, only applied to discretely
   variables. The instrument type can be narrowed in subclasses using slot_usage.
 from_schema: OAEDataManagementProtocol
 is_a: MeasuredVariable
+slot_usage:
+  sampling:
+    name: sampling
+    range: string
+    equals_string: discrete
 
 </code></pre>
 </details>
@@ -595,6 +586,11 @@ description: Analyzing instrument information fields, only applied to discretely
   variables. The instrument type can be narrowed in subclasses using slot_usage.
 from_schema: OAEDataManagementProtocol
 is_a: MeasuredVariable
+slot_usage:
+  sampling:
+    name: sampling
+    range: string
+    equals_string: discrete
 attributes:
   analyzing_instrument:
     name: analyzing_instrument
@@ -665,19 +661,9 @@ attributes:
     owner: DiscreteMeasuredVariable
     domain_of:
     - MeasuredVariable
-    range: SamplingType
+    range: string
     required: true
-  genesis:
-    name: genesis
-    from_schema: Variable
-    rank: 1000
-    alias: genesis
-    owner: DiscreteMeasuredVariable
-    domain_of:
-    - MeasuredVariable
-    - CalculatedVariable
-    range: GenesisType
-    required: true
+    equals_string: discrete
   sampling_instrument_type:
     name: sampling_instrument_type
     title: Sampling instrument type
@@ -780,6 +766,17 @@ attributes:
     domain_of:
     - QCFields
     range: string
+  genesis:
+    name: genesis
+    from_schema: Variable
+    rank: 1000
+    alias: genesis
+    owner: DiscreteMeasuredVariable
+    domain_of:
+    - InSituVariable
+    range: string
+    required: true
+    equals_string: measured
   dataset_variable_name_qc_flag:
     name: dataset_variable_name_qc_flag
     description: If applicable, the column header name used for the quality control
@@ -861,6 +858,7 @@ attributes:
     domain_of:
     - Variable
     range: string
+    required: true
   variable_type:
     name: variable_type
     description: High-level classification of the variable. Determines which standard

@@ -262,13 +262,6 @@
 
       DiscretePHVariable : genesis
 
-
-
-
-    DiscretePHVariable --&gt; "1" GenesisType : genesis
-    click GenesisType href "../GenesisType"
-
-
       DiscretePHVariable : long_name
 
       DiscretePHVariable : measurement_researcher
@@ -314,13 +307,6 @@
 
       DiscretePHVariable : sampling
 
-
-
-
-    DiscretePHVariable --&gt; "1" SamplingType : sampling
-    click SamplingType href "../SamplingType"
-
-
       DiscretePHVariable : sampling_instrument_type
 
 
@@ -354,13 +340,6 @@
       DiscretePHVariable : units
 
       DiscretePHVariable : variable_type
-
-
-
-
-    DiscretePHVariable --&gt; "1" VariableType : variable_type
-    click VariableType href "../VariableType"
-
 
 
 </div>
@@ -447,13 +426,7 @@
 </tr>
 <tr>
 <td><a href="../sampling/">sampling</a></td>
-<td>1 <br/> <a href="../SamplingType/">SamplingType</a></td>
-<td></td>
-<td><a href="../MeasuredVariable/">MeasuredVariable</a></td>
-</tr>
-<tr>
-<td><a href="../genesis/">genesis</a></td>
-<td>1 <br/> <a href="../GenesisType/">GenesisType</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
 <td></td>
 <td><a href="../MeasuredVariable/">MeasuredVariable</a></td>
 </tr>
@@ -506,6 +479,12 @@
 <td><a href="../QCFields/">QCFields</a></td>
 </tr>
 <tr>
+<td><a href="../genesis/">genesis</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td></td>
+<td><a href="../InSituVariable/">InSituVariable</a></td>
+</tr>
+<tr>
 <td><a href="../dataset_variable_name_qc_flag/">dataset_variable_name_qc_flag</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>If applicable, the column header name used for the quality control flag corre...</td>
@@ -543,13 +522,13 @@
 </tr>
 <tr>
 <td><a href="../schema_class/">schema_class</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
 <td>The schema class name for this variable (e</td>
 <td><a href="../Variable/">Variable</a></td>
 </tr>
 <tr>
 <td><a href="../variable_type/">variable_type</a></td>
-<td>1 <br/> <a href="../VariableType/">VariableType</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
 <td>High-level classification of the variable</td>
 <td><a href="../Variable/">Variable</a></td>
 </tr>
@@ -609,6 +588,10 @@ is_a: DiscreteMeasuredVariable
 mixins:
 - MeasuredPHFields
 slot_usage:
+  variable_type:
+    name: variable_type
+    range: string
+    equals_string: pH
   analyzing_instrument:
     name: analyzing_instrument
     description: pH instrument with dye-based calibration used for measurements.
@@ -659,6 +642,10 @@ is_a: DiscreteMeasuredVariable
 mixins:
 - MeasuredPHFields
 slot_usage:
+  variable_type:
+    name: variable_type
+    range: string
+    equals_string: pH
   analyzing_instrument:
     name: analyzing_instrument
     description: pH instrument with dye-based calibration used for measurements.
@@ -791,19 +778,9 @@ attributes:
     owner: DiscretePHVariable
     domain_of:
     - MeasuredVariable
-    range: SamplingType
+    range: string
     required: true
-  genesis:
-    name: genesis
-    from_schema: Variable
-    rank: 1000
-    alias: genesis
-    owner: DiscretePHVariable
-    domain_of:
-    - MeasuredVariable
-    - CalculatedVariable
-    range: GenesisType
-    required: true
+    equals_string: discrete
   sampling_instrument_type:
     name: sampling_instrument_type
     title: Sampling instrument type
@@ -906,6 +883,17 @@ attributes:
     domain_of:
     - QCFields
     range: string
+  genesis:
+    name: genesis
+    from_schema: Variable
+    rank: 1000
+    alias: genesis
+    owner: DiscretePHVariable
+    domain_of:
+    - InSituVariable
+    range: string
+    required: true
+    equals_string: measured
   dataset_variable_name_qc_flag:
     name: dataset_variable_name_qc_flag
     description: If applicable, the column header name used for the quality control
@@ -987,6 +975,7 @@ attributes:
     domain_of:
     - Variable
     range: string
+    required: true
   variable_type:
     name: variable_type
     description: High-level classification of the variable. Determines which standard
@@ -999,8 +988,9 @@ attributes:
     owner: DiscretePHVariable
     domain_of:
     - Variable
-    range: VariableType
+    range: string
     required: true
+    equals_string: pH
   standard_identifier:
     name: standard_identifier
     from_schema: Variable

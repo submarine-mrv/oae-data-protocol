@@ -250,13 +250,6 @@
       NonMeasuredVariable : variable_type
 
 
-
-
-    NonMeasuredVariable --&gt; "1" VariableType : variable_type
-    click VariableType href "../VariableType"
-
-
-
 </div>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
@@ -284,13 +277,13 @@
 </tr>
 <tr>
 <td><a href="../schema_class/">schema_class</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
 <td>The schema class name for this variable (e</td>
 <td><a href="../Variable/">Variable</a></td>
 </tr>
 <tr>
 <td><a href="../variable_type/">variable_type</a></td>
-<td>1 <br/> <a href="../VariableType/">VariableType</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
 <td>High-level classification of the variable</td>
 <td><a href="../Variable/">Variable</a></td>
 </tr>
@@ -348,6 +341,11 @@ description: Non-measured variable for data from external sources (e.g., satelli
   included in the dataset.
 from_schema: OAEDataManagementProtocol
 is_a: Variable
+slot_usage:
+  variable_type:
+    name: variable_type
+    range: string
+    equals_string: non_measured
 
 </code></pre>
 </details>
@@ -359,6 +357,11 @@ description: Non-measured variable for data from external sources (e.g., satelli
   included in the dataset.
 from_schema: OAEDataManagementProtocol
 is_a: Variable
+slot_usage:
+  variable_type:
+    name: variable_type
+    range: string
+    equals_string: non_measured
 attributes:
   units:
     name: units
@@ -383,6 +386,7 @@ attributes:
     domain_of:
     - Variable
     range: string
+    required: true
   variable_type:
     name: variable_type
     description: High-level classification of the variable. Determines which standard
@@ -395,8 +399,9 @@ attributes:
     owner: NonMeasuredVariable
     domain_of:
     - Variable
-    range: VariableType
+    range: string
     required: true
+    equals_string: non_measured
   standard_identifier:
     name: standard_identifier
     from_schema: Variable

@@ -242,13 +242,6 @@
 
       CalculatedVariable : genesis
 
-
-
-
-    CalculatedVariable --&gt; "1" GenesisType : genesis
-    click GenesisType href "../GenesisType"
-
-
       CalculatedVariable : long_name
 
       CalculatedVariable : measurement_researcher
@@ -329,12 +322,6 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../genesis/">genesis</a></td>
-<td>1 <br/> <a href="../GenesisType/">GenesisType</a></td>
-<td></td>
-<td>direct</td>
-</tr>
-<tr>
 <td><a href="../calculation_method_and_parameters/">calculation_method_and_parameters</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>Information about how the variable was calculated and the parameters used in ...</td>
@@ -377,6 +364,12 @@
 <td><a href="../QCFields/">QCFields</a></td>
 </tr>
 <tr>
+<td><a href="../genesis/">genesis</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td></td>
+<td><a href="../InSituVariable/">InSituVariable</a></td>
+</tr>
+<tr>
 <td><a href="../dataset_variable_name_qc_flag/">dataset_variable_name_qc_flag</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>If applicable, the column header name used for the quality control flag corre...</td>
@@ -414,7 +407,7 @@
 </tr>
 <tr>
 <td><a href="../schema_class/">schema_class</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
 <td>The schema class name for this variable (e</td>
 <td><a href="../Variable/">Variable</a></td>
 </tr>
@@ -478,15 +471,12 @@ from_schema: OAEDataManagementProtocol
 is_a: InSituVariable
 mixins:
 - QCFields
-attributes:
+slot_usage:
   genesis:
     name: genesis
-    from_schema: Variable
-    domain_of:
-    - MeasuredVariable
-    - CalculatedVariable
-    range: GenesisType
-    required: true
+    range: string
+    equals_string: calculated
+attributes:
   calculation_method_and_parameters:
     name: calculation_method_and_parameters
     description: 'Information about how the variable was calculated and the parameters
@@ -512,17 +502,12 @@ from_schema: OAEDataManagementProtocol
 is_a: InSituVariable
 mixins:
 - QCFields
-attributes:
+slot_usage:
   genesis:
     name: genesis
-    from_schema: Variable
-    alias: genesis
-    owner: CalculatedVariable
-    domain_of:
-    - MeasuredVariable
-    - CalculatedVariable
-    range: GenesisType
-    required: true
+    range: string
+    equals_string: calculated
+attributes:
   calculation_method_and_parameters:
     name: calculation_method_and_parameters
     description: 'Information about how the variable was calculated and the parameters
@@ -616,6 +601,17 @@ attributes:
     domain_of:
     - QCFields
     range: string
+  genesis:
+    name: genesis
+    from_schema: Variable
+    rank: 1000
+    alias: genesis
+    owner: CalculatedVariable
+    domain_of:
+    - InSituVariable
+    range: string
+    required: true
+    equals_string: calculated
   dataset_variable_name_qc_flag:
     name: dataset_variable_name_qc_flag
     description: If applicable, the column header name used for the quality control
@@ -697,6 +693,7 @@ attributes:
     domain_of:
     - Variable
     range: string
+    required: true
   variable_type:
     name: variable_type
     description: High-level classification of the variable. Determines which standard

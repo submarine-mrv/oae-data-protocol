@@ -273,13 +273,6 @@
 
       DiscreteDICVariable : genesis
 
-
-
-
-    DiscreteDICVariable --&gt; "1" GenesisType : genesis
-    click GenesisType href "../GenesisType"
-
-
       DiscreteDICVariable : long_name
 
       DiscreteDICVariable : measurement_researcher
@@ -330,13 +323,6 @@
 
       DiscreteDICVariable : sampling
 
-
-
-
-    DiscreteDICVariable --&gt; "1" SamplingType : sampling
-    click SamplingType href "../SamplingType"
-
-
       DiscreteDICVariable : sampling_instrument_type
 
 
@@ -368,13 +354,6 @@
       DiscreteDICVariable : units
 
       DiscreteDICVariable : variable_type
-
-
-
-
-    DiscreteDICVariable --&gt; "1" VariableType : variable_type
-    click VariableType href "../VariableType"
-
 
 
 </div>
@@ -461,13 +440,7 @@
 </tr>
 <tr>
 <td><a href="../sampling/">sampling</a></td>
-<td>1 <br/> <a href="../SamplingType/">SamplingType</a></td>
-<td></td>
-<td><a href="../MeasuredVariable/">MeasuredVariable</a></td>
-</tr>
-<tr>
-<td><a href="../genesis/">genesis</a></td>
-<td>1 <br/> <a href="../GenesisType/">GenesisType</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
 <td></td>
 <td><a href="../MeasuredVariable/">MeasuredVariable</a></td>
 </tr>
@@ -520,6 +493,12 @@
 <td><a href="../QCFields/">QCFields</a></td>
 </tr>
 <tr>
+<td><a href="../genesis/">genesis</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td></td>
+<td><a href="../InSituVariable/">InSituVariable</a></td>
+</tr>
+<tr>
 <td><a href="../dataset_variable_name_qc_flag/">dataset_variable_name_qc_flag</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>If applicable, the column header name used for the quality control flag corre...</td>
@@ -557,13 +536,13 @@
 </tr>
 <tr>
 <td><a href="../schema_class/">schema_class</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
 <td>The schema class name for this variable (e</td>
 <td><a href="../Variable/">Variable</a></td>
 </tr>
 <tr>
 <td><a href="../variable_type/">variable_type</a></td>
-<td>1 <br/> <a href="../VariableType/">VariableType</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
 <td>High-level classification of the variable</td>
 <td><a href="../Variable/">Variable</a></td>
 </tr>
@@ -627,6 +606,10 @@ slots:
 - sample_preservation
 - blank_correction
 slot_usage:
+  variable_type:
+    name: variable_type
+    range: string
+    equals_string: dic
   analyzing_instrument:
     name: analyzing_instrument
     description: CRM-calibrated instrument used to analyze DIC samples.
@@ -645,6 +628,10 @@ is_a: DiscreteMeasuredVariable
 mixins:
 - MeasuredDICFields
 slot_usage:
+  variable_type:
+    name: variable_type
+    range: string
+    equals_string: dic
   analyzing_instrument:
     name: analyzing_instrument
     description: CRM-calibrated instrument used to analyze DIC samples.
@@ -780,19 +767,9 @@ attributes:
     owner: DiscreteDICVariable
     domain_of:
     - MeasuredVariable
-    range: SamplingType
+    range: string
     required: true
-  genesis:
-    name: genesis
-    from_schema: Variable
-    rank: 1000
-    alias: genesis
-    owner: DiscreteDICVariable
-    domain_of:
-    - MeasuredVariable
-    - CalculatedVariable
-    range: GenesisType
-    required: true
+    equals_string: discrete
   sampling_instrument_type:
     name: sampling_instrument_type
     title: Sampling instrument type
@@ -895,6 +872,17 @@ attributes:
     domain_of:
     - QCFields
     range: string
+  genesis:
+    name: genesis
+    from_schema: Variable
+    rank: 1000
+    alias: genesis
+    owner: DiscreteDICVariable
+    domain_of:
+    - InSituVariable
+    range: string
+    required: true
+    equals_string: measured
   dataset_variable_name_qc_flag:
     name: dataset_variable_name_qc_flag
     description: If applicable, the column header name used for the quality control
@@ -976,6 +964,7 @@ attributes:
     domain_of:
     - Variable
     range: string
+    required: true
   variable_type:
     name: variable_type
     description: High-level classification of the variable. Determines which standard
@@ -988,8 +977,9 @@ attributes:
     owner: DiscreteDICVariable
     domain_of:
     - Variable
-    range: VariableType
+    range: string
     required: true
+    equals_string: dic
   standard_identifier:
     name: standard_identifier
     from_schema: Variable

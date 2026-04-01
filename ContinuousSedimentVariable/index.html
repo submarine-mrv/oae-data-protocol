@@ -255,13 +255,6 @@
 
       ContinuousSedimentVariable : genesis
 
-
-
-
-    ContinuousSedimentVariable --&gt; "1" GenesisType : genesis
-    click GenesisType href "../GenesisType"
-
-
       ContinuousSedimentVariable : long_name
 
       ContinuousSedimentVariable : measurement_researcher
@@ -305,13 +298,6 @@
 
       ContinuousSedimentVariable : sampling
 
-
-
-
-    ContinuousSedimentVariable --&gt; "1" SamplingType : sampling
-    click SamplingType href "../SamplingType"
-
-
       ContinuousSedimentVariable : sampling_instrument_type
 
 
@@ -351,13 +337,6 @@
       ContinuousSedimentVariable : units
 
       ContinuousSedimentVariable : variable_type
-
-
-
-
-    ContinuousSedimentVariable --&gt; "1" VariableType : variable_type
-    click VariableType href "../VariableType"
-
 
 
 </div>
@@ -456,13 +435,7 @@
 </tr>
 <tr>
 <td><a href="../sampling/">sampling</a></td>
-<td>1 <br/> <a href="../SamplingType/">SamplingType</a></td>
-<td></td>
-<td><a href="../MeasuredVariable/">MeasuredVariable</a></td>
-</tr>
-<tr>
-<td><a href="../genesis/">genesis</a></td>
-<td>1 <br/> <a href="../GenesisType/">GenesisType</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
 <td></td>
 <td><a href="../MeasuredVariable/">MeasuredVariable</a></td>
 </tr>
@@ -515,6 +488,12 @@
 <td><a href="../QCFields/">QCFields</a></td>
 </tr>
 <tr>
+<td><a href="../genesis/">genesis</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td></td>
+<td><a href="../InSituVariable/">InSituVariable</a></td>
+</tr>
+<tr>
 <td><a href="../dataset_variable_name_qc_flag/">dataset_variable_name_qc_flag</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>If applicable, the column header name used for the quality control flag corre...</td>
@@ -552,13 +531,13 @@
 </tr>
 <tr>
 <td><a href="../schema_class/">schema_class</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
 <td>The schema class name for this variable (e</td>
 <td><a href="../Variable/">Variable</a></td>
 </tr>
 <tr>
 <td><a href="../variable_type/">variable_type</a></td>
-<td>1 <br/> <a href="../VariableType/">VariableType</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
 <td>High-level classification of the variable</td>
 <td><a href="../Variable/">Variable</a></td>
 </tr>
@@ -616,6 +595,11 @@ from_schema: OAEDataManagementProtocol
 is_a: ContinuousMeasuredVariable
 mixins:
 - MeasuredSedimentFields
+slot_usage:
+  variable_type:
+    name: variable_type
+    range: string
+    equals_string: sediment
 
 </code></pre>
 </details>
@@ -627,6 +611,11 @@ from_schema: OAEDataManagementProtocol
 is_a: ContinuousMeasuredVariable
 mixins:
 - MeasuredSedimentFields
+slot_usage:
+  variable_type:
+    name: variable_type
+    range: string
+    equals_string: sediment
 attributes:
   sediment_type:
     name: sediment_type
@@ -771,19 +760,9 @@ attributes:
     owner: ContinuousSedimentVariable
     domain_of:
     - MeasuredVariable
-    range: SamplingType
+    range: string
     required: true
-  genesis:
-    name: genesis
-    from_schema: Variable
-    rank: 1000
-    alias: genesis
-    owner: ContinuousSedimentVariable
-    domain_of:
-    - MeasuredVariable
-    - CalculatedVariable
-    range: GenesisType
-    required: true
+    equals_string: continuous
   sampling_instrument_type:
     name: sampling_instrument_type
     title: Sampling instrument type
@@ -886,6 +865,17 @@ attributes:
     domain_of:
     - QCFields
     range: string
+  genesis:
+    name: genesis
+    from_schema: Variable
+    rank: 1000
+    alias: genesis
+    owner: ContinuousSedimentVariable
+    domain_of:
+    - InSituVariable
+    range: string
+    required: true
+    equals_string: measured
   dataset_variable_name_qc_flag:
     name: dataset_variable_name_qc_flag
     description: If applicable, the column header name used for the quality control
@@ -967,6 +957,7 @@ attributes:
     domain_of:
     - Variable
     range: string
+    required: true
   variable_type:
     name: variable_type
     description: High-level classification of the variable. Determines which standard
@@ -979,8 +970,9 @@ attributes:
     owner: ContinuousSedimentVariable
     domain_of:
     - Variable
-    range: VariableType
+    range: string
     required: true
+    equals_string: sediment
   standard_identifier:
     name: standard_identifier
     from_schema: Variable
