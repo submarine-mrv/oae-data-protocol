@@ -234,6 +234,8 @@
 
       NonMeasuredVariable : long_name
 
+      NonMeasuredVariable : schema_class
+
       NonMeasuredVariable : standard_identifier
 
 
@@ -269,6 +271,12 @@
 <td><a href="../units/">units</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Unit of measurement for this variable</td>
+<td><a href="../BaseVariable/">BaseVariable</a></td>
+</tr>
+<tr>
+<td><a href="../schema_class/">schema_class</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>The schema class name for this variable (e</td>
 <td><a href="../BaseVariable/">BaseVariable</a></td>
 </tr>
 <tr>
@@ -344,6 +352,17 @@ attributes:
     from_schema: OAEDataManagementProtocol
     rank: 1000
     alias: units
+    owner: NonMeasuredVariable
+    domain_of:
+    - BaseVariable
+    range: string
+  schema_class:
+    name: schema_class
+    description: The schema class name for this variable (e.g., "DiscretePHVariable").
+    from_schema: Variable
+    rank: 1000
+    designates_type: true
+    alias: schema_class
     owner: NonMeasuredVariable
     domain_of:
     - BaseVariable

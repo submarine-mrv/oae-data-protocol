@@ -352,6 +352,8 @@
 
       DiscreteTAVariable : sampling_method
 
+      DiscreteTAVariable : schema_class
+
       DiscreteTAVariable : standard_identifier
 
 
@@ -573,6 +575,12 @@
 <td><a href="../units/">units</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>Unit of measurement for this variable</td>
+<td><a href="../BaseVariable/">BaseVariable</a></td>
+</tr>
+<tr>
+<td><a href="../schema_class/">schema_class</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>The schema class name for this variable (e</td>
 <td><a href="../BaseVariable/">BaseVariable</a></td>
 </tr>
 <tr>
@@ -1031,6 +1039,17 @@ attributes:
     - BaseVariable
     range: string
     required: true
+  schema_class:
+    name: schema_class
+    description: The schema class name for this variable (e.g., "DiscretePHVariable").
+    from_schema: Variable
+    rank: 1000
+    designates_type: true
+    alias: schema_class
+    owner: DiscreteTAVariable
+    domain_of:
+    - BaseVariable
+    range: string
   standard_identifier:
     name: standard_identifier
     from_schema: Variable

@@ -239,6 +239,8 @@
 
       BaseVariable : long_name
 
+      BaseVariable : schema_class
+
       BaseVariable : standard_identifier
 
 
@@ -275,6 +277,12 @@
 <td><a href="../units/">units</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Unit of measurement for this variable</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../schema_class/">schema_class</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>The schema class name for this variable (e</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -332,6 +340,15 @@ abstract: true
 slots:
 - units
 attributes:
+  schema_class:
+    name: schema_class
+    description: The schema class name for this variable (e.g., "DiscretePHVariable").
+    from_schema: Variable
+    rank: 1000
+    designates_type: true
+    domain_of:
+    - BaseVariable
+    range: string
   standard_identifier:
     name: standard_identifier
     from_schema: Variable
@@ -372,6 +389,17 @@ description: Basic variable fields across all (including non-measured) variables
 from_schema: OAEDataManagementProtocol
 abstract: true
 attributes:
+  schema_class:
+    name: schema_class
+    description: The schema class name for this variable (e.g., "DiscretePHVariable").
+    from_schema: Variable
+    rank: 1000
+    designates_type: true
+    alias: schema_class
+    owner: BaseVariable
+    domain_of:
+    - BaseVariable
+    range: string
   standard_identifier:
     name: standard_identifier
     from_schema: Variable
