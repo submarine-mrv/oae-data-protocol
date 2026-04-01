@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-03-31T11:42:07
+# Generation date: 2026-03-31T23:26:20
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -1199,6 +1199,7 @@ class BaseVariable(YAMLRoot):
     class_name: ClassVar[str] = "BaseVariable"
     class_model_uri: ClassVar[URIRef] = OAE.BaseVariable
 
+    variable_type: Union[str, "VariableType"] = None
     dataset_variable_name: str = None
     long_name: str = None
     units: Optional[str] = None
@@ -1206,6 +1207,11 @@ class BaseVariable(YAMLRoot):
     standard_identifier: Optional[Union[dict, "VocabularyItemReference"]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.variable_type):
+            self.MissingRequiredField("variable_type")
+        if not isinstance(self.variable_type, VariableType):
+            self.variable_type = VariableType(self.variable_type)
+
         if self._is_empty(self.dataset_variable_name):
             self.MissingRequiredField("dataset_variable_name")
         if not isinstance(self.dataset_variable_name, str):
@@ -1258,6 +1264,7 @@ class NonMeasuredVariable(BaseVariable):
     class_name: ClassVar[str] = "NonMeasuredVariable"
     class_model_uri: ClassVar[URIRef] = OAE.NonMeasuredVariable
 
+    variable_type: Union[str, "VariableType"] = None
     dataset_variable_name: str = None
     long_name: str = None
 
@@ -1280,6 +1287,7 @@ class Variable(BaseVariable):
     class_name: ClassVar[str] = "Variable"
     class_model_uri: ClassVar[URIRef] = OAE.Variable
 
+    variable_type: Union[str, "VariableType"] = None
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
@@ -1327,6 +1335,7 @@ class ObservedPropertyVariable(Variable):
     class_name: ClassVar[str] = "ObservedPropertyVariable"
     class_model_uri: ClassVar[URIRef] = OAE.ObservedPropertyVariable
 
+    variable_type: Union[str, "VariableType"] = None
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
@@ -1431,6 +1440,7 @@ class DiscreteMeasuredVariable(ObservedPropertyVariable):
     class_name: ClassVar[str] = "DiscreteMeasuredVariable"
     class_model_uri: ClassVar[URIRef] = OAE.DiscreteMeasuredVariable
 
+    variable_type: Union[str, "VariableType"] = None
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
@@ -1464,6 +1474,7 @@ class ContinuousMeasuredVariable(ObservedPropertyVariable):
     class_name: ClassVar[str] = "ContinuousMeasuredVariable"
     class_model_uri: ClassVar[URIRef] = OAE.ContinuousMeasuredVariable
 
+    variable_type: Union[str, "VariableType"] = None
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
@@ -1506,6 +1517,7 @@ class CalculatedVariable(Variable):
     class_name: ClassVar[str] = "CalculatedVariable"
     class_model_uri: ClassVar[URIRef] = OAE.CalculatedVariable
 
+    variable_type: Union[str, "VariableType"] = None
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
@@ -1563,6 +1575,7 @@ class ContinuousPHVariable(ContinuousMeasuredVariable):
     class_name: ClassVar[str] = "ContinuousPHVariable"
     class_model_uri: ClassVar[URIRef] = OAE.ContinuousPHVariable
 
+    variable_type: Union[str, "VariableType"] = None
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
@@ -1601,6 +1614,7 @@ class DiscretePHVariable(DiscreteMeasuredVariable):
     class_name: ClassVar[str] = "DiscretePHVariable"
     class_model_uri: ClassVar[URIRef] = OAE.DiscretePHVariable
 
+    variable_type: Union[str, "VariableType"] = None
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
@@ -1658,6 +1672,7 @@ class ContinuousTAVariable(ContinuousMeasuredVariable):
     class_name: ClassVar[str] = "ContinuousTAVariable"
     class_model_uri: ClassVar[URIRef] = OAE.ContinuousTAVariable
 
+    variable_type: Union[str, "VariableType"] = None
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
@@ -1701,6 +1716,7 @@ class DiscreteTAVariable(DiscreteMeasuredVariable):
     class_name: ClassVar[str] = "DiscreteTAVariable"
     class_model_uri: ClassVar[URIRef] = OAE.DiscreteTAVariable
 
+    variable_type: Union[str, "VariableType"] = None
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
@@ -1774,6 +1790,7 @@ class ContinuousDICVariable(ContinuousMeasuredVariable):
     class_name: ClassVar[str] = "ContinuousDICVariable"
     class_model_uri: ClassVar[URIRef] = OAE.ContinuousDICVariable
 
+    variable_type: Union[str, "VariableType"] = None
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
@@ -1818,6 +1835,7 @@ class DiscreteDICVariable(DiscreteMeasuredVariable):
     class_name: ClassVar[str] = "DiscreteDICVariable"
     class_model_uri: ClassVar[URIRef] = OAE.DiscreteDICVariable
 
+    variable_type: Union[str, "VariableType"] = None
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
@@ -1877,6 +1895,7 @@ class ContinuousSedimentVariable(ContinuousMeasuredVariable):
     class_name: ClassVar[str] = "ContinuousSedimentVariable"
     class_model_uri: ClassVar[URIRef] = OAE.ContinuousSedimentVariable
 
+    variable_type: Union[str, "VariableType"] = None
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
@@ -1934,6 +1953,7 @@ class DiscreteSedimentVariable(DiscreteMeasuredVariable):
     class_name: ClassVar[str] = "DiscreteSedimentVariable"
     class_model_uri: ClassVar[URIRef] = OAE.DiscreteSedimentVariable
 
+    variable_type: Union[str, "VariableType"] = None
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
@@ -1990,6 +2010,7 @@ class DiscreteCO2Variable(DiscreteMeasuredVariable):
     class_name: ClassVar[str] = "DiscreteCO2Variable"
     class_model_uri: ClassVar[URIRef] = OAE.DiscreteCO2Variable
 
+    variable_type: Union[str, "VariableType"] = None
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
@@ -2066,6 +2087,7 @@ class HPLCVariable(DiscreteMeasuredVariable):
     class_name: ClassVar[str] = "HPLCVariable"
     class_model_uri: ClassVar[URIRef] = OAE.HPLCVariable
 
+    variable_type: Union[str, "VariableType"] = None
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
@@ -2480,7 +2502,7 @@ class FieldDataset(Dataset):
             self.calibration_files = [self.calibration_files] if self.calibration_files is not None else []
         self.calibration_files = [v if isinstance(v, str) else str(v) for v in self.calibration_files]
 
-        self._normalize_inlined_as_dict(slot_name="variables", slot_type=Variable, key_name="dataset_variable_name", keyed=False)
+        self._normalize_inlined_as_dict(slot_name="variables", slot_type=Variable, key_name="variable_type", keyed=False)
 
         super().__post_init__(**kwargs)
 
@@ -4368,6 +4390,40 @@ class SamplingType(EnumDefinitionImpl):
         name="SamplingType",
     )
 
+class VariableType(EnumDefinitionImpl):
+    """
+    High-level classification of the variable
+    """
+    pH = PermissibleValue(
+        text="pH",
+        description="pH measurement")
+    ta = PermissibleValue(
+        text="ta",
+        description="Total alkalinity")
+    dic = PermissibleValue(
+        text="dic",
+        description="Dissolved inorganic carbon")
+    co2 = PermissibleValue(
+        text="co2",
+        description="CO₂ variables (xCO₂, pCO₂, fCO₂)")
+    sediment = PermissibleValue(
+        text="sediment",
+        description="Sediment variable")
+    hplc = PermissibleValue(
+        text="hplc",
+        description="HPLC pigment analysis")
+    other = PermissibleValue(
+        text="other",
+        description="Variable not covered by specific categories")
+    non_measured = PermissibleValue(
+        text="non_measured",
+        description="Contextual data from external sources (e.g., coordinates, timestamps, identifiers)")
+
+    _defn = EnumDefinition(
+        name="VariableType",
+        description="High-level classification of the variable",
+    )
+
 class GenesisType(EnumDefinitionImpl):
 
     measured = PermissibleValue(text="measured")
@@ -4944,6 +5000,9 @@ slots.person__role = Slot(uri=OAE.role, name="person__role", curie=OAE.curie('ro
 
 slots.baseVariable__schema_class = Slot(uri=OAE.schema_class, name="baseVariable__schema_class", curie=OAE.curie('schema_class'),
                    model_uri=OAE.baseVariable__schema_class, domain=None, range=Optional[str])
+
+slots.baseVariable__variable_type = Slot(uri=OAE.variable_type, name="baseVariable__variable_type", curie=OAE.curie('variable_type'),
+                   model_uri=OAE.baseVariable__variable_type, domain=None, range=Union[str, "VariableType"])
 
 slots.baseVariable__standard_identifier = Slot(uri=OAE.standard_identifier, name="baseVariable__standard_identifier", curie=OAE.curie('standard_identifier'),
                    model_uri=OAE.baseVariable__standard_identifier, domain=None, range=Optional[Union[dict, VocabularyItemReference]])

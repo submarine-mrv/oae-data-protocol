@@ -26,6 +26,15 @@ classes:
         range: string
         description: >-
           The schema class name for this variable (e.g., "DiscretePHVariable").
+          Auto-populated by the metadata builder.
+      variable_type:
+        title: Variable Type
+        range: VariableType
+        required: true
+        description: >-
+          High-level classification of the variable. Determines which standard
+          identifiers are available and, combined with genesis and sampling,
+          which schema class to use.
       standard_identifier:
         range: VocabularyItemReference
       dataset_variable_name:
@@ -623,6 +632,25 @@ enums:
     permissible_values:
       discrete:
       continuous:
+  VariableType:
+    description: High-level classification of the variable
+    permissible_values:
+      pH:
+        description: pH measurement
+      ta:
+        description: Total alkalinity
+      dic:
+        description: Dissolved inorganic carbon
+      co2:
+        description: "CO₂ variables (xCO₂, pCO₂, fCO₂)"
+      sediment:
+        description: Sediment variable
+      hplc:
+        description: HPLC pigment analysis
+      other:
+        description: Variable not covered by specific categories
+      non_measured:
+        description: "Contextual data from external sources (e.g., coordinates, timestamps, identifiers)"
   GenesisType:
     permissible_values:
       measured:

@@ -573,6 +573,28 @@ export enum SamplingType {
     discrete = "discrete",
     continuous = "continuous",
 };
+/**
+* High-level classification of the variable
+*/
+export enum VariableType {
+    
+    /** pH measurement */
+    pH = "pH",
+    /** Total alkalinity */
+    ta = "ta",
+    /** Dissolved inorganic carbon */
+    dic = "dic",
+    /** CO₂ variables (xCO₂, pCO₂, fCO₂) */
+    co2 = "co2",
+    /** Sediment variable */
+    sediment = "sediment",
+    /** HPLC pigment analysis */
+    hplc = "hplc",
+    /** Variable not covered by specific categories */
+    other = "other",
+    /** Contextual data from external sources (e.g., coordinates, timestamps, identifiers) */
+    non_measured = "non_measured",
+};
 
 export enum GenesisType {
     
@@ -1110,6 +1132,8 @@ export interface BaseVariable {
     units?: string,
     /** The schema class name for this variable (e.g., "DiscretePHVariable"). Auto-populated by the metadata builder. */
     schema_class?: string,
+    /** High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use. */
+    variable_type: string,
     standard_identifier?: VocabularyItemReference,
     /** The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name). */
     dataset_variable_name: string,

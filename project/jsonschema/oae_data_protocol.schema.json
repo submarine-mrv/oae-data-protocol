@@ -454,12 +454,18 @@
                     "description": "Unit of measurement for this variable.",
                     "title": "Unit",
                     "type": "string"
+                },
+                "variable_type": {
+                    "$ref": "#/$defs/VariableType",
+                    "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
+                    "title": "Variable Type"
                 }
             },
             "required": [
                 "genesis",
                 "calculation_method_and_parameters",
                 "units",
+                "variable_type",
                 "dataset_variable_name",
                 "long_name"
             ],
@@ -709,6 +715,11 @@
                     "description": "Unit of measurement for this variable.",
                     "title": "Unit",
                     "type": "string"
+                },
+                "variable_type": {
+                    "$ref": "#/$defs/VariableType",
+                    "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
+                    "title": "Variable Type"
                 }
             },
             "required": [
@@ -726,6 +737,7 @@
                 "uncertainty_definition",
                 "missing_value_indicators",
                 "units",
+                "variable_type",
                 "dataset_variable_name",
                 "long_name"
             ],
@@ -863,6 +875,11 @@
                     "description": "Unit of measurement for this variable.",
                     "title": "Unit",
                     "type": "string"
+                },
+                "variable_type": {
+                    "$ref": "#/$defs/VariableType",
+                    "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
+                    "title": "Variable Type"
                 }
             },
             "required": [
@@ -879,6 +896,7 @@
                 "uncertainty_definition",
                 "missing_value_indicators",
                 "units",
+                "variable_type",
                 "dataset_variable_name",
                 "long_name"
             ],
@@ -1021,6 +1039,11 @@
                     "description": "Unit of measurement for this variable.",
                     "title": "Unit",
                     "type": "string"
+                },
+                "variable_type": {
+                    "$ref": "#/$defs/VariableType",
+                    "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
+                    "title": "Variable Type"
                 }
             },
             "required": [
@@ -1037,6 +1060,7 @@
                 "uncertainty_definition",
                 "missing_value_indicators",
                 "units",
+                "variable_type",
                 "dataset_variable_name",
                 "long_name"
             ],
@@ -1194,6 +1218,11 @@
                     "description": "Unit of measurement for this variable.",
                     "title": "Unit",
                     "type": "string"
+                },
+                "variable_type": {
+                    "$ref": "#/$defs/VariableType",
+                    "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
+                    "title": "Variable Type"
                 }
             },
             "required": [
@@ -1214,6 +1243,7 @@
                 "uncertainty_definition",
                 "missing_value_indicators",
                 "units",
+                "variable_type",
                 "dataset_variable_name",
                 "long_name"
             ],
@@ -1361,6 +1391,11 @@
                     "description": "Unit of measurement for this variable.",
                     "title": "Unit",
                     "type": "string"
+                },
+                "variable_type": {
+                    "$ref": "#/$defs/VariableType",
+                    "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
+                    "title": "Variable Type"
                 }
             },
             "required": [
@@ -1378,6 +1413,7 @@
                 "uncertainty_definition",
                 "missing_value_indicators",
                 "units",
+                "variable_type",
                 "dataset_variable_name",
                 "long_name"
             ],
@@ -1652,6 +1688,11 @@
                     "title": "Unit",
                     "type": "string"
                 },
+                "variable_type": {
+                    "$ref": "#/$defs/VariableType",
+                    "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
+                    "title": "Variable Type"
+                },
                 "water_vapor_correction_method": {
                     "description": "How the water vapor pressure inside the equilibrator was determined.",
                     "title": "Water vapor correction method",
@@ -1674,6 +1715,7 @@
                 "uncertainty_definition",
                 "missing_value_indicators",
                 "units",
+                "variable_type",
                 "dataset_variable_name",
                 "long_name"
             ],
@@ -1821,6 +1863,11 @@
                     "description": "Unit of measurement for this variable.",
                     "title": "Unit",
                     "type": "string"
+                },
+                "variable_type": {
+                    "$ref": "#/$defs/VariableType",
+                    "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
+                    "title": "Variable Type"
                 }
             },
             "required": [
@@ -1839,6 +1886,7 @@
                 "uncertainty_definition",
                 "missing_value_indicators",
                 "units",
+                "variable_type",
                 "dataset_variable_name",
                 "long_name"
             ],
@@ -1966,6 +2014,11 @@
                     "description": "Unit of measurement for this variable.",
                     "title": "Unit",
                     "type": "string"
+                },
+                "variable_type": {
+                    "$ref": "#/$defs/VariableType",
+                    "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
+                    "title": "Variable Type"
                 }
             },
             "required": [
@@ -1981,6 +2034,7 @@
                 "uncertainty_definition",
                 "missing_value_indicators",
                 "units",
+                "variable_type",
                 "dataset_variable_name",
                 "long_name"
             ],
@@ -2128,6 +2182,11 @@
                     "description": "Unit of measurement for this variable.",
                     "title": "Unit",
                     "type": "string"
+                },
+                "variable_type": {
+                    "$ref": "#/$defs/VariableType",
+                    "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
+                    "title": "Variable Type"
                 }
             },
             "required": [
@@ -2145,6 +2204,7 @@
                 "uncertainty_definition",
                 "missing_value_indicators",
                 "units",
+                "variable_type",
                 "dataset_variable_name",
                 "long_name"
             ],
@@ -2292,6 +2352,11 @@
                     "description": "Unit of measurement for this variable.",
                     "title": "Unit",
                     "type": "string"
+                },
+                "variable_type": {
+                    "$ref": "#/$defs/VariableType",
+                    "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
+                    "title": "Variable Type"
                 }
             },
             "required": [
@@ -2311,6 +2376,7 @@
                 "uncertainty_definition",
                 "missing_value_indicators",
                 "units",
+                "variable_type",
                 "dataset_variable_name",
                 "long_name"
             ],
@@ -2473,6 +2539,11 @@
                     "description": "Unit of measurement for this variable.",
                     "title": "Unit",
                     "type": "string"
+                },
+                "variable_type": {
+                    "$ref": "#/$defs/VariableType",
+                    "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
+                    "title": "Variable Type"
                 }
             },
             "required": [
@@ -2492,6 +2563,7 @@
                 "uncertainty_definition",
                 "missing_value_indicators",
                 "units",
+                "variable_type",
                 "dataset_variable_name",
                 "long_name"
             ],
@@ -3074,6 +3146,11 @@
                     "description": "Unit of measurement for this variable.",
                     "title": "Unit",
                     "type": "string"
+                },
+                "variable_type": {
+                    "$ref": "#/$defs/VariableType",
+                    "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
+                    "title": "Variable Type"
                 }
             },
             "required": [
@@ -3090,6 +3167,7 @@
                 "uncertainty_definition",
                 "missing_value_indicators",
                 "units",
+                "variable_type",
                 "dataset_variable_name",
                 "long_name"
             ],
@@ -4421,9 +4499,15 @@
                     "description": "Unit of measurement for this variable.",
                     "title": "Unit",
                     "type": "string"
+                },
+                "variable_type": {
+                    "$ref": "#/$defs/VariableType",
+                    "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
+                    "title": "Variable Type"
                 }
             },
             "required": [
+                "variable_type",
                 "dataset_variable_name",
                 "long_name"
             ],
@@ -4566,6 +4650,11 @@
                     "description": "Unit of measurement for this variable.",
                     "title": "Unit",
                     "type": "string"
+                },
+                "variable_type": {
+                    "$ref": "#/$defs/VariableType",
+                    "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
+                    "title": "Variable Type"
                 }
             },
             "required": [
@@ -4581,6 +4670,7 @@
                 "uncertainty_definition",
                 "missing_value_indicators",
                 "units",
+                "variable_type",
                 "dataset_variable_name",
                 "long_name"
             ],
@@ -5581,15 +5671,36 @@
                     "description": "Unit of measurement for this variable.",
                     "title": "Unit",
                     "type": "string"
+                },
+                "variable_type": {
+                    "$ref": "#/$defs/VariableType",
+                    "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
+                    "title": "Variable Type"
                 }
             },
             "required": [
                 "units",
+                "variable_type",
                 "dataset_variable_name",
                 "long_name"
             ],
             "title": "Variable",
             "type": "object"
+        },
+        "VariableType": {
+            "description": "High-level classification of the variable",
+            "enum": [
+                "pH",
+                "ta",
+                "dic",
+                "co2",
+                "sediment",
+                "hplc",
+                "other",
+                "non_measured"
+            ],
+            "title": "VariableType",
+            "type": "string"
         },
         "VerticalExtent": {
             "additionalProperties": false,
