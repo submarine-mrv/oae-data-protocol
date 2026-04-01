@@ -227,8 +227,8 @@
 <div class="mermaid"> classDiagram
     class ContinuousMeasuredVariable
     click ContinuousMeasuredVariable href "../ContinuousMeasuredVariable"
-      ObservedPropertyVariable &lt;|-- ContinuousMeasuredVariable
-        click ObservedPropertyVariable href "../ObservedPropertyVariable"
+      MeasuredVariable &lt;|-- ContinuousMeasuredVariable
+        click MeasuredVariable href "../MeasuredVariable"
 
 
       ContinuousMeasuredVariable &lt;|-- ContinuousPHVariable
@@ -364,9 +364,9 @@
 </div>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
-<li><a href="../BaseVariable/">BaseVariable</a><ul>
 <li><a href="../Variable/">Variable</a><ul>
-<li><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a> [ <a href="../QCFields/">QCFields</a>]<ul>
+<li><a href="../InSituVariable/">InSituVariable</a><ul>
+<li><a href="../MeasuredVariable/">MeasuredVariable</a> [ <a href="../QCFields/">QCFields</a>]<ul>
 <li><strong>ContinuousMeasuredVariable</strong><ul>
 <li><a href="../ContinuousPHVariable/">ContinuousPHVariable</a> [ <a href="../MeasuredPHFields/">MeasuredPHFields</a>]</li>
 <li><a href="../ContinuousTAVariable/">ContinuousTAVariable</a> [ <a href="../MeasuredTAFields/">MeasuredTAFields</a>]</li>
@@ -408,55 +408,55 @@
 <td><a href="../analyzing_instrument/">analyzing_instrument</a></td>
 <td>1 <br/> <a href="../AnalyzingInstrument/">AnalyzingInstrument</a></td>
 <td>Instrument used to analyze the water samples or measure the water body contin...</td>
-<td><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
+<td><a href="../MeasuredVariable/">MeasuredVariable</a></td>
 </tr>
 <tr>
 <td><a href="../sampling_method/">sampling_method</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>Method used to collect samples</td>
-<td><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
+<td><a href="../MeasuredVariable/">MeasuredVariable</a></td>
 </tr>
 <tr>
 <td><a href="../field_replicate_information/">field_replicate_information</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Repetition of sample collection and measurement, e</td>
-<td><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
+<td><a href="../MeasuredVariable/">MeasuredVariable</a></td>
 </tr>
 <tr>
 <td><a href="../analyzing_method/">analyzing_method</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>Additional information describing how the sample was analyzed</td>
-<td><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
+<td><a href="../MeasuredVariable/">MeasuredVariable</a></td>
 </tr>
 <tr>
 <td><a href="../observation_type/">observation_type</a></td>
 <td>1 <br/> <a href="../ObservationType/">ObservationType</a></td>
 <td></td>
-<td><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
+<td><a href="../MeasuredVariable/">MeasuredVariable</a></td>
 </tr>
 <tr>
 <td><a href="../sampling/">sampling</a></td>
 <td>1 <br/> <a href="../SamplingType/">SamplingType</a></td>
 <td></td>
-<td><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
+<td><a href="../MeasuredVariable/">MeasuredVariable</a></td>
 </tr>
 <tr>
 <td><a href="../genesis/">genesis</a></td>
 <td>1 <br/> <a href="../GenesisType/">GenesisType</a></td>
 <td></td>
-<td><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
+<td><a href="../MeasuredVariable/">MeasuredVariable</a></td>
 </tr>
 <tr>
 <td><a href="../sampling_instrument_type/">sampling_instrument_type</a></td>
 <td>1 <br/> <a href="../SamplingInstrumentType/">SamplingInstrumentType</a></td>
 <td></td>
-<td><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
+<td><a href="../MeasuredVariable/">MeasuredVariable</a></td>
 </tr>
 <tr>
 <td><a href="../sampling_instrument_type_custom/">sampling_instrument_type_custom</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td></td>
-<td><a href="../ObservedPropertyVariable/">ObservedPropertyVariable</a></td>
+<td><a href="../MeasuredVariable/">MeasuredVariable</a></td>
 </tr>
 <tr>
 <td><a href="../qc_steps_taken/">qc_steps_taken</a></td>
@@ -498,67 +498,67 @@
 <td><a href="../dataset_variable_name_qc_flag/">dataset_variable_name_qc_flag</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>If applicable, the column header name used for the quality control flag corre...</td>
-<td><a href="../Variable/">Variable</a></td>
+<td><a href="../InSituVariable/">InSituVariable</a></td>
 </tr>
 <tr>
 <td><a href="../dataset_variable_name_raw/">dataset_variable_name_raw</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>If applicable, the column header name used for the raw data corresponding to ...</td>
-<td><a href="../Variable/">Variable</a></td>
+<td><a href="../InSituVariable/">InSituVariable</a></td>
 </tr>
 <tr>
 <td><a href="../method_reference/">method_reference</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Citation for the method used</td>
-<td><a href="../Variable/">Variable</a></td>
+<td><a href="../InSituVariable/">InSituVariable</a></td>
 </tr>
 <tr>
 <td><a href="../measurement_researcher/">measurement_researcher</a></td>
 <td>0..1 <br/> <a href="../Person/">Person</a></td>
 <td>The name of the PI whose research team measured or derived this parameter</td>
-<td><a href="../Variable/">Variable</a></td>
+<td><a href="../InSituVariable/">InSituVariable</a></td>
 </tr>
 <tr>
 <td><a href="../other_detailed_information/">other_detailed_information</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Any additional information about this variable</td>
-<td><a href="../Variable/">Variable</a></td>
+<td><a href="../InSituVariable/">InSituVariable</a></td>
 </tr>
 <tr>
 <td><a href="../units/">units</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>Unit of measurement for this variable</td>
-<td><a href="../BaseVariable/">BaseVariable</a></td>
+<td><a href="../Variable/">Variable</a></td>
 </tr>
 <tr>
 <td><a href="../schema_class/">schema_class</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>The schema class name for this variable (e</td>
-<td><a href="../BaseVariable/">BaseVariable</a></td>
+<td><a href="../Variable/">Variable</a></td>
 </tr>
 <tr>
 <td><a href="../variable_type/">variable_type</a></td>
 <td>1 <br/> <a href="../VariableType/">VariableType</a></td>
 <td>High-level classification of the variable</td>
-<td><a href="../BaseVariable/">BaseVariable</a></td>
+<td><a href="../Variable/">Variable</a></td>
 </tr>
 <tr>
 <td><a href="../standard_identifier/">standard_identifier</a></td>
 <td>0..1 <br/> <a href="../VocabularyItemReference/">VocabularyItemReference</a></td>
 <td></td>
-<td><a href="../BaseVariable/">BaseVariable</a></td>
+<td><a href="../Variable/">Variable</a></td>
 </tr>
 <tr>
 <td><a href="../dataset_variable_name/">dataset_variable_name</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>The name for the variable as it is identified in the dataset data file</td>
-<td><a href="../BaseVariable/">BaseVariable</a></td>
+<td><a href="../Variable/">Variable</a></td>
 </tr>
 <tr>
 <td><a href="../long_name/">long_name</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>Full descriptive name of the variable</td>
-<td><a href="../BaseVariable/">BaseVariable</a></td>
+<td><a href="../Variable/">Variable</a></td>
 </tr>
 </tbody>
 </table>
@@ -593,7 +593,7 @@
 <pre><code class="language-yaml">name: ContinuousMeasuredVariable
 description: Fields for continuous sampling information.
 from_schema: OAEDataManagementProtocol
-is_a: ObservedPropertyVariable
+is_a: MeasuredVariable
 attributes:
   raw_data_calculation_method:
     name: raw_data_calculation_method
@@ -623,7 +623,7 @@ attributes:
 <pre><code class="language-yaml">name: ContinuousMeasuredVariable
 description: Fields for continuous sampling information.
 from_schema: OAEDataManagementProtocol
-is_a: ObservedPropertyVariable
+is_a: MeasuredVariable
 attributes:
   raw_data_calculation_method:
     name: raw_data_calculation_method
@@ -659,7 +659,7 @@ attributes:
     alias: analyzing_instrument
     owner: ContinuousMeasuredVariable
     domain_of:
-    - ObservedPropertyVariable
+    - MeasuredVariable
     range: AnalyzingInstrument
     required: true
   sampling_method:
@@ -671,7 +671,7 @@ attributes:
     alias: sampling_method
     owner: ContinuousMeasuredVariable
     domain_of:
-    - ObservedPropertyVariable
+    - MeasuredVariable
     range: string
     required: true
   field_replicate_information:
@@ -684,7 +684,7 @@ attributes:
     alias: field_replicate_information
     owner: ContinuousMeasuredVariable
     domain_of:
-    - ObservedPropertyVariable
+    - MeasuredVariable
     range: string
   analyzing_method:
     name: analyzing_method
@@ -696,7 +696,7 @@ attributes:
     alias: analyzing_method
     owner: ContinuousMeasuredVariable
     domain_of:
-    - ObservedPropertyVariable
+    - MeasuredVariable
     range: string
     required: true
   observation_type:
@@ -707,7 +707,7 @@ attributes:
     alias: observation_type
     owner: ContinuousMeasuredVariable
     domain_of:
-    - ObservedPropertyVariable
+    - MeasuredVariable
     range: ObservationType
     required: true
   sampling:
@@ -717,7 +717,7 @@ attributes:
     alias: sampling
     owner: ContinuousMeasuredVariable
     domain_of:
-    - ObservedPropertyVariable
+    - MeasuredVariable
     range: SamplingType
     required: true
   genesis:
@@ -727,7 +727,7 @@ attributes:
     alias: genesis
     owner: ContinuousMeasuredVariable
     domain_of:
-    - ObservedPropertyVariable
+    - MeasuredVariable
     - CalculatedVariable
     range: GenesisType
     required: true
@@ -739,7 +739,7 @@ attributes:
     alias: sampling_instrument_type
     owner: ContinuousMeasuredVariable
     domain_of:
-    - ObservedPropertyVariable
+    - MeasuredVariable
     range: SamplingInstrumentType
     required: true
   sampling_instrument_type_custom:
@@ -750,7 +750,7 @@ attributes:
     alias: sampling_instrument_type_custom
     owner: ContinuousMeasuredVariable
     domain_of:
-    - ObservedPropertyVariable
+    - MeasuredVariable
     range: string
   qc_steps_taken:
     name: qc_steps_taken
@@ -843,7 +843,7 @@ attributes:
     alias: dataset_variable_name_qc_flag
     owner: ContinuousMeasuredVariable
     domain_of:
-    - Variable
+    - InSituVariable
     range: string
   dataset_variable_name_raw:
     name: dataset_variable_name_raw
@@ -855,7 +855,7 @@ attributes:
     alias: dataset_variable_name_raw
     owner: ContinuousMeasuredVariable
     domain_of:
-    - Variable
+    - InSituVariable
     range: string
   method_reference:
     name: method_reference
@@ -866,7 +866,7 @@ attributes:
     owner: ContinuousMeasuredVariable
     domain_of:
     - Calibration
-    - Variable
+    - InSituVariable
     range: string
   measurement_researcher:
     name: measurement_researcher
@@ -877,7 +877,7 @@ attributes:
     alias: measurement_researcher
     owner: ContinuousMeasuredVariable
     domain_of:
-    - Variable
+    - InSituVariable
     range: Person
   other_detailed_information:
     name: other_detailed_information
@@ -888,7 +888,7 @@ attributes:
     alias: other_detailed_information
     owner: ContinuousMeasuredVariable
     domain_of:
-    - Variable
+    - InSituVariable
     range: string
   units:
     name: units
@@ -899,7 +899,7 @@ attributes:
     alias: units
     owner: ContinuousMeasuredVariable
     domain_of:
-    - BaseVariable
+    - Variable
     range: string
     required: true
   schema_class:
@@ -912,7 +912,7 @@ attributes:
     alias: schema_class
     owner: ContinuousMeasuredVariable
     domain_of:
-    - BaseVariable
+    - Variable
     range: string
   variable_type:
     name: variable_type
@@ -925,7 +925,7 @@ attributes:
     alias: variable_type
     owner: ContinuousMeasuredVariable
     domain_of:
-    - BaseVariable
+    - Variable
     range: VariableType
     required: true
   standard_identifier:
@@ -935,7 +935,7 @@ attributes:
     alias: standard_identifier
     owner: ContinuousMeasuredVariable
     domain_of:
-    - BaseVariable
+    - Variable
     range: VocabularyItemReference
   dataset_variable_name:
     name: dataset_variable_name
@@ -949,7 +949,7 @@ attributes:
     alias: dataset_variable_name
     owner: ContinuousMeasuredVariable
     domain_of:
-    - BaseVariable
+    - Variable
     range: string
     required: true
   long_name:
@@ -961,7 +961,7 @@ attributes:
     alias: long_name
     owner: ContinuousMeasuredVariable
     domain_of:
-    - BaseVariable
+    - Variable
     range: string
     required: true
 

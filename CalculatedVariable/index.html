@@ -229,8 +229,8 @@
     click CalculatedVariable href "../CalculatedVariable"
       QCFields &lt;|-- CalculatedVariable
         click QCFields href "../QCFields"
-      Variable &lt;|-- CalculatedVariable
-        click Variable href "../Variable"
+      InSituVariable &lt;|-- CalculatedVariable
+        click InSituVariable href "../InSituVariable"
 
       CalculatedVariable : calculation_method_and_parameters
 
@@ -309,8 +309,8 @@
 </div>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
-<li><a href="../BaseVariable/">BaseVariable</a><ul>
 <li><a href="../Variable/">Variable</a><ul>
+<li><a href="../InSituVariable/">InSituVariable</a><ul>
 <li><strong>CalculatedVariable</strong> [ <a href="../QCFields/">QCFields</a>]</li>
 </ul>
 </li>
@@ -380,67 +380,67 @@
 <td><a href="../dataset_variable_name_qc_flag/">dataset_variable_name_qc_flag</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>If applicable, the column header name used for the quality control flag corre...</td>
-<td><a href="../Variable/">Variable</a></td>
+<td><a href="../InSituVariable/">InSituVariable</a></td>
 </tr>
 <tr>
 <td><a href="../dataset_variable_name_raw/">dataset_variable_name_raw</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>If applicable, the column header name used for the raw data corresponding to ...</td>
-<td><a href="../Variable/">Variable</a></td>
+<td><a href="../InSituVariable/">InSituVariable</a></td>
 </tr>
 <tr>
 <td><a href="../method_reference/">method_reference</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Citation for the method used</td>
-<td><a href="../Variable/">Variable</a></td>
+<td><a href="../InSituVariable/">InSituVariable</a></td>
 </tr>
 <tr>
 <td><a href="../measurement_researcher/">measurement_researcher</a></td>
 <td>0..1 <br/> <a href="../Person/">Person</a></td>
 <td>The name of the PI whose research team measured or derived this parameter</td>
-<td><a href="../Variable/">Variable</a></td>
+<td><a href="../InSituVariable/">InSituVariable</a></td>
 </tr>
 <tr>
 <td><a href="../other_detailed_information/">other_detailed_information</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Any additional information about this variable</td>
-<td><a href="../Variable/">Variable</a></td>
+<td><a href="../InSituVariable/">InSituVariable</a></td>
 </tr>
 <tr>
 <td><a href="../units/">units</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>Unit of measurement for this variable</td>
-<td><a href="../BaseVariable/">BaseVariable</a></td>
+<td><a href="../Variable/">Variable</a></td>
 </tr>
 <tr>
 <td><a href="../schema_class/">schema_class</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>The schema class name for this variable (e</td>
-<td><a href="../BaseVariable/">BaseVariable</a></td>
+<td><a href="../Variable/">Variable</a></td>
 </tr>
 <tr>
 <td><a href="../variable_type/">variable_type</a></td>
 <td>1 <br/> <a href="../VariableType/">VariableType</a></td>
 <td>High-level classification of the variable</td>
-<td><a href="../BaseVariable/">BaseVariable</a></td>
+<td><a href="../Variable/">Variable</a></td>
 </tr>
 <tr>
 <td><a href="../standard_identifier/">standard_identifier</a></td>
 <td>0..1 <br/> <a href="../VocabularyItemReference/">VocabularyItemReference</a></td>
 <td></td>
-<td><a href="../BaseVariable/">BaseVariable</a></td>
+<td><a href="../Variable/">Variable</a></td>
 </tr>
 <tr>
 <td><a href="../dataset_variable_name/">dataset_variable_name</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>The name for the variable as it is identified in the dataset data file</td>
-<td><a href="../BaseVariable/">BaseVariable</a></td>
+<td><a href="../Variable/">Variable</a></td>
 </tr>
 <tr>
 <td><a href="../long_name/">long_name</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>Full descriptive name of the variable</td>
-<td><a href="../BaseVariable/">BaseVariable</a></td>
+<td><a href="../Variable/">Variable</a></td>
 </tr>
 </tbody>
 </table>
@@ -475,7 +475,7 @@
 <pre><code class="language-yaml">name: CalculatedVariable
 description: Variable that is calculated or derived from other variables.
 from_schema: OAEDataManagementProtocol
-is_a: Variable
+is_a: InSituVariable
 mixins:
 - QCFields
 attributes:
@@ -483,7 +483,7 @@ attributes:
     name: genesis
     from_schema: Variable
     domain_of:
-    - ObservedPropertyVariable
+    - MeasuredVariable
     - CalculatedVariable
     range: GenesisType
     required: true
@@ -509,7 +509,7 @@ attributes:
 <pre><code class="language-yaml">name: CalculatedVariable
 description: Variable that is calculated or derived from other variables.
 from_schema: OAEDataManagementProtocol
-is_a: Variable
+is_a: InSituVariable
 mixins:
 - QCFields
 attributes:
@@ -519,7 +519,7 @@ attributes:
     alias: genesis
     owner: CalculatedVariable
     domain_of:
-    - ObservedPropertyVariable
+    - MeasuredVariable
     - CalculatedVariable
     range: GenesisType
     required: true
@@ -626,7 +626,7 @@ attributes:
     alias: dataset_variable_name_qc_flag
     owner: CalculatedVariable
     domain_of:
-    - Variable
+    - InSituVariable
     range: string
   dataset_variable_name_raw:
     name: dataset_variable_name_raw
@@ -638,7 +638,7 @@ attributes:
     alias: dataset_variable_name_raw
     owner: CalculatedVariable
     domain_of:
-    - Variable
+    - InSituVariable
     range: string
   method_reference:
     name: method_reference
@@ -649,7 +649,7 @@ attributes:
     owner: CalculatedVariable
     domain_of:
     - Calibration
-    - Variable
+    - InSituVariable
     range: string
   measurement_researcher:
     name: measurement_researcher
@@ -660,7 +660,7 @@ attributes:
     alias: measurement_researcher
     owner: CalculatedVariable
     domain_of:
-    - Variable
+    - InSituVariable
     range: Person
   other_detailed_information:
     name: other_detailed_information
@@ -671,7 +671,7 @@ attributes:
     alias: other_detailed_information
     owner: CalculatedVariable
     domain_of:
-    - Variable
+    - InSituVariable
     range: string
   units:
     name: units
@@ -682,7 +682,7 @@ attributes:
     alias: units
     owner: CalculatedVariable
     domain_of:
-    - BaseVariable
+    - Variable
     range: string
     required: true
   schema_class:
@@ -695,7 +695,7 @@ attributes:
     alias: schema_class
     owner: CalculatedVariable
     domain_of:
-    - BaseVariable
+    - Variable
     range: string
   variable_type:
     name: variable_type
@@ -708,7 +708,7 @@ attributes:
     alias: variable_type
     owner: CalculatedVariable
     domain_of:
-    - BaseVariable
+    - Variable
     range: VariableType
     required: true
   standard_identifier:
@@ -718,7 +718,7 @@ attributes:
     alias: standard_identifier
     owner: CalculatedVariable
     domain_of:
-    - BaseVariable
+    - Variable
     range: VocabularyItemReference
   dataset_variable_name:
     name: dataset_variable_name
@@ -732,7 +732,7 @@ attributes:
     alias: dataset_variable_name
     owner: CalculatedVariable
     domain_of:
-    - BaseVariable
+    - Variable
     range: string
     required: true
   long_name:
@@ -744,7 +744,7 @@ attributes:
     alias: long_name
     owner: CalculatedVariable
     domain_of:
-    - BaseVariable
+    - Variable
     range: string
     required: true
 

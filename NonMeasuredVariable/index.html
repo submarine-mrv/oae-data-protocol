@@ -227,8 +227,8 @@
 <div class="mermaid"> classDiagram
     class NonMeasuredVariable
     click NonMeasuredVariable href "../NonMeasuredVariable"
-      BaseVariable &lt;|-- NonMeasuredVariable
-        click BaseVariable href "../BaseVariable"
+      Variable &lt;|-- NonMeasuredVariable
+        click Variable href "../Variable"
 
       NonMeasuredVariable : dataset_variable_name
 
@@ -260,7 +260,7 @@
 </div>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
-<li><a href="../BaseVariable/">BaseVariable</a><ul>
+<li><a href="../Variable/">Variable</a><ul>
 <li><strong>NonMeasuredVariable</strong></li>
 </ul>
 </li>
@@ -280,37 +280,37 @@
 <td><a href="../units/">units</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Unit of measurement for this variable</td>
-<td><a href="../BaseVariable/">BaseVariable</a></td>
+<td><a href="../Variable/">Variable</a></td>
 </tr>
 <tr>
 <td><a href="../schema_class/">schema_class</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>The schema class name for this variable (e</td>
-<td><a href="../BaseVariable/">BaseVariable</a></td>
+<td><a href="../Variable/">Variable</a></td>
 </tr>
 <tr>
 <td><a href="../variable_type/">variable_type</a></td>
 <td>1 <br/> <a href="../VariableType/">VariableType</a></td>
 <td>High-level classification of the variable</td>
-<td><a href="../BaseVariable/">BaseVariable</a></td>
+<td><a href="../Variable/">Variable</a></td>
 </tr>
 <tr>
 <td><a href="../standard_identifier/">standard_identifier</a></td>
 <td>0..1 <br/> <a href="../VocabularyItemReference/">VocabularyItemReference</a></td>
 <td></td>
-<td><a href="../BaseVariable/">BaseVariable</a></td>
+<td><a href="../Variable/">Variable</a></td>
 </tr>
 <tr>
 <td><a href="../dataset_variable_name/">dataset_variable_name</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>The name for the variable as it is identified in the dataset data file</td>
-<td><a href="../BaseVariable/">BaseVariable</a></td>
+<td><a href="../Variable/">Variable</a></td>
 </tr>
 <tr>
 <td><a href="../long_name/">long_name</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>Full descriptive name of the variable</td>
-<td><a href="../BaseVariable/">BaseVariable</a></td>
+<td><a href="../Variable/">Variable</a></td>
 </tr>
 </tbody>
 </table>
@@ -347,7 +347,7 @@ description: Non-measured variable for data from external sources (e.g., satelli
   model outputs, published data) that are not directly measured by the project but
   included in the dataset.
 from_schema: OAEDataManagementProtocol
-is_a: BaseVariable
+is_a: Variable
 
 </code></pre>
 </details>
@@ -358,7 +358,7 @@ description: Non-measured variable for data from external sources (e.g., satelli
   model outputs, published data) that are not directly measured by the project but
   included in the dataset.
 from_schema: OAEDataManagementProtocol
-is_a: BaseVariable
+is_a: Variable
 attributes:
   units:
     name: units
@@ -369,7 +369,7 @@ attributes:
     alias: units
     owner: NonMeasuredVariable
     domain_of:
-    - BaseVariable
+    - Variable
     range: string
   schema_class:
     name: schema_class
@@ -381,7 +381,7 @@ attributes:
     alias: schema_class
     owner: NonMeasuredVariable
     domain_of:
-    - BaseVariable
+    - Variable
     range: string
   variable_type:
     name: variable_type
@@ -394,7 +394,7 @@ attributes:
     alias: variable_type
     owner: NonMeasuredVariable
     domain_of:
-    - BaseVariable
+    - Variable
     range: VariableType
     required: true
   standard_identifier:
@@ -404,7 +404,7 @@ attributes:
     alias: standard_identifier
     owner: NonMeasuredVariable
     domain_of:
-    - BaseVariable
+    - Variable
     range: VocabularyItemReference
   dataset_variable_name:
     name: dataset_variable_name
@@ -418,7 +418,7 @@ attributes:
     alias: dataset_variable_name
     owner: NonMeasuredVariable
     domain_of:
-    - BaseVariable
+    - Variable
     range: string
     required: true
   long_name:
@@ -430,7 +430,7 @@ attributes:
     alias: long_name
     owner: NonMeasuredVariable
     domain_of:
-    - BaseVariable
+    - Variable
     range: string
     required: true
 
