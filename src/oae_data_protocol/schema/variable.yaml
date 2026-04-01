@@ -13,11 +13,11 @@ imports:
 
 classes:
   # ==============================================================================
-  # BaseVariable Abstract Class (subclasses: Variable, NonMeasuredVariable)
+  # Variable Abstract Class (subclasses: InSituVariable, NonMeasuredVariable)
   # ==============================================================================
-  BaseVariable:
+  Variable:
     abstract: true
-    description: Basic variable fields across all (including non-measured) variables
+    description: Abstract root for all variable types (including non-measured)
     slots:
       - units
     attributes:
@@ -60,17 +60,16 @@ classes:
       Non-measured variable for data from external sources (e.g., satellite,
       model outputs, published data) that are not directly measured by the
       project but included in the dataset.
-    is_a: BaseVariable
+    is_a: Variable
 
   # =============================================================================
-  # Variable Class (subclasses: ObservedProperty, Calculated, Socioeconomic)
+  # InSituVariable Class (subclasses: MeasuredVariable, CalculatedVariable)
   # =============================================================================
-  Variable:
+  InSituVariable:
     description: >-
-      Base class for all variable types. Contains common identification
-      and description fields shared by all variables.
-      Reference: OAPMetadata XSD variables.xsd - variable, basic_variable
-    is_a: BaseVariable
+      Base class for project-acquired variables (measured or calculated in-situ).
+      Reference: OAPMetadata XSD variables.xsd - insitu_variable
+    is_a: Variable
     slot_usage:
       units:
         required: true
@@ -100,13 +99,13 @@ classes:
 
 
   # =====================================================================================
-  # ObservedPropertyVariable Class (subclasses: DiscreteMeasuredVariable, ContinuousMeasuredVariable)
+  # MeasuredVariable Class (subclasses: DiscreteMeasuredVariable, ContinuousMeasuredVariable)
   # =====================================================================================
-  ObservedPropertyVariable:
+  MeasuredVariable:
     description: >-
       Variable that is directly measured in-situ using instruments.
       Reference: OAPMetadata XSD variables.xsd - basic_measured_observation_base
-    is_a: Variable
+    is_a: InSituVariable
     mixins:
       - QCFields
     slots:
@@ -159,7 +158,7 @@ classes:
   # DiscreteMeasuredVariable Class (pH, DIC, TA, pCO2/fCO2, physiological, sediment, HPLC)
   # =============================================================================
   DiscreteMeasuredVariable:
-    is_a: ObservedPropertyVariable
+    is_a: MeasuredVariable
     description: >-
       Analyzing instrument information fields, only applied to discretely measured variables.
       The instrument type can be narrowed in subclasses using slot_usage.
@@ -168,7 +167,7 @@ classes:
   # ContinuousMeasuredVariable Class (pH, DIC, TA, xCO2/pCO2/fCO2, physiological, sediment)
   # =============================================================================
   ContinuousMeasuredVariable:
-    is_a: ObservedPropertyVariable
+    is_a: MeasuredVariable
     description: >-
       Fields for continuous sampling information.
     attributes:
@@ -188,7 +187,7 @@ classes:
   CalculatedVariable:
     description: >-
       Variable that is calculated or derived from other variables.
-    is_a: Variable
+    is_a: InSituVariable
     mixins:
       - QCFields
     attributes:
@@ -395,7 +394,7 @@ classes:
 #  PhysiologicalVariable:
 #    description: >-
 #      Physiological response measured variable for organism response data.
-#    is_a: ObservedPropertyVariable
+#    is_a: MeasuredVariable
 #    attributes:
 #      # Physiological-specific fields to be added per Excel spec
 #
@@ -406,7 +405,7 @@ classes:
 #    description: >-
 #      Socioeconomic variable for social and economic data.
 #      Note: Does NOT include QCFields mixin as QC is not applicable.
-#    is_a: Variable
+#    is_a: InSituVariable
 #    attributes:
 #      # Socioeconomic-specific fields to be added per Excel spec
 

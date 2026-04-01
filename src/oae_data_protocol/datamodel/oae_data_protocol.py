@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-03-31T23:26:20
+# Generation date: 2026-04-01T11:47:30
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -1188,16 +1188,16 @@ class Person(YAMLRoot):
 
 
 @dataclass(repr=False)
-class BaseVariable(YAMLRoot):
+class Variable(YAMLRoot):
     """
-    Basic variable fields across all (including non-measured) variables
+    Abstract root for all variable types (including non-measured)
     """
     _inherited_slots: ClassVar[List[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = OAE["BaseVariable"]
-    class_class_curie: ClassVar[str] = "oae:BaseVariable"
-    class_name: ClassVar[str] = "BaseVariable"
-    class_model_uri: ClassVar[URIRef] = OAE.BaseVariable
+    class_class_uri: ClassVar[URIRef] = OAE["Variable"]
+    class_class_curie: ClassVar[str] = "oae:Variable"
+    class_name: ClassVar[str] = "Variable"
+    class_model_uri: ClassVar[URIRef] = OAE.Variable
 
     variable_type: Union[str, "VariableType"] = None
     dataset_variable_name: str = None
@@ -1252,7 +1252,7 @@ class BaseVariable(YAMLRoot):
 
 
 @dataclass(repr=False)
-class NonMeasuredVariable(BaseVariable):
+class NonMeasuredVariable(Variable):
     """
     Non-measured variable for data from external sources (e.g., satellite, model outputs, published data) that are not
     directly measured by the project but included in the dataset.
@@ -1275,17 +1275,17 @@ class NonMeasuredVariable(BaseVariable):
 
 
 @dataclass(repr=False)
-class Variable(BaseVariable):
+class InSituVariable(Variable):
     """
-    Base class for all variable types. Contains common identification and description fields shared by all variables.
-    Reference: OAPMetadata XSD variables.xsd - variable, basic_variable
+    Base class for project-acquired variables (measured or calculated in-situ). Reference: OAPMetadata XSD
+    variables.xsd - insitu_variable
     """
     _inherited_slots: ClassVar[List[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = OAE["Variable"]
-    class_class_curie: ClassVar[str] = "oae:Variable"
-    class_name: ClassVar[str] = "Variable"
-    class_model_uri: ClassVar[URIRef] = OAE.Variable
+    class_class_uri: ClassVar[URIRef] = OAE["InSituVariable"]
+    class_class_curie: ClassVar[str] = "oae:InSituVariable"
+    class_name: ClassVar[str] = "InSituVariable"
+    class_model_uri: ClassVar[URIRef] = OAE.InSituVariable
 
     variable_type: Union[str, "VariableType"] = None
     dataset_variable_name: str = None
@@ -1323,17 +1323,17 @@ class Variable(BaseVariable):
 
 
 @dataclass(repr=False)
-class ObservedPropertyVariable(Variable):
+class MeasuredVariable(InSituVariable):
     """
     Variable that is directly measured in-situ using instruments. Reference: OAPMetadata XSD variables.xsd -
     basic_measured_observation_base
     """
     _inherited_slots: ClassVar[List[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = OAE["ObservedPropertyVariable"]
-    class_class_curie: ClassVar[str] = "oae:ObservedPropertyVariable"
-    class_name: ClassVar[str] = "ObservedPropertyVariable"
-    class_model_uri: ClassVar[URIRef] = OAE.ObservedPropertyVariable
+    class_class_uri: ClassVar[URIRef] = OAE["MeasuredVariable"]
+    class_class_curie: ClassVar[str] = "oae:MeasuredVariable"
+    class_name: ClassVar[str] = "MeasuredVariable"
+    class_model_uri: ClassVar[URIRef] = OAE.MeasuredVariable
 
     variable_type: Union[str, "VariableType"] = None
     dataset_variable_name: str = None
@@ -1428,7 +1428,7 @@ class ObservedPropertyVariable(Variable):
 
 
 @dataclass(repr=False)
-class DiscreteMeasuredVariable(ObservedPropertyVariable):
+class DiscreteMeasuredVariable(MeasuredVariable):
     """
     Analyzing instrument information fields, only applied to discretely measured variables. The instrument type can be
     narrowed in subclasses using slot_usage.
@@ -1463,7 +1463,7 @@ class DiscreteMeasuredVariable(ObservedPropertyVariable):
 
 
 @dataclass(repr=False)
-class ContinuousMeasuredVariable(ObservedPropertyVariable):
+class ContinuousMeasuredVariable(MeasuredVariable):
     """
     Fields for continuous sampling information.
     """
@@ -1506,7 +1506,7 @@ class ContinuousMeasuredVariable(ObservedPropertyVariable):
 
 
 @dataclass(repr=False)
-class CalculatedVariable(Variable):
+class CalculatedVariable(InSituVariable):
     """
     Variable that is calculated or derived from other variables.
     """
@@ -4998,59 +4998,59 @@ slots.person__identifier = Slot(uri=OAE.identifier, name="person__identifier", c
 slots.person__role = Slot(uri=OAE.role, name="person__role", curie=OAE.curie('role'),
                    model_uri=OAE.person__role, domain=None, range=Optional[str])
 
-slots.baseVariable__schema_class = Slot(uri=OAE.schema_class, name="baseVariable__schema_class", curie=OAE.curie('schema_class'),
-                   model_uri=OAE.baseVariable__schema_class, domain=None, range=Optional[str])
+slots.variable__schema_class = Slot(uri=OAE.schema_class, name="variable__schema_class", curie=OAE.curie('schema_class'),
+                   model_uri=OAE.variable__schema_class, domain=None, range=Optional[str])
 
-slots.baseVariable__variable_type = Slot(uri=OAE.variable_type, name="baseVariable__variable_type", curie=OAE.curie('variable_type'),
-                   model_uri=OAE.baseVariable__variable_type, domain=None, range=Union[str, "VariableType"])
+slots.variable__variable_type = Slot(uri=OAE.variable_type, name="variable__variable_type", curie=OAE.curie('variable_type'),
+                   model_uri=OAE.variable__variable_type, domain=None, range=Union[str, "VariableType"])
 
-slots.baseVariable__standard_identifier = Slot(uri=OAE.standard_identifier, name="baseVariable__standard_identifier", curie=OAE.curie('standard_identifier'),
-                   model_uri=OAE.baseVariable__standard_identifier, domain=None, range=Optional[Union[dict, VocabularyItemReference]])
+slots.variable__standard_identifier = Slot(uri=OAE.standard_identifier, name="variable__standard_identifier", curie=OAE.curie('standard_identifier'),
+                   model_uri=OAE.variable__standard_identifier, domain=None, range=Optional[Union[dict, VocabularyItemReference]])
 
-slots.baseVariable__dataset_variable_name = Slot(uri=OAE.dataset_variable_name, name="baseVariable__dataset_variable_name", curie=OAE.curie('dataset_variable_name'),
-                   model_uri=OAE.baseVariable__dataset_variable_name, domain=None, range=str)
+slots.variable__dataset_variable_name = Slot(uri=OAE.dataset_variable_name, name="variable__dataset_variable_name", curie=OAE.curie('dataset_variable_name'),
+                   model_uri=OAE.variable__dataset_variable_name, domain=None, range=str)
 
-slots.baseVariable__long_name = Slot(uri=OAE.long_name, name="baseVariable__long_name", curie=OAE.curie('long_name'),
-                   model_uri=OAE.baseVariable__long_name, domain=None, range=str)
+slots.variable__long_name = Slot(uri=OAE.long_name, name="variable__long_name", curie=OAE.curie('long_name'),
+                   model_uri=OAE.variable__long_name, domain=None, range=str)
 
-slots.variable__dataset_variable_name_qc_flag = Slot(uri=OAE.dataset_variable_name_qc_flag, name="variable__dataset_variable_name_qc_flag", curie=OAE.curie('dataset_variable_name_qc_flag'),
-                   model_uri=OAE.variable__dataset_variable_name_qc_flag, domain=None, range=Optional[str])
+slots.inSituVariable__dataset_variable_name_qc_flag = Slot(uri=OAE.dataset_variable_name_qc_flag, name="inSituVariable__dataset_variable_name_qc_flag", curie=OAE.curie('dataset_variable_name_qc_flag'),
+                   model_uri=OAE.inSituVariable__dataset_variable_name_qc_flag, domain=None, range=Optional[str])
 
-slots.variable__dataset_variable_name_raw = Slot(uri=OAE.dataset_variable_name_raw, name="variable__dataset_variable_name_raw", curie=OAE.curie('dataset_variable_name_raw'),
-                   model_uri=OAE.variable__dataset_variable_name_raw, domain=None, range=Optional[str])
+slots.inSituVariable__dataset_variable_name_raw = Slot(uri=OAE.dataset_variable_name_raw, name="inSituVariable__dataset_variable_name_raw", curie=OAE.curie('dataset_variable_name_raw'),
+                   model_uri=OAE.inSituVariable__dataset_variable_name_raw, domain=None, range=Optional[str])
 
-slots.variable__method_reference = Slot(uri=OAE.method_reference, name="variable__method_reference", curie=OAE.curie('method_reference'),
-                   model_uri=OAE.variable__method_reference, domain=None, range=Optional[str])
+slots.inSituVariable__method_reference = Slot(uri=OAE.method_reference, name="inSituVariable__method_reference", curie=OAE.curie('method_reference'),
+                   model_uri=OAE.inSituVariable__method_reference, domain=None, range=Optional[str])
 
-slots.variable__measurement_researcher = Slot(uri=OAE.measurement_researcher, name="variable__measurement_researcher", curie=OAE.curie('measurement_researcher'),
-                   model_uri=OAE.variable__measurement_researcher, domain=None, range=Optional[Union[dict, Person]])
+slots.inSituVariable__measurement_researcher = Slot(uri=OAE.measurement_researcher, name="inSituVariable__measurement_researcher", curie=OAE.curie('measurement_researcher'),
+                   model_uri=OAE.inSituVariable__measurement_researcher, domain=None, range=Optional[Union[dict, Person]])
 
-slots.variable__other_detailed_information = Slot(uri=OAE.other_detailed_information, name="variable__other_detailed_information", curie=OAE.curie('other_detailed_information'),
-                   model_uri=OAE.variable__other_detailed_information, domain=None, range=Optional[str])
+slots.inSituVariable__other_detailed_information = Slot(uri=OAE.other_detailed_information, name="inSituVariable__other_detailed_information", curie=OAE.curie('other_detailed_information'),
+                   model_uri=OAE.inSituVariable__other_detailed_information, domain=None, range=Optional[str])
 
-slots.observedPropertyVariable__sampling_method = Slot(uri=OAE.sampling_method, name="observedPropertyVariable__sampling_method", curie=OAE.curie('sampling_method'),
-                   model_uri=OAE.observedPropertyVariable__sampling_method, domain=None, range=str)
+slots.measuredVariable__sampling_method = Slot(uri=OAE.sampling_method, name="measuredVariable__sampling_method", curie=OAE.curie('sampling_method'),
+                   model_uri=OAE.measuredVariable__sampling_method, domain=None, range=str)
 
-slots.observedPropertyVariable__field_replicate_information = Slot(uri=OAE.field_replicate_information, name="observedPropertyVariable__field_replicate_information", curie=OAE.curie('field_replicate_information'),
-                   model_uri=OAE.observedPropertyVariable__field_replicate_information, domain=None, range=Optional[str])
+slots.measuredVariable__field_replicate_information = Slot(uri=OAE.field_replicate_information, name="measuredVariable__field_replicate_information", curie=OAE.curie('field_replicate_information'),
+                   model_uri=OAE.measuredVariable__field_replicate_information, domain=None, range=Optional[str])
 
-slots.observedPropertyVariable__analyzing_method = Slot(uri=OAE.analyzing_method, name="observedPropertyVariable__analyzing_method", curie=OAE.curie('analyzing_method'),
-                   model_uri=OAE.observedPropertyVariable__analyzing_method, domain=None, range=str)
+slots.measuredVariable__analyzing_method = Slot(uri=OAE.analyzing_method, name="measuredVariable__analyzing_method", curie=OAE.curie('analyzing_method'),
+                   model_uri=OAE.measuredVariable__analyzing_method, domain=None, range=str)
 
-slots.observedPropertyVariable__observation_type = Slot(uri=OAE.observation_type, name="observedPropertyVariable__observation_type", curie=OAE.curie('observation_type'),
-                   model_uri=OAE.observedPropertyVariable__observation_type, domain=None, range=Union[str, "ObservationType"])
+slots.measuredVariable__observation_type = Slot(uri=OAE.observation_type, name="measuredVariable__observation_type", curie=OAE.curie('observation_type'),
+                   model_uri=OAE.measuredVariable__observation_type, domain=None, range=Union[str, "ObservationType"])
 
-slots.observedPropertyVariable__sampling = Slot(uri=OAE.sampling, name="observedPropertyVariable__sampling", curie=OAE.curie('sampling'),
-                   model_uri=OAE.observedPropertyVariable__sampling, domain=None, range=Union[str, "SamplingType"])
+slots.measuredVariable__sampling = Slot(uri=OAE.sampling, name="measuredVariable__sampling", curie=OAE.curie('sampling'),
+                   model_uri=OAE.measuredVariable__sampling, domain=None, range=Union[str, "SamplingType"])
 
-slots.observedPropertyVariable__genesis = Slot(uri=OAE.genesis, name="observedPropertyVariable__genesis", curie=OAE.curie('genesis'),
-                   model_uri=OAE.observedPropertyVariable__genesis, domain=None, range=Union[str, "GenesisType"])
+slots.measuredVariable__genesis = Slot(uri=OAE.genesis, name="measuredVariable__genesis", curie=OAE.curie('genesis'),
+                   model_uri=OAE.measuredVariable__genesis, domain=None, range=Union[str, "GenesisType"])
 
-slots.observedPropertyVariable__sampling_instrument_type = Slot(uri=OAE.sampling_instrument_type, name="observedPropertyVariable__sampling_instrument_type", curie=OAE.curie('sampling_instrument_type'),
-                   model_uri=OAE.observedPropertyVariable__sampling_instrument_type, domain=None, range=Union[str, "SamplingInstrumentType"])
+slots.measuredVariable__sampling_instrument_type = Slot(uri=OAE.sampling_instrument_type, name="measuredVariable__sampling_instrument_type", curie=OAE.curie('sampling_instrument_type'),
+                   model_uri=OAE.measuredVariable__sampling_instrument_type, domain=None, range=Union[str, "SamplingInstrumentType"])
 
-slots.observedPropertyVariable__sampling_instrument_type_custom = Slot(uri=OAE.sampling_instrument_type_custom, name="observedPropertyVariable__sampling_instrument_type_custom", curie=OAE.curie('sampling_instrument_type_custom'),
-                   model_uri=OAE.observedPropertyVariable__sampling_instrument_type_custom, domain=None, range=Optional[str])
+slots.measuredVariable__sampling_instrument_type_custom = Slot(uri=OAE.sampling_instrument_type_custom, name="measuredVariable__sampling_instrument_type_custom", curie=OAE.curie('sampling_instrument_type_custom'),
+                   model_uri=OAE.measuredVariable__sampling_instrument_type_custom, domain=None, range=Optional[str])
 
 slots.continuousMeasuredVariable__raw_data_calculation_method = Slot(uri=OAE.raw_data_calculation_method, name="continuousMeasuredVariable__raw_data_calculation_method", curie=OAE.curie('raw_data_calculation_method'),
                    model_uri=OAE.continuousMeasuredVariable__raw_data_calculation_method, domain=None, range=str)
@@ -5464,20 +5464,20 @@ slots.InSituExperiment_vertical_coverage = Slot(uri=OAE.vertical_coverage, name=
 slots.DosingConcentration_is_provided_as_a_file = Slot(uri=OAE.is_provided_as_a_file, name="DosingConcentration_is_provided_as_a_file", curie=OAE.curie('is_provided_as_a_file'),
                    model_uri=OAE.DosingConcentration_is_provided_as_a_file, domain=DosingConcentration, range=Union[bool, Bool])
 
-slots.Variable_units = Slot(uri=OAE.units, name="Variable_units", curie=OAE.curie('units'),
-                   model_uri=OAE.Variable_units, domain=Variable, range=str)
+slots.InSituVariable_units = Slot(uri=OAE.units, name="InSituVariable_units", curie=OAE.curie('units'),
+                   model_uri=OAE.InSituVariable_units, domain=InSituVariable, range=str)
 
-slots.ObservedPropertyVariable_qc_steps_taken = Slot(uri=OAE.qc_steps_taken, name="ObservedPropertyVariable_qc_steps_taken", curie=OAE.curie('qc_steps_taken'),
-                   model_uri=OAE.ObservedPropertyVariable_qc_steps_taken, domain=ObservedPropertyVariable, range=str)
+slots.MeasuredVariable_qc_steps_taken = Slot(uri=OAE.qc_steps_taken, name="MeasuredVariable_qc_steps_taken", curie=OAE.curie('qc_steps_taken'),
+                   model_uri=OAE.MeasuredVariable_qc_steps_taken, domain=MeasuredVariable, range=str)
 
-slots.ObservedPropertyVariable_uncertainty = Slot(uri=OAE.uncertainty, name="ObservedPropertyVariable_uncertainty", curie=OAE.curie('uncertainty'),
-                   model_uri=OAE.ObservedPropertyVariable_uncertainty, domain=ObservedPropertyVariable, range=str)
+slots.MeasuredVariable_uncertainty = Slot(uri=OAE.uncertainty, name="MeasuredVariable_uncertainty", curie=OAE.curie('uncertainty'),
+                   model_uri=OAE.MeasuredVariable_uncertainty, domain=MeasuredVariable, range=str)
 
-slots.ObservedPropertyVariable_uncertainty_definition = Slot(uri=OAE.uncertainty_definition, name="ObservedPropertyVariable_uncertainty_definition", curie=OAE.curie('uncertainty_definition'),
-                   model_uri=OAE.ObservedPropertyVariable_uncertainty_definition, domain=ObservedPropertyVariable, range=str)
+slots.MeasuredVariable_uncertainty_definition = Slot(uri=OAE.uncertainty_definition, name="MeasuredVariable_uncertainty_definition", curie=OAE.curie('uncertainty_definition'),
+                   model_uri=OAE.MeasuredVariable_uncertainty_definition, domain=MeasuredVariable, range=str)
 
-slots.ObservedPropertyVariable_missing_value_indicators = Slot(uri=OAE.missing_value_indicators, name="ObservedPropertyVariable_missing_value_indicators", curie=OAE.curie('missing_value_indicators'),
-                   model_uri=OAE.ObservedPropertyVariable_missing_value_indicators, domain=ObservedPropertyVariable, range=str)
+slots.MeasuredVariable_missing_value_indicators = Slot(uri=OAE.missing_value_indicators, name="MeasuredVariable_missing_value_indicators", curie=OAE.curie('missing_value_indicators'),
+                   model_uri=OAE.MeasuredVariable_missing_value_indicators, domain=MeasuredVariable, range=str)
 
 slots.DiscretePHVariable_analyzing_instrument = Slot(uri=OAE.analyzing_instrument, name="DiscretePHVariable_analyzing_instrument", curie=OAE.curie('analyzing_instrument'),
                    model_uri=OAE.DiscretePHVariable_analyzing_instrument, domain=DiscretePHVariable, range=Union[dict, "PHInstrument"])

@@ -1125,9 +1125,9 @@ export interface CO2GasDetector extends AnalyzingInstrument {
 
 
 /**
- * Basic variable fields across all (including non-measured) variables
+ * Abstract root for all variable types (including non-measured)
  */
-export interface BaseVariable {
+export interface Variable {
     /** Unit of measurement for this variable. */
     units?: string,
     /** The schema class name for this variable (e.g., "DiscretePHVariable"). Auto-populated by the metadata builder. */
@@ -1145,14 +1145,14 @@ export interface BaseVariable {
 /**
  * Non-measured variable for data from external sources (e.g., satellite, model outputs, published data) that are not directly measured by the project but included in the dataset.
  */
-export interface NonMeasuredVariable extends BaseVariable {
+export interface NonMeasuredVariable extends Variable {
 }
 
 
 /**
- * Base class for all variable types. Contains common identification and description fields shared by all variables. Reference: OAPMetadata XSD variables.xsd - variable, basic_variable
+ * Base class for project-acquired variables (measured or calculated in-situ). Reference: OAPMetadata XSD variables.xsd - insitu_variable
  */
-export interface Variable extends BaseVariable {
+export interface InSituVariable extends Variable {
     /** If applicable, the column header name used for the quality control flag corresponding to this variable. */
     dataset_variable_name_qc_flag?: string,
     /** If applicable, the column header name used for the raw data corresponding to this variable. */
@@ -1169,7 +1169,7 @@ export interface Variable extends BaseVariable {
 /**
  * Variable that is directly measured in-situ using instruments. Reference: OAPMetadata XSD variables.xsd - basic_measured_observation_base
  */
-export interface ObservedPropertyVariable extends Variable, QCFields {
+export interface MeasuredVariable extends InSituVariable, QCFields {
     /** Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information. */
     analyzing_instrument: AnalyzingInstrument,
     /** Method used to collect samples. */
@@ -1189,14 +1189,14 @@ export interface ObservedPropertyVariable extends Variable, QCFields {
 /**
  * Analyzing instrument information fields, only applied to discretely measured variables. The instrument type can be narrowed in subclasses using slot_usage.
  */
-export interface DiscreteMeasuredVariable extends ObservedPropertyVariable {
+export interface DiscreteMeasuredVariable extends MeasuredVariable {
 }
 
 
 /**
  * Fields for continuous sampling information.
  */
-export interface ContinuousMeasuredVariable extends ObservedPropertyVariable {
+export interface ContinuousMeasuredVariable extends MeasuredVariable {
     /** The method used to calculate reported values from raw sensor data. */
     raw_data_calculation_method: string,
     /** Version of the software used to calculate reported values from raw values. */
@@ -1207,7 +1207,7 @@ export interface ContinuousMeasuredVariable extends ObservedPropertyVariable {
 /**
  * Variable that is calculated or derived from other variables.
  */
-export interface CalculatedVariable extends Variable, QCFields {
+export interface CalculatedVariable extends InSituVariable, QCFields {
     genesis: string,
     /** Information about how the variable was calculated and the parameters used in calculation, e.g.: Calculation software = CO2SYSv1 (MATLAB)  Input variables =  pH and DIC (column header names 'ph_t_insitu' and 'dic' in associated dataset file) Additional information = the dissociation constants of Lueker et al., 2000 for carbonic acid, etc. */
     calculation_method_and_parameters: string,
