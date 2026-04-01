@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-04-01T14:58:46
+# Generation date: 2026-04-01T15:28:00
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -1306,6 +1306,7 @@ class InSituVariable(Variable):
     variable_type: Union[str, "VariableType"] = None
     dataset_variable_name: str = None
     long_name: str = None
+    genesis: Union[str, "GenesisType"] = None
     units: str = None
     dataset_variable_name_qc_flag: Optional[str] = None
     dataset_variable_name_raw: Optional[str] = None
@@ -1314,6 +1315,11 @@ class InSituVariable(Variable):
     other_detailed_information: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
+        if self._is_empty(self.genesis):
+            self.MissingRequiredField("genesis")
+        if not isinstance(self.genesis, GenesisType):
+            self.genesis = GenesisType(self.genesis)
+
         if self._is_empty(self.units):
             self.MissingRequiredField("units")
         if not isinstance(self.units, str):
@@ -1363,12 +1369,12 @@ class MeasuredVariable(InSituVariable):
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
     sampling: Union[str, "SamplingType"] = None
-    genesis: str = None
     sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
     qc_steps_taken: str = None
     uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
+    genesis: str = None
     field_replicate_information: Optional[str] = None
     sampling_instrument_type_custom: Optional[str] = None
     qc_researcher: Optional[Union[dict, Person]] = None
@@ -1400,11 +1406,6 @@ class MeasuredVariable(InSituVariable):
         if not isinstance(self.sampling, SamplingType):
             self.sampling = SamplingType(self.sampling)
 
-        if self._is_empty(self.genesis):
-            self.MissingRequiredField("genesis")
-        if not isinstance(self.genesis, str):
-            self.genesis = str(self.genesis)
-
         if self._is_empty(self.sampling_instrument_type):
             self.MissingRequiredField("sampling_instrument_type")
         if not isinstance(self.sampling_instrument_type, SamplingInstrumentType):
@@ -1429,6 +1430,11 @@ class MeasuredVariable(InSituVariable):
             self.MissingRequiredField("missing_value_indicators")
         if not isinstance(self.missing_value_indicators, str):
             self.missing_value_indicators = str(self.missing_value_indicators)
+
+        if self._is_empty(self.genesis):
+            self.MissingRequiredField("genesis")
+        if not isinstance(self.genesis, str):
+            self.genesis = str(self.genesis)
 
         if self.field_replicate_information is not None and not isinstance(self.field_replicate_information, str):
             self.field_replicate_information = str(self.field_replicate_information)
@@ -1470,12 +1476,12 @@ class DiscreteMeasuredVariable(MeasuredVariable):
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
-    genesis: str = None
     sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
     qc_steps_taken: str = None
     uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
+    genesis: str = None
     sampling: str = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
@@ -1511,12 +1517,12 @@ class ContinuousMeasuredVariable(MeasuredVariable):
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
-    genesis: str = None
     sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
     qc_steps_taken: str = None
     uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
+    genesis: str = None
     raw_data_calculation_method: str = None
     sampling: str = None
     calculation_software_version: Optional[str] = None
@@ -1558,8 +1564,8 @@ class CalculatedVariable(InSituVariable):
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
-    genesis: str = None
     calculation_method_and_parameters: str = None
+    genesis: str = None
     qc_steps_taken: Optional[str] = None
     uncertainty: Optional[str] = None
     uncertainty_definition: Optional[str] = None
@@ -1568,15 +1574,15 @@ class CalculatedVariable(InSituVariable):
     qc_researcher_institution: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
-        if self._is_empty(self.genesis):
-            self.MissingRequiredField("genesis")
-        if not isinstance(self.genesis, str):
-            self.genesis = str(self.genesis)
-
         if self._is_empty(self.calculation_method_and_parameters):
             self.MissingRequiredField("calculation_method_and_parameters")
         if not isinstance(self.calculation_method_and_parameters, str):
             self.calculation_method_and_parameters = str(self.calculation_method_and_parameters)
+
+        if self._is_empty(self.genesis):
+            self.MissingRequiredField("genesis")
+        if not isinstance(self.genesis, str):
+            self.genesis = str(self.genesis)
 
         if self.qc_steps_taken is not None and not isinstance(self.qc_steps_taken, str):
             self.qc_steps_taken = str(self.qc_steps_taken)
@@ -1622,12 +1628,12 @@ class ContinuousPHVariable(ContinuousMeasuredVariable):
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
-    genesis: str = None
     sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
     qc_steps_taken: str = None
     uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
+    genesis: str = None
     raw_data_calculation_method: str = None
     sampling: str = None
     variable_type: Optional[str] = None
@@ -1666,12 +1672,12 @@ class DiscretePHVariable(DiscreteMeasuredVariable):
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
-    genesis: str = None
     sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
     qc_steps_taken: str = None
     uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
+    genesis: str = None
     sampling: str = None
     measurement_temperature: str = None
     ph_reported_temperature: str = None
@@ -1731,12 +1737,12 @@ class ContinuousTAVariable(ContinuousMeasuredVariable):
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
-    genesis: str = None
     sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
     qc_steps_taken: str = None
     uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
+    genesis: str = None
     raw_data_calculation_method: str = None
     sampling: str = None
     concentration_basis: Union[str, "ConcentrationBasis"] = None
@@ -1780,12 +1786,12 @@ class DiscreteTAVariable(DiscreteMeasuredVariable):
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
-    genesis: str = None
     sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
     qc_steps_taken: str = None
     uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
+    genesis: str = None
     sampling: str = None
     sample_preservation: Union[dict, "SamplePreservation"] = None
     blank_correction: str = None
@@ -1861,12 +1867,12 @@ class ContinuousDICVariable(ContinuousMeasuredVariable):
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
-    genesis: str = None
     sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
     qc_steps_taken: str = None
     uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
+    genesis: str = None
     raw_data_calculation_method: str = None
     sampling: str = None
     concentration_basis: Union[str, "ConcentrationBasis"] = None
@@ -1911,12 +1917,12 @@ class DiscreteDICVariable(DiscreteMeasuredVariable):
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
-    genesis: str = None
     sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
     qc_steps_taken: str = None
     uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
+    genesis: str = None
     sampling: str = None
     sample_preservation: Union[dict, "SamplePreservation"] = None
     blank_correction: str = None
@@ -1978,12 +1984,12 @@ class ContinuousSedimentVariable(ContinuousMeasuredVariable):
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
-    genesis: str = None
     sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
     qc_steps_taken: str = None
     uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
+    genesis: str = None
     raw_data_calculation_method: str = None
     sampling: str = None
     sediment_type: str = None
@@ -2042,12 +2048,12 @@ class DiscreteSedimentVariable(DiscreteMeasuredVariable):
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
-    genesis: str = None
     sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
     qc_steps_taken: str = None
     uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
+    genesis: str = None
     sampling: str = None
     sediment_type: str = None
     sediment_sampling_method: str = None
@@ -2104,12 +2110,12 @@ class DiscreteCO2Variable(DiscreteMeasuredVariable):
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
-    genesis: str = None
     sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
     qc_steps_taken: str = None
     uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
+    genesis: str = None
     sampling: str = None
     storage_method: str = None
     measurement_temperature: int = None
@@ -2188,12 +2194,12 @@ class HPLCVariable(DiscreteMeasuredVariable):
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
-    genesis: str = None
     sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
     qc_steps_taken: str = None
     uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
+    genesis: str = None
     sampling: str = None
     hplc_lab: str = None
     hplc_lab_technician: Optional[str] = None
@@ -5137,6 +5143,9 @@ slots.variable__dataset_variable_name = Slot(uri=OAE.dataset_variable_name, name
 slots.variable__long_name = Slot(uri=OAE.long_name, name="variable__long_name", curie=OAE.curie('long_name'),
                    model_uri=OAE.variable__long_name, domain=None, range=str)
 
+slots.inSituVariable__genesis = Slot(uri=OAE.genesis, name="inSituVariable__genesis", curie=OAE.curie('genesis'),
+                   model_uri=OAE.inSituVariable__genesis, domain=None, range=Union[str, "GenesisType"])
+
 slots.inSituVariable__dataset_variable_name_qc_flag = Slot(uri=OAE.dataset_variable_name_qc_flag, name="inSituVariable__dataset_variable_name_qc_flag", curie=OAE.curie('dataset_variable_name_qc_flag'),
                    model_uri=OAE.inSituVariable__dataset_variable_name_qc_flag, domain=None, range=Optional[str])
 
@@ -5167,9 +5176,6 @@ slots.measuredVariable__observation_type = Slot(uri=OAE.observation_type, name="
 slots.measuredVariable__sampling = Slot(uri=OAE.sampling, name="measuredVariable__sampling", curie=OAE.curie('sampling'),
                    model_uri=OAE.measuredVariable__sampling, domain=None, range=Union[str, "SamplingType"])
 
-slots.measuredVariable__genesis = Slot(uri=OAE.genesis, name="measuredVariable__genesis", curie=OAE.curie('genesis'),
-                   model_uri=OAE.measuredVariable__genesis, domain=None, range=str)
-
 slots.measuredVariable__sampling_instrument_type = Slot(uri=OAE.sampling_instrument_type, name="measuredVariable__sampling_instrument_type", curie=OAE.curie('sampling_instrument_type'),
                    model_uri=OAE.measuredVariable__sampling_instrument_type, domain=None, range=Union[str, "SamplingInstrumentType"])
 
@@ -5181,9 +5187,6 @@ slots.continuousMeasuredVariable__raw_data_calculation_method = Slot(uri=OAE.raw
 
 slots.continuousMeasuredVariable__calculation_software_version = Slot(uri=OAE.calculation_software_version, name="continuousMeasuredVariable__calculation_software_version", curie=OAE.curie('calculation_software_version'),
                    model_uri=OAE.continuousMeasuredVariable__calculation_software_version, domain=None, range=Optional[str])
-
-slots.calculatedVariable__genesis = Slot(uri=OAE.genesis, name="calculatedVariable__genesis", curie=OAE.curie('genesis'),
-                   model_uri=OAE.calculatedVariable__genesis, domain=None, range=str)
 
 slots.calculatedVariable__calculation_method_and_parameters = Slot(uri=OAE.calculation_method_and_parameters, name="calculatedVariable__calculation_method_and_parameters", curie=OAE.curie('calculation_method_and_parameters'),
                    model_uri=OAE.calculatedVariable__calculation_method_and_parameters, domain=None, range=str)
@@ -5609,11 +5612,17 @@ slots.MeasuredVariable_uncertainty_definition = Slot(uri=OAE.uncertainty_definit
 slots.MeasuredVariable_missing_value_indicators = Slot(uri=OAE.missing_value_indicators, name="MeasuredVariable_missing_value_indicators", curie=OAE.curie('missing_value_indicators'),
                    model_uri=OAE.MeasuredVariable_missing_value_indicators, domain=MeasuredVariable, range=str)
 
+slots.MeasuredVariable_genesis = Slot(uri=OAE.genesis, name="MeasuredVariable_genesis", curie=OAE.curie('genesis'),
+                   model_uri=OAE.MeasuredVariable_genesis, domain=MeasuredVariable, range=str)
+
 slots.DiscreteMeasuredVariable_sampling = Slot(uri=OAE.sampling, name="DiscreteMeasuredVariable_sampling", curie=OAE.curie('sampling'),
                    model_uri=OAE.DiscreteMeasuredVariable_sampling, domain=DiscreteMeasuredVariable, range=str)
 
 slots.ContinuousMeasuredVariable_sampling = Slot(uri=OAE.sampling, name="ContinuousMeasuredVariable_sampling", curie=OAE.curie('sampling'),
                    model_uri=OAE.ContinuousMeasuredVariable_sampling, domain=ContinuousMeasuredVariable, range=str)
+
+slots.CalculatedVariable_genesis = Slot(uri=OAE.genesis, name="CalculatedVariable_genesis", curie=OAE.curie('genesis'),
+                   model_uri=OAE.CalculatedVariable_genesis, domain=CalculatedVariable, range=str)
 
 slots.ContinuousPHVariable_variable_type = Slot(uri=OAE.variable_type, name="ContinuousPHVariable_variable_type", curie=OAE.curie('variable_type'),
                    model_uri=OAE.ContinuousPHVariable_variable_type, domain=ContinuousPHVariable, range=Optional[str])

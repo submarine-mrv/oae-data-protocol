@@ -79,6 +79,9 @@ classes:
       units:
         required: true
     attributes:
+      genesis:
+        range: GenesisType
+        required: true
       dataset_variable_name_qc_flag:
         title: Dataset variable name (Quality Flag)
         description: >-
@@ -124,6 +127,9 @@ classes:
         required: true
       missing_value_indicators:
         required: true
+      genesis:
+        range: string
+        equals_string: "measured"
     attributes:
       sampling_method:
         title: Sampling Method
@@ -147,10 +153,6 @@ classes:
       sampling:
         range: SamplingType
         required: true
-      genesis:
-        range: string
-        required: true
-        equals_string: "measured"
       sampling_instrument_type:
         title: Sampling instrument type
         range: SamplingInstrumentType
@@ -203,11 +205,11 @@ classes:
     is_a: InSituVariable
     mixins:
       - QCFields
-    attributes:
+    slot_usage:
       genesis:
         range: string
-        required: true
         equals_string: "calculated"
+    attributes:
       calculation_method_and_parameters:
         title: Calculated Method And Parameters
         description: >-
