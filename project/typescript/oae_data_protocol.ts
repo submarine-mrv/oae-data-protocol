@@ -1131,7 +1131,7 @@ export interface Variable {
     /** Unit of measurement for this variable. */
     units?: string,
     /** The schema class name for this variable (e.g., "DiscretePHVariable"). Auto-populated by the metadata builder. */
-    schema_class?: string,
+    schema_class: string,
     /** High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use. */
     variable_type: string,
     standard_identifier?: VocabularyItemReference,
