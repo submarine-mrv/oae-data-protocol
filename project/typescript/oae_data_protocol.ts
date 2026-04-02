@@ -567,19 +567,6 @@ export enum AnalyzingInstrumentType {
     gas_analyzer = "gas_analyzer",
     other = "other",
 };
-/**
-* Type of equilibrator used for continuous CO2 measurements.
-*/
-export enum EquilibratorType {
-    
-    /** Sprays seawater into a gas chamber for CO2 equilibration. */
-    showerhead = "showerhead",
-    /** An "h"-shaped bubble equilibrator assembly commonly used in MAPCO2 systems on moorings. */
-    floating_air_water = "floating_air_water",
-    /** CO2 diffuses across a membrane to equilibrate with a gas mixture. */
-    membrane = "membrane",
-    other = "other",
-};
 
 export enum SamplingType {
     

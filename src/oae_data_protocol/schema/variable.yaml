@@ -437,6 +437,9 @@ classes:
     mixins:
       - MeasuredCO2Fields
     slot_usage:
+      variable_type:
+        range: string
+        equals_string: "co2"
       analyzing_instrument:
         range: ContinuousCO2GasDetector
         description: CO2 gas detector with standard gas calibration for continuous measurements.

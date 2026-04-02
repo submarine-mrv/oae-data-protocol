@@ -188,9 +188,9 @@
             "description": "Equilibrator used for continuous CO2 measurement.",
             "properties": {
                 "equilibrator_type": {
-                    "$ref": "#/$defs/EquilibratorType",
                     "description": "Type of the equilibrator for the CO2 measurement.",
-                    "title": "Equilibrator type"
+                    "title": "Equilibrator type",
+                    "type": "string"
                 },
                 "headspace_gas_flow_rate": {
                     "description": "Flow rate (in L/min) of the gas from the equilibrator to the CO2 analyzer.",
@@ -236,9 +236,10 @@
                     "type": "string"
                 },
                 "instrument_type": {
-                    "$ref": "#/$defs/AnalyzingInstrumentType",
+                    "const": "gas_analyzer",
                     "description": "Type of instrument used to analyze samples or measure continuously.",
-                    "title": "Instrument type"
+                    "title": "Instrument type",
+                    "type": "string"
                 },
                 "instrument_type_custom": {
                     "title": "Instrument type (custom)",
@@ -671,9 +672,10 @@
                     "type": "string"
                 },
                 "instrument_type": {
-                    "$ref": "#/$defs/AnalyzingInstrumentType",
+                    "const": "gas_analyzer",
                     "description": "Type of instrument used to analyze samples or measure continuously.",
-                    "title": "Instrument type"
+                    "title": "Instrument type",
+                    "type": "string"
                 },
                 "instrument_type_custom": {
                     "title": "Instrument type (custom)",
@@ -795,7 +797,8 @@
                     "type": "string"
                 },
                 "genesis": {
-                    "$ref": "#/$defs/GenesisType"
+                    "const": "measured",
+                    "type": "string"
                 },
                 "long_name": {
                     "description": "Full descriptive name of the variable.",
@@ -857,7 +860,8 @@
                     "type": "string"
                 },
                 "sampling": {
-                    "$ref": "#/$defs/SamplingType"
+                    "const": "continuous",
+                    "type": "string"
                 },
                 "sampling_instrument_type": {
                     "$ref": "#/$defs/SamplingInstrumentType",
@@ -913,9 +917,10 @@
                     "type": "string"
                 },
                 "variable_type": {
-                    "$ref": "#/$defs/VariableType",
+                    "const": "co2",
                     "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
-                    "title": "Variable Type"
+                    "title": "Variable Type",
+                    "type": "string"
                 },
                 "water_vapor_correction_method": {
                     "description": "How the water vapor pressure inside the equilibrator was determined.",
@@ -933,13 +938,14 @@
                 "analyzing_method",
                 "observation_type",
                 "sampling",
-                "genesis",
                 "sampling_instrument_type",
                 "qc_steps_taken",
                 "uncertainty",
                 "uncertainty_definition",
                 "missing_value_indicators",
+                "genesis",
                 "units",
+                "schema_class",
                 "variable_type",
                 "dataset_variable_name",
                 "long_name"
@@ -3143,17 +3149,6 @@
                 "unequilibrated"
             ],
             "title": "EquilibrationStatus",
-            "type": "string"
-        },
-        "EquilibratorType": {
-            "description": "Type of equilibrator used for continuous CO2 measurements.",
-            "enum": [
-                "showerhead",
-                "floating_air_water",
-                "membrane",
-                "other"
-            ],
-            "title": "EquilibratorType",
             "type": "string"
         },
         "Experiment": {
