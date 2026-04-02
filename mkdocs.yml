@@ -31,8 +31,8 @@ markdown_extensions:
           format: !!python/name:mermaid2.fence_mermaid_custom
 
 nav:
-  - Home: about.md
-  - Schema Reference: index.md
+  - Home: index.md
+  - Schema Reference: schema_index.md
   - Classes:
     - Project & Experiment:
       - Project: Project.md

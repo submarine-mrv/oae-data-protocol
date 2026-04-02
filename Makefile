@@ -219,8 +219,9 @@ $(DOCDIR):
 	mkdir -p $@
 
 gendoc: $(DOCDIR)
-	cp -rf $(SRC)/docs/files/* $(DOCDIR) ; \
 	$(RUN) gen-doc ${GEN_DOC_ARGS} -d $(DOCDIR) $(SOURCE_SCHEMA_PATH)
+	mv $(DOCDIR)/index.md $(DOCDIR)/schema_index.md
+	cp -rf $(SRC)/docs/files/* $(DOCDIR)
 
 testdoc: gendoc serve
 
