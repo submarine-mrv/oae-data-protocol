@@ -477,10 +477,6 @@
          <lastmod>2026-04-02</lastmod>
     </url>
     <url>
-         <loc>https://submarine-mrv.github.io/oae-data-protocol/about/</loc>
-         <lastmod>2026-04-02</lastmod>
-    </url>
-    <url>
          <loc>https://submarine-mrv.github.io/oae-data-protocol/accuracy/</loc>
          <lastmod>2026-04-02</lastmod>
     </url>
@@ -1178,6 +1174,10 @@
     </url>
     <url>
          <loc>https://submarine-mrv.github.io/oae-data-protocol/schema_class/</loc>
+         <lastmod>2026-04-02</lastmod>
+    </url>
+    <url>
+         <loc>https://submarine-mrv.github.io/oae-data-protocol/schema_index/</loc>
          <lastmod>2026-04-02</lastmod>
     </url>
     <url>
