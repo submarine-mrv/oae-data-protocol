@@ -5,7 +5,7 @@ description: >-
   See docs/dev/noaa-xsd-fields-not-included.md for XSD fields not yet included.
 
 prefixes:
-  oae: "https://example.org/oae#"
+  oae: "https://schema.oaedata.org/"
   schema: "http://schema.org/"
   "SDN_L05": "http://vocab.nerc.ac.uk/collection/L05/current/"
   "SDN_L22": "http://vocab.nerc.ac.uk/collection/L22/current/"

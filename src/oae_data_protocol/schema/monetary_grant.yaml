@@ -1,7 +1,7 @@
 id: MonetaryGrant
 name: MontegaryGrant
 prefixes:
-  oae: "https://example.org/oae#"
+  oae: "https://schema.oaedata.org/"
 default_prefix: oae
 
 classes:

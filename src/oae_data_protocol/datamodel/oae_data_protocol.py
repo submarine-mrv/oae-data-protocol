@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-04-01T11:47:30
+# Generation date: 2026-04-02T13:29:18
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -71,7 +71,7 @@ PUBCHEM = CurieNamespace('PUBCHEM', 'https://pubchem.ncbi.nlm.nih.gov/compound/'
 DCAT = CurieNamespace('dcat', 'http://www.w3.org/ns/dcat#')
 ENVTHES = CurieNamespace('envthes', 'https://w3id.org/envthes/')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
-OAE = CurieNamespace('oae', 'https://example.org/oae#')
+OAE = CurieNamespace('oae', 'https://schema.oaedata.org/')
 SCHEMA = CurieNamespace('schema', 'http://schema.org/')
 XSD = CurieNamespace('xsd', 'http://www.w3.org/2001/XMLSchema#')
 DEFAULT_ = OAE
