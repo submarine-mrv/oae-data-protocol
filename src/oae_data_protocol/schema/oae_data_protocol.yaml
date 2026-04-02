@@ -4,7 +4,6 @@ name: OAEDataManagementProtocol
 #   - "integrate with linkml-common for observation types"
 version: 0.1.0
 prefixes:
-  schema: "http://schema.org/"
   oae: "https://schema.oaedata.org/"
   linkml: "https://w3id.org/linkml/"
   dcat: "http://www.w3.org/ns/dcat#"

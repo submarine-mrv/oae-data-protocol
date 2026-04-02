@@ -3,7 +3,6 @@ name: Permit
 
 prefixes:
   oae: "https://schema.oaedata.org/"
-  schema: "http://schema.org/"
 
 default_prefix: oae
 

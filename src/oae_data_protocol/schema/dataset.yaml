@@ -1,6 +1,9 @@
 id: Dataset
 name: Dataset
 
+prefixes:
+  oae: "https://schema.oaedata.org/"
+
 default_prefix: oae
 
 classes:

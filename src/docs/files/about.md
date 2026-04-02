@@ -1,62 +1,47 @@
-# About the OAE Data Protocol
+# OAE Data Protocol Schema
 
-This documentation site provides technical schemas and data models for
-Carbon To Sea's [OAE Data Management Protocol](http://carbontosea.org/oae-data-protocol/1-0-0/).
+Machine-readable schema definitions for the [OAE Data Management Protocol](https://www.carbontosea.org/oae-data-protocol/1-0-0/), developed by [Carbon To Sea](https://carbontosea.org) in collaboration with [Submarine Scientific](https://submarine.earth), NOAA, and the broader OAE research community.
 
+!!! warning "Alpha Software"
+    These schemas are under active development. We do not currently guarantee backwards compatibility between versions.
 
 ## What is this?
 
-The OAE Data Protocol is a structured approach to collecting, documenting,
-and sharing data from ocean alkalinity enhancement field trials and related
-experiments. This repository contains machine-readable schema definitions
-that support the
-[OAE Data Protocol v1.0.0](http://carbontosea.org/oae-data-protocol/1-0-0/)
-developed by [Carbon To Sea](https://carbontosea.org) in collaboration with [Submarine Scientific](https://submarine.earth), NOAA and the broader OAE research community.
+The OAE Data Protocol is a structured approach to collecting, documenting, and sharing data from ocean alkalinity enhancement field trials and related experiments. This site provides the technical schema documentation — browse the class hierarchy, controlled vocabularies, and field definitions that make up the protocol's metadata model.
 
-## Built with LinkML
+## Schema Scope
 
-These schemas are defined using [LinkML](https://linkml.io) (Linked Data Modeling Language), a flexible framework for defining data models that can be used to:
+- **Project** — OAE field trials, leads, permits, spatial/temporal coverage
+- **Experiment** — Interventions, tracer studies, model experiments, dosing details
+- **Dataset** — Field datasets, model output datasets, platform info
+- **Variables** — Measured, calculated, and contextual variables with instrument and calibration metadata
 
-- Generate JSON Schema for data validation
-- Create Python data classes for programmatic access
-- Produce documentation automatically
-- Enable semantic web compatibility
-- Support multiple serialization formats
-
-LinkML makes it easy to maintain complex data models while keeping them interoperable with modern data tools and scientific workflows.
-
-## Scope of These Schemas
-
-The schemas defined in this repository primarily correspond to the metadata components of the OAE Data Protocol:
-
-- **Project metadata** - Information about OAE field trials and initiatives
-- **Experiment metadata** - Details about specific experiments and interventions within a project
-- **Dataset metadata** - Metadata pertaining to specific datasets within a project or experiment
-- **Model metadata** - Information about relevant computational models and simulations used within the context
-of an OAE project
-
-For protocol requirements pertaining to dataset formatting, column header names, and data file structure, please refer to the [published protocol documentation](http://carbontosea.org/oae-data-protocol/1-0-0/) on Carbon To Sea's website, which serves as the primary resource for dataset formatting requirements.
+For protocol requirements pertaining to dataset formatting, column header names, and data file structure, see the [published protocol](https://www.carbontosea.org/oae-data-protocol/1-0-0/).
 
 ## Getting Started
 
-Browse the schema documentation using the navigation menu to explore:
+Use the navigation menu to explore:
 
-- **Classes**: Core data structures like `Project`, `Experiment`, and `Dataset`
-- **Enums**: Controlled vocabularies and valid value sets
+- **Classes** — Core data structures organized by domain
+- **Enumerations** — Controlled vocabularies and valid value sets
+- **Schema Reference** — Complete auto-generated index of all classes, slots, and enums
 
-This documentation serves primarily as a way to navigate and explore the data model of the various metadata used in the protocol.
+### Published Artifacts
 
-Published schemas and artifacts can be found on GitHub:
 - [JSON Schema](https://github.com/submarine-mrv/oae-data-protocol/blob/main/project/jsonschema/oae_data_protocol.schema.json)
-- [Python Dataclasses](https://github.com/submarine-mrv/oae-data-protocol/blob/main/project/jsonschema/oae_data_protocol.schema.json)
-- [LinkML Schema](https://github.com/submarine-mrv/oae-data-protocol/tree/main/src/oae_data_protocol/schema)
+- [Python Dataclasses](https://github.com/submarine-mrv/oae-data-protocol/blob/main/src/oae_data_protocol/datamodel/oae_data_protocol.py)
+- [LinkML Source Schemas](https://github.com/submarine-mrv/oae-data-protocol/tree/main/src/oae_data_protocol/schema)
+- [OAE Metadata Builder](https://github.com/submarine-mrv/oae-metadata-builder) — Web app for creating metadata
+
+## Built with LinkML
+
+Schemas are defined using [LinkML](https://linkml.io), generating JSON Schema, Python dataclasses, and documentation from a single source. Variable class hierarchy is aligned with [NOAA-PMEL's OAPMetadata](https://github.com/NOAA-PMEL/OAPMetadata) XSD schema.
 
 ## Questions or Feedback?
 
-This is an evolving project. If you have questions, find issues, or want to contribute, please visit the [GitHub repository](https://github.com/submarine-mrv/oae-data-protocol).
+Visit the [GitHub repository](https://github.com/submarine-mrv/oae-data-protocol) or contact [data@carbontosea.org](mailto:data@carbontosea.org).
 
-## Funding Acknowledgment
+---
 
-Development of the OAE Data Protocol and its corresponding technical tooling has been made possible with
-funding and steering support from [Carbon To Sea](https://carbontosea.org).
+*Development of the OAE Data Protocol has been made possible with funding and steering support from [Carbon To Sea](https://carbontosea.org).*
 
