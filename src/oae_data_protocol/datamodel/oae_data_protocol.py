@@ -1,8 +1,8 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-04-06T15:08:37
-# Schema: OAEDataSchema
+# Generation date: 2026-04-01T22:16:08
+# Schema: OAEDataManagementProtocol
 #
-# id: https://schema.oaedata.org/OAEDataSchema
+# id: OAEDataManagementProtocol
 # description:
 # license: https://creativecommons.org/publicdomain/zero/1.0/
 
@@ -71,7 +71,7 @@ PUBCHEM = CurieNamespace('PUBCHEM', 'https://pubchem.ncbi.nlm.nih.gov/compound/'
 DCAT = CurieNamespace('dcat', 'http://www.w3.org/ns/dcat#')
 ENVTHES = CurieNamespace('envthes', 'https://w3id.org/envthes/')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
-OAE = CurieNamespace('oae', 'https://schema.oaedata.org/')
+OAE = CurieNamespace('oae', 'https://example.org/oae#')
 SCHEMA = CurieNamespace('schema', 'http://schema.org/')
 XSD = CurieNamespace('xsd', 'http://www.w3.org/2001/XMLSchema#')
 DEFAULT_ = OAE
@@ -1199,18 +1199,14 @@ class Variable(YAMLRoot):
     class_name: ClassVar[str] = "Variable"
     class_model_uri: ClassVar[URIRef] = OAE.Variable
 
-    schema_class: str = None
     variable_type: Union[str, "VariableType"] = None
     dataset_variable_name: str = None
     long_name: str = None
     units: Optional[str] = None
+    schema_class: Optional[str] = None
     standard_identifier: Optional[Union[dict, "VocabularyItemReference"]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.schema_class):
-            self.MissingRequiredField("schema_class")
-        self.schema_class = str(self.class_name)
-
         if self._is_empty(self.variable_type):
             self.MissingRequiredField("variable_type")
         if not isinstance(self.variable_type, VariableType):
@@ -1229,12 +1225,12 @@ class Variable(YAMLRoot):
         if self.units is not None and not isinstance(self.units, str):
             self.units = str(self.units)
 
+        self.schema_class = str(self.class_name)
+
         if self.standard_identifier is not None and not isinstance(self.standard_identifier, VocabularyItemReference):
             self.standard_identifier = VocabularyItemReference(**as_dict(self.standard_identifier))
 
         super().__post_init__(**kwargs)
-        if self._is_empty(self.unknown_schema_class):
-            self.MissingRequiredField("unknown_schema_class")
         self.unknown_schema_class = str(self.class_name)
 
 
@@ -1258,11 +1254,8 @@ class Variable(YAMLRoot):
 @dataclass(repr=False)
 class NonMeasuredVariable(Variable):
     """
-    A contextual or ancillary variable that is NOT directly measured or calculated by the project. Use for identifiers
-    (Cruise_ID, Exp_ID), timestamps (Year_UTC, Time_UTC), coordinates (Latitude, Longitude), and any other data
-    included in the dataset for context. Do NOT create a NonMeasuredVariable for quality control flag columns —
-    instead, set dataset_variable_name_qc_flag on the parent measured or calculated variable that the flag relates to.
-    variable_type must be "non_measured".
+    Non-measured variable for data from external sources (e.g., satellite, model outputs, published data) that are not
+    directly measured by the project but included in the dataset.
     """
     _inherited_slots: ClassVar[List[str]] = []
 
@@ -1271,20 +1264,13 @@ class NonMeasuredVariable(Variable):
     class_name: ClassVar[str] = "NonMeasuredVariable"
     class_model_uri: ClassVar[URIRef] = OAE.NonMeasuredVariable
 
-    schema_class: str = None
+    variable_type: Union[str, "VariableType"] = None
     dataset_variable_name: str = None
     long_name: str = None
-    variable_type: str = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.variable_type):
-            self.MissingRequiredField("variable_type")
-        if not isinstance(self.variable_type, str):
-            self.variable_type = str(self.variable_type)
 
         super().__post_init__(**kwargs)
-        if self._is_empty(self.unknown_schema_class):
-            self.MissingRequiredField("unknown_schema_class")
         self.unknown_schema_class = str(self.class_name)
 
 
@@ -1301,11 +1287,9 @@ class InSituVariable(Variable):
     class_name: ClassVar[str] = "InSituVariable"
     class_model_uri: ClassVar[URIRef] = OAE.InSituVariable
 
-    schema_class: str = None
     variable_type: Union[str, "VariableType"] = None
     dataset_variable_name: str = None
     long_name: str = None
-    genesis: Union[str, "GenesisType"] = None
     units: str = None
     dataset_variable_name_qc_flag: Optional[str] = None
     dataset_variable_name_raw: Optional[str] = None
@@ -1314,11 +1298,6 @@ class InSituVariable(Variable):
     other_detailed_information: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.genesis):
-            self.MissingRequiredField("genesis")
-        if not isinstance(self.genesis, GenesisType):
-            self.genesis = GenesisType(self.genesis)
-
         if self._is_empty(self.units):
             self.MissingRequiredField("units")
         if not isinstance(self.units, str):
@@ -1340,8 +1319,6 @@ class InSituVariable(Variable):
             self.other_detailed_information = str(self.other_detailed_information)
 
         super().__post_init__(**kwargs)
-        if self._is_empty(self.unknown_schema_class):
-            self.MissingRequiredField("unknown_schema_class")
         self.unknown_schema_class = str(self.class_name)
 
 
@@ -1358,7 +1335,6 @@ class MeasuredVariable(InSituVariable):
     class_name: ClassVar[str] = "MeasuredVariable"
     class_model_uri: ClassVar[URIRef] = OAE.MeasuredVariable
 
-    schema_class: str = None
     variable_type: Union[str, "VariableType"] = None
     dataset_variable_name: str = None
     long_name: str = None
@@ -1368,12 +1344,12 @@ class MeasuredVariable(InSituVariable):
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
     sampling: Union[str, "SamplingType"] = None
+    genesis: Union[str, "GenesisType"] = None
     sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
     qc_steps_taken: str = None
     uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
-    genesis: str = None
     field_replicate_information: Optional[str] = None
     sampling_instrument_type_custom: Optional[str] = None
     qc_researcher: Optional[Union[dict, Person]] = None
@@ -1405,6 +1381,11 @@ class MeasuredVariable(InSituVariable):
         if not isinstance(self.sampling, SamplingType):
             self.sampling = SamplingType(self.sampling)
 
+        if self._is_empty(self.genesis):
+            self.MissingRequiredField("genesis")
+        if not isinstance(self.genesis, GenesisType):
+            self.genesis = GenesisType(self.genesis)
+
         if self._is_empty(self.sampling_instrument_type):
             self.MissingRequiredField("sampling_instrument_type")
         if not isinstance(self.sampling_instrument_type, SamplingInstrumentType):
@@ -1430,11 +1411,6 @@ class MeasuredVariable(InSituVariable):
         if not isinstance(self.missing_value_indicators, str):
             self.missing_value_indicators = str(self.missing_value_indicators)
 
-        if self._is_empty(self.genesis):
-            self.MissingRequiredField("genesis")
-        if not isinstance(self.genesis, str):
-            self.genesis = str(self.genesis)
-
         if self.field_replicate_information is not None and not isinstance(self.field_replicate_information, str):
             self.field_replicate_information = str(self.field_replicate_information)
 
@@ -1448,18 +1424,14 @@ class MeasuredVariable(InSituVariable):
             self.qc_researcher_institution = str(self.qc_researcher_institution)
 
         super().__post_init__(**kwargs)
-        if self._is_empty(self.unknown_schema_class):
-            self.MissingRequiredField("unknown_schema_class")
         self.unknown_schema_class = str(self.class_name)
 
 
 @dataclass(repr=False)
 class DiscreteMeasuredVariable(MeasuredVariable):
     """
-    A variable measured in-situ from discrete water samples (e.g., bottle samples analyzed in a lab or shipboard). Use
-    this class for generic measured variables that do not fall under a specific category (pH, TA, DIC, CO2, sediment,
-    HPLC). For those, use the type-specific subclass instead (e.g., DiscretePHVariable). Set variable_type to "other",
-    genesis to "measured", and sampling to "discrete".
+    Analyzing instrument information fields, only applied to discretely measured variables. The instrument type can be
+    narrowed in subclasses using slot_usage.
     """
     _inherited_slots: ClassVar[List[str]] = []
 
@@ -1468,7 +1440,6 @@ class DiscreteMeasuredVariable(MeasuredVariable):
     class_name: ClassVar[str] = "DiscreteMeasuredVariable"
     class_model_uri: ClassVar[URIRef] = OAE.DiscreteMeasuredVariable
 
-    schema_class: str = None
     variable_type: Union[str, "VariableType"] = None
     dataset_variable_name: str = None
     long_name: str = None
@@ -1477,33 +1448,24 @@ class DiscreteMeasuredVariable(MeasuredVariable):
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
+    sampling: Union[str, "SamplingType"] = None
+    genesis: Union[str, "GenesisType"] = None
     sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
     qc_steps_taken: str = None
     uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
-    genesis: str = None
-    sampling: str = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.sampling):
-            self.MissingRequiredField("sampling")
-        if not isinstance(self.sampling, str):
-            self.sampling = str(self.sampling)
 
         super().__post_init__(**kwargs)
-        if self._is_empty(self.unknown_schema_class):
-            self.MissingRequiredField("unknown_schema_class")
         self.unknown_schema_class = str(self.class_name)
 
 
 @dataclass(repr=False)
 class ContinuousMeasuredVariable(MeasuredVariable):
     """
-    A variable measured in-situ by a continuous autonomous sensor (e.g., temperature, salinity, conductivity, pressure
-    from a deployed sonde or underway system). Use this class for generic measured variables that do not fall under a
-    specific category (pH, TA, DIC, CO2, sediment). For those, use the type-specific subclass instead (e.g.,
-    ContinuousPHVariable). Set variable_type to "other", genesis to "measured", and sampling to "continuous".
+    Fields for continuous sampling information.
     """
     _inherited_slots: ClassVar[List[str]] = []
 
@@ -1512,7 +1474,6 @@ class ContinuousMeasuredVariable(MeasuredVariable):
     class_name: ClassVar[str] = "ContinuousMeasuredVariable"
     class_model_uri: ClassVar[URIRef] = OAE.ContinuousMeasuredVariable
 
-    schema_class: str = None
     variable_type: Union[str, "VariableType"] = None
     dataset_variable_name: str = None
     long_name: str = None
@@ -1521,14 +1482,14 @@ class ContinuousMeasuredVariable(MeasuredVariable):
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
+    sampling: Union[str, "SamplingType"] = None
+    genesis: Union[str, "GenesisType"] = None
     sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
     qc_steps_taken: str = None
     uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
-    genesis: str = None
     raw_data_calculation_method: str = None
-    sampling: str = None
     calculation_software_version: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
@@ -1537,26 +1498,17 @@ class ContinuousMeasuredVariable(MeasuredVariable):
         if not isinstance(self.raw_data_calculation_method, str):
             self.raw_data_calculation_method = str(self.raw_data_calculation_method)
 
-        if self._is_empty(self.sampling):
-            self.MissingRequiredField("sampling")
-        if not isinstance(self.sampling, str):
-            self.sampling = str(self.sampling)
-
         if self.calculation_software_version is not None and not isinstance(self.calculation_software_version, str):
             self.calculation_software_version = str(self.calculation_software_version)
 
         super().__post_init__(**kwargs)
-        if self._is_empty(self.unknown_schema_class):
-            self.MissingRequiredField("unknown_schema_class")
         self.unknown_schema_class = str(self.class_name)
 
 
 @dataclass(repr=False)
 class CalculatedVariable(InSituVariable):
     """
-    A variable that is calculated or derived from other measured variables rather than directly measured by an
-    instrument (e.g., carbonate system parameters computed via CO2SYS). Set genesis to "calculated". The variable_type
-    should reflect the quantity being calculated (e.g., "pH", "ta", "dic", "co2", or "other").
+    Variable that is calculated or derived from other variables.
     """
     _inherited_slots: ClassVar[List[str]] = []
 
@@ -1565,13 +1517,12 @@ class CalculatedVariable(InSituVariable):
     class_name: ClassVar[str] = "CalculatedVariable"
     class_model_uri: ClassVar[URIRef] = OAE.CalculatedVariable
 
-    schema_class: str = None
     variable_type: Union[str, "VariableType"] = None
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
+    genesis: Union[str, "GenesisType"] = None
     calculation_method_and_parameters: str = None
-    genesis: str = None
     qc_steps_taken: Optional[str] = None
     uncertainty: Optional[str] = None
     uncertainty_definition: Optional[str] = None
@@ -1580,15 +1531,15 @@ class CalculatedVariable(InSituVariable):
     qc_researcher_institution: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.genesis):
+            self.MissingRequiredField("genesis")
+        if not isinstance(self.genesis, GenesisType):
+            self.genesis = GenesisType(self.genesis)
+
         if self._is_empty(self.calculation_method_and_parameters):
             self.MissingRequiredField("calculation_method_and_parameters")
         if not isinstance(self.calculation_method_and_parameters, str):
             self.calculation_method_and_parameters = str(self.calculation_method_and_parameters)
-
-        if self._is_empty(self.genesis):
-            self.MissingRequiredField("genesis")
-        if not isinstance(self.genesis, str):
-            self.genesis = str(self.genesis)
 
         if self.qc_steps_taken is not None and not isinstance(self.qc_steps_taken, str):
             self.qc_steps_taken = str(self.qc_steps_taken)
@@ -1609,8 +1560,6 @@ class CalculatedVariable(InSituVariable):
             self.qc_researcher_institution = str(self.qc_researcher_institution)
 
         super().__post_init__(**kwargs)
-        if self._is_empty(self.unknown_schema_class):
-            self.MissingRequiredField("unknown_schema_class")
         self.unknown_schema_class = str(self.class_name)
 
 
@@ -1626,7 +1575,7 @@ class ContinuousPHVariable(ContinuousMeasuredVariable):
     class_name: ClassVar[str] = "ContinuousPHVariable"
     class_model_uri: ClassVar[URIRef] = OAE.ContinuousPHVariable
 
-    schema_class: str = None
+    variable_type: Union[str, "VariableType"] = None
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
@@ -1634,27 +1583,21 @@ class ContinuousPHVariable(ContinuousMeasuredVariable):
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
+    sampling: Union[str, "SamplingType"] = None
+    genesis: Union[str, "GenesisType"] = None
     sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
     qc_steps_taken: str = None
     uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
-    genesis: str = None
     raw_data_calculation_method: str = None
-    sampling: str = None
-    variable_type: Optional[str] = None
     appropriate_use_quality: Optional[Union[str, "AppropriateUseQuality"]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self.variable_type is not None and not isinstance(self.variable_type, str):
-            self.variable_type = str(self.variable_type)
-
         if self.appropriate_use_quality is not None and not isinstance(self.appropriate_use_quality, AppropriateUseQuality):
             self.appropriate_use_quality = AppropriateUseQuality(self.appropriate_use_quality)
 
         super().__post_init__(**kwargs)
-        if self._is_empty(self.unknown_schema_class):
-            self.MissingRequiredField("unknown_schema_class")
         self.unknown_schema_class = str(self.class_name)
 
 
@@ -1671,25 +1614,24 @@ class DiscretePHVariable(DiscreteMeasuredVariable):
     class_name: ClassVar[str] = "DiscretePHVariable"
     class_model_uri: ClassVar[URIRef] = OAE.DiscretePHVariable
 
-    schema_class: str = None
+    variable_type: Union[str, "VariableType"] = None
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
+    sampling: Union[str, "SamplingType"] = None
+    genesis: Union[str, "GenesisType"] = None
     sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
     qc_steps_taken: str = None
     uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
-    genesis: str = None
-    sampling: str = None
     measurement_temperature: str = None
     ph_reported_temperature: str = None
     analyzing_instrument: Union[dict, "PHInstrument"] = None
     temperature_correction_method: Optional[str] = None
-    variable_type: Optional[str] = None
     appropriate_use_quality: Optional[Union[str, "AppropriateUseQuality"]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
@@ -1711,15 +1653,10 @@ class DiscretePHVariable(DiscreteMeasuredVariable):
         if self.temperature_correction_method is not None and not isinstance(self.temperature_correction_method, str):
             self.temperature_correction_method = str(self.temperature_correction_method)
 
-        if self.variable_type is not None and not isinstance(self.variable_type, str):
-            self.variable_type = str(self.variable_type)
-
         if self.appropriate_use_quality is not None and not isinstance(self.appropriate_use_quality, AppropriateUseQuality):
             self.appropriate_use_quality = AppropriateUseQuality(self.appropriate_use_quality)
 
         super().__post_init__(**kwargs)
-        if self._is_empty(self.unknown_schema_class):
-            self.MissingRequiredField("unknown_schema_class")
         self.unknown_schema_class = str(self.class_name)
 
 
@@ -1735,7 +1672,7 @@ class ContinuousTAVariable(ContinuousMeasuredVariable):
     class_name: ClassVar[str] = "ContinuousTAVariable"
     class_model_uri: ClassVar[URIRef] = OAE.ContinuousTAVariable
 
-    schema_class: str = None
+    variable_type: Union[str, "VariableType"] = None
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
@@ -1743,16 +1680,15 @@ class ContinuousTAVariable(ContinuousMeasuredVariable):
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
+    sampling: Union[str, "SamplingType"] = None
+    genesis: Union[str, "GenesisType"] = None
     sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
     qc_steps_taken: str = None
     uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
-    genesis: str = None
     raw_data_calculation_method: str = None
-    sampling: str = None
     concentration_basis: Union[str, "ConcentrationBasis"] = None
-    variable_type: Optional[str] = None
     appropriate_use_quality: Optional[Union[str, "AppropriateUseQuality"]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
@@ -1761,15 +1697,10 @@ class ContinuousTAVariable(ContinuousMeasuredVariable):
         if not isinstance(self.concentration_basis, ConcentrationBasis):
             self.concentration_basis = ConcentrationBasis(self.concentration_basis)
 
-        if self.variable_type is not None and not isinstance(self.variable_type, str):
-            self.variable_type = str(self.variable_type)
-
         if self.appropriate_use_quality is not None and not isinstance(self.appropriate_use_quality, AppropriateUseQuality):
             self.appropriate_use_quality = AppropriateUseQuality(self.appropriate_use_quality)
 
         super().__post_init__(**kwargs)
-        if self._is_empty(self.unknown_schema_class):
-            self.MissingRequiredField("unknown_schema_class")
         self.unknown_schema_class = str(self.class_name)
 
 
@@ -1785,20 +1716,20 @@ class DiscreteTAVariable(DiscreteMeasuredVariable):
     class_name: ClassVar[str] = "DiscreteTAVariable"
     class_model_uri: ClassVar[URIRef] = OAE.DiscreteTAVariable
 
-    schema_class: str = None
+    variable_type: Union[str, "VariableType"] = None
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
+    sampling: Union[str, "SamplingType"] = None
+    genesis: Union[str, "GenesisType"] = None
     sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
     qc_steps_taken: str = None
     uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
-    genesis: str = None
-    sampling: str = None
     sample_preservation: Union[dict, "SamplePreservation"] = None
     blank_correction: str = None
     titration_type: str = None
@@ -1806,7 +1737,6 @@ class DiscreteTAVariable(DiscreteMeasuredVariable):
     concentration_basis: Union[str, "ConcentrationBasis"] = None
     titration_cell_type: Optional[Union[str, "TitrationCellType"]] = None
     curve_fitting_method: Optional[str] = None
-    variable_type: Optional[str] = None
     appropriate_use_quality: Optional[Union[str, "AppropriateUseQuality"]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
@@ -1841,15 +1771,10 @@ class DiscreteTAVariable(DiscreteMeasuredVariable):
         if self.curve_fitting_method is not None and not isinstance(self.curve_fitting_method, str):
             self.curve_fitting_method = str(self.curve_fitting_method)
 
-        if self.variable_type is not None and not isinstance(self.variable_type, str):
-            self.variable_type = str(self.variable_type)
-
         if self.appropriate_use_quality is not None and not isinstance(self.appropriate_use_quality, AppropriateUseQuality):
             self.appropriate_use_quality = AppropriateUseQuality(self.appropriate_use_quality)
 
         super().__post_init__(**kwargs)
-        if self._is_empty(self.unknown_schema_class):
-            self.MissingRequiredField("unknown_schema_class")
         self.unknown_schema_class = str(self.class_name)
 
 
@@ -1865,7 +1790,7 @@ class ContinuousDICVariable(ContinuousMeasuredVariable):
     class_name: ClassVar[str] = "ContinuousDICVariable"
     class_model_uri: ClassVar[URIRef] = OAE.ContinuousDICVariable
 
-    schema_class: str = None
+    variable_type: Union[str, "VariableType"] = None
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
@@ -1873,16 +1798,15 @@ class ContinuousDICVariable(ContinuousMeasuredVariable):
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
+    sampling: Union[str, "SamplingType"] = None
+    genesis: Union[str, "GenesisType"] = None
     sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
     qc_steps_taken: str = None
     uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
-    genesis: str = None
     raw_data_calculation_method: str = None
-    sampling: str = None
     concentration_basis: Union[str, "ConcentrationBasis"] = None
-    variable_type: Optional[str] = None
     appropriate_use_quality: Optional[Union[str, "AppropriateUseQuality"]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
@@ -1891,15 +1815,10 @@ class ContinuousDICVariable(ContinuousMeasuredVariable):
         if not isinstance(self.concentration_basis, ConcentrationBasis):
             self.concentration_basis = ConcentrationBasis(self.concentration_basis)
 
-        if self.variable_type is not None and not isinstance(self.variable_type, str):
-            self.variable_type = str(self.variable_type)
-
         if self.appropriate_use_quality is not None and not isinstance(self.appropriate_use_quality, AppropriateUseQuality):
             self.appropriate_use_quality = AppropriateUseQuality(self.appropriate_use_quality)
 
         super().__post_init__(**kwargs)
-        if self._is_empty(self.unknown_schema_class):
-            self.MissingRequiredField("unknown_schema_class")
         self.unknown_schema_class = str(self.class_name)
 
 
@@ -1916,25 +1835,24 @@ class DiscreteDICVariable(DiscreteMeasuredVariable):
     class_name: ClassVar[str] = "DiscreteDICVariable"
     class_model_uri: ClassVar[URIRef] = OAE.DiscreteDICVariable
 
-    schema_class: str = None
+    variable_type: Union[str, "VariableType"] = None
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
+    sampling: Union[str, "SamplingType"] = None
+    genesis: Union[str, "GenesisType"] = None
     sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
     qc_steps_taken: str = None
     uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
-    genesis: str = None
-    sampling: str = None
     sample_preservation: Union[dict, "SamplePreservation"] = None
     blank_correction: str = None
     analyzing_instrument: Union[dict, "CRMInstrument"] = None
     concentration_basis: Union[str, "ConcentrationBasis"] = None
-    variable_type: Optional[str] = None
     appropriate_use_quality: Optional[Union[str, "AppropriateUseQuality"]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
@@ -1958,15 +1876,10 @@ class DiscreteDICVariable(DiscreteMeasuredVariable):
         if not isinstance(self.concentration_basis, ConcentrationBasis):
             self.concentration_basis = ConcentrationBasis(self.concentration_basis)
 
-        if self.variable_type is not None and not isinstance(self.variable_type, str):
-            self.variable_type = str(self.variable_type)
-
         if self.appropriate_use_quality is not None and not isinstance(self.appropriate_use_quality, AppropriateUseQuality):
             self.appropriate_use_quality = AppropriateUseQuality(self.appropriate_use_quality)
 
         super().__post_init__(**kwargs)
-        if self._is_empty(self.unknown_schema_class):
-            self.MissingRequiredField("unknown_schema_class")
         self.unknown_schema_class = str(self.class_name)
 
 
@@ -1982,7 +1895,7 @@ class ContinuousSedimentVariable(ContinuousMeasuredVariable):
     class_name: ClassVar[str] = "ContinuousSedimentVariable"
     class_model_uri: ClassVar[URIRef] = OAE.ContinuousSedimentVariable
 
-    schema_class: str = None
+    variable_type: Union[str, "VariableType"] = None
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
@@ -1990,19 +1903,18 @@ class ContinuousSedimentVariable(ContinuousMeasuredVariable):
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
+    sampling: Union[str, "SamplingType"] = None
+    genesis: Union[str, "GenesisType"] = None
     sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
     qc_steps_taken: str = None
     uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
-    genesis: str = None
     raw_data_calculation_method: str = None
-    sampling: str = None
     sediment_type: str = None
     sediment_sampling_method: str = None
     sediment_sampling_depth: str = None
     sediment_sampling_water_depth: str = None
-    variable_type: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.sediment_type):
@@ -2025,12 +1937,7 @@ class ContinuousSedimentVariable(ContinuousMeasuredVariable):
         if not isinstance(self.sediment_sampling_water_depth, str):
             self.sediment_sampling_water_depth = str(self.sediment_sampling_water_depth)
 
-        if self.variable_type is not None and not isinstance(self.variable_type, str):
-            self.variable_type = str(self.variable_type)
-
         super().__post_init__(**kwargs)
-        if self._is_empty(self.unknown_schema_class):
-            self.MissingRequiredField("unknown_schema_class")
         self.unknown_schema_class = str(self.class_name)
 
 
@@ -2046,7 +1953,7 @@ class DiscreteSedimentVariable(DiscreteMeasuredVariable):
     class_name: ClassVar[str] = "DiscreteSedimentVariable"
     class_model_uri: ClassVar[URIRef] = OAE.DiscreteSedimentVariable
 
-    schema_class: str = None
+    variable_type: Union[str, "VariableType"] = None
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
@@ -2054,18 +1961,17 @@ class DiscreteSedimentVariable(DiscreteMeasuredVariable):
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
+    sampling: Union[str, "SamplingType"] = None
+    genesis: Union[str, "GenesisType"] = None
     sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
     qc_steps_taken: str = None
     uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
-    genesis: str = None
-    sampling: str = None
     sediment_type: str = None
     sediment_sampling_method: str = None
     sediment_sampling_depth: str = None
     sediment_sampling_water_depth: str = None
-    variable_type: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.sediment_type):
@@ -2088,12 +1994,7 @@ class DiscreteSedimentVariable(DiscreteMeasuredVariable):
         if not isinstance(self.sediment_sampling_water_depth, str):
             self.sediment_sampling_water_depth = str(self.sediment_sampling_water_depth)
 
-        if self.variable_type is not None and not isinstance(self.variable_type, str):
-            self.variable_type = str(self.variable_type)
-
         super().__post_init__(**kwargs)
-        if self._is_empty(self.unknown_schema_class):
-            self.MissingRequiredField("unknown_schema_class")
         self.unknown_schema_class = str(self.class_name)
 
 
@@ -2109,27 +2010,26 @@ class DiscreteCO2Variable(DiscreteMeasuredVariable):
     class_name: ClassVar[str] = "DiscreteCO2Variable"
     class_model_uri: ClassVar[URIRef] = OAE.DiscreteCO2Variable
 
-    schema_class: str = None
+    variable_type: Union[str, "VariableType"] = None
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
+    sampling: Union[str, "SamplingType"] = None
+    genesis: Union[str, "GenesisType"] = None
     sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
     qc_steps_taken: str = None
     uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
-    genesis: str = None
-    sampling: str = None
     storage_method: str = None
     measurement_temperature: int = None
     analyzing_instrument: Union[dict, "CO2GasDetector"] = None
-    co2_reported_temperature: str = None
+    pco2_reported_temperature: str = None
     seawater_volume: Optional[int] = None
     headspace_volume: Optional[int] = None
-    variable_type: Optional[str] = None
     appropriate_use_quality: Optional[Union[str, "AppropriateUseQuality"]] = None
     water_vapor_correction_method: Optional[str] = None
     temperature_correction_method: Optional[str] = None
@@ -2150,19 +2050,16 @@ class DiscreteCO2Variable(DiscreteMeasuredVariable):
         if not isinstance(self.analyzing_instrument, CO2GasDetector):
             self.analyzing_instrument = CO2GasDetector(**as_dict(self.analyzing_instrument))
 
-        if self._is_empty(self.co2_reported_temperature):
-            self.MissingRequiredField("co2_reported_temperature")
-        if not isinstance(self.co2_reported_temperature, str):
-            self.co2_reported_temperature = str(self.co2_reported_temperature)
+        if self._is_empty(self.pco2_reported_temperature):
+            self.MissingRequiredField("pco2_reported_temperature")
+        if not isinstance(self.pco2_reported_temperature, str):
+            self.pco2_reported_temperature = str(self.pco2_reported_temperature)
 
         if self.seawater_volume is not None and not isinstance(self.seawater_volume, int):
             self.seawater_volume = int(self.seawater_volume)
 
         if self.headspace_volume is not None and not isinstance(self.headspace_volume, int):
             self.headspace_volume = int(self.headspace_volume)
-
-        if self.variable_type is not None and not isinstance(self.variable_type, str):
-            self.variable_type = str(self.variable_type)
 
         if self.appropriate_use_quality is not None and not isinstance(self.appropriate_use_quality, AppropriateUseQuality):
             self.appropriate_use_quality = AppropriateUseQuality(self.appropriate_use_quality)
@@ -2174,8 +2071,100 @@ class DiscreteCO2Variable(DiscreteMeasuredVariable):
             self.temperature_correction_method = str(self.temperature_correction_method)
 
         super().__post_init__(**kwargs)
-        if self._is_empty(self.unknown_schema_class):
-            self.MissingRequiredField("unknown_schema_class")
+        self.unknown_schema_class = str(self.class_name)
+
+
+@dataclass(repr=False)
+class ContinuousCO2Variable(ContinuousMeasuredVariable):
+    """
+    CO2 continuous (sensor) measured variable (xCO2/pCO2/fCO2). Reference: OAPMetadata XSD variables.xsd -
+    co2_continuous
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["ContinuousCO2Variable"]
+    class_class_curie: ClassVar[str] = "oae:ContinuousCO2Variable"
+    class_name: ClassVar[str] = "ContinuousCO2Variable"
+    class_model_uri: ClassVar[URIRef] = OAE.ContinuousCO2Variable
+
+    variable_type: Union[str, "VariableType"] = None
+    dataset_variable_name: str = None
+    long_name: str = None
+    units: str = None
+    sampling_method: str = None
+    analyzing_method: str = None
+    observation_type: Union[str, "ObservationType"] = None
+    sampling: Union[str, "SamplingType"] = None
+    genesis: Union[str, "GenesisType"] = None
+    sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
+    qc_steps_taken: str = None
+    uncertainty: str = None
+    uncertainty_definition: str = None
+    missing_value_indicators: str = None
+    raw_data_calculation_method: str = None
+    seawater_intake_location: str = None
+    seawater_intake_depth: str = None
+    analyzing_instrument: Union[dict, "ContinuousCO2GasDetector"] = None
+    pco2_reported_temperature: str = None
+    equilibrator: Optional[Union[dict, "CO2Equilibrator"]] = None
+    equilibrator_temperature_sensor: Optional[Union[dict, "GenericSensor"]] = None
+    equilibrator_pressure_sensor: Optional[Union[dict, "GenericSensor"]] = None
+    atmospheric_pressure_sensor: Optional[Union[dict, "GenericSensor"]] = None
+    drying_method: Optional[str] = None
+    marine_air_measurement: Optional[Union[dict, "MarineAirMeasurement"]] = None
+    appropriate_use_quality: Optional[Union[str, "AppropriateUseQuality"]] = None
+    water_vapor_correction_method: Optional[str] = None
+    temperature_correction_method: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.seawater_intake_location):
+            self.MissingRequiredField("seawater_intake_location")
+        if not isinstance(self.seawater_intake_location, str):
+            self.seawater_intake_location = str(self.seawater_intake_location)
+
+        if self._is_empty(self.seawater_intake_depth):
+            self.MissingRequiredField("seawater_intake_depth")
+        if not isinstance(self.seawater_intake_depth, str):
+            self.seawater_intake_depth = str(self.seawater_intake_depth)
+
+        if self._is_empty(self.analyzing_instrument):
+            self.MissingRequiredField("analyzing_instrument")
+        if not isinstance(self.analyzing_instrument, ContinuousCO2GasDetector):
+            self.analyzing_instrument = ContinuousCO2GasDetector(**as_dict(self.analyzing_instrument))
+
+        if self._is_empty(self.pco2_reported_temperature):
+            self.MissingRequiredField("pco2_reported_temperature")
+        if not isinstance(self.pco2_reported_temperature, str):
+            self.pco2_reported_temperature = str(self.pco2_reported_temperature)
+
+        if self.equilibrator is not None and not isinstance(self.equilibrator, CO2Equilibrator):
+            self.equilibrator = CO2Equilibrator(**as_dict(self.equilibrator))
+
+        if self.equilibrator_temperature_sensor is not None and not isinstance(self.equilibrator_temperature_sensor, GenericSensor):
+            self.equilibrator_temperature_sensor = GenericSensor(**as_dict(self.equilibrator_temperature_sensor))
+
+        if self.equilibrator_pressure_sensor is not None and not isinstance(self.equilibrator_pressure_sensor, GenericSensor):
+            self.equilibrator_pressure_sensor = GenericSensor(**as_dict(self.equilibrator_pressure_sensor))
+
+        if self.atmospheric_pressure_sensor is not None and not isinstance(self.atmospheric_pressure_sensor, GenericSensor):
+            self.atmospheric_pressure_sensor = GenericSensor(**as_dict(self.atmospheric_pressure_sensor))
+
+        if self.drying_method is not None and not isinstance(self.drying_method, str):
+            self.drying_method = str(self.drying_method)
+
+        if self.marine_air_measurement is not None and not isinstance(self.marine_air_measurement, MarineAirMeasurement):
+            self.marine_air_measurement = MarineAirMeasurement(**as_dict(self.marine_air_measurement))
+
+        if self.appropriate_use_quality is not None and not isinstance(self.appropriate_use_quality, AppropriateUseQuality):
+            self.appropriate_use_quality = AppropriateUseQuality(self.appropriate_use_quality)
+
+        if self.water_vapor_correction_method is not None and not isinstance(self.water_vapor_correction_method, str):
+            self.water_vapor_correction_method = str(self.water_vapor_correction_method)
+
+        if self.temperature_correction_method is not None and not isinstance(self.temperature_correction_method, str):
+            self.temperature_correction_method = str(self.temperature_correction_method)
+
+        super().__post_init__(**kwargs)
         self.unknown_schema_class = str(self.class_name)
 
 
@@ -2192,7 +2181,7 @@ class HPLCVariable(DiscreteMeasuredVariable):
     class_name: ClassVar[str] = "HPLCVariable"
     class_model_uri: ClassVar[URIRef] = OAE.HPLCVariable
 
-    schema_class: str = None
+    variable_type: Union[str, "VariableType"] = None
     dataset_variable_name: str = None
     long_name: str = None
     units: str = None
@@ -2200,16 +2189,15 @@ class HPLCVariable(DiscreteMeasuredVariable):
     sampling_method: str = None
     analyzing_method: str = None
     observation_type: Union[str, "ObservationType"] = None
+    sampling: Union[str, "SamplingType"] = None
+    genesis: Union[str, "GenesisType"] = None
     sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
     qc_steps_taken: str = None
     uncertainty: str = None
     uncertainty_definition: str = None
     missing_value_indicators: str = None
-    genesis: str = None
-    sampling: str = None
     hplc_lab: str = None
     hplc_lab_technician: Optional[str] = None
-    variable_type: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.hplc_lab):
@@ -2220,12 +2208,7 @@ class HPLCVariable(DiscreteMeasuredVariable):
         if self.hplc_lab_technician is not None and not isinstance(self.hplc_lab_technician, str):
             self.hplc_lab_technician = str(self.hplc_lab_technician)
 
-        if self.variable_type is not None and not isinstance(self.variable_type, str):
-            self.variable_type = str(self.variable_type)
-
         super().__post_init__(**kwargs)
-        if self._is_empty(self.unknown_schema_class):
-            self.MissingRequiredField("unknown_schema_class")
         self.unknown_schema_class = str(self.class_name)
 
 
@@ -2421,16 +2404,16 @@ class MeasuredCO2Fields(YAMLRoot):
     class_name: ClassVar[str] = "MeasuredCO2Fields"
     class_model_uri: ClassVar[URIRef] = OAE.MeasuredCO2Fields
 
-    co2_reported_temperature: str = None
+    pco2_reported_temperature: str = None
     appropriate_use_quality: Optional[Union[str, "AppropriateUseQuality"]] = None
     water_vapor_correction_method: Optional[str] = None
     temperature_correction_method: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.co2_reported_temperature):
-            self.MissingRequiredField("co2_reported_temperature")
-        if not isinstance(self.co2_reported_temperature, str):
-            self.co2_reported_temperature = str(self.co2_reported_temperature)
+        if self._is_empty(self.pco2_reported_temperature):
+            self.MissingRequiredField("pco2_reported_temperature")
+        if not isinstance(self.pco2_reported_temperature, str):
+            self.pco2_reported_temperature = str(self.pco2_reported_temperature)
 
         if self.appropriate_use_quality is not None and not isinstance(self.appropriate_use_quality, AppropriateUseQuality):
             self.appropriate_use_quality = AppropriateUseQuality(self.appropriate_use_quality)
@@ -2503,9 +2486,9 @@ class Dataset(YAMLRoot):
     description: str = None
     project_id: str = None
     experiment_id: str = None
+    filenames: Union[str, List[str]] = None
     dataset_type: Union[str, "DatasetType"] = None
     data_submitter: Union[dict, Person] = None
-    filenames: Union[str, List[str]] = None
     dataset_type_custom: Optional[str] = None
     author_list_for_citation: Optional[str] = None
     license: Optional[Union[str, URI]] = None
@@ -2532,6 +2515,12 @@ class Dataset(YAMLRoot):
         if not isinstance(self.experiment_id, str):
             self.experiment_id = str(self.experiment_id)
 
+        if self._is_empty(self.filenames):
+            self.MissingRequiredField("filenames")
+        if not isinstance(self.filenames, list):
+            self.filenames = [self.filenames] if self.filenames is not None else []
+        self.filenames = [v if isinstance(v, str) else str(v) for v in self.filenames]
+
         if self._is_empty(self.dataset_type):
             self.MissingRequiredField("dataset_type")
         if not isinstance(self.dataset_type, DatasetType):
@@ -2541,12 +2530,6 @@ class Dataset(YAMLRoot):
             self.MissingRequiredField("data_submitter")
         if not isinstance(self.data_submitter, Person):
             self.data_submitter = Person(**as_dict(self.data_submitter))
-
-        if self._is_empty(self.filenames):
-            self.MissingRequiredField("filenames")
-        if not isinstance(self.filenames, list):
-            self.filenames = [self.filenames] if self.filenames is not None else []
-        self.filenames = [v if isinstance(v, str) else str(v) for v in self.filenames]
 
         if self.dataset_type_custom is not None and not isinstance(self.dataset_type_custom, str):
             self.dataset_type_custom = str(self.dataset_type_custom)
@@ -2580,9 +2563,9 @@ class FieldDataset(Dataset):
     description: str = None
     project_id: str = None
     experiment_id: str = None
+    filenames: Union[str, List[str]] = None
     dataset_type: Union[str, "DatasetType"] = None
     data_submitter: Union[dict, Person] = None
-    filenames: Union[str, List[str]] = None
     temporal_coverage: str = None
     data_product_type: Union[str, "DataProductType"] = None
     platform_info: Union[dict, "Platform"] = None
@@ -2613,7 +2596,7 @@ class FieldDataset(Dataset):
             self.calibration_files = [self.calibration_files] if self.calibration_files is not None else []
         self.calibration_files = [v if isinstance(v, str) else str(v) for v in self.calibration_files]
 
-        self._normalize_inlined_as_dict(slot_name="variables", slot_type=Variable, key_name="schema_class", keyed=False)
+        self._normalize_inlined_as_dict(slot_name="variables", slot_type=Variable, key_name="variable_type", keyed=False)
 
         super().__post_init__(**kwargs)
 
@@ -3107,7 +3090,7 @@ class CO2GasDetector(AnalyzingInstrument):
     instrument_type: Union[str, "AnalyzingInstrumentType"] = None
     accuracy: str = None
     detector_type: str = None
-    calibration: Union[dict, "CO2Calibration"] = None
+    calibration: Union[dict, "DiscreteCO2Calibration"] = None
     manufacturer: str = None
     resolution: Optional[str] = None
     uncertainty: Optional[str] = None
@@ -3122,8 +3105,8 @@ class CO2GasDetector(AnalyzingInstrument):
 
         if self._is_empty(self.calibration):
             self.MissingRequiredField("calibration")
-        if not isinstance(self.calibration, CO2Calibration):
-            self.calibration = CO2Calibration(**as_dict(self.calibration))
+        if not isinstance(self.calibration, DiscreteCO2Calibration):
+            self.calibration = DiscreteCO2Calibration(**as_dict(self.calibration))
 
         if self._is_empty(self.manufacturer):
             self.MissingRequiredField("manufacturer")
@@ -3141,6 +3124,159 @@ class CO2GasDetector(AnalyzingInstrument):
 
         if self.model is not None and not isinstance(self.model, str):
             self.model = str(self.model)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class ContinuousCO2GasDetector(CO2GasDetector):
+    """
+    CO2 gas detector for continuous measurements, with measurement frequency.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["ContinuousCO2GasDetector"]
+    class_class_curie: ClassVar[str] = "oae:ContinuousCO2GasDetector"
+    class_name: ClassVar[str] = "ContinuousCO2GasDetector"
+    class_model_uri: ClassVar[URIRef] = OAE.ContinuousCO2GasDetector
+
+    instrument_type: Union[str, "AnalyzingInstrumentType"] = None
+    accuracy: str = None
+    detector_type: str = None
+    manufacturer: str = None
+    calibration: Union[dict, "ContinuousCO2Calibration"] = None
+    measurement_frequency: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.calibration):
+            self.MissingRequiredField("calibration")
+        if not isinstance(self.calibration, ContinuousCO2Calibration):
+            self.calibration = ContinuousCO2Calibration(**as_dict(self.calibration))
+
+        if self.measurement_frequency is not None and not isinstance(self.measurement_frequency, str):
+            self.measurement_frequency = str(self.measurement_frequency)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class CO2Equilibrator(YAMLRoot):
+    """
+    Equilibrator used for continuous CO2 measurement.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["CO2Equilibrator"]
+    class_class_curie: ClassVar[str] = "oae:CO2Equilibrator"
+    class_name: ClassVar[str] = "CO2Equilibrator"
+    class_model_uri: ClassVar[URIRef] = OAE.CO2Equilibrator
+
+    equilibrator_type: Optional[Union[str, "EquilibratorType"]] = None
+    volume: Optional[str] = None
+    vented: Optional[Union[bool, Bool]] = None
+    water_flow_rate: Optional[str] = None
+    headspace_gas_flow_rate: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self.equilibrator_type is not None and not isinstance(self.equilibrator_type, EquilibratorType):
+            self.equilibrator_type = EquilibratorType(self.equilibrator_type)
+
+        if self.volume is not None and not isinstance(self.volume, str):
+            self.volume = str(self.volume)
+
+        if self.vented is not None and not isinstance(self.vented, Bool):
+            self.vented = Bool(self.vented)
+
+        if self.water_flow_rate is not None and not isinstance(self.water_flow_rate, str):
+            self.water_flow_rate = str(self.water_flow_rate)
+
+        if self.headspace_gas_flow_rate is not None and not isinstance(self.headspace_gas_flow_rate, str):
+            self.headspace_gas_flow_rate = str(self.headspace_gas_flow_rate)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class GenericSensor(YAMLRoot):
+    """
+    Environmental sensor (temperature or pressure) used in continuous CO2 measurements. Reusable for equilibrator
+    temperature sensor, equilibrator pressure sensor, and atmospheric pressure sensor.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["GenericSensor"]
+    class_class_curie: ClassVar[str] = "oae:GenericSensor"
+    class_name: ClassVar[str] = "GenericSensor"
+    class_model_uri: ClassVar[URIRef] = OAE.GenericSensor
+
+    location: Optional[str] = None
+    manufacturer: Optional[str] = None
+    model: Optional[str] = None
+    serial_number: Optional[str] = None
+    accuracy: Optional[str] = None
+    precision: Optional[str] = None
+    calibration: Optional[str] = None
+    comments: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self.location is not None and not isinstance(self.location, str):
+            self.location = str(self.location)
+
+        if self.manufacturer is not None and not isinstance(self.manufacturer, str):
+            self.manufacturer = str(self.manufacturer)
+
+        if self.model is not None and not isinstance(self.model, str):
+            self.model = str(self.model)
+
+        if self.serial_number is not None and not isinstance(self.serial_number, str):
+            self.serial_number = str(self.serial_number)
+
+        if self.accuracy is not None and not isinstance(self.accuracy, str):
+            self.accuracy = str(self.accuracy)
+
+        if self.precision is not None and not isinstance(self.precision, str):
+            self.precision = str(self.precision)
+
+        if self.calibration is not None and not isinstance(self.calibration, str):
+            self.calibration = str(self.calibration)
+
+        if self.comments is not None and not isinstance(self.comments, str):
+            self.comments = str(self.comments)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class MarineAirMeasurement(YAMLRoot):
+    """
+    Information about CO2 measurements in marine air.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["MarineAirMeasurement"]
+    class_class_curie: ClassVar[str] = "oae:MarineAirMeasurement"
+    class_name: ClassVar[str] = "MarineAirMeasurement"
+    class_model_uri: ClassVar[URIRef] = OAE.MarineAirMeasurement
+
+    measured: Union[bool, Bool] = None
+    measurement_interval: Optional[str] = None
+    location_and_height: Optional[str] = None
+    drying_method: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.measured):
+            self.MissingRequiredField("measured")
+        if not isinstance(self.measured, Bool):
+            self.measured = Bool(self.measured)
+
+        if self.measurement_interval is not None and not isinstance(self.measurement_interval, str):
+            self.measurement_interval = str(self.measurement_interval)
+
+        if self.location_and_height is not None and not isinstance(self.location_and_height, str):
+            self.location_and_height = str(self.location_and_height)
+
+        if self.drying_method is not None and not isinstance(self.drying_method, str):
+            self.drying_method = str(self.drying_method)
 
         super().__post_init__(**kwargs)
 
@@ -3263,7 +3399,7 @@ class PHCalibration(Calibration):
 @dataclass(repr=False)
 class CO2Calibration(Calibration):
     """
-    CO2 gas detector calibration with standard gas information.
+    Base CO2 gas detector calibration with standard gas information.
     """
     _inherited_slots: ClassVar[List[str]] = []
 
@@ -3273,15 +3409,55 @@ class CO2Calibration(Calibration):
     class_model_uri: ClassVar[URIRef] = OAE.CO2Calibration
 
     technique_description: str = None
-    calibration_temperature: Optional[str] = None
     standard_gas_info: Optional[Union[dict, "StandardGas"]] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self.standard_gas_info is not None and not isinstance(self.standard_gas_info, StandardGas):
+            self.standard_gas_info = StandardGas(**as_dict(self.standard_gas_info))
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class DiscreteCO2Calibration(CO2Calibration):
+    """
+    CO2 calibration for discrete measurements, with calibration temperature.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["DiscreteCO2Calibration"]
+    class_class_curie: ClassVar[str] = "oae:DiscreteCO2Calibration"
+    class_name: ClassVar[str] = "DiscreteCO2Calibration"
+    class_model_uri: ClassVar[URIRef] = OAE.DiscreteCO2Calibration
+
+    technique_description: str = None
+    calibration_temperature: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self.calibration_temperature is not None and not isinstance(self.calibration_temperature, str):
             self.calibration_temperature = str(self.calibration_temperature)
 
-        if self.standard_gas_info is not None and not isinstance(self.standard_gas_info, StandardGas):
-            self.standard_gas_info = StandardGas(**as_dict(self.standard_gas_info))
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class ContinuousCO2Calibration(CO2Calibration):
+    """
+    CO2 calibration for continuous measurements, with extended standard gas details.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["ContinuousCO2Calibration"]
+    class_class_curie: ClassVar[str] = "oae:ContinuousCO2Calibration"
+    class_name: ClassVar[str] = "ContinuousCO2Calibration"
+    class_model_uri: ClassVar[URIRef] = OAE.ContinuousCO2Calibration
+
+    technique_description: str = None
+    standard_gas_info: Optional[Union[dict, "ContinuousStandardGas"]] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self.standard_gas_info is not None and not isinstance(self.standard_gas_info, ContinuousStandardGas):
+            self.standard_gas_info = ContinuousStandardGas(**as_dict(self.standard_gas_info))
 
         super().__post_init__(**kwargs)
 
@@ -3315,6 +3491,39 @@ class StandardGas(YAMLRoot):
 
         if self.uncertainty is not None and not isinstance(self.uncertainty, str):
             self.uncertainty = str(self.uncertainty)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class ContinuousStandardGas(StandardGas):
+    """
+    Standard gas used for continuous CO2 calibration, with additional traceability and count information.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["ContinuousStandardGas"]
+    class_class_curie: ClassVar[str] = "oae:ContinuousStandardGas"
+    class_name: ClassVar[str] = "ContinuousStandardGas"
+    class_model_uri: ClassVar[URIRef] = OAE.ContinuousStandardGas
+
+    manufacturer: str = None
+    concentration: str = None
+    uncertainty: str = None
+    number_of_nonzero_standards: Optional[int] = None
+    traceability_to_wmo_standards: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.uncertainty):
+            self.MissingRequiredField("uncertainty")
+        if not isinstance(self.uncertainty, str):
+            self.uncertainty = str(self.uncertainty)
+
+        if self.number_of_nonzero_standards is not None and not isinstance(self.number_of_nonzero_standards, int):
+            self.number_of_nonzero_standards = int(self.number_of_nonzero_standards)
+
+        if self.traceability_to_wmo_standards is not None and not isinstance(self.traceability_to_wmo_standards, str):
+            self.traceability_to_wmo_standards = str(self.traceability_to_wmo_standards)
 
         super().__post_init__(**kwargs)
 
@@ -4503,37 +4712,36 @@ class SamplingType(EnumDefinitionImpl):
 
 class VariableType(EnumDefinitionImpl):
     """
-    High-level classification of the variable. Determines which schema class to use in combination with genesis
-    (measured/calculated) and sampling (discrete/continuous).
+    High-level classification of the variable
     """
     pH = PermissibleValue(
         text="pH",
-        description="pH measurement — use with Discrete/ContinuousPHVariable or CalculatedVariable")
+        description="pH measurement")
     ta = PermissibleValue(
         text="ta",
-        description="Total alkalinity — use with Discrete/ContinuousTAVariable or CalculatedVariable")
+        description="Total alkalinity")
     dic = PermissibleValue(
         text="dic",
-        description="Dissolved inorganic carbon — use with Discrete/ContinuousDICVariable or CalculatedVariable")
+        description="Dissolved inorganic carbon")
     co2 = PermissibleValue(
         text="co2",
-        description="CO₂ variables (xCO₂, pCO₂, fCO₂) — use with DiscreteCO2Variable or CalculatedVariable")
+        description="CO₂ variables (xCO₂, pCO₂, fCO₂)")
     sediment = PermissibleValue(
         text="sediment",
-        description="Sediment variable — use with Discrete/ContinuousSedimentVariable or CalculatedVariable")
+        description="Sediment variable")
     hplc = PermissibleValue(
         text="hplc",
-        description="HPLC pigment analysis — use with HPLCVariable (always discrete, always measured)")
+        description="HPLC pigment analysis")
     other = PermissibleValue(
         text="other",
-        description="""Any directly measured or calculated variable that does not fall into a specific category above (e.g., temperature, salinity, conductivity, pressure, fluorescence). Use with DiscreteMeasuredVariable, ContinuousMeasuredVariable, or CalculatedVariable.""")
+        description="Variable not covered by specific categories")
     non_measured = PermissibleValue(
         text="non_measured",
-        description="""Contextual or ancillary columns that are not directly measured or calculated by the project — identifiers, timestamps, coordinates and external source data. QC flag columns should NOT be listed as separate variables; instead set dataset_variable_name_qc_flag on the parent variable. Use only with NonMeasuredVariable.""")
+        description="Contextual data from external sources (e.g., coordinates, timestamps, identifiers)")
 
     _defn = EnumDefinition(
         name="VariableType",
-        description="""High-level classification of the variable. Determines which schema class to use in combination with genesis (measured/calculated) and sampling (discrete/continuous).""",
+        description="High-level classification of the variable",
     )
 
 class GenesisType(EnumDefinitionImpl):
@@ -4769,6 +4977,26 @@ class AnalyzingInstrumentType(EnumDefinitionImpl):
         name="AnalyzingInstrumentType",
     )
 
+class EquilibratorType(EnumDefinitionImpl):
+    """
+    Type of equilibrator used for continuous CO2 measurements.
+    """
+    showerhead = PermissibleValue(
+        text="showerhead",
+        description="Sprays seawater into a gas chamber for CO2 equilibration.")
+    floating_air_water = PermissibleValue(
+        text="floating_air_water",
+        description="An \"h\"-shaped bubble equilibrator assembly commonly used in MAPCO2 systems on moorings.")
+    membrane = PermissibleValue(
+        text="membrane",
+        description="CO2 diffuses across a membrane to equilibrate with a gas mixture.")
+    other = PermissibleValue(text="other")
+
+    _defn = EnumDefinition(
+        name="EquilibratorType",
+        description="Type of equilibrator used for continuous CO2 measurements.",
+    )
+
 class CalibrationLocation(EnumDefinitionImpl):
     """
     Where the calibration was performed.
@@ -4858,6 +5086,9 @@ slots.missing_value_indicators = Slot(uri=OAE.missing_value_indicators, name="mi
 
 slots.appropriate_use_quality = Slot(uri=OAE.appropriate_use_quality, name="appropriate_use_quality", curie=OAE.curie('appropriate_use_quality'),
                    model_uri=OAE.appropriate_use_quality, domain=None, range=Optional[Union[str, "AppropriateUseQuality"]])
+
+slots.filenames = Slot(uri=OAE.filenames, name="filenames", curie=OAE.curie('filenames'),
+                   model_uri=OAE.filenames, domain=None, range=Union[str, List[str]])
 
 slots.manufacturer = Slot(uri=OAE.manufacturer, name="manufacturer", curie=OAE.curie('manufacturer'),
                    model_uri=OAE.manufacturer, domain=None, range=Optional[str])
@@ -5111,7 +5342,7 @@ slots.person__role = Slot(uri=OAE.role, name="person__role", curie=OAE.curie('ro
                    model_uri=OAE.person__role, domain=None, range=Optional[str])
 
 slots.variable__schema_class = Slot(uri=OAE.schema_class, name="variable__schema_class", curie=OAE.curie('schema_class'),
-                   model_uri=OAE.variable__schema_class, domain=None, range=str)
+                   model_uri=OAE.variable__schema_class, domain=None, range=Optional[str])
 
 slots.variable__variable_type = Slot(uri=OAE.variable_type, name="variable__variable_type", curie=OAE.curie('variable_type'),
                    model_uri=OAE.variable__variable_type, domain=None, range=Union[str, "VariableType"])
@@ -5124,9 +5355,6 @@ slots.variable__dataset_variable_name = Slot(uri=OAE.dataset_variable_name, name
 
 slots.variable__long_name = Slot(uri=OAE.long_name, name="variable__long_name", curie=OAE.curie('long_name'),
                    model_uri=OAE.variable__long_name, domain=None, range=str)
-
-slots.inSituVariable__genesis = Slot(uri=OAE.genesis, name="inSituVariable__genesis", curie=OAE.curie('genesis'),
-                   model_uri=OAE.inSituVariable__genesis, domain=None, range=Union[str, "GenesisType"])
 
 slots.inSituVariable__dataset_variable_name_qc_flag = Slot(uri=OAE.dataset_variable_name_qc_flag, name="inSituVariable__dataset_variable_name_qc_flag", curie=OAE.curie('dataset_variable_name_qc_flag'),
                    model_uri=OAE.inSituVariable__dataset_variable_name_qc_flag, domain=None, range=Optional[str])
@@ -5158,6 +5386,9 @@ slots.measuredVariable__observation_type = Slot(uri=OAE.observation_type, name="
 slots.measuredVariable__sampling = Slot(uri=OAE.sampling, name="measuredVariable__sampling", curie=OAE.curie('sampling'),
                    model_uri=OAE.measuredVariable__sampling, domain=None, range=Union[str, "SamplingType"])
 
+slots.measuredVariable__genesis = Slot(uri=OAE.genesis, name="measuredVariable__genesis", curie=OAE.curie('genesis'),
+                   model_uri=OAE.measuredVariable__genesis, domain=None, range=Union[str, "GenesisType"])
+
 slots.measuredVariable__sampling_instrument_type = Slot(uri=OAE.sampling_instrument_type, name="measuredVariable__sampling_instrument_type", curie=OAE.curie('sampling_instrument_type'),
                    model_uri=OAE.measuredVariable__sampling_instrument_type, domain=None, range=Union[str, "SamplingInstrumentType"])
 
@@ -5169,6 +5400,9 @@ slots.continuousMeasuredVariable__raw_data_calculation_method = Slot(uri=OAE.raw
 
 slots.continuousMeasuredVariable__calculation_software_version = Slot(uri=OAE.calculation_software_version, name="continuousMeasuredVariable__calculation_software_version", curie=OAE.curie('calculation_software_version'),
                    model_uri=OAE.continuousMeasuredVariable__calculation_software_version, domain=None, range=Optional[str])
+
+slots.calculatedVariable__genesis = Slot(uri=OAE.genesis, name="calculatedVariable__genesis", curie=OAE.curie('genesis'),
+                   model_uri=OAE.calculatedVariable__genesis, domain=None, range=Union[str, "GenesisType"])
 
 slots.calculatedVariable__calculation_method_and_parameters = Slot(uri=OAE.calculation_method_and_parameters, name="calculatedVariable__calculation_method_and_parameters", curie=OAE.curie('calculation_method_and_parameters'),
                    model_uri=OAE.calculatedVariable__calculation_method_and_parameters, domain=None, range=str)
@@ -5203,6 +5437,30 @@ slots.discreteCO2Variable__headspace_volume = Slot(uri=OAE.headspace_volume, nam
 slots.discreteCO2Variable__measurement_temperature = Slot(uri=OAE.measurement_temperature, name="discreteCO2Variable__measurement_temperature", curie=OAE.curie('measurement_temperature'),
                    model_uri=OAE.discreteCO2Variable__measurement_temperature, domain=None, range=int)
 
+slots.continuousCO2Variable__equilibrator = Slot(uri=OAE.equilibrator, name="continuousCO2Variable__equilibrator", curie=OAE.curie('equilibrator'),
+                   model_uri=OAE.continuousCO2Variable__equilibrator, domain=None, range=Optional[Union[dict, CO2Equilibrator]])
+
+slots.continuousCO2Variable__equilibrator_temperature_sensor = Slot(uri=OAE.equilibrator_temperature_sensor, name="continuousCO2Variable__equilibrator_temperature_sensor", curie=OAE.curie('equilibrator_temperature_sensor'),
+                   model_uri=OAE.continuousCO2Variable__equilibrator_temperature_sensor, domain=None, range=Optional[Union[dict, GenericSensor]])
+
+slots.continuousCO2Variable__equilibrator_pressure_sensor = Slot(uri=OAE.equilibrator_pressure_sensor, name="continuousCO2Variable__equilibrator_pressure_sensor", curie=OAE.curie('equilibrator_pressure_sensor'),
+                   model_uri=OAE.continuousCO2Variable__equilibrator_pressure_sensor, domain=None, range=Optional[Union[dict, GenericSensor]])
+
+slots.continuousCO2Variable__atmospheric_pressure_sensor = Slot(uri=OAE.atmospheric_pressure_sensor, name="continuousCO2Variable__atmospheric_pressure_sensor", curie=OAE.curie('atmospheric_pressure_sensor'),
+                   model_uri=OAE.continuousCO2Variable__atmospheric_pressure_sensor, domain=None, range=Optional[Union[dict, GenericSensor]])
+
+slots.continuousCO2Variable__seawater_intake_location = Slot(uri=OAE.seawater_intake_location, name="continuousCO2Variable__seawater_intake_location", curie=OAE.curie('seawater_intake_location'),
+                   model_uri=OAE.continuousCO2Variable__seawater_intake_location, domain=None, range=str)
+
+slots.continuousCO2Variable__seawater_intake_depth = Slot(uri=OAE.seawater_intake_depth, name="continuousCO2Variable__seawater_intake_depth", curie=OAE.curie('seawater_intake_depth'),
+                   model_uri=OAE.continuousCO2Variable__seawater_intake_depth, domain=None, range=str)
+
+slots.continuousCO2Variable__drying_method = Slot(uri=OAE.drying_method, name="continuousCO2Variable__drying_method", curie=OAE.curie('drying_method'),
+                   model_uri=OAE.continuousCO2Variable__drying_method, domain=None, range=Optional[str])
+
+slots.continuousCO2Variable__marine_air_measurement = Slot(uri=OAE.marine_air_measurement, name="continuousCO2Variable__marine_air_measurement", curie=OAE.curie('marine_air_measurement'),
+                   model_uri=OAE.continuousCO2Variable__marine_air_measurement, domain=None, range=Optional[Union[dict, MarineAirMeasurement]])
+
 slots.hPLCVariable__hplc_lab = Slot(uri=OAE.hplc_lab, name="hPLCVariable__hplc_lab", curie=OAE.curie('hplc_lab'),
                    model_uri=OAE.hPLCVariable__hplc_lab, domain=None, range=str)
 
@@ -5236,8 +5494,8 @@ slots.measuredSedimentFields__sediment_sampling_depth = Slot(uri=OAE.sediment_sa
 slots.measuredSedimentFields__sediment_sampling_water_depth = Slot(uri=OAE.sediment_sampling_water_depth, name="measuredSedimentFields__sediment_sampling_water_depth", curie=OAE.curie('sediment_sampling_water_depth'),
                    model_uri=OAE.measuredSedimentFields__sediment_sampling_water_depth, domain=None, range=str)
 
-slots.measuredCO2Fields__co2_reported_temperature = Slot(uri=OAE.co2_reported_temperature, name="measuredCO2Fields__co2_reported_temperature", curie=OAE.curie('co2_reported_temperature'),
-                   model_uri=OAE.measuredCO2Fields__co2_reported_temperature, domain=None, range=str)
+slots.measuredCO2Fields__pco2_reported_temperature = Slot(uri=OAE.pco2_reported_temperature, name="measuredCO2Fields__pco2_reported_temperature", curie=OAE.curie('pco2_reported_temperature'),
+                   model_uri=OAE.measuredCO2Fields__pco2_reported_temperature, domain=None, range=str)
 
 slots.measuredCO2Fields__water_vapor_correction_method = Slot(uri=OAE.water_vapor_correction_method, name="measuredCO2Fields__water_vapor_correction_method", curie=OAE.curie('water_vapor_correction_method'),
                    model_uri=OAE.measuredCO2Fields__water_vapor_correction_method, domain=None, range=Optional[str])
@@ -5268,9 +5526,6 @@ slots.dataset__license = Slot(uri=SCHEMA.license, name="dataset__license", curie
 
 slots.dataset__fair_use_data_request = Slot(uri=OAE.fair_use_data_request, name="dataset__fair_use_data_request", curie=OAE.curie('fair_use_data_request'),
                    model_uri=OAE.dataset__fair_use_data_request, domain=None, range=Optional[str])
-
-slots.dataset__filenames = Slot(uri=OAE.filenames, name="dataset__filenames", curie=OAE.curie('filenames'),
-                   model_uri=OAE.dataset__filenames, domain=None, range=Union[str, List[str]])
 
 slots.fieldDataset__data_product_type = Slot(uri=OAE.data_product_type, name="fieldDataset__data_product_type", curie=OAE.curie('data_product_type'),
                    model_uri=OAE.fieldDataset__data_product_type, domain=None, range=Union[str, "DataProductType"])
@@ -5465,13 +5720,70 @@ slots.cO2GasDetector__detector_type = Slot(uri=OAE.detector_type, name="cO2GasDe
                    model_uri=OAE.cO2GasDetector__detector_type, domain=None, range=str)
 
 slots.cO2GasDetector__calibration = Slot(uri=OAE.calibration, name="cO2GasDetector__calibration", curie=OAE.curie('calibration'),
-                   model_uri=OAE.cO2GasDetector__calibration, domain=None, range=Union[dict, CO2Calibration])
+                   model_uri=OAE.cO2GasDetector__calibration, domain=None, range=Union[dict, DiscreteCO2Calibration])
 
 slots.cO2GasDetector__resolution = Slot(uri=OAE.resolution, name="cO2GasDetector__resolution", curie=OAE.curie('resolution'),
                    model_uri=OAE.cO2GasDetector__resolution, domain=None, range=Optional[str])
 
 slots.cO2GasDetector__uncertainty = Slot(uri=OAE.uncertainty, name="cO2GasDetector__uncertainty", curie=OAE.curie('uncertainty'),
                    model_uri=OAE.cO2GasDetector__uncertainty, domain=None, range=Optional[str])
+
+slots.continuousCO2GasDetector__measurement_frequency = Slot(uri=OAE.measurement_frequency, name="continuousCO2GasDetector__measurement_frequency", curie=OAE.curie('measurement_frequency'),
+                   model_uri=OAE.continuousCO2GasDetector__measurement_frequency, domain=None, range=Optional[str])
+
+slots.continuousCO2GasDetector__calibration = Slot(uri=OAE.calibration, name="continuousCO2GasDetector__calibration", curie=OAE.curie('calibration'),
+                   model_uri=OAE.continuousCO2GasDetector__calibration, domain=None, range=Union[dict, ContinuousCO2Calibration])
+
+slots.cO2Equilibrator__equilibrator_type = Slot(uri=OAE.equilibrator_type, name="cO2Equilibrator__equilibrator_type", curie=OAE.curie('equilibrator_type'),
+                   model_uri=OAE.cO2Equilibrator__equilibrator_type, domain=None, range=Optional[Union[str, "EquilibratorType"]])
+
+slots.cO2Equilibrator__volume = Slot(uri=OAE.volume, name="cO2Equilibrator__volume", curie=OAE.curie('volume'),
+                   model_uri=OAE.cO2Equilibrator__volume, domain=None, range=Optional[str])
+
+slots.cO2Equilibrator__vented = Slot(uri=OAE.vented, name="cO2Equilibrator__vented", curie=OAE.curie('vented'),
+                   model_uri=OAE.cO2Equilibrator__vented, domain=None, range=Optional[Union[bool, Bool]])
+
+slots.cO2Equilibrator__water_flow_rate = Slot(uri=OAE.water_flow_rate, name="cO2Equilibrator__water_flow_rate", curie=OAE.curie('water_flow_rate'),
+                   model_uri=OAE.cO2Equilibrator__water_flow_rate, domain=None, range=Optional[str])
+
+slots.cO2Equilibrator__headspace_gas_flow_rate = Slot(uri=OAE.headspace_gas_flow_rate, name="cO2Equilibrator__headspace_gas_flow_rate", curie=OAE.curie('headspace_gas_flow_rate'),
+                   model_uri=OAE.cO2Equilibrator__headspace_gas_flow_rate, domain=None, range=Optional[str])
+
+slots.genericSensor__location = Slot(uri=OAE.location, name="genericSensor__location", curie=OAE.curie('location'),
+                   model_uri=OAE.genericSensor__location, domain=None, range=Optional[str])
+
+slots.genericSensor__manufacturer = Slot(uri=OAE.manufacturer, name="genericSensor__manufacturer", curie=OAE.curie('manufacturer'),
+                   model_uri=OAE.genericSensor__manufacturer, domain=None, range=Optional[str])
+
+slots.genericSensor__model = Slot(uri=OAE.model, name="genericSensor__model", curie=OAE.curie('model'),
+                   model_uri=OAE.genericSensor__model, domain=None, range=Optional[str])
+
+slots.genericSensor__serial_number = Slot(uri=OAE.serial_number, name="genericSensor__serial_number", curie=OAE.curie('serial_number'),
+                   model_uri=OAE.genericSensor__serial_number, domain=None, range=Optional[str])
+
+slots.genericSensor__accuracy = Slot(uri=OAE.accuracy, name="genericSensor__accuracy", curie=OAE.curie('accuracy'),
+                   model_uri=OAE.genericSensor__accuracy, domain=None, range=Optional[str])
+
+slots.genericSensor__precision = Slot(uri=OAE.precision, name="genericSensor__precision", curie=OAE.curie('precision'),
+                   model_uri=OAE.genericSensor__precision, domain=None, range=Optional[str])
+
+slots.genericSensor__calibration = Slot(uri=OAE.calibration, name="genericSensor__calibration", curie=OAE.curie('calibration'),
+                   model_uri=OAE.genericSensor__calibration, domain=None, range=Optional[str])
+
+slots.genericSensor__comments = Slot(uri=OAE.comments, name="genericSensor__comments", curie=OAE.curie('comments'),
+                   model_uri=OAE.genericSensor__comments, domain=None, range=Optional[str])
+
+slots.marineAirMeasurement__measured = Slot(uri=OAE.measured, name="marineAirMeasurement__measured", curie=OAE.curie('measured'),
+                   model_uri=OAE.marineAirMeasurement__measured, domain=None, range=Union[bool, Bool])
+
+slots.marineAirMeasurement__measurement_interval = Slot(uri=OAE.measurement_interval, name="marineAirMeasurement__measurement_interval", curie=OAE.curie('measurement_interval'),
+                   model_uri=OAE.marineAirMeasurement__measurement_interval, domain=None, range=Optional[str])
+
+slots.marineAirMeasurement__location_and_height = Slot(uri=OAE.location_and_height, name="marineAirMeasurement__location_and_height", curie=OAE.curie('location_and_height'),
+                   model_uri=OAE.marineAirMeasurement__location_and_height, domain=None, range=Optional[str])
+
+slots.marineAirMeasurement__drying_method = Slot(uri=OAE.drying_method, name="marineAirMeasurement__drying_method", curie=OAE.curie('drying_method'),
+                   model_uri=OAE.marineAirMeasurement__drying_method, domain=None, range=Optional[str])
 
 slots.calibration__technique_description = Slot(uri=OAE.technique_description, name="calibration__technique_description", curie=OAE.curie('technique_description'),
                    model_uri=OAE.calibration__technique_description, domain=None, range=str)
@@ -5512,6 +5824,9 @@ slots.pHCalibration__ph_of_standards = Slot(uri=OAE.ph_of_standards, name="pHCal
 slots.cO2Calibration__standard_gas_info = Slot(uri=OAE.standard_gas_info, name="cO2Calibration__standard_gas_info", curie=OAE.curie('standard_gas_info'),
                    model_uri=OAE.cO2Calibration__standard_gas_info, domain=None, range=Optional[Union[dict, StandardGas]])
 
+slots.continuousCO2Calibration__standard_gas_info = Slot(uri=OAE.standard_gas_info, name="continuousCO2Calibration__standard_gas_info", curie=OAE.curie('standard_gas_info'),
+                   model_uri=OAE.continuousCO2Calibration__standard_gas_info, domain=None, range=Optional[Union[dict, ContinuousStandardGas]])
+
 slots.standardGas__manufacturer = Slot(uri=OAE.manufacturer, name="standardGas__manufacturer", curie=OAE.curie('manufacturer'),
                    model_uri=OAE.standardGas__manufacturer, domain=None, range=str)
 
@@ -5521,8 +5836,14 @@ slots.standardGas__concentration = Slot(uri=OAE.concentration, name="standardGas
 slots.standardGas__uncertainty = Slot(uri=OAE.uncertainty, name="standardGas__uncertainty", curie=OAE.curie('uncertainty'),
                    model_uri=OAE.standardGas__uncertainty, domain=None, range=Optional[str])
 
-slots.variable_type = Slot(uri=OAE.variable_type, name="variable_type", curie=OAE.curie('variable_type'),
-                   model_uri=OAE.variable_type, domain=None, range=Optional[str])
+slots.continuousStandardGas__uncertainty = Slot(uri=OAE.uncertainty, name="continuousStandardGas__uncertainty", curie=OAE.curie('uncertainty'),
+                   model_uri=OAE.continuousStandardGas__uncertainty, domain=None, range=str)
+
+slots.continuousStandardGas__number_of_nonzero_standards = Slot(uri=OAE.number_of_nonzero_standards, name="continuousStandardGas__number_of_nonzero_standards", curie=OAE.curie('number_of_nonzero_standards'),
+                   model_uri=OAE.continuousStandardGas__number_of_nonzero_standards, domain=None, range=Optional[int])
+
+slots.continuousStandardGas__traceability_to_wmo_standards = Slot(uri=OAE.traceability_to_wmo_standards, name="continuousStandardGas__traceability_to_wmo_standards", curie=OAE.curie('traceability_to_wmo_standards'),
+                   model_uri=OAE.continuousStandardGas__traceability_to_wmo_standards, domain=None, range=Optional[str])
 
 slots.analyzing_instrument_type = Slot(uri=OAE.analyzing_instrument_type, name="analyzing_instrument_type", curie=OAE.curie('analyzing_instrument_type'),
                    model_uri=OAE.analyzing_instrument_type, domain=None, range=Optional[str])
@@ -5576,9 +5897,6 @@ slots.InSituExperiment_vertical_coverage = Slot(uri=OAE.vertical_coverage, name=
 slots.DosingConcentration_is_provided_as_a_file = Slot(uri=OAE.is_provided_as_a_file, name="DosingConcentration_is_provided_as_a_file", curie=OAE.curie('is_provided_as_a_file'),
                    model_uri=OAE.DosingConcentration_is_provided_as_a_file, domain=DosingConcentration, range=Union[bool, Bool])
 
-slots.NonMeasuredVariable_variable_type = Slot(uri=OAE.variable_type, name="NonMeasuredVariable_variable_type", curie=OAE.curie('variable_type'),
-                   model_uri=OAE.NonMeasuredVariable_variable_type, domain=NonMeasuredVariable, range=str)
-
 slots.InSituVariable_units = Slot(uri=OAE.units, name="InSituVariable_units", curie=OAE.curie('units'),
                    model_uri=OAE.InSituVariable_units, domain=InSituVariable, range=str)
 
@@ -5594,59 +5912,20 @@ slots.MeasuredVariable_uncertainty_definition = Slot(uri=OAE.uncertainty_definit
 slots.MeasuredVariable_missing_value_indicators = Slot(uri=OAE.missing_value_indicators, name="MeasuredVariable_missing_value_indicators", curie=OAE.curie('missing_value_indicators'),
                    model_uri=OAE.MeasuredVariable_missing_value_indicators, domain=MeasuredVariable, range=str)
 
-slots.MeasuredVariable_genesis = Slot(uri=OAE.genesis, name="MeasuredVariable_genesis", curie=OAE.curie('genesis'),
-                   model_uri=OAE.MeasuredVariable_genesis, domain=MeasuredVariable, range=str)
-
-slots.DiscreteMeasuredVariable_sampling = Slot(uri=OAE.sampling, name="DiscreteMeasuredVariable_sampling", curie=OAE.curie('sampling'),
-                   model_uri=OAE.DiscreteMeasuredVariable_sampling, domain=DiscreteMeasuredVariable, range=str)
-
-slots.ContinuousMeasuredVariable_sampling = Slot(uri=OAE.sampling, name="ContinuousMeasuredVariable_sampling", curie=OAE.curie('sampling'),
-                   model_uri=OAE.ContinuousMeasuredVariable_sampling, domain=ContinuousMeasuredVariable, range=str)
-
-slots.CalculatedVariable_genesis = Slot(uri=OAE.genesis, name="CalculatedVariable_genesis", curie=OAE.curie('genesis'),
-                   model_uri=OAE.CalculatedVariable_genesis, domain=CalculatedVariable, range=str)
-
-slots.ContinuousPHVariable_variable_type = Slot(uri=OAE.variable_type, name="ContinuousPHVariable_variable_type", curie=OAE.curie('variable_type'),
-                   model_uri=OAE.ContinuousPHVariable_variable_type, domain=ContinuousPHVariable, range=Optional[str])
-
-slots.DiscretePHVariable_variable_type = Slot(uri=OAE.variable_type, name="DiscretePHVariable_variable_type", curie=OAE.curie('variable_type'),
-                   model_uri=OAE.DiscretePHVariable_variable_type, domain=DiscretePHVariable, range=Optional[str])
-
 slots.DiscretePHVariable_analyzing_instrument = Slot(uri=OAE.analyzing_instrument, name="DiscretePHVariable_analyzing_instrument", curie=OAE.curie('analyzing_instrument'),
                    model_uri=OAE.DiscretePHVariable_analyzing_instrument, domain=DiscretePHVariable, range=Union[dict, "PHInstrument"])
-
-slots.ContinuousTAVariable_variable_type = Slot(uri=OAE.variable_type, name="ContinuousTAVariable_variable_type", curie=OAE.curie('variable_type'),
-                   model_uri=OAE.ContinuousTAVariable_variable_type, domain=ContinuousTAVariable, range=Optional[str])
-
-slots.DiscreteTAVariable_variable_type = Slot(uri=OAE.variable_type, name="DiscreteTAVariable_variable_type", curie=OAE.curie('variable_type'),
-                   model_uri=OAE.DiscreteTAVariable_variable_type, domain=DiscreteTAVariable, range=Optional[str])
 
 slots.DiscreteTAVariable_analyzing_instrument = Slot(uri=OAE.analyzing_instrument, name="DiscreteTAVariable_analyzing_instrument", curie=OAE.curie('analyzing_instrument'),
                    model_uri=OAE.DiscreteTAVariable_analyzing_instrument, domain=DiscreteTAVariable, range=Union[dict, "CRMInstrument"])
 
-slots.ContinuousDICVariable_variable_type = Slot(uri=OAE.variable_type, name="ContinuousDICVariable_variable_type", curie=OAE.curie('variable_type'),
-                   model_uri=OAE.ContinuousDICVariable_variable_type, domain=ContinuousDICVariable, range=Optional[str])
-
-slots.DiscreteDICVariable_variable_type = Slot(uri=OAE.variable_type, name="DiscreteDICVariable_variable_type", curie=OAE.curie('variable_type'),
-                   model_uri=OAE.DiscreteDICVariable_variable_type, domain=DiscreteDICVariable, range=Optional[str])
-
 slots.DiscreteDICVariable_analyzing_instrument = Slot(uri=OAE.analyzing_instrument, name="DiscreteDICVariable_analyzing_instrument", curie=OAE.curie('analyzing_instrument'),
                    model_uri=OAE.DiscreteDICVariable_analyzing_instrument, domain=DiscreteDICVariable, range=Union[dict, "CRMInstrument"])
-
-slots.ContinuousSedimentVariable_variable_type = Slot(uri=OAE.variable_type, name="ContinuousSedimentVariable_variable_type", curie=OAE.curie('variable_type'),
-                   model_uri=OAE.ContinuousSedimentVariable_variable_type, domain=ContinuousSedimentVariable, range=Optional[str])
-
-slots.DiscreteSedimentVariable_variable_type = Slot(uri=OAE.variable_type, name="DiscreteSedimentVariable_variable_type", curie=OAE.curie('variable_type'),
-                   model_uri=OAE.DiscreteSedimentVariable_variable_type, domain=DiscreteSedimentVariable, range=Optional[str])
-
-slots.DiscreteCO2Variable_variable_type = Slot(uri=OAE.variable_type, name="DiscreteCO2Variable_variable_type", curie=OAE.curie('variable_type'),
-                   model_uri=OAE.DiscreteCO2Variable_variable_type, domain=DiscreteCO2Variable, range=Optional[str])
 
 slots.DiscreteCO2Variable_analyzing_instrument = Slot(uri=OAE.analyzing_instrument, name="DiscreteCO2Variable_analyzing_instrument", curie=OAE.curie('analyzing_instrument'),
                    model_uri=OAE.DiscreteCO2Variable_analyzing_instrument, domain=DiscreteCO2Variable, range=Union[dict, "CO2GasDetector"])
 
-slots.HPLCVariable_variable_type = Slot(uri=OAE.variable_type, name="HPLCVariable_variable_type", curie=OAE.curie('variable_type'),
-                   model_uri=OAE.HPLCVariable_variable_type, domain=HPLCVariable, range=Optional[str])
+slots.ContinuousCO2Variable_analyzing_instrument = Slot(uri=OAE.analyzing_instrument, name="ContinuousCO2Variable_analyzing_instrument", curie=OAE.curie('analyzing_instrument'),
+                   model_uri=OAE.ContinuousCO2Variable_analyzing_instrument, domain=ContinuousCO2Variable, range=Union[dict, "ContinuousCO2GasDetector"])
 
 slots.Dataset_name = Slot(uri=SCHEMA.name, name="Dataset_name", curie=SCHEMA.curie('name'),
                    model_uri=OAE.Dataset_name, domain=Dataset, range=str)

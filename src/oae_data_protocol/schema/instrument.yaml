@@ -102,7 +102,7 @@ classes:
       calibration:
         title: Calibration
         description: CO2 calibration information for this instrument.
-        range: CO2Calibration
+        range: DiscreteCO2Calibration
         required: true
       resolution:
         title: Resolution
@@ -111,6 +111,115 @@ classes:
       uncertainty:
         title: Uncertainty
         description: Uncertainty of the CO2 sensor.
+        range: string
+
+  # Continuous CO2 Gas Detector (extends discrete with measurement frequency)
+  ContinuousCO2GasDetector:
+    description: >-
+      CO2 gas detector for continuous measurements, with measurement frequency.
+    is_a: CO2GasDetector
+    attributes:
+      measurement_frequency:
+        title: Measurement frequency
+        description: >-
+          How often measurements are taken, e.g., every 140 seconds except
+          during calibration.
+        range: string
+      calibration:
+        title: Calibration
+        description: CO2 calibration information for this continuous instrument.
+        range: ContinuousCO2Calibration
+        required: true
+
+  # Equilibrator for continuous CO2 measurements
+  CO2Equilibrator:
+    description: >-
+      Equilibrator used for continuous CO2 measurement.
+    attributes:
+      equilibrator_type:
+        title: Equilibrator type
+        description: Type of the equilibrator for the CO2 measurement.
+        range: EquilibratorType
+      volume:
+        title: Equilibrator volume
+        description: The total volume (in liters) of the CO2 equilibrator.
+        range: string
+      vented:
+        title: Vented or not
+        description: Is the equilibrator vented or not?
+        range: boolean
+      water_flow_rate:
+        title: Water flow rate
+        description: Flow rate (in L/min) of the flow through seawater.
+        range: string
+      headspace_gas_flow_rate:
+        title: Headspace gas flow rate
+        description: Flow rate (in L/min) of the gas from the equilibrator to the CO2 analyzer.
+        range: string
+
+  # Reusable sensor class for equilibrator temp/pressure and atmospheric pressure
+  GenericSensor:
+    description: >-
+      Environmental sensor (temperature or pressure) used in continuous CO2
+      measurements. Reusable for equilibrator temperature sensor, equilibrator
+      pressure sensor, and atmospheric pressure sensor.
+    attributes:
+      location:
+        title: Location
+        description: Location of the sensor.
+        range: string
+      manufacturer:
+        title: Manufacturer
+        description: Manufacturer of the sensor.
+        range: string
+      model:
+        title: Model
+        description: Model number of the sensor.
+        range: string
+      serial_number:
+        title: Serial number
+        description: Serial number of the sensor.
+        range: string
+      accuracy:
+        title: Accuracy
+        description: Accuracy of the sensor.
+        range: string
+      precision:
+        title: Precision
+        description: Precision of the sensor.
+        range: string
+      calibration:
+        title: Calibration
+        description: Calibration information for the sensor.
+        range: string
+      comments:
+        title: Comments
+        description: Additional comments about the sensor.
+        range: string
+
+  # Marine air CO2 measurement information
+  MarineAirMeasurement:
+    description: >-
+      Information about CO2 measurements in marine air.
+    attributes:
+      measured:
+        title: CO2 in marine air measured
+        description: Whether CO2 in marine air was measured.
+        range: boolean
+        required: true
+      measurement_interval:
+        title: Measurement interval
+        description: >-
+          How often marine air CO2 is measured, e.g., 5 readings in a group
+          every 5 hours.
+        range: string
+      location_and_height:
+        title: Location and height
+        description: Location and height of the marine air intake.
+        range: string
+      drying_method:
+        title: Drying method
+        description: Method used to dry the gas stream for marine air measurements.
         range: string
 
 slots:
@@ -344,4 +453,17 @@ enums:
         # TODO: Add description and URI (in meaning metaslot)
         description: >-
           TBD
+      other:
+  EquilibratorType:
+    description: Type of equilibrator used for continuous CO2 measurements.
+    permissible_values:
+      showerhead:
+        description: Sprays seawater into a gas chamber for CO2 equilibration.
+      floating_air_water:
+        description: >-
+          An "h"-shaped bubble equilibrator assembly commonly used in MAPCO2
+          systems on moorings.
+      membrane:
+        description: >-
+          CO2 diffuses across a membrane to equilibrate with a gas mixture.
       other:

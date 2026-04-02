@@ -90,19 +90,36 @@ classes:
         description: pH values of the calibration standards used.
         range: string
 
-  # CO2 Calibration with standard gases
+  # CO2 Calibration base (shared by discrete and continuous)
   CO2Calibration:
     description: >-
-      CO2 gas detector calibration with standard gas information.
+      Base CO2 gas detector calibration with standard gas information.
     is_a: Calibration
-    slots:
-      - calibration_temperature
     attributes:
       # TODO: Standard gas is an array in NOAA's OAPMetadata schema, can it be multivalued for us?
       standard_gas_info:
         title: Standard gas information
         description: Standard gases used for calibration.
         range: StandardGas
+
+  # Discrete CO2 calibration (adds calibration temperature)
+  DiscreteCO2Calibration:
+    description: >-
+      CO2 calibration for discrete measurements, with calibration temperature.
+    is_a: CO2Calibration
+    slots:
+      - calibration_temperature
+
+  # Continuous CO2 calibration (extended standard gas info, no calibration temperature)
+  ContinuousCO2Calibration:
+    description: >-
+      CO2 calibration for continuous measurements, with extended standard gas details.
+    is_a: CO2Calibration
+    attributes:
+      standard_gas_info:
+        title: Standard gas information
+        description: Standard gases used for calibration.
+        range: ContinuousStandardGas
 
   # Supporting class for CO2 calibration
   StandardGas:
@@ -126,17 +143,26 @@ classes:
         range: string
         # TODO: Change to DimensionedQuantity?
 
-#  # CO2 Calibration with standard gases (for continuous/sensor measured xCO2/pCO2/fCO2)
-#  ContinuousCO2Calibration:
-#    description: >-
-#      ....
-#    is_a: CO2Calibration
-
-#  # Supporting class for continuous/sensor measured CO2 calibration
-#  ContinuousStandardGas:
-#    description: >-
-#      Standard gas used for CO2 calibration of continuous/sensor measured CO2 (xCO2/pCO2/fCO2)
-#    is_a: StandardGas
+  # Extended standard gas for continuous CO2 calibration
+  ContinuousStandardGas:
+    description: >-
+      Standard gas used for continuous CO2 calibration, with additional
+      traceability and count information.
+    is_a: StandardGas
+    attributes:
+      uncertainty:
+        title: Standard Gas Uncertainty
+        description: Uncertainties of the CO2 standard gas, e.g., 0.5%.
+        range: string
+        required: true
+      number_of_nonzero_standards:
+        title: Number of non-zero gas standards
+        description: How many non-zero gas standards were used for the calibration.
+        range: integer
+      traceability_to_wmo_standards:
+        title: Traceability to WMO standards
+        description: Information about traceability of standard gases to WMO standards.
+        range: string
 
 
 
