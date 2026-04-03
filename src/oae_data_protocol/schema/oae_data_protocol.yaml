@@ -1,5 +1,6 @@
-id: OAEDataManagementProtocol
-name: OAEDataManagementProtocol
+id: https://schema.oaedata.org/OAEDataSchema
+name: OAEDataSchema
+title: "OAE Data Protocol - Technical Documentation"
 # todo:
 #   - "integrate with linkml-common for observation types"
 version: 0.1.0

@@ -10,8 +10,7 @@ theme:
       primary: teal
       accent: cyan
   features:
-    - navigation.sections
-    - navigation.expand
+    - navigation.indexes
     - content.tabs.link
 
 plugins:
@@ -32,43 +31,41 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - Schema Reference: schema_index.md
-  - Classes:
-    - Project & Experiment:
-      - Project: Project.md
-      - Experiment: Experiment.md
-      - InSituExperiment: InSituExperiment.md
-      - Intervention: Intervention.md
-      - Tracer: Tracer.md
-      - InterventionWithTracer: InterventionWithTracer.md
-      - Model: model.md
-    - Dataset:
-      - FieldDataset: FieldDataset.md
-      - ModelOutputDataset: ModelOutputDataset.md
-    - Variables:
-      - InSituVariable: InSituVariable.md
-      - MeasuredVariable: MeasuredVariable.md
-      - CalculatedVariable: CalculatedVariable.md
-      - NonMeasuredVariable: NonMeasuredVariable.md
-      - DiscretePHVariable: DiscretePHVariable.md
-      - DiscreteTAVariable: DiscreteTAVariable.md
-      - DiscreteDICVariable: DiscreteDICVariable.md
-      - DiscreteCO2Variable: DiscreteCO2Variable.md
-      - HPLCVariable: HPLCVariable.md
-    - Instruments & Calibration:
-      - AnalyzingInstrument: AnalyzingInstrument.md
-      - PHInstrument: PHInstrument.md
-      - CRMInstrument: CRMInstrument.md
-      - CO2GasDetector: CO2GasDetector.md
-      - Calibration: Calibration.md
-  - Enumerations:
-    - ExperimentType: ExperimentType.md
-    - VariableType: VariableType.md
-    - GenesisType: GenesisType.md
-    - SamplingType: SamplingType.md
-    - MCDRPathway: MCDRPathway.md
-    - FeedstockType: FeedstockType.md
-    - DatasetType: DatasetType.md
+  - Getting Started:
+    - Metadata File Format: metadata-format.md
+  - Projects & Experiments:
+    - projects-experiments/index.md
+    - Project: Project.md
+    - Experiment: Experiment.md
+    - InSituExperiment: InSituExperiment.md
+    - Intervention: Intervention.md
+    - Tracer: Tracer.md
+    - InterventionWithTracer: InterventionWithTracer.md
+    - Model: model.md
+  - Datasets:
+    - datasets/index.md
+    - FieldDataset: FieldDataset.md
+    - ModelOutputDataset: ModelOutputDataset.md
+  - Variables:
+    - variables/index.md
+    - InSituVariable: InSituVariable.md
+    - MeasuredVariable: MeasuredVariable.md
+    - CalculatedVariable: CalculatedVariable.md
+    - NonMeasuredVariable: NonMeasuredVariable.md
+    - DiscretePHVariable: DiscretePHVariable.md
+    - DiscreteTAVariable: DiscreteTAVariable.md
+    - DiscreteDICVariable: DiscreteDICVariable.md
+    - DiscreteCO2Variable: DiscreteCO2Variable.md
+    - HPLCVariable: HPLCVariable.md
+  - Instruments & Calibration:
+    - instruments-calibration/index.md
+    - AnalyzingInstrument: AnalyzingInstrument.md
+    - PHInstrument: PHInstrument.md
+    - CRMInstrument: CRMInstrument.md
+    - CO2GasDetector: CO2GasDetector.md
+    - Calibration: Calibration.md
+  - Controlled Vocabularies: vocabularies.md
+  - Full Schema Index: schema_index.md
 
 extra_javascript:
   - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js

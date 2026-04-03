@@ -222,6 +222,12 @@ gendoc: $(DOCDIR)
 	$(RUN) gen-doc ${GEN_DOC_ARGS} -d $(DOCDIR) $(SOURCE_SCHEMA_PATH)
 	mv $(DOCDIR)/index.md $(DOCDIR)/schema_index.md
 	cp -rf $(SRC)/docs/files/* $(DOCDIR)
+	@# Create section directories with index pages for navigation.indexes
+	mkdir -p $(DOCDIR)/projects-experiments $(DOCDIR)/datasets $(DOCDIR)/variables $(DOCDIR)/instruments-calibration
+	mv $(DOCDIR)/projects-experiments.md $(DOCDIR)/projects-experiments/index.md
+	mv $(DOCDIR)/datasets.md $(DOCDIR)/datasets/index.md
+	mv $(DOCDIR)/variables.md $(DOCDIR)/variables/index.md
+	mv $(DOCDIR)/instruments-calibration.md $(DOCDIR)/instruments-calibration/index.md
 
 testdoc: gendoc serve
 
