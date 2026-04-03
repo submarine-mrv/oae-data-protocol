@@ -66,6 +66,7 @@ classes:
   # InSituVariable Class (subclasses: MeasuredVariable, CalculatedVariable)
   # =============================================================================
   InSituVariable:
+    abstract: true
     description: >-
       Base class for project-acquired variables (measured or calculated in-situ).
       Reference: OAPMetadata XSD variables.xsd - insitu_variable
@@ -102,6 +103,7 @@ classes:
   # MeasuredVariable Class (subclasses: DiscreteMeasuredVariable, ContinuousMeasuredVariable)
   # =====================================================================================
   MeasuredVariable:
+    abstract: true
     description: >-
       Variable that is directly measured in-situ using instruments.
       Reference: OAPMetadata XSD variables.xsd - basic_measured_observation_base
