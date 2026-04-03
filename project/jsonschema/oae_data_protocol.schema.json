@@ -365,7 +365,7 @@
         },
         "CalculatedVariable": {
             "additionalProperties": false,
-            "description": "Variable that is calculated or derived from other variables.",
+            "description": "A variable that is calculated or derived from other measured variables rather than directly measured by an instrument (e.g., salinity derived from conductivity, carbonate system parameters computed via CO2SYS). Set genesis to \"calculated\". The variable_type should reflect the quantity being calculated (e.g., \"pH\", \"ta\", \"dic\", \"co2\", or \"other\").",
             "properties": {
                 "calculation_method_and_parameters": {
                     "description": "Information about how the variable was calculated and the parameters used in calculation, e.g.: Calculation software = CO2SYSv1 (MATLAB)  Input variables =  pH and DIC (column header names 'ph_t_insitu' and 'dic' in associated dataset file) Additional information = the dissociation constants of Lueker et al., 2000 for carbonic acid, etc.",
@@ -541,13 +541,19 @@
                     "items": {
                         "$ref": "#/$defs/Dataset"
                     },
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "experiments": {
                     "items": {
                         "$ref": "#/$defs/Experiment"
                     },
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "metadata_builder_git_hash": {
                     "description": "Git commit hash of the metadata-builder UI",
@@ -740,7 +746,7 @@
         },
         "ContinuousMeasuredVariable": {
             "additionalProperties": false,
-            "description": "Fields for continuous sampling information.",
+            "description": "A variable measured in-situ by a continuous autonomous sensor (e.g., temperature, salinity, conductivity, pressure from a deployed sonde or underway system). Use this class for generic measured variables that do not fall under a specific category (pH, TA, DIC, CO2, sediment). For those, use the type-specific subclass instead (e.g., ContinuousPHVariable). Set variable_type to \"other\", genesis to \"measured\", and sampling to \"continuous\".",
             "properties": {
                 "analyzing_instrument": {
                     "$ref": "#/$defs/AnalyzingInstrument",
@@ -1889,7 +1895,7 @@
         },
         "DiscreteMeasuredVariable": {
             "additionalProperties": false,
-            "description": "Analyzing instrument information fields, only applied to discretely measured variables. The instrument type can be narrowed in subclasses using slot_usage.",
+            "description": "A variable measured in-situ from discrete water samples (e.g., bottle samples analyzed in a lab or shipboard). Use this class for generic measured variables that do not fall under a specific category (pH, TA, DIC, CO2, sediment, HPLC). For those, use the type-specific subclass instead (e.g., DiscretePHVariable). Set variable_type to \"other\", genesis to \"measured\", and sampling to \"discrete\".",
             "properties": {
                 "analyzing_instrument": {
                     "$ref": "#/$defs/AnalyzingInstrument",
@@ -2742,7 +2748,10 @@
                         "type": "string"
                     },
                     "title": "Related Links",
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "spatial_coverage": {
                     "$ref": "#/$defs/SpatialCoverage",
@@ -2800,7 +2809,10 @@
                         "type": "string"
                     },
                     "title": "Calibration Files",
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "data_product_type": {
                     "$ref": "#/$defs/DataProductType",
@@ -2922,7 +2934,10 @@
                         ]
                     },
                     "title": "Variables",
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 }
             },
             "required": [
@@ -3258,7 +3273,10 @@
                         "$ref": "#/$defs/NamedLink"
                     },
                     "title": "Meteorological and Tidal Data",
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "name": {
                     "description": "Optional common name for experiment.",
@@ -3271,7 +3289,10 @@
                         "$ref": "#/$defs/Permit"
                     },
                     "title": "Permits",
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "project_id": {
                     "description": "The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.\nIf no Project ID has been assigned, one may be generated by combining: lead organizer surname and first initial or company, a unique date, and location.\nAny method that creates a unique ID that will link all project data is acceptable.",
@@ -3481,7 +3502,10 @@
                         "$ref": "#/$defs/NamedLink"
                     },
                     "title": "Meteorological and Tidal Data",
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "name": {
                     "description": "Optional common name for experiment.",
@@ -3494,7 +3518,10 @@
                         "$ref": "#/$defs/Permit"
                     },
                     "title": "Permits",
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "project_id": {
                     "description": "The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.\nIf no Project ID has been assigned, one may be generated by combining: lead organizer surname and first initial or company, a unique date, and location.\nAny method that creates a unique ID that will link all project data is acceptable.",
@@ -3737,7 +3764,10 @@
                         "$ref": "#/$defs/NamedLink"
                     },
                     "title": "Meteorological and Tidal Data",
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "name": {
                     "description": "Optional common name for experiment.",
@@ -3750,7 +3780,10 @@
                         "$ref": "#/$defs/Permit"
                     },
                     "title": "Permits",
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "project_id": {
                     "description": "The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.\nIf no Project ID has been assigned, one may be generated by combining: lead organizer surname and first initial or company, a unique date, and location.\nAny method that creates a unique ID that will link all project data is acceptable.",
@@ -3899,7 +3932,10 @@
                         "$ref": "#/$defs/ModelGrid"
                     },
                     "title": "Grid Details",
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "input_details": {
                     "$ref": "#/$defs/ModelInputDetails",
@@ -3912,7 +3948,10 @@
                         "$ref": "#/$defs/ModelComponent"
                     },
                     "title": "Model Components",
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "model_configuration": {
                     "description": "Links to model configuration files or documentation.",
@@ -3920,7 +3959,10 @@
                         "type": "string"
                     },
                     "title": "Model Configuration",
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "name": {
                     "description": "Optional common name for experiment.",
@@ -4005,7 +4047,10 @@
                         "type": "string"
                     },
                     "title": "References",
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "version": {
                     "description": "Release version of the model component.",
@@ -4126,7 +4171,10 @@
                         "$ref": "#/$defs/NamedLink"
                     },
                     "title": "Atmospheric Forcing",
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "bathymetry": {
                     "description": "Bathymetry data source(s).",
@@ -4134,7 +4182,10 @@
                         "$ref": "#/$defs/NamedLink"
                     },
                     "title": "Bathymetry",
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "boundary_conditions": {
                     "description": "Boundary condition data source(s).",
@@ -4142,7 +4193,10 @@
                         "$ref": "#/$defs/NamedLink"
                     },
                     "title": "Boundary Conditions",
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "initial_conditions": {
                     "description": "Initial condition data source(s).",
@@ -4150,7 +4204,10 @@
                         "$ref": "#/$defs/NamedLink"
                     },
                     "title": "Initial Conditions",
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "processing_code": {
                     "description": "If applicable, link to any code for processing of raw forcing and input data listed in the fields above.",
@@ -4158,7 +4215,10 @@
                         "$ref": "#/$defs/NamedLink"
                     },
                     "title": "Processing code",
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "processing_of_input_data": {
                     "description": "Narrative description of any processing applied to input data before use in the model.",
@@ -4171,7 +4231,10 @@
                         "$ref": "#/$defs/NamedLink"
                     },
                     "title": "River/Sediment Flux Details",
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "tidal_forcing": {
                     "description": "Tidal forcing data source(s).",
@@ -4179,7 +4242,10 @@
                         "$ref": "#/$defs/NamedLink"
                     },
                     "title": "Tidal Forcing",
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 }
             },
             "title": "ModelInputDetails",
@@ -4268,7 +4334,10 @@
                         "$ref": "#/$defs/ModelOutputVariable"
                     },
                     "title": "Key Model Output Variables",
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "name": {
                     "description": "A brief descriptive sentence that summarizes the content of a dataset. Here is one example:\n\"Dissolved inorganic carbon, total alkalinity, pH, temperature, salinity and other variables collected from profile and discrete sample observations using CTD, Niskin bottle, and other instruments from R/V Wecoma in the U.S. West Coast California Current System during the 2011 West Coast Ocean Acidification Cruise (WCOA2011) from 2011-08-12 to 2011-08-30\"",
@@ -4401,7 +4470,7 @@
         },
         "NonMeasuredVariable": {
             "additionalProperties": false,
-            "description": "Non-measured variable for data from external sources (e.g., satellite, model outputs, published data) that are not directly measured by the project but included in the dataset.",
+            "description": "A contextual or ancillary variable that is NOT directly measured or calculated by the project. Use for identifiers (Cruise_ID, Exp_ID), timestamps (Year_UTC, Time_UTC), coordinates (Latitude, Longitude), depth labels, quality control flag columns, and any other data from external sources (satellite, model outputs, published data) included in the dataset for context. variable_type must be \"non_measured\".",
             "properties": {
                 "dataset_variable_name": {
                     "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
@@ -4829,7 +4898,10 @@
                         "$ref": "#/$defs/Experiment"
                     },
                     "title": "Related Experiments",
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "funding": {
                     "description": "Include the name of the funder, funder country, project title, project ID, and the project start and end dates. If there is no funding source (e.g., in the case of commercial projects), leave this field empty.",
@@ -4837,7 +4909,10 @@
                         "$ref": "#/$defs/MonetaryGrant"
                     },
                     "title": "Funding Info",
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "mcdr_pathway": {
                     "$ref": "#/$defs/MCDRPathway",
@@ -4855,7 +4930,10 @@
                         "$ref": "#/$defs/ExternalProject"
                     },
                     "title": "Previous or Ongoing Co-located Research",
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "project_id": {
                     "description": "The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.\nIf no Project ID has been assigned, one may be generated by combining: lead organizer surname and first initial or company, a unique date, and location.\nAny method that creates a unique ID that will link all project data is acceptable.",
@@ -4881,7 +4959,10 @@
                         "$ref": "#/$defs/SeaNames"
                     },
                     "title": "Sea Names",
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "social_context_site_description": {
                     "description": "Details may include:\n  - Commercial, recreational, ecological, and cultural uses of study site\n  - Industrial site history\n  - Demographics of site area\n  - Notable events that may impact local sentiment to mCDR (for example: site had significant toxic spill in past decade, local positive support for offshore wind farming, frequent HAB site) -Ecologically protected species, economically significant operations in the marine environment\n  - In study areas with nearby state or federal jurisdiction borders, potential conflicts with other countries or permits from foreign governments should be described.\n  - Links to relevant social science surveys, engaged community groups, etc.",
@@ -5279,7 +5360,10 @@
                         "$ref": "#/$defs/NamedLink"
                     },
                     "title": "Meteorological and Tidal Data",
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "name": {
                     "description": "Optional common name for experiment.",
@@ -5292,7 +5376,10 @@
                         "$ref": "#/$defs/Permit"
                     },
                     "title": "Permits",
-                    "type": "array"
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
                 "project_id": {
                     "description": "The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.\nIf no Project ID has been assigned, one may be generated by combining: lead organizer surname and first initial or company, a unique date, and location.\nAny method that creates a unique ID that will link all project data is acceptable.",
@@ -5381,7 +5468,7 @@
             "type": "string"
         },
         "VariableType": {
-            "description": "High-level classification of the variable",
+            "description": "High-level classification of the variable. Determines which schema class to use in combination with genesis (measured/calculated) and sampling (discrete/continuous).",
             "enum": [
                 "pH",
                 "ta",
@@ -5461,13 +5548,19 @@
             "items": {
                 "$ref": "#/$defs/Dataset"
             },
-            "type": "array"
+            "type": [
+                "array",
+                "null"
+            ]
         },
         "experiments": {
             "items": {
                 "$ref": "#/$defs/Experiment"
             },
-            "type": "array"
+            "type": [
+                "array",
+                "null"
+            ]
         },
         "metadata_builder_git_hash": {
             "description": "Git commit hash of the metadata-builder UI",

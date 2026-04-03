@@ -463,7 +463,7 @@
         },
         "CalculatedVariable": {
             "additionalProperties": false,
-            "description": "Variable that is calculated or derived from other variables.",
+            "description": "A variable that is calculated or derived from other measured variables rather than directly measured by an instrument (e.g., salinity derived from conductivity, carbonate system parameters computed via CO2SYS). Set genesis to \"calculated\". The variable_type should reflect the quantity being calculated (e.g., \"pH\", \"ta\", \"dic\", \"co2\", or \"other\").",
             "properties": {
                 "calculation_method_and_parameters": {
                     "description": "Information about how the variable was calculated and the parameters used in calculation, e.g.: Calculation software = CO2SYSv1 (MATLAB)  Input variables =  pH and DIC (column header names 'ph_t_insitu' and 'dic' in associated dataset file) Additional information = the dissociation constants of Lueker et al., 2000 for carbonic acid, etc.",
@@ -1013,7 +1013,7 @@
         },
         "ContinuousMeasuredVariable": {
             "additionalProperties": false,
-            "description": "Fields for continuous sampling information.",
+            "description": "A variable measured in-situ by a continuous autonomous sensor (e.g., temperature, salinity, conductivity, pressure from a deployed sonde or underway system). Use this class for generic measured variables that do not fall under a specific category (pH, TA, DIC, CO2, sediment). For those, use the type-specific subclass instead (e.g., ContinuousPHVariable). Set variable_type to \"other\", genesis to \"measured\", and sampling to \"continuous\".",
             "properties": {
                 "analyzing_instrument": {
                     "anyOf": [
@@ -2520,7 +2520,7 @@
         },
         "DiscreteMeasuredVariable": {
             "additionalProperties": false,
-            "description": "Analyzing instrument information fields, only applied to discretely measured variables. The instrument type can be narrowed in subclasses using slot_usage.",
+            "description": "A variable measured in-situ from discrete water samples (e.g., bottle samples analyzed in a lab or shipboard). Use this class for generic measured variables that do not fall under a specific category (pH, TA, DIC, CO2, sediment, HPLC). For those, use the type-specific subclass instead (e.g., DiscretePHVariable). Set variable_type to \"other\", genesis to \"measured\", and sampling to \"discrete\".",
             "properties": {
                 "analyzing_instrument": {
                     "anyOf": [
@@ -5629,7 +5629,7 @@
         },
         "NonMeasuredVariable": {
             "additionalProperties": false,
-            "description": "Non-measured variable for data from external sources (e.g., satellite, model outputs, published data) that are not directly measured by the project but included in the dataset.",
+            "description": "A contextual or ancillary variable that is NOT directly measured or calculated by the project. Use for identifiers (Cruise_ID, Exp_ID), timestamps (Year_UTC, Time_UTC), coordinates (Latitude, Longitude), depth labels, quality control flag columns, and any other data from external sources (satellite, model outputs, published data) included in the dataset for context. variable_type must be \"non_measured\".",
             "properties": {
                 "dataset_variable_name": {
                     "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
@@ -6801,7 +6801,7 @@
             "type": "string"
         },
         "VariableType": {
-            "description": "High-level classification of the variable",
+            "description": "High-level classification of the variable. Determines which schema class to use in combination with genesis (measured/calculated) and sampling (discrete/continuous).",
             "enum": [
                 "pH",
                 "ta",

@@ -574,25 +574,25 @@ export enum SamplingType {
     continuous = "continuous",
 };
 /**
-* High-level classification of the variable
+* High-level classification of the variable. Determines which schema class to use in combination with genesis (measured/calculated) and sampling (discrete/continuous).
 */
 export enum VariableType {
     
-    /** pH measurement */
+    /** pH measurement — use with Discrete/ContinuousPHVariable or CalculatedVariable */
     pH = "pH",
-    /** Total alkalinity */
+    /** Total alkalinity — use with Discrete/ContinuousTAVariable or CalculatedVariable */
     ta = "ta",
-    /** Dissolved inorganic carbon */
+    /** Dissolved inorganic carbon — use with Discrete/ContinuousDICVariable or CalculatedVariable */
     dic = "dic",
-    /** CO₂ variables (xCO₂, pCO₂, fCO₂) */
+    /** CO₂ variables (xCO₂, pCO₂, fCO₂) — use with DiscreteCO2Variable or CalculatedVariable */
     co2 = "co2",
-    /** Sediment variable */
+    /** Sediment variable — use with Discrete/ContinuousSedimentVariable or CalculatedVariable */
     sediment = "sediment",
-    /** HPLC pigment analysis */
+    /** HPLC pigment analysis — use with HPLCVariable (always discrete, always measured) */
     hplc = "hplc",
-    /** Variable not covered by specific categories */
+    /** Any directly measured or calculated variable that does not fall into a specific category above (e.g., temperature, salinity, conductivity, pressure, fluorescence). Use with DiscreteMeasuredVariable, ContinuousMeasuredVariable, or CalculatedVariable. */
     other = "other",
-    /** Contextual data from external sources (e.g., coordinates, timestamps, identifiers) */
+    /** Contextual or ancillary columns that are not directly measured or calculated by the project — identifiers, timestamps, coordinates, depth labels, QC flag columns, and external source data. Use only with NonMeasuredVariable. */
     non_measured = "non_measured",
 };
 
@@ -1143,7 +1143,7 @@ export interface Variable {
 
 
 /**
- * Non-measured variable for data from external sources (e.g., satellite, model outputs, published data) that are not directly measured by the project but included in the dataset.
+ * A contextual or ancillary variable that is NOT directly measured or calculated by the project. Use for identifiers (Cruise_ID, Exp_ID), timestamps (Year_UTC, Time_UTC), coordinates (Latitude, Longitude), depth labels, quality control flag columns, and any other data from external sources (satellite, model outputs, published data) included in the dataset for context. variable_type must be "non_measured".
  */
 export interface NonMeasuredVariable extends Variable {
 }
@@ -1187,14 +1187,14 @@ export interface MeasuredVariable extends InSituVariable, QCFields {
 
 
 /**
- * Analyzing instrument information fields, only applied to discretely measured variables. The instrument type can be narrowed in subclasses using slot_usage.
+ * A variable measured in-situ from discrete water samples (e.g., bottle samples analyzed in a lab or shipboard). Use this class for generic measured variables that do not fall under a specific category (pH, TA, DIC, CO2, sediment, HPLC). For those, use the type-specific subclass instead (e.g., DiscretePHVariable). Set variable_type to "other", genesis to "measured", and sampling to "discrete".
  */
 export interface DiscreteMeasuredVariable extends MeasuredVariable {
 }
 
 
 /**
- * Fields for continuous sampling information.
+ * A variable measured in-situ by a continuous autonomous sensor (e.g., temperature, salinity, conductivity, pressure from a deployed sonde or underway system). Use this class for generic measured variables that do not fall under a specific category (pH, TA, DIC, CO2, sediment). For those, use the type-specific subclass instead (e.g., ContinuousPHVariable). Set variable_type to "other", genesis to "measured", and sampling to "continuous".
  */
 export interface ContinuousMeasuredVariable extends MeasuredVariable {
     /** The method used to calculate reported values from raw sensor data. */
@@ -1205,7 +1205,7 @@ export interface ContinuousMeasuredVariable extends MeasuredVariable {
 
 
 /**
- * Variable that is calculated or derived from other variables.
+ * A variable that is calculated or derived from other measured variables rather than directly measured by an instrument (e.g., salinity derived from conductivity, carbonate system parameters computed via CO2SYS). Set genesis to "calculated". The variable_type should reflect the quantity being calculated (e.g., "pH", "ta", "dic", "co2", or "other").
  */
 export interface CalculatedVariable extends InSituVariable, QCFields {
     genesis: string,
