@@ -592,7 +592,7 @@ export enum VariableType {
     hplc = "hplc",
     /** Any directly measured or calculated variable that does not fall into a specific category above (e.g., temperature, salinity, conductivity, pressure, fluorescence). Use with DiscreteMeasuredVariable, ContinuousMeasuredVariable, or CalculatedVariable. */
     other = "other",
-    /** Contextual or ancillary columns that are not directly measured or calculated by the project — identifiers, timestamps, coordinates, depth labels, QC flag columns, and external source data. Use only with NonMeasuredVariable. */
+    /** Contextual or ancillary columns that are not directly measured or calculated by the project — identifiers, timestamps, coordinates, depth labels, and external source data. QC flag columns should NOT be listed as separate variables; instead set dataset_variable_name_qc_flag on the parent variable. Use only with NonMeasuredVariable. */
     non_measured = "non_measured",
 };
 
@@ -1143,7 +1143,7 @@ export interface Variable {
 
 
 /**
- * A contextual or ancillary variable that is NOT directly measured or calculated by the project. Use for identifiers (Cruise_ID, Exp_ID), timestamps (Year_UTC, Time_UTC), coordinates (Latitude, Longitude), depth labels, quality control flag columns, and any other data from external sources (satellite, model outputs, published data) included in the dataset for context. variable_type must be "non_measured".
+ * A contextual or ancillary variable that is NOT directly measured or calculated by the project. Use for identifiers (Cruise_ID, Exp_ID), timestamps (Year_UTC, Time_UTC), coordinates (Latitude, Longitude), depth labels, and any other data from external sources (satellite, model outputs, published data) included in the dataset for context. Do NOT create a NonMeasuredVariable for quality control flag columns — instead, set dataset_variable_name_qc_flag on the parent measured or calculated variable that the flag relates to. variable_type must be "non_measured".
  */
 export interface NonMeasuredVariable extends Variable {
 }

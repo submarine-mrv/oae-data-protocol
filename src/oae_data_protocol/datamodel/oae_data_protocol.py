@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-04-03T16:36:27
+# Generation date: 2026-04-03T16:47:58
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -1255,9 +1255,10 @@ class Variable(YAMLRoot):
 class NonMeasuredVariable(Variable):
     """
     A contextual or ancillary variable that is NOT directly measured or calculated by the project. Use for identifiers
-    (Cruise_ID, Exp_ID), timestamps (Year_UTC, Time_UTC), coordinates (Latitude, Longitude), depth labels, quality
-    control flag columns, and any other data from external sources (satellite, model outputs, published data) included
-    in the dataset for context. variable_type must be "non_measured".
+    (Cruise_ID, Exp_ID), timestamps (Year_UTC, Time_UTC), coordinates (Latitude, Longitude), depth labels, and any
+    other data from external sources (satellite, model outputs, published data) included in the dataset for context.
+    Do NOT create a NonMeasuredVariable for quality control flag columns — instead, set dataset_variable_name_qc_flag
+    on the parent measured or calculated variable that the flag relates to. variable_type must be "non_measured".
     """
     _inherited_slots: ClassVar[List[str]] = []
 
@@ -4428,7 +4429,7 @@ class VariableType(EnumDefinitionImpl):
         description="""Any directly measured or calculated variable that does not fall into a specific category above (e.g., temperature, salinity, conductivity, pressure, fluorescence). Use with DiscreteMeasuredVariable, ContinuousMeasuredVariable, or CalculatedVariable.""")
     non_measured = PermissibleValue(
         text="non_measured",
-        description="""Contextual or ancillary columns that are not directly measured or calculated by the project — identifiers, timestamps, coordinates, depth labels, QC flag columns, and external source data. Use only with NonMeasuredVariable.""")
+        description="""Contextual or ancillary columns that are not directly measured or calculated by the project — identifiers, timestamps, coordinates, depth labels, and external source data. QC flag columns should NOT be listed as separate variables; instead set dataset_variable_name_qc_flag on the parent variable. Use only with NonMeasuredVariable.""")
 
     _defn = EnumDefinition(
         name="VariableType",

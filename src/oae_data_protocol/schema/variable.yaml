@@ -60,9 +60,12 @@ classes:
       A contextual or ancillary variable that is NOT directly measured or
       calculated by the project. Use for identifiers (Cruise_ID, Exp_ID),
       timestamps (Year_UTC, Time_UTC), coordinates (Latitude, Longitude),
-      depth labels, quality control flag columns, and any other data from
-      external sources (satellite, model outputs, published data) included
-      in the dataset for context. variable_type must be "non_measured".
+      depth labels, and any other data from external sources (satellite,
+      model outputs, published data) included in the dataset for context.
+      Do NOT create a NonMeasuredVariable for quality control flag columns —
+      instead, set dataset_variable_name_qc_flag on the parent measured or
+      calculated variable that the flag relates to. variable_type must be
+      "non_measured".
     is_a: Variable
 
   # =============================================================================
@@ -678,7 +681,9 @@ enums:
         description: >-
           Contextual or ancillary columns that are not directly measured or
           calculated by the project — identifiers, timestamps, coordinates,
-          depth labels, QC flag columns, and external source data. Use only
+          depth labels, and external source data. QC flag columns should NOT
+          be listed as separate variables; instead set
+          dataset_variable_name_qc_flag on the parent variable. Use only
           with NonMeasuredVariable.
   GenesisType:
     permissible_values:

@@ -5629,7 +5629,7 @@
         },
         "NonMeasuredVariable": {
             "additionalProperties": false,
-            "description": "A contextual or ancillary variable that is NOT directly measured or calculated by the project. Use for identifiers (Cruise_ID, Exp_ID), timestamps (Year_UTC, Time_UTC), coordinates (Latitude, Longitude), depth labels, quality control flag columns, and any other data from external sources (satellite, model outputs, published data) included in the dataset for context. variable_type must be \"non_measured\".",
+            "description": "A contextual or ancillary variable that is NOT directly measured or calculated by the project. Use for identifiers (Cruise_ID, Exp_ID), timestamps (Year_UTC, Time_UTC), coordinates (Latitude, Longitude), depth labels, and any other data from external sources (satellite, model outputs, published data) included in the dataset for context. Do NOT create a NonMeasuredVariable for quality control flag columns \u2014 instead, set dataset_variable_name_qc_flag on the parent measured or calculated variable that the flag relates to. variable_type must be \"non_measured\".",
             "properties": {
                 "dataset_variable_name": {
                     "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
