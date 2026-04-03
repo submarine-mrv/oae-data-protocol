@@ -29,6 +29,7 @@ Use the navigation menu to explore:
 ### Published Artifacts
 
 - [JSON Schema (validation)](https://github.com/submarine-mrv/oae-data-protocol/blob/main/project/jsonschema/oae_data_protocol.validation.schema.json)
+- [JSON-LD Context](https://github.com/submarine-mrv/oae-data-protocol/blob/main/project/jsonld/context.jsonld)
 - [Python Dataclasses](https://github.com/submarine-mrv/oae-data-protocol/blob/main/src/oae_data_protocol/datamodel/oae_data_protocol.py)
 - [LinkML Source Schemas](https://github.com/submarine-mrv/oae-data-protocol/tree/main/src/oae_data_protocol/schema)
 - [OAE Metadata Builder](https://github.com/submarine-mrv/oae-metadata-builder) — Web app for creating metadata

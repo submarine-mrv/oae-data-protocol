@@ -8,6 +8,7 @@ A Container is the top-level object in every metadata file. It wraps project met
 
 ```json
 {
+  "@context": "https://schema.oaedata.org/context.jsonld",
   "version": "0.0.0-prerelease",
   "protocol_git_hash": "abc123...",
   "project": { ... },
@@ -18,11 +19,15 @@ A Container is the top-level object in every metadata file. It wraps project met
 
 | Field | Description |
 |-------|-------------|
+| `@context` | JSON-LD context URL — makes the file interpretable as linked data |
 | `version` | Protocol schema version |
 | `protocol_git_hash` | Git hash of the schema used to generate this file |
 | `project` | A single [Project](Project.md) object |
 | `experiments` | Array of [Experiment](Experiment.md) objects |
 | `datasets` | Array of [Dataset](FieldDataset.md) objects |
+
+!!! tip "Linked Data"
+    The `@context` field is optional but recommended. It makes OAE metadata files valid [JSON-LD](https://json-ld.org/) documents, meaning they can be interpreted by linked data tools and semantic web infrastructure without any conversion. Standard JSON tools ignore the `@context` field, so it doesn't affect non-LD workflows.
 
 ## How the Pieces Relate
 
@@ -50,6 +55,7 @@ graph TD
 
 ```json
 {
+  "@context": "https://schema.oaedata.org/context.jsonld",
   "version": "0.0.0-prerelease",
   "protocol_git_hash": "50d3904c...",
   "project": {
@@ -118,3 +124,19 @@ npx ajv-cli validate \
 ```
 
 A [validation schema](https://github.com/submarine-mrv/oae-data-protocol/blob/main/project/jsonschema/oae_data_protocol.validation.schema.json) with full polymorphic support is also available for stricter validation of experiment and variable subclasses.
+
+## JSON-LD Context
+
+A [JSON-LD context](https://github.com/submarine-mrv/oae-data-protocol/blob/main/project/jsonld/context.jsonld) is published alongside the schema. Including it in your metadata file makes the document valid JSON-LD:
+
+```json
+{
+  "@context": "https://schema.oaedata.org/context.jsonld",
+  "version": "0.0.0-prerelease",
+  ...
+}
+```
+
+This enables linked data tools to interpret OAE metadata without conversion — field names resolve to URIs in the `https://schema.oaedata.org/` namespace, and community vocabulary references (NERC, QUDT) resolve to their canonical IRIs.
+
+The `@context` field is ignored by standard JSON tools, so it doesn't affect existing workflows.
