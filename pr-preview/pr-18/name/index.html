@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://submarine-mrv.github.io/oae-data-protocol/name/">
+        <link rel="canonical" href="https://schema.oaedata.org/name/">
       
       
       
@@ -259,6 +259,14 @@
     
       
         
+          
+        
+      
+        
+      
+        
+      
+        
       
     
     
@@ -270,8 +278,10 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
-            
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../getting-started/" class="md-nav__link ">
+              
   
   <span class="md-ellipsis">
     Getting Started
@@ -279,8 +289,14 @@
   </span>
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
@@ -288,6 +304,8 @@
             Getting Started
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
             
               
                 
@@ -301,6 +319,50 @@
   
   <span class="md-ellipsis">
     Metadata File Format
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metadata-builder/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Metadata Builder
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contributing
     
   </span>
   
@@ -1269,58 +1331,13 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../MonetaryGrant/">MonetaryGrant</a></td>
-<td></td>
-<td>yes</td>
-</tr>
-<tr>
-<td><a href="../Dataset/">Dataset</a></td>
-<td>Abstract base class for all dataset types</td>
-<td>yes</td>
-</tr>
-<tr>
-<td><a href="../Model/">Model</a></td>
-<td>A computational model experiment related to OAE</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ModelOutputDataset/">ModelOutputDataset</a></td>
-<td>A model simulation output dataset</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../NamedLink/">NamedLink</a></td>
-<td>A link to a resource with a name and URL</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Intervention/">Intervention</a></td>
-<td>Additional metadata that applies to experiments where an intervention, such a...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../FieldDataset/">FieldDataset</a></td>
-<td>A field or observational dataset related to an OAE experiment</td>
-<td>no</td>
-</tr>
-<tr>
 <td><a href="../InSituExperiment/">InSituExperiment</a></td>
 <td>Experiment metadata for in-situ studies (interventions, tracer studies, etc</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../Organization/">Organization</a></td>
-<td></td>
-<td>yes</td>
-</tr>
-<tr>
-<td><a href="../ExternalProject/">ExternalProject</a></td>
-<td>A research project that is not directly managed by the OAE project, but whose...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Tracer/">Tracer</a></td>
-<td>Additional metadata that applies to experiments where a tracer study was cond...</td>
+<td><a href="../Person/">Person</a></td>
+<td>Information about a researcher or investigator involved in the experiment</td>
 <td>no</td>
 </tr>
 <tr>
@@ -1329,13 +1346,8 @@
 <td>yes</td>
 </tr>
 <tr>
-<td><a href="../Platform/">Platform</a></td>
-<td></td>
-<td>yes</td>
-</tr>
-<tr>
-<td><a href="../ModelComponent/">ModelComponent</a></td>
-<td>A component of a model (e</td>
+<td><a href="../FieldDataset/">FieldDataset</a></td>
+<td>A field or observational dataset related to an OAE experiment</td>
 <td>no</td>
 </tr>
 <tr>
@@ -1344,8 +1356,58 @@
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../Person/">Person</a></td>
-<td>Information about a researcher or investigator involved in the experiment</td>
+<td><a href="../ModelOutputDataset/">ModelOutputDataset</a></td>
+<td>A model simulation output dataset</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../MonetaryGrant/">MonetaryGrant</a></td>
+<td></td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../Model/">Model</a></td>
+<td>A computational model experiment related to OAE</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Organization/">Organization</a></td>
+<td></td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../Platform/">Platform</a></td>
+<td></td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../Intervention/">Intervention</a></td>
+<td>Additional metadata that applies to experiments where an intervention, such a...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../NamedLink/">NamedLink</a></td>
+<td>A link to a resource with a name and URL</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Tracer/">Tracer</a></td>
+<td>Additional metadata that applies to experiments where a tracer study was cond...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../ExternalProject/">ExternalProject</a></td>
+<td>A research project that is not directly managed by the OAE project, but whose...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Dataset/">Dataset</a></td>
+<td>Abstract base class for all dataset types</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../ModelComponent/">ModelComponent</a></td>
+<td>A component of a model (e</td>
 <td>no</td>
 </tr>
 </tbody>
