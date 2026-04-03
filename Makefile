@@ -226,6 +226,7 @@ gendoc: $(DOCDIR)
 	$(RUN) gen-doc ${GEN_DOC_ARGS} -d $(DOCDIR) $(SOURCE_SCHEMA_PATH)
 	mv $(DOCDIR)/index.md $(DOCDIR)/schema_index.md
 	cp -rf $(SRC)/docs/files/* $(DOCDIR)
+	cp $(DEST)/jsonld/context.jsonld $(DOCDIR)/context.jsonld
 	@# Create section directories with index pages for navigation.indexes
 	mkdir -p $(DOCDIR)/getting-started $(DOCDIR)/projects-experiments $(DOCDIR)/datasets $(DOCDIR)/variables $(DOCDIR)/instruments-calibration
 	mv $(DOCDIR)/getting-started.md $(DOCDIR)/getting-started/index.md
