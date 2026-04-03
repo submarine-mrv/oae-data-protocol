@@ -31,25 +31,12 @@ A Container is the top-level object in every metadata file. It wraps project met
 
 ## How the Pieces Relate
 
-```mermaid
-graph TD
-    C[Container] --> P[Project]
-    C --> E1[Experiment 1]
-    C --> E2[Experiment 2]
-    C --> D1[Dataset 1]
-    C --> D2[Dataset 2]
-    D1 -->|linked via experiment_id| E1
-    D2 -->|linked via experiment_id| E2
-    D1 --> V1[Variable 1]
-    D1 --> V2[Variable 2]
-    D2 --> V3[Variable 3]
-```
+A Container holds one **Project**, one or more **Experiments**, and one or more **Datasets**:
 
-- A **Project** describes the overall OAE field trial or modeling effort
-- **Experiments** are specific activities within a project (baseline measurements, interventions, tracer studies, model runs)
-- **Datasets** contain the actual data files and their variable-level metadata
-- Each dataset is linked to an experiment via `experiment_id`
-- Each dataset contains an array of **Variables** describing the columns in the data file
+- A **Project** describes the overall OAE field trial or modeling effort — who, where, when, and why.
+- **Experiments** are specific activities within the project (baseline monitoring, alkalinity intervention, tracer study, model simulation).
+- **Datasets** describe the data files produced by an experiment. Each dataset references its parent experiment via `experiment_id`.
+- Each dataset contains an array of **Variables** — detailed metadata about each column or measurement in the data files.
 
 ## Example: Minimal Metadata File
 
@@ -107,7 +94,7 @@ graph TD
 
 ## Creating Metadata
 
-The easiest way to create a metadata file is with the **[OAE Metadata Builder](https://github.com/submarine-mrv/oae-metadata-builder)** — a web application that walks you through each section with form-based input and exports a valid Container JSON file.
+The easiest way to create a metadata file is with the **[OAE Metadata Builder](https://metadata.oaedata.org)** — a web application that walks you through each section with form-based input and exports a valid Container JSON file.
 
 You can also create metadata files programmatically using the [JSON Schema](https://github.com/submarine-mrv/oae-data-protocol/blob/main/project/jsonschema/oae_data_protocol.validation.schema.json) for validation.
 

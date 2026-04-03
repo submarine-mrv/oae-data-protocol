@@ -32,7 +32,7 @@ Use the navigation menu to explore:
 - [JSON-LD Context](https://github.com/submarine-mrv/oae-data-protocol/blob/main/project/jsonld/context.jsonld)
 - [Python Dataclasses](https://github.com/submarine-mrv/oae-data-protocol/blob/main/src/oae_data_protocol/datamodel/oae_data_protocol.py)
 - [LinkML Source Schemas](https://github.com/submarine-mrv/oae-data-protocol/tree/main/src/oae_data_protocol/schema)
-- [OAE Metadata Builder](https://github.com/submarine-mrv/oae-metadata-builder) — Web app for creating metadata
+- [OAE Metadata Builder](https://metadata.oaedata.org) — Web app for creating metadata
 
 ## Built with LinkML
 

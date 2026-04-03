@@ -227,7 +227,8 @@ gendoc: $(DOCDIR)
 	mv $(DOCDIR)/index.md $(DOCDIR)/schema_index.md
 	cp -rf $(SRC)/docs/files/* $(DOCDIR)
 	@# Create section directories with index pages for navigation.indexes
-	mkdir -p $(DOCDIR)/projects-experiments $(DOCDIR)/datasets $(DOCDIR)/variables $(DOCDIR)/instruments-calibration
+	mkdir -p $(DOCDIR)/getting-started $(DOCDIR)/projects-experiments $(DOCDIR)/datasets $(DOCDIR)/variables $(DOCDIR)/instruments-calibration
+	mv $(DOCDIR)/getting-started.md $(DOCDIR)/getting-started/index.md
 	mv $(DOCDIR)/projects-experiments.md $(DOCDIR)/projects-experiments/index.md
 	mv $(DOCDIR)/datasets.md $(DOCDIR)/datasets/index.md
 	mv $(DOCDIR)/variables.md $(DOCDIR)/variables/index.md

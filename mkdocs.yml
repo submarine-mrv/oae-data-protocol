@@ -1,6 +1,6 @@
 ---
 site_name: OAE Data Protocol
-site_url: https://submarine-mrv.github.io/oae-data-protocol
+site_url: https://schema.oaedata.org
 repo_url: https://github.com/submarine-mrv/oae-data-protocol
 
 theme:
@@ -32,7 +32,10 @@ markdown_extensions:
 nav:
   - Home: index.md
   - Getting Started:
+    - getting-started/index.md
     - Metadata File Format: metadata-format.md
+    - Metadata Builder: metadata-builder.md
+    - Contributing: contributing.md
   - Projects & Experiments:
     - projects-experiments/index.md
     - Project: Project.md
