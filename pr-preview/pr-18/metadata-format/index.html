@@ -202,6 +202,13 @@
     </span>
 </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#json-ld-context">
+<span class="md-ellipsis">
+      JSON-LD Context
+    </span>
+</a>
+</li>
 </ul>
 </nav>
 </li>
@@ -545,6 +552,13 @@
     </span>
 </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#json-ld-context">
+<span class="md-ellipsis">
+      JSON-LD Context
+    </span>
+</a>
+</li>
 </ul>
 </nav>
 </div>
@@ -557,6 +571,7 @@
 <h2 id="the-container">The Container</h2>
 <p>A Container is the top-level object in every metadata file. It wraps project metadata, experiment metadata, and dataset metadata into a single document:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"@context"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://schema.oaedata.org/context.jsonld"</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0.0-prerelease"</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"protocol_git_hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc123..."</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"project"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">},</span>
@@ -572,6 +587,10 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><code>@context</code></td>
+<td>JSON-LD context URL — makes the file interpretable as linked data</td>
+</tr>
 <tr>
 <td><code>version</code></td>
 <td>Protocol schema version</td>
@@ -594,6 +613,10 @@
 </tr>
 </tbody>
 </table>
+<div class="admonition tip">
+<p class="admonition-title">Linked Data</p>
+<p>The <code>@context</code> field is optional but recommended. It makes OAE metadata files valid <a href="https://json-ld.org/">JSON-LD</a> documents, meaning they can be interpreted by linked data tools and semantic web infrastructure without any conversion. Standard JSON tools ignore the <code>@context</code> field, so it doesn't affect non-LD workflows.</p>
+</div>
 <h2 id="how-the-pieces-relate">How the Pieces Relate</h2>
 <pre class="mermaid"><code>graph TD
     C[Container] --&gt; P[Project]
@@ -616,6 +639,7 @@
 </ul>
 <h2 id="example-minimal-metadata-file">Example: Minimal Metadata File</h2>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"@context"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://schema.oaedata.org/context.jsonld"</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0.0-prerelease"</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"protocol_git_hash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50d3904c..."</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"project"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
@@ -676,6 +700,16 @@ npx<span class="w"> </span>ajv-cli<span class="w"> </span>validate<span class="w
 <span class="w">  </span>--spec<span class="o">=</span>draft2019<span class="w"> </span>--strict<span class="o">=</span><span class="nb">false</span>
 </code></pre></div>
 <p>A <a href="https://github.com/submarine-mrv/oae-data-protocol/blob/main/project/jsonschema/oae_data_protocol.validation.schema.json">validation schema</a> with full polymorphic support is also available for stricter validation of experiment and variable subclasses.</p>
+<h2 id="json-ld-context">JSON-LD Context</h2>
+<p>A <a href="https://github.com/submarine-mrv/oae-data-protocol/blob/main/project/jsonld/context.jsonld">JSON-LD context</a> is published alongside the schema. Including it in your metadata file makes the document valid JSON-LD:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"@context"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://schema.oaedata.org/context.jsonld"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0.0-prerelease"</span><span class="p">,</span>
+<span class="w">  </span><span class="err">...</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>This enables linked data tools to interpret OAE metadata without conversion — field names resolve to URIs in the <code>https://schema.oaedata.org/</code> namespace, and community vocabulary references (NERC, QUDT) resolve to their canonical IRIs.</p>
+<p>The <code>@context</code> field is ignored by standard JSON tools, so it doesn't affect existing workflows.</p>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
