@@ -1,8 +1,8 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-04-02T17:08:30
-# Schema: OAEDataManagementProtocol
+# Generation date: 2026-04-03T16:29:50
+# Schema: OAEDataSchema
 #
-# id: OAEDataManagementProtocol
+# id: https://schema.oaedata.org/OAEDataSchema
 # description:
 # license: https://creativecommons.org/publicdomain/zero/1.0/
 

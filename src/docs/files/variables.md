@@ -1,6 +1,6 @@
 # Variables
 
-Variables describe the individual measurements, calculations, or contextual data columns within a dataset. The OAE Data Protocol uses a class hierarchy to capture the different levels of metadata required for different kinds of variables — a directly measured pH value needs calibration and instrument details, while a calculated CO₂ species needs the calculation method, and a contextual column like a station ID needs only basic identification.
+Variables describe the individual measurements, calculations, or contextual data columns within a dataset. The OAE Data Protocol uses a class hierarchy to capture the different levels of metadata required for different kinds of variables — a directly measured pH value needs calibration and instrument details, while a calculated CO₂ variable needs the calculation method, and a contextual column like a station ID needs minimal metadata.
 
 ## Variable Hierarchy
 
@@ -33,7 +33,9 @@ graph TD
     style CM fill:#c0d8c0
 ```
 
-This hierarchy is aligned with [NOAA-PMEL's OAPMetadata](https://github.com/NOAA-PMEL/OAPMetadata) XSD schema for interoperability with existing ocean carbon data systems.
+This hierarchy aims to align with [NOAA-PMEL's OAPMetadata](https://github.com/NOAA-PMEL/OAPMetadata) XSD schema to make
+interoperability easier between NOAA's OCADS system, and other repositories where OAE researchers may choose to host
+their data, whether they be other ocean data repositories, and generalist repositories such as Zenodo.
 
 ## Choosing a Variable Type
 
@@ -43,16 +45,16 @@ Every variable requires three selections that determine which schema class is us
 
 What kind of measurement is this?
 
-| Value | Description | Examples |
-|-------|-------------|---------|
-| `pH` | pH measurement | pH on total scale, NBS scale |
-| `ta` | Total alkalinity | TA from titration |
+| Value | Description                | Examples |
+|-------|----------------------------|---------|
+| `pH` | pH measurement             | pH on total scale, NBS scale |
+| `ta` | Total alkalinity           | TA from titration |
 | `dic` | Dissolved inorganic carbon | DIC from coulometry |
-| `co2` | CO₂ species | pCO₂, fCO₂, xCO₂ |
-| `sediment` | Sediment variable | Sediment core measurements |
-| `hplc` | HPLC pigments | Chlorophyll, carotenoids |
-| `other` | Generic variable | Temperature, salinity, nutrients |
-| `non_measured` | Contextual data | Station ID, timestamps, coordinates |
+| `co2` | CO₂ measurement variables  | pCO₂, fCO₂, xCO₂ |
+| `sediment` | Sediment variable          | Sediment core measurements |
+| `hplc` | HPLC pigments              | Chlorophyll, carotenoids |
+| `other` | Generic variable           | Temperature, salinity, nutrients |
+| `non_measured` | Contextual data            | Station ID, timestamps, coordinates |
 
 ### 2. Genesis (`genesis`)
 
@@ -76,18 +78,20 @@ How were measurements collected? (Only for `measured` genesis)
 
 | variable_type | genesis | sampling | Schema Class |
 |---------------|---------|----------|--------------|
-| `pH` | `measured` | `discrete` | `DiscretePHVariable` |
-| `pH` | `measured` | `continuous` | `ContinuousPHVariable` |
-| `pH` | `calculated` | — | `CalculatedVariable` |
-| `ta` | `measured` | `discrete` | `DiscreteTAVariable` |
-| `ta` | `measured` | `continuous` | `ContinuousTAVariable` |
-| `dic` | `measured` | `discrete` | `DiscreteDICVariable` |
-| `co2` | `measured` | `discrete` | `DiscreteCO2Variable` |
-| `hplc` | `measured` | `discrete` | `HPLCVariable` |
-| `other` | `measured` | `discrete` | `DiscreteMeasuredVariable` |
-| `other` | `measured` | `continuous` | `ContinuousMeasuredVariable` |
-| `other` | `calculated` | — | `CalculatedVariable` |
-| `non_measured` | — | — | `NonMeasuredVariable` |
+| `pH` | `measured` | `discrete` | [DiscretePHVariable](../DiscretePHVariable.md) |
+| `pH` | `measured` | `continuous` | [ContinuousPHVariable](../ContinuousPHVariable.md) |
+| `ta` | `measured` | `discrete` | [DiscreteTAVariable](../DiscreteTAVariable.md) |
+| `ta` | `measured` | `continuous` | [ContinuousTAVariable](../ContinuousTAVariable.md) |
+| `dic` | `measured` | `discrete` | [DiscreteDICVariable](../DiscreteDICVariable.md) |
+| `dic` | `measured` | `continuous` | [ContinuousDICVariable](../ContinuousDICVariable.md) |
+| `co2` | `measured` | `discrete` | [DiscreteCO2Variable](../DiscreteCO2Variable.md) |
+| `sediment` | `measured` | `discrete` | [DiscreteSedimentVariable](../DiscreteSedimentVariable.md) |
+| `sediment` | `measured` | `continuous` | [ContinuousSedimentVariable](../ContinuousSedimentVariable.md) |
+| `hplc` | `measured` | `discrete` | [HPLCVariable](../HPLCVariable.md) |
+| `other` | `measured` | `discrete` | [DiscreteMeasuredVariable](../DiscreteMeasuredVariable.md) |
+| `other` | `measured` | `continuous` | [ContinuousMeasuredVariable](../ContinuousMeasuredVariable.md) |
+| Any except `non_measured` | `calculated` | — | [CalculatedVariable](../CalculatedVariable.md) |
+| `non_measured` | — | — | [NonMeasuredVariable](../NonMeasuredVariable.md) |
 
 ## What Each Level Adds
 
@@ -108,7 +112,7 @@ Adds project-acquired data fields:
 - `units` (required)
 - `genesis` — measured or calculated
 - `method_reference` — citation for the method used
-- `measurement_researcher` — PI who measured/derived this parameter
+- `measurement_researcher` — the individual who measured/derived this parameter
 
 ### MeasuredVariable
 

@@ -2,7 +2,7 @@
 
 ## Projects
 
-A **Project** represents an OAE field trial, modeling effort, or research initiative. It captures the high-level context: who is conducting the work, where, when, and under what regulatory framework.
+A **Project** represents an OAE field trial, modeling effort, or research initiative. It captures the high-level context: who is conducting the work, where, and when.
 
 Every metadata file has exactly one Project. All experiments and datasets within the file belong to this project.
 
@@ -42,17 +42,18 @@ graph TD
     style IWT fill:#e8f8e8
 ```
 
-| Type | When to Use | Additional Fields |
-|------|------------|-------------------|
-| **Baseline** | Pre-intervention monitoring | Standard in-situ fields |
-| **Control** | Reference measurements without intervention | Standard in-situ fields |
-| **Intervention** | Active alkalinity addition | Feedstock, dosing, equilibration details |
-| **Tracer Study** | Dye or gas tracer deployment | Tracer form, concentration, dosing |
-| **Intervention + Tracer** | Combined intervention with tracer (same dosing mechanism) | All intervention + tracer fields |
+| Type | Schema Class | When to Use | Additional Fields |
+|------|-------------|------------|-------------------|
+| **Baseline** | [InSituExperiment](../InSituExperiment.md) | Pre-intervention monitoring | Standard in-situ fields |
+| **Control** | [InSituExperiment](../InSituExperiment.md) | Reference measurements without intervention | Standard in-situ fields |
+| **Intervention** | [Intervention](../Intervention.md) | Active alkalinity addition | Feedstock, dosing, equilibration details |
+| **Tracer Study** | [Tracer](../Tracer.md) | Dye or gas tracer deployment | Tracer form, concentration, dosing |
+| **Intervention + Tracer** | [InterventionWithTracer](../InterventionWithTracer.md) | Combined intervention with tracer (same dosing mechanism) | All intervention + tracer fields |
+| **Model** | [Model](../model.md) | Computational simulation | Model components, grid, configuration |
+| **Other** | [InSituExperiment](../InSituExperiment.md) | Experiment type not covered above | Standard in-situ fields |
 
 !!! note "When to use Intervention + Tracer"
     Only use the combined type when the alkalinity dosing and tracer dosing share the same underlying dosing mechanism or regimen. If they use separate delivery systems or schedules, create two separate experiments — one Intervention and one Tracer Study.
-| **Model** | Computational simulation | Model components, grid, configuration |
 
 ### Schema Selection Rules
 
@@ -75,4 +76,4 @@ All experiments share:
 
 Intervention experiments add feedstock details, dosing information, and equilibration status. Tracer experiments add tracer form, concentration, and delivery details. Both share dosing location and delivery fields.
 
-→ [Experiment](../Experiment.md) · [Intervention](../Intervention.md) · [Tracer](../Tracer.md) · [Model](../model.md)
+→ [Full Experiment schema reference](../Experiment.md)

@@ -1,6 +1,9 @@
 # Datasets
 
-A **Dataset** describes a collection of data files submitted as part of an experiment. Each dataset is linked to exactly one experiment via `experiment_id` and contains metadata about the data files, the platform used to collect the data, and detailed variable-level metadata.
+A **Dataset** describes one or more related data files submitted as part of an experiment. Each dataset is linked to exactly one experiment via `experiment_id` and contains metadata about the data files, the platform used to collect the data, and detailed variable-level metadata.
+
+!!! note "What is a dataset?"
+    A dataset typically corresponds to a single data file (e.g., one CSV of CTD profiles), but it may include multiple files when they share the same platform, instruments, and data submitter. The key organizing principle is that a dataset represents data collected on a **single platform** using a **consistent set of instruments**, managed by a **single data submitter**. If data come from different platforms or instrument configurations, they should be separate datasets.
 
 ## Dataset Types
 
@@ -17,7 +20,7 @@ For data collected during in-situ experiments — CTD casts, bottle samples, sen
 | `dataset_type` | Classification (cast, bottle, flow-through, mooring, etc.) |
 | `data_product_type` | Raw sensor data, data compilation, etc. |
 | `platform_info` | Ship, buoy, or vehicle that collected the data |
-| `filenames` | Names of the actual data files |
+| `filenames` | Names of the data file(s) in this dataset |
 | `variables` | Array of variable metadata (see [Variables](../variables/)) |
 | `data_submitter` | Person responsible for this submission |
 
@@ -65,12 +68,12 @@ Every dataset has an `experiment_id` field that links it to the experiment it be
 {
   "experiment_id": "EXAMPLE-001-BASELINE",
   "name": "Baseline CTD profiles",
-  "filenames": ["baseline_ctd_casts.csv", "baseline_ctd_metadata.csv"]
+  "filenames": ["baseline_ctd_casts.csv"]
 }
 ```
 
 ## Variables
 
-Each dataset contains an array of `variables` — detailed metadata about each column or measurement in the data files. Variables are the most richly typed part of the schema, with specific subclasses for pH, total alkalinity, DIC, CO₂, and other common oceanographic measurements.
+Each dataset contains an array of `variables` — detailed metadata describing each measurement or data column across the dataset's files. Variables are the most richly typed part of the schema, with specific subclasses for pH, total alkalinity, DIC, CO₂, and other common oceanographic measurements.
 
 See [Variables](../variables/) for the complete variable hierarchy and type selection guide.

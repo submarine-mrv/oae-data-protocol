@@ -6,14 +6,14 @@ For detailed definitions of each vocabulary, see the [Controlled Vocabularies](h
 
 ## Community Standard Vocabularies
 
-These vocabularies are sourced from established oceanographic community standards maintained by NERC and QUDT:
+The following vocabularies are sourced from established oceanographic & scientific community standards:
 
-| Vocabulary | Source | Used For |
-|-----------|--------|----------|
-| **Sea Names** | [NERC SDN:C16](https://vocab.nerc.ac.uk/collection/C16/current/) | Project geographic classification |
-| **[Platform Type](https://www.carbontosea.org/oae-data-protocol/1-0-0/#platform-type)** | [NERC SDN:L06](https://vocab.nerc.ac.uk/collection/L06/current/) | Dataset platform classification |
-| **[Instrument Type](https://www.carbontosea.org/oae-data-protocol/1-0-0/#instrument-type)** | [NERC SDN:L05/L22/B75](https://vocab.nerc.ac.uk/collection/L05/current/) | Sampling and analyzing instruments |
-| **Mass Concentration Units** | [QUDT](https://qudt.org/vocab/unit/) | Dosing concentration units |
+| Vocabulary | Source                                                                                                                                                                                     | Used For |
+|-----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|
+| **Sea Names** | NERC [SDN:C16](https://vocab.nerc.ac.uk/collection/C16/current/)                                                                                                                           | Project geographic classification |
+| **[Platform Type](https://www.carbontosea.org/oae-data-protocol/1-0-0/#platform-type)** | NERC [SDN:L06](https://vocab.nerc.ac.uk/collection/L06/current/)                                                                                                                           | Dataset platform classification |
+| **[Instrument Type](https://www.carbontosea.org/oae-data-protocol/1-0-0/#instrument-type)** | NERC [SDN:L05](https://vocab.nerc.ac.uk/collection/L05/current/), [SDN:L22](https://vocab.nerc.ac.uk/collection/L22/current/), [SDN:B75](https://vocab.nerc.ac.uk/collection/B75/current/) | Sampling and analyzing instruments |
+| **Units** | [QUDT](https://qudt.org/vocab/unit/)                                                                                                                                                       | Dosing concentration units |
 
 ## OAE Data Protocol Vocabularies
 

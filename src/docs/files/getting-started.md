@@ -10,7 +10,7 @@ The [OAE Data Management Protocol](https://www.carbontosea.org/oae-data-protocol
 - Guidelines for quality control documentation
 
 !!! info "New to the OAE Data Protocol?"
-    If you're new to the protocol and want to learn about its guidelines and recommendations before diving into the technical schema, start with the [protocol website](https://www.carbontosea.org/oae-data-protocol/1-0-0/) on Carbon To Sea. It includes the full narrative guidelines, [controlled vocabularies](https://www.carbontosea.org/oae-data-protocol/1-0-0/#controlled-vocabularies), and [recommended column header names](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).
+    If you're new to the protocol and want to learn about its guidelines and recommendations before diving into the technical schema, start with the [protocol website](https://www.carbontosea.org/oae-data-protocol/1-0-0/) on Carbon To Sea. It includes the full guidelines, [controlled vocabularies](https://www.carbontosea.org/oae-data-protocol/1-0-0/#controlled-vocabularies), and [recommended column header names](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).
 
 ## The OAE Data Schema
 

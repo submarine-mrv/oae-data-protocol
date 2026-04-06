@@ -27,4 +27,5 @@ Each variable in a dataset is described through an accordion-style form. After s
 
 Click **Export** to download your metadata as a JSON file following the [Container format](metadata-format.md). You can export the full project or individual experiments and datasets.
 
-Click **Import** to load a previously exported JSON file. The builder restores all project, experiment, dataset, and variable data, including the variable type selections and instrument configurations.
+Click **Import** to load a previously exported JSON file. The builder restores all project, experiment, dataset, and variable data, including the variable type selections and instrument configurations. The app also allows selective importing, where you can select individual experiments or datasets to import if you do not want to import the entirety of a metadata file into your session.
+

@@ -1,6 +1,14 @@
 # Metadata File Format
 
-The OAE Data Protocol uses **JSON** as its metadata format. Each metadata file is a self-contained document called a **Container** that holds all the metadata for a project, its experiments, and its datasets.
+The OAE Data Protocol uses **JSON** as its preferred metadata file format.
+
+Each metadata file is a self-contained document called a **Container** that holds all the metadata for a project, its experiments, and its datasets.
+
+For researchers wanting to manage metadata through the [excel templates](https://www.carbontosea.org/oae-data-protocol/1-0-0/#metadata-and-templates)
+provided on the OAE Data Protocol website, this should be done with extra care to ensure controlled vocabularies are
+adhered to and that data is not malformed. Since the introduction of the [OAE Metadata Builder](http://metadata.oaedata.org)
+(which exports metadata as JSON files in accordance with this schema),
+we hope that researchers will be begin adopting this tool as the primary means of managing metadata for their projects.
 
 ## The Container
 
@@ -27,7 +35,7 @@ A Container is the top-level object in every metadata file. It wraps project met
 | `datasets` | Array of [Dataset](FieldDataset.md) objects |
 
 !!! tip "Linked Data"
-    The `@context` field is optional but recommended. It makes OAE metadata files valid [JSON-LD](https://json-ld.org/) documents, meaning they can be interpreted by linked data tools and semantic web infrastructure without any conversion. Standard JSON tools ignore the `@context` field, so it doesn't affect non-LD workflows.
+    The `@context` field is optional but recommended. It makes OAE metadata files valid [JSON-LD](https://json-ld.org/) documents, meaning they can be interpreted by linked data tools and semantic web infrastructure without any conversion. Standard JSON tools ignore the `@context` field, so it doesn't affect non JSON-LD workflows.
 
 ## How the Pieces Relate
 
@@ -110,20 +118,17 @@ npx ajv-cli validate \
   --spec=draft2019 --strict=false
 ```
 
-A [validation schema](https://github.com/submarine-mrv/oae-data-protocol/blob/main/project/jsonschema/oae_data_protocol.validation.schema.json) with full polymorphic support is also available for stricter validation of experiment and variable subclasses.
-
 ## JSON-LD Context
 
-A [JSON-LD context](https://github.com/submarine-mrv/oae-data-protocol/blob/main/project/jsonld/context.jsonld) is published alongside the schema. Including it in your metadata file makes the document valid JSON-LD:
+A [JSON-LD context](https://github.com/submarine-mrv/oae-data-protocol/blob/main/project/jsonld/context.jsonld) is published alongside this schema at "https://schema.oaedata.org/context.jsonld".
+
+Including it in your metadata file (done automatically on export with the Metadata Builder) makes the document valid JSON-LD:
 
 ```json
 {
   "@context": "https://schema.oaedata.org/context.jsonld",
-  "version": "0.0.0-prerelease",
   ...
 }
 ```
 
-This enables linked data tools to interpret OAE metadata without conversion — field names resolve to URIs in the `https://schema.oaedata.org/` namespace, and community vocabulary references (NERC, QUDT) resolve to their canonical IRIs.
-
-The `@context` field is ignored by standard JSON tools, so it doesn't affect existing workflows.
+This enables linked data tools to interpret OAE metadata without conversion — field names resolve to URIs in the `https://schema.oaedata.org/` namespace, and community vocabulary references (NERC, QUDT) resolve to their canonical URIs.
