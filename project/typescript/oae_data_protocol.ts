@@ -1131,7 +1131,7 @@ export interface Variable {
     /** Unit of measurement for this variable. */
     units?: string,
     /** The schema class name for this variable (e.g., "DiscretePHVariable"). Auto-populated by the metadata builder. */
-    schema_class?: string,
+    schema_class: string,
     /** High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use. */
     variable_type: string,
     standard_identifier?: VocabularyItemReference,
@@ -1153,6 +1153,7 @@ export interface NonMeasuredVariable extends Variable {
  * Base class for project-acquired variables (measured or calculated in-situ). Reference: OAPMetadata XSD variables.xsd - insitu_variable
  */
 export interface InSituVariable extends Variable {
+    genesis: string,
     /** If applicable, the column header name used for the quality control flag corresponding to this variable. */
     dataset_variable_name_qc_flag?: string,
     /** If applicable, the column header name used for the raw data corresponding to this variable. */
@@ -1180,7 +1181,6 @@ export interface MeasuredVariable extends InSituVariable, QCFields {
     analyzing_method: string,
     observation_type: string,
     sampling: string,
-    genesis: string,
     sampling_instrument_type: string,
     sampling_instrument_type_custom?: string,
 }
@@ -1208,7 +1208,6 @@ export interface ContinuousMeasuredVariable extends MeasuredVariable {
  * A variable that is calculated or derived from other measured variables rather than directly measured by an instrument (e.g., carbonate system parameters computed via CO2SYS). Set genesis to "calculated". The variable_type should reflect the quantity being calculated (e.g., "pH", "ta", "dic", "co2", or "other").
  */
 export interface CalculatedVariable extends InSituVariable, QCFields {
-    genesis: string,
     /** Information about how the variable was calculated and the parameters used in calculation, e.g.: Calculation software = CO2SYSv1 (MATLAB)  Input variables =  pH and DIC (column header names 'ph_t_insitu' and 'dic' in associated dataset file) Additional information = the dissociation constants of Lueker et al., 2000 for carbonic acid, etc. */
     calculation_method_and_parameters: string,
 }

@@ -24,6 +24,7 @@ classes:
       schema_class:
         designates_type: true
         range: string
+        required: true
         description: >-
           The schema class name for this variable (e.g., "DiscretePHVariable").
           Auto-populated by the metadata builder.
@@ -66,6 +67,10 @@ classes:
       calculated variable that the flag relates to. variable_type must be
       "non_measured".
     is_a: Variable
+    slot_usage:
+      variable_type:
+        range: string
+        equals_string: "non_measured"
 
   # =============================================================================
   # InSituVariable Class (subclasses: MeasuredVariable, CalculatedVariable)
@@ -80,6 +85,9 @@ classes:
       units:
         required: true
     attributes:
+      genesis:
+        range: GenesisType
+        required: true
       dataset_variable_name_qc_flag:
         title: Dataset variable name (Quality Flag)
         description: >-
@@ -126,6 +134,9 @@ classes:
         required: true
       missing_value_indicators:
         required: true
+      genesis:
+        range: string
+        equals_string: "measured"
     attributes:
       sampling_method:
         title: Sampling Method
@@ -149,10 +160,6 @@ classes:
       sampling:
         range: SamplingType
         required: true
-      # TODO: Can restrict genesis to be ONLY 'measured'
-      genesis:
-        range: GenesisType
-        required: true
       sampling_instrument_type:
         title: Sampling instrument type
         range: SamplingInstrumentType
@@ -173,6 +180,10 @@ classes:
       DIC, CO2, sediment, HPLC). For those, use the type-specific subclass
       instead (e.g., DiscretePHVariable). Set variable_type to "other",
       genesis to "measured", and sampling to "discrete".
+    slot_usage:
+      sampling:
+        range: string
+        equals_string: "discrete"
 
   # =============================================================================
   # ContinuousMeasuredVariable Class (pH, DIC, TA, xCO2/pCO2/fCO2, physiological, sediment)
@@ -187,6 +198,10 @@ classes:
       sediment). For those, use the type-specific subclass instead (e.g.,
       ContinuousPHVariable). Set variable_type to "other", genesis to
       "measured", and sampling to "continuous".
+    slot_usage:
+      sampling:
+        range: string
+        equals_string: "continuous"
     attributes:
       raw_data_calculation_method:
         title: Method to calculate reported values from raw data
@@ -211,11 +226,11 @@ classes:
     is_a: InSituVariable
     mixins:
       - QCFields
-    attributes:
-      # TODO: Can restrict genesis to be ONLY 'calculated'
+    slot_usage:
       genesis:
-        range: GenesisType
-        required: true
+        range: string
+        equals_string: "calculated"
+    attributes:
       calculation_method_and_parameters:
         title: Calculated Method And Parameters
         description: >-
@@ -236,6 +251,10 @@ classes:
     is_a: ContinuousMeasuredVariable
     mixins:
       - MeasuredPHFields
+    slot_usage:
+      variable_type:
+        range: string
+        equals_string: "pH"
 
   DiscretePHVariable:
     description: >-
@@ -245,6 +264,9 @@ classes:
     mixins:
       - MeasuredPHFields
     slot_usage:
+      variable_type:
+        range: string
+        equals_string: "pH"
       analyzing_instrument:
         range: PHInstrument
         description: pH instrument with dye-based calibration used for measurements.
@@ -275,6 +297,10 @@ classes:
     is_a: ContinuousMeasuredVariable
     mixins:
       - MeasuredTAFields
+    slot_usage:
+      variable_type:
+        range: string
+        equals_string: "ta"
 
   DiscreteTAVariable:
     description: >-
@@ -286,6 +312,9 @@ classes:
       - sample_preservation
       - blank_correction
     slot_usage:
+      variable_type:
+        range: string
+        equals_string: "ta"
       analyzing_instrument:
         range: CRMInstrument
         description: CRM-calibrated instrument used to analyze TA samples.
@@ -313,6 +342,10 @@ classes:
     is_a: ContinuousMeasuredVariable
     mixins:
       - MeasuredDICFields
+    slot_usage:
+      variable_type:
+        range: string
+        equals_string: "dic"
   DiscreteDICVariable:
     description: >-
       Dissolved Inorganic Carbon (DIC) measured variable from discrete bottle samples.
@@ -325,6 +358,9 @@ classes:
       - sample_preservation
       - blank_correction
     slot_usage:
+      variable_type:
+        range: string
+        equals_string: "dic"
       analyzing_instrument:
         range: CRMInstrument
         description: CRM-calibrated instrument used to analyze DIC samples.
@@ -338,12 +374,20 @@ classes:
     is_a: ContinuousMeasuredVariable
     mixins:
       - MeasuredSedimentFields
+    slot_usage:
+      variable_type:
+        range: string
+        equals_string: "sediment"
   DiscreteSedimentVariable:
     description: >-
       Measured sediment variable collected from discrete bottle samples
     is_a: DiscreteMeasuredVariable
     mixins:
       - MeasuredSedimentFields
+    slot_usage:
+      variable_type:
+        range: string
+        equals_string: "sediment"
 
   # =============================================================================
   # CO2 Variable Classes
@@ -356,6 +400,9 @@ classes:
     mixins:
       - MeasuredCO2Fields
     slot_usage:
+      variable_type:
+        range: string
+        equals_string: "co2"
       analyzing_instrument:
         range: CO2GasDetector
         description: CO2 gas detector with standard gas calibration.
@@ -391,6 +438,10 @@ classes:
       HPLC (High-Performance Liquid Chromatography) measured variable for
       pigment analysis. Always measured, not calculated.
     is_a: DiscreteMeasuredVariable
+    slot_usage:
+      variable_type:
+        range: string
+        equals_string: "hplc"
     attributes:
       hplc_lab:
         title: HPLC Lab
