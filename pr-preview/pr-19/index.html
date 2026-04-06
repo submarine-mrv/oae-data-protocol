@@ -1,0 +1,1904 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://clevinson.github.io/oae-data-protocol/">
+      
+      
+      
+        <link rel="next" href="about/">
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+    
+    
+      
+        <title>oae-data-protocol</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.8608ea7d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="css/ansi-colours.css">
+    
+      <link rel="stylesheet" href="css/jupyter-cells.css">
+    
+      <link rel="stylesheet" href="css/pandas-dataframe.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#oaedatamanagementprotocol" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="oae-data-protocol" class="md-header__button md-logo" aria-label="oae-data-protocol" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            oae-data-protocol
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Index
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/clevinson/oae-data-protocol" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="oae-data-protocol" class="md-nav__button md-logo" aria-label="oae-data-protocol" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    oae-data-protocol
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/clevinson/oae-data-protocol" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Index
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Index
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Classes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#slots" class="md-nav__link">
+    <span class="md-ellipsis">
+      Slots
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enumerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enumerations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Types
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subsets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subsets
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="about/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    About
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Classes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#slots" class="md-nav__link">
+    <span class="md-ellipsis">
+      Slots
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enumerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enumerations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#types" class="md-nav__link">
+    <span class="md-ellipsis">
+      Types
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subsets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subsets
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="oaedatamanagementprotocol">OAEDataManagementProtocol</h1>
+<p>URI: OAEDataManagementProtocol</p>
+<p>Name: OAEDataManagementProtocol</p>
+<h2 id="classes">Classes</h2>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="AnalyzingInstrument/">AnalyzingInstrument</a></td>
+<td>Base class for scientific instruments used in analyzing samples for measurement.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CO2GasDetector/">CO2GasDetector</a></td>
+<td>CO2 gas detector with standard gas calibration.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CRMInstrument/">CRMInstrument</a></td>
+<td>Instrument calibrated with Certified Reference Materials, used for DIC and TA measurements.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="PHInstrument/">PHInstrument</a></td>
+<td>pH measurement instrument with dye-based calibration.</td>
+</tr>
+<tr>
+<td><a href="Any/">Any</a></td>
+<td>None</td>
+</tr>
+<tr>
+<td><a href="Calibration/">Calibration</a></td>
+<td>Base calibration information for instruments.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CO2Calibration/">CO2Calibration</a></td>
+<td>CO2 gas detector calibration with standard gas information.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CRMCalibration/">CRMCalibration</a></td>
+<td>Calibration using Certified Reference Materials, used for DIC and TA instruments.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="PHCalibration/">PHCalibration</a></td>
+<td>pH instrument calibration with dye information.</td>
+</tr>
+<tr>
+<td><a href="Container/">Container</a></td>
+<td>None</td>
+</tr>
+<tr>
+<td><a href="Dataset/">Dataset</a></td>
+<td>Abstract base class for all dataset types. Contains fields common to both field/observational and model simulation datasets. Generally following guidelines &amp; best practices as outlined in <a href="https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md">science-on-schema.org</a></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="FieldDataset/">FieldDataset</a></td>
+<td>A field or observational dataset related to an OAE experiment. Contains fields specific to in-situ data collection such as platform information, calibration files, QC flags, and measured variables.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ModelOutputDataset/">ModelOutputDataset</a></td>
+<td>A model simulation output dataset. Contains fields specific to computational model output including simulation configuration, output variables, and hardware information.</td>
+</tr>
+<tr>
+<td><a href="DosingConcentration/">DosingConcentration</a></td>
+<td>Details of tracer concentration information</td>
+</tr>
+<tr>
+<td><a href="DosingDetails/">DosingDetails</a></td>
+<td>An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are  specific to an Experiment with active dosing (e.g. type "Tracer", "Intervention", or "InterventionWithDosing")</td>
+</tr>
+<tr>
+<td><a href="Experiment/">Experiment</a></td>
+<td>Abstract base class for all experiment types. Contains fields common to both in-situ and model experiments.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="InSituExperiment/">InSituExperiment</a></td>
+<td>Experiment metadata for in-situ studies (interventions, tracer studies, etc.). Contains fields specific to field-based experiments that don't apply to model experiments.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Intervention/">Intervention</a></td>
+<td>Additional metadata that applies to experiments where an intervention, such as an alkalinity addition, was conducted.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="InterventionWithTracer/">InterventionWithTracer</a></td>
+<td>Additional metadata that applies to hybrid experiments where an intervention was conducted simultaneously alongside a tracer study, using the same instrumentation.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Tracer/">Tracer</a></td>
+<td>Additional metadata that applies to experiments where a tracer study was conducted</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Model/">Model</a></td>
+<td>A computational model experiment related to OAE.</td>
+</tr>
+<tr>
+<td><a href="ExternalProject/">ExternalProject</a></td>
+<td>A research project that is not directly managed by the OAE project, but whose location is proximal to the OAE project and whose data may be relevant to understanding the context or impacts of OAE activities.</td>
+</tr>
+<tr>
+<td><a href="GeoCoordinates/">GeoCoordinates</a></td>
+<td>A geographic coordinate in decimal degrees.</td>
+</tr>
+<tr>
+<td><a href="GeoShape/">GeoShape</a></td>
+<td>The geographic shape of a place. A GeoShape can be described using several properties whose values are based on latitude/longitude pairs. Either whitespace or commas can be used to separate latitude and longitude; whitespace should be used when writing a list of several such points. (imported from schema.org)</td>
+</tr>
+<tr>
+<td><a href="HardwareConfiguration/">HardwareConfiguration</a></td>
+<td>Details about the computational hardware used to run a model simulation.</td>
+</tr>
+<tr>
+<td><a href="InterventionDetails/">InterventionDetails</a></td>
+<td>An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are  specific to an Experiment with type "Intervention"</td>
+</tr>
+<tr>
+<td><a href="MeasuredCO2Fields/">MeasuredCO2Fields</a></td>
+<td>Fields applied to all measured CO2 variable types (discrete and continuous)</td>
+</tr>
+<tr>
+<td><a href="MeasuredDICFields/">MeasuredDICFields</a></td>
+<td>Fields applied to all measured DIC variable types (discrete and continuous)</td>
+</tr>
+<tr>
+<td><a href="MeasuredPHFields/">MeasuredPHFields</a></td>
+<td>Fields applied to all measured pH variable types (discrete and continuous)</td>
+</tr>
+<tr>
+<td><a href="MeasuredSedimentFields/">MeasuredSedimentFields</a></td>
+<td>Fields applied to all measured sediment variable types (discrete and continuous)</td>
+</tr>
+<tr>
+<td><a href="MeasuredTAFields/">MeasuredTAFields</a></td>
+<td>Fields applied to all measured TA variable types (discrete and continuous)</td>
+</tr>
+<tr>
+<td><a href="ModelComponent/">ModelComponent</a></td>
+<td>A component of a model (e.g., physics, biogeochemistry/ecosystem).</td>
+</tr>
+<tr>
+<td><a href="ModelGrid/">ModelGrid</a></td>
+<td>Details about a model grid. Use multiple ModelGrid entries to describe nested or multi-grid configurations.</td>
+</tr>
+<tr>
+<td><a href="ModelInputDetails/">ModelInputDetails</a></td>
+<td>Details about input data sources used to drive the model.</td>
+</tr>
+<tr>
+<td><a href="MonetaryGrant/">MonetaryGrant</a></td>
+<td>None</td>
+</tr>
+<tr>
+<td><a href="NamedLink/">NamedLink</a></td>
+<td>A link to a resource with a name and URL.</td>
+</tr>
+<tr>
+<td><a href="Organization/">Organization</a></td>
+<td>None</td>
+</tr>
+<tr>
+<td><a href="Permit/">Permit</a></td>
+<td>A permit associated with the project.</td>
+</tr>
+<tr>
+<td><a href="Person/">Person</a></td>
+<td>Information about a researcher or investigator involved in the experiment.</td>
+</tr>
+<tr>
+<td><a href="Place/">Place</a></td>
+<td>A geospatial area of interest, defined by a bounding box, polygon/line, or a point designated as a  pair of geo-coordinates.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DosingLocation/">DosingLocation</a></td>
+<td>A specific location of dosing for an OAE intervention and/or tracer study. Can be a point, line, or bounding box</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="SpatialCoverage/">SpatialCoverage</a></td>
+<td>A bounding box defined by latitude and longitude coordinates.</td>
+</tr>
+<tr>
+<td><a href="Platform/">Platform</a></td>
+<td>None</td>
+</tr>
+<tr>
+<td><a href="Project/">Project</a></td>
+<td>A project conducting OAE field trials or modeling.</td>
+</tr>
+<tr>
+<td><a href="PropertyValue/">PropertyValue</a></td>
+<td>None</td>
+</tr>
+<tr>
+<td><a href="QCFields/">QCFields</a></td>
+<td>Quality control fields applicable to measured and calculated variables. Not applied to socioeconomic variables.</td>
+</tr>
+<tr>
+<td><a href="SamplePreservation/">SamplePreservation</a></td>
+<td>Sample preservation information for DIC and TA measurements. Reference: OAPMetadata XSD variables.xsd - sample_preservation</td>
+</tr>
+<tr>
+<td><a href="StandardGas/">StandardGas</a></td>
+<td>Standard gas used for CO2 calibration.</td>
+</tr>
+<tr>
+<td><a href="TracerDetails/">TracerDetails</a></td>
+<td>An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are  specific to an Experiment with type "Tracer"</td>
+</tr>
+<tr>
+<td><a href="Variable/">Variable</a></td>
+<td>Abstract root for all variable types (including non-measured)</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="InSituVariable/">InSituVariable</a></td>
+<td>Base class for project-acquired variables (measured or calculated in-situ). Reference: OAPMetadata XSD variables.xsd - insitu_variable</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="CalculatedVariable/">CalculatedVariable</a></td>
+<td>A variable that is calculated or derived from other measured variables rather than directly measured by an instrument (e.g., carbonate system parameters computed via CO2SYS). Set genesis to "calculated". The variable_type should reflect the quantity being calculated (e.g., "pH", "ta", "dic", "co2", or "other").</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="MeasuredVariable/">MeasuredVariable</a></td>
+<td>Variable that is directly measured in-situ using instruments. Reference: OAPMetadata XSD variables.xsd - basic_measured_observation_base</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ContinuousMeasuredVariable/">ContinuousMeasuredVariable</a></td>
+<td>A variable measured in-situ by a continuous autonomous sensor (e.g., temperature, salinity, conductivity, pressure from a deployed sonde or underway system). Use this class for generic measured variables that do not fall under a specific category (pH, TA, DIC, CO2, sediment). For those, use the type-specific subclass instead (e.g., ContinuousPHVariable). Set variable_type to "other", genesis to "measured", and sampling to "continuous".</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ContinuousDICVariable/">ContinuousDICVariable</a></td>
+<td>Dissolved Inorganic Carbon (DIC) measured variable from continuous autonomous sensor.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ContinuousPHVariable/">ContinuousPHVariable</a></td>
+<td>pH measured variable from continuous autonomous sensor</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ContinuousSedimentVariable/">ContinuousSedimentVariable</a></td>
+<td>Measured sediment variable collected from continuous autonomous sensor</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="ContinuousTAVariable/">ContinuousTAVariable</a></td>
+<td>Total Alkalinity (TA) measured variable from continuous autonomous sensor</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DiscreteMeasuredVariable/">DiscreteMeasuredVariable</a></td>
+<td>A variable measured in-situ from discrete water samples (e.g., bottle samples analyzed in a lab or shipboard). Use this class for generic measured variables that do not fall under a specific category (pH, TA, DIC, CO2, sediment, HPLC). For those, use the type-specific subclass instead (e.g., DiscretePHVariable). Set variable_type to "other", genesis to "measured", and sampling to "discrete".</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DiscreteCO2Variable/">DiscreteCO2Variable</a></td>
+<td>CO2 discrete (bottle) measured variable (pCO2/fCO2). Reference: OAPMetadata XSD variables.xsd - co2_discrete</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DiscreteDICVariable/">DiscreteDICVariable</a></td>
+<td>Dissolved Inorganic Carbon (DIC) measured variable from discrete bottle samples. Uses CRM-calibrated instrument and includes sample preservation information. Reference: OAPMetadata XSD variables.xsd - DIC_measured</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DiscretePHVariable/">DiscretePHVariable</a></td>
+<td>pH measured variable with dye-based spectrophotometric measurement. Reference: OAPMetadata XSD variables.xsd - pH_measured</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DiscreteSedimentVariable/">DiscreteSedimentVariable</a></td>
+<td>Measured sediment variable collected from discrete bottle samples</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="DiscreteTAVariable/">DiscreteTAVariable</a></td>
+<td>Total Alkalinity (TA) measured variable from discrete bottle samples</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="HPLCVariable/">HPLCVariable</a></td>
+<td>HPLC (High-Performance Liquid Chromatography) measured variable for pigment analysis. Always measured, not calculated.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="NonMeasuredVariable/">NonMeasuredVariable</a></td>
+<td>A contextual or ancillary variable that is NOT directly measured or calculated by the project. Use for identifiers (Cruise_ID, Exp_ID), timestamps (Year_UTC, Time_UTC), coordinates (Latitude, Longitude), and any other data included in the dataset for context. Do NOT create a NonMeasuredVariable for quality control flag columns — instead, set dataset_variable_name_qc_flag on the parent measured or calculated variable that the flag relates to. variable_type must be "non_measured".</td>
+</tr>
+<tr>
+<td><a href="VerticalExtent/">VerticalExtent</a></td>
+<td>The vertical extent of a place or structure in meters.</td>
+</tr>
+<tr>
+<td><a href="VocabularyItemReference/">VocabularyItemReference</a></td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+<h2 id="slots">Slots</h2>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="accuracy/">accuracy</a></td>
+<td>Accuracy of the instrument measurements</td>
+</tr>
+<tr>
+<td><a href="additional_details/">additional_details</a></td>
+<td>Open text area to include additional information</td>
+</tr>
+<tr>
+<td><a href="affiliation/">affiliation</a></td>
+<td>Institutional affiliation of the investigator</td>
+</tr>
+<tr>
+<td><a href="agency_contact/">agency_contact</a></td>
+<td>The point of contact at the permitting agency</td>
+</tr>
+<tr>
+<td><a href="alkalinity_dosing_effluent_density/">alkalinity_dosing_effluent_density</a></td>
+<td>Fixed density or provide link/source to effluent density data if applicable</td>
+</tr>
+<tr>
+<td><a href="alkalinity_feedstock/">alkalinity_feedstock</a></td>
+<td>Examples may include: olivine, potassium hydroxide, magnesium hydroxide, lime...</td>
+</tr>
+<tr>
+<td><a href="alkalinity_feedstock_co2_removal_potential/">alkalinity_feedstock_co2_removal_potential</a></td>
+<td>Maximum CO₂ removal potential of a feedstock material</td>
+</tr>
+<tr>
+<td><a href="alkalinity_feedstock_custom/">alkalinity_feedstock_custom</a></td>
+<td>Custom description of alkalinity feedstock when using a feedstock type not li...</td>
+</tr>
+<tr>
+<td><a href="alkalinity_feedstock_description/">alkalinity_feedstock_description</a></td>
+<td>Information such as feedstock source, characteristics, impurities, dilution p...</td>
+</tr>
+<tr>
+<td><a href="alkalinity_feedstock_form/">alkalinity_feedstock_form</a></td>
+<td>The phase upon delivery to the ocean</td>
+</tr>
+<tr>
+<td><a href="alkalinity_feedstock_processing/">alkalinity_feedstock_processing</a></td>
+<td>Method(s) used to process the alkalinity feedstock</td>
+</tr>
+<tr>
+<td><a href="alkalinity_feedstock_processing_custom/">alkalinity_feedstock_processing_custom</a></td>
+<td>Custom description of alkalinity feedstock processing method when 'other' is ...</td>
+</tr>
+<tr>
+<td><a href="amount/">amount</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="analyzing_instrument/">analyzing_instrument</a></td>
+<td>Instrument used to analyze the water samples or measure the water body contin...</td>
+</tr>
+<tr>
+<td><a href="analyzing_method/">analyzing_method</a></td>
+<td>Additional information describing how the sample was analyzed</td>
+</tr>
+<tr>
+<td><a href="appropriate_use_quality/">appropriate_use_quality</a></td>
+<td>Climate quality is defined as measurements of quality sufficient to assess lo...</td>
+</tr>
+<tr>
+<td><a href="approval_document/">approval_document</a></td>
+<td>Filename(s) of permitting documents included, separated by commas</td>
+</tr>
+<tr>
+<td><a href="arrangement/">arrangement</a></td>
+<td>The grid arrangement of orthogonal physical quantities (e</td>
+</tr>
+<tr>
+<td><a href="atmospheric_forcing/">atmospheric_forcing</a></td>
+<td>Atmospheric forcing data source(s)</td>
+</tr>
+<tr>
+<td><a href="author_list_for_citation/">author_list_for_citation</a></td>
+<td>Author list in the format of Lastname1, Firstname1 Middlename1; Lastname2, Fi...</td>
+</tr>
+<tr>
+<td><a href="bathymetry/">bathymetry</a></td>
+<td>Bathymetry data source(s)</td>
+</tr>
+<tr>
+<td><a href="blank_correction/">blank_correction</a></td>
+<td>Whether the reported variables were corrected for blank, and if so, how they ...</td>
+</tr>
+<tr>
+<td><a href="boundary_conditions/">boundary_conditions</a></td>
+<td>Boundary condition data source(s)</td>
+</tr>
+<tr>
+<td><a href="box/">box</a></td>
+<td>A box defined by two latitude-longitude points, southwest and northeast</td>
+</tr>
+<tr>
+<td><a href="calculation_method_and_parameters/">calculation_method_and_parameters</a></td>
+<td>Information about how the variable was calculated and the parameters used in ...</td>
+</tr>
+<tr>
+<td><a href="calculation_software_version/">calculation_software_version</a></td>
+<td>Version of the software used to calculate reported values from raw values</td>
+</tr>
+<tr>
+<td><a href="calibration/">calibration</a></td>
+<td>Calibration information for this instrument</td>
+</tr>
+<tr>
+<td><a href="calibration_certificates/">calibration_certificates</a></td>
+<td>Information about calibration certificates</td>
+</tr>
+<tr>
+<td><a href="calibration_files/">calibration_files</a></td>
+<td>A list of supplementary file names containing coefficients and techniques use...</td>
+</tr>
+<tr>
+<td><a href="calibration_location/">calibration_location</a></td>
+<td>Factory calibration, lab calibration, or field calibration</td>
+</tr>
+<tr>
+<td><a href="calibration_temperature/">calibration_temperature</a></td>
+<td>Temperature at which calibration was performed</td>
+</tr>
+<tr>
+<td><a href="changes_to_evolution_of_permit_criteria/">changes_to_evolution_of_permit_criteria</a></td>
+<td>e</td>
+</tr>
+<tr>
+<td><a href="co2_reported_temperature/">co2_reported_temperature</a></td>
+<td>In Celsius</td>
+</tr>
+<tr>
+<td><a href="codebase/">codebase</a></td>
+<td>Link to model code repository</td>
+</tr>
+<tr>
+<td><a href="colocated_operations/">colocated_operations</a></td>
+<td>A description is required if any nearby operations exist that may influence t...</td>
+</tr>
+<tr>
+<td><a href="concentration/">concentration</a></td>
+<td>Concentrations of the CO2 standard gases that are used to calibrate the CO2 s...</td>
+</tr>
+<tr>
+<td><a href="concentration_basis/">concentration_basis</a></td>
+<td>Whether measurements are expressed per unit volume or per unit mass (for DIC,...</td>
+</tr>
+<tr>
+<td><a href="correction_description/">correction_description</a></td>
+<td>Description of how the preservative effect was corrected for</td>
+</tr>
+<tr>
+<td><a href="correction_for_unpurified_dye/">correction_for_unpurified_dye</a></td>
+<td>Correction method applied if dye was not purified</td>
+</tr>
+<tr>
+<td><a href="country/">country</a></td>
+<td>The country in which the organization belongs</td>
+</tr>
+<tr>
+<td><a href="cpu_gpu_details/">cpu_gpu_details</a></td>
+<td>Details about CPU/GPU hardware or link to specifications</td>
+</tr>
+<tr>
+<td><a href="crm_batch_number/">crm_batch_number</a></td>
+<td>Batch number of the Certified Reference Material</td>
+</tr>
+<tr>
+<td><a href="crm_manufacturer/">crm_manufacturer</a></td>
+<td>Manufacturer of the Certified Reference Material (e</td>
+</tr>
+<tr>
+<td><a href="curve_fitting_method/">curve_fitting_method</a></td>
+<td>Curve fitting method used to determine the alkalinity</td>
+</tr>
+<tr>
+<td><a href="data_conflicts_and_unreported_data/">data_conflicts_and_unreported_data</a></td>
+<td>If data exist that are or have been used by the project but are not provided ...</td>
+</tr>
+<tr>
+<td><a href="data_product_type/">data_product_type</a></td>
+<td>"Controlled vocabulary" One of the three choices: (a) Originally collected da...</td>
+</tr>
+<tr>
+<td><a href="data_submitter/">data_submitter</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="dataset_type/">dataset_type</a></td>
+<td>Selected controlled vocabularies for data types relevant to mCDR have been re...</td>
+</tr>
+<tr>
+<td><a href="dataset_type_custom/">dataset_type_custom</a></td>
+<td>Custom "data type" when an appropriate value is not found in the controlled v...</td>
+</tr>
+<tr>
+<td><a href="dataset_variable_name/">dataset_variable_name</a></td>
+<td>The name for the variable as it is identified in the dataset data file</td>
+</tr>
+<tr>
+<td><a href="dataset_variable_name_qc_flag/">dataset_variable_name_qc_flag</a></td>
+<td>If applicable, the column header name used for the quality control flag corre...</td>
+</tr>
+<tr>
+<td><a href="dataset_variable_name_raw/">dataset_variable_name_raw</a></td>
+<td>If applicable, the column header name used for the raw data corresponding to ...</td>
+</tr>
+<tr>
+<td><a href="datasets/">datasets</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="description/">description</a></td>
+<td>A narrative description of the thing</td>
+</tr>
+<tr>
+<td><a href="detector_type/">detector_type</a></td>
+<td>Type of the CO2 gas detector (E</td>
+</tr>
+<tr>
+<td><a href="dosing_delivery_type/">dosing_delivery_type</a></td>
+<td>Type of dosing delivery method</td>
+</tr>
+<tr>
+<td><a href="dosing_depth/">dosing_depth</a></td>
+<td>Depth in meters</td>
+</tr>
+<tr>
+<td><a href="dosing_description/">dosing_description</a></td>
+<td>Please be descriptive</td>
+</tr>
+<tr>
+<td><a href="dosing_dispersal_hydrologic_location/">dosing_dispersal_hydrologic_location</a></td>
+<td>Descriptive dosing location</td>
+</tr>
+<tr>
+<td><a href="dosing_location/">dosing_location</a></td>
+<td>Provide latitude and longitude in decimal degrees</td>
+</tr>
+<tr>
+<td><a href="dosing_location_file/">dosing_location_file</a></td>
+<td>Exact path and filename for the location file (relative to root path of proje...</td>
+</tr>
+<tr>
+<td><a href="dosing_regimen/">dosing_regimen</a></td>
+<td>A human readable summary description of the dosing regimen / frequency</td>
+</tr>
+<tr>
+<td><a href="dye_correction_method/">dye_correction_method</a></td>
+<td>Method used to correct for dye effects</td>
+</tr>
+<tr>
+<td><a href="dye_purified/">dye_purified</a></td>
+<td>Whether the dye has been purified</td>
+</tr>
+<tr>
+<td><a href="dye_type_and_manufacturer/">dye_type_and_manufacturer</a></td>
+<td>Type of indicator dye and any detailed information about it, e</td>
+</tr>
+<tr>
+<td><a href="email/">email</a></td>
+<td>Contact email address</td>
+</tr>
+<tr>
+<td><a href="end_date/">end_date</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="end_datetime/">end_datetime</a></td>
+<td>End date and time of experiment in UTC ISO-8601</td>
+</tr>
+<tr>
+<td><a href="equilibration/">equilibration</a></td>
+<td>Whether the feedstock was pre-equilibrated or unequilibrated</td>
+</tr>
+<tr>
+<td><a href="experiment_id/">experiment_id</a></td>
+<td>The experiment to which the data belong</td>
+</tr>
+<tr>
+<td><a href="experiment_leads/">experiment_leads</a></td>
+<td>Provide details for each experiment lead / principal investigator (PI) includ...</td>
+</tr>
+<tr>
+<td><a href="experiment_types/">experiment_types</a></td>
+<td>The type(s) of mCDR experiment conducted</td>
+</tr>
+<tr>
+<td><a href="experiments/">experiments</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="fair_use_data_request/">fair_use_data_request</a></td>
+<td>A statement from the data producer regarding how this dataset should be used</td>
+</tr>
+<tr>
+<td><a href="field_replicate_information/">field_replicate_information</a></td>
+<td>Repetition of sample collection and measurement, e</td>
+</tr>
+<tr>
+<td><a href="filenames/">filenames</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="frequency/">frequency</a></td>
+<td>How often the instrument was calibrated</td>
+</tr>
+<tr>
+<td><a href="funder/">funder</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="funding/">funding</a></td>
+<td>Include the name of the funder, funder country, project title, project ID, an...</td>
+</tr>
+<tr>
+<td><a href="genesis/">genesis</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="geo/">geo</a></td>
+<td>Entities that have a somewhat fixed, physical extension</td>
+</tr>
+<tr>
+<td><a href="grid_details/">grid_details</a></td>
+<td>Details about the model grid(s)</td>
+</tr>
+<tr>
+<td><a href="grid_geometry/">grid_geometry</a></td>
+<td>Descriptive structure of the grid (e</td>
+</tr>
+<tr>
+<td><a href="grid_name/">grid_name</a></td>
+<td>Name of the grid (e</td>
+</tr>
+<tr>
+<td><a href="grid_type/">grid_type</a></td>
+<td>Role of this grid in a nested or multi-grid configuration</td>
+</tr>
+<tr>
+<td><a href="hardware_configuration/">hardware_configuration</a></td>
+<td>Details about the computational hardware used for the simulation</td>
+</tr>
+<tr>
+<td><a href="headspace_volume/">headspace_volume</a></td>
+<td>Volume (in mL) of headspace (water displaced in the flask plus volume of the ...</td>
+</tr>
+<tr>
+<td><a href="horizontal_resolution_range/">horizontal_resolution_range</a></td>
+<td>Description of horizontal resolution (e</td>
+</tr>
+<tr>
+<td><a href="hplc_lab/">hplc_lab</a></td>
+<td>The name of the lab where the HPLC analysis was run (e</td>
+</tr>
+<tr>
+<td><a href="hplc_lab_technician/">hplc_lab_technician</a></td>
+<td>Name and contact information for HPLC technician</td>
+</tr>
+<tr>
+<td><a href="identifier/">identifier</a></td>
+<td>A unique identifier for the thing</td>
+</tr>
+<tr>
+<td><a href="identifier_type/">identifier_type</a></td>
+<td>Type of Researcher ID (e</td>
+</tr>
+<tr>
+<td><a href="initial_conditions/">initial_conditions</a></td>
+<td>Initial condition data source(s)</td>
+</tr>
+<tr>
+<td><a href="input_details/">input_details</a></td>
+<td>Details about input data sources used to drive the model</td>
+</tr>
+<tr>
+<td><a href="instrument_type/">instrument_type</a></td>
+<td>Type of instrument used to analyze samples or measure continuously</td>
+</tr>
+<tr>
+<td><a href="instrument_type_custom/">instrument_type_custom</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="is_derived_value/">is_derived_value</a></td>
+<td>Indicates that the field in question is a derived value as opposed to one mea...</td>
+</tr>
+<tr>
+<td><a href="is_provided_as_a_file/">is_provided_as_a_file</a></td>
+<td>Indicates that the field in question is provided as a file</td>
+</tr>
+<tr>
+<td><a href="last_calibration_date/">last_calibration_date</a></td>
+<td>Date and time of most recent calibration in UTC</td>
+</tr>
+<tr>
+<td><a href="latitude/">latitude</a></td>
+<td>Latitude in decimal degrees of a location</td>
+</tr>
+<tr>
+<td><a href="license/">license</a></td>
+<td>Link a Dataset to its license to document legal constraints by adding a schem...</td>
+</tr>
+<tr>
+<td><a href="line/">line</a></td>
+<td>A line is a point-to-point path consisting of two or more points</td>
+</tr>
+<tr>
+<td><a href="long_name/">long_name</a></td>
+<td>Full descriptive name of the variable</td>
+</tr>
+<tr>
+<td><a href="longitude/">longitude</a></td>
+<td>Longitude in decimal degrees of a location</td>
+</tr>
+<tr>
+<td><a href="machine/">machine</a></td>
+<td>Name of the machine or cluster (e</td>
+</tr>
+<tr>
+<td><a href="manufacturer/">manufacturer</a></td>
+<td>Manufacturer name of the instrument</td>
+</tr>
+<tr>
+<td><a href="max_depth_in_m/">max_depth_in_m</a></td>
+<td>Maximum depth of observation in meters</td>
+</tr>
+<tr>
+<td><a href="max_height_in_m/">max_height_in_m</a></td>
+<td>Maximum height of observation (in meters) for above ground aerial coverage</td>
+</tr>
+<tr>
+<td><a href="mcdr_forcing_description/">mcdr_forcing_description</a></td>
+<td>Description of the mCDR forcing applied in the simulation (e</td>
+</tr>
+<tr>
+<td><a href="mcdr_pathway/">mcdr_pathway</a></td>
+<td>The Marine Carbon Dioxide Removal (MCDR) pathway being studied</td>
+</tr>
+<tr>
+<td><a href="measurement_researcher/">measurement_researcher</a></td>
+<td>The name of the PI whose research team measured or derived this parameter</td>
+</tr>
+<tr>
+<td><a href="measurement_temperature/">measurement_temperature</a></td>
+<td>Temperature at which pH was measured</td>
+</tr>
+<tr>
+<td><a href="memory/">memory</a></td>
+<td>Memory available (e</td>
+</tr>
+<tr>
+<td><a href="metadata_builder_git_hash/">metadata_builder_git_hash</a></td>
+<td>Git commit hash of the metadata-builder UI</td>
+</tr>
+<tr>
+<td><a href="meteorological_and_tidal_data/">meteorological_and_tidal_data</a></td>
+<td>Include links to relevant open datasets if referenced in the experiment but n...</td>
+</tr>
+<tr>
+<td><a href="method_reference/">method_reference</a></td>
+<td>Citation or reference for the calibration method</td>
+</tr>
+<tr>
+<td><a href="min_depth_in_m/">min_depth_in_m</a></td>
+<td>Minimum depth of observation in meters</td>
+</tr>
+<tr>
+<td><a href="min_height_in_m/">min_height_in_m</a></td>
+<td>Minimum height of observation (in meters) for above ground aerial coverage</td>
+</tr>
+<tr>
+<td><a href="missing_value_indicators/">missing_value_indicators</a></td>
+<td>The indicator used to represent missing values in the data file, e</td>
+</tr>
+<tr>
+<td><a href="model/">model</a></td>
+<td>Model number or name of the instrument</td>
+</tr>
+<tr>
+<td><a href="model_component_type/">model_component_type</a></td>
+<td>The type of model component (physics, BGC/ecosystem, or other)</td>
+</tr>
+<tr>
+<td><a href="model_component_type_custom/">model_component_type_custom</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="model_components/">model_components</a></td>
+<td>Components of the model (e</td>
+</tr>
+<tr>
+<td><a href="model_configuration/">model_configuration</a></td>
+<td>Links to model configuration files or documentation</td>
+</tr>
+<tr>
+<td><a href="model_output_variables/">model_output_variables</a></td>
+<td>Checklist of variables included in the model simulation output</td>
+</tr>
+<tr>
+<td><a href="n_nodes/">n_nodes</a></td>
+<td>Number of nodes in the grid (for unstructured grids)</td>
+</tr>
+<tr>
+<td><a href="n_x/">n_x</a></td>
+<td>Number of grid points in the x-direction</td>
+</tr>
+<tr>
+<td><a href="n_y/">n_y</a></td>
+<td>Number of grid points in the y-direction</td>
+</tr>
+<tr>
+<td><a href="n_z/">n_z</a></td>
+<td>Number of vertical coordinate levels</td>
+</tr>
+<tr>
+<td><a href="name/">name</a></td>
+<td>A human-readable name for the thing</td>
+</tr>
+<tr>
+<td><a href="observation_type/">observation_type</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="operating_system/">operating_system</a></td>
+<td>Operating system used (e</td>
+</tr>
+<tr>
+<td><a href="other_detailed_information/">other_detailed_information</a></td>
+<td>Any additional information about this variable</td>
+</tr>
+<tr>
+<td><a href="output_frequency/">output_frequency</a></td>
+<td>Frequency of model output (e</td>
+</tr>
+<tr>
+<td><a href="owner/">owner</a></td>
+<td>Institution that owns the platform</td>
+</tr>
+<tr>
+<td><a href="parallelization/">parallelization</a></td>
+<td>Parallelization details (e</td>
+</tr>
+<tr>
+<td><a href="permit_id/">permit_id</a></td>
+<td>The unique identifier or number associated with this permit</td>
+</tr>
+<tr>
+<td><a href="permit_type/">permit_type</a></td>
+<td>The category of permit (E</td>
+</tr>
+<tr>
+<td><a href="permits/">permits</a></td>
+<td>Associated permit number(s)</td>
+</tr>
+<tr>
+<td><a href="permitting_authority/">permitting_authority</a></td>
+<td>The group that issued the permit</td>
+</tr>
+<tr>
+<td><a href="ph_of_standards/">ph_of_standards</a></td>
+<td>pH values of the calibration standards used</td>
+</tr>
+<tr>
+<td><a href="ph_reported_temperature/">ph_reported_temperature</a></td>
+<td>The input could be a constant temperature value, or something like, in-situ t...</td>
+</tr>
+<tr>
+<td><a href="phone/">phone</a></td>
+<td>Contact phone number</td>
+</tr>
+<tr>
+<td><a href="physical_site_description/">physical_site_description</a></td>
+<td>Provide information to help characterize the field site and provide context w...</td>
+</tr>
+<tr>
+<td><a href="platform_id/">platform_id</a></td>
+<td>Synonymous with glider ID, cruise ID</td>
+</tr>
+<tr>
+<td><a href="platform_info/">platform_info</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="platform_type/">platform_type</a></td>
+<td>Controlled vocabularies for the types of the platform: https://www</td>
+</tr>
+<tr>
+<td><a href="precision/">precision</a></td>
+<td>Precision of the instrument measurements</td>
+</tr>
+<tr>
+<td><a href="preservative/">preservative</a></td>
+<td>As described, e</td>
+</tr>
+<tr>
+<td><a href="previous_or_ongoing_colocated_research/">previous_or_ongoing_colocated_research</a></td>
+<td>This field is required for co-located operations that potentially impact the ...</td>
+</tr>
+<tr>
+<td><a href="processing_code/">processing_code</a></td>
+<td>If applicable, link to any code for processing of raw forcing and input data ...</td>
+</tr>
+<tr>
+<td><a href="processing_of_input_data/">processing_of_input_data</a></td>
+<td>Narrative description of any processing applied to input data before use in t...</td>
+</tr>
+<tr>
+<td><a href="project/">project</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="project_id/">project_id</a></td>
+<td>The project to which the submitted data belong</td>
+</tr>
+<tr>
+<td><a href="project_leads/">project_leads</a></td>
+<td>Provide details for each project lead / principal investigator (PI) including...</td>
+</tr>
+<tr>
+<td><a href="protocol_git_hash/">protocol_git_hash</a></td>
+<td>Git commit hash of the oae-data-protocol</td>
+</tr>
+<tr>
+<td><a href="public_comments/">public_comments</a></td>
+<td>File name(s) of public comment related documents</td>
+</tr>
+<tr>
+<td><a href="qc_flag_scheme/">qc_flag_scheme</a></td>
+<td>Describe what the quality control flags stand for, e</td>
+</tr>
+<tr>
+<td><a href="qc_researcher/">qc_researcher</a></td>
+<td>The name of the PI whose research team QCed this parameter</td>
+</tr>
+<tr>
+<td><a href="qc_researcher_institution/">qc_researcher_institution</a></td>
+<td>The institution of the PI whose research team QCed this parameter</td>
+</tr>
+<tr>
+<td><a href="qc_steps_taken/">qc_steps_taken</a></td>
+<td>Describe what QC steps have been taken to improve the quality of the data (e</td>
+</tr>
+<tr>
+<td><a href="raw_data_calculation_method/">raw_data_calculation_method</a></td>
+<td>The method used to calculate reported values from raw sensor data</td>
+</tr>
+<tr>
+<td><a href="references/">references</a></td>
+<td>Links or DOIs to any reference(s) relevant to the model components/developmen...</td>
+</tr>
+<tr>
+<td><a href="region/">region</a></td>
+<td>Region covered by the grid</td>
+</tr>
+<tr>
+<td><a href="related_links/">related_links</a></td>
+<td>Links to websites or documents related to the external research project</td>
+</tr>
+<tr>
+<td><a href="research_project/">research_project</a></td>
+<td>Project, which the data collection is part of</td>
+</tr>
+<tr>
+<td><a href="resolution/">resolution</a></td>
+<td>Resolution of the CO2 sensor</td>
+</tr>
+<tr>
+<td><a href="river_sediment_flux_details/">river_sediment_flux_details</a></td>
+<td>River and/or sediment flux data source(s)</td>
+</tr>
+<tr>
+<td><a href="role/">role</a></td>
+<td>Role of the investigator in the experiment (e</td>
+</tr>
+<tr>
+<td><a href="sample_preservation/">sample_preservation</a></td>
+<td>How the samples were preserved for analysis</td>
+</tr>
+<tr>
+<td><a href="sampling/">sampling</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="sampling_instrument_type/">sampling_instrument_type</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="sampling_instrument_type_custom/">sampling_instrument_type_custom</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="sampling_method/">sampling_method</a></td>
+<td>Method used to collect samples</td>
+</tr>
+<tr>
+<td><a href="schema_class/">schema_class</a></td>
+<td>The schema class name for this variable (e</td>
+</tr>
+<tr>
+<td><a href="sea_names/">sea_names</a></td>
+<td>Names of the seas where the data collection takes place, See Controlled Vocab...</td>
+</tr>
+<tr>
+<td><a href="seawater_volume/">seawater_volume</a></td>
+<td>Volume (in mL) of seawater in the flask</td>
+</tr>
+<tr>
+<td><a href="sediment_sampling_depth/">sediment_sampling_depth</a></td>
+<td>Depth that sediment was collected below sediment surface</td>
+</tr>
+<tr>
+<td><a href="sediment_sampling_method/">sediment_sampling_method</a></td>
+<td>e</td>
+</tr>
+<tr>
+<td><a href="sediment_sampling_water_depth/">sediment_sampling_water_depth</a></td>
+<td>Water depth where sediment was collected</td>
+</tr>
+<tr>
+<td><a href="sediment_type/">sediment_type</a></td>
+<td>e</td>
+</tr>
+<tr>
+<td><a href="serial_number/">serial_number</a></td>
+<td>Serial number of the instrument</td>
+</tr>
+<tr>
+<td><a href="simulation_type/">simulation_type</a></td>
+<td>Whether this is a counterfactual (control/baseline) or perturbation simulatio...</td>
+</tr>
+<tr>
+<td><a href="social_context_site_description/">social_context_site_description</a></td>
+<td>Details may include:</td>
+</tr>
+<tr>
+<td><a href="social_research_conducted_to_date/">social_research_conducted_to_date</a></td>
+<td>A description of any social research conducted to date</td>
+</tr>
+<tr>
+<td><a href="spatial_coverage/">spatial_coverage</a></td>
+<td>Latitude/longitude bounds of project site (e</td>
+</tr>
+<tr>
+<td><a href="spin_up_protocol/">spin_up_protocol</a></td>
+<td>Description of the model spin-up process</td>
+</tr>
+<tr>
+<td><a href="standard_gas_info/">standard_gas_info</a></td>
+<td>Standard gases used for calibration</td>
+</tr>
+<tr>
+<td><a href="standard_identifier/">standard_identifier</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="start_date/">start_date</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="start_datetime/">start_datetime</a></td>
+<td>Start date and time of experiment in UTC ISO-8601</td>
+</tr>
+<tr>
+<td><a href="storage/">storage</a></td>
+<td>Storage available (e</td>
+</tr>
+<tr>
+<td><a href="storage_method/">storage_method</a></td>
+<td>How the samples were stored before the measurement</td>
+</tr>
+<tr>
+<td><a href="technique_description/">technique_description</a></td>
+<td>Details of the calibration technique used</td>
+</tr>
+<tr>
+<td><a href="temperature_correction_method/">temperature_correction_method</a></td>
+<td>Method used to correct pH for temperature</td>
+</tr>
+<tr>
+<td><a href="temporal_coverage/">temporal_coverage</a></td>
+<td>Start date and end date (if known) of the project in ISO-8601 interval format...</td>
+</tr>
+<tr>
+<td><a href="term/">term</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="tidal_forcing/">tidal_forcing</a></td>
+<td>Tidal forcing data source(s)</td>
+</tr>
+<tr>
+<td><a href="time_period/">time_period</a></td>
+<td>The time period during which the permit will be applicable, or expected durat...</td>
+</tr>
+<tr>
+<td><a href="time_stepping_scheme/">time_stepping_scheme</a></td>
+<td>Time-stepping method and time step used in the simulation</td>
+</tr>
+<tr>
+<td><a href="titration_cell_type/">titration_cell_type</a></td>
+<td>Whether the titration cell is open or closed</td>
+</tr>
+<tr>
+<td><a href="titration_type/">titration_type</a></td>
+<td>Type of the titration used to determine alkalinity</td>
+</tr>
+<tr>
+<td><a href="tracer_concentration/">tracer_concentration</a></td>
+<td>Fixed concentration or provide link/source to tracer concentration separately...</td>
+</tr>
+<tr>
+<td><a href="tracer_details/">tracer_details</a></td>
+<td>state the kind of tracer used (e</td>
+</tr>
+<tr>
+<td><a href="tracer_form/">tracer_form</a></td>
+<td>The form of tracer upon delivery to the ocean (e</td>
+</tr>
+<tr>
+<td><a href="tracer_form_custom/">tracer_form_custom</a></td>
+<td>If "other" was selected for Tracer Form, please specify the custom tracer for...</td>
+</tr>
+<tr>
+<td><a href="uncertainty/">uncertainty</a></td>
+<td>It is recommended to provide uncertainty for each data point in the data file</td>
+</tr>
+<tr>
+<td><a href="uncertainty_definition/">uncertainty_definition</a></td>
+<td>A description of the uncertainties involved in this method</td>
+</tr>
+<tr>
+<td><a href="unit/">unit</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="units/">units</a></td>
+<td>Unit of measurement for this variable</td>
+</tr>
+<tr>
+<td><a href="uri/">uri</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="url/">url</a></td>
+<td>The URL of the linked resource</td>
+</tr>
+<tr>
+<td><a href="variable_type/">variable_type</a></td>
+<td>High-level classification of the variable</td>
+</tr>
+<tr>
+<td><a href="variables/">variables</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="version/">version</a></td>
+<td>Version of the oae-data-protocol</td>
+</tr>
+<tr>
+<td><a href="vertical_coordinate_type/">vertical_coordinate_type</a></td>
+<td>The vertical grid coordinate type (e</td>
+</tr>
+<tr>
+<td><a href="vertical_coverage/">vertical_coverage</a></td>
+<td>Minimum and maximum depths of observation in meters</td>
+</tr>
+<tr>
+<td><a href="vertical_resolution_range/">vertical_resolution_range</a></td>
+<td>Description of vertical resolution (e</td>
+</tr>
+<tr>
+<td><a href="volume/">volume</a></td>
+<td>The volume of preservative used</td>
+</tr>
+<tr>
+<td><a href="water_vapor_correction_method/">water_vapor_correction_method</a></td>
+<td>How the water vapor pressure inside the equilibrator was determined</td>
+</tr>
+</tbody>
+</table>
+<h2 id="enumerations">Enumerations</h2>
+<table>
+<thead>
+<tr>
+<th>Enumeration</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="AlkalinityFeedstockForm/">AlkalinityFeedstockForm</a></td>
+<td>Physical form of the alkalinity feedstock upon ocean delivery</td>
+</tr>
+<tr>
+<td><a href="AlkalinityFeedstockProcessing/">AlkalinityFeedstockProcessing</a></td>
+<td>Methods used to process alkalinity feedstock</td>
+</tr>
+<tr>
+<td><a href="AnalyzingInstrumentType/">AnalyzingInstrumentType</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="AppropriateUseQuality/">AppropriateUseQuality</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="CalibrationLocation/">CalibrationLocation</a></td>
+<td>Where the calibration was performed</td>
+</tr>
+<tr>
+<td><a href="ConcentrationBasis/">ConcentrationBasis</a></td>
+<td>Whether concentration measurements are expressed per unit volume or per unit ...</td>
+</tr>
+<tr>
+<td><a href="DataProductType/">DataProductType</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="DatasetType/">DatasetType</a></td>
+<td>Type of dataset being submitted</td>
+</tr>
+<tr>
+<td><a href="DosingDeliveryType/">DosingDeliveryType</a></td>
+<td>Types of dosing delivery methods</td>
+</tr>
+<tr>
+<td><a href="EquilibrationStatus/">EquilibrationStatus</a></td>
+<td>Equilibration status of the alkalinity feedstock</td>
+</tr>
+<tr>
+<td><a href="ExperimentType/">ExperimentType</a></td>
+<td>Types of mCDR experiments</td>
+</tr>
+<tr>
+<td><a href="FeedstockType/">FeedstockType</a></td>
+<td>Types of materials used for alkalinity addition, as sourced from NCEI's OCADS...</td>
+</tr>
+<tr>
+<td><a href="GenesisType/">GenesisType</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="GridType/">GridType</a></td>
+<td>Type of grid in a multi-grid or nested model configuration</td>
+</tr>
+<tr>
+<td><a href="HydrologicLocation/">HydrologicLocation</a></td>
+<td>Hydrologic location types for dosing</td>
+</tr>
+<tr>
+<td><a href="MassConcentrationUnit/">MassConcentrationUnit</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="MCDRPathway/">MCDRPathway</a></td>
+<td>Type of marine Carbon Dioxide Removal (mCDR) pathways</td>
+</tr>
+<tr>
+<td><a href="ModelComponentType/">ModelComponentType</a></td>
+<td>Type of model component</td>
+</tr>
+<tr>
+<td><a href="ModelOutputVariable/">ModelOutputVariable</a></td>
+<td>Variables commonly included in model simulation output datasets</td>
+</tr>
+<tr>
+<td><a href="ObservationType/">ObservationType</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="PlatformType/">PlatformType</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="ResearcherIDType/">ResearcherIDType</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="SamplingInstrumentType/">SamplingInstrumentType</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="SamplingType/">SamplingType</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="SeaNames/">SeaNames</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="SimulationType/">SimulationType</a></td>
+<td>Type of model simulation dataset</td>
+</tr>
+<tr>
+<td><a href="TitrationCellType/">TitrationCellType</a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="TracerForm/">TracerForm</a></td>
+<td>Forms of tracer used in tracer studies</td>
+</tr>
+<tr>
+<td><a href="VariableType/">VariableType</a></td>
+<td>High-level classification of the variable</td>
+</tr>
+</tbody>
+</table>
+<h2 id="types">Types</h2>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="Boolean/">Boolean</a></td>
+<td>A binary (true or false) value</td>
+</tr>
+<tr>
+<td><a href="Curie/">Curie</a></td>
+<td>a compact URI</td>
+</tr>
+<tr>
+<td><a href="Date/">Date</a></td>
+<td>a date (year, month and day) in an idealized calendar</td>
+</tr>
+<tr>
+<td><a href="DateOrDatetime/">DateOrDatetime</a></td>
+<td>Either a date or a datetime</td>
+</tr>
+<tr>
+<td><a href="Datetime/">Datetime</a></td>
+<td>The combination of a date and time</td>
+</tr>
+<tr>
+<td><a href="Decimal/">Decimal</a></td>
+<td>A real number with arbitrary precision that conforms to the xsd:decimal speci...</td>
+</tr>
+<tr>
+<td><a href="Doi/">Doi</a></td>
+<td>A Digital Object Identifier (DOI) for a digital object such as a document, da...</td>
+</tr>
+<tr>
+<td><a href="Double/">Double</a></td>
+<td>A real number that conforms to the xsd:double specification</td>
+</tr>
+<tr>
+<td><a href="Float/">Float</a></td>
+<td>A real number that conforms to the xsd:float specification</td>
+</tr>
+<tr>
+<td><a href="Integer/">Integer</a></td>
+<td>An integer</td>
+</tr>
+<tr>
+<td><a href="Jsonpath/">Jsonpath</a></td>
+<td>A string encoding a JSON Path</td>
+</tr>
+<tr>
+<td><a href="Jsonpointer/">Jsonpointer</a></td>
+<td>A string encoding a JSON Pointer</td>
+</tr>
+<tr>
+<td><a href="Ncname/">Ncname</a></td>
+<td>Prefix part of CURIE</td>
+</tr>
+<tr>
+<td><a href="Nodeidentifier/">Nodeidentifier</a></td>
+<td>A URI, CURIE or BNODE that represents a node in a model</td>
+</tr>
+<tr>
+<td><a href="Objectidentifier/">Objectidentifier</a></td>
+<td>A URI or CURIE that represents an object in the model</td>
+</tr>
+<tr>
+<td><a href="Sparqlpath/">Sparqlpath</a></td>
+<td>A string encoding a SPARQL Property Path</td>
+</tr>
+<tr>
+<td><a href="String/">String</a></td>
+<td>A character string</td>
+</tr>
+<tr>
+<td><a href="Time/">Time</a></td>
+<td>A time object represents a (local) time of day, independent of any particular...</td>
+</tr>
+<tr>
+<td><a href="Uri/">Uri</a></td>
+<td>a complete URI</td>
+</tr>
+<tr>
+<td><a href="Uriorcurie/">Uriorcurie</a></td>
+<td>a URI or a CURIE</td>
+</tr>
+</tbody>
+</table>
+<h2 id="subsets">Subsets</h2>
+<table>
+<thead>
+<tr>
+<th>Subset</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["content.tabs.link"], "search": "assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
+      
+        <script src="javascripts/tablesort.js"></script>
+      
+    
+  </body>
+</html>
