@@ -351,7 +351,7 @@
 
 
 <h1 id="enum-variabletype">Enum: VariableType</h1>
-<p><em>High-level classification of the variable</em></p>
+<p><em>High-level classification of the variable. Determines which schema class to use in combination with genesis (measured/calculated) and sampling (discrete/continuous).</em></p>
 <p>URI: <a href="./">VariableType</a></p>
 <h2 id="permissible-values">Permissible Values</h2>
 <table>
@@ -366,42 +366,42 @@
 <tr>
 <td>pH</td>
 <td>None</td>
-<td>pH measurement</td>
+<td>pH measurement — use with Discrete/ContinuousPHVariable or CalculatedVariable</td>
 </tr>
 <tr>
 <td>ta</td>
 <td>None</td>
-<td>Total alkalinity</td>
+<td>Total alkalinity — use with Discrete/ContinuousTAVariable or CalculatedVariab...</td>
 </tr>
 <tr>
 <td>dic</td>
 <td>None</td>
-<td>Dissolved inorganic carbon</td>
+<td>Dissolved inorganic carbon — use with Discrete/ContinuousDICVariable or Calcu...</td>
 </tr>
 <tr>
 <td>co2</td>
 <td>None</td>
-<td>CO₂ variables (xCO₂, pCO₂, fCO₂)</td>
+<td>CO₂ variables (xCO₂, pCO₂, fCO₂) — use with DiscreteCO2Variable or Calculated...</td>
 </tr>
 <tr>
 <td>sediment</td>
 <td>None</td>
-<td>Sediment variable</td>
+<td>Sediment variable — use with Discrete/ContinuousSedimentVariable or Calculate...</td>
 </tr>
 <tr>
 <td>hplc</td>
 <td>None</td>
-<td>HPLC pigment analysis</td>
+<td>HPLC pigment analysis — use with HPLCVariable (always discrete, always measur...</td>
 </tr>
 <tr>
 <td>other</td>
 <td>None</td>
-<td>Variable not covered by specific categories</td>
+<td>Any directly measured or calculated variable that does not fall into a specif...</td>
 </tr>
 <tr>
 <td>non_measured</td>
 <td>None</td>
-<td>Contextual data from external sources (e</td>
+<td>Contextual or ancillary columns that are not directly measured or calculated ...</td>
 </tr>
 </tbody>
 </table>
@@ -429,35 +429,45 @@
 <details>
 
 <pre><code class="language-yaml">name: VariableType
-description: High-level classification of the variable
+description: High-level classification of the variable. Determines which schema class
+  to use in combination with genesis (measured/calculated) and sampling (discrete/continuous).
 from_schema: OAEDataManagementProtocol
 rank: 1000
 permissible_values:
   pH:
     text: pH
-    description: pH measurement
+    description: pH measurement — use with Discrete/ContinuousPHVariable or CalculatedVariable
   ta:
     text: ta
-    description: Total alkalinity
+    description: Total alkalinity — use with Discrete/ContinuousTAVariable or CalculatedVariable
   dic:
     text: dic
-    description: Dissolved inorganic carbon
+    description: Dissolved inorganic carbon — use with Discrete/ContinuousDICVariable
+      or CalculatedVariable
   co2:
     text: co2
-    description: CO₂ variables (xCO₂, pCO₂, fCO₂)
+    description: CO₂ variables (xCO₂, pCO₂, fCO₂) — use with DiscreteCO2Variable or
+      CalculatedVariable
   sediment:
     text: sediment
-    description: Sediment variable
+    description: Sediment variable — use with Discrete/ContinuousSedimentVariable
+      or CalculatedVariable
   hplc:
     text: hplc
-    description: HPLC pigment analysis
+    description: HPLC pigment analysis — use with HPLCVariable (always discrete, always
+      measured)
   other:
     text: other
-    description: Variable not covered by specific categories
+    description: Any directly measured or calculated variable that does not fall into
+      a specific category above (e.g., temperature, salinity, conductivity, pressure,
+      fluorescence). Use with DiscreteMeasuredVariable, ContinuousMeasuredVariable,
+      or CalculatedVariable.
   non_measured:
     text: non_measured
-    description: Contextual data from external sources (e.g., coordinates, timestamps,
-      identifiers)
+    description: Contextual or ancillary columns that are not directly measured or
+      calculated by the project — identifiers, timestamps, coordinates and external
+      source data. QC flag columns should NOT be listed as separate variables; instead
+      set dataset_variable_name_qc_flag on the parent variable. Use only with NonMeasuredVariable.
 
 </code></pre>
 

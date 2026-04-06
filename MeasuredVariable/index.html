@@ -223,6 +223,9 @@
 <article class="md-content__inner md-typeset">
 <h1 id="class-measuredvariable">Class: MeasuredVariable</h1>
 <p><em>Variable that is directly measured in-situ using instruments. Reference: OAPMetadata XSD variables.xsd - basic_measured_observation_base</em></p>
+<ul>
+<li><strong>NOTE</strong>: this is an abstract class and should not be instantiated directly</li>
+</ul>
 <p>URI: <a href="https://example.org/oae#MeasuredVariable">oae:MeasuredVariable</a></p>
 <div class="mermaid"> classDiagram
     class MeasuredVariable
@@ -565,6 +568,7 @@ description: 'Variable that is directly measured in-situ using instruments. Refe
   OAPMetadata XSD variables.xsd - basic_measured_observation_base'
 from_schema: OAEDataManagementProtocol
 is_a: InSituVariable
+abstract: true
 mixins:
 - QCFields
 slots:
@@ -662,6 +666,7 @@ description: 'Variable that is directly measured in-situ using instruments. Refe
   OAPMetadata XSD variables.xsd - basic_measured_observation_base'
 from_schema: OAEDataManagementProtocol
 is_a: InSituVariable
+abstract: true
 mixins:
 - QCFields
 slot_usage:

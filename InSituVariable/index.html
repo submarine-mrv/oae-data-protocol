@@ -223,6 +223,9 @@
 <article class="md-content__inner md-typeset">
 <h1 id="class-insituvariable">Class: InSituVariable</h1>
 <p><em>Base class for project-acquired variables (measured or calculated in-situ). Reference: OAPMetadata XSD variables.xsd - insitu_variable</em></p>
+<ul>
+<li><strong>NOTE</strong>: this is an abstract class and should not be instantiated directly</li>
+</ul>
 <p>URI: <a href="https://example.org/oae#InSituVariable">oae:InSituVariable</a></p>
 <div class="mermaid"> classDiagram
     class InSituVariable
@@ -420,6 +423,7 @@ description: 'Base class for project-acquired variables (measured or calculated 
   Reference: OAPMetadata XSD variables.xsd - insitu_variable'
 from_schema: OAEDataManagementProtocol
 is_a: Variable
+abstract: true
 slot_usage:
   units:
     name: units
@@ -490,6 +494,7 @@ description: 'Base class for project-acquired variables (measured or calculated 
   Reference: OAPMetadata XSD variables.xsd - insitu_variable'
 from_schema: OAEDataManagementProtocol
 is_a: Variable
+abstract: true
 slot_usage:
   units:
     name: units

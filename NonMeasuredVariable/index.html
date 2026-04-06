@@ -222,7 +222,7 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="class-nonmeasuredvariable">Class: NonMeasuredVariable</h1>
-<p><em>Non-measured variable for data from external sources (e.g., satellite, model outputs, published data) that are not directly measured by the project but included in the dataset.</em></p>
+<p><em>A contextual or ancillary variable that is NOT directly measured or calculated by the project. Use for identifiers (Cruise_ID, Exp_ID), timestamps (Year_UTC, Time_UTC), coordinates (Latitude, Longitude), and any other data included in the dataset for context. Do NOT create a NonMeasuredVariable for quality control flag columns — instead, set dataset_variable_name_qc_flag on the parent measured or calculated variable that the flag relates to. variable_type must be "non_measured".</em></p>
 <p>URI: <a href="https://example.org/oae#NonMeasuredVariable">oae:NonMeasuredVariable</a></p>
 <div class="mermaid"> classDiagram
     class NonMeasuredVariable
@@ -336,9 +336,12 @@
 <h3 id="direct">Direct</h3>
 <details>
 <pre><code class="language-yaml">name: NonMeasuredVariable
-description: Non-measured variable for data from external sources (e.g., satellite,
-  model outputs, published data) that are not directly measured by the project but
-  included in the dataset.
+description: A contextual or ancillary variable that is NOT directly measured or calculated
+  by the project. Use for identifiers (Cruise_ID, Exp_ID), timestamps (Year_UTC, Time_UTC),
+  coordinates (Latitude, Longitude), and any other data included in the dataset for
+  context. Do NOT create a NonMeasuredVariable for quality control flag columns —
+  instead, set dataset_variable_name_qc_flag on the parent measured or calculated
+  variable that the flag relates to. variable_type must be "non_measured".
 from_schema: OAEDataManagementProtocol
 is_a: Variable
 slot_usage:
@@ -352,9 +355,12 @@ slot_usage:
 <h3 id="induced">Induced</h3>
 <details>
 <pre><code class="language-yaml">name: NonMeasuredVariable
-description: Non-measured variable for data from external sources (e.g., satellite,
-  model outputs, published data) that are not directly measured by the project but
-  included in the dataset.
+description: A contextual or ancillary variable that is NOT directly measured or calculated
+  by the project. Use for identifiers (Cruise_ID, Exp_ID), timestamps (Year_UTC, Time_UTC),
+  coordinates (Latitude, Longitude), and any other data included in the dataset for
+  context. Do NOT create a NonMeasuredVariable for quality control flag columns —
+  instead, set dataset_variable_name_qc_flag on the parent measured or calculated
+  variable that the flag relates to. variable_type must be "non_measured".
 from_schema: OAEDataManagementProtocol
 is_a: Variable
 slot_usage:

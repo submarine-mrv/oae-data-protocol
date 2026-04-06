@@ -222,7 +222,7 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="class-continuousmeasuredvariable">Class: ContinuousMeasuredVariable</h1>
-<p><em>Fields for continuous sampling information.</em></p>
+<p><em>A variable measured in-situ by a continuous autonomous sensor (e.g., temperature, salinity, conductivity, pressure from a deployed sonde or underway system). Use this class for generic measured variables that do not fall under a specific category (pH, TA, DIC, CO2, sediment). For those, use the type-specific subclass instead (e.g., ContinuousPHVariable). Set variable_type to "other", genesis to "measured", and sampling to "continuous".</em></p>
 <p>URI: <a href="https://example.org/oae#ContinuousMeasuredVariable">oae:ContinuousMeasuredVariable</a></p>
 <div class="mermaid"> classDiagram
     class ContinuousMeasuredVariable
@@ -577,7 +577,12 @@
 <h3 id="direct">Direct</h3>
 <details>
 <pre><code class="language-yaml">name: ContinuousMeasuredVariable
-description: Fields for continuous sampling information.
+description: A variable measured in-situ by a continuous autonomous sensor (e.g.,
+  temperature, salinity, conductivity, pressure from a deployed sonde or underway
+  system). Use this class for generic measured variables that do not fall under a
+  specific category (pH, TA, DIC, CO2, sediment). For those, use the type-specific
+  subclass instead (e.g., ContinuousPHVariable). Set variable_type to "other", genesis
+  to "measured", and sampling to "continuous".
 from_schema: OAEDataManagementProtocol
 is_a: MeasuredVariable
 slot_usage:
@@ -612,7 +617,12 @@ attributes:
 <h3 id="induced">Induced</h3>
 <details>
 <pre><code class="language-yaml">name: ContinuousMeasuredVariable
-description: Fields for continuous sampling information.
+description: A variable measured in-situ by a continuous autonomous sensor (e.g.,
+  temperature, salinity, conductivity, pressure from a deployed sonde or underway
+  system). Use this class for generic measured variables that do not fall under a
+  specific category (pH, TA, DIC, CO2, sediment). For those, use the type-specific
+  subclass instead (e.g., ContinuousPHVariable). Set variable_type to "other", genesis
+  to "measured", and sampling to "continuous".
 from_schema: OAEDataManagementProtocol
 is_a: MeasuredVariable
 slot_usage:

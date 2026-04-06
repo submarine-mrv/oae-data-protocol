@@ -222,7 +222,7 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="class-calculatedvariable">Class: CalculatedVariable</h1>
-<p><em>Variable that is calculated or derived from other variables.</em></p>
+<p><em>A variable that is calculated or derived from other measured variables rather than directly measured by an instrument (e.g., carbonate system parameters computed via CO2SYS). Set genesis to "calculated". The variable_type should reflect the quantity being calculated (e.g., "pH", "ta", "dic", "co2", or "other").</em></p>
 <p>URI: <a href="https://example.org/oae#CalculatedVariable">oae:CalculatedVariable</a></p>
 <div class="mermaid"> classDiagram
     class CalculatedVariable
@@ -466,7 +466,10 @@
 <h3 id="direct">Direct</h3>
 <details>
 <pre><code class="language-yaml">name: CalculatedVariable
-description: Variable that is calculated or derived from other variables.
+description: A variable that is calculated or derived from other measured variables
+  rather than directly measured by an instrument (e.g., carbonate system parameters
+  computed via CO2SYS). Set genesis to "calculated". The variable_type should reflect
+  the quantity being calculated (e.g., "pH", "ta", "dic", "co2", or "other").
 from_schema: OAEDataManagementProtocol
 is_a: InSituVariable
 mixins:
@@ -497,7 +500,10 @@ attributes:
 <h3 id="induced">Induced</h3>
 <details>
 <pre><code class="language-yaml">name: CalculatedVariable
-description: Variable that is calculated or derived from other variables.
+description: A variable that is calculated or derived from other measured variables
+  rather than directly measured by an instrument (e.g., carbonate system parameters
+  computed via CO2SYS). Set genesis to "calculated". The variable_type should reflect
+  the quantity being calculated (e.g., "pH", "ta", "dic", "co2", or "other").
 from_schema: OAEDataManagementProtocol
 is_a: InSituVariable
 mixins:

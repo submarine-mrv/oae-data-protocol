@@ -222,7 +222,7 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="class-discretemeasuredvariable">Class: DiscreteMeasuredVariable</h1>
-<p><em>Analyzing instrument information fields, only applied to discretely measured variables. The instrument type can be narrowed in subclasses using slot_usage.</em></p>
+<p><em>A variable measured in-situ from discrete water samples (e.g., bottle samples analyzed in a lab or shipboard). Use this class for generic measured variables that do not fall under a specific category (pH, TA, DIC, CO2, sediment, HPLC). For those, use the type-specific subclass instead (e.g., DiscretePHVariable). Set variable_type to "other", genesis to "measured", and sampling to "discrete".</em></p>
 <p>URI: <a href="https://example.org/oae#DiscreteMeasuredVariable">oae:DiscreteMeasuredVariable</a></p>
 <div class="mermaid"> classDiagram
     class DiscreteMeasuredVariable
@@ -567,8 +567,11 @@
 <h3 id="direct">Direct</h3>
 <details>
 <pre><code class="language-yaml">name: DiscreteMeasuredVariable
-description: Analyzing instrument information fields, only applied to discretely measured
-  variables. The instrument type can be narrowed in subclasses using slot_usage.
+description: A variable measured in-situ from discrete water samples (e.g., bottle
+  samples analyzed in a lab or shipboard). Use this class for generic measured variables
+  that do not fall under a specific category (pH, TA, DIC, CO2, sediment, HPLC). For
+  those, use the type-specific subclass instead (e.g., DiscretePHVariable). Set variable_type
+  to "other", genesis to "measured", and sampling to "discrete".
 from_schema: OAEDataManagementProtocol
 is_a: MeasuredVariable
 slot_usage:
@@ -582,8 +585,11 @@ slot_usage:
 <h3 id="induced">Induced</h3>
 <details>
 <pre><code class="language-yaml">name: DiscreteMeasuredVariable
-description: Analyzing instrument information fields, only applied to discretely measured
-  variables. The instrument type can be narrowed in subclasses using slot_usage.
+description: A variable measured in-situ from discrete water samples (e.g., bottle
+  samples analyzed in a lab or shipboard). Use this class for generic measured variables
+  that do not fall under a specific category (pH, TA, DIC, CO2, sediment, HPLC). For
+  those, use the type-specific subclass instead (e.g., DiscretePHVariable). Set variable_type
+  to "other", genesis to "measured", and sampling to "discrete".
 from_schema: OAEDataManagementProtocol
 is_a: MeasuredVariable
 slot_usage:
