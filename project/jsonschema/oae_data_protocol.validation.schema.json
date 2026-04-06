@@ -463,7 +463,7 @@
         },
         "CalculatedVariable": {
             "additionalProperties": false,
-            "description": "Variable that is calculated or derived from other variables.",
+            "description": "A variable that is calculated or derived from other measured variables rather than directly measured by an instrument (e.g., carbonate system parameters computed via CO2SYS). Set genesis to \"calculated\". The variable_type should reflect the quantity being calculated (e.g., \"pH\", \"ta\", \"dic\", \"co2\", or \"other\").",
             "properties": {
                 "calculation_method_and_parameters": {
                     "description": "Information about how the variable was calculated and the parameters used in calculation, e.g.: Calculation software = CO2SYSv1 (MATLAB)  Input variables =  pH and DIC (column header names 'ph_t_insitu' and 'dic' in associated dataset file) Additional information = the dissociation constants of Lueker et al., 2000 for carbonic acid, etc.",
@@ -492,7 +492,8 @@
                     ]
                 },
                 "genesis": {
-                    "$ref": "#/$defs/GenesisType"
+                    "const": "calculated",
+                    "type": "string"
                 },
                 "long_name": {
                     "description": "Full descriptive name of the variable.",
@@ -568,10 +569,7 @@
                     "enum": [
                         "CalculatedVariable"
                     ],
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 },
                 "standard_identifier": {
                     "anyOf": [
@@ -611,9 +609,10 @@
                 }
             },
             "required": [
-                "genesis",
                 "calculation_method_and_parameters",
+                "genesis",
                 "units",
+                "schema_class",
                 "variable_type",
                 "dataset_variable_name",
                 "long_name"
@@ -855,7 +854,8 @@
                     ]
                 },
                 "genesis": {
-                    "$ref": "#/$defs/GenesisType"
+                    "const": "measured",
+                    "type": "string"
                 },
                 "long_name": {
                     "description": "Full descriptive name of the variable.",
@@ -930,7 +930,8 @@
                     "type": "string"
                 },
                 "sampling": {
-                    "$ref": "#/$defs/SamplingType"
+                    "const": "continuous",
+                    "type": "string"
                 },
                 "sampling_instrument_type": {
                     "$ref": "#/$defs/SamplingInstrumentType",
@@ -953,10 +954,7 @@
                     "enum": [
                         "ContinuousDICVariable"
                     ],
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 },
                 "standard_identifier": {
                     "anyOf": [
@@ -984,9 +982,10 @@
                     "type": "string"
                 },
                 "variable_type": {
-                    "$ref": "#/$defs/VariableType",
+                    "const": "dic",
                     "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
-                    "title": "Variable Type"
+                    "title": "Variable Type",
+                    "type": "string"
                 }
             },
             "required": [
@@ -997,13 +996,14 @@
                 "analyzing_method",
                 "observation_type",
                 "sampling",
-                "genesis",
                 "sampling_instrument_type",
                 "qc_steps_taken",
                 "uncertainty",
                 "uncertainty_definition",
                 "missing_value_indicators",
+                "genesis",
                 "units",
+                "schema_class",
                 "variable_type",
                 "dataset_variable_name",
                 "long_name"
@@ -1013,7 +1013,7 @@
         },
         "ContinuousMeasuredVariable": {
             "additionalProperties": false,
-            "description": "Fields for continuous sampling information.",
+            "description": "A variable measured in-situ by a continuous autonomous sensor (e.g., temperature, salinity, conductivity, pressure from a deployed sonde or underway system). Use this class for generic measured variables that do not fall under a specific category (pH, TA, DIC, CO2, sediment). For those, use the type-specific subclass instead (e.g., ContinuousPHVariable). Set variable_type to \"other\", genesis to \"measured\", and sampling to \"continuous\".",
             "properties": {
                 "analyzing_instrument": {
                     "anyOf": [
@@ -1076,7 +1076,8 @@
                     ]
                 },
                 "genesis": {
-                    "$ref": "#/$defs/GenesisType"
+                    "const": "measured",
+                    "type": "string"
                 },
                 "long_name": {
                     "description": "Full descriptive name of the variable.",
@@ -1151,7 +1152,8 @@
                     "type": "string"
                 },
                 "sampling": {
-                    "$ref": "#/$defs/SamplingType"
+                    "const": "continuous",
+                    "type": "string"
                 },
                 "sampling_instrument_type": {
                     "$ref": "#/$defs/SamplingInstrumentType",
@@ -1174,10 +1176,7 @@
                     "enum": [
                         "ContinuousMeasuredVariable"
                     ],
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 },
                 "standard_identifier": {
                     "anyOf": [
@@ -1217,13 +1216,14 @@
                 "analyzing_method",
                 "observation_type",
                 "sampling",
-                "genesis",
                 "sampling_instrument_type",
                 "qc_steps_taken",
                 "uncertainty",
                 "uncertainty_definition",
                 "missing_value_indicators",
+                "genesis",
                 "units",
+                "schema_class",
                 "variable_type",
                 "dataset_variable_name",
                 "long_name"
@@ -1301,7 +1301,8 @@
                     ]
                 },
                 "genesis": {
-                    "$ref": "#/$defs/GenesisType"
+                    "const": "measured",
+                    "type": "string"
                 },
                 "long_name": {
                     "description": "Full descriptive name of the variable.",
@@ -1376,7 +1377,8 @@
                     "type": "string"
                 },
                 "sampling": {
-                    "$ref": "#/$defs/SamplingType"
+                    "const": "continuous",
+                    "type": "string"
                 },
                 "sampling_instrument_type": {
                     "$ref": "#/$defs/SamplingInstrumentType",
@@ -1399,10 +1401,7 @@
                     "enum": [
                         "ContinuousPHVariable"
                     ],
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 },
                 "standard_identifier": {
                     "anyOf": [
@@ -1430,9 +1429,10 @@
                     "type": "string"
                 },
                 "variable_type": {
-                    "$ref": "#/$defs/VariableType",
+                    "const": "pH",
                     "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
-                    "title": "Variable Type"
+                    "title": "Variable Type",
+                    "type": "string"
                 }
             },
             "required": [
@@ -1442,13 +1442,14 @@
                 "analyzing_method",
                 "observation_type",
                 "sampling",
-                "genesis",
                 "sampling_instrument_type",
                 "qc_steps_taken",
                 "uncertainty",
                 "uncertainty_definition",
                 "missing_value_indicators",
+                "genesis",
                 "units",
+                "schema_class",
                 "variable_type",
                 "dataset_variable_name",
                 "long_name"
@@ -1521,7 +1522,8 @@
                     ]
                 },
                 "genesis": {
-                    "$ref": "#/$defs/GenesisType"
+                    "const": "measured",
+                    "type": "string"
                 },
                 "long_name": {
                     "description": "Full descriptive name of the variable.",
@@ -1596,7 +1598,8 @@
                     "type": "string"
                 },
                 "sampling": {
-                    "$ref": "#/$defs/SamplingType"
+                    "const": "continuous",
+                    "type": "string"
                 },
                 "sampling_instrument_type": {
                     "$ref": "#/$defs/SamplingInstrumentType",
@@ -1619,10 +1622,7 @@
                     "enum": [
                         "ContinuousSedimentVariable"
                     ],
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 },
                 "sediment_sampling_depth": {
                     "description": "Depth that sediment was collected below sediment surface. If provided as a variable (recommended), please list the column header name here.",
@@ -1670,9 +1670,10 @@
                     "type": "string"
                 },
                 "variable_type": {
-                    "$ref": "#/$defs/VariableType",
+                    "const": "sediment",
                     "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
-                    "title": "Variable Type"
+                    "title": "Variable Type",
+                    "type": "string"
                 }
             },
             "required": [
@@ -1686,13 +1687,14 @@
                 "analyzing_method",
                 "observation_type",
                 "sampling",
-                "genesis",
                 "sampling_instrument_type",
                 "qc_steps_taken",
                 "uncertainty",
                 "uncertainty_definition",
                 "missing_value_indicators",
+                "genesis",
                 "units",
+                "schema_class",
                 "variable_type",
                 "dataset_variable_name",
                 "long_name"
@@ -1775,7 +1777,8 @@
                     ]
                 },
                 "genesis": {
-                    "$ref": "#/$defs/GenesisType"
+                    "const": "measured",
+                    "type": "string"
                 },
                 "long_name": {
                     "description": "Full descriptive name of the variable.",
@@ -1850,7 +1853,8 @@
                     "type": "string"
                 },
                 "sampling": {
-                    "$ref": "#/$defs/SamplingType"
+                    "const": "continuous",
+                    "type": "string"
                 },
                 "sampling_instrument_type": {
                     "$ref": "#/$defs/SamplingInstrumentType",
@@ -1873,10 +1877,7 @@
                     "enum": [
                         "ContinuousTAVariable"
                     ],
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 },
                 "standard_identifier": {
                     "anyOf": [
@@ -1904,9 +1905,10 @@
                     "type": "string"
                 },
                 "variable_type": {
-                    "$ref": "#/$defs/VariableType",
+                    "const": "ta",
                     "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
-                    "title": "Variable Type"
+                    "title": "Variable Type",
+                    "type": "string"
                 }
             },
             "required": [
@@ -1917,13 +1919,14 @@
                 "analyzing_method",
                 "observation_type",
                 "sampling",
-                "genesis",
                 "sampling_instrument_type",
                 "qc_steps_taken",
                 "uncertainty",
                 "uncertainty_definition",
                 "missing_value_indicators",
+                "genesis",
                 "units",
+                "schema_class",
                 "variable_type",
                 "dataset_variable_name",
                 "long_name"
@@ -2108,7 +2111,8 @@
                     ]
                 },
                 "genesis": {
-                    "$ref": "#/$defs/GenesisType"
+                    "const": "measured",
+                    "type": "string"
                 },
                 "headspace_volume": {
                     "description": "Volume (in mL) of headspace (water displaced in the flask plus volume of the tubing).",
@@ -2191,7 +2195,8 @@
                     "type": "string"
                 },
                 "sampling": {
-                    "$ref": "#/$defs/SamplingType"
+                    "const": "discrete",
+                    "type": "string"
                 },
                 "sampling_instrument_type": {
                     "$ref": "#/$defs/SamplingInstrumentType",
@@ -2214,10 +2219,7 @@
                     "enum": [
                         "DiscreteCO2Variable"
                     ],
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 },
                 "seawater_volume": {
                     "description": "Volume (in mL) of seawater in the flask.",
@@ -2266,9 +2268,10 @@
                     "type": "string"
                 },
                 "variable_type": {
-                    "$ref": "#/$defs/VariableType",
+                    "const": "co2",
                     "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
-                    "title": "Variable Type"
+                    "title": "Variable Type",
+                    "type": "string"
                 },
                 "water_vapor_correction_method": {
                     "description": "How the water vapor pressure inside the equilibrator was determined.",
@@ -2288,13 +2291,14 @@
                 "analyzing_method",
                 "observation_type",
                 "sampling",
-                "genesis",
                 "sampling_instrument_type",
                 "qc_steps_taken",
                 "uncertainty",
                 "uncertainty_definition",
                 "missing_value_indicators",
+                "genesis",
                 "units",
+                "schema_class",
                 "variable_type",
                 "dataset_variable_name",
                 "long_name"
@@ -2361,7 +2365,8 @@
                     ]
                 },
                 "genesis": {
-                    "$ref": "#/$defs/GenesisType"
+                    "const": "measured",
+                    "type": "string"
                 },
                 "long_name": {
                     "description": "Full descriptive name of the variable.",
@@ -2436,7 +2441,8 @@
                     "title": "Sample preservation"
                 },
                 "sampling": {
-                    "$ref": "#/$defs/SamplingType"
+                    "const": "discrete",
+                    "type": "string"
                 },
                 "sampling_instrument_type": {
                     "$ref": "#/$defs/SamplingInstrumentType",
@@ -2459,10 +2465,7 @@
                     "enum": [
                         "DiscreteDICVariable"
                     ],
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 },
                 "standard_identifier": {
                     "anyOf": [
@@ -2490,9 +2493,10 @@
                     "type": "string"
                 },
                 "variable_type": {
-                    "$ref": "#/$defs/VariableType",
+                    "const": "dic",
                     "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
-                    "title": "Variable Type"
+                    "title": "Variable Type",
+                    "type": "string"
                 }
             },
             "required": [
@@ -2504,13 +2508,14 @@
                 "analyzing_method",
                 "observation_type",
                 "sampling",
-                "genesis",
                 "sampling_instrument_type",
                 "qc_steps_taken",
                 "uncertainty",
                 "uncertainty_definition",
                 "missing_value_indicators",
+                "genesis",
                 "units",
+                "schema_class",
                 "variable_type",
                 "dataset_variable_name",
                 "long_name"
@@ -2520,7 +2525,7 @@
         },
         "DiscreteMeasuredVariable": {
             "additionalProperties": false,
-            "description": "Analyzing instrument information fields, only applied to discretely measured variables. The instrument type can be narrowed in subclasses using slot_usage.",
+            "description": "A variable measured in-situ from discrete water samples (e.g., bottle samples analyzed in a lab or shipboard). Use this class for generic measured variables that do not fall under a specific category (pH, TA, DIC, CO2, sediment, HPLC). For those, use the type-specific subclass instead (e.g., DiscretePHVariable). Set variable_type to \"other\", genesis to \"measured\", and sampling to \"discrete\".",
             "properties": {
                 "analyzing_instrument": {
                     "anyOf": [
@@ -2575,7 +2580,8 @@
                     ]
                 },
                 "genesis": {
-                    "$ref": "#/$defs/GenesisType"
+                    "const": "measured",
+                    "type": "string"
                 },
                 "long_name": {
                     "description": "Full descriptive name of the variable.",
@@ -2645,7 +2651,8 @@
                     "type": "string"
                 },
                 "sampling": {
-                    "$ref": "#/$defs/SamplingType"
+                    "const": "discrete",
+                    "type": "string"
                 },
                 "sampling_instrument_type": {
                     "$ref": "#/$defs/SamplingInstrumentType",
@@ -2668,10 +2675,7 @@
                     "enum": [
                         "DiscreteMeasuredVariable"
                     ],
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 },
                 "standard_identifier": {
                     "anyOf": [
@@ -2710,13 +2714,14 @@
                 "analyzing_method",
                 "observation_type",
                 "sampling",
-                "genesis",
                 "sampling_instrument_type",
                 "qc_steps_taken",
                 "uncertainty",
                 "uncertainty_definition",
                 "missing_value_indicators",
+                "genesis",
                 "units",
+                "schema_class",
                 "variable_type",
                 "dataset_variable_name",
                 "long_name"
@@ -2773,7 +2778,8 @@
                     ]
                 },
                 "genesis": {
-                    "$ref": "#/$defs/GenesisType"
+                    "const": "measured",
+                    "type": "string"
                 },
                 "long_name": {
                     "description": "Full descriptive name of the variable.",
@@ -2853,7 +2859,8 @@
                     "type": "string"
                 },
                 "sampling": {
-                    "$ref": "#/$defs/SamplingType"
+                    "const": "discrete",
+                    "type": "string"
                 },
                 "sampling_instrument_type": {
                     "$ref": "#/$defs/SamplingInstrumentType",
@@ -2876,10 +2883,7 @@
                     "enum": [
                         "DiscretePHVariable"
                     ],
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 },
                 "standard_identifier": {
                     "anyOf": [
@@ -2915,9 +2919,10 @@
                     "type": "string"
                 },
                 "variable_type": {
-                    "$ref": "#/$defs/VariableType",
+                    "const": "pH",
                     "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
-                    "title": "Variable Type"
+                    "title": "Variable Type",
+                    "type": "string"
                 }
             },
             "required": [
@@ -2928,13 +2933,14 @@
                 "analyzing_method",
                 "observation_type",
                 "sampling",
-                "genesis",
                 "sampling_instrument_type",
                 "qc_steps_taken",
                 "uncertainty",
                 "uncertainty_definition",
                 "missing_value_indicators",
+                "genesis",
                 "units",
+                "schema_class",
                 "variable_type",
                 "dataset_variable_name",
                 "long_name"
@@ -2999,7 +3005,8 @@
                     ]
                 },
                 "genesis": {
-                    "$ref": "#/$defs/GenesisType"
+                    "const": "measured",
+                    "type": "string"
                 },
                 "long_name": {
                     "description": "Full descriptive name of the variable.",
@@ -3069,7 +3076,8 @@
                     "type": "string"
                 },
                 "sampling": {
-                    "$ref": "#/$defs/SamplingType"
+                    "const": "discrete",
+                    "type": "string"
                 },
                 "sampling_instrument_type": {
                     "$ref": "#/$defs/SamplingInstrumentType",
@@ -3092,10 +3100,7 @@
                     "enum": [
                         "DiscreteSedimentVariable"
                     ],
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 },
                 "sediment_sampling_depth": {
                     "description": "Depth that sediment was collected below sediment surface. If provided as a variable (recommended), please list the column header name here.",
@@ -3143,9 +3148,10 @@
                     "type": "string"
                 },
                 "variable_type": {
-                    "$ref": "#/$defs/VariableType",
+                    "const": "sediment",
                     "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
-                    "title": "Variable Type"
+                    "title": "Variable Type",
+                    "type": "string"
                 }
             },
             "required": [
@@ -3158,13 +3164,14 @@
                 "analyzing_method",
                 "observation_type",
                 "sampling",
-                "genesis",
                 "sampling_instrument_type",
                 "qc_steps_taken",
                 "uncertainty",
                 "uncertainty_definition",
                 "missing_value_indicators",
+                "genesis",
                 "units",
+                "schema_class",
                 "variable_type",
                 "dataset_variable_name",
                 "long_name"
@@ -3239,7 +3246,8 @@
                     ]
                 },
                 "genesis": {
-                    "$ref": "#/$defs/GenesisType"
+                    "const": "measured",
+                    "type": "string"
                 },
                 "long_name": {
                     "description": "Full descriptive name of the variable.",
@@ -3314,7 +3322,8 @@
                     "title": "Sample preservation"
                 },
                 "sampling": {
-                    "$ref": "#/$defs/SamplingType"
+                    "const": "discrete",
+                    "type": "string"
                 },
                 "sampling_instrument_type": {
                     "$ref": "#/$defs/SamplingInstrumentType",
@@ -3337,10 +3346,7 @@
                     "enum": [
                         "DiscreteTAVariable"
                     ],
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 },
                 "standard_identifier": {
                     "anyOf": [
@@ -3378,9 +3384,10 @@
                     "type": "string"
                 },
                 "variable_type": {
-                    "$ref": "#/$defs/VariableType",
+                    "const": "ta",
                     "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
-                    "title": "Variable Type"
+                    "title": "Variable Type",
+                    "type": "string"
                 }
             },
             "required": [
@@ -3393,13 +3400,14 @@
                 "analyzing_method",
                 "observation_type",
                 "sampling",
-                "genesis",
                 "sampling_instrument_type",
                 "qc_steps_taken",
                 "uncertainty",
                 "uncertainty_definition",
                 "missing_value_indicators",
+                "genesis",
                 "units",
+                "schema_class",
                 "variable_type",
                 "dataset_variable_name",
                 "long_name"
@@ -3765,12 +3773,6 @@
                                 "$ref": "#/$defs/NonMeasuredVariable"
                             },
                             {
-                                "$ref": "#/$defs/InSituVariable"
-                            },
-                            {
-                                "$ref": "#/$defs/MeasuredVariable"
-                            },
-                            {
                                 "$ref": "#/$defs/CalculatedVariable"
                             },
                             {
@@ -3953,7 +3955,8 @@
                     ]
                 },
                 "genesis": {
-                    "$ref": "#/$defs/GenesisType"
+                    "const": "measured",
+                    "type": "string"
                 },
                 "hplc_lab": {
                     "description": "The name of the lab where the HPLC analysis was run (e.g., 'NASA_GSFC'",
@@ -4036,7 +4039,8 @@
                     "type": "string"
                 },
                 "sampling": {
-                    "$ref": "#/$defs/SamplingType"
+                    "const": "discrete",
+                    "type": "string"
                 },
                 "sampling_instrument_type": {
                     "$ref": "#/$defs/SamplingInstrumentType",
@@ -4059,10 +4063,7 @@
                     "enum": [
                         "HPLCVariable"
                     ],
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 },
                 "standard_identifier": {
                     "anyOf": [
@@ -4090,9 +4091,10 @@
                     "type": "string"
                 },
                 "variable_type": {
-                    "$ref": "#/$defs/VariableType",
+                    "const": "hplc",
                     "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
-                    "title": "Variable Type"
+                    "title": "Variable Type",
+                    "type": "string"
                 }
             },
             "required": [
@@ -4102,13 +4104,14 @@
                 "analyzing_method",
                 "observation_type",
                 "sampling",
-                "genesis",
                 "sampling_instrument_type",
                 "qc_steps_taken",
                 "uncertainty",
                 "uncertainty_definition",
                 "missing_value_indicators",
+                "genesis",
                 "units",
+                "schema_class",
                 "variable_type",
                 "dataset_variable_name",
                 "long_name"
@@ -4316,104 +4319,6 @@
                 "start_datetime"
             ],
             "title": "InSituExperiment",
-            "type": "object"
-        },
-        "InSituVariable": {
-            "additionalProperties": false,
-            "description": "Base class for project-acquired variables (measured or calculated in-situ). Reference: OAPMetadata XSD variables.xsd - insitu_variable",
-            "properties": {
-                "dataset_variable_name": {
-                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
-                    "title": "Dataset variable name",
-                    "type": "string"
-                },
-                "dataset_variable_name_qc_flag": {
-                    "description": "If applicable, the column header name used for the quality control flag corresponding to this variable.",
-                    "title": "Dataset variable name (Quality Flag)",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "dataset_variable_name_raw": {
-                    "description": "If applicable, the column header name used for the raw data corresponding to this variable.",
-                    "title": "Dataset variable name (raw)",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "long_name": {
-                    "description": "Full descriptive name of the variable.",
-                    "title": "Variable full name",
-                    "type": "string"
-                },
-                "measurement_researcher": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Person"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "The name of the PI whose research team measured or derived this parameter.",
-                    "title": "Researcher who measured the variable"
-                },
-                "method_reference": {
-                    "description": "Citation for the method used.",
-                    "title": "Method Reference",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "other_detailed_information": {
-                    "description": "Any additional information about this variable.",
-                    "title": "Other Detailed Information",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "schema_class": {
-                    "description": "The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.",
-                    "enum": [
-                        "InSituVariable"
-                    ],
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "standard_identifier": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/VocabularyItemReference"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ]
-                },
-                "units": {
-                    "description": "Unit of measurement for this variable.",
-                    "title": "Unit",
-                    "type": "string"
-                },
-                "variable_type": {
-                    "$ref": "#/$defs/VariableType",
-                    "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
-                    "title": "Variable Type"
-                }
-            },
-            "required": [
-                "units",
-                "variable_type",
-                "dataset_variable_name",
-                "long_name"
-            ],
-            "title": "InSituVariable",
             "type": "object"
         },
         "Intervention": {
@@ -5031,212 +4936,6 @@
             ],
             "title": "MassConcentrationUnit",
             "type": "string"
-        },
-        "MeasuredVariable": {
-            "additionalProperties": false,
-            "description": "Variable that is directly measured in-situ using instruments. Reference: OAPMetadata XSD variables.xsd - basic_measured_observation_base",
-            "properties": {
-                "analyzing_instrument": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/AnalyzingInstrument"
-                        },
-                        {
-                            "$ref": "#/$defs/PHInstrument"
-                        },
-                        {
-                            "$ref": "#/$defs/CRMInstrument"
-                        },
-                        {
-                            "$ref": "#/$defs/CO2GasDetector"
-                        }
-                    ],
-                    "description": "Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.",
-                    "title": "Analyzing instrument"
-                },
-                "analyzing_method": {
-                    "description": "Additional information describing how the sample was analyzed. DOIs provided as applicable.",
-                    "title": "Analyzing Method",
-                    "type": "string"
-                },
-                "dataset_variable_name": {
-                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
-                    "title": "Dataset variable name",
-                    "type": "string"
-                },
-                "dataset_variable_name_qc_flag": {
-                    "description": "If applicable, the column header name used for the quality control flag corresponding to this variable.",
-                    "title": "Dataset variable name (Quality Flag)",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "dataset_variable_name_raw": {
-                    "description": "If applicable, the column header name used for the raw data corresponding to this variable.",
-                    "title": "Dataset variable name (raw)",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "field_replicate_information": {
-                    "description": "Repetition of sample collection and measurement, e.g., triplicate samples.",
-                    "title": "Field replicate information",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "genesis": {
-                    "$ref": "#/$defs/GenesisType"
-                },
-                "long_name": {
-                    "description": "Full descriptive name of the variable.",
-                    "title": "Variable full name",
-                    "type": "string"
-                },
-                "measurement_researcher": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Person"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "The name of the PI whose research team measured or derived this parameter.",
-                    "title": "Researcher who measured the variable"
-                },
-                "method_reference": {
-                    "description": "Citation for the method used.",
-                    "title": "Method Reference",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "missing_value_indicators": {
-                    "description": "The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.",
-                    "title": "Missing value indicators",
-                    "type": "string"
-                },
-                "observation_type": {
-                    "$ref": "#/$defs/ObservationType",
-                    "title": "Observation Type"
-                },
-                "other_detailed_information": {
-                    "description": "Any additional information about this variable.",
-                    "title": "Other Detailed Information",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "qc_researcher": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Person"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
-                    "description": "The name of the PI whose research team QCed this parameter.",
-                    "title": "Researcher who QCed this variable"
-                },
-                "qc_researcher_institution": {
-                    "description": "The institution of the PI whose research team QCed this parameter.",
-                    "title": "QC Researcher Institution",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "qc_steps_taken": {
-                    "description": "Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).\nIf quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.",
-                    "title": "QC steps taken",
-                    "type": "string"
-                },
-                "sampling": {
-                    "$ref": "#/$defs/SamplingType"
-                },
-                "sampling_instrument_type": {
-                    "$ref": "#/$defs/SamplingInstrumentType",
-                    "title": "Sampling instrument type"
-                },
-                "sampling_instrument_type_custom": {
-                    "title": "Sampling instrument type (custom)",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "sampling_method": {
-                    "description": "Method used to collect samples.",
-                    "title": "Sampling Method",
-                    "type": "string"
-                },
-                "schema_class": {
-                    "description": "The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.",
-                    "enum": [
-                        "MeasuredVariable"
-                    ],
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "standard_identifier": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/VocabularyItemReference"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ]
-                },
-                "uncertainty": {
-                    "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.\nIf uncertainty is provided as a variable, please list the column header name here.",
-                    "title": "Uncertainty",
-                    "type": "string"
-                },
-                "uncertainty_definition": {
-                    "description": "A description of the uncertainties involved in this method.",
-                    "title": "How was the uncertainty defined",
-                    "type": "string"
-                },
-                "units": {
-                    "description": "Unit of measurement for this variable.",
-                    "title": "Unit",
-                    "type": "string"
-                },
-                "variable_type": {
-                    "$ref": "#/$defs/VariableType",
-                    "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
-                    "title": "Variable Type"
-                }
-            },
-            "required": [
-                "analyzing_instrument",
-                "sampling_method",
-                "analyzing_method",
-                "observation_type",
-                "sampling",
-                "genesis",
-                "sampling_instrument_type",
-                "qc_steps_taken",
-                "uncertainty",
-                "uncertainty_definition",
-                "missing_value_indicators",
-                "units",
-                "variable_type",
-                "dataset_variable_name",
-                "long_name"
-            ],
-            "title": "MeasuredVariable",
-            "type": "object"
         },
         "Model": {
             "additionalProperties": false,
@@ -5939,7 +5638,7 @@
         },
         "NonMeasuredVariable": {
             "additionalProperties": false,
-            "description": "Non-measured variable for data from external sources (e.g., satellite, model outputs, published data) that are not directly measured by the project but included in the dataset.",
+            "description": "A contextual or ancillary variable that is NOT directly measured or calculated by the project. Use for identifiers (Cruise_ID, Exp_ID), timestamps (Year_UTC, Time_UTC), coordinates (Latitude, Longitude), and any other data included in the dataset for context. Do NOT create a NonMeasuredVariable for quality control flag columns \u2014 instead, set dataset_variable_name_qc_flag on the parent measured or calculated variable that the flag relates to. variable_type must be \"non_measured\".",
             "properties": {
                 "dataset_variable_name": {
                     "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
@@ -5956,10 +5655,7 @@
                     "enum": [
                         "NonMeasuredVariable"
                     ],
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": "string"
                 },
                 "standard_identifier": {
                     "anyOf": [
@@ -5980,12 +5676,14 @@
                     ]
                 },
                 "variable_type": {
-                    "$ref": "#/$defs/VariableType",
+                    "const": "non_measured",
                     "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
-                    "title": "Variable Type"
+                    "title": "Variable Type",
+                    "type": "string"
                 }
             },
             "required": [
+                "schema_class",
                 "variable_type",
                 "dataset_variable_name",
                 "long_name"
@@ -7111,7 +6809,7 @@
             "type": "string"
         },
         "VariableType": {
-            "description": "High-level classification of the variable",
+            "description": "High-level classification of the variable. Determines which schema class to use in combination with genesis (measured/calculated) and sampling (discrete/continuous).",
             "enum": [
                 "pH",
                 "ta",
