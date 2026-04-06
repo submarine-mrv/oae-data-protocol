@@ -26,7 +26,7 @@ Some projects and data standards initiatives that we actively seek alignment wit
 
 - **[NOAA OCADS / OAPMetadata](https://github.com/NOAA-PMEL/OAPMetadata)** — Our variable and instrument class hierarchy is modeled after NOAA-PMEL's OAPMetadata XSD schema, ensuring compatibility with the [Ocean Carbon and Acidification Data System](https://www.ncei.noaa.gov/products/ocean-carbon-acidification-data-system) at NCEI.
 - **[NERC Vocabulary Server](https://vocab.nerc.ac.uk/)** — We use NERC SKOS vocabularies for sea names (C16), platform types (L06), instrument types (L05/L22), and standard variable identifiers (P01).
-- **[CF Conventions](https://cfconventions.org/)** — For netCDF datasets, we encourage alignment with CF Standard Names and related conventions
+- **[CF Conventions](https://cfconventions.org/)** — For netCDF datasets, we encourage alignment with CF Standard Names and related conventions.
 - **[science-on-schema.org](https://science-on-schema.org/)** — Many general purpose fields in our schema (Person, Place, Organization) map to Schema.org terms to support dataset discoverability through standardized web metadata.
 
 If you work with a data standard, vocabulary, or ontology that you think the protocol should map to, we'd love to hear about it. Please [open an issue](https://github.com/submarine-mrv/oae-data-protocol/issues) describing the standard, how your community uses it, and where you see alignment opportunities — or reach out to [data@carbontosea.org](mailto:data@carbontosea.org).

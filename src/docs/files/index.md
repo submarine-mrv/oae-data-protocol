@@ -3,7 +3,7 @@
 Machine-readable schema definitions for the [OAE Data Management Protocol](https://www.carbontosea.org/oae-data-protocol/1-0-0/), developed by [Carbon To Sea](https://carbontosea.org) in collaboration with [Submarine Scientific](https://submarine.earth), NOAA, and the broader OAE research community.
 
 !!! warning "Alpha Software"
-These schemas are under active development. We do not currently guarantee backwards compatibility between versions.
+    These schemas are under active development. We do not currently guarantee backwards compatibility between versions.
 
 ## What is this?
 
@@ -23,7 +23,7 @@ column header names, see the [published protocol](https://www.carbontosea.org/oa
 ### Published Artifacts & Resources
 - [OAE Metadata Builder](https://github.com/submarine-mrv/oae-metadata-builder) — Web app for creating and managing JSON metadata files
 - [JSON Schema](https://github.com/submarine-mrv/oae-data-protocol/blob/main/project/jsonschema/oae_data_protocol.schema.json) — Machine readable schemas used for validation
-- [LinkML Source Schema](https://github.com/submarine-mrv/oae-data-protocol/tree/main/src/oae_data_protocol/schema) — The source of truth for generating all schema artifacts and docuemntation (contributors should only edit these files)
+- [LinkML Source Schema](https://github.com/submarine-mrv/oae-data-protocol/tree/main/src/oae_data_protocol/schema) — The source of truth for generating all schema artifacts and documentation (contributors should only edit these files)
 - [Python Dataclasses](https://github.com/submarine-mrv/oae-data-protocol/blob/main/src/oae_data_protocol/datamodel/oae_data_protocol.py) — For managing metadata directly in Python workflows (WIP)
 
 ## Built with LinkML to support FAIR data practices
