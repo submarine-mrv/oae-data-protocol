@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-04-03T16:47:58
+# Generation date: 2026-04-06T13:42:59
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -1255,10 +1255,10 @@ class Variable(YAMLRoot):
 class NonMeasuredVariable(Variable):
     """
     A contextual or ancillary variable that is NOT directly measured or calculated by the project. Use for identifiers
-    (Cruise_ID, Exp_ID), timestamps (Year_UTC, Time_UTC), coordinates (Latitude, Longitude), depth labels, and any
-    other data from external sources (satellite, model outputs, published data) included in the dataset for context.
-    Do NOT create a NonMeasuredVariable for quality control flag columns — instead, set dataset_variable_name_qc_flag
-    on the parent measured or calculated variable that the flag relates to. variable_type must be "non_measured".
+    (Cruise_ID, Exp_ID), timestamps (Year_UTC, Time_UTC), coordinates (Latitude, Longitude), and any other data
+    included in the dataset for context. Do NOT create a NonMeasuredVariable for quality control flag columns —
+    instead, set dataset_variable_name_qc_flag on the parent measured or calculated variable that the flag relates to.
+    variable_type must be "non_measured".
     """
     _inherited_slots: ClassVar[List[str]] = []
 
@@ -1517,9 +1517,8 @@ class ContinuousMeasuredVariable(MeasuredVariable):
 class CalculatedVariable(InSituVariable):
     """
     A variable that is calculated or derived from other measured variables rather than directly measured by an
-    instrument (e.g., salinity derived from conductivity, carbonate system parameters computed via CO2SYS). Set
-    genesis to "calculated". The variable_type should reflect the quantity being calculated (e.g., "pH", "ta", "dic",
-    "co2", or "other").
+    instrument (e.g., carbonate system parameters computed via CO2SYS). Set genesis to "calculated". The variable_type
+    should reflect the quantity being calculated (e.g., "pH", "ta", "dic", "co2", or "other").
     """
     _inherited_slots: ClassVar[List[str]] = []
 
