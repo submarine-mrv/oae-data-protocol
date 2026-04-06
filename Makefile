@@ -224,7 +224,7 @@ $(DOCDIR):
 
 gendoc: $(DOCDIR)
 	$(RUN) gen-doc ${GEN_DOC_ARGS} -d $(DOCDIR) $(SOURCE_SCHEMA_PATH)
-	mv $(DOCDIR)/index.md $(DOCDIR)/schema_index.md
+	mv $(DOCDIR)/index.md $(DOCDIR)/OAEDataSchema.md
 	cp -rf $(SRC)/docs/files/* $(DOCDIR)
 	cp $(DEST)/jsonld/context.jsonld $(DOCDIR)/context.jsonld
 	@# Create section directories with index pages for navigation.indexes

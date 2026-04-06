@@ -68,7 +68,7 @@ nav:
     - CO2GasDetector: CO2GasDetector.md
     - Calibration: Calibration.md
   - Controlled Vocabularies: vocabularies.md
-  - Full Schema Index: schema_index.md
+  - Full Schema Index: OAEDataSchema.md
 
 extra_javascript:
   - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
