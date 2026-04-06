@@ -592,7 +592,7 @@ export enum VariableType {
     hplc = "hplc",
     /** Any directly measured or calculated variable that does not fall into a specific category above (e.g., temperature, salinity, conductivity, pressure, fluorescence). Use with DiscreteMeasuredVariable, ContinuousMeasuredVariable, or CalculatedVariable. */
     other = "other",
-    /** Contextual or ancillary columns that are not directly measured or calculated by the project — identifiers, timestamps, coordinates, depth labels, and external source data. QC flag columns should NOT be listed as separate variables; instead set dataset_variable_name_qc_flag on the parent variable. Use only with NonMeasuredVariable. */
+    /** Contextual or ancillary columns that are not directly measured or calculated by the project — identifiers, timestamps, coordinates and external source data. QC flag columns should NOT be listed as separate variables; instead set dataset_variable_name_qc_flag on the parent variable. Use only with NonMeasuredVariable. */
     non_measured = "non_measured",
 };
 

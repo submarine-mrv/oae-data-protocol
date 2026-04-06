@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-04-06T13:47:56
+# Generation date: 2026-04-06T13:57:48
 # Schema: OAEDataManagementProtocol
 #
 # id: OAEDataManagementProtocol
@@ -4529,7 +4529,7 @@ class VariableType(EnumDefinitionImpl):
         description="""Any directly measured or calculated variable that does not fall into a specific category above (e.g., temperature, salinity, conductivity, pressure, fluorescence). Use with DiscreteMeasuredVariable, ContinuousMeasuredVariable, or CalculatedVariable.""")
     non_measured = PermissibleValue(
         text="non_measured",
-        description="""Contextual or ancillary columns that are not directly measured or calculated by the project — identifiers, timestamps, coordinates, depth labels, and external source data. QC flag columns should NOT be listed as separate variables; instead set dataset_variable_name_qc_flag on the parent variable. Use only with NonMeasuredVariable.""")
+        description="""Contextual or ancillary columns that are not directly measured or calculated by the project — identifiers, timestamps, coordinates and external source data. QC flag columns should NOT be listed as separate variables; instead set dataset_variable_name_qc_flag on the parent variable. Use only with NonMeasuredVariable.""")
 
     _defn = EnumDefinition(
         name="VariableType",
