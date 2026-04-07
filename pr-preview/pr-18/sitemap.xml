@@ -2,1386 +2,1386 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://schema.oaedata.org/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/AlkalinityFeedstockForm/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/AlkalinityFeedstockProcessing/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/AnalyzingInstrument/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/AnalyzingInstrumentType/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/Any/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/AppropriateUseQuality/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/Boolean/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/CO2Calibration/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/CO2GasDetector/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/CRMCalibration/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/CRMInstrument/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/CalculatedVariable/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/Calibration/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/CalibrationLocation/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/ConcentrationBasis/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/Container/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/ContinuousDICVariable/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/ContinuousMeasuredVariable/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/ContinuousPHVariable/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/ContinuousSedimentVariable/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/ContinuousTAVariable/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/Curie/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/DataProductType/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/Dataset/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/DatasetType/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/Date/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/DateOrDatetime/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/Datetime/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/Decimal/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/DiscreteCO2Variable/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/DiscreteDICVariable/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/DiscreteMeasuredVariable/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/DiscretePHVariable/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/DiscreteSedimentVariable/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/DiscreteTAVariable/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/Doi/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/DosingConcentration/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/DosingDeliveryType/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/DosingDetails/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/DosingLocation/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/Double/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/EquilibrationStatus/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/Experiment/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/ExperimentType/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/ExternalProject/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/FeedstockType/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/FieldDataset/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/Float/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/GenesisType/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/GeoCoordinates/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/GeoShape/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/GridType/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/HPLCVariable/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/HardwareConfiguration/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/HydrologicLocation/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/InSituExperiment/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/InSituVariable/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/Integer/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/Intervention/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/InterventionDetails/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/InterventionWithTracer/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/Jsonpath/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/Jsonpointer/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/MCDRPathway/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/MassConcentrationUnit/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/MeasuredCO2Fields/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/MeasuredDICFields/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/MeasuredPHFields/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/MeasuredSedimentFields/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/MeasuredTAFields/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/MeasuredVariable/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/Model/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/ModelComponent/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/ModelComponentType/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/ModelGrid/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/ModelInputDetails/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/ModelOutputDataset/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/ModelOutputVariable/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/MonetaryGrant/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/NamedLink/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/Ncname/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/Nodeidentifier/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/NonMeasuredVariable/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/OAEDataSchema/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/Objectidentifier/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/ObservationType/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/Organization/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/PHCalibration/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/PHInstrument/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/Permit/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/Person/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/Place/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/Platform/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/PlatformType/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/Project/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/PropertyValue/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/QCFields/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/ResearcherIDType/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/SamplePreservation/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/SamplingInstrumentType/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/SamplingType/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/SeaNames/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/SimulationType/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/Sparqlpath/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/SpatialCoverage/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/StandardGas/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/String/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/Time/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/TitrationCellType/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/Tracer/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/TracerDetails/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/TracerForm/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/Uri/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/Uriorcurie/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/Variable/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/VariableType/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/VerticalExtent/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/VocabularyItemReference/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/accuracy/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/additional_details/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/affiliation/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/agency_contact/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/alkalinity_dosing_effluent_density/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/alkalinity_feedstock/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/alkalinity_feedstock_co2_removal_potential/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/alkalinity_feedstock_custom/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/alkalinity_feedstock_description/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/alkalinity_feedstock_form/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/alkalinity_feedstock_processing/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/alkalinity_feedstock_processing_custom/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/amount/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/analyzing_instrument/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/analyzing_method/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/appropriate_use_quality/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/approval_document/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/arrangement/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/atmospheric_forcing/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/author_list_for_citation/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/bathymetry/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/blank_correction/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/boundary_conditions/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/box/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/calculation_method_and_parameters/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/calculation_software_version/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/calibration/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/calibration_certificates/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/calibration_files/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/calibration_location/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/calibration_temperature/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/changes_to_evolution_of_permit_criteria/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/co2_reported_temperature/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/codebase/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/colocated_operations/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/concentration/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/concentration_basis/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/contributing/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/correction_description/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/correction_for_unpurified_dye/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/country/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/cpu_gpu_details/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/crm_batch_number/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/crm_manufacturer/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/curve_fitting_method/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/data_conflicts_and_unreported_data/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/data_product_type/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/data_submitter/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/dataset_type/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/dataset_type_custom/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/dataset_variable_name/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/dataset_variable_name_qc_flag/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/dataset_variable_name_raw/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/description/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/detector_type/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/dosing_delivery_type/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/dosing_depth/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/dosing_description/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/dosing_dispersal_hydrologic_location/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/dosing_location/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/dosing_location_file/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/dosing_regimen/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/dye_correction_method/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/dye_purified/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/dye_type_and_manufacturer/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/email/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/end_date/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/end_datetime/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/equilibration/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/experiment_id/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/experiment_leads/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/experiment_types/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/experiments/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/fair_use_data_request/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/field_replicate_information/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/filenames/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/frequency/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/funder/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/funding/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/genesis/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/geo/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/grid_details/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/grid_geometry/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/grid_name/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/grid_type/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/hardware_configuration/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/headspace_volume/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/horizontal_resolution_range/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/hplc_lab/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/hplc_lab_technician/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/identifier/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/identifier_type/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/initial_conditions/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/input_details/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/instrument_type/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/instrument_type_custom/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/is_derived_value/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/is_provided_as_a_file/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/last_calibration_date/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/latitude/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/license/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/line/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/long_name/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/longitude/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/machine/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/manufacturer/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/max_depth_in_m/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/max_height_in_m/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/mcdr_forcing_description/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/mcdr_pathway/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/measurement_researcher/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/measurement_temperature/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/memory/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/metadata-builder/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/metadata-format/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/metadata_builder_git_hash/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/meteorological_and_tidal_data/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/method_reference/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/min_depth_in_m/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/min_height_in_m/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/missing_value_indicators/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/model/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/model_component_type/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/model_component_type_custom/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/model_components/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/model_configuration/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/model_output_variables/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/n_nodes/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/n_x/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/n_y/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/n_z/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/name/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/observation_type/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/operating_system/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/other_detailed_information/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/output_frequency/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/owner/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/parallelization/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/permit_id/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/permit_type/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/permits/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/permitting_authority/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/ph_of_standards/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/ph_reported_temperature/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/phone/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/physical_site_description/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/platform_id/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/platform_info/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/platform_type/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/precision/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/preservative/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/previous_or_ongoing_colocated_research/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/processing_code/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/processing_of_input_data/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/project/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/project_id/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/project_leads/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/protocol_git_hash/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/public_comments/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/qc_flag_scheme/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/qc_researcher/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/qc_researcher_institution/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/qc_steps_taken/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/raw_data_calculation_method/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/references/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/region/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/related_links/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/research_project/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/resolution/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/river_sediment_flux_details/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/role/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/sample_preservation/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/sampling/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/sampling_instrument_type/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/sampling_instrument_type_custom/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/sampling_method/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/schema_class/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/sea_names/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/seawater_volume/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/sediment_sampling_depth/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/sediment_sampling_method/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/sediment_sampling_water_depth/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/sediment_type/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/serial_number/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/simulation_type/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/social_context_site_description/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/social_research_conducted_to_date/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/spatial_coverage/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/spin_up_protocol/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/standard_gas_info/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/standard_identifier/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/start_date/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/start_datetime/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/storage/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/storage_method/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/technique_description/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/temperature_correction_method/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/temporal_coverage/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/term/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/tidal_forcing/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/time_period/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/time_stepping_scheme/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/titration_cell_type/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/titration_type/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/tracer_concentration/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/tracer_details/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/tracer_form/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/tracer_form_custom/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/uncertainty/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/uncertainty_definition/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/unit/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/units/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/uri/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/url/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/variable_type/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/version/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/vertical_coordinate_type/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/vertical_coverage/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/vertical_resolution_range/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/vocabularies/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/volume/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/water_vapor_correction_method/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/datasets/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/getting-started/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/instruments-calibration/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/projects-experiments/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
     <url>
          <loc>https://schema.oaedata.org/variables/</loc>
-         <lastmod>2026-04-06</lastmod>
+         <lastmod>2026-04-07</lastmod>
     </url>
 </urlset>
