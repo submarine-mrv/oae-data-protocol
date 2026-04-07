@@ -125,7 +125,7 @@ gen-examples:
 
 # generates all project files
 
-gen-schemas: gen-project gen-validation-schema
+gen-schemas: gen-project gen-validation-schema gen-context
 
 gen-project: $(PYMODEL)
 	$(RUN) gen-project ${CONFIG_YAML} -d $(DEST) $(SOURCE_SCHEMA_PATH)
@@ -146,6 +146,10 @@ ifneq ($(strip ${GEN_TS_ARGS}),)
 	mkdir -p ${DEST}/typescript || true
 	$(RUN) gen-typescript ${GEN_TS_ARGS} $(SOURCE_SCHEMA_PATH) >${DEST}/typescript/${SCHEMA_NAME}.ts
 endif
+
+gen-context:
+	$(RUN) gen-jsonld-context $(SOURCE_SCHEMA_PATH) > $(DEST)/jsonld/context.jsonld
+	@echo "✓ Generated JSON-LD context"
 
 gen-validation-schema:
 	$(RUN) python -c "from linkml.generators.jsonschemagen import JsonSchemaGenerator; \
@@ -219,8 +223,17 @@ $(DOCDIR):
 	mkdir -p $@
 
 gendoc: $(DOCDIR)
-	cp -rf $(SRC)/docs/files/* $(DOCDIR) ; \
 	$(RUN) gen-doc ${GEN_DOC_ARGS} -d $(DOCDIR) $(SOURCE_SCHEMA_PATH)
+	mv $(DOCDIR)/index.md $(DOCDIR)/OAEDataSchema.md
+	cp -rf $(SRC)/docs/files/* $(DOCDIR)
+	cp $(DEST)/jsonld/context.jsonld $(DOCDIR)/context.jsonld
+	@# Create section directories with index pages for navigation.indexes
+	mkdir -p $(DOCDIR)/getting-started $(DOCDIR)/projects-experiments $(DOCDIR)/datasets $(DOCDIR)/variables $(DOCDIR)/instruments-calibration
+	mv $(DOCDIR)/getting-started.md $(DOCDIR)/getting-started/index.md
+	mv $(DOCDIR)/projects-experiments.md $(DOCDIR)/projects-experiments/index.md
+	mv $(DOCDIR)/datasets.md $(DOCDIR)/datasets/index.md
+	mv $(DOCDIR)/variables.md $(DOCDIR)/variables/index.md
+	mv $(DOCDIR)/instruments-calibration.md $(DOCDIR)/instruments-calibration/index.md
 
 testdoc: gendoc serve
 

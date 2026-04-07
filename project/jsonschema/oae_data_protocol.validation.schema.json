@@ -6894,7 +6894,7 @@
             "type": "object"
         }
     },
-    "$id": "OAEDataManagementProtocol",
+    "$id": "https://schema.oaedata.org/OAEDataSchema",
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": true,
     "description": "",
@@ -6979,7 +6979,7 @@
             ]
         }
     },
-    "title": "OAEDataManagementProtocol",
+    "title": "OAE Data Protocol - Technical Documentation",
     "type": "object",
     "version": "0.1.0"
 }

@@ -1,11 +1,11 @@
-id: OAEDataManagementProtocol
-name: OAEDataManagementProtocol
+id: https://schema.oaedata.org/OAEDataSchema
+name: OAEDataSchema
+title: "OAE Data Protocol - Technical Documentation"
 # todo:
 #   - "integrate with linkml-common for observation types"
 version: 0.1.0
 prefixes:
-  schema: "http://schema.org/"
-  oae: "https://example.org/oae#"
+  oae: "https://schema.oaedata.org/"
   linkml: "https://w3id.org/linkml/"
   dcat: "http://www.w3.org/ns/dcat#"
   envthes: "https://w3id.org/envthes/"

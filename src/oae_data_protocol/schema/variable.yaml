@@ -2,7 +2,7 @@ id: Variable
 name: Variable
 
 prefixes:
-  oae: "https://example.org/oae#"
+  oae: "https://schema.oaedata.org/"
   schema: "http://schema.org/"
 
 default_prefix: oae

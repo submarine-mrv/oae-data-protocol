@@ -5,8 +5,7 @@ description: >-
   See docs/dev/noaa-xsd-fields-not-included.md for XSD fields not yet included.
 
 prefixes:
-  oae: "https://example.org/oae#"
-  schema: "http://schema.org/"
+  oae: "https://schema.oaedata.org/"
 
 default_prefix: oae
 

@@ -1,34 +1,76 @@
 ---
-site_name: "oae-data-protocol"
+site_name: "OAE Data Protocol: Schema Documentation"
+site_url: https://schema.oaedata.org
+repo_url: https://github.com/submarine-mrv/oae-data-protocol
+
 theme:
   name: material
-  # palette:
-  #  scheme: slate
-  #  primary: cyan
+  favicon: img/favicon.ico
+  logo: img/cts-logo.png
   features:
+    - navigation.indexes
     - content.tabs.link
+
 plugins:
   - search
-  - mermaid2
-  - mknotebooks:
-      execute: false
   - mermaid2:
       version: 10.9.0
-nav:
-  # - Home: home.md
-  - Index: index.md
-  - About: about.md
-site_url: https://clevinson.github.io/oae-data-protocol
-repo_url: https://github.com/clevinson/oae-data-protocol
+
 markdown_extensions:
   - tables
+  - admonition
+  - pymdownx.details
+  - attr_list
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:mermaid2.fence_mermaid_custom
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - getting-started/index.md
+    - Metadata File Format: metadata-format.md
+    - Metadata Builder: metadata-builder.md
+    - Contributing: contributing.md
+  - Projects & Experiments:
+    - projects-experiments/index.md
+    - Project: Project.md
+    - Experiment: Experiment.md
+    - InSituExperiment: InSituExperiment.md
+    - Intervention: Intervention.md
+    - Tracer: Tracer.md
+    - InterventionWithTracer: InterventionWithTracer.md
+    - Model: model.md
+  - Datasets:
+    - datasets/index.md
+    - FieldDataset: FieldDataset.md
+    - ModelOutputDataset: ModelOutputDataset.md
+  - Variables:
+    - variables/index.md
+    - InSituVariable: InSituVariable.md
+    - MeasuredVariable: MeasuredVariable.md
+    - CalculatedVariable: CalculatedVariable.md
+    - NonMeasuredVariable: NonMeasuredVariable.md
+    - DiscretePHVariable: DiscretePHVariable.md
+    - DiscreteTAVariable: DiscreteTAVariable.md
+    - DiscreteDICVariable: DiscreteDICVariable.md
+    - DiscreteCO2Variable: DiscreteCO2Variable.md
+    - HPLCVariable: HPLCVariable.md
+  - Instruments & Calibration:
+    - instruments-calibration/index.md
+    - AnalyzingInstrument: AnalyzingInstrument.md
+    - PHInstrument: PHInstrument.md
+    - CRMInstrument: CRMInstrument.md
+    - CO2GasDetector: CO2GasDetector.md
+    - Calibration: Calibration.md
+  - Controlled Vocabularies: vocabularies.md
+  - Full Schema Index: OAEDataSchema.md
+
+extra_css:
+  - stylesheets/extra.css
+
 extra_javascript:
   - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
   - javascripts/tablesort.js
-
-# Uncomment this block to enable use of Google Analytics.
-# Replace the property value with your own ID.
-# extra:
-#   analytics:
-#     provider: google
-#     property: G-XXXXXXXXXX
