@@ -234,6 +234,11 @@ gendoc: $(DOCDIR)
 	mv $(DOCDIR)/datasets.md $(DOCDIR)/datasets/index.md
 	mv $(DOCDIR)/variables.md $(DOCDIR)/variables/index.md
 	mv $(DOCDIR)/instruments-calibration.md $(DOCDIR)/instruments-calibration/index.md
+	@# Rewrite links to moved section pages so generated docs don't 404
+	@for section in getting-started projects-experiments datasets variables instruments-calibration; do \
+		find $(DOCDIR) -name '*.md' -maxdepth 2 -exec sed -i.bak "s|]($$section\.md)|]($$section/index.md)|g" {} \; ; \
+	done
+	@find $(DOCDIR) -name '*.md.bak' -delete
 
 testdoc: gendoc serve
 
