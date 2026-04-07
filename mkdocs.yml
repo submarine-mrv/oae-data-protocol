@@ -42,7 +42,7 @@ nav:
     - Intervention: Intervention.md
     - Tracer: Tracer.md
     - InterventionWithTracer: InterventionWithTracer.md
-    - Model: model.md
+    - Model: Model.md
   - Datasets:
     - datasets/index.md
     - FieldDataset: FieldDataset.md
