@@ -1,6 +1,9 @@
 # Schema Documentation
 
-Machine-readable schema definitions for the [OAE Data Management Protocol](https://www.carbontosea.org/oae-data-protocol/1-0-0/), developed by [Carbon To Sea](https://carbontosea.org) in collaboration with [Submarine Scientific](https://submarine.earth), NOAA, and the broader OAE research community.
+The [OAE Data Management Protocol](https://www.carbontosea.org/oae-data-protocol/1-0-0/) outlines recommendations for
+producing consistent data and metadata across Ocean Alkalinity Enhancement research projects, developed by [Carbon To Sea](https://carbontosea.org) and [Submarine Scientific](https://submarine.earth) in collaboration with NOAA and the broader OAE community.
+
+This site serves as the technical documentation for the machine-readable schemas that turn those recommendations into something software systems can validate and exchange.
 
 !!! warning "Alpha Software"
     These schemas are under active development. We do not currently guarantee backwards compatibility between versions.
