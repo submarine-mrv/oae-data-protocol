@@ -5,32 +5,41 @@ Variables describe the individual measurements, calculations, or contextual data
 ## Variable Hierarchy
 
 ```mermaid
-graph TD
-    V["Variable (abstract)"]
-    V --> NMV["NonMeasuredVariable"]
-    V --> ISV["InSituVariable"]
-    ISV --> MV["MeasuredVariable"]
-    ISV --> CV["CalculatedVariable"]
-    MV --> DM["DiscreteMeasuredVariable"]
-    MV --> CM["ContinuousMeasuredVariable"]
-    DM --> DPH["DiscretePHVariable"]
-    DM --> DTA["DiscreteTAVariable"]
-    DM --> DDIC["DiscreteDICVariable"]
-    DM --> DCO2["DiscreteCO2Variable"]
-    DM --> DSED["DiscreteSedimentVariable"]
-    DM --> HPLC["HPLCVariable"]
-    CM --> CPH["ContinuousPHVariable"]
-    CM --> CTA["ContinuousTAVariable"]
-    CM --> CDIC["ContinuousDICVariable"]
-    CM --> CSED["ContinuousSedimentVariable"]
+graph LR
+    V("`*Variable*
+    (abstract)`")
+    ISV("`*InSituVariable*
+    (abstract)`")
+    MV("`*MeasuredVariable*
+    (abstract)`")
+    NMV["NonMeasuredVariable"]
+    CV["CalculatedVariable"]
+    DM["DiscreteMeasuredVariable"]
+    CM["ContinuousMeasuredVariable"]
+    DPH["`DiscretePHVariable
+    DiscreteTAVariable
+    DiscreteDICVariable
+    *…and others*`"]
+    CPH["`ContinuousPHVariable
+    ContinuousTAVariable
+    ContinuousDICVariable
+    *…and others*`"]
 
-    style V fill:#f5f5f5,stroke:#999
-    style NMV fill:#e8e0f0
-    style ISV fill:#e0e8f0
-    style MV fill:#d0e8d0
-    style CV fill:#d0e8d0
-    style DM fill:#c0d8c0
-    style CM fill:#c0d8c0
+    V --> NMV
+    V --> ISV
+    ISV --> CV
+    ISV --> MV
+    MV --> DM
+    MV --> CM
+    DM --> DPH
+    CM --> CPH
+
+    classDef abstract fill:#f5f5f5,stroke:#999,stroke-dasharray: 4 3,color:#555
+    classDef concrete fill:#e0e8f0,stroke:#4F656A
+    classDef leaf fill:#d0e8d0,stroke:#4F656A
+    class V,ISV,MV abstract
+    class NMV,CV,DPH,CPH concrete
+    class DM,CM leaf
 ```
 
 This hierarchy aims to align with [NOAA-PMEL's OAPMetadata](https://github.com/NOAA-PMEL/OAPMetadata) XSD schema to make

@@ -5,10 +5,8 @@ repo_url: https://github.com/submarine-mrv/oae-data-protocol
 
 theme:
   name: material
-  palette:
-    - scheme: default
-      primary: teal
-      accent: cyan
+  favicon: img/favicon.ico
+  logo: img/cts-logo.png
   features:
     - navigation.indexes
     - content.tabs.link
@@ -69,6 +67,9 @@ nav:
     - Calibration: Calibration.md
   - Controlled Vocabularies: vocabularies.md
   - Full Schema Index: OAEDataSchema.md
+
+extra_css:
+  - stylesheets/extra.css
 
 extra_javascript:
   - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
