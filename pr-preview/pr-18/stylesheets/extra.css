@@ -40,7 +40,14 @@
   color: #005967 !important;             /* ocean */
 }
 
-/* Invert logo for white-on-dark header */
+/* Invert logo for white-on-dark header, slightly smaller */
 .md-header .md-header__button.md-logo img {
   filter: brightness(0) invert(1);
+  height: 1.4rem;
+  width: auto;
+}
+
+/* Header title — normal weight */
+.md-header__title .md-header__topic > .md-ellipsis {
+  font-weight: 400;
 }
