@@ -225,16 +225,12 @@ $(DOCDIR):
 gendoc: $(DOCDIR)
 	$(RUN) gen-doc ${GEN_DOC_ARGS} -d $(DOCDIR) $(SOURCE_SCHEMA_PATH)
 	mv $(DOCDIR)/index.md $(DOCDIR)/OAEDataSchema.md
+	@# Custom explainer pages live under src/docs/files/<section>/index.md so
+	@# they don't clobber LinkML-generated slot pages (e.g. variables.md)
 	cp -rf $(SRC)/docs/files/* $(DOCDIR)
 	cp $(DEST)/jsonld/context.jsonld $(DOCDIR)/context.jsonld
-	@# Create section directories with index pages for navigation.indexes
-	mkdir -p $(DOCDIR)/getting-started $(DOCDIR)/projects-experiments $(DOCDIR)/datasets $(DOCDIR)/variables $(DOCDIR)/instruments-calibration
-	mv $(DOCDIR)/getting-started.md $(DOCDIR)/getting-started/index.md
-	mv $(DOCDIR)/projects-experiments.md $(DOCDIR)/projects-experiments/index.md
-	mv $(DOCDIR)/datasets.md $(DOCDIR)/datasets/index.md
-	mv $(DOCDIR)/variables.md $(DOCDIR)/variables/index.md
-	mv $(DOCDIR)/instruments-calibration.md $(DOCDIR)/instruments-calibration/index.md
-	@# Rewrite links to moved section pages so generated docs don't 404
+	@# Rewrite auto-generated links to section summary pages so they resolve
+	@# to our custom explainer indexes instead of 404ing
 	@for section in getting-started projects-experiments datasets variables instruments-calibration; do \
 		find $(DOCDIR) -name '*.md' -maxdepth 2 -exec sed -i.bak "s|]($$section\.md)|]($$section/index.md)|g" {} \; ; \
 	done
