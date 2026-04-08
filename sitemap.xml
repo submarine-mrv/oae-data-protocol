@@ -1493,7 +1493,11 @@
          <lastmod>2026-04-08</lastmod>
     </url>
     <url>
-         <loc>https://schema.oaedata.org/datasets/</loc>
+         <loc>https://schema.oaedata.org/Datasets/</loc>
+         <lastmod>2026-04-08</lastmod>
+    </url>
+    <url>
+         <loc>https://schema.oaedata.org/Variables/</loc>
          <lastmod>2026-04-08</lastmod>
     </url>
     <url>
@@ -1506,10 +1510,6 @@
     </url>
     <url>
          <loc>https://schema.oaedata.org/projects-experiments/</loc>
-         <lastmod>2026-04-08</lastmod>
-    </url>
-    <url>
-         <loc>https://schema.oaedata.org/variables/</loc>
          <lastmod>2026-04-08</lastmod>
     </url>
 </urlset>
