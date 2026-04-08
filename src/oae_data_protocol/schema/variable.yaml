@@ -413,21 +413,73 @@ classes:
         range: string
         required: true
       seawater_volume:
-        title: Seawater volume
+        title: Seawater volume (mL)
         description: Volume (in mL) of seawater in the flask.
-        range: integer
+        range: float
         # TODO: Change to DimensionedQuantity?
       headspace_volume:
-        title: Headspace volume
+        title: Headspace volume (mL)
         description: Volume (in mL) of headspace (water displaced in the flask plus volume of the tubing).
-        range: integer
+        range: float
         # TODO: Change to DimensionedQuantity?
       measurement_temperature:
-        title: Temperature of measurement
+        title: Temperature of measurement (°C)
         description: Temperature at which the samples were analyzed in Celsius.
-        range: integer
+        range: float
         required: true
         # TODO: Change to DimensionedQuantity?
+
+  ContinuousCO2Variable:
+    description: >-
+      CO2 continuous (sensor) measured variable (xCO2/pCO2/fCO2).
+      Reference: OAPMetadata XSD variables.xsd - co2_continuous
+    is_a: ContinuousMeasuredVariable
+    mixins:
+      - MeasuredCO2Fields
+    slot_usage:
+      variable_type:
+        range: string
+        equals_string: "co2"
+      analyzing_instrument:
+        range: ContinuousCO2GasDetector
+        description: CO2 gas detector with standard gas calibration for continuous measurements.
+    attributes:
+      equilibrator:
+        title: Equilibrator
+        description: Equilibrator used for CO2 measurement.
+        range: CO2Equilibrator
+      equilibrator_temperature_sensor:
+        title: Equilibrator temperature sensor
+        description: Temperature sensor for the equilibrator.
+        range: TemperatureSensor
+      equilibrator_pressure_sensor:
+        title: Equilibrator pressure sensor
+        description: Pressure sensor for the equilibrator.
+        range: PressureSensor
+      atmospheric_pressure_sensor:
+        title: Atmospheric pressure sensor
+        description: Atmospheric pressure sensor.
+        range: PressureSensor
+      seawater_intake_location:
+        title: Location of seawater intake
+        description: Whereabouts of the seawater intake.
+        range: string
+        required: true
+      seawater_intake_depth:
+        title: Depth of seawater intake
+        description: Water depth of the seawater intake.
+        range: string
+        required: true
+      drying_method:
+        title: Drying method for CO2 gas
+        description: >-
+          The method used to dry the gas coming out of CO2 equilibrator,
+          before it is pumped into the CO2 sensor.
+        range: string
+      marine_air_measurement:
+        title: CO2 in marine air
+        description: Information about CO2 measurements in marine air.
+        range: MarineAirMeasurement
 
 
   # =============================================================================
@@ -454,12 +506,7 @@ classes:
         range: string
 
 
-#  ContinuousCO2Variable:
-#    description: >-
-#      CO2 sensor measured variable
-#      Reference: OAPMetadata XSD variables.xsd - co2_continuous
-#    is_a: Continuous
-#
+
 #  # =============================================================================
 #  # Physiological Variable Class
 #  # =============================================================================
@@ -580,10 +627,11 @@ classes:
     slots:
       - appropriate_use_quality
     attributes:
-      # TODO: The spreadsheet has different field names for pCO2/fCO2 reported temp (and none for xCO2). Is one co2_reported_temperature field sufficient?
-      co2_reported_temperature:
-        title: Temperature at which CO2 was reported
-        description: In Celsius. The input could be a constant temperature value, or something like, in-situ temperature, temperature of analysis, etc.
+      pco2_reported_temperature:
+        title: Temperature at which pCO2 was reported
+        description: >-
+          In Celsius. The input could be a constant temperature value, or something like, in-situ temperature,
+          temperature of analysis, etc.
         # TODO: in the spreadsheet it says co2_reported_temperature should be number, but also says it can be descriptive?
         range: string
         required: true

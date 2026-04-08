@@ -1046,13 +1046,29 @@ export interface PHCalibration extends Calibration {
 
 
 /**
- * CO2 gas detector calibration with standard gas information.
+ * Base CO2 gas detector calibration with standard gas information.
  */
 export interface CO2Calibration extends Calibration {
-    /** Temperature at which calibration was performed. */
-    calibration_temperature?: string,
     /** Standard gases used for calibration. */
     standard_gas_info?: StandardGas,
+}
+
+
+/**
+ * CO2 calibration for discrete measurements, with calibration temperature.
+ */
+export interface DiscreteCO2Calibration extends CO2Calibration {
+    /** Temperature at which calibration was performed. */
+    calibration_temperature?: string,
+}
+
+
+/**
+ * CO2 calibration for continuous measurements, with extended standard gas details.
+ */
+export interface ContinuousCO2Calibration extends CO2Calibration {
+    /** Standard gases used for calibration. */
+    standard_gas_info?: ContinuousStandardGas,
 }
 
 
@@ -1061,11 +1077,22 @@ export interface CO2Calibration extends Calibration {
  */
 export interface StandardGas {
     /** Manufacturer of the standard gas. */
-    manufacturer: string,
+    manufacturer?: string,
     /** Concentrations of the CO2 standard gases that are used to calibrate the CO2 sensor, e.g., 260, 350, 510ppm. */
-    concentration: string,
+    concentration?: string,
     /** Uncertainties of the CO2 standard gas, e.g., 0.5%. */
     uncertainty?: string,
+}
+
+
+/**
+ * Standard gas used for continuous CO2 calibration, with additional traceability and count information.
+ */
+export interface ContinuousStandardGas extends StandardGas {
+    /** How many non-zero gas standards were used for the calibration. */
+    number_of_nonzero_standards?: number,
+    /** Information about traceability of standard gases to WMO standards. */
+    traceability_to_wmo_standards?: string,
 }
 
 
@@ -1116,11 +1143,91 @@ export interface CO2GasDetector extends AnalyzingInstrument {
     /** Type of the CO2 gas detector (E.g., Infrared) */
     detector_type: string,
     /** CO2 calibration information for this instrument. */
-    calibration: CO2Calibration,
+    calibration: DiscreteCO2Calibration,
     /** Resolution of the CO2 sensor. */
     resolution?: string,
     /** Uncertainty of the CO2 sensor. */
     uncertainty?: string,
+}
+
+
+/**
+ * CO2 gas detector for continuous measurements, with measurement frequency.
+ */
+export interface ContinuousCO2GasDetector extends CO2GasDetector {
+    /** How often measurements are taken, e.g., every 140 seconds except during calibration. */
+    measurement_frequency?: string,
+    /** CO2 calibration information for this continuous instrument. */
+    calibration: ContinuousCO2Calibration,
+}
+
+
+/**
+ * Equilibrator used for continuous CO2 measurement.
+ */
+export interface CO2Equilibrator {
+    /** Type of the equilibrator for the CO2 measurement. */
+    equilibrator_type?: string,
+    /** The total volume (in liters) of the CO2 equilibrator. */
+    volume?: number,
+    /** Is the equilibrator vented or not? */
+    vented?: boolean,
+    /** Flow rate (in L/min) of the flow through seawater. */
+    water_flow_rate?: number,
+    /** Flow rate (in L/min) of the gas from the equilibrator to the CO2 analyzer. */
+    headspace_gas_flow_rate?: number,
+}
+
+
+/**
+ * Generic sensor base class used in continuous CO2 measurements. Subclasses (e.g., TemperatureSensor, PressureSensor) specialize accuracy and precision units via slot_usage.
+ */
+export interface GenericSensor {
+    /** Location of the sensor. */
+    location?: string,
+    /** Manufacturer of the sensor. */
+    manufacturer?: string,
+    /** Model number of the sensor. */
+    model?: string,
+    /** Serial number of the sensor. */
+    serial_number?: string,
+    /** Accuracy of the sensor. */
+    accuracy?: number,
+    /** Precision of the sensor. */
+    precision?: number,
+    /** Calibration information for the sensor. */
+    calibration?: string,
+    /** Additional comments about the sensor. */
+    comments?: string,
+}
+
+
+/**
+ * Temperature sensor used in continuous CO2 measurements. Accuracy and precision are reported in degrees Celsius.
+ */
+export interface TemperatureSensor extends GenericSensor {
+}
+
+
+/**
+ * Pressure sensor used in continuous CO2 measurements. Accuracy and precision are reported in hectopascals (hPa).
+ */
+export interface PressureSensor extends GenericSensor {
+}
+
+
+/**
+ * Information about CO2 measurements in marine air.
+ */
+export interface MarineAirMeasurement {
+    /** Whether CO2 in marine air was measured. */
+    measured: boolean,
+    /** How often marine air CO2 is measured, e.g., 5 readings in a group every 5 hours. */
+    measurement_interval?: string,
+    /** Location and height of the marine air intake. */
+    location_and_height?: string,
+    /** Method used to dry the gas stream for marine air measurements. */
+    drying_method?: string,
 }
 
 
@@ -1305,6 +1412,29 @@ export interface DiscreteCO2Variable extends DiscreteMeasuredVariable, MeasuredC
 
 
 /**
+ * CO2 continuous (sensor) measured variable (xCO2/pCO2/fCO2). Reference: OAPMetadata XSD variables.xsd - co2_continuous
+ */
+export interface ContinuousCO2Variable extends ContinuousMeasuredVariable, MeasuredCO2Fields {
+    /** Equilibrator used for CO2 measurement. */
+    equilibrator?: CO2Equilibrator,
+    /** Temperature sensor for the equilibrator. */
+    equilibrator_temperature_sensor?: TemperatureSensor,
+    /** Pressure sensor for the equilibrator. */
+    equilibrator_pressure_sensor?: PressureSensor,
+    /** Atmospheric pressure sensor. */
+    atmospheric_pressure_sensor?: PressureSensor,
+    /** Whereabouts of the seawater intake. */
+    seawater_intake_location: string,
+    /** Water depth of the seawater intake. */
+    seawater_intake_depth: string,
+    /** The method used to dry the gas coming out of CO2 equilibrator, before it is pumped into the CO2 sensor. */
+    drying_method?: string,
+    /** Information about CO2 measurements in marine air. */
+    marine_air_measurement?: MarineAirMeasurement,
+}
+
+
+/**
  * HPLC (High-Performance Liquid Chromatography) measured variable for pigment analysis. Always measured, not calculated.
  */
 export interface HPLCVariable extends DiscreteMeasuredVariable {
@@ -1394,7 +1524,7 @@ export interface MeasuredCO2Fields {
 For more details, refer to Newton J.A., Feely R. A., Jewett E. B., Williamson P. & Mathis J., 2015. Global Ocean Acidification Observing Network: Requirements and Governance Plan. Second Edition, GOA-ON, http://www.goa-on.org/docs/GOA-ON_plan_print.pdf. */
     appropriate_use_quality?: string,
     /** In Celsius. The input could be a constant temperature value, or something like, in-situ temperature, temperature of analysis, etc. */
-    co2_reported_temperature: string,
+    pco2_reported_temperature: string,
     /** How the water vapor pressure inside the equilibrator was determined. */
     water_vapor_correction_method?: string,
     /** How the temperature effect was corrected. */
@@ -1439,6 +1569,7 @@ Any method that creates a unique ID that will link all project data is acceptabl
     /** The experiment to which the data belong. Any naming convention that produces a unique ID is usable. The recommended naming convention is:
 Project ID + Experiment type + Optional numerical indicator to differentiate between various experiments of the same type for a project. A two digit consecutive number beginning with 01 */
     experiment_id: string,
+    filenames: string[],
     /** Selected controlled vocabularies for data types relevant to mCDR have been referenced from NASA's SeaBASS metadata system and are provided below, for additional data types of optical characteristics see the [SeaBASS controlled definitions list](https://seabass.gsfc.nasa.gov/wiki/metadataheaders#data_type). Additional data types have been included to meet the needs of mCDR field projects. */
     dataset_type: string,
     /** Custom "data type" when an appropriate value is not found in the controlled vocabulary list for mCDR Data Type and the corresponding `data_type` field is set to "other". */
@@ -1450,7 +1581,6 @@ Project ID + Experiment type + Optional numerical indicator to differentiate bet
     license?: string,
     /** A statement from the data producer regarding how this dataset should be used. */
     fair_use_data_request?: string,
-    filenames: string[],
 }
 
 
