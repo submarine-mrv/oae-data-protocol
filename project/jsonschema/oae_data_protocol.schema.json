@@ -1674,11 +1674,6 @@
                     "type": "string"
                 }
             },
-            "required": [
-                "uncertainty",
-                "manufacturer",
-                "concentration"
-            ],
             "title": "ContinuousStandardGas",
             "type": "object"
         },
@@ -5899,10 +5894,6 @@
                     "type": "string"
                 }
             },
-            "required": [
-                "manufacturer",
-                "concentration"
-            ],
             "title": "StandardGas",
             "type": "object"
         },

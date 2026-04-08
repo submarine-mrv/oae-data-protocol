@@ -1077,9 +1077,9 @@ export interface ContinuousCO2Calibration extends CO2Calibration {
  */
 export interface StandardGas {
     /** Manufacturer of the standard gas. */
-    manufacturer: string,
+    manufacturer?: string,
     /** Concentrations of the CO2 standard gases that are used to calibrate the CO2 sensor, e.g., 260, 350, 510ppm. */
-    concentration: string,
+    concentration?: string,
     /** Uncertainties of the CO2 standard gas, e.g., 0.5%. */
     uncertainty?: string,
 }
@@ -1089,8 +1089,6 @@ export interface StandardGas {
  * Standard gas used for continuous CO2 calibration, with additional traceability and count information.
  */
 export interface ContinuousStandardGas extends StandardGas {
-    /** Uncertainties of the CO2 standard gas, e.g., 0.5%. */
-    uncertainty: string,
     /** How many non-zero gas standards were used for the calibration. */
     number_of_nonzero_standards?: number,
     /** Information about traceability of standard gases to WMO standards. */

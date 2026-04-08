@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-04-07T18:02:08
+# Generation date: 2026-04-07T18:13:46
 # Schema: OAEDataSchema
 #
 # id: https://schema.oaedata.org/OAEDataSchema
@@ -3642,19 +3642,15 @@ class StandardGas(YAMLRoot):
     class_name: ClassVar[str] = "StandardGas"
     class_model_uri: ClassVar[URIRef] = OAE.StandardGas
 
-    manufacturer: str = None
-    concentration: str = None
+    manufacturer: Optional[str] = None
+    concentration: Optional[str] = None
     uncertainty: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.manufacturer):
-            self.MissingRequiredField("manufacturer")
-        if not isinstance(self.manufacturer, str):
+        if self.manufacturer is not None and not isinstance(self.manufacturer, str):
             self.manufacturer = str(self.manufacturer)
 
-        if self._is_empty(self.concentration):
-            self.MissingRequiredField("concentration")
-        if not isinstance(self.concentration, str):
+        if self.concentration is not None and not isinstance(self.concentration, str):
             self.concentration = str(self.concentration)
 
         if self.uncertainty is not None and not isinstance(self.uncertainty, str):
@@ -3675,18 +3671,10 @@ class ContinuousStandardGas(StandardGas):
     class_name: ClassVar[str] = "ContinuousStandardGas"
     class_model_uri: ClassVar[URIRef] = OAE.ContinuousStandardGas
 
-    manufacturer: str = None
-    concentration: str = None
-    uncertainty: str = None
     number_of_nonzero_standards: Optional[int] = None
     traceability_to_wmo_standards: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
-        if self._is_empty(self.uncertainty):
-            self.MissingRequiredField("uncertainty")
-        if not isinstance(self.uncertainty, str):
-            self.uncertainty = str(self.uncertainty)
-
         if self.number_of_nonzero_standards is not None and not isinstance(self.number_of_nonzero_standards, int):
             self.number_of_nonzero_standards = int(self.number_of_nonzero_standards)
 
@@ -5974,16 +5962,13 @@ slots.continuousCO2Calibration__standard_gas_info = Slot(uri=OAE.standard_gas_in
                    model_uri=OAE.continuousCO2Calibration__standard_gas_info, domain=None, range=Optional[Union[dict, ContinuousStandardGas]])
 
 slots.standardGas__manufacturer = Slot(uri=OAE.manufacturer, name="standardGas__manufacturer", curie=OAE.curie('manufacturer'),
-                   model_uri=OAE.standardGas__manufacturer, domain=None, range=str)
+                   model_uri=OAE.standardGas__manufacturer, domain=None, range=Optional[str])
 
 slots.standardGas__concentration = Slot(uri=OAE.concentration, name="standardGas__concentration", curie=OAE.curie('concentration'),
-                   model_uri=OAE.standardGas__concentration, domain=None, range=str)
+                   model_uri=OAE.standardGas__concentration, domain=None, range=Optional[str])
 
 slots.standardGas__uncertainty = Slot(uri=OAE.uncertainty, name="standardGas__uncertainty", curie=OAE.curie('uncertainty'),
                    model_uri=OAE.standardGas__uncertainty, domain=None, range=Optional[str])
-
-slots.continuousStandardGas__uncertainty = Slot(uri=OAE.uncertainty, name="continuousStandardGas__uncertainty", curie=OAE.curie('uncertainty'),
-                   model_uri=OAE.continuousStandardGas__uncertainty, domain=None, range=str)
 
 slots.continuousStandardGas__number_of_nonzero_standards = Slot(uri=OAE.number_of_nonzero_standards, name="continuousStandardGas__number_of_nonzero_standards", curie=OAE.curie('number_of_nonzero_standards'),
                    model_uri=OAE.continuousStandardGas__number_of_nonzero_standards, domain=None, range=Optional[int])
