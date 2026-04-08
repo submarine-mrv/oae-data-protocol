@@ -553,6 +553,8 @@
     click MeasuredCO2Fields href "../MeasuredCO2Fields"
       MeasuredCO2Fields &lt;|-- DiscreteCO2Variable
         click DiscreteCO2Variable href "../DiscreteCO2Variable"
+      MeasuredCO2Fields &lt;|-- ContinuousCO2Variable
+        click ContinuousCO2Variable href "../ContinuousCO2Variable"
 
       MeasuredCO2Fields : appropriate_use_quality
 
@@ -563,7 +565,7 @@
     click AppropriateUseQuality href "../AppropriateUseQuality"
 
 
-      MeasuredCO2Fields : co2_reported_temperature
+      MeasuredCO2Fields : pco2_reported_temperature
 
       MeasuredCO2Fields : temperature_correction_method
 
@@ -590,7 +592,7 @@
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../co2_reported_temperature/">co2_reported_temperature</a></td>
+<td><a href="../pco2_reported_temperature/">pco2_reported_temperature</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>In Celsius</td>
 <td>direct</td>
@@ -621,6 +623,10 @@
 <tr>
 <td><a href="../DiscreteCO2Variable/">DiscreteCO2Variable</a></td>
 <td>CO2 discrete (bottle) measured variable (pCO2/fCO2)</td>
+</tr>
+<tr>
+<td><a href="../ContinuousCO2Variable/">ContinuousCO2Variable</a></td>
+<td>CO2 continuous (sensor) measured variable (xCO2/pCO2/fCO2)</td>
 </tr>
 </tbody>
 </table>
@@ -659,11 +665,11 @@
 <span class="nt">slots</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">appropriate_use_quality</span>
 <span class="nt">attributes</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">co2_reported_temperature</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">co2_reported_temperature</span>
+<span class="w">  </span><span class="nt">pco2_reported_temperature</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pco2_reported_temperature</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">In Celsius. The input could be a constant temperature value, or something</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">like, in-situ temperature, temperature of analysis, etc.</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Temperature at which CO2 was reported</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Temperature at which pCO2 was reported</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
@@ -697,14 +703,14 @@
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.oaedata.org/OAEDataSchema</span>
 <span class="nt">mixin</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="nt">attributes</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">co2_reported_temperature</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">co2_reported_temperature</span>
+<span class="w">  </span><span class="nt">pco2_reported_temperature</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pco2_reported_temperature</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">In Celsius. The input could be a constant temperature value, or something</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">like, in-situ temperature, temperature of analysis, etc.</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Temperature at which CO2 was reported</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Temperature at which pCO2 was reported</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">co2_reported_temperature</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pco2_reported_temperature</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MeasuredCO2Fields</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MeasuredCO2Fields</span>

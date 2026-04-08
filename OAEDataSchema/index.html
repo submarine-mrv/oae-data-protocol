@@ -1387,6 +1387,10 @@
 <td>CO2 gas detector with standard gas calibration.</td>
 </tr>
 <tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../ContinuousCO2GasDetector/">ContinuousCO2GasDetector</a></td>
+<td>CO2 gas detector for continuous measurements, with measurement frequency.</td>
+</tr>
+<tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../CRMInstrument/">CRMInstrument</a></td>
 <td>Instrument calibrated with Certified Reference Materials, used for DIC and TA measurements.</td>
 </tr>
@@ -1404,7 +1408,15 @@
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../CO2Calibration/">CO2Calibration</a></td>
-<td>CO2 gas detector calibration with standard gas information.</td>
+<td>Base CO2 gas detector calibration with standard gas information.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../ContinuousCO2Calibration/">ContinuousCO2Calibration</a></td>
+<td>CO2 calibration for continuous measurements, with extended standard gas details.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../DiscreteCO2Calibration/">DiscreteCO2Calibration</a></td>
+<td>CO2 calibration for discrete measurements, with calibration temperature.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../CRMCalibration/">CRMCalibration</a></td>
@@ -1413,6 +1425,10 @@
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../PHCalibration/">PHCalibration</a></td>
 <td>pH instrument calibration with dye information.</td>
+</tr>
+<tr>
+<td><a href="../CO2Equilibrator/">CO2Equilibrator</a></td>
+<td>Equilibrator used for continuous CO2 measurement.</td>
 </tr>
 <tr>
 <td><a href="../Container/">Container</a></td>
@@ -1467,6 +1483,18 @@
 <td>A research project that is not directly managed by the OAE project, but whose location is proximal to the OAE project and whose data may be relevant to understanding the context or impacts of OAE activities.</td>
 </tr>
 <tr>
+<td><a href="../GenericSensor/">GenericSensor</a></td>
+<td>Generic sensor base class used in continuous CO2 measurements. Subclasses (e.g., TemperatureSensor, PressureSensor) specialize accuracy and precision units via slot_usage.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../PressureSensor/">PressureSensor</a></td>
+<td>Pressure sensor used in continuous CO2 measurements. Accuracy and precision are reported in hectopascals (hPa).</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../TemperatureSensor/">TemperatureSensor</a></td>
+<td>Temperature sensor used in continuous CO2 measurements. Accuracy and precision are reported in degrees Celsius.</td>
+</tr>
+<tr>
 <td><a href="../GeoCoordinates/">GeoCoordinates</a></td>
 <td>A geographic coordinate in decimal degrees.</td>
 </tr>
@@ -1481,6 +1509,10 @@
 <tr>
 <td><a href="../InterventionDetails/">InterventionDetails</a></td>
 <td>An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are  specific to an Experiment with type "Intervention"</td>
+</tr>
+<tr>
+<td><a href="../MarineAirMeasurement/">MarineAirMeasurement</a></td>
+<td>Information about CO2 measurements in marine air.</td>
 </tr>
 <tr>
 <td><a href="../MeasuredCO2Fields/">MeasuredCO2Fields</a></td>
@@ -1571,6 +1603,10 @@
 <td>Standard gas used for CO2 calibration.</td>
 </tr>
 <tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../ContinuousStandardGas/">ContinuousStandardGas</a></td>
+<td>Standard gas used for continuous CO2 calibration, with additional traceability and count information.</td>
+</tr>
+<tr>
 <td><a href="../TracerDetails/">TracerDetails</a></td>
 <td>An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are  specific to an Experiment with type "Tracer"</td>
 </tr>
@@ -1593,6 +1629,10 @@
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../ContinuousMeasuredVariable/">ContinuousMeasuredVariable</a></td>
 <td>A variable measured in-situ by a continuous autonomous sensor (e.g., temperature, salinity, conductivity, pressure from a deployed sonde or underway system). Use this class for generic measured variables that do not fall under a specific category (pH, TA, DIC, CO2, sediment). For those, use the type-specific subclass instead (e.g., ContinuousPHVariable). Set variable_type to "other", genesis to "measured", and sampling to "continuous".</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../ContinuousCO2Variable/">ContinuousCO2Variable</a></td>
+<td>CO2 continuous (sensor) measured variable (xCO2/pCO2/fCO2). Reference: OAPMetadata XSD variables.xsd - co2_continuous</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../ContinuousDICVariable/">ContinuousDICVariable</a></td>
@@ -1738,6 +1778,10 @@
 <td>Atmospheric forcing data source(s)</td>
 </tr>
 <tr>
+<td><a href="../atmospheric_pressure_sensor/">atmospheric_pressure_sensor</a></td>
+<td>Atmospheric pressure sensor</td>
+</tr>
+<tr>
 <td><a href="../author_list_for_citation/">author_list_for_citation</a></td>
 <td>Author list in the format of Lastname1, Firstname1 Middlename1; Lastname2, Fi...</td>
 </tr>
@@ -1790,16 +1834,16 @@
 <td>e</td>
 </tr>
 <tr>
-<td><a href="../co2_reported_temperature/">co2_reported_temperature</a></td>
-<td>In Celsius</td>
-</tr>
-<tr>
 <td><a href="../codebase/">codebase</a></td>
 <td>Link to model code repository</td>
 </tr>
 <tr>
 <td><a href="../colocated_operations/">colocated_operations</a></td>
 <td>A description is required if any nearby operations exist that may influence t...</td>
+</tr>
+<tr>
+<td><a href="../comments/">comments</a></td>
+<td>Additional comments about the sensor</td>
 </tr>
 <tr>
 <td><a href="../concentration/">concentration</a></td>
@@ -1910,6 +1954,10 @@
 <td>A human readable summary description of the dosing regimen / frequency</td>
 </tr>
 <tr>
+<td><a href="../drying_method/">drying_method</a></td>
+<td>Method used to dry the gas stream for marine air measurements</td>
+</tr>
+<tr>
 <td><a href="../dye_correction_method/">dye_correction_method</a></td>
 <td>Method used to correct for dye effects</td>
 </tr>
@@ -1936,6 +1984,22 @@
 <tr>
 <td><a href="../equilibration/">equilibration</a></td>
 <td>Whether the feedstock was pre-equilibrated or unequilibrated</td>
+</tr>
+<tr>
+<td><a href="../equilibrator/">equilibrator</a></td>
+<td>Equilibrator used for CO2 measurement</td>
+</tr>
+<tr>
+<td><a href="../equilibrator_pressure_sensor/">equilibrator_pressure_sensor</a></td>
+<td>Pressure sensor for the equilibrator</td>
+</tr>
+<tr>
+<td><a href="../equilibrator_temperature_sensor/">equilibrator_temperature_sensor</a></td>
+<td>Temperature sensor for the equilibrator</td>
+</tr>
+<tr>
+<td><a href="../equilibrator_type/">equilibrator_type</a></td>
+<td>Type of the equilibrator for the CO2 measurement</td>
 </tr>
 <tr>
 <td><a href="../experiment_id/">experiment_id</a></td>
@@ -2006,6 +2070,10 @@
 <td>Details about the computational hardware used for the simulation</td>
 </tr>
 <tr>
+<td><a href="../headspace_gas_flow_rate/">headspace_gas_flow_rate</a></td>
+<td>Flow rate (in L/min) of the gas from the equilibrator to the CO2 analyzer</td>
+</tr>
+<tr>
 <td><a href="../headspace_volume/">headspace_volume</a></td>
 <td>Volume (in mL) of headspace (water displaced in the flask plus volume of the ...</td>
 </tr>
@@ -2070,6 +2138,14 @@
 <td>A line is a point-to-point path consisting of two or more points</td>
 </tr>
 <tr>
+<td><a href="../location/">location</a></td>
+<td>Location of the sensor</td>
+</tr>
+<tr>
+<td><a href="../location_and_height/">location_and_height</a></td>
+<td>Location and height of the marine air intake</td>
+</tr>
+<tr>
 <td><a href="../long_name/">long_name</a></td>
 <td>Full descriptive name of the variable</td>
 </tr>
@@ -2086,6 +2162,10 @@
 <td>Manufacturer name of the instrument</td>
 </tr>
 <tr>
+<td><a href="../marine_air_measurement/">marine_air_measurement</a></td>
+<td>Information about CO2 measurements in marine air</td>
+</tr>
+<tr>
 <td><a href="../max_depth_in_m/">max_depth_in_m</a></td>
 <td>Maximum depth of observation in meters</td>
 </tr>
@@ -2100,6 +2180,18 @@
 <tr>
 <td><a href="../mcdr_pathway/">mcdr_pathway</a></td>
 <td>The Marine Carbon Dioxide Removal (MCDR) pathway being studied</td>
+</tr>
+<tr>
+<td><a href="../measured/">measured</a></td>
+<td>Whether CO2 in marine air was measured</td>
+</tr>
+<tr>
+<td><a href="../measurement_frequency/">measurement_frequency</a></td>
+<td>How often measurements are taken, e</td>
+</tr>
+<tr>
+<td><a href="../measurement_interval/">measurement_interval</a></td>
+<td>How often marine air CO2 is measured, e</td>
 </tr>
 <tr>
 <td><a href="../measurement_researcher/">measurement_researcher</a></td>
@@ -2182,6 +2274,10 @@
 <td>A human-readable name for the thing</td>
 </tr>
 <tr>
+<td><a href="../number_of_nonzero_standards/">number_of_nonzero_standards</a></td>
+<td>How many non-zero gas standards were used for the calibration</td>
+</tr>
+<tr>
 <td><a href="../observation_type/">observation_type</a></td>
 <td></td>
 </tr>
@@ -2204,6 +2300,10 @@
 <tr>
 <td><a href="../parallelization/">parallelization</a></td>
 <td>Parallelization details (e</td>
+</tr>
+<tr>
+<td><a href="../pco2_reported_temperature/">pco2_reported_temperature</a></td>
+<td>In Celsius</td>
 </tr>
 <tr>
 <td><a href="../permit_id/">permit_id</a></td>
@@ -2366,6 +2466,14 @@
 <td>Names of the seas where the data collection takes place, See Controlled Vocab...</td>
 </tr>
 <tr>
+<td><a href="../seawater_intake_depth/">seawater_intake_depth</a></td>
+<td>Water depth of the seawater intake</td>
+</tr>
+<tr>
+<td><a href="../seawater_intake_location/">seawater_intake_location</a></td>
+<td>Whereabouts of the seawater intake</td>
+</tr>
+<tr>
 <td><a href="../seawater_volume/">seawater_volume</a></td>
 <td>Volume (in mL) of seawater in the flask</td>
 </tr>
@@ -2470,6 +2578,10 @@
 <td>Type of the titration used to determine alkalinity</td>
 </tr>
 <tr>
+<td><a href="../traceability_to_wmo_standards/">traceability_to_wmo_standards</a></td>
+<td>Information about traceability of standard gases to WMO standards</td>
+</tr>
+<tr>
 <td><a href="../tracer_concentration/">tracer_concentration</a></td>
 <td>Fixed concentration or provide link/source to tracer concentration separately...</td>
 </tr>
@@ -2518,6 +2630,10 @@
 <td></td>
 </tr>
 <tr>
+<td><a href="../vented/">vented</a></td>
+<td>Is the equilibrator vented or not?</td>
+</tr>
+<tr>
 <td><a href="../version/">version</a></td>
 <td>Version of the oae-data-protocol</td>
 </tr>
@@ -2535,7 +2651,11 @@
 </tr>
 <tr>
 <td><a href="../volume/">volume</a></td>
-<td>The volume of preservative used</td>
+<td>The total volume (in liters) of the CO2 equilibrator</td>
+</tr>
+<tr>
+<td><a href="../water_flow_rate/">water_flow_rate</a></td>
+<td>Flow rate (in L/min) of the flow through seawater</td>
 </tr>
 <tr>
 <td><a href="../water_vapor_correction_method/">water_vapor_correction_method</a></td>

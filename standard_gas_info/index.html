@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: Standard gas information (standard_gas_info) - OAE Data Protocol: Schema Documentation</title>
+        <title>Slot: standard_gas_info - OAE Data Protocol: Schema Documentation</title>
       
     
     
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-standard-gas-information-standard_gas_info" class="md-skip">
+        <a href="#slot-standard_gas_info" class="md-skip">
           Skip to content
         </a>
       
@@ -97,7 +97,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: Standard gas information (standard_gas_info)
+              Slot: standard_gas_info
             
           </span>
         </div>
@@ -1239,21 +1239,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Identifier and Mapping Information">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#schema-source" class="md-nav__link">
-    <span class="md-ellipsis">
-      Schema Source
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -1293,8 +1278,7 @@
   
 
 
-<h1 id="slot-standard-gas-information-standard_gas_info">Slot: Standard gas information (standard_gas_info)</h1>
-<p><em>Standard gases used for calibration.</em></p>
+<h1 id="slot-standard_gas_info">Slot: standard_gas_info</h1>
 <p>URI: <a href="https://schema.oaedata.org/standard_gas_info">oae:standard_gas_info</a></p>
 <!-- no inheritance hierarchy -->
 
@@ -1310,20 +1294,26 @@
 <tbody>
 <tr>
 <td><a href="../CO2Calibration/">CO2Calibration</a></td>
-<td>CO2 gas detector calibration with standard gas information</td>
+<td>Base CO2 gas detector calibration with standard gas information</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../ContinuousCO2Calibration/">ContinuousCO2Calibration</a></td>
+<td>CO2 calibration for continuous measurements, with extended standard gas detai...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../DiscreteCO2Calibration/">DiscreteCO2Calibration</a></td>
+<td>CO2 calibration for discrete measurements, with calibration temperature</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../StandardGas/">StandardGas</a></li>
+<li>Range: NONE</li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
-<h3 id="schema-source">Schema Source</h3>
-<ul>
-<li>from schema: https://schema.oaedata.org/OAEDataSchema</li>
-</ul>
 <h2 id="mappings">Mappings</h2>
 <table>
 <thead>
@@ -1346,15 +1336,10 @@
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">standard_gas_info</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Standard gases used for calibration.</span>
-<span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Standard gas information</span>
-<span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.oaedata.org/OAEDataSchema</span>
-<span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">standard_gas_info</span>
-<span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CO2Calibration</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CO2Calibration</span>
-<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">StandardGas</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ContinuousCO2Calibration</span>
 </code></pre></div>
 </details>
 

@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: Precision (precision) - OAE Data Protocol: Schema Documentation</title>
+        <title>Slot: precision - OAE Data Protocol: Schema Documentation</title>
       
     
     
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-precision-precision" class="md-skip">
+        <a href="#slot-precision" class="md-skip">
           Skip to content
         </a>
       
@@ -97,7 +97,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: Precision (precision)
+              Slot: precision
             
           </span>
         </div>
@@ -1239,21 +1239,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Identifier and Mapping Information">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#schema-source" class="md-nav__link">
-    <span class="md-ellipsis">
-      Schema Source
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -1293,8 +1278,7 @@
   
 
 
-<h1 id="slot-precision-precision">Slot: Precision (precision)</h1>
-<p><em>Precision of the instrument measurements.</em></p>
+<h1 id="slot-precision">Slot: precision</h1>
 <p>URI: <a href="https://schema.oaedata.org/precision">oae:precision</a></p>
 <!-- no inheritance hierarchy -->
 
@@ -1309,13 +1293,13 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../CO2GasDetector/">CO2GasDetector</a></td>
-<td>CO2 gas detector with standard gas calibration</td>
-<td>no</td>
+<td><a href="../PressureSensor/">PressureSensor</a></td>
+<td>Pressure sensor used in continuous CO2 measurements</td>
+<td>yes</td>
 </tr>
 <tr>
-<td><a href="../AnalyzingInstrument/">AnalyzingInstrument</a></td>
-<td>Base class for scientific instruments used in analyzing samples for measureme...</td>
+<td><a href="../ContinuousCO2GasDetector/">ContinuousCO2GasDetector</a></td>
+<td>CO2 gas detector for continuous measurements, with measurement frequency</td>
 <td>no</td>
 </tr>
 <tr>
@@ -1324,21 +1308,37 @@
 <td>no</td>
 </tr>
 <tr>
+<td><a href="../CO2GasDetector/">CO2GasDetector</a></td>
+<td>CO2 gas detector with standard gas calibration</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../CRMInstrument/">CRMInstrument</a></td>
 <td>Instrument calibrated with Certified Reference Materials, used for DIC and TA...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../GenericSensor/">GenericSensor</a></td>
+<td>Generic sensor base class used in continuous CO2 measurements</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../TemperatureSensor/">TemperatureSensor</a></td>
+<td>Temperature sensor used in continuous CO2 measurements</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../AnalyzingInstrument/">AnalyzingInstrument</a></td>
+<td>Base class for scientific instruments used in analyzing samples for measureme...</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../String/">String</a></li>
+<li>Range: NONE</li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
-<h3 id="schema-source">Schema Source</h3>
-<ul>
-<li>from schema: https://schema.oaedata.org/OAEDataSchema</li>
-</ul>
 <h2 id="mappings">Mappings</h2>
 <table>
 <thead>
@@ -1361,15 +1361,10 @@
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">precision</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Precision of the instrument measurements.</span>
-<span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Precision</span>
-<span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.oaedata.org/OAEDataSchema</span>
-<span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">precision</span>
-<span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AnalyzingInstrument</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AnalyzingInstrument</span>
-<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GenericSensor</span>
 </code></pre></div>
 </details>
 

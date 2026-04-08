@@ -489,13 +489,6 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#usages">
-<span class="md-ellipsis">
-      Usages
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
 <a class="md-nav__link" href="#identifier-and-mapping-information">
 <span class="md-ellipsis">
       Identifier and Mapping Information
@@ -553,13 +546,20 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="class-co2calibration">Class: CO2Calibration</h1>
-<p><em>CO2 gas detector calibration with standard gas information.</em></p>
+<p><em>Base CO2 gas detector calibration with standard gas information.</em></p>
 <p>URI: <a href="https://schema.oaedata.org/CO2Calibration">oae:CO2Calibration</a></p>
 <pre class="mermaid"><code> classDiagram
     class CO2Calibration
     click CO2Calibration href "../CO2Calibration"
       Calibration &lt;|-- CO2Calibration
         click Calibration href "../Calibration"
+
+
+      CO2Calibration &lt;|-- DiscreteCO2Calibration
+        click DiscreteCO2Calibration href "../DiscreteCO2Calibration"
+      CO2Calibration &lt;|-- ContinuousCO2Calibration
+        click ContinuousCO2Calibration href "../ContinuousCO2Calibration"
+
 
       CO2Calibration : calibration_certificates
 
@@ -571,8 +571,6 @@
     CO2Calibration --&gt; "0..1" CalibrationLocation : calibration_location
     click CalibrationLocation href "../CalibrationLocation"
 
-
-      CO2Calibration : calibration_temperature
 
       CO2Calibration : frequency
 
@@ -596,7 +594,11 @@
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../Calibration/">Calibration</a><ul>
-<li><strong>CO2Calibration</strong></li>
+<li><strong>CO2Calibration</strong><ul>
+<li><a href="../DiscreteCO2Calibration/">DiscreteCO2Calibration</a></li>
+<li><a href="../ContinuousCO2Calibration/">ContinuousCO2Calibration</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -611,12 +613,6 @@
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><a href="../calibration_temperature/">calibration_temperature</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Temperature at which calibration was performed</td>
-<td>direct</td>
-</tr>
 <tr>
 <td><a href="../standard_gas_info/">standard_gas_info</a></td>
 <td>0..1 <br/> <a href="../StandardGas/">StandardGas</a></td>
@@ -661,25 +657,6 @@
 </tr>
 </tbody>
 </table>
-<h2 id="usages">Usages</h2>
-<table>
-<thead>
-<tr>
-<th>used by</th>
-<th>used in</th>
-<th>type</th>
-<th>used</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="../CO2GasDetector/">CO2GasDetector</a></td>
-<td><a href="../calibration/">calibration</a></td>
-<td>range</td>
-<td><a href="./">CO2Calibration</a></td>
-</tr>
-</tbody>
-</table>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
@@ -709,11 +686,9 @@
 <h3 id="direct">Direct</h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CO2Calibration</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CO2 gas detector calibration with standard gas information.</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Base CO2 gas detector calibration with standard gas information.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.oaedata.org/OAEDataSchema</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Calibration</span>
-<span class="nt">slots</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">calibration_temperature</span>
 <span class="nt">attributes</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">standard_gas_info</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">standard_gas_info</span>
@@ -723,13 +698,14 @@
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CO2Calibration</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ContinuousCO2Calibration</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">StandardGas</span>
 </code></pre></div>
 </details>
 <h3 id="induced">Induced</h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CO2Calibration</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CO2 gas detector calibration with standard gas information.</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Base CO2 gas detector calibration with standard gas information.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.oaedata.org/OAEDataSchema</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Calibration</span>
 <span class="nt">attributes</span><span class="p">:</span>
@@ -743,19 +719,8 @@
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CO2Calibration</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CO2Calibration</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ContinuousCO2Calibration</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">StandardGas</span>
-<span class="w">  </span><span class="nt">calibration_temperature</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">calibration_temperature</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Temperature at which calibration was performed.</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Calibration temperature</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.oaedata.org/OAEDataSchema</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">calibration_temperature</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CO2Calibration</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pHCalibration</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CO2Calibration</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">  </span><span class="nt">calibration_location</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">calibration_location</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Factory calibration, lab calibration, or field calibration.</span>

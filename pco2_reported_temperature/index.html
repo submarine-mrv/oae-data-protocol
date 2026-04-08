@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://schema.oaedata.org/dosing_dispersal_hydrologic_location/">
+        <link rel="canonical" href="https://schema.oaedata.org/pco2_reported_temperature/">
       
       
       
@@ -18,7 +18,7 @@
     
     
       
-        <title>Slot: Dosing Dispersal Hydrologic Location (dosing_dispersal_hydrologic_location) - OAE Data Protocol: Schema Documentation</title>
+        <title>Slot: Temperature at which pCO2 was reported (pco2_reported_temperature) - OAE Data Protocol: Schema Documentation</title>
       
     
     
@@ -62,7 +62,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-dosing-dispersal-hydrologic-location-dosing_dispersal_hydrologic_location" class="md-skip">
+        <a href="#slot-temperature-at-which-pco2-was-reported-pco2_reported_temperature" class="md-skip">
           Skip to content
         </a>
       
@@ -97,7 +97,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: Dosing Dispersal Hydrologic Location (dosing_dispersal_hydrologic_location)
+              Slot: Temperature at which pCO2 was reported (pco2_reported_temperature)
             
           </span>
         </div>
@@ -1293,9 +1293,9 @@
   
 
 
-<h1 id="slot-dosing-dispersal-hydrologic-location-dosing_dispersal_hydrologic_location">Slot: Dosing Dispersal Hydrologic Location (dosing_dispersal_hydrologic_location)</h1>
-<p><em>Descriptive dosing location</em></p>
-<p>URI: <a href="https://schema.oaedata.org/dosing_dispersal_hydrologic_location">oae:dosing_dispersal_hydrologic_location</a></p>
+<h1 id="slot-temperature-at-which-pco2-was-reported-pco2_reported_temperature">Slot: Temperature at which pCO2 was reported (pco2_reported_temperature)</h1>
+<p><em>In Celsius. The input could be a constant temperature value, or something like, in-situ temperature, temperature of analysis, etc.</em></p>
+<p>URI: <a href="https://schema.oaedata.org/pco2_reported_temperature">oae:pco2_reported_temperature</a></p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -1309,23 +1309,18 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Intervention/">Intervention</a></td>
-<td>Additional metadata that applies to experiments where an intervention, such a...</td>
+<td><a href="../ContinuousCO2Variable/">ContinuousCO2Variable</a></td>
+<td>CO2 continuous (sensor) measured variable (xCO2/pCO2/fCO2)</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../DosingDetails/">DosingDetails</a></td>
-<td>An abstract class (used as a mixin, not implemented directly) for detailing t...</td>
+<td><a href="../MeasuredCO2Fields/">MeasuredCO2Fields</a></td>
+<td>Fields applied to all measured CO2 variable types (discrete and continuous)</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../Tracer/">Tracer</a></td>
-<td>Additional metadata that applies to experiments where a tracer study was cond...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../InterventionWithTracer/">InterventionWithTracer</a></td>
-<td>Additional metadata that applies to hybrid experiments where an intervention ...</td>
+<td><a href="../DiscreteCO2Variable/">DiscreteCO2Variable</a></td>
+<td>CO2 discrete (bottle) measured variable (pCO2/fCO2)</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -1333,7 +1328,7 @@
 <h2 id="properties">Properties</h2>
 <ul>
 <li>
-<p>Range: <a href="../HydrologicLocation/">HydrologicLocation</a></p>
+<p>Range: <a href="../String/">String</a></p>
 </li>
 <li>
 <p>Required: True</p>
@@ -1355,26 +1350,27 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>oae:dosing_dispersal_hydrologic_location</td>
+<td>oae:pco2_reported_temperature</td>
 </tr>
 <tr>
 <td>native</td>
-<td>oae:dosing_dispersal_hydrologic_location</td>
+<td>oae:pco2_reported_temperature</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
-<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dosing_dispersal_hydrologic_location</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Descriptive dosing location</span>
-<span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dosing Dispersal Hydrologic Location</span>
+<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pco2_reported_temperature</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">In Celsius. The input could be a constant temperature value, or something</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">like, in-situ temperature, temperature of analysis, etc.</span>
+<span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Temperature at which pCO2 was reported</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.oaedata.org/OAEDataSchema</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dosing_dispersal_hydrologic_location</span>
-<span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DosingDetails</span>
+<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pco2_reported_temperature</span>
+<span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MeasuredCO2Fields</span>
 <span class="nt">domain_of</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DosingDetails</span>
-<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HydrologicLocation</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MeasuredCO2Fields</span>
+<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 </details>
