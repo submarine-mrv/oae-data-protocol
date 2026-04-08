@@ -48,7 +48,7 @@ nav:
     - FieldDataset: FieldDataset.md
     - ModelOutputDataset: ModelOutputDataset.md
   - Variables:
-    - variables/index.md
+    - Variables/index.md
     - InSituVariable: InSituVariable.md
     - MeasuredVariable: MeasuredVariable.md
     - CalculatedVariable: CalculatedVariable.md
