@@ -16,8 +16,8 @@ The [OAE Data Management Protocol](https://www.carbontosea.org/oae-data-protocol
 
 This site is the technical reference for the protocol's machine-readable schema — the formal data model that defines how OAE metadata is structured, validated, and exchanged. Use it to:
 
-- Understand the [variable class hierarchy](../variables/) and how to describe different measurement types
-- Look up required fields for [experiments](../projects-experiments/), [datasets](../datasets/), and [instruments](../instruments-calibration/)
+- Understand the [variable class hierarchy](../Variables/) and how to describe different measurement types
+- Look up required fields for [experiments](../projects-experiments/), [datasets](../Datasets/), and [instruments](../instruments-calibration/)
 - Browse [controlled vocabularies](../vocabularies.md) used across the protocol
 - Reference the [full schema index](../OAEDataSchema.md) for every class, slot, and enum
 

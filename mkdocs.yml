@@ -44,11 +44,11 @@ nav:
     - InterventionWithTracer: InterventionWithTracer.md
     - Model: Model.md
   - Datasets:
-    - datasets/index.md
+    - Datasets/index.md
     - FieldDataset: FieldDataset.md
     - ModelOutputDataset: ModelOutputDataset.md
   - Variables:
-    - variables/index.md
+    - Variables/index.md
     - InSituVariable: InSituVariable.md
     - MeasuredVariable: MeasuredVariable.md
     - CalculatedVariable: CalculatedVariable.md

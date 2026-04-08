@@ -231,7 +231,8 @@ gendoc: $(DOCDIR)
 	cp $(DEST)/jsonld/context.jsonld $(DOCDIR)/context.jsonld
 	@# Rewrite auto-generated links to section summary pages so they resolve
 	@# to our custom explainer indexes instead of 404ing
-	@for section in getting-started projects-experiments datasets variables instruments-calibration; do \
+	@# Note: 'variables' and 'datasets' excluded — they now have real slot pages
+	@for section in getting-started projects-experiments instruments-calibration; do \
 		find $(DOCDIR) -name '*.md' -maxdepth 2 -exec sed -i.bak "s|]($$section\.md)|]($$section/index.md)|g" {} \; ; \
 	done
 	@find $(DOCDIR) -name '*.md.bak' -delete
