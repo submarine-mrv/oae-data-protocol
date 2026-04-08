@@ -208,11 +208,9 @@ classes:
       accuracy:
         title: Accuracy (°C)
         description: Accuracy of the temperature sensor in degrees Celsius.
-        range: float
       precision:
         title: Precision (°C)
         description: Precision of the temperature sensor in degrees Celsius.
-        range: float
 
   # Pressure sensor (units in hPa)
   PressureSensor:
@@ -224,11 +222,9 @@ classes:
       accuracy:
         title: Accuracy (hPa)
         description: Accuracy of the pressure sensor in hectopascals (hPa).
-        range: float
       precision:
         title: Precision (hPa)
         description: Precision of the pressure sensor in hectopascals (hPa).
-        range: float
 
   # Marine air CO2 measurement information
   MarineAirMeasurement:
