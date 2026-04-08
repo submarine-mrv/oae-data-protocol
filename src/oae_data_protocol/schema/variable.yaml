@@ -413,19 +413,19 @@ classes:
         range: string
         required: true
       seawater_volume:
-        title: Seawater volume
+        title: Seawater volume (mL)
         description: Volume (in mL) of seawater in the flask.
-        range: integer
+        range: float
         # TODO: Change to DimensionedQuantity?
       headspace_volume:
-        title: Headspace volume
+        title: Headspace volume (mL)
         description: Volume (in mL) of headspace (water displaced in the flask plus volume of the tubing).
-        range: integer
+        range: float
         # TODO: Change to DimensionedQuantity?
       measurement_temperature:
-        title: Temperature of measurement
+        title: Temperature of measurement (°C)
         description: Temperature at which the samples were analyzed in Celsius.
-        range: integer
+        range: float
         required: true
         # TODO: Change to DimensionedQuantity?
 
@@ -451,15 +451,15 @@ classes:
       equilibrator_temperature_sensor:
         title: Equilibrator temperature sensor
         description: Temperature sensor for the equilibrator.
-        range: GenericSensor
+        range: TemperatureSensor
       equilibrator_pressure_sensor:
         title: Equilibrator pressure sensor
         description: Pressure sensor for the equilibrator.
-        range: GenericSensor
+        range: PressureSensor
       atmospheric_pressure_sensor:
         title: Atmospheric pressure sensor
         description: Atmospheric pressure sensor.
-        range: GenericSensor
+        range: PressureSensor
       seawater_intake_location:
         title: Location of seawater intake
         description: Whereabouts of the seawater intake.

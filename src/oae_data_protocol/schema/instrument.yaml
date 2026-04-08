@@ -142,28 +142,28 @@ classes:
         description: Type of the equilibrator for the CO2 measurement.
         range: string
       volume:
-        title: Equilibrator volume
+        title: Equilibrator volume (L)
         description: The total volume (in liters) of the CO2 equilibrator.
-        range: string
+        range: float
       vented:
         title: Vented or not
         description: Is the equilibrator vented or not?
         range: boolean
       water_flow_rate:
-        title: Water flow rate
+        title: Water flow rate (L/min)
         description: Flow rate (in L/min) of the flow through seawater.
-        range: string
+        range: float
       headspace_gas_flow_rate:
-        title: Headspace gas flow rate
+        title: Headspace gas flow rate (L/min)
         description: Flow rate (in L/min) of the gas from the equilibrator to the CO2 analyzer.
-        range: string
+        range: float
 
-  # Reusable sensor class for equilibrator temp/pressure and atmospheric pressure
+  # Reusable sensor base class — subclass to specialize units via slot_usage
   GenericSensor:
     description: >-
-      Environmental sensor (temperature or pressure) used in continuous CO2
-      measurements. Reusable for equilibrator temperature sensor, equilibrator
-      pressure sensor, and atmospheric pressure sensor.
+      Generic sensor base class used in continuous CO2 measurements.
+      Subclasses (e.g., TemperatureSensor, PressureSensor) specialize accuracy
+      and precision units via slot_usage.
     attributes:
       location:
         title: Location
@@ -184,11 +184,11 @@ classes:
       accuracy:
         title: Accuracy
         description: Accuracy of the sensor.
-        range: string
+        range: float
       precision:
         title: Precision
         description: Precision of the sensor.
-        range: string
+        range: float
       calibration:
         title: Calibration
         description: Calibration information for the sensor.
@@ -197,6 +197,38 @@ classes:
         title: Comments
         description: Additional comments about the sensor.
         range: string
+
+  # Temperature sensor (units in degrees Celsius)
+  TemperatureSensor:
+    description: >-
+      Temperature sensor used in continuous CO2 measurements.
+      Accuracy and precision are reported in degrees Celsius.
+    is_a: GenericSensor
+    slot_usage:
+      accuracy:
+        title: Accuracy (°C)
+        description: Accuracy of the temperature sensor in degrees Celsius.
+        range: float
+      precision:
+        title: Precision (°C)
+        description: Precision of the temperature sensor in degrees Celsius.
+        range: float
+
+  # Pressure sensor (units in hPa)
+  PressureSensor:
+    description: >-
+      Pressure sensor used in continuous CO2 measurements.
+      Accuracy and precision are reported in hectopascals (hPa).
+    is_a: GenericSensor
+    slot_usage:
+      accuracy:
+        title: Accuracy (hPa)
+        description: Accuracy of the pressure sensor in hectopascals (hPa).
+        range: float
+      precision:
+        title: Precision (hPa)
+        description: Precision of the pressure sensor in hectopascals (hPa).
+        range: float
 
   # Marine air CO2 measurement information
   MarineAirMeasurement:

@@ -1171,18 +1171,18 @@ export interface CO2Equilibrator {
     /** Type of the equilibrator for the CO2 measurement. */
     equilibrator_type?: string,
     /** The total volume (in liters) of the CO2 equilibrator. */
-    volume?: string,
+    volume?: number,
     /** Is the equilibrator vented or not? */
     vented?: boolean,
     /** Flow rate (in L/min) of the flow through seawater. */
-    water_flow_rate?: string,
+    water_flow_rate?: number,
     /** Flow rate (in L/min) of the gas from the equilibrator to the CO2 analyzer. */
-    headspace_gas_flow_rate?: string,
+    headspace_gas_flow_rate?: number,
 }
 
 
 /**
- * Environmental sensor (temperature or pressure) used in continuous CO2 measurements. Reusable for equilibrator temperature sensor, equilibrator pressure sensor, and atmospheric pressure sensor.
+ * Generic sensor base class used in continuous CO2 measurements. Subclasses (e.g., TemperatureSensor, PressureSensor) specialize accuracy and precision units via slot_usage.
  */
 export interface GenericSensor {
     /** Location of the sensor. */
@@ -1194,13 +1194,27 @@ export interface GenericSensor {
     /** Serial number of the sensor. */
     serial_number?: string,
     /** Accuracy of the sensor. */
-    accuracy?: string,
+    accuracy?: number,
     /** Precision of the sensor. */
-    precision?: string,
+    precision?: number,
     /** Calibration information for the sensor. */
     calibration?: string,
     /** Additional comments about the sensor. */
     comments?: string,
+}
+
+
+/**
+ * Temperature sensor used in continuous CO2 measurements. Accuracy and precision are reported in degrees Celsius.
+ */
+export interface TemperatureSensor extends GenericSensor {
+}
+
+
+/**
+ * Pressure sensor used in continuous CO2 measurements. Accuracy and precision are reported in hectopascals (hPa).
+ */
+export interface PressureSensor extends GenericSensor {
 }
 
 
@@ -1406,11 +1420,11 @@ export interface ContinuousCO2Variable extends ContinuousMeasuredVariable, Measu
     /** Equilibrator used for CO2 measurement. */
     equilibrator?: CO2Equilibrator,
     /** Temperature sensor for the equilibrator. */
-    equilibrator_temperature_sensor?: GenericSensor,
+    equilibrator_temperature_sensor?: TemperatureSensor,
     /** Pressure sensor for the equilibrator. */
-    equilibrator_pressure_sensor?: GenericSensor,
+    equilibrator_pressure_sensor?: PressureSensor,
     /** Atmospheric pressure sensor. */
-    atmospheric_pressure_sensor?: GenericSensor,
+    atmospheric_pressure_sensor?: PressureSensor,
     /** Whereabouts of the seawater intake. */
     seawater_intake_location: string,
     /** Water depth of the seawater intake. */

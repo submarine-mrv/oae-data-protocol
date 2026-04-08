@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-04-06T19:16:35
+# Generation date: 2026-04-07T18:02:08
 # Schema: OAEDataSchema
 #
 # id: https://schema.oaedata.org/OAEDataSchema
@@ -2124,11 +2124,11 @@ class DiscreteCO2Variable(DiscreteMeasuredVariable):
     genesis: str = None
     sampling: str = None
     storage_method: str = None
-    measurement_temperature: int = None
+    measurement_temperature: float = None
     analyzing_instrument: Union[dict, "CO2GasDetector"] = None
     pco2_reported_temperature: str = None
-    seawater_volume: Optional[int] = None
-    headspace_volume: Optional[int] = None
+    seawater_volume: Optional[float] = None
+    headspace_volume: Optional[float] = None
     variable_type: Optional[str] = None
     appropriate_use_quality: Optional[Union[str, "AppropriateUseQuality"]] = None
     water_vapor_correction_method: Optional[str] = None
@@ -2142,8 +2142,8 @@ class DiscreteCO2Variable(DiscreteMeasuredVariable):
 
         if self._is_empty(self.measurement_temperature):
             self.MissingRequiredField("measurement_temperature")
-        if not isinstance(self.measurement_temperature, int):
-            self.measurement_temperature = int(self.measurement_temperature)
+        if not isinstance(self.measurement_temperature, float):
+            self.measurement_temperature = float(self.measurement_temperature)
 
         if self._is_empty(self.analyzing_instrument):
             self.MissingRequiredField("analyzing_instrument")
@@ -2155,11 +2155,11 @@ class DiscreteCO2Variable(DiscreteMeasuredVariable):
         if not isinstance(self.pco2_reported_temperature, str):
             self.pco2_reported_temperature = str(self.pco2_reported_temperature)
 
-        if self.seawater_volume is not None and not isinstance(self.seawater_volume, int):
-            self.seawater_volume = int(self.seawater_volume)
+        if self.seawater_volume is not None and not isinstance(self.seawater_volume, float):
+            self.seawater_volume = float(self.seawater_volume)
 
-        if self.headspace_volume is not None and not isinstance(self.headspace_volume, int):
-            self.headspace_volume = int(self.headspace_volume)
+        if self.headspace_volume is not None and not isinstance(self.headspace_volume, float):
+            self.headspace_volume = float(self.headspace_volume)
 
         if self.variable_type is not None and not isinstance(self.variable_type, str):
             self.variable_type = str(self.variable_type)
@@ -2212,9 +2212,9 @@ class ContinuousCO2Variable(ContinuousMeasuredVariable):
     analyzing_instrument: Union[dict, "ContinuousCO2GasDetector"] = None
     pco2_reported_temperature: str = None
     equilibrator: Optional[Union[dict, "CO2Equilibrator"]] = None
-    equilibrator_temperature_sensor: Optional[Union[dict, "GenericSensor"]] = None
-    equilibrator_pressure_sensor: Optional[Union[dict, "GenericSensor"]] = None
-    atmospheric_pressure_sensor: Optional[Union[dict, "GenericSensor"]] = None
+    equilibrator_temperature_sensor: Optional[Union[dict, "TemperatureSensor"]] = None
+    equilibrator_pressure_sensor: Optional[Union[dict, "PressureSensor"]] = None
+    atmospheric_pressure_sensor: Optional[Union[dict, "PressureSensor"]] = None
     drying_method: Optional[str] = None
     marine_air_measurement: Optional[Union[dict, "MarineAirMeasurement"]] = None
     variable_type: Optional[str] = None
@@ -2246,14 +2246,14 @@ class ContinuousCO2Variable(ContinuousMeasuredVariable):
         if self.equilibrator is not None and not isinstance(self.equilibrator, CO2Equilibrator):
             self.equilibrator = CO2Equilibrator(**as_dict(self.equilibrator))
 
-        if self.equilibrator_temperature_sensor is not None and not isinstance(self.equilibrator_temperature_sensor, GenericSensor):
-            self.equilibrator_temperature_sensor = GenericSensor(**as_dict(self.equilibrator_temperature_sensor))
+        if self.equilibrator_temperature_sensor is not None and not isinstance(self.equilibrator_temperature_sensor, TemperatureSensor):
+            self.equilibrator_temperature_sensor = TemperatureSensor(**as_dict(self.equilibrator_temperature_sensor))
 
-        if self.equilibrator_pressure_sensor is not None and not isinstance(self.equilibrator_pressure_sensor, GenericSensor):
-            self.equilibrator_pressure_sensor = GenericSensor(**as_dict(self.equilibrator_pressure_sensor))
+        if self.equilibrator_pressure_sensor is not None and not isinstance(self.equilibrator_pressure_sensor, PressureSensor):
+            self.equilibrator_pressure_sensor = PressureSensor(**as_dict(self.equilibrator_pressure_sensor))
 
-        if self.atmospheric_pressure_sensor is not None and not isinstance(self.atmospheric_pressure_sensor, GenericSensor):
-            self.atmospheric_pressure_sensor = GenericSensor(**as_dict(self.atmospheric_pressure_sensor))
+        if self.atmospheric_pressure_sensor is not None and not isinstance(self.atmospheric_pressure_sensor, PressureSensor):
+            self.atmospheric_pressure_sensor = PressureSensor(**as_dict(self.atmospheric_pressure_sensor))
 
         if self.drying_method is not None and not isinstance(self.drying_method, str):
             self.drying_method = str(self.drying_method)
@@ -3290,26 +3290,26 @@ class CO2Equilibrator(YAMLRoot):
     class_model_uri: ClassVar[URIRef] = OAE.CO2Equilibrator
 
     equilibrator_type: Optional[str] = None
-    volume: Optional[str] = None
+    volume: Optional[float] = None
     vented: Optional[Union[bool, Bool]] = None
-    water_flow_rate: Optional[str] = None
-    headspace_gas_flow_rate: Optional[str] = None
+    water_flow_rate: Optional[float] = None
+    headspace_gas_flow_rate: Optional[float] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self.equilibrator_type is not None and not isinstance(self.equilibrator_type, str):
             self.equilibrator_type = str(self.equilibrator_type)
 
-        if self.volume is not None and not isinstance(self.volume, str):
-            self.volume = str(self.volume)
+        if self.volume is not None and not isinstance(self.volume, float):
+            self.volume = float(self.volume)
 
         if self.vented is not None and not isinstance(self.vented, Bool):
             self.vented = Bool(self.vented)
 
-        if self.water_flow_rate is not None and not isinstance(self.water_flow_rate, str):
-            self.water_flow_rate = str(self.water_flow_rate)
+        if self.water_flow_rate is not None and not isinstance(self.water_flow_rate, float):
+            self.water_flow_rate = float(self.water_flow_rate)
 
-        if self.headspace_gas_flow_rate is not None and not isinstance(self.headspace_gas_flow_rate, str):
-            self.headspace_gas_flow_rate = str(self.headspace_gas_flow_rate)
+        if self.headspace_gas_flow_rate is not None and not isinstance(self.headspace_gas_flow_rate, float):
+            self.headspace_gas_flow_rate = float(self.headspace_gas_flow_rate)
 
         super().__post_init__(**kwargs)
 
@@ -3317,8 +3317,8 @@ class CO2Equilibrator(YAMLRoot):
 @dataclass(repr=False)
 class GenericSensor(YAMLRoot):
     """
-    Environmental sensor (temperature or pressure) used in continuous CO2 measurements. Reusable for equilibrator
-    temperature sensor, equilibrator pressure sensor, and atmospheric pressure sensor.
+    Generic sensor base class used in continuous CO2 measurements. Subclasses (e.g., TemperatureSensor,
+    PressureSensor) specialize accuracy and precision units via slot_usage.
     """
     _inherited_slots: ClassVar[List[str]] = []
 
@@ -3331,8 +3331,8 @@ class GenericSensor(YAMLRoot):
     manufacturer: Optional[str] = None
     model: Optional[str] = None
     serial_number: Optional[str] = None
-    accuracy: Optional[str] = None
-    precision: Optional[str] = None
+    accuracy: Optional[float] = None
+    precision: Optional[float] = None
     calibration: Optional[str] = None
     comments: Optional[str] = None
 
@@ -3349,17 +3349,67 @@ class GenericSensor(YAMLRoot):
         if self.serial_number is not None and not isinstance(self.serial_number, str):
             self.serial_number = str(self.serial_number)
 
-        if self.accuracy is not None and not isinstance(self.accuracy, str):
-            self.accuracy = str(self.accuracy)
+        if self.accuracy is not None and not isinstance(self.accuracy, float):
+            self.accuracy = float(self.accuracy)
 
-        if self.precision is not None and not isinstance(self.precision, str):
-            self.precision = str(self.precision)
+        if self.precision is not None and not isinstance(self.precision, float):
+            self.precision = float(self.precision)
 
         if self.calibration is not None and not isinstance(self.calibration, str):
             self.calibration = str(self.calibration)
 
         if self.comments is not None and not isinstance(self.comments, str):
             self.comments = str(self.comments)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class TemperatureSensor(GenericSensor):
+    """
+    Temperature sensor used in continuous CO2 measurements. Accuracy and precision are reported in degrees Celsius.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["TemperatureSensor"]
+    class_class_curie: ClassVar[str] = "oae:TemperatureSensor"
+    class_name: ClassVar[str] = "TemperatureSensor"
+    class_model_uri: ClassVar[URIRef] = OAE.TemperatureSensor
+
+    accuracy: Optional[float] = None
+    precision: Optional[float] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self.accuracy is not None and not isinstance(self.accuracy, float):
+            self.accuracy = float(self.accuracy)
+
+        if self.precision is not None and not isinstance(self.precision, float):
+            self.precision = float(self.precision)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class PressureSensor(GenericSensor):
+    """
+    Pressure sensor used in continuous CO2 measurements. Accuracy and precision are reported in hectopascals (hPa).
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["PressureSensor"]
+    class_class_curie: ClassVar[str] = "oae:PressureSensor"
+    class_name: ClassVar[str] = "PressureSensor"
+    class_model_uri: ClassVar[URIRef] = OAE.PressureSensor
+
+    accuracy: Optional[float] = None
+    precision: Optional[float] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self.accuracy is not None and not isinstance(self.accuracy, float):
+            self.accuracy = float(self.accuracy)
+
+        if self.precision is not None and not isinstance(self.precision, float):
+            self.precision = float(self.precision)
 
         super().__post_init__(**kwargs)
 
@@ -5525,25 +5575,25 @@ slots.discreteCO2Variable__storage_method = Slot(uri=OAE.storage_method, name="d
                    model_uri=OAE.discreteCO2Variable__storage_method, domain=None, range=str)
 
 slots.discreteCO2Variable__seawater_volume = Slot(uri=OAE.seawater_volume, name="discreteCO2Variable__seawater_volume", curie=OAE.curie('seawater_volume'),
-                   model_uri=OAE.discreteCO2Variable__seawater_volume, domain=None, range=Optional[int])
+                   model_uri=OAE.discreteCO2Variable__seawater_volume, domain=None, range=Optional[float])
 
 slots.discreteCO2Variable__headspace_volume = Slot(uri=OAE.headspace_volume, name="discreteCO2Variable__headspace_volume", curie=OAE.curie('headspace_volume'),
-                   model_uri=OAE.discreteCO2Variable__headspace_volume, domain=None, range=Optional[int])
+                   model_uri=OAE.discreteCO2Variable__headspace_volume, domain=None, range=Optional[float])
 
 slots.discreteCO2Variable__measurement_temperature = Slot(uri=OAE.measurement_temperature, name="discreteCO2Variable__measurement_temperature", curie=OAE.curie('measurement_temperature'),
-                   model_uri=OAE.discreteCO2Variable__measurement_temperature, domain=None, range=int)
+                   model_uri=OAE.discreteCO2Variable__measurement_temperature, domain=None, range=float)
 
 slots.continuousCO2Variable__equilibrator = Slot(uri=OAE.equilibrator, name="continuousCO2Variable__equilibrator", curie=OAE.curie('equilibrator'),
                    model_uri=OAE.continuousCO2Variable__equilibrator, domain=None, range=Optional[Union[dict, CO2Equilibrator]])
 
 slots.continuousCO2Variable__equilibrator_temperature_sensor = Slot(uri=OAE.equilibrator_temperature_sensor, name="continuousCO2Variable__equilibrator_temperature_sensor", curie=OAE.curie('equilibrator_temperature_sensor'),
-                   model_uri=OAE.continuousCO2Variable__equilibrator_temperature_sensor, domain=None, range=Optional[Union[dict, GenericSensor]])
+                   model_uri=OAE.continuousCO2Variable__equilibrator_temperature_sensor, domain=None, range=Optional[Union[dict, TemperatureSensor]])
 
 slots.continuousCO2Variable__equilibrator_pressure_sensor = Slot(uri=OAE.equilibrator_pressure_sensor, name="continuousCO2Variable__equilibrator_pressure_sensor", curie=OAE.curie('equilibrator_pressure_sensor'),
-                   model_uri=OAE.continuousCO2Variable__equilibrator_pressure_sensor, domain=None, range=Optional[Union[dict, GenericSensor]])
+                   model_uri=OAE.continuousCO2Variable__equilibrator_pressure_sensor, domain=None, range=Optional[Union[dict, PressureSensor]])
 
 slots.continuousCO2Variable__atmospheric_pressure_sensor = Slot(uri=OAE.atmospheric_pressure_sensor, name="continuousCO2Variable__atmospheric_pressure_sensor", curie=OAE.curie('atmospheric_pressure_sensor'),
-                   model_uri=OAE.continuousCO2Variable__atmospheric_pressure_sensor, domain=None, range=Optional[Union[dict, GenericSensor]])
+                   model_uri=OAE.continuousCO2Variable__atmospheric_pressure_sensor, domain=None, range=Optional[Union[dict, PressureSensor]])
 
 slots.continuousCO2Variable__seawater_intake_location = Slot(uri=OAE.seawater_intake_location, name="continuousCO2Variable__seawater_intake_location", curie=OAE.curie('seawater_intake_location'),
                    model_uri=OAE.continuousCO2Variable__seawater_intake_location, domain=None, range=str)
@@ -5834,16 +5884,16 @@ slots.cO2Equilibrator__equilibrator_type = Slot(uri=OAE.equilibrator_type, name=
                    model_uri=OAE.cO2Equilibrator__equilibrator_type, domain=None, range=Optional[str])
 
 slots.cO2Equilibrator__volume = Slot(uri=OAE.volume, name="cO2Equilibrator__volume", curie=OAE.curie('volume'),
-                   model_uri=OAE.cO2Equilibrator__volume, domain=None, range=Optional[str])
+                   model_uri=OAE.cO2Equilibrator__volume, domain=None, range=Optional[float])
 
 slots.cO2Equilibrator__vented = Slot(uri=OAE.vented, name="cO2Equilibrator__vented", curie=OAE.curie('vented'),
                    model_uri=OAE.cO2Equilibrator__vented, domain=None, range=Optional[Union[bool, Bool]])
 
 slots.cO2Equilibrator__water_flow_rate = Slot(uri=OAE.water_flow_rate, name="cO2Equilibrator__water_flow_rate", curie=OAE.curie('water_flow_rate'),
-                   model_uri=OAE.cO2Equilibrator__water_flow_rate, domain=None, range=Optional[str])
+                   model_uri=OAE.cO2Equilibrator__water_flow_rate, domain=None, range=Optional[float])
 
 slots.cO2Equilibrator__headspace_gas_flow_rate = Slot(uri=OAE.headspace_gas_flow_rate, name="cO2Equilibrator__headspace_gas_flow_rate", curie=OAE.curie('headspace_gas_flow_rate'),
-                   model_uri=OAE.cO2Equilibrator__headspace_gas_flow_rate, domain=None, range=Optional[str])
+                   model_uri=OAE.cO2Equilibrator__headspace_gas_flow_rate, domain=None, range=Optional[float])
 
 slots.genericSensor__location = Slot(uri=OAE.location, name="genericSensor__location", curie=OAE.curie('location'),
                    model_uri=OAE.genericSensor__location, domain=None, range=Optional[str])
@@ -5858,10 +5908,10 @@ slots.genericSensor__serial_number = Slot(uri=OAE.serial_number, name="genericSe
                    model_uri=OAE.genericSensor__serial_number, domain=None, range=Optional[str])
 
 slots.genericSensor__accuracy = Slot(uri=OAE.accuracy, name="genericSensor__accuracy", curie=OAE.curie('accuracy'),
-                   model_uri=OAE.genericSensor__accuracy, domain=None, range=Optional[str])
+                   model_uri=OAE.genericSensor__accuracy, domain=None, range=Optional[float])
 
 slots.genericSensor__precision = Slot(uri=OAE.precision, name="genericSensor__precision", curie=OAE.curie('precision'),
-                   model_uri=OAE.genericSensor__precision, domain=None, range=Optional[str])
+                   model_uri=OAE.genericSensor__precision, domain=None, range=Optional[float])
 
 slots.genericSensor__calibration = Slot(uri=OAE.calibration, name="genericSensor__calibration", curie=OAE.curie('calibration'),
                    model_uri=OAE.genericSensor__calibration, domain=None, range=Optional[str])
@@ -6100,3 +6150,15 @@ slots.CO2GasDetector_manufacturer = Slot(uri=OAE.manufacturer, name="CO2GasDetec
 
 slots.CO2GasDetector_model = Slot(uri=OAE.model, name="CO2GasDetector_model", curie=OAE.curie('model'),
                    model_uri=OAE.CO2GasDetector_model, domain=CO2GasDetector, range=Optional[str])
+
+slots.TemperatureSensor_accuracy = Slot(uri=OAE.accuracy, name="TemperatureSensor_accuracy", curie=OAE.curie('accuracy'),
+                   model_uri=OAE.TemperatureSensor_accuracy, domain=TemperatureSensor, range=Optional[float])
+
+slots.TemperatureSensor_precision = Slot(uri=OAE.precision, name="TemperatureSensor_precision", curie=OAE.curie('precision'),
+                   model_uri=OAE.TemperatureSensor_precision, domain=TemperatureSensor, range=Optional[float])
+
+slots.PressureSensor_accuracy = Slot(uri=OAE.accuracy, name="PressureSensor_accuracy", curie=OAE.curie('accuracy'),
+                   model_uri=OAE.PressureSensor_accuracy, domain=PressureSensor, range=Optional[float])
+
+slots.PressureSensor_precision = Slot(uri=OAE.precision, name="PressureSensor_precision", curie=OAE.curie('precision'),
+                   model_uri=OAE.PressureSensor_precision, domain=PressureSensor, range=Optional[float])

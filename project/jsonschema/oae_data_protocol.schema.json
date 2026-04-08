@@ -194,8 +194,8 @@
                 },
                 "headspace_gas_flow_rate": {
                     "description": "Flow rate (in L/min) of the gas from the equilibrator to the CO2 analyzer.",
-                    "title": "Headspace gas flow rate",
-                    "type": "string"
+                    "title": "Headspace gas flow rate (L/min)",
+                    "type": "number"
                 },
                 "vented": {
                     "description": "Is the equilibrator vented or not?",
@@ -204,13 +204,13 @@
                 },
                 "volume": {
                     "description": "The total volume (in liters) of the CO2 equilibrator.",
-                    "title": "Equilibrator volume",
-                    "type": "string"
+                    "title": "Equilibrator volume (L)",
+                    "type": "number"
                 },
                 "water_flow_rate": {
                     "description": "Flow rate (in L/min) of the flow through seawater.",
-                    "title": "Water flow rate",
-                    "type": "string"
+                    "title": "Water flow rate (L/min)",
+                    "type": "number"
                 }
             },
             "title": "CO2Equilibrator",
@@ -747,7 +747,7 @@
                     "title": "Weather or climate quality"
                 },
                 "atmospheric_pressure_sensor": {
-                    "$ref": "#/$defs/GenericSensor",
+                    "$ref": "#/$defs/PressureSensor",
                     "description": "Atmospheric pressure sensor.",
                     "title": "Atmospheric pressure sensor"
                 },
@@ -782,12 +782,12 @@
                     "title": "Equilibrator"
                 },
                 "equilibrator_pressure_sensor": {
-                    "$ref": "#/$defs/GenericSensor",
+                    "$ref": "#/$defs/PressureSensor",
                     "description": "Pressure sensor for the equilibrator.",
                     "title": "Equilibrator pressure sensor"
                 },
                 "equilibrator_temperature_sensor": {
-                    "$ref": "#/$defs/GenericSensor",
+                    "$ref": "#/$defs/TemperatureSensor",
                     "description": "Temperature sensor for the equilibrator.",
                     "title": "Equilibrator temperature sensor"
                 },
@@ -2064,8 +2064,8 @@
                 },
                 "headspace_volume": {
                     "description": "Volume (in mL) of headspace (water displaced in the flask plus volume of the tubing).",
-                    "title": "Headspace volume",
-                    "type": "integer"
+                    "title": "Headspace volume (mL)",
+                    "type": "number"
                 },
                 "long_name": {
                     "description": "Full descriptive name of the variable.",
@@ -2079,8 +2079,8 @@
                 },
                 "measurement_temperature": {
                     "description": "Temperature at which the samples were analyzed in Celsius.",
-                    "title": "Temperature of measurement",
-                    "type": "integer"
+                    "title": "Temperature of measurement (\u00b0C)",
+                    "type": "number"
                 },
                 "method_reference": {
                     "description": "Citation for the method used.",
@@ -2147,8 +2147,8 @@
                 },
                 "seawater_volume": {
                     "description": "Volume (in mL) of seawater in the flask.",
-                    "title": "Seawater volume",
-                    "type": "integer"
+                    "title": "Seawater volume (mL)",
+                    "type": "number"
                 },
                 "standard_identifier": {
                     "$ref": "#/$defs/VocabularyItemReference"
@@ -3471,12 +3471,12 @@
         },
         "GenericSensor": {
             "additionalProperties": false,
-            "description": "Environmental sensor (temperature or pressure) used in continuous CO2 measurements. Reusable for equilibrator temperature sensor, equilibrator pressure sensor, and atmospheric pressure sensor.",
+            "description": "Generic sensor base class used in continuous CO2 measurements. Subclasses (e.g., TemperatureSensor, PressureSensor) specialize accuracy and precision units via slot_usage.",
             "properties": {
                 "accuracy": {
                     "description": "Accuracy of the sensor.",
                     "title": "Accuracy",
-                    "type": "string"
+                    "type": "number"
                 },
                 "calibration": {
                     "description": "Calibration information for the sensor.",
@@ -3506,7 +3506,7 @@
                 "precision": {
                     "description": "Precision of the sensor.",
                     "title": "Precision",
-                    "type": "string"
+                    "type": "number"
                 },
                 "serial_number": {
                     "description": "Serial number of the sensor.",
@@ -5473,6 +5473,54 @@
             "title": "PlatformType",
             "type": "string"
         },
+        "PressureSensor": {
+            "additionalProperties": false,
+            "description": "Pressure sensor used in continuous CO2 measurements. Accuracy and precision are reported in hectopascals (hPa).",
+            "properties": {
+                "accuracy": {
+                    "description": "Accuracy of the pressure sensor in hectopascals (hPa).",
+                    "title": "Accuracy (hPa)",
+                    "type": "number"
+                },
+                "calibration": {
+                    "description": "Calibration information for the sensor.",
+                    "title": "Calibration",
+                    "type": "string"
+                },
+                "comments": {
+                    "description": "Additional comments about the sensor.",
+                    "title": "Comments",
+                    "type": "string"
+                },
+                "location": {
+                    "description": "Location of the sensor.",
+                    "title": "Location",
+                    "type": "string"
+                },
+                "manufacturer": {
+                    "description": "Manufacturer of the sensor.",
+                    "title": "Manufacturer",
+                    "type": "string"
+                },
+                "model": {
+                    "description": "Model number of the sensor.",
+                    "title": "Model",
+                    "type": "string"
+                },
+                "precision": {
+                    "description": "Precision of the pressure sensor in hectopascals (hPa).",
+                    "title": "Precision (hPa)",
+                    "type": "number"
+                },
+                "serial_number": {
+                    "description": "Serial number of the sensor.",
+                    "title": "Serial number",
+                    "type": "string"
+                }
+            },
+            "title": "PressureSensor",
+            "type": "object"
+        },
         "Project": {
             "additionalProperties": false,
             "description": "A project conducting OAE field trials or modeling.",
@@ -5856,6 +5904,54 @@
                 "concentration"
             ],
             "title": "StandardGas",
+            "type": "object"
+        },
+        "TemperatureSensor": {
+            "additionalProperties": false,
+            "description": "Temperature sensor used in continuous CO2 measurements. Accuracy and precision are reported in degrees Celsius.",
+            "properties": {
+                "accuracy": {
+                    "description": "Accuracy of the temperature sensor in degrees Celsius.",
+                    "title": "Accuracy (\u00b0C)",
+                    "type": "number"
+                },
+                "calibration": {
+                    "description": "Calibration information for the sensor.",
+                    "title": "Calibration",
+                    "type": "string"
+                },
+                "comments": {
+                    "description": "Additional comments about the sensor.",
+                    "title": "Comments",
+                    "type": "string"
+                },
+                "location": {
+                    "description": "Location of the sensor.",
+                    "title": "Location",
+                    "type": "string"
+                },
+                "manufacturer": {
+                    "description": "Manufacturer of the sensor.",
+                    "title": "Manufacturer",
+                    "type": "string"
+                },
+                "model": {
+                    "description": "Model number of the sensor.",
+                    "title": "Model",
+                    "type": "string"
+                },
+                "precision": {
+                    "description": "Precision of the temperature sensor in degrees Celsius.",
+                    "title": "Precision (\u00b0C)",
+                    "type": "number"
+                },
+                "serial_number": {
+                    "description": "Serial number of the sensor.",
+                    "title": "Serial number",
+                    "type": "string"
+                }
+            },
+            "title": "TemperatureSensor",
             "type": "object"
         },
         "TitrationCellType": {
