@@ -2,7 +2,7 @@ id: DynamicEnums
 name: DynamicEnums
 
 prefixes:
-  oae: "https://schema.oaedata.org/"
+  oae: "https://example.org/oae#"
   unit: "https://qudt.org/vocab/unit/"
 
 default_prefix: oae

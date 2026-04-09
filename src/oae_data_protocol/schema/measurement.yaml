@@ -5,7 +5,7 @@ id: Measurement
 name: Measurement
 version: 0.1.0
 prefixes:
-  oae: "https://schema.oaedata.org/"
+  oae: "https://example.org/oae#"
 
 default_prefix: oae
 

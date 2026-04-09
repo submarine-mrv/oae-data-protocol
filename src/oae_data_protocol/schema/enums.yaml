@@ -1,7 +1,7 @@
 id: Enums
 name: Enums
 prefixes:
-  oae: "https://schema.oaedata.org/"
+  oae: "https://example.org/oae#"
 
 default_prefix: oae
 

@@ -2,7 +2,8 @@ id: Permit
 name: Permit
 
 prefixes:
-  oae: "https://schema.oaedata.org/"
+  oae: "https://example.org/oae#"
+  schema: "http://schema.org/"
 
 default_prefix: oae
 

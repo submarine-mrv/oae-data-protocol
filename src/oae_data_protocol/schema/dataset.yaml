@@ -1,9 +1,6 @@
 id: Dataset
 name: Dataset
 
-prefixes:
-  oae: "https://schema.oaedata.org/"
-
 default_prefix: oae
 
 classes:
@@ -21,7 +18,6 @@ classes:
       - description
       - project_id
       - experiment_id
-      - filenames
     slot_usage:
       - name:
           title: Dataset Title
@@ -90,6 +86,17 @@ classes:
         title: Fair Use Data Request
         description: A statement from the data producer regarding how this dataset should be used.
         range: string
+      filenames:
+        # TODO: Should be upgraded to be compatilbe with schema:distribution
+        # https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md#distributions
+        title: Filenames
+        range: string
+        required: true
+        multivalued: true
+        # TODO: workaround since JSON Schema treats [] values as satisfying the "required" constraint
+        # It might be nice to fix this in a linkml PR to have minItems=1 automatically set for required lists in the
+        # JSONSchema generator
+        minimum_cardinality: 1
 
     exact_mappings:
       - "schema:Dataset"
@@ -230,14 +237,3 @@ classes:
         title: Parallelization
         description: "Parallelization details (e.g., '3 nodes, 108 ntasks per node')."
         range: string
-
-slots:
-  filenames:
-    # TODO: Should be upgraded to be compatible with schema:distribution
-    # https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md#distributions
-    title: Filenames
-    range: string
-    required: true
-    multivalued: true
-    # TODO: workaround since JSON Schema treats [] values as satisfying the "required" constraint
-    minimum_cardinality: 1

@@ -125,7 +125,7 @@ gen-examples:
 
 # generates all project files
 
-gen-schemas: gen-project gen-validation-schema gen-context
+gen-schemas: gen-project gen-validation-schema
 
 gen-project: $(PYMODEL)
 	$(RUN) gen-project ${CONFIG_YAML} -d $(DEST) $(SOURCE_SCHEMA_PATH)
@@ -146,10 +146,6 @@ ifneq ($(strip ${GEN_TS_ARGS}),)
 	mkdir -p ${DEST}/typescript || true
 	$(RUN) gen-typescript ${GEN_TS_ARGS} $(SOURCE_SCHEMA_PATH) >${DEST}/typescript/${SCHEMA_NAME}.ts
 endif
-
-gen-context:
-	$(RUN) gen-jsonld-context $(SOURCE_SCHEMA_PATH) > $(DEST)/jsonld/context.jsonld
-	@echo "✓ Generated JSON-LD context"
 
 gen-validation-schema:
 	$(RUN) python -c "from linkml.generators.jsonschemagen import JsonSchemaGenerator; \
@@ -223,18 +219,8 @@ $(DOCDIR):
 	mkdir -p $@
 
 gendoc: $(DOCDIR)
+	cp -rf $(SRC)/docs/files/* $(DOCDIR) ; \
 	$(RUN) gen-doc ${GEN_DOC_ARGS} -d $(DOCDIR) $(SOURCE_SCHEMA_PATH)
-	mv $(DOCDIR)/index.md $(DOCDIR)/OAEDataSchema.md
-	@# Custom explainer pages live under src/docs/files/<section>/index.md so
-	@# they don't clobber LinkML-generated slot pages (e.g. variables.md)
-	cp -rf $(SRC)/docs/files/* $(DOCDIR)
-	cp $(DEST)/jsonld/context.jsonld $(DOCDIR)/context.jsonld
-	@# Rewrite auto-generated links to section summary pages so they resolve
-	@# to our custom explainer indexes instead of 404ing
-	@for section in getting-started projects-experiments datasets variables instruments-calibration; do \
-		find $(DOCDIR) -name '*.md' -maxdepth 2 -exec sed -i.bak "s|]($$section\.md)|]($$section/index.md)|g" {} \; ; \
-	done
-	@find $(DOCDIR) -name '*.md.bak' -delete
 
 testdoc: gendoc serve
 

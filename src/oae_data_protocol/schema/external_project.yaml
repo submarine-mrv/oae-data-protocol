@@ -2,7 +2,7 @@ id: ExternalProject
 name: ExternalProject
 
 prefixes:
-  oae: "https://schema.oaedata.org/"
+  oae: "https://example.org/oae#"
 
 default_prefix: oae
 

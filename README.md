@@ -11,9 +11,9 @@ for producing consistent data and metadata for Ocean Alkalinity Enhancement (OAE
 
 This repository provides machine-readable schemas and data standards for the protocol. It focuses on formal specifications for metadata about OAE projects, experiments, datasets, and individual data variables within datasets themselves (including instrumet, analysis, and calibration metadata).
 
-**Creating Metadata**: The easiest way to produce a valid metadata file is the [OAE Metadata Builder](https://metadata.oaedata.org) — a web app that walks you through each section and exports a JSON file validated against these schemas. Excel templates from the [v1.0 protocol launch](http://carbontosea.org/oae-data-protocol/1-0-0/) (August 25, 2025) remain available in [`templates/excel`](./templates/excel) and on the protocol website.
+**For Protocol Compliance**: As of the v1.0 protocol launch (August 25, 2025), projects seeking to comply with the protocol guidelines should use the Excel templates available on the [protocol website](http://carbontosea.org/oae-data-protocol/1-0-0/). These templates are also available in the [`templates/excel`](./templates/excel) directory of this repository.
 
-**Beta Testing**: Organizations and researchers interested in testing the software tooling under development should contact [data@carbontosea.org](mailto:data@carbontosea.org).
+**Beta Testing**: Organizations and researchers interested in testing the software tooling under development in this repository should contact [data@carbontosea.org](mailto:data@carbontosea.org).
 
 ## What's Inside
 
@@ -21,13 +21,12 @@ This repository contains [LinkML](https://linkml.io) schema definitions that can
 
 - **JSON Schema** for data validation and form generation
 - **Python dataclasses** for programmatic data handling
-- **JSON-LD context** for linked-data interoperability
 - **Documentation** (what you're reading now!)
 - Support for multiple serialization formats (JSON, YAML, RDF, etc.)
 
 ## Documentation
 
-📖 **[schema.oaedata.org](https://schema.oaedata.org)**
+📖 **[View the schema documentation](https://submarine-mrv.github.io/oae-data-protocol)**
 
 ## Quick Start
 
@@ -37,8 +36,7 @@ This repository contains [LinkML](https://linkml.io) schema definitions that can
 
 The generated schemas are available in the `project/` directory:
 
-- `project/jsonschema/` - JSON Schema definitions (including `*.validation.schema.json` for runtime validation)
-- `project/jsonld/context.jsonld` - JSON-LD context
+- `project/jsonschema/` - JSON Schema definitions
 - `src/oae_data_protocol/datamodel/` - Python dataclasses
 
 ## Repository Structure
@@ -74,8 +72,7 @@ make gen-project
 
 ```bash
 make help              # Show all available commands
-make gen-schemas       # Regenerate Python, JSON Schema, validation schema, and JSON-LD context
-make gen-project       # Regenerate Python dataclasses and base JSON Schema only
+make gen-project       # Regenerate schemas and Python code
 make test             # Run tests
 make lint             # Lint LinkML schemas
 make serve            # Build and serve documentation locally
