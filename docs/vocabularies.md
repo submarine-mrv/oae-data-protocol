@@ -23,29 +23,29 @@ These vocabularies are defined as part of the [OAE Data Protocol](https://www.ca
 
 | Vocabulary | Values | Used By |
 |-----------|--------|---------|
-| [VariableType](VariableType.md) | pH, ta, dic, co2, sediment, hplc, other, non_measured | All variables |
-| [GenesisType](GenesisType.md) | measured, calculated | In-situ variables |
-| [SamplingType](SamplingType.md) | discrete, continuous | Measured variables |
-| [mCDR Experiment Type](ExperimentType.md) | baseline, control, intervention, tracer_study, model, other | Experiments |
-| [mCDR Data Type](DatasetType.md) | cast, bottle, flow_thru, mooring, drifter, ... | Field datasets |
-| [mCDR Pathways](MCDRPathway.md) | ocean_alkalinity_enhancement, biomass_sinking, ... | Projects |
+| [VariableType](elements/VariableType.md) | pH, ta, dic, co2, sediment, hplc, other, non_measured | All variables |
+| [GenesisType](elements/GenesisType.md) | measured, calculated | In-situ variables |
+| [SamplingType](elements/SamplingType.md) | discrete, continuous | Measured variables |
+| [mCDR Experiment Type](elements/ExperimentType.md) | baseline, control, intervention, tracer_study, model, other | Experiments |
+| [mCDR Data Type](elements/DatasetType.md) | cast, bottle, flow_thru, mooring, drifter, ... | Field datasets |
+| [mCDR Pathways](elements/MCDRPathway.md) | ocean_alkalinity_enhancement, biomass_sinking, ... | Projects |
 
 ### Experiment & Intervention
 
 | Vocabulary | Values | Used By |
 |-----------|--------|---------|
-| [Alkalinity Feedstock](FeedstockType.md) | lime, olivine, magnesium_hydroxide, ... | Intervention experiments |
-| [Alkalinity Feedstock Processing](AlkalinityFeedstockProcessing.md) | electrochemistry, mineral_mining, ... | Intervention experiments |
-| [Alkalinity Feedstock Form](AlkalinityFeedstockForm.md) | powder,ite, solution, ... | Intervention experiments |
-| [Equilibration Status](EquilibrationStatus.md) | pre_equilibrated, not_equilibrated, ... | Intervention experiments |
-| [Tracer Form](TracerForm.md) | gas, dye, other | Tracer experiments |
-| [Dosing Delivery Type](DosingDeliveryType.md) | static_distributed, dynamic_ship_based, ... | Dosing details |
-| [Hydrologic Location](HydrologicLocation.md) | ocean, river, estuary, ... | Dosing details |
+| [Alkalinity Feedstock](elements/FeedstockType.md) | lime, olivine, magnesium_hydroxide, ... | Intervention experiments |
+| [Alkalinity Feedstock Processing](elements/AlkalinityFeedstockProcessing.md) | electrochemistry, mineral_mining, ... | Intervention experiments |
+| [Alkalinity Feedstock Form](elements/AlkalinityFeedstockForm.md) | powder,ite, solution, ... | Intervention experiments |
+| [Equilibration Status](elements/EquilibrationStatus.md) | pre_equilibrated, not_equilibrated, ... | Intervention experiments |
+| [Tracer Form](elements/TracerForm.md) | gas, dye, other | Tracer experiments |
+| [Dosing Delivery Type](elements/DosingDeliveryType.md) | static_distributed, dynamic_ship_based, ... | Dosing details |
+| [Hydrologic Location](elements/HydrologicLocation.md) | ocean, river, estuary, ... | Dosing details |
 
 ### Variable & Instrument
 
 | Vocabulary | Values | Used By |
 |-----------|--------|---------|
-| [Observation Type](ObservationType.md) | profile, surface_underway, time_series, ... | Measured variables |
-| [Appropriate Use Quality](AppropriateUseQuality.md) | climate, weather, other | Specific measured types |
-| [Calibration Location](CalibrationLocation.md) | factory, lab, field | Calibration records |
+| [Observation Type](elements/ObservationType.md) | profile, surface_underway, time_series, ... | Measured variables |
+| [Appropriate Use Quality](elements/AppropriateUseQuality.md) | climate, weather, other | Specific measured types |
+| [Calibration Location](elements/CalibrationLocation.md) | factory, lab, field | Calibration records |

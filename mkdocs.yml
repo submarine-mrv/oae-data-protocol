@@ -19,8 +19,11 @@ theme:
     - content.code.copy    # enable copy to clipboard
 
 # extra css/js see https://www.mkdocs.org/user-guide/customizing-your-theme/
-extra_css: []
-extra_javascript: []
+extra_css:
+  - stylesheets/extra.css
+extra_javascript:
+  - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
+  - javascripts/tablesort.js
 
 plugins:
   - search
@@ -51,7 +54,44 @@ watch:
 
 nav:
   - Home: index.md
-  - Schema: elements/index.md
+  - Getting Started:
+    - getting-started/index.md
+    - Metadata File Format: metadata-format.md
+    - Metadata Builder: metadata-builder.md
+    - Contributing: contributing.md
+  - Projects & Experiments:
+    - projects-experiments/index.md
+    - Project: elements/Project.md
+    - Experiment: elements/Experiment.md
+    - InSituExperiment: elements/InSituExperiment.md
+    - Intervention: elements/Intervention.md
+    - Tracer: elements/Tracer.md
+    - InterventionWithTracer: elements/InterventionWithTracer.md
+    - Model: elements/Model.md
+  - Datasets:
+    - Datasets/index.md
+    - FieldDataset: elements/FieldDataset.md
+    - ModelOutputDataset: elements/ModelOutputDataset.md
+  - Variables:
+    - Variables/index.md
+    - InSituVariable: elements/InSituVariable.md
+    - MeasuredVariable: elements/MeasuredVariable.md
+    - CalculatedVariable: elements/CalculatedVariable.md
+    - NonMeasuredVariable: elements/NonMeasuredVariable.md
+    - DiscretePHVariable: elements/DiscretePHVariable.md
+    - DiscreteTAVariable: elements/DiscreteTAVariable.md
+    - DiscreteDICVariable: elements/DiscreteDICVariable.md
+    - DiscreteCO2Variable: elements/DiscreteCO2Variable.md
+    - HPLCVariable: elements/HPLCVariable.md
+  - Instruments & Calibration:
+    - instruments-calibration/index.md
+    - AnalyzingInstrument: elements/AnalyzingInstrument.md
+    - PHInstrument: elements/PHInstrument.md
+    - CRMInstrument: elements/CRMInstrument.md
+    - CO2GasDetector: elements/CO2GasDetector.md
+    - Calibration: elements/Calibration.md
+  - Controlled Vocabularies: vocabularies.md
+  - Full Schema Index: elements/index.md
   - About: about.md
 
 exclude_docs: |

@@ -26,9 +26,9 @@ A Container is the top-level object in every metadata file. It wraps project met
 | `@context` | JSON-LD context URL — makes the file interpretable as linked data |
 | `version` | Protocol schema version |
 | `protocol_git_hash` | Git hash of the schema used to generate this file |
-| `project` | A single [Project](Project.md) object |
-| `experiments` | Array of [Experiment](Experiment.md) objects |
-| `datasets` | Array of [Dataset](FieldDataset.md) objects |
+| `project` | A single [Project](elements/Project.md) object |
+| `experiments` | Array of [Experiment](elements/Experiment.md) objects |
+| `datasets` | Array of [Dataset](elements/FieldDataset.md) objects |
 
 !!! tip "Linked Data"
     The `@context` field is optional but recommended. It makes OAE metadata files valid [JSON-LD](https://json-ld.org/) documents, meaning they can be interpreted by linked data tools and semantic web infrastructure without any conversion. Standard JSON tools ignore the `@context` field, so it doesn't affect non JSON-LD workflows.
