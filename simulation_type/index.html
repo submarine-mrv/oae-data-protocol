@@ -1294,7 +1294,7 @@
 
 
 <h1 id="slot-simulation-type-simulation_type">Slot: Simulation Type (simulation_type)</h1>
-<p><em>Whether this is a counterfactual (control/baseline) or perturbation simulation.</em></p>
+<p><em>The type(s) of model simulation (e.g., counterfactual, perturbation, or both).</em></p>
 <p>URI: <a href="https://schema.oaedata.org/simulation_type">oae:simulation_type</a></p>
 <!-- no inheritance hierarchy -->
 
@@ -1319,6 +1319,9 @@
 <ul>
 <li>
 <p>Range: <a href="../SimulationType/">SimulationType</a></p>
+</li>
+<li>
+<p>Multivalued: True</p>
 </li>
 <li>
 <p>Required: True</p>
@@ -1351,7 +1354,8 @@
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">simulation_type</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Whether this is a counterfactual (control/baseline) or perturbation simulation.</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The type(s) of model simulation (e.g., counterfactual, perturbation,</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">or both).</span>
 <span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Simulation Type</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.oaedata.org/OAEDataSchema</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
@@ -1361,6 +1365,8 @@
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ModelOutputDataset</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SimulationType</span>
 <span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">minimum_cardinality</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
 </code></pre></div>
 </details>
 
