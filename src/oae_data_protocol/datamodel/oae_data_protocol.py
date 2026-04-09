@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-04-07T18:18:12
+# Generation date: 2026-04-07T20:36:48
 # Schema: OAEDataSchema
 #
 # id: https://schema.oaedata.org/OAEDataSchema
@@ -2737,13 +2737,11 @@ class ModelOutputDataset(Dataset):
     experiment_id: str = None
     dataset_type: Union[str, "DatasetType"] = None
     data_submitter: Union[dict, Person] = None
-    simulation_type: Union[str, "SimulationType"] = None
+    simulation_type: Union[Union[str, "SimulationType"], List[Union[str, "SimulationType"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     end_datetime: Union[str, XSDDateTime] = None
     filenames: Union[str, List[str]] = None
-    spin_up_protocol: Optional[str] = None
     output_frequency: Optional[str] = None
-    time_stepping_scheme: Optional[str] = None
     mcdr_forcing_description: Optional[str] = None
     hardware_configuration: Optional[Union[dict, "HardwareConfiguration"]] = None
     model_output_variables: Optional[Union[Union[str, "ModelOutputVariable"], List[Union[str, "ModelOutputVariable"]]]] = empty_list()
@@ -2751,8 +2749,9 @@ class ModelOutputDataset(Dataset):
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.simulation_type):
             self.MissingRequiredField("simulation_type")
-        if not isinstance(self.simulation_type, SimulationType):
-            self.simulation_type = SimulationType(self.simulation_type)
+        if not isinstance(self.simulation_type, list):
+            self.simulation_type = [self.simulation_type] if self.simulation_type is not None else []
+        self.simulation_type = [v if isinstance(v, SimulationType) else SimulationType(v) for v in self.simulation_type]
 
         if self._is_empty(self.start_datetime):
             self.MissingRequiredField("start_datetime")
@@ -2770,14 +2769,8 @@ class ModelOutputDataset(Dataset):
             self.filenames = [self.filenames] if self.filenames is not None else []
         self.filenames = [v if isinstance(v, str) else str(v) for v in self.filenames]
 
-        if self.spin_up_protocol is not None and not isinstance(self.spin_up_protocol, str):
-            self.spin_up_protocol = str(self.spin_up_protocol)
-
         if self.output_frequency is not None and not isinstance(self.output_frequency, str):
             self.output_frequency = str(self.output_frequency)
-
-        if self.time_stepping_scheme is not None and not isinstance(self.time_stepping_scheme, str):
-            self.time_stepping_scheme = str(self.time_stepping_scheme)
 
         if self.mcdr_forcing_description is not None and not isinstance(self.mcdr_forcing_description, str):
             self.mcdr_forcing_description = str(self.mcdr_forcing_description)
@@ -2891,7 +2884,8 @@ class Model(Experiment):
     model_configuration: Optional[Union[Union[str, URI], List[Union[str, URI]]]] = empty_list()
     model_components: Optional[Union[Union[dict, "ModelComponent"], List[Union[dict, "ModelComponent"]]]] = empty_list()
     grid_details: Optional[Union[Union[dict, "ModelGrid"], List[Union[dict, "ModelGrid"]]]] = empty_list()
-    input_details: Optional[Union[dict, "ModelInputDetails"]] = None
+    spin_up_protocol: Optional[str] = None
+    time_stepping_scheme: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if not isinstance(self.model_configuration, list):
@@ -2906,8 +2900,11 @@ class Model(Experiment):
             self.grid_details = [self.grid_details] if self.grid_details is not None else []
         self.grid_details = [v if isinstance(v, ModelGrid) else ModelGrid(**as_dict(v)) for v in self.grid_details]
 
-        if self.input_details is not None and not isinstance(self.input_details, ModelInputDetails):
-            self.input_details = ModelInputDetails(**as_dict(self.input_details))
+        if self.spin_up_protocol is not None and not isinstance(self.spin_up_protocol, str):
+            self.spin_up_protocol = str(self.spin_up_protocol)
+
+        if self.time_stepping_scheme is not None and not isinstance(self.time_stepping_scheme, str):
+            self.time_stepping_scheme = str(self.time_stepping_scheme)
 
         super().__post_init__(**kwargs)
 
@@ -2987,6 +2984,7 @@ class ModelGrid(YAMLRoot):
     n_nodes: Optional[int] = None
     horizontal_resolution_range: Optional[str] = None
     vertical_resolution_range: Optional[str] = None
+    input_details: Optional[Union[dict, "ModelInputDetails"]] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.grid_type):
@@ -3029,6 +3027,9 @@ class ModelGrid(YAMLRoot):
 
         if self.vertical_resolution_range is not None and not isinstance(self.vertical_resolution_range, str):
             self.vertical_resolution_range = str(self.vertical_resolution_range)
+
+        if self.input_details is not None and not isinstance(self.input_details, ModelInputDetails):
+            self.input_details = ModelInputDetails(**as_dict(self.input_details))
 
         super().__post_init__(**kwargs)
 
@@ -4073,6 +4074,9 @@ class SimulationType(EnumDefinitionImpl):
     perturbation = PermissibleValue(
         text="perturbation",
         description="Simulation with alkalinity perturbation applied")
+    other = PermissibleValue(
+        text="other",
+        description="Other simulation type not listed above")
 
     _defn = EnumDefinition(
         name="SimulationType",
@@ -5677,10 +5681,7 @@ slots.fieldDataset__variables = Slot(uri=SCHEMA.variableMeasured, name="fieldDat
                    model_uri=OAE.fieldDataset__variables, domain=None, range=Optional[Union[Union[dict, Variable], List[Union[dict, Variable]]]])
 
 slots.modelOutputDataset__simulation_type = Slot(uri=OAE.simulation_type, name="modelOutputDataset__simulation_type", curie=OAE.curie('simulation_type'),
-                   model_uri=OAE.modelOutputDataset__simulation_type, domain=None, range=Union[str, "SimulationType"])
-
-slots.modelOutputDataset__spin_up_protocol = Slot(uri=OAE.spin_up_protocol, name="modelOutputDataset__spin_up_protocol", curie=OAE.curie('spin_up_protocol'),
-                   model_uri=OAE.modelOutputDataset__spin_up_protocol, domain=None, range=Optional[str])
+                   model_uri=OAE.modelOutputDataset__simulation_type, domain=None, range=Union[Union[str, "SimulationType"], List[Union[str, "SimulationType"]]])
 
 slots.modelOutputDataset__start_datetime = Slot(uri=OAE.start_datetime, name="modelOutputDataset__start_datetime", curie=OAE.curie('start_datetime'),
                    model_uri=OAE.modelOutputDataset__start_datetime, domain=None, range=Union[str, XSDDateTime])
@@ -5690,9 +5691,6 @@ slots.modelOutputDataset__end_datetime = Slot(uri=OAE.end_datetime, name="modelO
 
 slots.modelOutputDataset__output_frequency = Slot(uri=OAE.output_frequency, name="modelOutputDataset__output_frequency", curie=OAE.curie('output_frequency'),
                    model_uri=OAE.modelOutputDataset__output_frequency, domain=None, range=Optional[str])
-
-slots.modelOutputDataset__time_stepping_scheme = Slot(uri=OAE.time_stepping_scheme, name="modelOutputDataset__time_stepping_scheme", curie=OAE.curie('time_stepping_scheme'),
-                   model_uri=OAE.modelOutputDataset__time_stepping_scheme, domain=None, range=Optional[str])
 
 slots.modelOutputDataset__mcdr_forcing_description = Slot(uri=OAE.mcdr_forcing_description, name="modelOutputDataset__mcdr_forcing_description", curie=OAE.curie('mcdr_forcing_description'),
                    model_uri=OAE.modelOutputDataset__mcdr_forcing_description, domain=None, range=Optional[str])
@@ -5742,8 +5740,11 @@ slots.model__model_components = Slot(uri=OAE.model_components, name="model__mode
 slots.model__grid_details = Slot(uri=OAE.grid_details, name="model__grid_details", curie=OAE.curie('grid_details'),
                    model_uri=OAE.model__grid_details, domain=None, range=Optional[Union[Union[dict, ModelGrid], List[Union[dict, ModelGrid]]]])
 
-slots.model__input_details = Slot(uri=OAE.input_details, name="model__input_details", curie=OAE.curie('input_details'),
-                   model_uri=OAE.model__input_details, domain=None, range=Optional[Union[dict, ModelInputDetails]])
+slots.model__spin_up_protocol = Slot(uri=OAE.spin_up_protocol, name="model__spin_up_protocol", curie=OAE.curie('spin_up_protocol'),
+                   model_uri=OAE.model__spin_up_protocol, domain=None, range=Optional[str])
+
+slots.model__time_stepping_scheme = Slot(uri=OAE.time_stepping_scheme, name="model__time_stepping_scheme", curie=OAE.curie('time_stepping_scheme'),
+                   model_uri=OAE.model__time_stepping_scheme, domain=None, range=Optional[str])
 
 slots.modelComponent__model_component_type = Slot(uri=OAE.model_component_type, name="modelComponent__model_component_type", curie=OAE.curie('model_component_type'),
                    model_uri=OAE.modelComponent__model_component_type, domain=None, range=Union[str, "ModelComponentType"])
@@ -5801,6 +5802,9 @@ slots.modelGrid__horizontal_resolution_range = Slot(uri=OAE.horizontal_resolutio
 
 slots.modelGrid__vertical_resolution_range = Slot(uri=OAE.vertical_resolution_range, name="modelGrid__vertical_resolution_range", curie=OAE.curie('vertical_resolution_range'),
                    model_uri=OAE.modelGrid__vertical_resolution_range, domain=None, range=Optional[str])
+
+slots.modelGrid__input_details = Slot(uri=OAE.input_details, name="modelGrid__input_details", curie=OAE.curie('input_details'),
+                   model_uri=OAE.modelGrid__input_details, domain=None, range=Optional[Union[dict, ModelInputDetails]])
 
 slots.modelInputDetails__bathymetry = Slot(uri=OAE.bathymetry, name="modelInputDetails__bathymetry", curie=OAE.curie('bathymetry'),
                    model_uri=OAE.modelInputDetails__bathymetry, domain=None, range=Optional[Union[Union[dict, NamedLink], List[Union[dict, NamedLink]]]])

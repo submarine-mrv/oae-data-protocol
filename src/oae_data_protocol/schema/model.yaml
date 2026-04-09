@@ -27,11 +27,14 @@ classes:
         range: ModelGrid
         multivalued: true
         inlined_as_list: true
-      input_details:
-        title: Input Details
-        description: "Details about input data sources used to drive the model."
-        range: ModelInputDetails
-        inlined: true
+      spin_up_protocol:
+        title: Spin-up Protocol
+        description: "Description of the model spin-up process."
+        range: string
+      time_stepping_scheme:
+        title: Time-stepping Scheme
+        description: "Time-stepping method and time step used in the simulation."
+        range: string
   ModelComponent:
     description: "A component of a model (e.g., physics, biogeochemistry/ecosystem)."
     slots:
@@ -154,6 +157,11 @@ classes:
         title: Vertical Resolution Range
         description: "Description of vertical resolution (e.g., 'Max. 4 m near surface, stretching to 500 m at depth')."
         range: string
+      input_details:
+        title: Input Details
+        description: "Details about input data sources used to drive the model on this grid."
+        range: ModelInputDetails
+        inlined: true
   ModelInputDetails:
     description: "Details about input data sources used to drive the model."
     attributes:

@@ -241,6 +241,8 @@ export enum SimulationType {
     counterfactual = "counterfactual",
     /** Simulation with alkalinity perturbation applied */
     perturbation = "perturbation",
+    /** Other simulation type not listed above */
+    other = "other",
 };
 /**
 * Variables commonly included in model simulation output datasets
@@ -1612,18 +1614,14 @@ export interface FieldDataset extends Dataset {
  * A model simulation output dataset. Contains fields specific to computational model output including simulation configuration, output variables, and hardware information.
  */
 export interface ModelOutputDataset extends Dataset {
-    /** Whether this is a counterfactual (control/baseline) or perturbation simulation. */
+    /** The type(s) of model simulation (e.g., counterfactual, perturbation, or both). */
     simulation_type: string,
-    /** Description of the model spin-up process. */
-    spin_up_protocol?: string,
     /** Start date and time of the simulation in UTC ISO-8601. */
     start_datetime: string,
     /** End date and time of the simulation in UTC ISO-8601. */
     end_datetime: string,
     /** Frequency of model output (e.g., 'hourly mean', 'daily mean'). */
     output_frequency?: string,
-    /** Time-stepping method and time step used in the simulation. */
-    time_stepping_scheme?: string,
     /** Description of the mCDR forcing applied in the simulation (e.g., the alkalinity perturbation). Required when simulation_type is "perturbation". */
     mcdr_forcing_description?: string,
     /** Details about the computational hardware used for the simulation. */
@@ -1677,8 +1675,10 @@ export interface Model extends Experiment {
     model_components?: ModelComponent[],
     /** Details about the model grid(s). Use multiple entries for nested grid configurations. */
     grid_details?: ModelGrid[],
-    /** Details about input data sources used to drive the model. */
-    input_details?: ModelInputDetails,
+    /** Description of the model spin-up process. */
+    spin_up_protocol?: string,
+    /** Time-stepping method and time step used in the simulation. */
+    time_stepping_scheme?: string,
 }
 
 
@@ -1735,6 +1735,8 @@ export interface ModelGrid {
     horizontal_resolution_range?: string,
     /** Description of vertical resolution (e.g., 'Max. 4 m near surface, stretching to 500 m at depth'). */
     vertical_resolution_range?: string,
+    /** Details about input data sources used to drive the model on this grid. */
+    input_details?: ModelInputDetails,
 }
 
 
