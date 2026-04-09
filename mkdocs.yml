@@ -97,7 +97,7 @@ nav:
 exclude_docs: |
   /templates-linkml/
 
-site_url: https://submarine-mrv.github.io/oae-data-protocol
+site_url: https://schema.oaedata.org
 repo_url: https://github.com/submarine-mrv/oae-data-protocol
 
 # Uncomment this block to enable use of Google Analytics.
