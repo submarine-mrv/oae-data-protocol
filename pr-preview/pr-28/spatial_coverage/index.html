@@ -1294,7 +1294,7 @@
 
 
 <h1 id="slot-spatial-coverage-spatial_coverage">Slot: Spatial Coverage (spatial_coverage)</h1>
-<p><em>Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities), expressed as a schema.org GeoShape <code>box</code>. Per the science-on-schema.org Dataset guide, the box string is two space-separated corner points — the southwest (lower-left) corner followed by the northeast (upper-right) corner — with each point written as <code>&lt;latitude&gt; &lt;longitude&gt;</code> in decimal degrees (WGS 84). Full format: <code>"&lt;minLat&gt; &lt;minLon&gt; &lt;maxLat&gt; &lt;maxLon&gt;"</code>. Example: <code>"39.3280 120.1633 40.445 123.7878"</code>. See https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md#spatialcoverage</em></p>
+<p><em>Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities), expressed as a schema.org GeoShape <code>box</code>. Per the science-on-schema.org Dataset guide, the box string is two space-separated corner points — the southwest (lower-left) corner followed by the northeast (upper-right) corner — with each point written as <code>&lt;latitude&gt; &lt;longitude&gt;</code> in decimal degrees (WGS 84). Full format: <code>"&lt;minLat&gt; &lt;minLon&gt; &lt;maxLat&gt; &lt;maxLon&gt;"</code>. Example: <code>"39.3280 120.1633 40.445 123.7878"</code>. See https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md#spatial-coverage</em></p>
 <p>URI: <a href="http://schema.org/spatialCoverage">schema:spatialCoverage</a></p>
 <!-- no inheritance hierarchy -->
 
@@ -1309,24 +1309,19 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="../ModelGrid/">ModelGrid</a></td>
+<td>Details about a model grid</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../Project/">Project</a></td>
 <td>A project conducting OAE field trials or modeling</td>
 <td>yes</td>
 </tr>
 <tr>
-<td><a href="../Tracer/">Tracer</a></td>
-<td>Additional metadata that applies to experiments where a tracer study was cond...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ExternalProject/">ExternalProject</a></td>
-<td>A research project that is not directly managed by the OAE project, but whose...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ModelGrid/">ModelGrid</a></td>
-<td>Details about a model grid</td>
-<td>no</td>
+<td><a href="../Experiment/">Experiment</a></td>
+<td>Abstract base class for all experiment types</td>
+<td>yes</td>
 </tr>
 <tr>
 <td><a href="../Model/">Model</a></td>
@@ -1339,6 +1334,16 @@
 <td>no</td>
 </tr>
 <tr>
+<td><a href="../ExternalProject/">ExternalProject</a></td>
+<td>A research project that is not directly managed by the OAE project, but whose...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Tracer/">Tracer</a></td>
+<td>Additional metadata that applies to experiments where a tracer study was cond...</td>
+<td>no</td>
+</tr>
+<tr>
 <td><a href="../InSituExperiment/">InSituExperiment</a></td>
 <td>Experiment metadata for in-situ studies (interventions, tracer studies, etc</td>
 <td>no</td>
@@ -1347,11 +1352,6 @@
 <td><a href="../Intervention/">Intervention</a></td>
 <td>Additional metadata that applies to experiments where an intervention, such a...</td>
 <td>no</td>
-</tr>
-<tr>
-<td><a href="../Experiment/">Experiment</a></td>
-<td>Abstract base class for all experiment types</td>
-<td>yes</td>
 </tr>
 </tbody>
 </table>
@@ -1397,7 +1397,7 @@
 <span class="w">  </span><span class="s">corner</span><span class="nv"> </span><span class="s">points</span><span class="nv"> </span><span class="s">—</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">southwest</span><span class="nv"> </span><span class="s">(lower-left)</span><span class="nv"> </span><span class="s">corner</span><span class="nv"> </span><span class="s">followed</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">northeast</span><span class="nv"> </span><span class="s">(upper-right)</span>
 <span class="w">  </span><span class="s">corner</span><span class="nv"> </span><span class="s">—</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">each</span><span class="nv"> </span><span class="s">point</span><span class="nv"> </span><span class="s">written</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">`&lt;latitude&gt;</span><span class="nv"> </span><span class="s">&lt;longitude&gt;`</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">decimal</span><span class="nv"> </span><span class="s">degrees</span>
 <span class="w">  </span><span class="s">(WGS</span><span class="nv"> </span><span class="s">84).</span><span class="nv"> </span><span class="s">Full</span><span class="nv"> </span><span class="s">format:</span><span class="nv"> </span><span class="s">`&quot;&lt;minLat&gt;</span><span class="nv"> </span><span class="s">&lt;minLon&gt;</span><span class="nv"> </span><span class="s">&lt;maxLat&gt;</span><span class="nv"> </span><span class="s">&lt;maxLon&gt;&quot;`.</span><span class="nv"> </span><span class="s">Example:</span><span class="nv"> </span><span class="s">`&quot;39.3280</span>
-<span class="w">  </span><span class="s">120.1633</span><span class="nv"> </span><span class="s">40.445</span><span class="nv"> </span><span class="s">123.7878&quot;`.</span><span class="nv"> </span><span class="s">See</span><span class="nv"> </span><span class="s">https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md#spatialcoverage&#39;</span>
+<span class="w">  </span><span class="s">120.1633</span><span class="nv"> </span><span class="s">40.445</span><span class="nv"> </span><span class="s">123.7878&quot;`.</span><span class="nv"> </span><span class="s">See</span><span class="nv"> </span><span class="s">https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md#spatial-coverage&#39;</span>
 <span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Spatial Coverage</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.oaedata.org/OAEDataSchema</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
