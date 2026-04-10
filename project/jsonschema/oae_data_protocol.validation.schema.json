@@ -4252,7 +4252,7 @@
                 },
                 "spatial_coverage": {
                     "$ref": "#/$defs/SpatialCoverage",
-                    "description": "Latitude/longitude bounds of observed data in experiment, expressed as a schema.org GeoShape `box`. Per science-on-schema.org, the box string is two space-separated corner points \u2014 the southwest (lower-left) corner followed by the northeast (upper-right) corner \u2014 with each point written as `<latitude> <longitude>` in decimal degrees (WGS 84): `\"<minLat> <minLon> <maxLat> <maxLon>\"`. See https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md#spatial-coverage",
+                    "description": "Latitude/longitude bounds of observed data in experiment, expressed as a schema.org GeoShape bounding box.",
                     "title": "Spatial Coverage"
                 },
                 "start_datetime": {
@@ -4317,7 +4317,7 @@
                 },
                 "spatial_coverage": {
                     "$ref": "#/$defs/SpatialCoverage",
-                    "description": "Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities), expressed as a schema.org GeoShape `box`. Per the science-on-schema.org Dataset guide, the box string is two space-separated corner points \u2014 the southwest (lower-left) corner followed by the northeast (upper-right) corner \u2014 with each point written as `<latitude> <longitude>` in decimal degrees (WGS 84). Full format: `\"<minLat> <minLon> <maxLat> <maxLon>\"`. Example: `\"39.3280 120.1633 40.445 123.7878\"`. See https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md#spatial-coverage",
+                    "description": "Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities), expressed as a schema.org GeoShape bounding box.",
                     "title": "Spatial Coverage"
                 },
                 "temporal_coverage": {
@@ -5068,7 +5068,7 @@
                 },
                 "spatial_coverage": {
                     "$ref": "#/$defs/SpatialCoverage",
-                    "description": "Latitude/longitude bounds of observed data in experiment, expressed as a schema.org GeoShape `box`. Per science-on-schema.org, the box string is two space-separated corner points \u2014 the southwest (lower-left) corner followed by the northeast (upper-right) corner \u2014 with each point written as `<latitude> <longitude>` in decimal degrees (WGS 84): `\"<minLat> <minLon> <maxLat> <maxLon>\"`. See https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md#spatial-coverage",
+                    "description": "Latitude/longitude bounds of observed data in experiment, expressed as a schema.org GeoShape bounding box.",
                     "title": "Spatial Coverage"
                 },
                 "start_datetime": {
@@ -5325,7 +5325,7 @@
                 },
                 "spatial_coverage": {
                     "$ref": "#/$defs/SpatialCoverage",
-                    "description": "Latitude/longitude bounds of observed data in experiment, expressed as a schema.org GeoShape `box`. Per science-on-schema.org, the box string is two space-separated corner points \u2014 the southwest (lower-left) corner followed by the northeast (upper-right) corner \u2014 with each point written as `<latitude> <longitude>` in decimal degrees (WGS 84): `\"<minLat> <minLon> <maxLat> <maxLon>\"`. See https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md#spatial-coverage",
+                    "description": "Latitude/longitude bounds of observed data in experiment, expressed as a schema.org GeoShape bounding box.",
                     "title": "Spatial Coverage"
                 },
                 "start_datetime": {
@@ -5615,7 +5615,7 @@
                 },
                 "spatial_coverage": {
                     "$ref": "#/$defs/SpatialCoverage",
-                    "description": "Latitude/longitude bounds of observed data in experiment, expressed as a schema.org GeoShape `box`. Per science-on-schema.org, the box string is two space-separated corner points \u2014 the southwest (lower-left) corner followed by the northeast (upper-right) corner \u2014 with each point written as `<latitude> <longitude>` in decimal degrees (WGS 84): `\"<minLat> <minLon> <maxLat> <maxLon>\"`. See https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md#spatial-coverage",
+                    "description": "Latitude/longitude bounds of observed data in experiment, expressed as a schema.org GeoShape bounding box.",
                     "title": "Spatial Coverage"
                 },
                 "start_datetime": {
@@ -5853,7 +5853,7 @@
                 },
                 "spatial_coverage": {
                     "$ref": "#/$defs/SpatialCoverage",
-                    "description": "Latitude/longitude bounds of observed data in experiment, expressed as a schema.org GeoShape `box`. Per science-on-schema.org, the box string is two space-separated corner points \u2014 the southwest (lower-left) corner followed by the northeast (upper-right) corner \u2014 with each point written as `<latitude> <longitude>` in decimal degrees (WGS 84): `\"<minLat> <minLon> <maxLat> <maxLon>\"`. See https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md#spatial-coverage",
+                    "description": "Latitude/longitude bounds of observed data in experiment, expressed as a schema.org GeoShape bounding box.",
                     "title": "Spatial Coverage"
                 },
                 "spin_up_protocol": {
@@ -6087,7 +6087,7 @@
                             "type": "null"
                         }
                     ],
-                    "description": "Bounding box for this grid, expressed as a schema.org GeoShape `box`. Per science-on-schema.org, the box string is two space-separated corner points \u2014 the southwest (lower-left) corner followed by the northeast (upper-right) corner \u2014 with each point written as `<latitude> <longitude>` in decimal degrees (WGS 84): `\"<minLat> <minLon> <maxLat> <maxLon>\"`.",
+                    "description": "Bounding box for this grid, expressed as a schema.org GeoShape bounding box.",
                     "title": "Spatial Coverage"
                 },
                 "vertical_coordinate_type": {
@@ -7187,7 +7187,7 @@
                 },
                 "spatial_coverage": {
                     "$ref": "#/$defs/SpatialCoverage",
-                    "description": "Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities), expressed as a schema.org GeoShape `box`. Per the science-on-schema.org Dataset guide, the box string is two space-separated corner points \u2014 the southwest (lower-left) corner followed by the northeast (upper-right) corner \u2014 with each point written as `<latitude> <longitude>` in decimal degrees (WGS 84). Full format: `\"<minLat> <minLon> <maxLat> <maxLon>\"`. Example: `\"39.3280 120.1633 40.445 123.7878\"`. See https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md#spatial-coverage",
+                    "description": "Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities), expressed as a schema.org GeoShape bounding box.",
                     "title": "Spatial Coverage"
                 },
                 "temporal_coverage": {
@@ -7700,7 +7700,7 @@
                 },
                 "spatial_coverage": {
                     "$ref": "#/$defs/SpatialCoverage",
-                    "description": "Latitude/longitude bounds of observed data in experiment, expressed as a schema.org GeoShape `box`. Per science-on-schema.org, the box string is two space-separated corner points \u2014 the southwest (lower-left) corner followed by the northeast (upper-right) corner \u2014 with each point written as `<latitude> <longitude>` in decimal degrees (WGS 84): `\"<minLat> <minLon> <maxLat> <maxLon>\"`. See https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md#spatial-coverage",
+                    "description": "Latitude/longitude bounds of observed data in experiment, expressed as a schema.org GeoShape bounding box.",
                     "title": "Spatial Coverage"
                 },
                 "start_datetime": {
