@@ -9,7 +9,7 @@ gh_action_docs_preview: true
 gh_action_pypi: true
 github_org: submarine-mrv
 license: Apache-2.0
-project_description: This is the project description.
+project_description: Base ontology and data schemas for ocean alkalinity enhancement projects, experiments, and field trails.
 project_name: oae-data-protocol
 project_slug: oae_data_protocol
 

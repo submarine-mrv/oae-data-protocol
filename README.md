@@ -58,32 +58,34 @@ The generated schemas are available in the `project/` directory:
 
 ### Installation
 
+Requires [uv](https://docs.astral.sh/uv/) and [just](https://just.systems/).
+
 ```bash
 # Clone the repository
 git clone https://github.com/submarine-mrv/oae-data-protocol.git
 cd oae-data-protocol
 
 # Install dependencies
-make install
+just install
 
 # Generate schema artifacts
-make gen-project
+just gen-all
 ```
 
 ### Common Commands
 
 ```bash
-make help              # Show all available commands
-make gen-schemas       # Regenerate Python, JSON Schema, validation schema, and JSON-LD context
-make gen-project       # Regenerate Python dataclasses and base JSON Schema only
-make test             # Run tests
-make lint             # Lint LinkML schemas
-make serve            # Build and serve documentation locally
+just                   # Show all available commands
+just gen-project       # Regenerate Python dataclasses, JSON Schema, TypeScript
+just gen-all           # Full build: gen-project + validation schema + version injection
+just test              # Run tests
+just lint              # Lint LinkML schemas
+just testdoc           # Build and serve documentation locally
 ```
 
 ### Working with Schemas
 
-The schema files in `src/oae_data_protocol/schema/` are the source of truth. Edit these files and run `make gen-project` to regenerate all derived artifacts.
+The schema files in `src/oae_data_protocol/schema/` are the source of truth. Edit these files and run `just gen-all` to regenerate all derived artifacts.
 
 ## Project Status 
 
@@ -97,7 +99,7 @@ with v1.0.0 of the protocol.
 
 This project is built with:
 - [LinkML](https://linkml.io) for schema definitions
-- [linkml-project-cookiecutter](https://github.com/linkml/linkml-project-cookiecutter) for project structure
+- [linkml-project-copier](https://github.com/linkml/linkml-project-copier) for project structure
 
 Development of the OAE Data Protocol and its corresponding technical tooling has been made possible with 
 funding and steering support from [Carbon To Sea](https://carbontosea.org).
