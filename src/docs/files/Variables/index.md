@@ -87,20 +87,20 @@ How were measurements collected? (Only for `measured` genesis)
 
 | variable_type | genesis | sampling | Schema Class |
 |---------------|---------|----------|--------------|
-| `pH` | `measured` | `discrete` | [DiscretePHVariable](../elements/DiscretePHVariable.md) |
-| `pH` | `measured` | `continuous` | [ContinuousPHVariable](../elements/ContinuousPHVariable.md) |
-| `ta` | `measured` | `discrete` | [DiscreteTAVariable](../elements/DiscreteTAVariable.md) |
-| `ta` | `measured` | `continuous` | [ContinuousTAVariable](../elements/ContinuousTAVariable.md) |
-| `dic` | `measured` | `discrete` | [DiscreteDICVariable](../elements/DiscreteDICVariable.md) |
-| `dic` | `measured` | `continuous` | [ContinuousDICVariable](../elements/ContinuousDICVariable.md) |
-| `co2` | `measured` | `discrete` | [DiscreteCO2Variable](../elements/DiscreteCO2Variable.md) |
-| `sediment` | `measured` | `discrete` | [DiscreteSedimentVariable](../elements/DiscreteSedimentVariable.md) |
-| `sediment` | `measured` | `continuous` | [ContinuousSedimentVariable](../elements/ContinuousSedimentVariable.md) |
-| `hplc` | `measured` | `discrete` | [HPLCVariable](../elements/HPLCVariable.md) |
-| `other` | `measured` | `discrete` | [DiscreteMeasuredVariable](../elements/DiscreteMeasuredVariable.md) |
-| `other` | `measured` | `continuous` | [ContinuousMeasuredVariable](../elements/ContinuousMeasuredVariable.md) |
-| Any except `non_measured` | `calculated` | — | [CalculatedVariable](../elements/CalculatedVariable.md) |
-| `non_measured` | — | — | [NonMeasuredVariable](../elements/NonMeasuredVariable.md) |
+| `pH` | `measured` | `discrete` | [DiscretePHVariable](../DiscretePHVariable.md) |
+| `pH` | `measured` | `continuous` | [ContinuousPHVariable](../ContinuousPHVariable.md) |
+| `ta` | `measured` | `discrete` | [DiscreteTAVariable](../DiscreteTAVariable.md) |
+| `ta` | `measured` | `continuous` | [ContinuousTAVariable](../ContinuousTAVariable.md) |
+| `dic` | `measured` | `discrete` | [DiscreteDICVariable](../DiscreteDICVariable.md) |
+| `dic` | `measured` | `continuous` | [ContinuousDICVariable](../ContinuousDICVariable.md) |
+| `co2` | `measured` | `discrete` | [DiscreteCO2Variable](../DiscreteCO2Variable.md) |
+| `sediment` | `measured` | `discrete` | [DiscreteSedimentVariable](../DiscreteSedimentVariable.md) |
+| `sediment` | `measured` | `continuous` | [ContinuousSedimentVariable](../ContinuousSedimentVariable.md) |
+| `hplc` | `measured` | `discrete` | [HPLCVariable](../HPLCVariable.md) |
+| `other` | `measured` | `discrete` | [DiscreteMeasuredVariable](../DiscreteMeasuredVariable.md) |
+| `other` | `measured` | `continuous` | [ContinuousMeasuredVariable](../ContinuousMeasuredVariable.md) |
+| Any except `non_measured` | `calculated` | — | [CalculatedVariable](../CalculatedVariable.md) |
+| `non_measured` | — | — | [NonMeasuredVariable](../NonMeasuredVariable.md) |
 
 ## What Each Level Adds
 

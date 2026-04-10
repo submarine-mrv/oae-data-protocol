@@ -37,7 +37,7 @@ src := "src"
 dest := "project"
 pymodel := src / schema_name / "datamodel"
 source_schema_path := source_schema_dir / schema_name + ".yaml"
-docdir := "docs/elements"  # Directory for generated documentation
+docdir := "docs"  # Directory for generated documentation (flat layout for URL stability)
 distrib_schema_path := "docs/schema"  # Directory for publishing schema artifacts
 
 # ============== Project recipes ==============
@@ -95,7 +95,19 @@ lint:
 # Generate md documentation for the schema and add artifacts
 [group('model development')]
 gen-doc: _gen-yaml && _add-artifacts
+  @mkdir -p {{docdir}}
   uv run gen-doc {{gen_doc_args}} -d {{docdir}} {{source_schema_path}}
+  @# Rename gen-doc's class overview so it doesn't collide with the hand-written home
+  mv {{docdir}}/index.md {{docdir}}/OAEDataSchema.md
+  @# Overlay hand-written explainer pages from src/docs/files/ (custom index pages,
+  @# stylesheets, images, CNAME for GitHub Pages custom domain).
+  cp -rf src/docs/files/* {{docdir}}/
+  @# Rewrite auto-generated links to section summary pages so they resolve to our
+  @# custom explainer indexes instead of 404ing (same as old Makefile).
+  @for section in getting-started projects-experiments instruments-calibration; do \
+    find {{docdir}} -name '*.md' -maxdepth 2 -exec sed -i.bak "s|]($section\.md)|]($section/index.md)|g" {} \; ; \
+  done
+  @find {{docdir}} -name '*.md.bak' -delete
 
 # Build docs and run test server
 [group('model development')]

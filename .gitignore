@@ -1,5 +1,7 @@
-# generated part of documentation
-/docs/elements/*.md
+# Generated documentation: gen-doc writes flat into docs/ and is then overlaid
+# with hand-written pages from src/docs/files/. The whole docs/ tree is derived
+# and rebuilt on every `just gen-doc` — never committed.
+/docs/
 # linkml-run-examples output (not useful to have in git in its current form)
 /examples/output/
 
@@ -142,6 +144,3 @@ dmypy.json
 .idea
 # Local vscode editor config
 .vscode
-
-# Generated merged schema yaml (from gen-yaml)
-/docs/schema/

@@ -24,7 +24,7 @@ For data collected during in-situ experiments — CTD casts, bottle samples, sen
 | `variables` | Array of variable metadata (see [Variables](../variables/)) |
 | `data_submitter` | Person responsible for this submission |
 
-→ [Full FieldDataset schema reference](../elements/FieldDataset.md)
+→ [Full FieldDataset schema reference](../FieldDataset.md)
 
 ### Model Output Dataset
 
@@ -40,7 +40,7 @@ For simulation output from computational models.
 | `output_frequency` | Temporal resolution (e.g., daily, monthly) |
 | `hardware_configuration` | Compute details |
 
-→ [Full ModelOutputDataset schema reference](../elements/ModelOutputDataset.md)
+→ [Full ModelOutputDataset schema reference](../ModelOutputDataset.md)
 
 ## Platform Information
 

@@ -84,4 +84,4 @@ The `analyzing_instrument` field on measured variables is automatically constrai
 }
 ```
 ### Full Schemas
-→ [AnalyzingInstrument](../elements/AnalyzingInstrument.md) · [Calibration](../elements/Calibration.md) · [PHInstrument](../elements/PHInstrument.md) · [CRMInstrument](../elements/CRMInstrument.md) · [CO2GasDetector](../elements/CO2GasDetector.md)
+→ [AnalyzingInstrument](../AnalyzingInstrument.md) · [Calibration](../Calibration.md) · [PHInstrument](../PHInstrument.md) · [CRMInstrument](../CRMInstrument.md) · [CO2GasDetector](../CO2GasDetector.md)

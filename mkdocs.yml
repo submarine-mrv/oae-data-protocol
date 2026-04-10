@@ -61,37 +61,37 @@ nav:
     - Contributing: contributing.md
   - Projects & Experiments:
     - projects-experiments/index.md
-    - Project: elements/Project.md
-    - Experiment: elements/Experiment.md
-    - InSituExperiment: elements/InSituExperiment.md
-    - Intervention: elements/Intervention.md
-    - Tracer: elements/Tracer.md
-    - InterventionWithTracer: elements/InterventionWithTracer.md
-    - Model: elements/Model.md
+    - Project: Project.md
+    - Experiment: Experiment.md
+    - InSituExperiment: InSituExperiment.md
+    - Intervention: Intervention.md
+    - Tracer: Tracer.md
+    - InterventionWithTracer: InterventionWithTracer.md
+    - Model: Model.md
   - Datasets:
     - Datasets/index.md
-    - FieldDataset: elements/FieldDataset.md
-    - ModelOutputDataset: elements/ModelOutputDataset.md
+    - FieldDataset: FieldDataset.md
+    - ModelOutputDataset: ModelOutputDataset.md
   - Variables:
     - Variables/index.md
-    - InSituVariable: elements/InSituVariable.md
-    - MeasuredVariable: elements/MeasuredVariable.md
-    - CalculatedVariable: elements/CalculatedVariable.md
-    - NonMeasuredVariable: elements/NonMeasuredVariable.md
-    - DiscretePHVariable: elements/DiscretePHVariable.md
-    - DiscreteTAVariable: elements/DiscreteTAVariable.md
-    - DiscreteDICVariable: elements/DiscreteDICVariable.md
-    - DiscreteCO2Variable: elements/DiscreteCO2Variable.md
-    - HPLCVariable: elements/HPLCVariable.md
+    - InSituVariable: InSituVariable.md
+    - MeasuredVariable: MeasuredVariable.md
+    - CalculatedVariable: CalculatedVariable.md
+    - NonMeasuredVariable: NonMeasuredVariable.md
+    - DiscretePHVariable: DiscretePHVariable.md
+    - DiscreteTAVariable: DiscreteTAVariable.md
+    - DiscreteDICVariable: DiscreteDICVariable.md
+    - DiscreteCO2Variable: DiscreteCO2Variable.md
+    - HPLCVariable: HPLCVariable.md
   - Instruments & Calibration:
     - instruments-calibration/index.md
-    - AnalyzingInstrument: elements/AnalyzingInstrument.md
-    - PHInstrument: elements/PHInstrument.md
-    - CRMInstrument: elements/CRMInstrument.md
-    - CO2GasDetector: elements/CO2GasDetector.md
-    - Calibration: elements/Calibration.md
+    - AnalyzingInstrument: AnalyzingInstrument.md
+    - PHInstrument: PHInstrument.md
+    - CRMInstrument: CRMInstrument.md
+    - CO2GasDetector: CO2GasDetector.md
+    - Calibration: Calibration.md
   - Controlled Vocabularies: vocabularies.md
-  - Full Schema Index: elements/index.md
+  - Full Schema Index: OAEDataSchema.md
   - About: about.md
 
 exclude_docs: |
