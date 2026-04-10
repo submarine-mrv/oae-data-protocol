@@ -1294,7 +1294,7 @@
 
 
 <h1 id="slot-spatial-coverage-spatial_coverage">Slot: Spatial Coverage (spatial_coverage)</h1>
-<p><em>Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities) provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]</em></p>
+<p><em>Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities), expressed as a schema.org GeoShape bounding box.</em></p>
 <p>URI: <a href="http://schema.org/spatialCoverage">schema:spatialCoverage</a></p>
 <!-- no inheritance hierarchy -->
 
@@ -1309,18 +1309,8 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Intervention/">Intervention</a></td>
-<td>Additional metadata that applies to experiments where an intervention, such a...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../InSituExperiment/">InSituExperiment</a></td>
-<td>Experiment metadata for in-situ studies (interventions, tracer studies, etc</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ExternalProject/">ExternalProject</a></td>
-<td>A research project that is not directly managed by the OAE project, but whose...</td>
+<td><a href="../Tracer/">Tracer</a></td>
+<td>Additional metadata that applies to experiments where a tracer study was cond...</td>
 <td>no</td>
 </tr>
 <tr>
@@ -1329,8 +1319,8 @@
 <td>yes</td>
 </tr>
 <tr>
-<td><a href="../Model/">Model</a></td>
-<td>A computational model experiment related to OAE</td>
+<td><a href="../Intervention/">Intervention</a></td>
+<td>Additional metadata that applies to experiments where an intervention, such a...</td>
 <td>no</td>
 </tr>
 <tr>
@@ -1339,14 +1329,24 @@
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../Tracer/">Tracer</a></td>
-<td>Additional metadata that applies to experiments where a tracer study was cond...</td>
+<td><a href="../ExternalProject/">ExternalProject</a></td>
+<td>A research project that is not directly managed by the OAE project, but whose...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../InSituExperiment/">InSituExperiment</a></td>
+<td>Experiment metadata for in-situ studies (interventions, tracer studies, etc</td>
 <td>no</td>
 </tr>
 <tr>
 <td><a href="../Experiment/">Experiment</a></td>
 <td>Abstract base class for all experiment types</td>
 <td>yes</td>
+</tr>
+<tr>
+<td><a href="../Model/">Model</a></td>
+<td>A computational model experiment related to OAE</td>
+<td>no</td>
 </tr>
 <tr>
 <td><a href="../InterventionWithTracer/">InterventionWithTracer</a></td>
@@ -1392,8 +1392,7 @@
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">spatial_coverage</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Latitude/longitude bounds of project site (e.g., boundary domain of observations</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">or relevant activities) provided in decimal degrees as westernmost longitude, southernmost</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">latitude, easternmost longitude, northernmost latitude. [S, W, N, E]</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">or relevant activities), expressed as a schema.org GeoShape bounding box.</span>
 <span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Spatial Coverage</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.oaedata.org/OAEDataSchema</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>

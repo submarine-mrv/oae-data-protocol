@@ -565,6 +565,15 @@
 
       Dataset : author_list_for_citation
 
+      Dataset : data_accessibility
+
+
+
+
+    Dataset --&gt; "1" DataAccessibility : data_accessibility
+    click DataAccessibility href "../DataAccessibility"
+
+
       Dataset : data_submitter
 
 
@@ -684,6 +693,12 @@
 <td><a href="../fair_use_data_request/">fair_use_data_request</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>A statement from the data producer regarding how this dataset should be used</td>
+<td>direct</td>
+</tr>
+<tr>
+<td><a href="../data_accessibility/">data_accessibility</a></td>
+<td>1 <br/> <a href="../DataAccessibility/">DataAccessibility</a></td>
+<td>Level of access to this dataset</td>
 <td>direct</td>
 </tr>
 </tbody>
@@ -856,6 +871,19 @@
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dataset</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">  </span><span class="nt">data_accessibility</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data_accessibility</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Level of access to this dataset. Open Access data are freely available</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">without restriction. Conditional Access data are available upon request, subject</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">to review. Scheduled Access data will become openly available after a specified</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">date.</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Data Accessibility</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dataset</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dataset</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DataAccessibility</span>
+<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 </details>
 <h3 id="induced">Induced</h3>
@@ -983,6 +1011,21 @@
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dataset</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">  </span><span class="nt">data_accessibility</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data_accessibility</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Level of access to this dataset. Open Access data are freely available</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">without restriction. Conditional Access data are available upon request, subject</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">to review. Scheduled Access data will become openly available after a specified</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">date.</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Data Accessibility</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dataset</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data_accessibility</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dataset</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dataset</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DataAccessibility</span>
+<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">name</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">name</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'A</span><span class="nv"> </span><span class="s">brief</span><span class="nv"> </span><span class="s">descriptive</span><span class="nv"> </span><span class="s">sentence</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">summarizes</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">content</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">dataset.</span>
