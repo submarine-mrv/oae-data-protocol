@@ -90,6 +90,14 @@ classes:
         title: Fair Use Data Request
         description: A statement from the data producer regarding how this dataset should be used.
         range: string
+      data_accessibility:
+        title: Data Accessibility
+        description: >-
+          Level of access to this dataset. Open Access data are freely available without restriction.
+          Conditional Access data are available upon request, subject to review. Scheduled Access data
+          will become openly available after a specified date.
+        range: DataAccessibility
+        required: true
 
     exact_mappings:
       - "schema:Dataset"

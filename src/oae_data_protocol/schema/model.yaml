@@ -121,7 +121,8 @@ classes:
         range: string
       spatial_coverage:
         title: Spatial Coverage
-        description: "Bounding box for this grid, provided as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude."
+        description: >-
+          Bounding box for this grid, expressed as a schema.org GeoShape bounding box.
         range: SpatialCoverage
       arrangement:
         title: Arrangement

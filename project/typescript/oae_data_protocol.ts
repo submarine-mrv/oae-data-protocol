@@ -41,6 +41,8 @@ export enum DatasetType {
     socioeconomic = "socioeconomic",
     /** For measurements captured via net (e.g., zooplankton via MOCNESS) */
     net_tow = "net_tow",
+    /** Data collected continuously from a moving platform (e.g., ship underway system sampling surface seawater during transit). */
+    underway = "underway",
     /** For data types not included in the controlled vocabulary. Please fill in a the `dataset_type_custom` field with a more specific name for the custom mCDR data type. */
     other = "other",
 };
@@ -267,6 +269,18 @@ export enum ModelOutputVariable {
     Horizontal_velocity = "horizontal_velocity",
     /** Vertical velocity component (w) */
     Vertical_velocity = "vertical_velocity",
+};
+/**
+* Level of access to a dataset.
+*/
+export enum DataAccessibility {
+    
+    /** Data are freely available without restriction. */
+    Open_Access = "open_access",
+    /** Data are available upon request, subject to review. */
+    Conditional_Access = "conditional_access",
+    /** Data will become openly available after a specified date. */
+    Scheduled_Access = "scheduled_access",
 };
 
 export enum SeaNames {
@@ -679,7 +693,7 @@ export interface DosingLocation extends Place {
  * The geographic shape of a place. A GeoShape can be described using several properties whose values are based on latitude/longitude pairs. Either whitespace or commas can be used to separate latitude and longitude; whitespace should be used when writing a list of several such points. (imported from schema.org)
  */
 export interface GeoShape {
-    /** A box defined by two latitude-longitude points, southwest and northeast. */
+    /** A bounding box defined by two corner points — the southwest (lower-left) corner followed by the northeast (upper-right) corner. Per science-on-schema.org, each point is written as `<latitude> <longitude>` in decimal degrees (WGS 84), with all four values space-separated: `"<minLat> <minLon> <maxLat> <maxLon>"`. Example: `"39.3280 120.1633 40.445 123.7878"`. See https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md#spatial-coverage */
     box?: string,
     /** A line is a point-to-point path consisting of two or more points. A line is expressed as a series of two or more point objects separated by space. */
     line?: string,
@@ -736,7 +750,7 @@ If there are relevant regulatory parameters and/or limits to dosing trials at th
     description: string,
     /** The start and end date (optional) of the project */
     temporal_coverage: string,
-    /** Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities) provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E] */
+    /** Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities), expressed as a schema.org GeoShape bounding box. */
     spatial_coverage: SpatialCoverage,
     experiments?: Experiment[],
     /** Provide details for each project lead / principal investigator (PI) including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role. */
@@ -791,7 +805,7 @@ export interface NamedLink {
 export interface ExternalProject {
     /** Start date and end date (if known) of the project in ISO-8601 interval format (YYYY-MM-DD/YYY-MM-DD). If the end date is not known, use open-ended format YYYY-MM-DD/.. */
     temporal_coverage: string,
-    /** Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities) provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E] */
+    /** Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities), expressed as a schema.org GeoShape bounding box. */
     spatial_coverage: SpatialCoverage,
     /** The name of the external research project. */
     name: string,
@@ -843,7 +857,7 @@ export interface Experiment {
     name?: string,
     /** A narrative description of the experiment. For example, what part of the project do these data represent (e.g., baseline, intervention, control) and what do they contribute to the overall project? Are all project research questions listed in Project description relevant? What were the processes to achieve these goals and answer these questions? Data submitters are encouraged to note any significant changes to the original experimental plan due to unforeseen circumstances here. */
     description: string,
-    /** Latitude/longitude bounds of observed data in experiment, provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E] */
+    /** Latitude/longitude bounds of observed data in experiment, expressed as a schema.org GeoShape bounding box. */
     spatial_coverage: SpatialCoverage,
     /** The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.
 If no Project ID has been assigned, one may be generated by combining: lead organizer surname and first initial or company, a unique date, and location.
@@ -1583,6 +1597,8 @@ Project ID + Experiment type + Optional numerical indicator to differentiate bet
     license?: string,
     /** A statement from the data producer regarding how this dataset should be used. */
     fair_use_data_request?: string,
+    /** Level of access to this dataset. Open Access data are freely available without restriction. Conditional Access data are available upon request, subject to review. Scheduled Access data will become openly available after a specified date. */
+    data_accessibility: string,
 }
 
 
@@ -1717,7 +1733,7 @@ export interface ModelGrid {
     grid_type: string,
     /** Region covered by the grid. */
     region?: string,
-    /** Bounding box for this grid, provided as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. */
+    /** Bounding box for this grid, expressed as a schema.org GeoShape bounding box. */
     spatial_coverage?: SpatialCoverage,
     /** The grid arrangement of orthogonal physical quantities (e.g., Arakawa A, Arakawa B, Arakawa C). */
     arrangement?: string,
