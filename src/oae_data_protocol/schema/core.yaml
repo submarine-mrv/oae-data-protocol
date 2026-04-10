@@ -60,7 +60,7 @@ slots:
       followed by the northeast (upper-right) corner — with each point written as
       `<latitude> <longitude>` in decimal degrees (WGS 84). Full format:
       `"<minLat> <minLon> <maxLat> <maxLon>"`. Example: `"39.3280 120.1633 40.445 123.7878"`.
-      See https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md#spatialcoverage
+      See https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md#spatial-coverage
     # Could update this to be a more restrictive range (e.g. SpatialCoverage, which inherits from Place and only
     # allows GeoShapes, not GeoCoordinates)
     range: SpatialCoverage
@@ -127,7 +127,7 @@ classes:
           as `<latitude> <longitude>` in decimal degrees (WGS 84), with all four values
           space-separated: `"<minLat> <minLon> <maxLat> <maxLon>"`. Example:
           `"39.3280 120.1633 40.445 123.7878"`. See
-          https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md#spatialcoverage
+          https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md#spatial-coverage
         range: string
         slot_uri: schema:box
       line:

@@ -43,7 +43,7 @@ classes:
           southwest (lower-left) corner followed by the northeast (upper-right) corner — with each point
           written as `<latitude> <longitude>` in decimal degrees (WGS 84):
           `"<minLat> <minLon> <maxLat> <maxLon>"`. See
-          https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md#spatialcoverage
+          https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md#spatial-coverage
         required: true
     attributes:
       experiment_types:
