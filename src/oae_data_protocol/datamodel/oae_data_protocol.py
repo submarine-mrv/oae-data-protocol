@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-04-09T16:58:38
+# Generation date: 2026-04-09T17:02:03
 # Schema: OAEDataSchema
 #
 # id: https://schema.oaedata.org/OAEDataSchema
@@ -2606,6 +2606,7 @@ class Dataset(YAMLRoot):
     filenames: Union[str, List[str]] = None
     dataset_type: Union[str, "DatasetType"] = None
     data_submitter: Union[dict, Person] = None
+    data_accessibility: Union[str, "DataAccessibility"] = None
     dataset_type_custom: Optional[str] = None
     author_list_for_citation: Optional[str] = None
     license: Optional[Union[str, URI]] = None
@@ -2648,6 +2649,11 @@ class Dataset(YAMLRoot):
         if not isinstance(self.data_submitter, Person):
             self.data_submitter = Person(**as_dict(self.data_submitter))
 
+        if self._is_empty(self.data_accessibility):
+            self.MissingRequiredField("data_accessibility")
+        if not isinstance(self.data_accessibility, DataAccessibility):
+            self.data_accessibility = DataAccessibility(self.data_accessibility)
+
         if self.dataset_type_custom is not None and not isinstance(self.dataset_type_custom, str):
             self.dataset_type_custom = str(self.dataset_type_custom)
 
@@ -2683,6 +2689,7 @@ class FieldDataset(Dataset):
     filenames: Union[str, List[str]] = None
     dataset_type: Union[str, "DatasetType"] = None
     data_submitter: Union[dict, Person] = None
+    data_accessibility: Union[str, "DataAccessibility"] = None
     temporal_coverage: str = None
     data_product_type: Union[str, "DataProductType"] = None
     platform_info: Union[dict, "Platform"] = None
@@ -2737,6 +2744,7 @@ class ModelOutputDataset(Dataset):
     experiment_id: str = None
     dataset_type: Union[str, "DatasetType"] = None
     data_submitter: Union[dict, Person] = None
+    data_accessibility: Union[str, "DataAccessibility"] = None
     simulation_type: Union[Union[str, "SimulationType"], List[Union[str, "SimulationType"]]] = None
     start_datetime: Union[str, XSDDateTime] = None
     end_datetime: Union[str, XSDDateTime] = None
@@ -3747,6 +3755,9 @@ class DatasetType(EnumDefinitionImpl):
     net_tow = PermissibleValue(
         text="net_tow",
         description="For measurements captured via net (e.g., zooplankton via MOCNESS)")
+    underway = PermissibleValue(
+        text="underway",
+        description="""Data collected continuously from a moving platform (e.g., ship underway system sampling surface seawater during transit).""")
     other = PermissibleValue(
         text="other",
         description="""For data types not included in the controlled vocabulary. Please fill in a the `dataset_type_custom` field with a more specific name for the custom mCDR data type.""")
@@ -4118,6 +4129,25 @@ class ModelOutputVariable(EnumDefinitionImpl):
     _defn = EnumDefinition(
         name="ModelOutputVariable",
         description="Variables commonly included in model simulation output datasets",
+    )
+
+class DataAccessibility(EnumDefinitionImpl):
+    """
+    Level of access to a dataset.
+    """
+    open_access = PermissibleValue(
+        text="open_access",
+        description="Data are freely available without restriction.")
+    conditional_access = PermissibleValue(
+        text="conditional_access",
+        description="Data are available upon request, subject to review.")
+    scheduled_access = PermissibleValue(
+        text="scheduled_access",
+        description="Data will become openly available after a specified date.")
+
+    _defn = EnumDefinition(
+        name="DataAccessibility",
+        description="Level of access to a dataset.",
     )
 
 class SeaNames(EnumDefinitionImpl):
@@ -5664,6 +5694,9 @@ slots.dataset__license = Slot(uri=SCHEMA.license, name="dataset__license", curie
 
 slots.dataset__fair_use_data_request = Slot(uri=OAE.fair_use_data_request, name="dataset__fair_use_data_request", curie=OAE.curie('fair_use_data_request'),
                    model_uri=OAE.dataset__fair_use_data_request, domain=None, range=Optional[str])
+
+slots.dataset__data_accessibility = Slot(uri=OAE.data_accessibility, name="dataset__data_accessibility", curie=OAE.curie('data_accessibility'),
+                   model_uri=OAE.dataset__data_accessibility, domain=None, range=Union[str, "DataAccessibility"])
 
 slots.fieldDataset__data_product_type = Slot(uri=OAE.data_product_type, name="fieldDataset__data_product_type", curie=OAE.curie('data_product_type'),
                    model_uri=OAE.fieldDataset__data_product_type, domain=None, range=Union[str, "DataProductType"])

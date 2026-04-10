@@ -17,8 +17,9 @@ For data collected during in-situ experiments — CTD casts, bottle samples, sen
 
 | Field | Purpose |
 |-------|---------|
-| `dataset_type` | Classification (cast, bottle, flow-through, mooring, etc.) |
+| `dataset_type` | Classification (cast, bottle, flow-through, underway, mooring, etc.) |
 | `data_product_type` | Raw sensor data, data compilation, etc. |
+| `data_accessibility` | Access level: `open_access`, `conditional_access`, or `scheduled_access` |
 | `platform_info` | Ship, buoy, or vehicle that collected the data |
 | `filenames` | Names of the data file(s) in this dataset |
 | `variables` | Array of variable metadata (see [Variables](../variables/)) |

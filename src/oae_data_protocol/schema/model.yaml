@@ -121,7 +121,12 @@ classes:
         range: string
       spatial_coverage:
         title: Spatial Coverage
-        description: "Bounding box for this grid, provided as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude."
+        description: >-
+          Bounding box for this grid, expressed as a schema.org GeoShape `box`. Per
+          science-on-schema.org, the box string is two space-separated corner points — the southwest
+          (lower-left) corner followed by the northeast (upper-right) corner — with each point
+          written as `<latitude> <longitude>` in decimal degrees (WGS 84):
+          `"<minLat> <minLon> <maxLat> <maxLon>"`.
         range: SpatialCoverage
       arrangement:
         title: Arrangement

@@ -2524,6 +2524,16 @@
             "title": "ContinuousTAVariable",
             "type": "object"
         },
+        "DataAccessibility": {
+            "description": "Level of access to a dataset.",
+            "enum": [
+                "open_access",
+                "conditional_access",
+                "scheduled_access"
+            ],
+            "title": "DataAccessibility",
+            "type": "string"
+        },
         "DataProductType": {
             "description": "",
             "enum": [
@@ -2545,6 +2555,11 @@
                         "string",
                         "null"
                     ]
+                },
+                "data_accessibility": {
+                    "$ref": "#/$defs/DataAccessibility",
+                    "description": "Level of access to this dataset. Open Access data are freely available without restriction. Conditional Access data are available upon request, subject to review. Scheduled Access data will become openly available after a specified date.",
+                    "title": "Data Accessibility"
                 },
                 "data_submitter": {
                     "$ref": "#/$defs/Person",
@@ -2615,7 +2630,8 @@
                 "experiment_id",
                 "filenames",
                 "dataset_type",
-                "data_submitter"
+                "data_submitter",
+                "data_accessibility"
             ],
             "title": "Dataset",
             "type": "object"
@@ -2642,6 +2658,7 @@
                 "model_output",
                 "socioeconomic",
                 "net_tow",
+                "underway",
                 "other"
             ],
             "title": "DatasetType",
@@ -4235,7 +4252,7 @@
                 },
                 "spatial_coverage": {
                     "$ref": "#/$defs/SpatialCoverage",
-                    "description": "Latitude/longitude bounds of observed data in experiment, provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]",
+                    "description": "Latitude/longitude bounds of observed data in experiment, expressed as a schema.org GeoShape `box`. Per science-on-schema.org, the box string is two space-separated corner points \u2014 the southwest (lower-left) corner followed by the northeast (upper-right) corner \u2014 with each point written as `<latitude> <longitude>` in decimal degrees (WGS 84): `\"<minLat> <minLon> <maxLat> <maxLon>\"`. See https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md#spatialcoverage",
                     "title": "Spatial Coverage"
                 },
                 "start_datetime": {
@@ -4300,7 +4317,7 @@
                 },
                 "spatial_coverage": {
                     "$ref": "#/$defs/SpatialCoverage",
-                    "description": "Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities) provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]",
+                    "description": "Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities), expressed as a schema.org GeoShape `box`. Per the science-on-schema.org Dataset guide, the box string is two space-separated corner points \u2014 the southwest (lower-left) corner followed by the northeast (upper-right) corner \u2014 with each point written as `<latitude> <longitude>` in decimal degrees (WGS 84). Full format: `\"<minLat> <minLon> <maxLat> <maxLon>\"`. Example: `\"39.3280 120.1633 40.445 123.7878\"`. See https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md#spatialcoverage",
                     "title": "Spatial Coverage"
                 },
                 "temporal_coverage": {
@@ -4361,6 +4378,11 @@
                         "array",
                         "null"
                     ]
+                },
+                "data_accessibility": {
+                    "$ref": "#/$defs/DataAccessibility",
+                    "description": "Level of access to this dataset. Open Access data are freely available without restriction. Conditional Access data are available upon request, subject to review. Scheduled Access data will become openly available after a specified date.",
+                    "title": "Data Accessibility"
                 },
                 "data_product_type": {
                     "$ref": "#/$defs/DataProductType",
@@ -4513,7 +4535,8 @@
                 "experiment_id",
                 "filenames",
                 "dataset_type",
-                "data_submitter"
+                "data_submitter",
+                "data_accessibility"
             ],
             "title": "FieldDataset",
             "type": "object"
@@ -4626,7 +4649,7 @@
             "description": "The geographic shape of a place. A GeoShape can be described using several properties whose values are based on latitude/longitude pairs. Either whitespace or commas can be used to separate latitude and longitude; whitespace should be used when writing a list of several such points. (imported from schema.org)",
             "properties": {
                 "box": {
-                    "description": "A box defined by two latitude-longitude points, southwest and northeast.",
+                    "description": "A bounding box defined by two corner points \u2014 the southwest (lower-left) corner followed by the northeast (upper-right) corner. Per science-on-schema.org, each point is written as `<latitude> <longitude>` in decimal degrees (WGS 84), with all four values space-separated: `\"<minLat> <minLon> <maxLat> <maxLon>\"`. Example: `\"39.3280 120.1633 40.445 123.7878\"`. See https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md#spatialcoverage",
                     "type": [
                         "string",
                         "null"
@@ -5045,7 +5068,7 @@
                 },
                 "spatial_coverage": {
                     "$ref": "#/$defs/SpatialCoverage",
-                    "description": "Latitude/longitude bounds of observed data in experiment, provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]",
+                    "description": "Latitude/longitude bounds of observed data in experiment, expressed as a schema.org GeoShape `box`. Per science-on-schema.org, the box string is two space-separated corner points \u2014 the southwest (lower-left) corner followed by the northeast (upper-right) corner \u2014 with each point written as `<latitude> <longitude>` in decimal degrees (WGS 84): `\"<minLat> <minLon> <maxLat> <maxLon>\"`. See https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md#spatialcoverage",
                     "title": "Spatial Coverage"
                 },
                 "start_datetime": {
@@ -5302,7 +5325,7 @@
                 },
                 "spatial_coverage": {
                     "$ref": "#/$defs/SpatialCoverage",
-                    "description": "Latitude/longitude bounds of observed data in experiment, provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]",
+                    "description": "Latitude/longitude bounds of observed data in experiment, expressed as a schema.org GeoShape `box`. Per science-on-schema.org, the box string is two space-separated corner points \u2014 the southwest (lower-left) corner followed by the northeast (upper-right) corner \u2014 with each point written as `<latitude> <longitude>` in decimal degrees (WGS 84): `\"<minLat> <minLon> <maxLat> <maxLon>\"`. See https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md#spatialcoverage",
                     "title": "Spatial Coverage"
                 },
                 "start_datetime": {
@@ -5592,7 +5615,7 @@
                 },
                 "spatial_coverage": {
                     "$ref": "#/$defs/SpatialCoverage",
-                    "description": "Latitude/longitude bounds of observed data in experiment, provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]",
+                    "description": "Latitude/longitude bounds of observed data in experiment, expressed as a schema.org GeoShape `box`. Per science-on-schema.org, the box string is two space-separated corner points \u2014 the southwest (lower-left) corner followed by the northeast (upper-right) corner \u2014 with each point written as `<latitude> <longitude>` in decimal degrees (WGS 84): `\"<minLat> <minLon> <maxLat> <maxLon>\"`. See https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md#spatialcoverage",
                     "title": "Spatial Coverage"
                 },
                 "start_datetime": {
@@ -5830,7 +5853,7 @@
                 },
                 "spatial_coverage": {
                     "$ref": "#/$defs/SpatialCoverage",
-                    "description": "Latitude/longitude bounds of observed data in experiment, provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]",
+                    "description": "Latitude/longitude bounds of observed data in experiment, expressed as a schema.org GeoShape `box`. Per science-on-schema.org, the box string is two space-separated corner points \u2014 the southwest (lower-left) corner followed by the northeast (upper-right) corner \u2014 with each point written as `<latitude> <longitude>` in decimal degrees (WGS 84): `\"<minLat> <minLon> <maxLat> <maxLon>\"`. See https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md#spatialcoverage",
                     "title": "Spatial Coverage"
                 },
                 "spin_up_protocol": {
@@ -6064,7 +6087,7 @@
                             "type": "null"
                         }
                     ],
-                    "description": "Bounding box for this grid, provided as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude.",
+                    "description": "Bounding box for this grid, expressed as a schema.org GeoShape `box`. Per science-on-schema.org, the box string is two space-separated corner points \u2014 the southwest (lower-left) corner followed by the northeast (upper-right) corner \u2014 with each point written as `<latitude> <longitude>` in decimal degrees (WGS 84): `\"<minLat> <minLon> <maxLat> <maxLon>\"`.",
                     "title": "Spatial Coverage"
                 },
                 "vertical_coordinate_type": {
@@ -6203,6 +6226,11 @@
                         "null"
                     ]
                 },
+                "data_accessibility": {
+                    "$ref": "#/$defs/DataAccessibility",
+                    "description": "Level of access to this dataset. Open Access data are freely available without restriction. Conditional Access data are available upon request, subject to review. Scheduled Access data will become openly available after a specified date.",
+                    "title": "Data Accessibility"
+                },
                 "data_submitter": {
                     "$ref": "#/$defs/Person",
                     "title": "Data Submitter"
@@ -6335,7 +6363,8 @@
                 "experiment_id",
                 "filenames",
                 "dataset_type",
-                "data_submitter"
+                "data_submitter",
+                "data_accessibility"
             ],
             "then": {
                 "properties": {
@@ -7158,7 +7187,7 @@
                 },
                 "spatial_coverage": {
                     "$ref": "#/$defs/SpatialCoverage",
-                    "description": "Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities) provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]",
+                    "description": "Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities), expressed as a schema.org GeoShape `box`. Per the science-on-schema.org Dataset guide, the box string is two space-separated corner points \u2014 the southwest (lower-left) corner followed by the northeast (upper-right) corner \u2014 with each point written as `<latitude> <longitude>` in decimal degrees (WGS 84). Full format: `\"<minLat> <minLon> <maxLat> <maxLon>\"`. Example: `\"39.3280 120.1633 40.445 123.7878\"`. See https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md#spatialcoverage",
                     "title": "Spatial Coverage"
                 },
                 "temporal_coverage": {
@@ -7671,7 +7700,7 @@
                 },
                 "spatial_coverage": {
                     "$ref": "#/$defs/SpatialCoverage",
-                    "description": "Latitude/longitude bounds of observed data in experiment, provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]",
+                    "description": "Latitude/longitude bounds of observed data in experiment, expressed as a schema.org GeoShape `box`. Per science-on-schema.org, the box string is two space-separated corner points \u2014 the southwest (lower-left) corner followed by the northeast (upper-right) corner \u2014 with each point written as `<latitude> <longitude>` in decimal degrees (WGS 84): `\"<minLat> <minLon> <maxLat> <maxLon>\"`. See https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md#spatialcoverage",
                     "title": "Spatial Coverage"
                 },
                 "start_datetime": {

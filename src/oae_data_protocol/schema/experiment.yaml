@@ -38,8 +38,12 @@ classes:
         description: Optional common name for experiment.
       spatial_coverage:
         description: >-
-          Latitude/longitude bounds of observed data in experiment, provided in decimal degrees as westernmost
-          longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]
+          Latitude/longitude bounds of observed data in experiment, expressed as a schema.org GeoShape
+          `box`. Per science-on-schema.org, the box string is two space-separated corner points — the
+          southwest (lower-left) corner followed by the northeast (upper-right) corner — with each point
+          written as `<latitude> <longitude>` in decimal degrees (WGS 84):
+          `"<minLat> <minLon> <maxLat> <maxLon>"`. See
+          https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md#spatialcoverage
         required: true
     attributes:
       experiment_types:

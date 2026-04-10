@@ -27,8 +27,9 @@ These vocabularies are defined as part of the [OAE Data Protocol](https://www.ca
 | [GenesisType](GenesisType.md) | measured, calculated | In-situ variables |
 | [SamplingType](SamplingType.md) | discrete, continuous | Measured variables |
 | [mCDR Experiment Type](ExperimentType.md) | baseline, control, intervention, tracer_study, model, other | Experiments |
-| [mCDR Data Type](DatasetType.md) | cast, bottle, flow_thru, mooring, drifter, ... | Field datasets |
+| [mCDR Data Type](DatasetType.md) | cast, bottle, flow_thru, underway, mooring, drifter, ... | Field datasets |
 | [mCDR Pathways](MCDRPathway.md) | ocean_alkalinity_enhancement, biomass_sinking, ... | Projects |
+| [Data Accessibility](DataAccessibility.md) | open_access, conditional_access, scheduled_access | All datasets |
 
 ### Experiment & Intervention
 
