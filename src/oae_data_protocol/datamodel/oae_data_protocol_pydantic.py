@@ -1,31 +1,11 @@
-from __future__ import annotations 
+from __future__ import annotations
 
 import re
-import sys
-from datetime import (
-    date,
-    datetime,
-    time
-)
-from decimal import Decimal 
-from enum import Enum 
-from typing import (
-    Any,
-    ClassVar,
-    Dict,
-    List,
-    Literal,
-    Optional,
-    Union
-)
+from datetime import date, datetime
+from enum import Enum
+from typing import Any, ClassVar, Dict, List, Literal, Optional, Union
 
-from pydantic import (
-    BaseModel,
-    ConfigDict,
-    Field,
-    RootModel,
-    field_validator
-)
+from pydantic import BaseModel, ConfigDict, Field, RootModel, field_validator
 
 
 metamodel_version = "None"
@@ -34,69 +14,87 @@ version = "0.1.0"
 
 class ConfiguredBaseModel(BaseModel):
     model_config = ConfigDict(
-        validate_assignment = True,
-        validate_default = True,
-        extra = "forbid",
-        arbitrary_types_allowed = True,
-        use_enum_values = True,
-        strict = False,
+        validate_assignment=True,
+        validate_default=True,
+        extra="forbid",
+        arbitrary_types_allowed=True,
+        use_enum_values=True,
+        strict=False,
     )
     pass
-
-
 
 
 class LinkMLMeta(RootModel):
     root: Dict[str, Any] = {}
     model_config = ConfigDict(frozen=True)
 
-    def __getattr__(self, key:str):
+    def __getattr__(self, key: str):
         return getattr(self.root, key)
 
-    def __getitem__(self, key:str):
+    def __getitem__(self, key: str):
         return self.root[key]
 
-    def __setitem__(self, key:str, value):
+    def __setitem__(self, key: str, value):
         self.root[key] = value
 
-    def __contains__(self, key:str) -> bool:
+    def __contains__(self, key: str) -> bool:
         return key in self.root
 
 
-linkml_meta = LinkMLMeta({'default_prefix': 'oae',
-     'id': 'https://schema.oaedata.org/OAEDataSchema',
-     'imports': ['linkml:types',
-                 'core',
-                 'enums',
-                 'dynamic_enums_expanded',
-                 'oae_project',
-                 'external_project',
-                 'monetary_grant',
-                 'permit',
-                 'experiment',
-                 'person',
-                 'variable',
-                 'dataset',
-                 'platform',
-                 'model'],
-     'name': 'OAEDataSchema',
-     'prefixes': {'PUBCHEM': {'prefix_prefix': 'PUBCHEM',
-                              'prefix_reference': 'https://pubchem.ncbi.nlm.nih.gov/compound/'},
-                  'dcat': {'prefix_prefix': 'dcat',
-                           'prefix_reference': 'http://www.w3.org/ns/dcat#'},
-                  'envthes': {'prefix_prefix': 'envthes',
-                              'prefix_reference': 'https://w3id.org/envthes/'},
-                  'linkml': {'prefix_prefix': 'linkml',
-                             'prefix_reference': 'https://w3id.org/linkml/'},
-                  'oae': {'prefix_prefix': 'oae',
-                          'prefix_reference': 'https://schema.oaedata.org/'}},
-     'source_file': 'src/oae_data_protocol/schema/oae_data_protocol.yaml',
-     'title': 'OAE Data Protocol - Technical Documentation'} )
+linkml_meta = LinkMLMeta(
+    {
+        "default_prefix": "oae",
+        "id": "https://schema.oaedata.org/OAEDataSchema",
+        "imports": [
+            "linkml:types",
+            "core",
+            "enums",
+            "dynamic_enums_expanded",
+            "oae_project",
+            "external_project",
+            "monetary_grant",
+            "permit",
+            "experiment",
+            "person",
+            "variable",
+            "dataset",
+            "platform",
+            "model",
+        ],
+        "name": "OAEDataSchema",
+        "prefixes": {
+            "PUBCHEM": {
+                "prefix_prefix": "PUBCHEM",
+                "prefix_reference": "https://pubchem.ncbi.nlm.nih.gov/compound/",
+            },
+            "dcat": {
+                "prefix_prefix": "dcat",
+                "prefix_reference": "http://www.w3.org/ns/dcat#",
+            },
+            "envthes": {
+                "prefix_prefix": "envthes",
+                "prefix_reference": "https://w3id.org/envthes/",
+            },
+            "linkml": {
+                "prefix_prefix": "linkml",
+                "prefix_reference": "https://w3id.org/linkml/",
+            },
+            "oae": {
+                "prefix_prefix": "oae",
+                "prefix_reference": "https://schema.oaedata.org/",
+            },
+        },
+        "source_file": "src/oae_data_protocol/schema/oae_data_protocol.yaml",
+        "title": "OAE Data Protocol - Technical Documentation",
+    }
+)
+
 
 class DatasetType(str, Enum):
     """
-    Type of dataset being submitted. This usually 
+    Type of dataset being submitted. This usually
     """
+
     # Variables such as dosing_onoff, dosing_rate, and flow_rate should be included here.
     dosing = "dosing"
     # Vertical profiles (e.g., optical packages, CTD)
@@ -143,6 +141,7 @@ class MCDRPathway(str, Enum):
     """
     Type of marine Carbon Dioxide Removal (mCDR) pathways.
     """
+
     # Ocean Alkalinity Enhancement (OAE) is a method to help mitigate climate change by increasing the alkalinity of seawater to enhance its capacity to absorb and store atmospheric carbon dioxide (CO₂).
     Ocean_Alkalinity_Enhancement = "ocean_alkalinity_enhancement"
     # Biomass Sinking is a method that involves taking terrestrial or ocean biomass and sinking it into the deep ocean surface, subsurface, or anoxic basins, where it is sequestered. This can be accomplished by large-scale seaweed farming or macroalgae cultivation, which incorporates atmospheric CO2 as it grows, and then is sunk to the ocean floor. Alternatively, terrestrial plant biomass can be sunk to the ocean floor.
@@ -161,6 +160,7 @@ class ExperimentType(str, Enum):
     """
     Types of mCDR experiments
     """
+
     # Baseline measurements taken before any intervention
     baseline = "baseline"
     # Control experiment without intervention for comparison
@@ -179,6 +179,7 @@ class AlkalinityFeedstockProcessing(str, Enum):
     """
     Methods used to process alkalinity feedstock
     """
+
     # Alkalinity generated via electrochemical processes (e.g., seawater electrolysis).
     electrochemistry = "electrochemistry"
     # Intentionally industrially manufactured chemical compounds (e.g., Ca(OH)2 via lime kilns).
@@ -195,6 +196,7 @@ class AlkalinityFeedstockForm(str, Enum):
     """
     Physical form of the alkalinity feedstock upon ocean delivery
     """
+
     # Involves adding alkaline minerals or particulate slurry (such as MgOH2, MgO, or CaO) to seawater or river systems either directly, through coastal outfalls (such as wastewater), or at breaking shorelines to increase its alkalinity.
     solid = "solid"
     # Aqueous alkalinity addition may use electrochemistry or fully dissolved mineral feedstock to increase seawater alkalinity.
@@ -207,6 +209,7 @@ class EquilibrationStatus(str, Enum):
     """
     Equilibration status of the alkalinity feedstock
     """
+
     # Pre-equilibrated with atmosphere before dosing
     Pre_equilibrated = "pre_equilibrated"
     # Not pre-equilibrated before dosing
@@ -217,6 +220,7 @@ class HydrologicLocation(str, Enum):
     """
     Hydrologic location types for dosing
     """
+
     # Surface waters in coastal areas
     Coastal_Surface = "coastal_surface"
     # Surface waters in offshore areas
@@ -233,6 +237,7 @@ class DosingDeliveryType(str, Enum):
     """
     Types of dosing delivery methods
     """
+
     # A single dosing location such as an outflow from a static platform with a pipe
     Static_Point_Source = "static_point_source"
     # A mobile dosing regimen described by a single location at each time step, such as an outflow from a mobile platform such as a ship or surface vessel.
@@ -247,6 +252,7 @@ class TracerForm(str, Enum):
     """
     Forms of tracer used in tracer studies
     """
+
     # Gas tracer
     gas = "gas"
     # Dye tracer (eg- rhodamine)
@@ -259,6 +265,7 @@ class FeedstockType(str, Enum):
     """
     Types of materials used for alkalinity addition, as sourced from NCEI's OCADS controlled vocabulary: https://www.ncei.noaa.gov/access/ocean-carbon-acidification-data-system/vocabularies/alkalinization-types.html
     """
+
     # Lime (CaO) used as an alkalinity source.
     lime = "lime"
     # Portlandite (Ca(OH)₂) used as an alkalinity source.
@@ -293,6 +300,7 @@ class GridType(str, Enum):
     """
     Type of grid in a multi-grid or nested model configuration
     """
+
     # Inner (nested, higher-resolution) grid
     inner_grid = "inner_grid"
     # Outer (coarser-resolution) grid
@@ -305,6 +313,7 @@ class ModelComponentType(str, Enum):
     """
     Type of model component
     """
+
     # Physical model component (e.g., ocean circulation)
     Physics = "physics"
     # Biogeochemical or ecosystem model component
@@ -330,6 +339,7 @@ class SimulationType(str, Enum):
     """
     Type of model simulation dataset
     """
+
     # Control/baseline simulation without alkalinity perturbation
     counterfactual = "counterfactual"
     # Simulation with alkalinity perturbation applied
@@ -340,6 +350,7 @@ class ModelOutputVariable(str, Enum):
     """
     Variables commonly included in model simulation output datasets
     """
+
     # Air-sea exchange of carbon dioxide
     Air_sea_CO2_flux = "air_sea_co2_flux"
     # Dissolved inorganic carbon (DIC)
@@ -555,6 +566,7 @@ class CalibrationLocation(str, Enum):
     """
     Where the calibration was performed.
     """
+
     # Factory calibration performed by manufacturer.
     factory = "factory"
     # Laboratory calibration.
@@ -593,11 +605,15 @@ class AnalyzingInstrumentType(str, Enum):
     # Temperature and conductivity sensors mounted on a sea-surface platform continuously measuring a surface water supply.
     thermosalinograph = "thermosalinograph"
     # Instruments that measure the salinity of a collected water sample based on its electrical conductivity or optical properties.
-    salinometer_for_discrete_salinity_measurement = "salinometer_for_discrete_salinity_measurement"
+    salinometer_for_discrete_salinity_measurement = (
+        "salinometer_for_discrete_salinity_measurement"
+    )
     # DIC coulometers are widely used in oceanographic research to measure the concentration of dissolved inorganic carbon in seawater samples. They are often coupled with computer-controlled automated dynamic headspace analyzers that extracts total carbon dioxide from seawater using Single-Operator Multiparameter Metabolic Analyzers (SOMMAs).
     dic_analyzers_based_on_coulometers = "dic_analyzers_based_on_coulometers"
     # DIC analyzers based on a CO2 gas detector including Non-dispersive infrared absorption (NDIR) (e.g., Licor LI-850), Cavity Enhanced Absorption Spectroscopy (e.g., Licor's LI-7815), and Cavity Ring-Down Spectroscopy (CRDS) (e.g., Picarro G2131i) detectors.
-    dic_analyzers_based_on_co2_gas_detectors = "dic_analyzers_based_on_co2_gas_detectors"
+    dic_analyzers_based_on_co2_gas_detectors = (
+        "dic_analyzers_based_on_co2_gas_detectors"
+    )
     # Autonomous dissolved inorganic carbon (DIC) sensors are devices that can measure the concentration of DIC in seawater or other natural waters in situ, without the need for manual sampling and laboratory analysis.
     autonomous_dic_sensor = "autonomous_dic_sensor"
     # An alkalinity titrator is a device used to measure the total alkalinity of a seawater by titration.
@@ -664,6 +680,7 @@ class VariableType(str, Enum):
     """
     High-level classification of the variable. Determines which schema class to use in combination with genesis (measured/calculated) and sampling (discrete/continuous).
     """
+
     # pH measurement — use with Discrete/ContinuousPHVariable or CalculatedVariable
     pH = "pH"
     # Total alkalinity — use with Discrete/ContinuousTAVariable or CalculatedVariable
@@ -713,15 +730,17 @@ class ConcentrationBasis(str, Enum):
     """
     Whether concentration measurements are expressed per unit volume or per unit mass.
     """
+
     # Concentration expressed per unit volume (e.g., μmol/L, mmol/L)
     per_volume = "per_volume"
     # Concentration expressed per unit mass (e.g., μmol/kg-seawater)
     per_mass = "per_mass"
 
 
-
 class PropertyValue(ConfiguredBaseModel):
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'schema:PropertyValue', 'from_schema': 'Core'})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {"class_uri": "schema:PropertyValue", "from_schema": "Core"}
+    )
 
     pass
 
@@ -730,195 +749,510 @@ class Place(ConfiguredBaseModel):
     """
     A geospatial area of interest, defined by a bounding box, polygon/line, or a point designated as a  pair of geo-coordinates.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'schema:Place', 'from_schema': 'Core'})
 
-    geo: Optional[Union[GeoCoordinates, GeoShape]] = Field(default=None, description="""Entities that have a somewhat fixed, physical extension. (imported from schema.org)""", json_schema_extra = { "linkml_meta": {'alias': 'geo',
-         'any_of': [{'range': 'GeoShape'}, {'range': 'GeoCoordinates'}],
-         'domain_of': ['Place']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {"class_uri": "schema:Place", "from_schema": "Core"}
+    )
+
+    geo: Optional[Union[GeoCoordinates, GeoShape]] = Field(
+        default=None,
+        description="""Entities that have a somewhat fixed, physical extension. (imported from schema.org)""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "geo",
+                "any_of": [{"range": "GeoShape"}, {"range": "GeoCoordinates"}],
+                "domain_of": ["Place"],
+            }
+        },
+    )
 
 
 class SpatialCoverage(Place):
     """
     A bounding box defined by latitude and longitude coordinates.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Core',
-         'slot_usage': {'geo': {'name': 'geo', 'range': 'GeoShape', 'required': True}}})
 
-    geo: Union[GeoCoordinates, GeoShape] = Field(default=..., description="""Entities that have a somewhat fixed, physical extension. (imported from schema.org)""", json_schema_extra = { "linkml_meta": {'alias': 'geo',
-         'any_of': [{'range': 'GeoShape'}, {'range': 'GeoCoordinates'}],
-         'domain_of': ['Place']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "from_schema": "Core",
+            "slot_usage": {
+                "geo": {"name": "geo", "range": "GeoShape", "required": True}
+            },
+        }
+    )
+
+    geo: Union[GeoCoordinates, GeoShape] = Field(
+        default=...,
+        description="""Entities that have a somewhat fixed, physical extension. (imported from schema.org)""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "geo",
+                "any_of": [{"range": "GeoShape"}, {"range": "GeoCoordinates"}],
+                "domain_of": ["Place"],
+            }
+        },
+    )
 
 
 class DosingLocation(Place):
     """
     A specific location of dosing for an OAE intervention and/or tracer study. Can be a point, line, or bounding box
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Core'})
 
-    dosing_location_file: Optional[str] = Field(default=None, description="""Exact path and filename for the location file (relative to root path of project), attached separately. Format should be one of GeoJSON or Shapefile.""", json_schema_extra = { "linkml_meta": {'alias': 'dosing_location_file', 'domain_of': ['DosingLocation']} })
-    geo: Optional[Union[GeoCoordinates, GeoShape]] = Field(default=None, description="""Entities that have a somewhat fixed, physical extension. (imported from schema.org)""", json_schema_extra = { "linkml_meta": {'alias': 'geo',
-         'any_of': [{'range': 'GeoShape'}, {'range': 'GeoCoordinates'}],
-         'domain_of': ['Place']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({"from_schema": "Core"})
+
+    dosing_location_file: Optional[str] = Field(
+        default=None,
+        description="""Exact path and filename for the location file (relative to root path of project), attached separately. Format should be one of GeoJSON or Shapefile.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dosing_location_file",
+                "domain_of": ["DosingLocation"],
+            }
+        },
+    )
+    geo: Optional[Union[GeoCoordinates, GeoShape]] = Field(
+        default=None,
+        description="""Entities that have a somewhat fixed, physical extension. (imported from schema.org)""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "geo",
+                "any_of": [{"range": "GeoShape"}, {"range": "GeoCoordinates"}],
+                "domain_of": ["Place"],
+            }
+        },
+    )
 
 
 class GeoShape(ConfiguredBaseModel):
     """
     The geographic shape of a place. A GeoShape can be described using several properties whose values are based on latitude/longitude pairs. Either whitespace or commas can be used to separate latitude and longitude; whitespace should be used when writing a list of several such points. (imported from schema.org)
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'schema:GeoShape', 'from_schema': 'Core'})
 
-    box: Optional[str] = Field(default=None, description="""A box defined by two latitude-longitude points, southwest and northeast.""", json_schema_extra = { "linkml_meta": {'alias': 'box', 'domain_of': ['GeoShape'], 'slot_uri': 'schema:box'} })
-    line: Optional[str] = Field(default=None, description="""A line is a point-to-point path consisting of two or more points. A line is expressed as a series of two or more point objects separated by space.""", json_schema_extra = { "linkml_meta": {'alias': 'line', 'domain_of': ['GeoShape'], 'slot_uri': 'schema:line'} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {"class_uri": "schema:GeoShape", "from_schema": "Core"}
+    )
+
+    box: Optional[str] = Field(
+        default=None,
+        description="""A box defined by two latitude-longitude points, southwest and northeast.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "box",
+                "domain_of": ["GeoShape"],
+                "slot_uri": "schema:box",
+            }
+        },
+    )
+    line: Optional[str] = Field(
+        default=None,
+        description="""A line is a point-to-point path consisting of two or more points. A line is expressed as a series of two or more point objects separated by space.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "line",
+                "domain_of": ["GeoShape"],
+                "slot_uri": "schema:line",
+            }
+        },
+    )
 
 
 class GeoCoordinates(ConfiguredBaseModel):
     """
     A geographic coordinate in decimal degrees.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'schema:GeoCoordinates', 'from_schema': 'Core'})
 
-    latitude: float = Field(default=..., title="Latitude", description="""Latitude in decimal degrees of a location. For example 37.42242 (WGS 84).""", json_schema_extra = { "linkml_meta": {'alias': 'latitude',
-         'domain_of': ['GeoCoordinates'],
-         'slot_uri': 'schema:latitude'} })
-    longitude: float = Field(default=..., title="Longitude", description="""Longitude in decimal degrees of a location. For example -122.08585 (WGS 84).""", json_schema_extra = { "linkml_meta": {'alias': 'longitude',
-         'domain_of': ['GeoCoordinates'],
-         'slot_uri': 'schema:longitude'} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {"class_uri": "schema:GeoCoordinates", "from_schema": "Core"}
+    )
+
+    latitude: float = Field(
+        default=...,
+        title="Latitude",
+        description="""Latitude in decimal degrees of a location. For example 37.42242 (WGS 84).""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "latitude",
+                "domain_of": ["GeoCoordinates"],
+                "slot_uri": "schema:latitude",
+            }
+        },
+    )
+    longitude: float = Field(
+        default=...,
+        title="Longitude",
+        description="""Longitude in decimal degrees of a location. For example -122.08585 (WGS 84).""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "longitude",
+                "domain_of": ["GeoCoordinates"],
+                "slot_uri": "schema:longitude",
+            }
+        },
+    )
 
 
 class VerticalExtent(ConfiguredBaseModel):
     """
     The vertical extent of a place or structure in meters.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Core'})
 
-    min_depth_in_m: Optional[float] = Field(default=None, title="Minimum Depth (in meters)", description="""Minimum depth of observation in meters. Use negative numbers for depths below sea level.""", le=0, json_schema_extra = { "linkml_meta": {'alias': 'min_depth_in_m', 'domain_of': ['VerticalExtent']} })
-    max_depth_in_m: Optional[float] = Field(default=None, title="Maximum Depth (in meters)", description="""Maximum depth of observation in meters. Use negative numbers for depths below sea level.""", le=0, json_schema_extra = { "linkml_meta": {'alias': 'max_depth_in_m', 'domain_of': ['VerticalExtent']} })
-    min_height_in_m: Optional[float] = Field(default=None, title="Minimum Height (in meters)", description="""Minimum height of observation (in meters) for above ground aerial coverage.""", ge=0, json_schema_extra = { "linkml_meta": {'alias': 'min_height_in_m', 'domain_of': ['VerticalExtent']} })
-    max_height_in_m: Optional[float] = Field(default=None, title="Maximum Height (in meters)", description="""Maximum height of observation (in meters) for above ground aerial coverage.""", ge=0, json_schema_extra = { "linkml_meta": {'alias': 'max_height_in_m', 'domain_of': ['VerticalExtent']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({"from_schema": "Core"})
+
+    min_depth_in_m: Optional[float] = Field(
+        default=None,
+        title="Minimum Depth (in meters)",
+        description="""Minimum depth of observation in meters. Use negative numbers for depths below sea level.""",
+        le=0,
+        json_schema_extra={
+            "linkml_meta": {"alias": "min_depth_in_m", "domain_of": ["VerticalExtent"]}
+        },
+    )
+    max_depth_in_m: Optional[float] = Field(
+        default=None,
+        title="Maximum Depth (in meters)",
+        description="""Maximum depth of observation in meters. Use negative numbers for depths below sea level.""",
+        le=0,
+        json_schema_extra={
+            "linkml_meta": {"alias": "max_depth_in_m", "domain_of": ["VerticalExtent"]}
+        },
+    )
+    min_height_in_m: Optional[float] = Field(
+        default=None,
+        title="Minimum Height (in meters)",
+        description="""Minimum height of observation (in meters) for above ground aerial coverage.""",
+        ge=0,
+        json_schema_extra={
+            "linkml_meta": {"alias": "min_height_in_m", "domain_of": ["VerticalExtent"]}
+        },
+    )
+    max_height_in_m: Optional[float] = Field(
+        default=None,
+        title="Maximum Height (in meters)",
+        description="""Maximum height of observation (in meters) for above ground aerial coverage.""",
+        ge=0,
+        json_schema_extra={
+            "linkml_meta": {"alias": "max_height_in_m", "domain_of": ["VerticalExtent"]}
+        },
+    )
 
 
 class Organization(ConfiguredBaseModel):
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'schema:Organization',
-         'from_schema': 'Core',
-         'slot_usage': {'identifier': {'description': 'Organization identifier in the '
-                                                      'form of an ROR URL (e.g., '
-                                                      'https://ror.org/02mhbdp94). '
-                                                      'Please visit '
-                                                      '[https://ror.org](https://ror.org) '
-                                                      'to search for the organization '
-                                                      'and find the appropriate ROR '
-                                                      'URL.',
-                                       'name': 'identifier'},
-                        'name': {'description': 'Name of the organization',
-                                 'name': 'name',
-                                 'required': True}}})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "class_uri": "schema:Organization",
+            "from_schema": "Core",
+            "slot_usage": {
+                "identifier": {
+                    "description": "Organization identifier in the "
+                    "form of an ROR URL (e.g., "
+                    "https://ror.org/02mhbdp94). "
+                    "Please visit "
+                    "[https://ror.org](https://ror.org) "
+                    "to search for the organization "
+                    "and find the appropriate ROR "
+                    "URL.",
+                    "name": "identifier",
+                },
+                "name": {
+                    "description": "Name of the organization",
+                    "name": "name",
+                    "required": True,
+                },
+            },
+        }
+    )
 
-    identifier: Optional[str] = Field(default=None, description="""Organization identifier in the form of an ROR URL (e.g., https://ror.org/02mhbdp94). Please visit [https://ror.org](https://ror.org) to search for the organization and find the appropriate ROR URL.""", json_schema_extra = { "linkml_meta": {'alias': 'identifier',
-         'domain_of': ['Organization', 'MonetaryGrant', 'Person'],
-         'slot_uri': 'schema:identifier'} })
-    name: str = Field(default=..., title="Name", description="""Name of the organization""", json_schema_extra = { "linkml_meta": {'alias': 'name',
-         'domain_of': ['Organization',
-                       'NamedLink',
-                       'ExternalProject',
-                       'MonetaryGrant',
-                       'Experiment',
-                       'Person',
-                       'Dataset',
-                       'Platform',
-                       'ModelComponent'],
-         'slot_uri': 'schema:name'} })
-    country: Optional[str] = Field(default=None, title="Country", description="""The country in which the organization belongs.""", json_schema_extra = { "linkml_meta": {'alias': 'country', 'domain_of': ['Organization', 'Platform']} })
+    identifier: Optional[str] = Field(
+        default=None,
+        description="""Organization identifier in the form of an ROR URL (e.g., https://ror.org/02mhbdp94). Please visit [https://ror.org](https://ror.org) to search for the organization and find the appropriate ROR URL.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "identifier",
+                "domain_of": ["Organization", "MonetaryGrant", "Person"],
+                "slot_uri": "schema:identifier",
+            }
+        },
+    )
+    name: str = Field(
+        default=...,
+        title="Name",
+        description="""Name of the organization""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "name",
+                "domain_of": [
+                    "Organization",
+                    "NamedLink",
+                    "ExternalProject",
+                    "MonetaryGrant",
+                    "Experiment",
+                    "Person",
+                    "Dataset",
+                    "Platform",
+                    "ModelComponent",
+                ],
+                "slot_uri": "schema:name",
+            }
+        },
+    )
+    country: Optional[str] = Field(
+        default=None,
+        title="Country",
+        description="""The country in which the organization belongs.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "country",
+                "domain_of": ["Organization", "Platform"],
+            }
+        },
+    )
 
 
 class Project(ConfiguredBaseModel):
     """
     A project conducting OAE field trials or modeling.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'broad_mappings': ['schema:ResearchProject'],
-         'from_schema': 'Project',
-         'slot_usage': {'description': {'description': 'A narrative description of the '
-                                                       'project. For example, what '
-                                                       'were the goals of the project? '
-                                                       'What were the research '
-                                                       'questions? What were the '
-                                                       'processes to achieve these '
-                                                       'goals and answer these '
-                                                       'questions? Who were the key '
-                                                       'stakeholders, organizers, '
-                                                       'project leaders? Was this '
-                                                       'building off a previous or '
-                                                       'ongoing project, or is this a '
-                                                       'new '
-                                                       'region/experiment/mechanistic '
-                                                       'study?\n'
-                                                       'If there are relevant '
-                                                       'regulatory parameters and/or '
-                                                       'limits to dosing trials at '
-                                                       'this location, these may be '
-                                                       'described here.',
-                                        'name': 'description',
-                                        'required': True,
-                                        'title': 'Project Description'},
-                        'project_id': {'name': 'project_id', 'required': True},
-                        'spatial_coverage': {'name': 'spatial_coverage',
-                                             'required': True},
-                        'temporal_coverage': {'description': 'The start and end date '
-                                                             '(optional) of the '
-                                                             'project',
-                                              'name': 'temporal_coverage',
-                                              'required': True}}})
 
-    project_id: str = Field(default=..., title="Project ID", description="""The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "broad_mappings": ["schema:ResearchProject"],
+            "from_schema": "Project",
+            "slot_usage": {
+                "description": {
+                    "description": "A narrative description of the "
+                    "project. For example, what "
+                    "were the goals of the project? "
+                    "What were the research "
+                    "questions? What were the "
+                    "processes to achieve these "
+                    "goals and answer these "
+                    "questions? Who were the key "
+                    "stakeholders, organizers, "
+                    "project leaders? Was this "
+                    "building off a previous or "
+                    "ongoing project, or is this a "
+                    "new "
+                    "region/experiment/mechanistic "
+                    "study?\n"
+                    "If there are relevant "
+                    "regulatory parameters and/or "
+                    "limits to dosing trials at "
+                    "this location, these may be "
+                    "described here.",
+                    "name": "description",
+                    "required": True,
+                    "title": "Project Description",
+                },
+                "project_id": {"name": "project_id", "required": True},
+                "spatial_coverage": {"name": "spatial_coverage", "required": True},
+                "temporal_coverage": {
+                    "description": "The start and end date (optional) of the project",
+                    "name": "temporal_coverage",
+                    "required": True,
+                },
+            },
+        }
+    )
+
+    project_id: str = Field(
+        default=...,
+        title="Project ID",
+        description="""The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.
 If no Project ID has been assigned, one may be generated by combining: lead organizer surname and first initial or company, a unique date, and location.
-Any method that creates a unique ID that will link all project data is acceptable.""", json_schema_extra = { "linkml_meta": {'alias': 'project_id', 'domain_of': ['Project', 'Experiment', 'Dataset']} })
-    description: str = Field(default=..., title="Project Description", description="""A narrative description of the project. For example, what were the goals of the project? What were the research questions? What were the processes to achieve these goals and answer these questions? Who were the key stakeholders, organizers, project leaders? Was this building off a previous or ongoing project, or is this a new region/experiment/mechanistic study?
-If there are relevant regulatory parameters and/or limits to dosing trials at this location, these may be described here.""", json_schema_extra = { "linkml_meta": {'alias': 'description',
-         'domain_of': ['Project',
-                       'ExternalProject',
-                       'Experiment',
-                       'VocabularyItemReference',
-                       'Dataset',
-                       'ModelComponent'],
-         'slot_uri': 'schema:description'} })
-    temporal_coverage: str = Field(default=..., title="Temporal Coverage", description="""The start and end date (optional) of the project""", json_schema_extra = { "linkml_meta": {'alias': 'temporal_coverage',
-         'domain_of': ['Project', 'ExternalProject', 'FieldDataset'],
-         'slot_uri': 'schema:temporalCoverage'} })
-    spatial_coverage: SpatialCoverage = Field(default=..., title="Spatial Coverage", description="""Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities) provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]""", json_schema_extra = { "linkml_meta": {'alias': 'spatial_coverage',
-         'domain_of': ['Project', 'ExternalProject', 'Experiment', 'ModelGrid'],
-         'slot_uri': 'schema:spatialCoverage'} })
-    experiments: Optional[List[Experiment]] = Field(default=None, title="Related Experiments", json_schema_extra = { "linkml_meta": {'alias': 'experiments',
-         'domain_of': ['Project', 'Container'],
-         'recommended': True} })
-    project_leads: List[Person] = Field(default=..., title="Project Lead(s)", description="""Provide details for each project lead / principal investigator (PI) including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.""", json_schema_extra = { "linkml_meta": {'alias': 'project_leads', 'domain_of': ['Project']} })
-    sea_names: Optional[List[SeaNames]] = Field(default=None, title="Sea Names", description="""Names of the seas where the data collection takes place, See Controlled Vocabularies section for definitions.""", json_schema_extra = { "linkml_meta": {'alias': 'sea_names', 'domain_of': ['Project'], 'recommended': True} })
-    physical_site_description: Optional[str] = Field(default=None, title="Physical Site Description", description="""Provide information to help characterize the field site and provide context when interpreting the data. For example, descriptions of tidal patterns, climatological conditions, notable geological characteristics, the geographical and marine setting (coastal, intertidal, island region, sheltered environment), and characteristic meteorological events. If possible based on the file type of this submission, please include useful maps or figures here.
-Links to relevant datasets, cruise reports, etc may be provided here.""", json_schema_extra = { "linkml_meta": {'alias': 'physical_site_description', 'domain_of': ['Project']} })
-    social_context_site_description: Optional[str] = Field(default=None, title="Social Context Site Description", description="""Details may include:
+Any method that creates a unique ID that will link all project data is acceptable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "project_id",
+                "domain_of": ["Project", "Experiment", "Dataset"],
+            }
+        },
+    )
+    description: str = Field(
+        default=...,
+        title="Project Description",
+        description="""A narrative description of the project. For example, what were the goals of the project? What were the research questions? What were the processes to achieve these goals and answer these questions? Who were the key stakeholders, organizers, project leaders? Was this building off a previous or ongoing project, or is this a new region/experiment/mechanistic study?
+If there are relevant regulatory parameters and/or limits to dosing trials at this location, these may be described here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "description",
+                "domain_of": [
+                    "Project",
+                    "ExternalProject",
+                    "Experiment",
+                    "VocabularyItemReference",
+                    "Dataset",
+                    "ModelComponent",
+                ],
+                "slot_uri": "schema:description",
+            }
+        },
+    )
+    temporal_coverage: str = Field(
+        default=...,
+        title="Temporal Coverage",
+        description="""The start and end date (optional) of the project""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "temporal_coverage",
+                "domain_of": ["Project", "ExternalProject", "FieldDataset"],
+                "slot_uri": "schema:temporalCoverage",
+            }
+        },
+    )
+    spatial_coverage: SpatialCoverage = Field(
+        default=...,
+        title="Spatial Coverage",
+        description="""Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities) provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "spatial_coverage",
+                "domain_of": ["Project", "ExternalProject", "Experiment", "ModelGrid"],
+                "slot_uri": "schema:spatialCoverage",
+            }
+        },
+    )
+    experiments: Optional[List[Experiment]] = Field(
+        default=None,
+        title="Related Experiments",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "experiments",
+                "domain_of": ["Project", "Container"],
+                "recommended": True,
+            }
+        },
+    )
+    project_leads: List[Person] = Field(
+        default=...,
+        title="Project Lead(s)",
+        description="""Provide details for each project lead / principal investigator (PI) including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "project_leads", "domain_of": ["Project"]}
+        },
+    )
+    sea_names: Optional[List[SeaNames]] = Field(
+        default=None,
+        title="Sea Names",
+        description="""Names of the seas where the data collection takes place, See Controlled Vocabularies section for definitions.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sea_names",
+                "domain_of": ["Project"],
+                "recommended": True,
+            }
+        },
+    )
+    physical_site_description: Optional[str] = Field(
+        default=None,
+        title="Physical Site Description",
+        description="""Provide information to help characterize the field site and provide context when interpreting the data. For example, descriptions of tidal patterns, climatological conditions, notable geological characteristics, the geographical and marine setting (coastal, intertidal, island region, sheltered environment), and characteristic meteorological events. If possible based on the file type of this submission, please include useful maps or figures here.
+Links to relevant datasets, cruise reports, etc may be provided here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "physical_site_description",
+                "domain_of": ["Project"],
+            }
+        },
+    )
+    social_context_site_description: Optional[str] = Field(
+        default=None,
+        title="Social Context Site Description",
+        description="""Details may include:
   - Commercial, recreational, ecological, and cultural uses of study site
   - Industrial site history
   - Demographics of site area
   - Notable events that may impact local sentiment to mCDR (for example: site had significant toxic spill in past decade, local positive support for offshore wind farming, frequent HAB site) -Ecologically protected species, economically significant operations in the marine environment
   - In study areas with nearby state or federal jurisdiction borders, potential conflicts with other countries or permits from foreign governments should be described.
-  - Links to relevant social science surveys, engaged community groups, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'social_context_site_description', 'domain_of': ['Project']} })
-    social_research_conducted_to_date: Optional[str] = Field(default=None, title="Social Research Conducted to Date", description="""A description of any social research conducted to date. If provided as a separate file, list filename here. Information may include:
+  - Links to relevant social science surveys, engaged community groups, etc.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "social_context_site_description",
+                "domain_of": ["Project"],
+            }
+        },
+    )
+    social_research_conducted_to_date: Optional[str] = Field(
+        default=None,
+        title="Social Research Conducted to Date",
+        description="""A description of any social research conducted to date. If provided as a separate file, list filename here. Information may include:
   - Description of Community engagement research approach conducted and results
-  - Stakeholder mapping method and link to output""", json_schema_extra = { "linkml_meta": {'alias': 'social_research_conducted_to_date', 'domain_of': ['Project']} })
-    mcdr_pathway: MCDRPathway = Field(default=..., title="MCDR Pathway", description="""The Marine Carbon Dioxide Removal (MCDR) pathway being studied.""", json_schema_extra = { "linkml_meta": {'alias': 'mcdr_pathway', 'domain_of': ['Project']} })
-    previous_or_ongoing_colocated_research: Optional[List[ExternalProject]] = Field(default=None, title="Previous or Ongoing Co-located Research", description="""This field is required for co-located operations that potentially impact the project results. If previous or on-going mCDR field operations have occurred in the study domain by any project developer, they may be mentioned here either as a description, and/or if a reference to the study exists in the form of a data set, publication, etc, the DOI or other identifying information should be provided. Please provide direct links to data when available.""", json_schema_extra = { "linkml_meta": {'alias': 'previous_or_ongoing_colocated_research', 'domain_of': ['Project']} })
-    colocated_operations: Optional[str] = Field(default=None, title="Co-located Operations", description="""A description is required if any nearby operations exist that may influence the waters over the time period covered by this data. This might be a nearby mCDR project, a facility that discharges water with different characteristics than the inflow (e.g., a desalination plant), frequent boating operations, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'colocated_operations', 'domain_of': ['Project']} })
-    research_project: Optional[str] = Field(default=None, title="Research Project", description="""Project, which the data collection is part of. For example, West Coast Ocean Acidification (WCOA) Project.""", json_schema_extra = { "linkml_meta": {'alias': 'research_project', 'domain_of': ['Project']} })
-    funding: Optional[List[MonetaryGrant]] = Field(default=None, title="Funding Info", description="""Include the name of the funder, funder country, project title, project ID, and the project start and end dates. If there is no funding source (e.g., in the case of commercial projects), leave this field empty.""", json_schema_extra = { "linkml_meta": {'alias': 'funding', 'domain_of': ['Project'], 'slot_uri': 'schema:funding'} })
-    additional_details: Optional[str] = Field(default=None, title="Additional Details", description="""Open text area to include additional information. These may include information for sediment processes data, biological data, or any other required information if not included in the main metadata or data files.
-See [General Guidelines for Your Data](https://www.carbontosea.org/oae-data-protocol/1-0-0/#general-guidelines-for-your-data) for relevant sections of your data. Additional informational files, such as digitized laboratory notebooks, blogs, etc., may be linked here.""", json_schema_extra = { "linkml_meta": {'alias': 'additional_details', 'domain_of': ['Project', 'InSituExperiment']} })
+  - Stakeholder mapping method and link to output""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "social_research_conducted_to_date",
+                "domain_of": ["Project"],
+            }
+        },
+    )
+    mcdr_pathway: MCDRPathway = Field(
+        default=...,
+        title="MCDR Pathway",
+        description="""The Marine Carbon Dioxide Removal (MCDR) pathway being studied.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "mcdr_pathway", "domain_of": ["Project"]}
+        },
+    )
+    previous_or_ongoing_colocated_research: Optional[List[ExternalProject]] = Field(
+        default=None,
+        title="Previous or Ongoing Co-located Research",
+        description="""This field is required for co-located operations that potentially impact the project results. If previous or on-going mCDR field operations have occurred in the study domain by any project developer, they may be mentioned here either as a description, and/or if a reference to the study exists in the form of a data set, publication, etc, the DOI or other identifying information should be provided. Please provide direct links to data when available.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "previous_or_ongoing_colocated_research",
+                "domain_of": ["Project"],
+            }
+        },
+    )
+    colocated_operations: Optional[str] = Field(
+        default=None,
+        title="Co-located Operations",
+        description="""A description is required if any nearby operations exist that may influence the waters over the time period covered by this data. This might be a nearby mCDR project, a facility that discharges water with different characteristics than the inflow (e.g., a desalination plant), frequent boating operations, etc.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "colocated_operations", "domain_of": ["Project"]}
+        },
+    )
+    research_project: Optional[str] = Field(
+        default=None,
+        title="Research Project",
+        description="""Project, which the data collection is part of. For example, West Coast Ocean Acidification (WCOA) Project.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "research_project", "domain_of": ["Project"]}
+        },
+    )
+    funding: Optional[List[MonetaryGrant]] = Field(
+        default=None,
+        title="Funding Info",
+        description="""Include the name of the funder, funder country, project title, project ID, and the project start and end dates. If there is no funding source (e.g., in the case of commercial projects), leave this field empty.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "funding",
+                "domain_of": ["Project"],
+                "slot_uri": "schema:funding",
+            }
+        },
+    )
+    additional_details: Optional[str] = Field(
+        default=None,
+        title="Additional Details",
+        description="""Open text area to include additional information. These may include information for sediment processes data, biological data, or any other required information if not included in the main metadata or data files.
+See [General Guidelines for Your Data](https://www.carbontosea.org/oae-data-protocol/1-0-0/#general-guidelines-for-your-data) for relevant sections of your data. Additional informational files, such as digitized laboratory notebooks, blogs, etc., may be linked here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "additional_details",
+                "domain_of": ["Project", "InSituExperiment"],
+            }
+        },
+    )
 
-    @field_validator('temporal_coverage')
+    @field_validator("temporal_coverage")
     def pattern_temporal_coverage(cls, v):
-        pattern=re.compile(r"^\d{4}-\d{2}-\d{2}/(\d{4}-\d{2}-\d{2}|\.\.)$")
-        if isinstance(v,list):
+        pattern = re.compile(r"^\d{4}-\d{2}-\d{2}/(\d{4}-\d{2}-\d{2}|\.\.)$")
+        if isinstance(v, list):
             for element in v:
                 if isinstance(v, str) and not pattern.match(element):
                     raise ValueError(f"Invalid temporal_coverage format: {element}")
-        elif isinstance(v,str):
+        elif isinstance(v, str):
             if not pattern.match(v):
                 raise ValueError(f"Invalid temporal_coverage format: {v}")
         return v
@@ -928,570 +1262,2151 @@ class NamedLink(ConfiguredBaseModel):
     """
     A link to a resource with a name and URL.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Project'})
 
-    name: str = Field(default=..., title="Name", description="""The name of the linked resource.""", json_schema_extra = { "linkml_meta": {'alias': 'name',
-         'domain_of': ['Organization',
-                       'NamedLink',
-                       'ExternalProject',
-                       'MonetaryGrant',
-                       'Experiment',
-                       'Person',
-                       'Dataset',
-                       'Platform',
-                       'ModelComponent']} })
-    url: str = Field(default=..., title="URL", description="""The URL of the linked resource.""", json_schema_extra = { "linkml_meta": {'alias': 'url', 'domain_of': ['NamedLink']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({"from_schema": "Project"})
+
+    name: str = Field(
+        default=...,
+        title="Name",
+        description="""The name of the linked resource.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "name",
+                "domain_of": [
+                    "Organization",
+                    "NamedLink",
+                    "ExternalProject",
+                    "MonetaryGrant",
+                    "Experiment",
+                    "Person",
+                    "Dataset",
+                    "Platform",
+                    "ModelComponent",
+                ],
+            }
+        },
+    )
+    url: str = Field(
+        default=...,
+        title="URL",
+        description="""The URL of the linked resource.""",
+        json_schema_extra={"linkml_meta": {"alias": "url", "domain_of": ["NamedLink"]}},
+    )
 
 
 class ExternalProject(ConfiguredBaseModel):
     """
     A research project that is not directly managed by the OAE project, but whose location is proximal to the OAE project and whose data may be relevant to understanding the context or impacts of OAE activities.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'ExternalProject'})
 
-    temporal_coverage: str = Field(default=..., title="Temporal Coverage", description="""Start date and end date (if known) of the project in ISO-8601 interval format (YYYY-MM-DD/YYY-MM-DD). If the end date is not known, use open-ended format YYYY-MM-DD/..""", json_schema_extra = { "linkml_meta": {'alias': 'temporal_coverage',
-         'domain_of': ['Project', 'ExternalProject', 'FieldDataset'],
-         'slot_uri': 'schema:temporalCoverage'} })
-    spatial_coverage: SpatialCoverage = Field(default=..., title="Spatial Coverage", description="""Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities) provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]""", json_schema_extra = { "linkml_meta": {'alias': 'spatial_coverage',
-         'domain_of': ['Project', 'ExternalProject', 'Experiment', 'ModelGrid'],
-         'slot_uri': 'schema:spatialCoverage'} })
-    name: str = Field(default=..., title="Name", description="""The name of the external research project.""", json_schema_extra = { "linkml_meta": {'alias': 'name',
-         'domain_of': ['Organization',
-                       'NamedLink',
-                       'ExternalProject',
-                       'MonetaryGrant',
-                       'Experiment',
-                       'Person',
-                       'Dataset',
-                       'Platform',
-                       'ModelComponent']} })
-    description: Optional[str] = Field(default=None, title="Description", description="""A brief description of the external research project.""", json_schema_extra = { "linkml_meta": {'alias': 'description',
-         'domain_of': ['Project',
-                       'ExternalProject',
-                       'Experiment',
-                       'VocabularyItemReference',
-                       'Dataset',
-                       'ModelComponent']} })
-    related_links: Optional[List[str]] = Field(default=None, title="Related Links", description="""Links to websites or documents related to the external research project.""", json_schema_extra = { "linkml_meta": {'alias': 'related_links', 'domain_of': ['ExternalProject']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({"from_schema": "ExternalProject"})
 
-    @field_validator('temporal_coverage')
+    temporal_coverage: str = Field(
+        default=...,
+        title="Temporal Coverage",
+        description="""Start date and end date (if known) of the project in ISO-8601 interval format (YYYY-MM-DD/YYY-MM-DD). If the end date is not known, use open-ended format YYYY-MM-DD/..""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "temporal_coverage",
+                "domain_of": ["Project", "ExternalProject", "FieldDataset"],
+                "slot_uri": "schema:temporalCoverage",
+            }
+        },
+    )
+    spatial_coverage: SpatialCoverage = Field(
+        default=...,
+        title="Spatial Coverage",
+        description="""Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities) provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "spatial_coverage",
+                "domain_of": ["Project", "ExternalProject", "Experiment", "ModelGrid"],
+                "slot_uri": "schema:spatialCoverage",
+            }
+        },
+    )
+    name: str = Field(
+        default=...,
+        title="Name",
+        description="""The name of the external research project.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "name",
+                "domain_of": [
+                    "Organization",
+                    "NamedLink",
+                    "ExternalProject",
+                    "MonetaryGrant",
+                    "Experiment",
+                    "Person",
+                    "Dataset",
+                    "Platform",
+                    "ModelComponent",
+                ],
+            }
+        },
+    )
+    description: Optional[str] = Field(
+        default=None,
+        title="Description",
+        description="""A brief description of the external research project.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "description",
+                "domain_of": [
+                    "Project",
+                    "ExternalProject",
+                    "Experiment",
+                    "VocabularyItemReference",
+                    "Dataset",
+                    "ModelComponent",
+                ],
+            }
+        },
+    )
+    related_links: Optional[List[str]] = Field(
+        default=None,
+        title="Related Links",
+        description="""Links to websites or documents related to the external research project.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "related_links", "domain_of": ["ExternalProject"]}
+        },
+    )
+
+    @field_validator("temporal_coverage")
     def pattern_temporal_coverage(cls, v):
-        pattern=re.compile(r"^\d{4}-\d{2}-\d{2}/(\d{4}-\d{2}-\d{2}|\.\.)$")
-        if isinstance(v,list):
+        pattern = re.compile(r"^\d{4}-\d{2}-\d{2}/(\d{4}-\d{2}-\d{2}|\.\.)$")
+        if isinstance(v, list):
             for element in v:
                 if isinstance(v, str) and not pattern.match(element):
                     raise ValueError(f"Invalid temporal_coverage format: {element}")
-        elif isinstance(v,str):
+        elif isinstance(v, str):
             if not pattern.match(v):
                 raise ValueError(f"Invalid temporal_coverage format: {v}")
         return v
 
 
 class MonetaryGrant(ConfiguredBaseModel):
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'schema:MonetaryGrant',
-         'from_schema': 'MonetaryGrant',
-         'slot_usage': {'identifier': {'description': 'Unique identifier of the grant. '
-                                                      'Should be be URL or project id '
-                                                      'used by the funder',
-                                       'name': 'identifier'},
-                        'name': {'description': 'Name of the grant', 'name': 'name'}}})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "class_uri": "schema:MonetaryGrant",
+            "from_schema": "MonetaryGrant",
+            "slot_usage": {
+                "identifier": {
+                    "description": "Unique identifier of the grant. "
+                    "Should be be URL or project id "
+                    "used by the funder",
+                    "name": "identifier",
+                },
+                "name": {"description": "Name of the grant", "name": "name"},
+            },
+        }
+    )
 
-    name: Optional[str] = Field(default=None, title="Name", description="""Name of the grant""", json_schema_extra = { "linkml_meta": {'alias': 'name',
-         'domain_of': ['Organization',
-                       'NamedLink',
-                       'ExternalProject',
-                       'MonetaryGrant',
-                       'Experiment',
-                       'Person',
-                       'Dataset',
-                       'Platform',
-                       'ModelComponent'],
-         'slot_uri': 'schema:name'} })
-    identifier: Optional[str] = Field(default=None, description="""Unique identifier of the grant. Should be be URL or project id used by the funder""", json_schema_extra = { "linkml_meta": {'alias': 'identifier',
-         'domain_of': ['Organization', 'MonetaryGrant', 'Person'],
-         'slot_uri': 'schema:identifier'} })
-    start_date: Optional[date] = Field(default=None, title="Start Date", json_schema_extra = { "linkml_meta": {'alias': 'start_date', 'domain_of': ['MonetaryGrant']} })
-    end_date: Optional[date] = Field(default=None, title="End Date", json_schema_extra = { "linkml_meta": {'alias': 'end_date', 'domain_of': ['MonetaryGrant']} })
-    funder: Optional[Organization] = Field(default=None, title="Funder", json_schema_extra = { "linkml_meta": {'alias': 'funder', 'domain_of': ['MonetaryGrant']} })
+    name: Optional[str] = Field(
+        default=None,
+        title="Name",
+        description="""Name of the grant""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "name",
+                "domain_of": [
+                    "Organization",
+                    "NamedLink",
+                    "ExternalProject",
+                    "MonetaryGrant",
+                    "Experiment",
+                    "Person",
+                    "Dataset",
+                    "Platform",
+                    "ModelComponent",
+                ],
+                "slot_uri": "schema:name",
+            }
+        },
+    )
+    identifier: Optional[str] = Field(
+        default=None,
+        description="""Unique identifier of the grant. Should be be URL or project id used by the funder""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "identifier",
+                "domain_of": ["Organization", "MonetaryGrant", "Person"],
+                "slot_uri": "schema:identifier",
+            }
+        },
+    )
+    start_date: Optional[date] = Field(
+        default=None,
+        title="Start Date",
+        json_schema_extra={
+            "linkml_meta": {"alias": "start_date", "domain_of": ["MonetaryGrant"]}
+        },
+    )
+    end_date: Optional[date] = Field(
+        default=None,
+        title="End Date",
+        json_schema_extra={
+            "linkml_meta": {"alias": "end_date", "domain_of": ["MonetaryGrant"]}
+        },
+    )
+    funder: Optional[Organization] = Field(
+        default=None,
+        title="Funder",
+        json_schema_extra={
+            "linkml_meta": {"alias": "funder", "domain_of": ["MonetaryGrant"]}
+        },
+    )
 
 
 class Permit(ConfiguredBaseModel):
     """
     A permit associated with the project.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Permit'})
 
-    permit_id: str = Field(default=..., title="Permit ID or Number", description="""The unique identifier or number associated with this permit.""", json_schema_extra = { "linkml_meta": {'alias': 'permit_id', 'domain_of': ['Permit']} })
-    permitting_authority: str = Field(default=..., title="Permitting Authority", description="""The group that issued the permit.""", json_schema_extra = { "linkml_meta": {'alias': 'permitting_authority', 'domain_of': ['Permit']} })
-    agency_contact: Optional[str] = Field(default=None, title="Agency Contact", description="""The point of contact at the permitting agency.""", json_schema_extra = { "linkml_meta": {'alias': 'agency_contact', 'domain_of': ['Permit']} })
-    changes_to_evolution_of_permit_criteria: Optional[str] = Field(default=None, title="Changes to evolution of permit criteria", description="""e.g., changes of discharge pH and basis for changes""", json_schema_extra = { "linkml_meta": {'alias': 'changes_to_evolution_of_permit_criteria', 'domain_of': ['Permit']} })
-    permit_type: Optional[str] = Field(default=None, title="Permit Type", description="""The category of permit (E.g., experimental permit, commercial permit)""", json_schema_extra = { "linkml_meta": {'alias': 'permit_type', 'domain_of': ['Permit']} })
-    time_period: Optional[str] = Field(default=None, title="Permit Time Period", description="""The time period during which the permit will be applicable, or expected duration of the permit.""", json_schema_extra = { "linkml_meta": {'alias': 'time_period', 'domain_of': ['Permit']} })
-    approval_document: str = Field(default=..., title="Permit Document", description="""Filename(s) of permitting documents included, separated by commas""", json_schema_extra = { "linkml_meta": {'alias': 'approval_document', 'domain_of': ['Permit']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({"from_schema": "Permit"})
+
+    permit_id: str = Field(
+        default=...,
+        title="Permit ID or Number",
+        description="""The unique identifier or number associated with this permit.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "permit_id", "domain_of": ["Permit"]}
+        },
+    )
+    permitting_authority: str = Field(
+        default=...,
+        title="Permitting Authority",
+        description="""The group that issued the permit.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "permitting_authority", "domain_of": ["Permit"]}
+        },
+    )
+    agency_contact: Optional[str] = Field(
+        default=None,
+        title="Agency Contact",
+        description="""The point of contact at the permitting agency.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "agency_contact", "domain_of": ["Permit"]}
+        },
+    )
+    changes_to_evolution_of_permit_criteria: Optional[str] = Field(
+        default=None,
+        title="Changes to evolution of permit criteria",
+        description="""e.g., changes of discharge pH and basis for changes""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "changes_to_evolution_of_permit_criteria",
+                "domain_of": ["Permit"],
+            }
+        },
+    )
+    permit_type: Optional[str] = Field(
+        default=None,
+        title="Permit Type",
+        description="""The category of permit (E.g., experimental permit, commercial permit)""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "permit_type", "domain_of": ["Permit"]}
+        },
+    )
+    time_period: Optional[str] = Field(
+        default=None,
+        title="Permit Time Period",
+        description="""The time period during which the permit will be applicable, or expected duration of the permit.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "time_period", "domain_of": ["Permit"]}
+        },
+    )
+    approval_document: str = Field(
+        default=...,
+        title="Permit Document",
+        description="""Filename(s) of permitting documents included, separated by commas""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "approval_document", "domain_of": ["Permit"]}
+        },
+    )
 
 
 class Experiment(ConfiguredBaseModel):
     """
     Abstract base class for all experiment types. Contains fields common to both in-situ and model experiments.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Experiment',
-         'slot_usage': {'description': {'description': 'A narrative description of the '
-                                                       'experiment. For example, what '
-                                                       'part of the project do these '
-                                                       'data represent (e.g., '
-                                                       'baseline, intervention, '
-                                                       'control) and what do they '
-                                                       'contribute to the overall '
-                                                       'project? Are all project '
-                                                       'research questions listed in '
-                                                       'Project description relevant? '
-                                                       'What were the processes to '
-                                                       'achieve these goals and answer '
-                                                       'these questions? Data '
-                                                       'submitters are encouraged to '
-                                                       'note any significant changes '
-                                                       'to the original experimental '
-                                                       'plan due to unforeseen '
-                                                       'circumstances here.',
-                                        'name': 'description',
-                                        'required': True,
-                                        'title': 'Experiment Description'},
-                        'experiment_id': {'name': 'experiment_id', 'required': True},
-                        'name': {'description': 'Optional common name for experiment.',
-                                 'name': 'name'},
-                        'project_id': {'name': 'project_id', 'required': True},
-                        'spatial_coverage': {'description': 'Latitude/longitude bounds '
-                                                            'of observed data in '
-                                                            'experiment, provided in '
-                                                            'decimal degrees as '
-                                                            'westernmost longitude, '
-                                                            'southernmost latitude, '
-                                                            'easternmost longitude, '
-                                                            'northernmost latitude. '
-                                                            '[S, W, N, E]',
-                                             'name': 'spatial_coverage',
-                                             'required': True}}})
 
-    name: Optional[str] = Field(default=None, title="Name", description="""Optional common name for experiment.""", json_schema_extra = { "linkml_meta": {'alias': 'name',
-         'domain_of': ['Organization',
-                       'NamedLink',
-                       'ExternalProject',
-                       'MonetaryGrant',
-                       'Experiment',
-                       'Person',
-                       'Dataset',
-                       'Platform',
-                       'ModelComponent'],
-         'slot_uri': 'schema:name'} })
-    description: str = Field(default=..., title="Experiment Description", description="""A narrative description of the experiment. For example, what part of the project do these data represent (e.g., baseline, intervention, control) and what do they contribute to the overall project? Are all project research questions listed in Project description relevant? What were the processes to achieve these goals and answer these questions? Data submitters are encouraged to note any significant changes to the original experimental plan due to unforeseen circumstances here.""", json_schema_extra = { "linkml_meta": {'alias': 'description',
-         'domain_of': ['Project',
-                       'ExternalProject',
-                       'Experiment',
-                       'VocabularyItemReference',
-                       'Dataset',
-                       'ModelComponent'],
-         'slot_uri': 'schema:description'} })
-    spatial_coverage: SpatialCoverage = Field(default=..., title="Spatial Coverage", description="""Latitude/longitude bounds of observed data in experiment, provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]""", json_schema_extra = { "linkml_meta": {'alias': 'spatial_coverage',
-         'domain_of': ['Project', 'ExternalProject', 'Experiment', 'ModelGrid'],
-         'slot_uri': 'schema:spatialCoverage'} })
-    project_id: str = Field(default=..., title="Project ID", description="""The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "from_schema": "Experiment",
+            "slot_usage": {
+                "description": {
+                    "description": "A narrative description of the "
+                    "experiment. For example, what "
+                    "part of the project do these "
+                    "data represent (e.g., "
+                    "baseline, intervention, "
+                    "control) and what do they "
+                    "contribute to the overall "
+                    "project? Are all project "
+                    "research questions listed in "
+                    "Project description relevant? "
+                    "What were the processes to "
+                    "achieve these goals and answer "
+                    "these questions? Data "
+                    "submitters are encouraged to "
+                    "note any significant changes "
+                    "to the original experimental "
+                    "plan due to unforeseen "
+                    "circumstances here.",
+                    "name": "description",
+                    "required": True,
+                    "title": "Experiment Description",
+                },
+                "experiment_id": {"name": "experiment_id", "required": True},
+                "name": {
+                    "description": "Optional common name for experiment.",
+                    "name": "name",
+                },
+                "project_id": {"name": "project_id", "required": True},
+                "spatial_coverage": {
+                    "description": "Latitude/longitude bounds "
+                    "of observed data in "
+                    "experiment, provided in "
+                    "decimal degrees as "
+                    "westernmost longitude, "
+                    "southernmost latitude, "
+                    "easternmost longitude, "
+                    "northernmost latitude. "
+                    "[S, W, N, E]",
+                    "name": "spatial_coverage",
+                    "required": True,
+                },
+            },
+        }
+    )
+
+    name: Optional[str] = Field(
+        default=None,
+        title="Name",
+        description="""Optional common name for experiment.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "name",
+                "domain_of": [
+                    "Organization",
+                    "NamedLink",
+                    "ExternalProject",
+                    "MonetaryGrant",
+                    "Experiment",
+                    "Person",
+                    "Dataset",
+                    "Platform",
+                    "ModelComponent",
+                ],
+                "slot_uri": "schema:name",
+            }
+        },
+    )
+    description: str = Field(
+        default=...,
+        title="Experiment Description",
+        description="""A narrative description of the experiment. For example, what part of the project do these data represent (e.g., baseline, intervention, control) and what do they contribute to the overall project? Are all project research questions listed in Project description relevant? What were the processes to achieve these goals and answer these questions? Data submitters are encouraged to note any significant changes to the original experimental plan due to unforeseen circumstances here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "description",
+                "domain_of": [
+                    "Project",
+                    "ExternalProject",
+                    "Experiment",
+                    "VocabularyItemReference",
+                    "Dataset",
+                    "ModelComponent",
+                ],
+                "slot_uri": "schema:description",
+            }
+        },
+    )
+    spatial_coverage: SpatialCoverage = Field(
+        default=...,
+        title="Spatial Coverage",
+        description="""Latitude/longitude bounds of observed data in experiment, provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "spatial_coverage",
+                "domain_of": ["Project", "ExternalProject", "Experiment", "ModelGrid"],
+                "slot_uri": "schema:spatialCoverage",
+            }
+        },
+    )
+    project_id: str = Field(
+        default=...,
+        title="Project ID",
+        description="""The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.
 If no Project ID has been assigned, one may be generated by combining: lead organizer surname and first initial or company, a unique date, and location.
-Any method that creates a unique ID that will link all project data is acceptable.""", json_schema_extra = { "linkml_meta": {'alias': 'project_id', 'domain_of': ['Project', 'Experiment', 'Dataset']} })
-    experiment_id: str = Field(default=..., title="Experiment ID", description="""The experiment to which the data belong. Any naming convention that produces a unique ID is usable. The recommended naming convention is:
-Project ID + Experiment type + Optional numerical indicator to differentiate between various experiments of the same type for a project. A two digit consecutive number beginning with 01""", json_schema_extra = { "linkml_meta": {'alias': 'experiment_id', 'domain_of': ['Experiment', 'Dataset']} })
-    experiment_types: List[ExperimentType] = Field(default=..., title="mCDR Experiment Type(s)", description="""The type(s) of mCDR experiment conducted. See Controlled Vocabularies section for definitions.""", json_schema_extra = { "linkml_meta": {'alias': 'experiment_types', 'domain_of': ['Experiment']} })
-    public_comments: Optional[str] = Field(default=None, title="Public Comments", description="""File name(s) of public comment related documents. If possible, please provide public comments concatenated into a single pdf""", json_schema_extra = { "linkml_meta": {'alias': 'public_comments', 'domain_of': ['Experiment'], 'recommended': True} })
-    experiment_leads: List[Person] = Field(default=..., title="Experiment Lead(s)", description="""Provide details for each experiment lead / principal investigator (PI) including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.""", json_schema_extra = { "linkml_meta": {'alias': 'experiment_leads', 'domain_of': ['Experiment']} })
-    start_datetime: datetime  = Field(default=..., title="Start Date and Time (UTC)", description="""Start date and time of experiment in UTC ISO-8601""", json_schema_extra = { "linkml_meta": {'alias': 'start_datetime', 'domain_of': ['Experiment', 'ModelOutputDataset']} })
-    end_datetime: Optional[datetime ] = Field(default=None, title="End Date and Time (UTC)", description="""End date and time of experiment in UTC ISO-8601""", json_schema_extra = { "linkml_meta": {'alias': 'end_datetime', 'domain_of': ['Experiment', 'ModelOutputDataset']} })
+Any method that creates a unique ID that will link all project data is acceptable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "project_id",
+                "domain_of": ["Project", "Experiment", "Dataset"],
+            }
+        },
+    )
+    experiment_id: str = Field(
+        default=...,
+        title="Experiment ID",
+        description="""The experiment to which the data belong. Any naming convention that produces a unique ID is usable. The recommended naming convention is:
+Project ID + Experiment type + Optional numerical indicator to differentiate between various experiments of the same type for a project. A two digit consecutive number beginning with 01""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "experiment_id",
+                "domain_of": ["Experiment", "Dataset"],
+            }
+        },
+    )
+    experiment_types: List[ExperimentType] = Field(
+        default=...,
+        title="mCDR Experiment Type(s)",
+        description="""The type(s) of mCDR experiment conducted. See Controlled Vocabularies section for definitions.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "experiment_types", "domain_of": ["Experiment"]}
+        },
+    )
+    public_comments: Optional[str] = Field(
+        default=None,
+        title="Public Comments",
+        description="""File name(s) of public comment related documents. If possible, please provide public comments concatenated into a single pdf""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "public_comments",
+                "domain_of": ["Experiment"],
+                "recommended": True,
+            }
+        },
+    )
+    experiment_leads: List[Person] = Field(
+        default=...,
+        title="Experiment Lead(s)",
+        description="""Provide details for each experiment lead / principal investigator (PI) including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "experiment_leads", "domain_of": ["Experiment"]}
+        },
+    )
+    start_datetime: datetime = Field(
+        default=...,
+        title="Start Date and Time (UTC)",
+        description="""Start date and time of experiment in UTC ISO-8601""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "start_datetime",
+                "domain_of": ["Experiment", "ModelOutputDataset"],
+            }
+        },
+    )
+    end_datetime: Optional[datetime] = Field(
+        default=None,
+        title="End Date and Time (UTC)",
+        description="""End date and time of experiment in UTC ISO-8601""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "end_datetime",
+                "domain_of": ["Experiment", "ModelOutputDataset"],
+            }
+        },
+    )
 
 
 class InSituExperiment(Experiment):
     """
     Experiment metadata for in-situ studies (interventions, tracer studies, etc.). Contains fields specific to field-based experiments that don't apply to model experiments.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Experiment',
-         'slot_usage': {'vertical_coverage': {'description': 'Minimum and maximum '
-                                                             'depths of observations '
-                                                             'in meters.',
-                                              'name': 'vertical_coverage'}}})
 
-    vertical_coverage: Optional[VerticalExtent] = Field(default=None, title="Vertical Coverage", description="""Minimum and maximum depths of observations in meters.""", json_schema_extra = { "linkml_meta": {'alias': 'vertical_coverage', 'domain_of': ['InSituExperiment']} })
-    permits: Optional[List[Permit]] = Field(default=None, title="Permits", description="""Associated permit number(s).""", json_schema_extra = { "linkml_meta": {'alias': 'permits', 'domain_of': ['InSituExperiment']} })
-    data_conflicts_and_unreported_data: Optional[str] = Field(default=None, title="Data Conflicts and Unreported Data", description="""If data exist that are or have been used by the project but are not provided due to conflicts (e.g., geopolitical or other), data availability (e.g., a dataset is no longer available), it may be noted here.""", json_schema_extra = { "linkml_meta": {'alias': 'data_conflicts_and_unreported_data',
-         'domain_of': ['InSituExperiment']} })
-    meteorological_and_tidal_data: Optional[List[NamedLink]] = Field(default=None, title="Meteorological and Tidal Data", description="""Include links to relevant open datasets if referenced in the experiment but not provided in the submission.""", json_schema_extra = { "linkml_meta": {'alias': 'meteorological_and_tidal_data', 'domain_of': ['InSituExperiment']} })
-    additional_details: Optional[str] = Field(default=None, title="Additional Details", description="""Open text area to include additional information. These may include information for sediment processes data, biological data, or any other required information if not included in the main metadata or data files; see General Guidelines for Your Data for relevant sections of your data. Additional informational files, such as digitized laboratory notebooks, blogs, etc., may be linked here.""", json_schema_extra = { "linkml_meta": {'alias': 'additional_details', 'domain_of': ['Project', 'InSituExperiment']} })
-    name: Optional[str] = Field(default=None, title="Name", description="""Optional common name for experiment.""", json_schema_extra = { "linkml_meta": {'alias': 'name',
-         'domain_of': ['Organization',
-                       'NamedLink',
-                       'ExternalProject',
-                       'MonetaryGrant',
-                       'Experiment',
-                       'Person',
-                       'Dataset',
-                       'Platform',
-                       'ModelComponent'],
-         'slot_uri': 'schema:name'} })
-    description: str = Field(default=..., title="Experiment Description", description="""A narrative description of the experiment. For example, what part of the project do these data represent (e.g., baseline, intervention, control) and what do they contribute to the overall project? Are all project research questions listed in Project description relevant? What were the processes to achieve these goals and answer these questions? Data submitters are encouraged to note any significant changes to the original experimental plan due to unforeseen circumstances here.""", json_schema_extra = { "linkml_meta": {'alias': 'description',
-         'domain_of': ['Project',
-                       'ExternalProject',
-                       'Experiment',
-                       'VocabularyItemReference',
-                       'Dataset',
-                       'ModelComponent'],
-         'slot_uri': 'schema:description'} })
-    spatial_coverage: SpatialCoverage = Field(default=..., title="Spatial Coverage", description="""Latitude/longitude bounds of observed data in experiment, provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]""", json_schema_extra = { "linkml_meta": {'alias': 'spatial_coverage',
-         'domain_of': ['Project', 'ExternalProject', 'Experiment', 'ModelGrid'],
-         'slot_uri': 'schema:spatialCoverage'} })
-    project_id: str = Field(default=..., title="Project ID", description="""The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "from_schema": "Experiment",
+            "slot_usage": {
+                "vertical_coverage": {
+                    "description": "Minimum and maximum "
+                    "depths of observations "
+                    "in meters.",
+                    "name": "vertical_coverage",
+                }
+            },
+        }
+    )
+
+    vertical_coverage: Optional[VerticalExtent] = Field(
+        default=None,
+        title="Vertical Coverage",
+        description="""Minimum and maximum depths of observations in meters.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "vertical_coverage",
+                "domain_of": ["InSituExperiment"],
+            }
+        },
+    )
+    permits: Optional[List[Permit]] = Field(
+        default=None,
+        title="Permits",
+        description="""Associated permit number(s).""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "permits", "domain_of": ["InSituExperiment"]}
+        },
+    )
+    data_conflicts_and_unreported_data: Optional[str] = Field(
+        default=None,
+        title="Data Conflicts and Unreported Data",
+        description="""If data exist that are or have been used by the project but are not provided due to conflicts (e.g., geopolitical or other), data availability (e.g., a dataset is no longer available), it may be noted here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "data_conflicts_and_unreported_data",
+                "domain_of": ["InSituExperiment"],
+            }
+        },
+    )
+    meteorological_and_tidal_data: Optional[List[NamedLink]] = Field(
+        default=None,
+        title="Meteorological and Tidal Data",
+        description="""Include links to relevant open datasets if referenced in the experiment but not provided in the submission.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "meteorological_and_tidal_data",
+                "domain_of": ["InSituExperiment"],
+            }
+        },
+    )
+    additional_details: Optional[str] = Field(
+        default=None,
+        title="Additional Details",
+        description="""Open text area to include additional information. These may include information for sediment processes data, biological data, or any other required information if not included in the main metadata or data files; see General Guidelines for Your Data for relevant sections of your data. Additional informational files, such as digitized laboratory notebooks, blogs, etc., may be linked here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "additional_details",
+                "domain_of": ["Project", "InSituExperiment"],
+            }
+        },
+    )
+    name: Optional[str] = Field(
+        default=None,
+        title="Name",
+        description="""Optional common name for experiment.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "name",
+                "domain_of": [
+                    "Organization",
+                    "NamedLink",
+                    "ExternalProject",
+                    "MonetaryGrant",
+                    "Experiment",
+                    "Person",
+                    "Dataset",
+                    "Platform",
+                    "ModelComponent",
+                ],
+                "slot_uri": "schema:name",
+            }
+        },
+    )
+    description: str = Field(
+        default=...,
+        title="Experiment Description",
+        description="""A narrative description of the experiment. For example, what part of the project do these data represent (e.g., baseline, intervention, control) and what do they contribute to the overall project? Are all project research questions listed in Project description relevant? What were the processes to achieve these goals and answer these questions? Data submitters are encouraged to note any significant changes to the original experimental plan due to unforeseen circumstances here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "description",
+                "domain_of": [
+                    "Project",
+                    "ExternalProject",
+                    "Experiment",
+                    "VocabularyItemReference",
+                    "Dataset",
+                    "ModelComponent",
+                ],
+                "slot_uri": "schema:description",
+            }
+        },
+    )
+    spatial_coverage: SpatialCoverage = Field(
+        default=...,
+        title="Spatial Coverage",
+        description="""Latitude/longitude bounds of observed data in experiment, provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "spatial_coverage",
+                "domain_of": ["Project", "ExternalProject", "Experiment", "ModelGrid"],
+                "slot_uri": "schema:spatialCoverage",
+            }
+        },
+    )
+    project_id: str = Field(
+        default=...,
+        title="Project ID",
+        description="""The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.
 If no Project ID has been assigned, one may be generated by combining: lead organizer surname and first initial or company, a unique date, and location.
-Any method that creates a unique ID that will link all project data is acceptable.""", json_schema_extra = { "linkml_meta": {'alias': 'project_id', 'domain_of': ['Project', 'Experiment', 'Dataset']} })
-    experiment_id: str = Field(default=..., title="Experiment ID", description="""The experiment to which the data belong. Any naming convention that produces a unique ID is usable. The recommended naming convention is:
-Project ID + Experiment type + Optional numerical indicator to differentiate between various experiments of the same type for a project. A two digit consecutive number beginning with 01""", json_schema_extra = { "linkml_meta": {'alias': 'experiment_id', 'domain_of': ['Experiment', 'Dataset']} })
-    experiment_types: List[ExperimentType] = Field(default=..., title="mCDR Experiment Type(s)", description="""The type(s) of mCDR experiment conducted. See Controlled Vocabularies section for definitions.""", json_schema_extra = { "linkml_meta": {'alias': 'experiment_types', 'domain_of': ['Experiment']} })
-    public_comments: Optional[str] = Field(default=None, title="Public Comments", description="""File name(s) of public comment related documents. If possible, please provide public comments concatenated into a single pdf""", json_schema_extra = { "linkml_meta": {'alias': 'public_comments', 'domain_of': ['Experiment'], 'recommended': True} })
-    experiment_leads: List[Person] = Field(default=..., title="Experiment Lead(s)", description="""Provide details for each experiment lead / principal investigator (PI) including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.""", json_schema_extra = { "linkml_meta": {'alias': 'experiment_leads', 'domain_of': ['Experiment']} })
-    start_datetime: datetime  = Field(default=..., title="Start Date and Time (UTC)", description="""Start date and time of experiment in UTC ISO-8601""", json_schema_extra = { "linkml_meta": {'alias': 'start_datetime', 'domain_of': ['Experiment', 'ModelOutputDataset']} })
-    end_datetime: Optional[datetime ] = Field(default=None, title="End Date and Time (UTC)", description="""End date and time of experiment in UTC ISO-8601""", json_schema_extra = { "linkml_meta": {'alias': 'end_datetime', 'domain_of': ['Experiment', 'ModelOutputDataset']} })
+Any method that creates a unique ID that will link all project data is acceptable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "project_id",
+                "domain_of": ["Project", "Experiment", "Dataset"],
+            }
+        },
+    )
+    experiment_id: str = Field(
+        default=...,
+        title="Experiment ID",
+        description="""The experiment to which the data belong. Any naming convention that produces a unique ID is usable. The recommended naming convention is:
+Project ID + Experiment type + Optional numerical indicator to differentiate between various experiments of the same type for a project. A two digit consecutive number beginning with 01""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "experiment_id",
+                "domain_of": ["Experiment", "Dataset"],
+            }
+        },
+    )
+    experiment_types: List[ExperimentType] = Field(
+        default=...,
+        title="mCDR Experiment Type(s)",
+        description="""The type(s) of mCDR experiment conducted. See Controlled Vocabularies section for definitions.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "experiment_types", "domain_of": ["Experiment"]}
+        },
+    )
+    public_comments: Optional[str] = Field(
+        default=None,
+        title="Public Comments",
+        description="""File name(s) of public comment related documents. If possible, please provide public comments concatenated into a single pdf""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "public_comments",
+                "domain_of": ["Experiment"],
+                "recommended": True,
+            }
+        },
+    )
+    experiment_leads: List[Person] = Field(
+        default=...,
+        title="Experiment Lead(s)",
+        description="""Provide details for each experiment lead / principal investigator (PI) including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "experiment_leads", "domain_of": ["Experiment"]}
+        },
+    )
+    start_datetime: datetime = Field(
+        default=...,
+        title="Start Date and Time (UTC)",
+        description="""Start date and time of experiment in UTC ISO-8601""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "start_datetime",
+                "domain_of": ["Experiment", "ModelOutputDataset"],
+            }
+        },
+    )
+    end_datetime: Optional[datetime] = Field(
+        default=None,
+        title="End Date and Time (UTC)",
+        description="""End date and time of experiment in UTC ISO-8601""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "end_datetime",
+                "domain_of": ["Experiment", "ModelOutputDataset"],
+            }
+        },
+    )
 
 
 class InterventionDetails(ConfiguredBaseModel):
     """
     An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are  specific to an Experiment with type \"Intervention\"
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Experiment', 'mixin': True})
 
-    alkalinity_feedstock_processing: AlkalinityFeedstockProcessing = Field(default=..., title="Alkalinity Feedstock Processing", description="""Method(s) used to process the alkalinity feedstock. See Controlled Vocabularies section for definitions.""", json_schema_extra = { "linkml_meta": {'alias': 'alkalinity_feedstock_processing',
-         'domain_of': ['InterventionDetails']} })
-    alkalinity_feedstock_processing_custom: Optional[str] = Field(default=None, title="Alkalinity Feedstock Processing (Custom)", description="""Custom description of alkalinity feedstock processing method when 'other' is selected in alkalinity_feedstock_processing.""", json_schema_extra = { "linkml_meta": {'alias': 'alkalinity_feedstock_processing_custom',
-         'domain_of': ['InterventionDetails']} })
-    alkalinity_feedstock_form: AlkalinityFeedstockForm = Field(default=..., title="Alkalinity Feedstock Form", description="""The phase upon delivery to the ocean. See Controlled Vocabularies section for definitions.""", json_schema_extra = { "linkml_meta": {'alias': 'alkalinity_feedstock_form', 'domain_of': ['InterventionDetails']} })
-    alkalinity_feedstock: FeedstockType = Field(default=..., title="Alkalinity Feedstock", description="""Examples may include: olivine, potassium hydroxide, magnesium hydroxide, lime, portlandite, calcium carbonate, anorthite, dolomite, periclase, brucite, magnesite, forsterite, sodium hydroxide, natrite, nahcolite, akermanite, akermanite, alunoakermanite, etc.
-See Controlled Vocabularies section for selected examples (this list is not exhaustive, you may need to include your unique feedstock).""", json_schema_extra = { "linkml_meta": {'alias': 'alkalinity_feedstock', 'domain_of': ['InterventionDetails']} })
-    alkalinity_feedstock_custom: Optional[str] = Field(default=None, title="Alkalinity Feedstock (Custom)", description="""Custom description of alkalinity feedstock when using a feedstock type not listed in the controlled vocabulary.""", json_schema_extra = { "linkml_meta": {'alias': 'alkalinity_feedstock_custom', 'domain_of': ['InterventionDetails']} })
-    alkalinity_feedstock_co2_removal_potential: float = Field(default=..., title="Alkalinity Feedstock CO₂ Removal Potential", description="""Maximum CO₂ removal potential of a feedstock material. We recommend using an adjusted version of the Steinour equation (Gunning et al., 2010), which uses bulk elemental oxide composition to estimate the maximum CO₂ removal potential of a feedstock material. The calculation output is in the form of kg of CO₂ per tonne of feedstock and represents the quantitative hypothetical potential of the material to capture CO₂ as bicarbonate or carbonate. See Isometric's CO2 removal potential module for details.""", json_schema_extra = { "linkml_meta": {'alias': 'alkalinity_feedstock_co2_removal_potential',
-         'domain_of': ['InterventionDetails']} })
-    alkalinity_feedstock_description: str = Field(default=..., title="Alkalinity Feedstock Description", description="""Information such as feedstock source, characteristics, impurities, dilution prior to dosing, and concentration. For feedstock other than NaOH: trace metal composition and particulate grain size. Any variable information must be provided in the dosing data file, in this case include the data file and column header names here provided as variables. See Intervention Data for details.""", json_schema_extra = { "linkml_meta": {'alias': 'alkalinity_feedstock_description',
-         'domain_of': ['InterventionDetails']} })
-    equilibration: EquilibrationStatus = Field(default=..., title="Equilibration", description="""Whether the feedstock was pre-equilibrated or unequilibrated""", json_schema_extra = { "linkml_meta": {'alias': 'equilibration', 'domain_of': ['InterventionDetails']} })
-    alkalinity_dosing_effluent_density: DosingConcentration = Field(default=..., title="Alkalinity Dosing Effluent Density", description="""Fixed density or provide link/source to effluent density data if applicable. Please include whether density is directly measured or a derived value. If this is a variable included with your data, please note so here as 'alkalinity dosing effluent density is provided as a variable' and use 'dosing_effluent_density' for your column header name.""", json_schema_extra = { "linkml_meta": {'alias': 'alkalinity_dosing_effluent_density',
-         'domain_of': ['InterventionDetails']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {"from_schema": "Experiment", "mixin": True}
+    )
+
+    alkalinity_feedstock_processing: AlkalinityFeedstockProcessing = Field(
+        default=...,
+        title="Alkalinity Feedstock Processing",
+        description="""Method(s) used to process the alkalinity feedstock. See Controlled Vocabularies section for definitions.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "alkalinity_feedstock_processing",
+                "domain_of": ["InterventionDetails"],
+            }
+        },
+    )
+    alkalinity_feedstock_processing_custom: Optional[str] = Field(
+        default=None,
+        title="Alkalinity Feedstock Processing (Custom)",
+        description="""Custom description of alkalinity feedstock processing method when 'other' is selected in alkalinity_feedstock_processing.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "alkalinity_feedstock_processing_custom",
+                "domain_of": ["InterventionDetails"],
+            }
+        },
+    )
+    alkalinity_feedstock_form: AlkalinityFeedstockForm = Field(
+        default=...,
+        title="Alkalinity Feedstock Form",
+        description="""The phase upon delivery to the ocean. See Controlled Vocabularies section for definitions.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "alkalinity_feedstock_form",
+                "domain_of": ["InterventionDetails"],
+            }
+        },
+    )
+    alkalinity_feedstock: FeedstockType = Field(
+        default=...,
+        title="Alkalinity Feedstock",
+        description="""Examples may include: olivine, potassium hydroxide, magnesium hydroxide, lime, portlandite, calcium carbonate, anorthite, dolomite, periclase, brucite, magnesite, forsterite, sodium hydroxide, natrite, nahcolite, akermanite, akermanite, alunoakermanite, etc.
+See Controlled Vocabularies section for selected examples (this list is not exhaustive, you may need to include your unique feedstock).""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "alkalinity_feedstock",
+                "domain_of": ["InterventionDetails"],
+            }
+        },
+    )
+    alkalinity_feedstock_custom: Optional[str] = Field(
+        default=None,
+        title="Alkalinity Feedstock (Custom)",
+        description="""Custom description of alkalinity feedstock when using a feedstock type not listed in the controlled vocabulary.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "alkalinity_feedstock_custom",
+                "domain_of": ["InterventionDetails"],
+            }
+        },
+    )
+    alkalinity_feedstock_co2_removal_potential: float = Field(
+        default=...,
+        title="Alkalinity Feedstock CO₂ Removal Potential",
+        description="""Maximum CO₂ removal potential of a feedstock material. We recommend using an adjusted version of the Steinour equation (Gunning et al., 2010), which uses bulk elemental oxide composition to estimate the maximum CO₂ removal potential of a feedstock material. The calculation output is in the form of kg of CO₂ per tonne of feedstock and represents the quantitative hypothetical potential of the material to capture CO₂ as bicarbonate or carbonate. See Isometric's CO2 removal potential module for details.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "alkalinity_feedstock_co2_removal_potential",
+                "domain_of": ["InterventionDetails"],
+            }
+        },
+    )
+    alkalinity_feedstock_description: str = Field(
+        default=...,
+        title="Alkalinity Feedstock Description",
+        description="""Information such as feedstock source, characteristics, impurities, dilution prior to dosing, and concentration. For feedstock other than NaOH: trace metal composition and particulate grain size. Any variable information must be provided in the dosing data file, in this case include the data file and column header names here provided as variables. See Intervention Data for details.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "alkalinity_feedstock_description",
+                "domain_of": ["InterventionDetails"],
+            }
+        },
+    )
+    equilibration: EquilibrationStatus = Field(
+        default=...,
+        title="Equilibration",
+        description="""Whether the feedstock was pre-equilibrated or unequilibrated""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "equilibration",
+                "domain_of": ["InterventionDetails"],
+            }
+        },
+    )
+    alkalinity_dosing_effluent_density: DosingConcentration = Field(
+        default=...,
+        title="Alkalinity Dosing Effluent Density",
+        description="""Fixed density or provide link/source to effluent density data if applicable. Please include whether density is directly measured or a derived value. If this is a variable included with your data, please note so here as 'alkalinity dosing effluent density is provided as a variable' and use 'dosing_effluent_density' for your column header name.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "alkalinity_dosing_effluent_density",
+                "domain_of": ["InterventionDetails"],
+            }
+        },
+    )
 
 
 class TracerDetails(ConfiguredBaseModel):
     """
     An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are  specific to an Experiment with type \"Tracer\"
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Experiment', 'mixin': True})
 
-    tracer_form: TracerForm = Field(default=..., title="Tracer Form", description="""The form of tracer upon delivery to the ocean (e.g. gas or dye-release)""", json_schema_extra = { "linkml_meta": {'alias': 'tracer_form', 'domain_of': ['TracerDetails']} })
-    tracer_form_custom: Optional[str] = Field(default=None, title="Tracer Form (Custom)", description="""If \"other\" was selected for Tracer Form, please specify the custom tracer form here.""", json_schema_extra = { "linkml_meta": {'alias': 'tracer_form_custom', 'domain_of': ['TracerDetails']} })
-    tracer_details: str = Field(default=..., title="Tracer Details", description="""state the kind of tracer used (e.g. rhodamine, or a specific gas)""", json_schema_extra = { "linkml_meta": {'alias': 'tracer_details', 'domain_of': ['TracerDetails']} })
-    tracer_concentration: DosingConcentration = Field(default=..., title="Tracer Concentration", description="""Fixed concentration or provide link/source to tracer concentration separately in the dosing file. Please include whether concentration is directly measured or a derived value. If this is a variable included with  your data, please note so here as 'tracer concentration provided as a variable' and use 'tracer_concentration' for your column header name.""", json_schema_extra = { "linkml_meta": {'alias': 'tracer_concentration', 'domain_of': ['TracerDetails']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {"from_schema": "Experiment", "mixin": True}
+    )
+
+    tracer_form: TracerForm = Field(
+        default=...,
+        title="Tracer Form",
+        description="""The form of tracer upon delivery to the ocean (e.g. gas or dye-release)""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "tracer_form", "domain_of": ["TracerDetails"]}
+        },
+    )
+    tracer_form_custom: Optional[str] = Field(
+        default=None,
+        title="Tracer Form (Custom)",
+        description="""If \"other\" was selected for Tracer Form, please specify the custom tracer form here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "tracer_form_custom",
+                "domain_of": ["TracerDetails"],
+            }
+        },
+    )
+    tracer_details: str = Field(
+        default=...,
+        title="Tracer Details",
+        description="""state the kind of tracer used (e.g. rhodamine, or a specific gas)""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "tracer_details", "domain_of": ["TracerDetails"]}
+        },
+    )
+    tracer_concentration: DosingConcentration = Field(
+        default=...,
+        title="Tracer Concentration",
+        description="""Fixed concentration or provide link/source to tracer concentration separately in the dosing file. Please include whether concentration is directly measured or a derived value. If this is a variable included with  your data, please note so here as 'tracer concentration provided as a variable' and use 'tracer_concentration' for your column header name.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "tracer_concentration",
+                "domain_of": ["TracerDetails"],
+            }
+        },
+    )
 
 
 class DosingConcentration(ConfiguredBaseModel):
     """
     Details of tracer concentration information
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Experiment',
-         'slot_usage': {'is_provided_as_a_file': {'description': 'Select ‘Variable’ if '
-                                                                 'the concentration '
-                                                                 'varies over time, or '
-                                                                 '‘Fixed Value’ if it '
-                                                                 'is constant. Note: '
-                                                                 'Variable '
-                                                                 'concentrations must '
-                                                                 'be provided in a '
-                                                                 'data file.',
-                                                  'name': 'is_provided_as_a_file'}}})
 
-    is_derived_value: bool = Field(default=..., description="""Indicates that the field in question is a derived value as opposed to one measured directly.""", json_schema_extra = { "linkml_meta": {'alias': 'is_derived_value', 'domain_of': ['DosingConcentration']} })
-    is_provided_as_a_file: bool = Field(default=..., description="""Select ‘Variable’ if the concentration varies over time, or ‘Fixed Value’ if it is constant. Note: Variable concentrations must be provided in a data file.""", json_schema_extra = { "linkml_meta": {'alias': 'is_provided_as_a_file', 'domain_of': ['DosingConcentration']} })
-    amount: Optional[float] = Field(default=None, json_schema_extra = { "linkml_meta": {'alias': 'amount', 'domain_of': ['DosingConcentration']} })
-    unit: Optional[MassConcentrationUnit] = Field(default=None, json_schema_extra = { "linkml_meta": {'alias': 'unit', 'domain_of': ['DosingConcentration']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "from_schema": "Experiment",
+            "slot_usage": {
+                "is_provided_as_a_file": {
+                    "description": "Select ‘Variable’ if "
+                    "the concentration "
+                    "varies over time, or "
+                    "‘Fixed Value’ if it "
+                    "is constant. Note: "
+                    "Variable "
+                    "concentrations must "
+                    "be provided in a "
+                    "data file.",
+                    "name": "is_provided_as_a_file",
+                }
+            },
+        }
+    )
+
+    is_derived_value: bool = Field(
+        default=...,
+        description="""Indicates that the field in question is a derived value as opposed to one measured directly.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "is_derived_value",
+                "domain_of": ["DosingConcentration"],
+            }
+        },
+    )
+    is_provided_as_a_file: bool = Field(
+        default=...,
+        description="""Select ‘Variable’ if the concentration varies over time, or ‘Fixed Value’ if it is constant. Note: Variable concentrations must be provided in a data file.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "is_provided_as_a_file",
+                "domain_of": ["DosingConcentration"],
+            }
+        },
+    )
+    amount: Optional[float] = Field(
+        default=None,
+        json_schema_extra={
+            "linkml_meta": {"alias": "amount", "domain_of": ["DosingConcentration"]}
+        },
+    )
+    unit: Optional[MassConcentrationUnit] = Field(
+        default=None,
+        json_schema_extra={
+            "linkml_meta": {"alias": "unit", "domain_of": ["DosingConcentration"]}
+        },
+    )
 
 
 class DosingDetails(ConfiguredBaseModel):
     """
     An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are  specific to an Experiment with active dosing (e.g. type \"Tracer\", \"Intervention\", or \"InterventionWithDosing\")
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Experiment', 'mixin': True})
 
-    dosing_delivery_type: DosingDeliveryType = Field(default=..., title="Dosing Delivery Type", description="""Type of dosing delivery method. See Controlled Vocabularies for definitions.""", json_schema_extra = { "linkml_meta": {'alias': 'dosing_delivery_type', 'domain_of': ['DosingDetails']} })
-    dosing_location: DosingLocation = Field(default=..., title="Dosing Location", description="""Provide latitude and longitude in decimal degrees. Depending on your method of dispersal, this information may be provided as a point source, vector, or bounding box. If provided as a vector, the latitude and longitude values should be included in the dosing data file.""", json_schema_extra = { "linkml_meta": {'alias': 'dosing_location', 'domain_of': ['DosingDetails']} })
-    dosing_dispersal_hydrologic_location: HydrologicLocation = Field(default=..., title="Dosing Dispersal Hydrologic Location", description="""Descriptive dosing location""", json_schema_extra = { "linkml_meta": {'alias': 'dosing_dispersal_hydrologic_location',
-         'domain_of': ['DosingDetails']} })
-    dosing_depth: str = Field(default=..., title="Dosing Depth", description="""Depth in meters. If this is variable, please include the schedule of depth changes and depths, or as a vector in meters with the data.""", json_schema_extra = { "linkml_meta": {'alias': 'dosing_depth', 'domain_of': ['DosingDetails']} })
-    dosing_regimen: str = Field(default=..., title="Dosing Regimen", description="""A human readable summary description of the dosing regimen / frequency. Exact details must be provided in the corresponding dosing file with exact timestamps for dosing on/off schedule.""", json_schema_extra = { "linkml_meta": {'alias': 'dosing_regimen', 'domain_of': ['DosingDetails']} })
-    dosing_description: str = Field(default=..., title="Dosing Description", description="""Please be descriptive. Information about the dosing mechanism must be included (outflow from pipe, diffuser, doser, manual placement)
-E.g., outflow from existing facility pipe directly to ocean, manual riverine introduction, coastal distribution at three separate 30 meter long sections, pier-based diffuser to intercoastal bay, distributed from stationary barge 10 miles offshore.""", json_schema_extra = { "linkml_meta": {'alias': 'dosing_description', 'domain_of': ['DosingDetails']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {"from_schema": "Experiment", "mixin": True}
+    )
+
+    dosing_delivery_type: DosingDeliveryType = Field(
+        default=...,
+        title="Dosing Delivery Type",
+        description="""Type of dosing delivery method. See Controlled Vocabularies for definitions.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dosing_delivery_type",
+                "domain_of": ["DosingDetails"],
+            }
+        },
+    )
+    dosing_location: DosingLocation = Field(
+        default=...,
+        title="Dosing Location",
+        description="""Provide latitude and longitude in decimal degrees. Depending on your method of dispersal, this information may be provided as a point source, vector, or bounding box. If provided as a vector, the latitude and longitude values should be included in the dosing data file.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "dosing_location", "domain_of": ["DosingDetails"]}
+        },
+    )
+    dosing_dispersal_hydrologic_location: HydrologicLocation = Field(
+        default=...,
+        title="Dosing Dispersal Hydrologic Location",
+        description="""Descriptive dosing location""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dosing_dispersal_hydrologic_location",
+                "domain_of": ["DosingDetails"],
+            }
+        },
+    )
+    dosing_depth: str = Field(
+        default=...,
+        title="Dosing Depth",
+        description="""Depth in meters. If this is variable, please include the schedule of depth changes and depths, or as a vector in meters with the data.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "dosing_depth", "domain_of": ["DosingDetails"]}
+        },
+    )
+    dosing_regimen: str = Field(
+        default=...,
+        title="Dosing Regimen",
+        description="""A human readable summary description of the dosing regimen / frequency. Exact details must be provided in the corresponding dosing file with exact timestamps for dosing on/off schedule.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "dosing_regimen", "domain_of": ["DosingDetails"]}
+        },
+    )
+    dosing_description: str = Field(
+        default=...,
+        title="Dosing Description",
+        description="""Please be descriptive. Information about the dosing mechanism must be included (outflow from pipe, diffuser, doser, manual placement)
+E.g., outflow from existing facility pipe directly to ocean, manual riverine introduction, coastal distribution at three separate 30 meter long sections, pier-based diffuser to intercoastal bay, distributed from stationary barge 10 miles offshore.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dosing_description",
+                "domain_of": ["DosingDetails"],
+            }
+        },
+    )
 
 
 class Intervention(DosingDetails, InterventionDetails, InSituExperiment):
     """
     Additional metadata that applies to experiments where an intervention, such as an alkalinity addition, was conducted.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Experiment',
-         'mixins': ['InterventionDetails', 'DosingDetails'],
-         'rules': [{'postconditions': {'slot_conditions': {'alkalinity_feedstock_custom': {'name': 'alkalinity_feedstock_custom',
-                                                                                           'required': True}}},
-                    'preconditions': {'slot_conditions': {'alkalinity_feedstock': {'equals_string': 'other',
-                                                                                   'name': 'alkalinity_feedstock'}}}},
-                   {'postconditions': {'slot_conditions': {'alkalinity_feedstock_processing_custom': {'name': 'alkalinity_feedstock_processing_custom',
-                                                                                                      'required': True}}},
-                    'preconditions': {'slot_conditions': {'alkalinity_feedstock_processing': {'equals_string': 'other',
-                                                                                              'name': 'alkalinity_feedstock_processing'}}}}]})
 
-    alkalinity_feedstock_processing: AlkalinityFeedstockProcessing = Field(default=..., title="Alkalinity Feedstock Processing", description="""Method(s) used to process the alkalinity feedstock. See Controlled Vocabularies section for definitions.""", json_schema_extra = { "linkml_meta": {'alias': 'alkalinity_feedstock_processing',
-         'domain_of': ['InterventionDetails']} })
-    alkalinity_feedstock_processing_custom: Optional[str] = Field(default=None, title="Alkalinity Feedstock Processing (Custom)", description="""Custom description of alkalinity feedstock processing method when 'other' is selected in alkalinity_feedstock_processing.""", json_schema_extra = { "linkml_meta": {'alias': 'alkalinity_feedstock_processing_custom',
-         'domain_of': ['InterventionDetails']} })
-    alkalinity_feedstock_form: AlkalinityFeedstockForm = Field(default=..., title="Alkalinity Feedstock Form", description="""The phase upon delivery to the ocean. See Controlled Vocabularies section for definitions.""", json_schema_extra = { "linkml_meta": {'alias': 'alkalinity_feedstock_form', 'domain_of': ['InterventionDetails']} })
-    alkalinity_feedstock: FeedstockType = Field(default=..., title="Alkalinity Feedstock", description="""Examples may include: olivine, potassium hydroxide, magnesium hydroxide, lime, portlandite, calcium carbonate, anorthite, dolomite, periclase, brucite, magnesite, forsterite, sodium hydroxide, natrite, nahcolite, akermanite, akermanite, alunoakermanite, etc.
-See Controlled Vocabularies section for selected examples (this list is not exhaustive, you may need to include your unique feedstock).""", json_schema_extra = { "linkml_meta": {'alias': 'alkalinity_feedstock', 'domain_of': ['InterventionDetails']} })
-    alkalinity_feedstock_custom: Optional[str] = Field(default=None, title="Alkalinity Feedstock (Custom)", description="""Custom description of alkalinity feedstock when using a feedstock type not listed in the controlled vocabulary.""", json_schema_extra = { "linkml_meta": {'alias': 'alkalinity_feedstock_custom', 'domain_of': ['InterventionDetails']} })
-    alkalinity_feedstock_co2_removal_potential: float = Field(default=..., title="Alkalinity Feedstock CO₂ Removal Potential", description="""Maximum CO₂ removal potential of a feedstock material. We recommend using an adjusted version of the Steinour equation (Gunning et al., 2010), which uses bulk elemental oxide composition to estimate the maximum CO₂ removal potential of a feedstock material. The calculation output is in the form of kg of CO₂ per tonne of feedstock and represents the quantitative hypothetical potential of the material to capture CO₂ as bicarbonate or carbonate. See Isometric's CO2 removal potential module for details.""", json_schema_extra = { "linkml_meta": {'alias': 'alkalinity_feedstock_co2_removal_potential',
-         'domain_of': ['InterventionDetails']} })
-    alkalinity_feedstock_description: str = Field(default=..., title="Alkalinity Feedstock Description", description="""Information such as feedstock source, characteristics, impurities, dilution prior to dosing, and concentration. For feedstock other than NaOH: trace metal composition and particulate grain size. Any variable information must be provided in the dosing data file, in this case include the data file and column header names here provided as variables. See Intervention Data for details.""", json_schema_extra = { "linkml_meta": {'alias': 'alkalinity_feedstock_description',
-         'domain_of': ['InterventionDetails']} })
-    equilibration: EquilibrationStatus = Field(default=..., title="Equilibration", description="""Whether the feedstock was pre-equilibrated or unequilibrated""", json_schema_extra = { "linkml_meta": {'alias': 'equilibration', 'domain_of': ['InterventionDetails']} })
-    alkalinity_dosing_effluent_density: DosingConcentration = Field(default=..., title="Alkalinity Dosing Effluent Density", description="""Fixed density or provide link/source to effluent density data if applicable. Please include whether density is directly measured or a derived value. If this is a variable included with your data, please note so here as 'alkalinity dosing effluent density is provided as a variable' and use 'dosing_effluent_density' for your column header name.""", json_schema_extra = { "linkml_meta": {'alias': 'alkalinity_dosing_effluent_density',
-         'domain_of': ['InterventionDetails']} })
-    dosing_delivery_type: DosingDeliveryType = Field(default=..., title="Dosing Delivery Type", description="""Type of dosing delivery method. See Controlled Vocabularies for definitions.""", json_schema_extra = { "linkml_meta": {'alias': 'dosing_delivery_type', 'domain_of': ['DosingDetails']} })
-    dosing_location: DosingLocation = Field(default=..., title="Dosing Location", description="""Provide latitude and longitude in decimal degrees. Depending on your method of dispersal, this information may be provided as a point source, vector, or bounding box. If provided as a vector, the latitude and longitude values should be included in the dosing data file.""", json_schema_extra = { "linkml_meta": {'alias': 'dosing_location', 'domain_of': ['DosingDetails']} })
-    dosing_dispersal_hydrologic_location: HydrologicLocation = Field(default=..., title="Dosing Dispersal Hydrologic Location", description="""Descriptive dosing location""", json_schema_extra = { "linkml_meta": {'alias': 'dosing_dispersal_hydrologic_location',
-         'domain_of': ['DosingDetails']} })
-    dosing_depth: str = Field(default=..., title="Dosing Depth", description="""Depth in meters. If this is variable, please include the schedule of depth changes and depths, or as a vector in meters with the data.""", json_schema_extra = { "linkml_meta": {'alias': 'dosing_depth', 'domain_of': ['DosingDetails']} })
-    dosing_regimen: str = Field(default=..., title="Dosing Regimen", description="""A human readable summary description of the dosing regimen / frequency. Exact details must be provided in the corresponding dosing file with exact timestamps for dosing on/off schedule.""", json_schema_extra = { "linkml_meta": {'alias': 'dosing_regimen', 'domain_of': ['DosingDetails']} })
-    dosing_description: str = Field(default=..., title="Dosing Description", description="""Please be descriptive. Information about the dosing mechanism must be included (outflow from pipe, diffuser, doser, manual placement)
-E.g., outflow from existing facility pipe directly to ocean, manual riverine introduction, coastal distribution at three separate 30 meter long sections, pier-based diffuser to intercoastal bay, distributed from stationary barge 10 miles offshore.""", json_schema_extra = { "linkml_meta": {'alias': 'dosing_description', 'domain_of': ['DosingDetails']} })
-    vertical_coverage: Optional[VerticalExtent] = Field(default=None, title="Vertical Coverage", description="""Minimum and maximum depths of observations in meters.""", json_schema_extra = { "linkml_meta": {'alias': 'vertical_coverage', 'domain_of': ['InSituExperiment']} })
-    permits: Optional[List[Permit]] = Field(default=None, title="Permits", description="""Associated permit number(s).""", json_schema_extra = { "linkml_meta": {'alias': 'permits', 'domain_of': ['InSituExperiment']} })
-    data_conflicts_and_unreported_data: Optional[str] = Field(default=None, title="Data Conflicts and Unreported Data", description="""If data exist that are or have been used by the project but are not provided due to conflicts (e.g., geopolitical or other), data availability (e.g., a dataset is no longer available), it may be noted here.""", json_schema_extra = { "linkml_meta": {'alias': 'data_conflicts_and_unreported_data',
-         'domain_of': ['InSituExperiment']} })
-    meteorological_and_tidal_data: Optional[List[NamedLink]] = Field(default=None, title="Meteorological and Tidal Data", description="""Include links to relevant open datasets if referenced in the experiment but not provided in the submission.""", json_schema_extra = { "linkml_meta": {'alias': 'meteorological_and_tidal_data', 'domain_of': ['InSituExperiment']} })
-    additional_details: Optional[str] = Field(default=None, title="Additional Details", description="""Open text area to include additional information. These may include information for sediment processes data, biological data, or any other required information if not included in the main metadata or data files; see General Guidelines for Your Data for relevant sections of your data. Additional informational files, such as digitized laboratory notebooks, blogs, etc., may be linked here.""", json_schema_extra = { "linkml_meta": {'alias': 'additional_details', 'domain_of': ['Project', 'InSituExperiment']} })
-    name: Optional[str] = Field(default=None, title="Name", description="""Optional common name for experiment.""", json_schema_extra = { "linkml_meta": {'alias': 'name',
-         'domain_of': ['Organization',
-                       'NamedLink',
-                       'ExternalProject',
-                       'MonetaryGrant',
-                       'Experiment',
-                       'Person',
-                       'Dataset',
-                       'Platform',
-                       'ModelComponent'],
-         'slot_uri': 'schema:name'} })
-    description: str = Field(default=..., title="Experiment Description", description="""A narrative description of the experiment. For example, what part of the project do these data represent (e.g., baseline, intervention, control) and what do they contribute to the overall project? Are all project research questions listed in Project description relevant? What were the processes to achieve these goals and answer these questions? Data submitters are encouraged to note any significant changes to the original experimental plan due to unforeseen circumstances here.""", json_schema_extra = { "linkml_meta": {'alias': 'description',
-         'domain_of': ['Project',
-                       'ExternalProject',
-                       'Experiment',
-                       'VocabularyItemReference',
-                       'Dataset',
-                       'ModelComponent'],
-         'slot_uri': 'schema:description'} })
-    spatial_coverage: SpatialCoverage = Field(default=..., title="Spatial Coverage", description="""Latitude/longitude bounds of observed data in experiment, provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]""", json_schema_extra = { "linkml_meta": {'alias': 'spatial_coverage',
-         'domain_of': ['Project', 'ExternalProject', 'Experiment', 'ModelGrid'],
-         'slot_uri': 'schema:spatialCoverage'} })
-    project_id: str = Field(default=..., title="Project ID", description="""The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "from_schema": "Experiment",
+            "mixins": ["InterventionDetails", "DosingDetails"],
+            "rules": [
+                {
+                    "postconditions": {
+                        "slot_conditions": {
+                            "alkalinity_feedstock_custom": {
+                                "name": "alkalinity_feedstock_custom",
+                                "required": True,
+                            }
+                        }
+                    },
+                    "preconditions": {
+                        "slot_conditions": {
+                            "alkalinity_feedstock": {
+                                "equals_string": "other",
+                                "name": "alkalinity_feedstock",
+                            }
+                        }
+                    },
+                },
+                {
+                    "postconditions": {
+                        "slot_conditions": {
+                            "alkalinity_feedstock_processing_custom": {
+                                "name": "alkalinity_feedstock_processing_custom",
+                                "required": True,
+                            }
+                        }
+                    },
+                    "preconditions": {
+                        "slot_conditions": {
+                            "alkalinity_feedstock_processing": {
+                                "equals_string": "other",
+                                "name": "alkalinity_feedstock_processing",
+                            }
+                        }
+                    },
+                },
+            ],
+        }
+    )
+
+    alkalinity_feedstock_processing: AlkalinityFeedstockProcessing = Field(
+        default=...,
+        title="Alkalinity Feedstock Processing",
+        description="""Method(s) used to process the alkalinity feedstock. See Controlled Vocabularies section for definitions.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "alkalinity_feedstock_processing",
+                "domain_of": ["InterventionDetails"],
+            }
+        },
+    )
+    alkalinity_feedstock_processing_custom: Optional[str] = Field(
+        default=None,
+        title="Alkalinity Feedstock Processing (Custom)",
+        description="""Custom description of alkalinity feedstock processing method when 'other' is selected in alkalinity_feedstock_processing.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "alkalinity_feedstock_processing_custom",
+                "domain_of": ["InterventionDetails"],
+            }
+        },
+    )
+    alkalinity_feedstock_form: AlkalinityFeedstockForm = Field(
+        default=...,
+        title="Alkalinity Feedstock Form",
+        description="""The phase upon delivery to the ocean. See Controlled Vocabularies section for definitions.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "alkalinity_feedstock_form",
+                "domain_of": ["InterventionDetails"],
+            }
+        },
+    )
+    alkalinity_feedstock: FeedstockType = Field(
+        default=...,
+        title="Alkalinity Feedstock",
+        description="""Examples may include: olivine, potassium hydroxide, magnesium hydroxide, lime, portlandite, calcium carbonate, anorthite, dolomite, periclase, brucite, magnesite, forsterite, sodium hydroxide, natrite, nahcolite, akermanite, akermanite, alunoakermanite, etc.
+See Controlled Vocabularies section for selected examples (this list is not exhaustive, you may need to include your unique feedstock).""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "alkalinity_feedstock",
+                "domain_of": ["InterventionDetails"],
+            }
+        },
+    )
+    alkalinity_feedstock_custom: Optional[str] = Field(
+        default=None,
+        title="Alkalinity Feedstock (Custom)",
+        description="""Custom description of alkalinity feedstock when using a feedstock type not listed in the controlled vocabulary.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "alkalinity_feedstock_custom",
+                "domain_of": ["InterventionDetails"],
+            }
+        },
+    )
+    alkalinity_feedstock_co2_removal_potential: float = Field(
+        default=...,
+        title="Alkalinity Feedstock CO₂ Removal Potential",
+        description="""Maximum CO₂ removal potential of a feedstock material. We recommend using an adjusted version of the Steinour equation (Gunning et al., 2010), which uses bulk elemental oxide composition to estimate the maximum CO₂ removal potential of a feedstock material. The calculation output is in the form of kg of CO₂ per tonne of feedstock and represents the quantitative hypothetical potential of the material to capture CO₂ as bicarbonate or carbonate. See Isometric's CO2 removal potential module for details.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "alkalinity_feedstock_co2_removal_potential",
+                "domain_of": ["InterventionDetails"],
+            }
+        },
+    )
+    alkalinity_feedstock_description: str = Field(
+        default=...,
+        title="Alkalinity Feedstock Description",
+        description="""Information such as feedstock source, characteristics, impurities, dilution prior to dosing, and concentration. For feedstock other than NaOH: trace metal composition and particulate grain size. Any variable information must be provided in the dosing data file, in this case include the data file and column header names here provided as variables. See Intervention Data for details.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "alkalinity_feedstock_description",
+                "domain_of": ["InterventionDetails"],
+            }
+        },
+    )
+    equilibration: EquilibrationStatus = Field(
+        default=...,
+        title="Equilibration",
+        description="""Whether the feedstock was pre-equilibrated or unequilibrated""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "equilibration",
+                "domain_of": ["InterventionDetails"],
+            }
+        },
+    )
+    alkalinity_dosing_effluent_density: DosingConcentration = Field(
+        default=...,
+        title="Alkalinity Dosing Effluent Density",
+        description="""Fixed density or provide link/source to effluent density data if applicable. Please include whether density is directly measured or a derived value. If this is a variable included with your data, please note so here as 'alkalinity dosing effluent density is provided as a variable' and use 'dosing_effluent_density' for your column header name.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "alkalinity_dosing_effluent_density",
+                "domain_of": ["InterventionDetails"],
+            }
+        },
+    )
+    dosing_delivery_type: DosingDeliveryType = Field(
+        default=...,
+        title="Dosing Delivery Type",
+        description="""Type of dosing delivery method. See Controlled Vocabularies for definitions.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dosing_delivery_type",
+                "domain_of": ["DosingDetails"],
+            }
+        },
+    )
+    dosing_location: DosingLocation = Field(
+        default=...,
+        title="Dosing Location",
+        description="""Provide latitude and longitude in decimal degrees. Depending on your method of dispersal, this information may be provided as a point source, vector, or bounding box. If provided as a vector, the latitude and longitude values should be included in the dosing data file.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "dosing_location", "domain_of": ["DosingDetails"]}
+        },
+    )
+    dosing_dispersal_hydrologic_location: HydrologicLocation = Field(
+        default=...,
+        title="Dosing Dispersal Hydrologic Location",
+        description="""Descriptive dosing location""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dosing_dispersal_hydrologic_location",
+                "domain_of": ["DosingDetails"],
+            }
+        },
+    )
+    dosing_depth: str = Field(
+        default=...,
+        title="Dosing Depth",
+        description="""Depth in meters. If this is variable, please include the schedule of depth changes and depths, or as a vector in meters with the data.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "dosing_depth", "domain_of": ["DosingDetails"]}
+        },
+    )
+    dosing_regimen: str = Field(
+        default=...,
+        title="Dosing Regimen",
+        description="""A human readable summary description of the dosing regimen / frequency. Exact details must be provided in the corresponding dosing file with exact timestamps for dosing on/off schedule.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "dosing_regimen", "domain_of": ["DosingDetails"]}
+        },
+    )
+    dosing_description: str = Field(
+        default=...,
+        title="Dosing Description",
+        description="""Please be descriptive. Information about the dosing mechanism must be included (outflow from pipe, diffuser, doser, manual placement)
+E.g., outflow from existing facility pipe directly to ocean, manual riverine introduction, coastal distribution at three separate 30 meter long sections, pier-based diffuser to intercoastal bay, distributed from stationary barge 10 miles offshore.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dosing_description",
+                "domain_of": ["DosingDetails"],
+            }
+        },
+    )
+    vertical_coverage: Optional[VerticalExtent] = Field(
+        default=None,
+        title="Vertical Coverage",
+        description="""Minimum and maximum depths of observations in meters.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "vertical_coverage",
+                "domain_of": ["InSituExperiment"],
+            }
+        },
+    )
+    permits: Optional[List[Permit]] = Field(
+        default=None,
+        title="Permits",
+        description="""Associated permit number(s).""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "permits", "domain_of": ["InSituExperiment"]}
+        },
+    )
+    data_conflicts_and_unreported_data: Optional[str] = Field(
+        default=None,
+        title="Data Conflicts and Unreported Data",
+        description="""If data exist that are or have been used by the project but are not provided due to conflicts (e.g., geopolitical or other), data availability (e.g., a dataset is no longer available), it may be noted here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "data_conflicts_and_unreported_data",
+                "domain_of": ["InSituExperiment"],
+            }
+        },
+    )
+    meteorological_and_tidal_data: Optional[List[NamedLink]] = Field(
+        default=None,
+        title="Meteorological and Tidal Data",
+        description="""Include links to relevant open datasets if referenced in the experiment but not provided in the submission.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "meteorological_and_tidal_data",
+                "domain_of": ["InSituExperiment"],
+            }
+        },
+    )
+    additional_details: Optional[str] = Field(
+        default=None,
+        title="Additional Details",
+        description="""Open text area to include additional information. These may include information for sediment processes data, biological data, or any other required information if not included in the main metadata or data files; see General Guidelines for Your Data for relevant sections of your data. Additional informational files, such as digitized laboratory notebooks, blogs, etc., may be linked here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "additional_details",
+                "domain_of": ["Project", "InSituExperiment"],
+            }
+        },
+    )
+    name: Optional[str] = Field(
+        default=None,
+        title="Name",
+        description="""Optional common name for experiment.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "name",
+                "domain_of": [
+                    "Organization",
+                    "NamedLink",
+                    "ExternalProject",
+                    "MonetaryGrant",
+                    "Experiment",
+                    "Person",
+                    "Dataset",
+                    "Platform",
+                    "ModelComponent",
+                ],
+                "slot_uri": "schema:name",
+            }
+        },
+    )
+    description: str = Field(
+        default=...,
+        title="Experiment Description",
+        description="""A narrative description of the experiment. For example, what part of the project do these data represent (e.g., baseline, intervention, control) and what do they contribute to the overall project? Are all project research questions listed in Project description relevant? What were the processes to achieve these goals and answer these questions? Data submitters are encouraged to note any significant changes to the original experimental plan due to unforeseen circumstances here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "description",
+                "domain_of": [
+                    "Project",
+                    "ExternalProject",
+                    "Experiment",
+                    "VocabularyItemReference",
+                    "Dataset",
+                    "ModelComponent",
+                ],
+                "slot_uri": "schema:description",
+            }
+        },
+    )
+    spatial_coverage: SpatialCoverage = Field(
+        default=...,
+        title="Spatial Coverage",
+        description="""Latitude/longitude bounds of observed data in experiment, provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "spatial_coverage",
+                "domain_of": ["Project", "ExternalProject", "Experiment", "ModelGrid"],
+                "slot_uri": "schema:spatialCoverage",
+            }
+        },
+    )
+    project_id: str = Field(
+        default=...,
+        title="Project ID",
+        description="""The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.
 If no Project ID has been assigned, one may be generated by combining: lead organizer surname and first initial or company, a unique date, and location.
-Any method that creates a unique ID that will link all project data is acceptable.""", json_schema_extra = { "linkml_meta": {'alias': 'project_id', 'domain_of': ['Project', 'Experiment', 'Dataset']} })
-    experiment_id: str = Field(default=..., title="Experiment ID", description="""The experiment to which the data belong. Any naming convention that produces a unique ID is usable. The recommended naming convention is:
-Project ID + Experiment type + Optional numerical indicator to differentiate between various experiments of the same type for a project. A two digit consecutive number beginning with 01""", json_schema_extra = { "linkml_meta": {'alias': 'experiment_id', 'domain_of': ['Experiment', 'Dataset']} })
-    experiment_types: List[ExperimentType] = Field(default=..., title="mCDR Experiment Type(s)", description="""The type(s) of mCDR experiment conducted. See Controlled Vocabularies section for definitions.""", json_schema_extra = { "linkml_meta": {'alias': 'experiment_types', 'domain_of': ['Experiment']} })
-    public_comments: Optional[str] = Field(default=None, title="Public Comments", description="""File name(s) of public comment related documents. If possible, please provide public comments concatenated into a single pdf""", json_schema_extra = { "linkml_meta": {'alias': 'public_comments', 'domain_of': ['Experiment'], 'recommended': True} })
-    experiment_leads: List[Person] = Field(default=..., title="Experiment Lead(s)", description="""Provide details for each experiment lead / principal investigator (PI) including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.""", json_schema_extra = { "linkml_meta": {'alias': 'experiment_leads', 'domain_of': ['Experiment']} })
-    start_datetime: datetime  = Field(default=..., title="Start Date and Time (UTC)", description="""Start date and time of experiment in UTC ISO-8601""", json_schema_extra = { "linkml_meta": {'alias': 'start_datetime', 'domain_of': ['Experiment', 'ModelOutputDataset']} })
-    end_datetime: Optional[datetime ] = Field(default=None, title="End Date and Time (UTC)", description="""End date and time of experiment in UTC ISO-8601""", json_schema_extra = { "linkml_meta": {'alias': 'end_datetime', 'domain_of': ['Experiment', 'ModelOutputDataset']} })
+Any method that creates a unique ID that will link all project data is acceptable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "project_id",
+                "domain_of": ["Project", "Experiment", "Dataset"],
+            }
+        },
+    )
+    experiment_id: str = Field(
+        default=...,
+        title="Experiment ID",
+        description="""The experiment to which the data belong. Any naming convention that produces a unique ID is usable. The recommended naming convention is:
+Project ID + Experiment type + Optional numerical indicator to differentiate between various experiments of the same type for a project. A two digit consecutive number beginning with 01""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "experiment_id",
+                "domain_of": ["Experiment", "Dataset"],
+            }
+        },
+    )
+    experiment_types: List[ExperimentType] = Field(
+        default=...,
+        title="mCDR Experiment Type(s)",
+        description="""The type(s) of mCDR experiment conducted. See Controlled Vocabularies section for definitions.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "experiment_types", "domain_of": ["Experiment"]}
+        },
+    )
+    public_comments: Optional[str] = Field(
+        default=None,
+        title="Public Comments",
+        description="""File name(s) of public comment related documents. If possible, please provide public comments concatenated into a single pdf""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "public_comments",
+                "domain_of": ["Experiment"],
+                "recommended": True,
+            }
+        },
+    )
+    experiment_leads: List[Person] = Field(
+        default=...,
+        title="Experiment Lead(s)",
+        description="""Provide details for each experiment lead / principal investigator (PI) including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "experiment_leads", "domain_of": ["Experiment"]}
+        },
+    )
+    start_datetime: datetime = Field(
+        default=...,
+        title="Start Date and Time (UTC)",
+        description="""Start date and time of experiment in UTC ISO-8601""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "start_datetime",
+                "domain_of": ["Experiment", "ModelOutputDataset"],
+            }
+        },
+    )
+    end_datetime: Optional[datetime] = Field(
+        default=None,
+        title="End Date and Time (UTC)",
+        description="""End date and time of experiment in UTC ISO-8601""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "end_datetime",
+                "domain_of": ["Experiment", "ModelOutputDataset"],
+            }
+        },
+    )
 
 
 class Tracer(DosingDetails, TracerDetails, InSituExperiment):
     """
     Additional metadata that applies to experiments where a tracer study was conducted
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Experiment',
-         'mixins': ['TracerDetails', 'DosingDetails'],
-         'rules': [{'postconditions': {'slot_conditions': {'tracer_form_custom': {'name': 'tracer_form_custom',
-                                                                                  'required': True}}},
-                    'preconditions': {'slot_conditions': {'tracer_form': {'equals_string': 'other',
-                                                                          'name': 'tracer_form'}}}}]})
 
-    tracer_form: TracerForm = Field(default=..., title="Tracer Form", description="""The form of tracer upon delivery to the ocean (e.g. gas or dye-release)""", json_schema_extra = { "linkml_meta": {'alias': 'tracer_form', 'domain_of': ['TracerDetails']} })
-    tracer_form_custom: Optional[str] = Field(default=None, title="Tracer Form (Custom)", description="""If \"other\" was selected for Tracer Form, please specify the custom tracer form here.""", json_schema_extra = { "linkml_meta": {'alias': 'tracer_form_custom', 'domain_of': ['TracerDetails']} })
-    tracer_details: str = Field(default=..., title="Tracer Details", description="""state the kind of tracer used (e.g. rhodamine, or a specific gas)""", json_schema_extra = { "linkml_meta": {'alias': 'tracer_details', 'domain_of': ['TracerDetails']} })
-    tracer_concentration: DosingConcentration = Field(default=..., title="Tracer Concentration", description="""Fixed concentration or provide link/source to tracer concentration separately in the dosing file. Please include whether concentration is directly measured or a derived value. If this is a variable included with  your data, please note so here as 'tracer concentration provided as a variable' and use 'tracer_concentration' for your column header name.""", json_schema_extra = { "linkml_meta": {'alias': 'tracer_concentration', 'domain_of': ['TracerDetails']} })
-    dosing_delivery_type: DosingDeliveryType = Field(default=..., title="Dosing Delivery Type", description="""Type of dosing delivery method. See Controlled Vocabularies for definitions.""", json_schema_extra = { "linkml_meta": {'alias': 'dosing_delivery_type', 'domain_of': ['DosingDetails']} })
-    dosing_location: DosingLocation = Field(default=..., title="Dosing Location", description="""Provide latitude and longitude in decimal degrees. Depending on your method of dispersal, this information may be provided as a point source, vector, or bounding box. If provided as a vector, the latitude and longitude values should be included in the dosing data file.""", json_schema_extra = { "linkml_meta": {'alias': 'dosing_location', 'domain_of': ['DosingDetails']} })
-    dosing_dispersal_hydrologic_location: HydrologicLocation = Field(default=..., title="Dosing Dispersal Hydrologic Location", description="""Descriptive dosing location""", json_schema_extra = { "linkml_meta": {'alias': 'dosing_dispersal_hydrologic_location',
-         'domain_of': ['DosingDetails']} })
-    dosing_depth: str = Field(default=..., title="Dosing Depth", description="""Depth in meters. If this is variable, please include the schedule of depth changes and depths, or as a vector in meters with the data.""", json_schema_extra = { "linkml_meta": {'alias': 'dosing_depth', 'domain_of': ['DosingDetails']} })
-    dosing_regimen: str = Field(default=..., title="Dosing Regimen", description="""A human readable summary description of the dosing regimen / frequency. Exact details must be provided in the corresponding dosing file with exact timestamps for dosing on/off schedule.""", json_schema_extra = { "linkml_meta": {'alias': 'dosing_regimen', 'domain_of': ['DosingDetails']} })
-    dosing_description: str = Field(default=..., title="Dosing Description", description="""Please be descriptive. Information about the dosing mechanism must be included (outflow from pipe, diffuser, doser, manual placement)
-E.g., outflow from existing facility pipe directly to ocean, manual riverine introduction, coastal distribution at three separate 30 meter long sections, pier-based diffuser to intercoastal bay, distributed from stationary barge 10 miles offshore.""", json_schema_extra = { "linkml_meta": {'alias': 'dosing_description', 'domain_of': ['DosingDetails']} })
-    vertical_coverage: Optional[VerticalExtent] = Field(default=None, title="Vertical Coverage", description="""Minimum and maximum depths of observations in meters.""", json_schema_extra = { "linkml_meta": {'alias': 'vertical_coverage', 'domain_of': ['InSituExperiment']} })
-    permits: Optional[List[Permit]] = Field(default=None, title="Permits", description="""Associated permit number(s).""", json_schema_extra = { "linkml_meta": {'alias': 'permits', 'domain_of': ['InSituExperiment']} })
-    data_conflicts_and_unreported_data: Optional[str] = Field(default=None, title="Data Conflicts and Unreported Data", description="""If data exist that are or have been used by the project but are not provided due to conflicts (e.g., geopolitical or other), data availability (e.g., a dataset is no longer available), it may be noted here.""", json_schema_extra = { "linkml_meta": {'alias': 'data_conflicts_and_unreported_data',
-         'domain_of': ['InSituExperiment']} })
-    meteorological_and_tidal_data: Optional[List[NamedLink]] = Field(default=None, title="Meteorological and Tidal Data", description="""Include links to relevant open datasets if referenced in the experiment but not provided in the submission.""", json_schema_extra = { "linkml_meta": {'alias': 'meteorological_and_tidal_data', 'domain_of': ['InSituExperiment']} })
-    additional_details: Optional[str] = Field(default=None, title="Additional Details", description="""Open text area to include additional information. These may include information for sediment processes data, biological data, or any other required information if not included in the main metadata or data files; see General Guidelines for Your Data for relevant sections of your data. Additional informational files, such as digitized laboratory notebooks, blogs, etc., may be linked here.""", json_schema_extra = { "linkml_meta": {'alias': 'additional_details', 'domain_of': ['Project', 'InSituExperiment']} })
-    name: Optional[str] = Field(default=None, title="Name", description="""Optional common name for experiment.""", json_schema_extra = { "linkml_meta": {'alias': 'name',
-         'domain_of': ['Organization',
-                       'NamedLink',
-                       'ExternalProject',
-                       'MonetaryGrant',
-                       'Experiment',
-                       'Person',
-                       'Dataset',
-                       'Platform',
-                       'ModelComponent'],
-         'slot_uri': 'schema:name'} })
-    description: str = Field(default=..., title="Experiment Description", description="""A narrative description of the experiment. For example, what part of the project do these data represent (e.g., baseline, intervention, control) and what do they contribute to the overall project? Are all project research questions listed in Project description relevant? What were the processes to achieve these goals and answer these questions? Data submitters are encouraged to note any significant changes to the original experimental plan due to unforeseen circumstances here.""", json_schema_extra = { "linkml_meta": {'alias': 'description',
-         'domain_of': ['Project',
-                       'ExternalProject',
-                       'Experiment',
-                       'VocabularyItemReference',
-                       'Dataset',
-                       'ModelComponent'],
-         'slot_uri': 'schema:description'} })
-    spatial_coverage: SpatialCoverage = Field(default=..., title="Spatial Coverage", description="""Latitude/longitude bounds of observed data in experiment, provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]""", json_schema_extra = { "linkml_meta": {'alias': 'spatial_coverage',
-         'domain_of': ['Project', 'ExternalProject', 'Experiment', 'ModelGrid'],
-         'slot_uri': 'schema:spatialCoverage'} })
-    project_id: str = Field(default=..., title="Project ID", description="""The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "from_schema": "Experiment",
+            "mixins": ["TracerDetails", "DosingDetails"],
+            "rules": [
+                {
+                    "postconditions": {
+                        "slot_conditions": {
+                            "tracer_form_custom": {
+                                "name": "tracer_form_custom",
+                                "required": True,
+                            }
+                        }
+                    },
+                    "preconditions": {
+                        "slot_conditions": {
+                            "tracer_form": {
+                                "equals_string": "other",
+                                "name": "tracer_form",
+                            }
+                        }
+                    },
+                }
+            ],
+        }
+    )
+
+    tracer_form: TracerForm = Field(
+        default=...,
+        title="Tracer Form",
+        description="""The form of tracer upon delivery to the ocean (e.g. gas or dye-release)""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "tracer_form", "domain_of": ["TracerDetails"]}
+        },
+    )
+    tracer_form_custom: Optional[str] = Field(
+        default=None,
+        title="Tracer Form (Custom)",
+        description="""If \"other\" was selected for Tracer Form, please specify the custom tracer form here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "tracer_form_custom",
+                "domain_of": ["TracerDetails"],
+            }
+        },
+    )
+    tracer_details: str = Field(
+        default=...,
+        title="Tracer Details",
+        description="""state the kind of tracer used (e.g. rhodamine, or a specific gas)""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "tracer_details", "domain_of": ["TracerDetails"]}
+        },
+    )
+    tracer_concentration: DosingConcentration = Field(
+        default=...,
+        title="Tracer Concentration",
+        description="""Fixed concentration or provide link/source to tracer concentration separately in the dosing file. Please include whether concentration is directly measured or a derived value. If this is a variable included with  your data, please note so here as 'tracer concentration provided as a variable' and use 'tracer_concentration' for your column header name.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "tracer_concentration",
+                "domain_of": ["TracerDetails"],
+            }
+        },
+    )
+    dosing_delivery_type: DosingDeliveryType = Field(
+        default=...,
+        title="Dosing Delivery Type",
+        description="""Type of dosing delivery method. See Controlled Vocabularies for definitions.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dosing_delivery_type",
+                "domain_of": ["DosingDetails"],
+            }
+        },
+    )
+    dosing_location: DosingLocation = Field(
+        default=...,
+        title="Dosing Location",
+        description="""Provide latitude and longitude in decimal degrees. Depending on your method of dispersal, this information may be provided as a point source, vector, or bounding box. If provided as a vector, the latitude and longitude values should be included in the dosing data file.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "dosing_location", "domain_of": ["DosingDetails"]}
+        },
+    )
+    dosing_dispersal_hydrologic_location: HydrologicLocation = Field(
+        default=...,
+        title="Dosing Dispersal Hydrologic Location",
+        description="""Descriptive dosing location""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dosing_dispersal_hydrologic_location",
+                "domain_of": ["DosingDetails"],
+            }
+        },
+    )
+    dosing_depth: str = Field(
+        default=...,
+        title="Dosing Depth",
+        description="""Depth in meters. If this is variable, please include the schedule of depth changes and depths, or as a vector in meters with the data.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "dosing_depth", "domain_of": ["DosingDetails"]}
+        },
+    )
+    dosing_regimen: str = Field(
+        default=...,
+        title="Dosing Regimen",
+        description="""A human readable summary description of the dosing regimen / frequency. Exact details must be provided in the corresponding dosing file with exact timestamps for dosing on/off schedule.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "dosing_regimen", "domain_of": ["DosingDetails"]}
+        },
+    )
+    dosing_description: str = Field(
+        default=...,
+        title="Dosing Description",
+        description="""Please be descriptive. Information about the dosing mechanism must be included (outflow from pipe, diffuser, doser, manual placement)
+E.g., outflow from existing facility pipe directly to ocean, manual riverine introduction, coastal distribution at three separate 30 meter long sections, pier-based diffuser to intercoastal bay, distributed from stationary barge 10 miles offshore.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dosing_description",
+                "domain_of": ["DosingDetails"],
+            }
+        },
+    )
+    vertical_coverage: Optional[VerticalExtent] = Field(
+        default=None,
+        title="Vertical Coverage",
+        description="""Minimum and maximum depths of observations in meters.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "vertical_coverage",
+                "domain_of": ["InSituExperiment"],
+            }
+        },
+    )
+    permits: Optional[List[Permit]] = Field(
+        default=None,
+        title="Permits",
+        description="""Associated permit number(s).""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "permits", "domain_of": ["InSituExperiment"]}
+        },
+    )
+    data_conflicts_and_unreported_data: Optional[str] = Field(
+        default=None,
+        title="Data Conflicts and Unreported Data",
+        description="""If data exist that are or have been used by the project but are not provided due to conflicts (e.g., geopolitical or other), data availability (e.g., a dataset is no longer available), it may be noted here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "data_conflicts_and_unreported_data",
+                "domain_of": ["InSituExperiment"],
+            }
+        },
+    )
+    meteorological_and_tidal_data: Optional[List[NamedLink]] = Field(
+        default=None,
+        title="Meteorological and Tidal Data",
+        description="""Include links to relevant open datasets if referenced in the experiment but not provided in the submission.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "meteorological_and_tidal_data",
+                "domain_of": ["InSituExperiment"],
+            }
+        },
+    )
+    additional_details: Optional[str] = Field(
+        default=None,
+        title="Additional Details",
+        description="""Open text area to include additional information. These may include information for sediment processes data, biological data, or any other required information if not included in the main metadata or data files; see General Guidelines for Your Data for relevant sections of your data. Additional informational files, such as digitized laboratory notebooks, blogs, etc., may be linked here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "additional_details",
+                "domain_of": ["Project", "InSituExperiment"],
+            }
+        },
+    )
+    name: Optional[str] = Field(
+        default=None,
+        title="Name",
+        description="""Optional common name for experiment.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "name",
+                "domain_of": [
+                    "Organization",
+                    "NamedLink",
+                    "ExternalProject",
+                    "MonetaryGrant",
+                    "Experiment",
+                    "Person",
+                    "Dataset",
+                    "Platform",
+                    "ModelComponent",
+                ],
+                "slot_uri": "schema:name",
+            }
+        },
+    )
+    description: str = Field(
+        default=...,
+        title="Experiment Description",
+        description="""A narrative description of the experiment. For example, what part of the project do these data represent (e.g., baseline, intervention, control) and what do they contribute to the overall project? Are all project research questions listed in Project description relevant? What were the processes to achieve these goals and answer these questions? Data submitters are encouraged to note any significant changes to the original experimental plan due to unforeseen circumstances here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "description",
+                "domain_of": [
+                    "Project",
+                    "ExternalProject",
+                    "Experiment",
+                    "VocabularyItemReference",
+                    "Dataset",
+                    "ModelComponent",
+                ],
+                "slot_uri": "schema:description",
+            }
+        },
+    )
+    spatial_coverage: SpatialCoverage = Field(
+        default=...,
+        title="Spatial Coverage",
+        description="""Latitude/longitude bounds of observed data in experiment, provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "spatial_coverage",
+                "domain_of": ["Project", "ExternalProject", "Experiment", "ModelGrid"],
+                "slot_uri": "schema:spatialCoverage",
+            }
+        },
+    )
+    project_id: str = Field(
+        default=...,
+        title="Project ID",
+        description="""The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.
 If no Project ID has been assigned, one may be generated by combining: lead organizer surname and first initial or company, a unique date, and location.
-Any method that creates a unique ID that will link all project data is acceptable.""", json_schema_extra = { "linkml_meta": {'alias': 'project_id', 'domain_of': ['Project', 'Experiment', 'Dataset']} })
-    experiment_id: str = Field(default=..., title="Experiment ID", description="""The experiment to which the data belong. Any naming convention that produces a unique ID is usable. The recommended naming convention is:
-Project ID + Experiment type + Optional numerical indicator to differentiate between various experiments of the same type for a project. A two digit consecutive number beginning with 01""", json_schema_extra = { "linkml_meta": {'alias': 'experiment_id', 'domain_of': ['Experiment', 'Dataset']} })
-    experiment_types: List[ExperimentType] = Field(default=..., title="mCDR Experiment Type(s)", description="""The type(s) of mCDR experiment conducted. See Controlled Vocabularies section for definitions.""", json_schema_extra = { "linkml_meta": {'alias': 'experiment_types', 'domain_of': ['Experiment']} })
-    public_comments: Optional[str] = Field(default=None, title="Public Comments", description="""File name(s) of public comment related documents. If possible, please provide public comments concatenated into a single pdf""", json_schema_extra = { "linkml_meta": {'alias': 'public_comments', 'domain_of': ['Experiment'], 'recommended': True} })
-    experiment_leads: List[Person] = Field(default=..., title="Experiment Lead(s)", description="""Provide details for each experiment lead / principal investigator (PI) including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.""", json_schema_extra = { "linkml_meta": {'alias': 'experiment_leads', 'domain_of': ['Experiment']} })
-    start_datetime: datetime  = Field(default=..., title="Start Date and Time (UTC)", description="""Start date and time of experiment in UTC ISO-8601""", json_schema_extra = { "linkml_meta": {'alias': 'start_datetime', 'domain_of': ['Experiment', 'ModelOutputDataset']} })
-    end_datetime: Optional[datetime ] = Field(default=None, title="End Date and Time (UTC)", description="""End date and time of experiment in UTC ISO-8601""", json_schema_extra = { "linkml_meta": {'alias': 'end_datetime', 'domain_of': ['Experiment', 'ModelOutputDataset']} })
+Any method that creates a unique ID that will link all project data is acceptable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "project_id",
+                "domain_of": ["Project", "Experiment", "Dataset"],
+            }
+        },
+    )
+    experiment_id: str = Field(
+        default=...,
+        title="Experiment ID",
+        description="""The experiment to which the data belong. Any naming convention that produces a unique ID is usable. The recommended naming convention is:
+Project ID + Experiment type + Optional numerical indicator to differentiate between various experiments of the same type for a project. A two digit consecutive number beginning with 01""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "experiment_id",
+                "domain_of": ["Experiment", "Dataset"],
+            }
+        },
+    )
+    experiment_types: List[ExperimentType] = Field(
+        default=...,
+        title="mCDR Experiment Type(s)",
+        description="""The type(s) of mCDR experiment conducted. See Controlled Vocabularies section for definitions.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "experiment_types", "domain_of": ["Experiment"]}
+        },
+    )
+    public_comments: Optional[str] = Field(
+        default=None,
+        title="Public Comments",
+        description="""File name(s) of public comment related documents. If possible, please provide public comments concatenated into a single pdf""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "public_comments",
+                "domain_of": ["Experiment"],
+                "recommended": True,
+            }
+        },
+    )
+    experiment_leads: List[Person] = Field(
+        default=...,
+        title="Experiment Lead(s)",
+        description="""Provide details for each experiment lead / principal investigator (PI) including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "experiment_leads", "domain_of": ["Experiment"]}
+        },
+    )
+    start_datetime: datetime = Field(
+        default=...,
+        title="Start Date and Time (UTC)",
+        description="""Start date and time of experiment in UTC ISO-8601""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "start_datetime",
+                "domain_of": ["Experiment", "ModelOutputDataset"],
+            }
+        },
+    )
+    end_datetime: Optional[datetime] = Field(
+        default=None,
+        title="End Date and Time (UTC)",
+        description="""End date and time of experiment in UTC ISO-8601""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "end_datetime",
+                "domain_of": ["Experiment", "ModelOutputDataset"],
+            }
+        },
+    )
 
 
 class InterventionWithTracer(Intervention, TracerDetails):
     """
     Additional metadata that applies to hybrid experiments where an intervention was conducted simultaneously alongside a tracer study, using the same instrumentation.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Experiment',
-         'mixins': ['TracerDetails'],
-         'rules': [{'postconditions': {'slot_conditions': {'tracer_form_custom': {'name': 'tracer_form_custom',
-                                                                                  'required': True}}},
-                    'preconditions': {'slot_conditions': {'tracer_form': {'equals_string': 'other',
-                                                                          'name': 'tracer_form'}}}}]})
 
-    tracer_form: TracerForm = Field(default=..., title="Tracer Form", description="""The form of tracer upon delivery to the ocean (e.g. gas or dye-release)""", json_schema_extra = { "linkml_meta": {'alias': 'tracer_form', 'domain_of': ['TracerDetails']} })
-    tracer_form_custom: Optional[str] = Field(default=None, title="Tracer Form (Custom)", description="""If \"other\" was selected for Tracer Form, please specify the custom tracer form here.""", json_schema_extra = { "linkml_meta": {'alias': 'tracer_form_custom', 'domain_of': ['TracerDetails']} })
-    tracer_details: str = Field(default=..., title="Tracer Details", description="""state the kind of tracer used (e.g. rhodamine, or a specific gas)""", json_schema_extra = { "linkml_meta": {'alias': 'tracer_details', 'domain_of': ['TracerDetails']} })
-    tracer_concentration: DosingConcentration = Field(default=..., title="Tracer Concentration", description="""Fixed concentration or provide link/source to tracer concentration separately in the dosing file. Please include whether concentration is directly measured or a derived value. If this is a variable included with  your data, please note so here as 'tracer concentration provided as a variable' and use 'tracer_concentration' for your column header name.""", json_schema_extra = { "linkml_meta": {'alias': 'tracer_concentration', 'domain_of': ['TracerDetails']} })
-    alkalinity_feedstock_processing: AlkalinityFeedstockProcessing = Field(default=..., title="Alkalinity Feedstock Processing", description="""Method(s) used to process the alkalinity feedstock. See Controlled Vocabularies section for definitions.""", json_schema_extra = { "linkml_meta": {'alias': 'alkalinity_feedstock_processing',
-         'domain_of': ['InterventionDetails']} })
-    alkalinity_feedstock_processing_custom: Optional[str] = Field(default=None, title="Alkalinity Feedstock Processing (Custom)", description="""Custom description of alkalinity feedstock processing method when 'other' is selected in alkalinity_feedstock_processing.""", json_schema_extra = { "linkml_meta": {'alias': 'alkalinity_feedstock_processing_custom',
-         'domain_of': ['InterventionDetails']} })
-    alkalinity_feedstock_form: AlkalinityFeedstockForm = Field(default=..., title="Alkalinity Feedstock Form", description="""The phase upon delivery to the ocean. See Controlled Vocabularies section for definitions.""", json_schema_extra = { "linkml_meta": {'alias': 'alkalinity_feedstock_form', 'domain_of': ['InterventionDetails']} })
-    alkalinity_feedstock: FeedstockType = Field(default=..., title="Alkalinity Feedstock", description="""Examples may include: olivine, potassium hydroxide, magnesium hydroxide, lime, portlandite, calcium carbonate, anorthite, dolomite, periclase, brucite, magnesite, forsterite, sodium hydroxide, natrite, nahcolite, akermanite, akermanite, alunoakermanite, etc.
-See Controlled Vocabularies section for selected examples (this list is not exhaustive, you may need to include your unique feedstock).""", json_schema_extra = { "linkml_meta": {'alias': 'alkalinity_feedstock', 'domain_of': ['InterventionDetails']} })
-    alkalinity_feedstock_custom: Optional[str] = Field(default=None, title="Alkalinity Feedstock (Custom)", description="""Custom description of alkalinity feedstock when using a feedstock type not listed in the controlled vocabulary.""", json_schema_extra = { "linkml_meta": {'alias': 'alkalinity_feedstock_custom', 'domain_of': ['InterventionDetails']} })
-    alkalinity_feedstock_co2_removal_potential: float = Field(default=..., title="Alkalinity Feedstock CO₂ Removal Potential", description="""Maximum CO₂ removal potential of a feedstock material. We recommend using an adjusted version of the Steinour equation (Gunning et al., 2010), which uses bulk elemental oxide composition to estimate the maximum CO₂ removal potential of a feedstock material. The calculation output is in the form of kg of CO₂ per tonne of feedstock and represents the quantitative hypothetical potential of the material to capture CO₂ as bicarbonate or carbonate. See Isometric's CO2 removal potential module for details.""", json_schema_extra = { "linkml_meta": {'alias': 'alkalinity_feedstock_co2_removal_potential',
-         'domain_of': ['InterventionDetails']} })
-    alkalinity_feedstock_description: str = Field(default=..., title="Alkalinity Feedstock Description", description="""Information such as feedstock source, characteristics, impurities, dilution prior to dosing, and concentration. For feedstock other than NaOH: trace metal composition and particulate grain size. Any variable information must be provided in the dosing data file, in this case include the data file and column header names here provided as variables. See Intervention Data for details.""", json_schema_extra = { "linkml_meta": {'alias': 'alkalinity_feedstock_description',
-         'domain_of': ['InterventionDetails']} })
-    equilibration: EquilibrationStatus = Field(default=..., title="Equilibration", description="""Whether the feedstock was pre-equilibrated or unequilibrated""", json_schema_extra = { "linkml_meta": {'alias': 'equilibration', 'domain_of': ['InterventionDetails']} })
-    alkalinity_dosing_effluent_density: DosingConcentration = Field(default=..., title="Alkalinity Dosing Effluent Density", description="""Fixed density or provide link/source to effluent density data if applicable. Please include whether density is directly measured or a derived value. If this is a variable included with your data, please note so here as 'alkalinity dosing effluent density is provided as a variable' and use 'dosing_effluent_density' for your column header name.""", json_schema_extra = { "linkml_meta": {'alias': 'alkalinity_dosing_effluent_density',
-         'domain_of': ['InterventionDetails']} })
-    dosing_delivery_type: DosingDeliveryType = Field(default=..., title="Dosing Delivery Type", description="""Type of dosing delivery method. See Controlled Vocabularies for definitions.""", json_schema_extra = { "linkml_meta": {'alias': 'dosing_delivery_type', 'domain_of': ['DosingDetails']} })
-    dosing_location: DosingLocation = Field(default=..., title="Dosing Location", description="""Provide latitude and longitude in decimal degrees. Depending on your method of dispersal, this information may be provided as a point source, vector, or bounding box. If provided as a vector, the latitude and longitude values should be included in the dosing data file.""", json_schema_extra = { "linkml_meta": {'alias': 'dosing_location', 'domain_of': ['DosingDetails']} })
-    dosing_dispersal_hydrologic_location: HydrologicLocation = Field(default=..., title="Dosing Dispersal Hydrologic Location", description="""Descriptive dosing location""", json_schema_extra = { "linkml_meta": {'alias': 'dosing_dispersal_hydrologic_location',
-         'domain_of': ['DosingDetails']} })
-    dosing_depth: str = Field(default=..., title="Dosing Depth", description="""Depth in meters. If this is variable, please include the schedule of depth changes and depths, or as a vector in meters with the data.""", json_schema_extra = { "linkml_meta": {'alias': 'dosing_depth', 'domain_of': ['DosingDetails']} })
-    dosing_regimen: str = Field(default=..., title="Dosing Regimen", description="""A human readable summary description of the dosing regimen / frequency. Exact details must be provided in the corresponding dosing file with exact timestamps for dosing on/off schedule.""", json_schema_extra = { "linkml_meta": {'alias': 'dosing_regimen', 'domain_of': ['DosingDetails']} })
-    dosing_description: str = Field(default=..., title="Dosing Description", description="""Please be descriptive. Information about the dosing mechanism must be included (outflow from pipe, diffuser, doser, manual placement)
-E.g., outflow from existing facility pipe directly to ocean, manual riverine introduction, coastal distribution at three separate 30 meter long sections, pier-based diffuser to intercoastal bay, distributed from stationary barge 10 miles offshore.""", json_schema_extra = { "linkml_meta": {'alias': 'dosing_description', 'domain_of': ['DosingDetails']} })
-    vertical_coverage: Optional[VerticalExtent] = Field(default=None, title="Vertical Coverage", description="""Minimum and maximum depths of observations in meters.""", json_schema_extra = { "linkml_meta": {'alias': 'vertical_coverage', 'domain_of': ['InSituExperiment']} })
-    permits: Optional[List[Permit]] = Field(default=None, title="Permits", description="""Associated permit number(s).""", json_schema_extra = { "linkml_meta": {'alias': 'permits', 'domain_of': ['InSituExperiment']} })
-    data_conflicts_and_unreported_data: Optional[str] = Field(default=None, title="Data Conflicts and Unreported Data", description="""If data exist that are or have been used by the project but are not provided due to conflicts (e.g., geopolitical or other), data availability (e.g., a dataset is no longer available), it may be noted here.""", json_schema_extra = { "linkml_meta": {'alias': 'data_conflicts_and_unreported_data',
-         'domain_of': ['InSituExperiment']} })
-    meteorological_and_tidal_data: Optional[List[NamedLink]] = Field(default=None, title="Meteorological and Tidal Data", description="""Include links to relevant open datasets if referenced in the experiment but not provided in the submission.""", json_schema_extra = { "linkml_meta": {'alias': 'meteorological_and_tidal_data', 'domain_of': ['InSituExperiment']} })
-    additional_details: Optional[str] = Field(default=None, title="Additional Details", description="""Open text area to include additional information. These may include information for sediment processes data, biological data, or any other required information if not included in the main metadata or data files; see General Guidelines for Your Data for relevant sections of your data. Additional informational files, such as digitized laboratory notebooks, blogs, etc., may be linked here.""", json_schema_extra = { "linkml_meta": {'alias': 'additional_details', 'domain_of': ['Project', 'InSituExperiment']} })
-    name: Optional[str] = Field(default=None, title="Name", description="""Optional common name for experiment.""", json_schema_extra = { "linkml_meta": {'alias': 'name',
-         'domain_of': ['Organization',
-                       'NamedLink',
-                       'ExternalProject',
-                       'MonetaryGrant',
-                       'Experiment',
-                       'Person',
-                       'Dataset',
-                       'Platform',
-                       'ModelComponent'],
-         'slot_uri': 'schema:name'} })
-    description: str = Field(default=..., title="Experiment Description", description="""A narrative description of the experiment. For example, what part of the project do these data represent (e.g., baseline, intervention, control) and what do they contribute to the overall project? Are all project research questions listed in Project description relevant? What were the processes to achieve these goals and answer these questions? Data submitters are encouraged to note any significant changes to the original experimental plan due to unforeseen circumstances here.""", json_schema_extra = { "linkml_meta": {'alias': 'description',
-         'domain_of': ['Project',
-                       'ExternalProject',
-                       'Experiment',
-                       'VocabularyItemReference',
-                       'Dataset',
-                       'ModelComponent'],
-         'slot_uri': 'schema:description'} })
-    spatial_coverage: SpatialCoverage = Field(default=..., title="Spatial Coverage", description="""Latitude/longitude bounds of observed data in experiment, provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]""", json_schema_extra = { "linkml_meta": {'alias': 'spatial_coverage',
-         'domain_of': ['Project', 'ExternalProject', 'Experiment', 'ModelGrid'],
-         'slot_uri': 'schema:spatialCoverage'} })
-    project_id: str = Field(default=..., title="Project ID", description="""The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "from_schema": "Experiment",
+            "mixins": ["TracerDetails"],
+            "rules": [
+                {
+                    "postconditions": {
+                        "slot_conditions": {
+                            "tracer_form_custom": {
+                                "name": "tracer_form_custom",
+                                "required": True,
+                            }
+                        }
+                    },
+                    "preconditions": {
+                        "slot_conditions": {
+                            "tracer_form": {
+                                "equals_string": "other",
+                                "name": "tracer_form",
+                            }
+                        }
+                    },
+                }
+            ],
+        }
+    )
+
+    tracer_form: TracerForm = Field(
+        default=...,
+        title="Tracer Form",
+        description="""The form of tracer upon delivery to the ocean (e.g. gas or dye-release)""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "tracer_form", "domain_of": ["TracerDetails"]}
+        },
+    )
+    tracer_form_custom: Optional[str] = Field(
+        default=None,
+        title="Tracer Form (Custom)",
+        description="""If \"other\" was selected for Tracer Form, please specify the custom tracer form here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "tracer_form_custom",
+                "domain_of": ["TracerDetails"],
+            }
+        },
+    )
+    tracer_details: str = Field(
+        default=...,
+        title="Tracer Details",
+        description="""state the kind of tracer used (e.g. rhodamine, or a specific gas)""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "tracer_details", "domain_of": ["TracerDetails"]}
+        },
+    )
+    tracer_concentration: DosingConcentration = Field(
+        default=...,
+        title="Tracer Concentration",
+        description="""Fixed concentration or provide link/source to tracer concentration separately in the dosing file. Please include whether concentration is directly measured or a derived value. If this is a variable included with  your data, please note so here as 'tracer concentration provided as a variable' and use 'tracer_concentration' for your column header name.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "tracer_concentration",
+                "domain_of": ["TracerDetails"],
+            }
+        },
+    )
+    alkalinity_feedstock_processing: AlkalinityFeedstockProcessing = Field(
+        default=...,
+        title="Alkalinity Feedstock Processing",
+        description="""Method(s) used to process the alkalinity feedstock. See Controlled Vocabularies section for definitions.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "alkalinity_feedstock_processing",
+                "domain_of": ["InterventionDetails"],
+            }
+        },
+    )
+    alkalinity_feedstock_processing_custom: Optional[str] = Field(
+        default=None,
+        title="Alkalinity Feedstock Processing (Custom)",
+        description="""Custom description of alkalinity feedstock processing method when 'other' is selected in alkalinity_feedstock_processing.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "alkalinity_feedstock_processing_custom",
+                "domain_of": ["InterventionDetails"],
+            }
+        },
+    )
+    alkalinity_feedstock_form: AlkalinityFeedstockForm = Field(
+        default=...,
+        title="Alkalinity Feedstock Form",
+        description="""The phase upon delivery to the ocean. See Controlled Vocabularies section for definitions.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "alkalinity_feedstock_form",
+                "domain_of": ["InterventionDetails"],
+            }
+        },
+    )
+    alkalinity_feedstock: FeedstockType = Field(
+        default=...,
+        title="Alkalinity Feedstock",
+        description="""Examples may include: olivine, potassium hydroxide, magnesium hydroxide, lime, portlandite, calcium carbonate, anorthite, dolomite, periclase, brucite, magnesite, forsterite, sodium hydroxide, natrite, nahcolite, akermanite, akermanite, alunoakermanite, etc.
+See Controlled Vocabularies section for selected examples (this list is not exhaustive, you may need to include your unique feedstock).""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "alkalinity_feedstock",
+                "domain_of": ["InterventionDetails"],
+            }
+        },
+    )
+    alkalinity_feedstock_custom: Optional[str] = Field(
+        default=None,
+        title="Alkalinity Feedstock (Custom)",
+        description="""Custom description of alkalinity feedstock when using a feedstock type not listed in the controlled vocabulary.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "alkalinity_feedstock_custom",
+                "domain_of": ["InterventionDetails"],
+            }
+        },
+    )
+    alkalinity_feedstock_co2_removal_potential: float = Field(
+        default=...,
+        title="Alkalinity Feedstock CO₂ Removal Potential",
+        description="""Maximum CO₂ removal potential of a feedstock material. We recommend using an adjusted version of the Steinour equation (Gunning et al., 2010), which uses bulk elemental oxide composition to estimate the maximum CO₂ removal potential of a feedstock material. The calculation output is in the form of kg of CO₂ per tonne of feedstock and represents the quantitative hypothetical potential of the material to capture CO₂ as bicarbonate or carbonate. See Isometric's CO2 removal potential module for details.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "alkalinity_feedstock_co2_removal_potential",
+                "domain_of": ["InterventionDetails"],
+            }
+        },
+    )
+    alkalinity_feedstock_description: str = Field(
+        default=...,
+        title="Alkalinity Feedstock Description",
+        description="""Information such as feedstock source, characteristics, impurities, dilution prior to dosing, and concentration. For feedstock other than NaOH: trace metal composition and particulate grain size. Any variable information must be provided in the dosing data file, in this case include the data file and column header names here provided as variables. See Intervention Data for details.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "alkalinity_feedstock_description",
+                "domain_of": ["InterventionDetails"],
+            }
+        },
+    )
+    equilibration: EquilibrationStatus = Field(
+        default=...,
+        title="Equilibration",
+        description="""Whether the feedstock was pre-equilibrated or unequilibrated""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "equilibration",
+                "domain_of": ["InterventionDetails"],
+            }
+        },
+    )
+    alkalinity_dosing_effluent_density: DosingConcentration = Field(
+        default=...,
+        title="Alkalinity Dosing Effluent Density",
+        description="""Fixed density or provide link/source to effluent density data if applicable. Please include whether density is directly measured or a derived value. If this is a variable included with your data, please note so here as 'alkalinity dosing effluent density is provided as a variable' and use 'dosing_effluent_density' for your column header name.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "alkalinity_dosing_effluent_density",
+                "domain_of": ["InterventionDetails"],
+            }
+        },
+    )
+    dosing_delivery_type: DosingDeliveryType = Field(
+        default=...,
+        title="Dosing Delivery Type",
+        description="""Type of dosing delivery method. See Controlled Vocabularies for definitions.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dosing_delivery_type",
+                "domain_of": ["DosingDetails"],
+            }
+        },
+    )
+    dosing_location: DosingLocation = Field(
+        default=...,
+        title="Dosing Location",
+        description="""Provide latitude and longitude in decimal degrees. Depending on your method of dispersal, this information may be provided as a point source, vector, or bounding box. If provided as a vector, the latitude and longitude values should be included in the dosing data file.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "dosing_location", "domain_of": ["DosingDetails"]}
+        },
+    )
+    dosing_dispersal_hydrologic_location: HydrologicLocation = Field(
+        default=...,
+        title="Dosing Dispersal Hydrologic Location",
+        description="""Descriptive dosing location""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dosing_dispersal_hydrologic_location",
+                "domain_of": ["DosingDetails"],
+            }
+        },
+    )
+    dosing_depth: str = Field(
+        default=...,
+        title="Dosing Depth",
+        description="""Depth in meters. If this is variable, please include the schedule of depth changes and depths, or as a vector in meters with the data.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "dosing_depth", "domain_of": ["DosingDetails"]}
+        },
+    )
+    dosing_regimen: str = Field(
+        default=...,
+        title="Dosing Regimen",
+        description="""A human readable summary description of the dosing regimen / frequency. Exact details must be provided in the corresponding dosing file with exact timestamps for dosing on/off schedule.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "dosing_regimen", "domain_of": ["DosingDetails"]}
+        },
+    )
+    dosing_description: str = Field(
+        default=...,
+        title="Dosing Description",
+        description="""Please be descriptive. Information about the dosing mechanism must be included (outflow from pipe, diffuser, doser, manual placement)
+E.g., outflow from existing facility pipe directly to ocean, manual riverine introduction, coastal distribution at three separate 30 meter long sections, pier-based diffuser to intercoastal bay, distributed from stationary barge 10 miles offshore.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dosing_description",
+                "domain_of": ["DosingDetails"],
+            }
+        },
+    )
+    vertical_coverage: Optional[VerticalExtent] = Field(
+        default=None,
+        title="Vertical Coverage",
+        description="""Minimum and maximum depths of observations in meters.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "vertical_coverage",
+                "domain_of": ["InSituExperiment"],
+            }
+        },
+    )
+    permits: Optional[List[Permit]] = Field(
+        default=None,
+        title="Permits",
+        description="""Associated permit number(s).""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "permits", "domain_of": ["InSituExperiment"]}
+        },
+    )
+    data_conflicts_and_unreported_data: Optional[str] = Field(
+        default=None,
+        title="Data Conflicts and Unreported Data",
+        description="""If data exist that are or have been used by the project but are not provided due to conflicts (e.g., geopolitical or other), data availability (e.g., a dataset is no longer available), it may be noted here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "data_conflicts_and_unreported_data",
+                "domain_of": ["InSituExperiment"],
+            }
+        },
+    )
+    meteorological_and_tidal_data: Optional[List[NamedLink]] = Field(
+        default=None,
+        title="Meteorological and Tidal Data",
+        description="""Include links to relevant open datasets if referenced in the experiment but not provided in the submission.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "meteorological_and_tidal_data",
+                "domain_of": ["InSituExperiment"],
+            }
+        },
+    )
+    additional_details: Optional[str] = Field(
+        default=None,
+        title="Additional Details",
+        description="""Open text area to include additional information. These may include information for sediment processes data, biological data, or any other required information if not included in the main metadata or data files; see General Guidelines for Your Data for relevant sections of your data. Additional informational files, such as digitized laboratory notebooks, blogs, etc., may be linked here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "additional_details",
+                "domain_of": ["Project", "InSituExperiment"],
+            }
+        },
+    )
+    name: Optional[str] = Field(
+        default=None,
+        title="Name",
+        description="""Optional common name for experiment.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "name",
+                "domain_of": [
+                    "Organization",
+                    "NamedLink",
+                    "ExternalProject",
+                    "MonetaryGrant",
+                    "Experiment",
+                    "Person",
+                    "Dataset",
+                    "Platform",
+                    "ModelComponent",
+                ],
+                "slot_uri": "schema:name",
+            }
+        },
+    )
+    description: str = Field(
+        default=...,
+        title="Experiment Description",
+        description="""A narrative description of the experiment. For example, what part of the project do these data represent (e.g., baseline, intervention, control) and what do they contribute to the overall project? Are all project research questions listed in Project description relevant? What were the processes to achieve these goals and answer these questions? Data submitters are encouraged to note any significant changes to the original experimental plan due to unforeseen circumstances here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "description",
+                "domain_of": [
+                    "Project",
+                    "ExternalProject",
+                    "Experiment",
+                    "VocabularyItemReference",
+                    "Dataset",
+                    "ModelComponent",
+                ],
+                "slot_uri": "schema:description",
+            }
+        },
+    )
+    spatial_coverage: SpatialCoverage = Field(
+        default=...,
+        title="Spatial Coverage",
+        description="""Latitude/longitude bounds of observed data in experiment, provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "spatial_coverage",
+                "domain_of": ["Project", "ExternalProject", "Experiment", "ModelGrid"],
+                "slot_uri": "schema:spatialCoverage",
+            }
+        },
+    )
+    project_id: str = Field(
+        default=...,
+        title="Project ID",
+        description="""The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.
 If no Project ID has been assigned, one may be generated by combining: lead organizer surname and first initial or company, a unique date, and location.
-Any method that creates a unique ID that will link all project data is acceptable.""", json_schema_extra = { "linkml_meta": {'alias': 'project_id', 'domain_of': ['Project', 'Experiment', 'Dataset']} })
-    experiment_id: str = Field(default=..., title="Experiment ID", description="""The experiment to which the data belong. Any naming convention that produces a unique ID is usable. The recommended naming convention is:
-Project ID + Experiment type + Optional numerical indicator to differentiate between various experiments of the same type for a project. A two digit consecutive number beginning with 01""", json_schema_extra = { "linkml_meta": {'alias': 'experiment_id', 'domain_of': ['Experiment', 'Dataset']} })
-    experiment_types: List[ExperimentType] = Field(default=..., title="mCDR Experiment Type(s)", description="""The type(s) of mCDR experiment conducted. See Controlled Vocabularies section for definitions.""", json_schema_extra = { "linkml_meta": {'alias': 'experiment_types', 'domain_of': ['Experiment']} })
-    public_comments: Optional[str] = Field(default=None, title="Public Comments", description="""File name(s) of public comment related documents. If possible, please provide public comments concatenated into a single pdf""", json_schema_extra = { "linkml_meta": {'alias': 'public_comments', 'domain_of': ['Experiment'], 'recommended': True} })
-    experiment_leads: List[Person] = Field(default=..., title="Experiment Lead(s)", description="""Provide details for each experiment lead / principal investigator (PI) including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.""", json_schema_extra = { "linkml_meta": {'alias': 'experiment_leads', 'domain_of': ['Experiment']} })
-    start_datetime: datetime  = Field(default=..., title="Start Date and Time (UTC)", description="""Start date and time of experiment in UTC ISO-8601""", json_schema_extra = { "linkml_meta": {'alias': 'start_datetime', 'domain_of': ['Experiment', 'ModelOutputDataset']} })
-    end_datetime: Optional[datetime ] = Field(default=None, title="End Date and Time (UTC)", description="""End date and time of experiment in UTC ISO-8601""", json_schema_extra = { "linkml_meta": {'alias': 'end_datetime', 'domain_of': ['Experiment', 'ModelOutputDataset']} })
+Any method that creates a unique ID that will link all project data is acceptable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "project_id",
+                "domain_of": ["Project", "Experiment", "Dataset"],
+            }
+        },
+    )
+    experiment_id: str = Field(
+        default=...,
+        title="Experiment ID",
+        description="""The experiment to which the data belong. Any naming convention that produces a unique ID is usable. The recommended naming convention is:
+Project ID + Experiment type + Optional numerical indicator to differentiate between various experiments of the same type for a project. A two digit consecutive number beginning with 01""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "experiment_id",
+                "domain_of": ["Experiment", "Dataset"],
+            }
+        },
+    )
+    experiment_types: List[ExperimentType] = Field(
+        default=...,
+        title="mCDR Experiment Type(s)",
+        description="""The type(s) of mCDR experiment conducted. See Controlled Vocabularies section for definitions.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "experiment_types", "domain_of": ["Experiment"]}
+        },
+    )
+    public_comments: Optional[str] = Field(
+        default=None,
+        title="Public Comments",
+        description="""File name(s) of public comment related documents. If possible, please provide public comments concatenated into a single pdf""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "public_comments",
+                "domain_of": ["Experiment"],
+                "recommended": True,
+            }
+        },
+    )
+    experiment_leads: List[Person] = Field(
+        default=...,
+        title="Experiment Lead(s)",
+        description="""Provide details for each experiment lead / principal investigator (PI) including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "experiment_leads", "domain_of": ["Experiment"]}
+        },
+    )
+    start_datetime: datetime = Field(
+        default=...,
+        title="Start Date and Time (UTC)",
+        description="""Start date and time of experiment in UTC ISO-8601""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "start_datetime",
+                "domain_of": ["Experiment", "ModelOutputDataset"],
+            }
+        },
+    )
+    end_datetime: Optional[datetime] = Field(
+        default=None,
+        title="End Date and Time (UTC)",
+        description="""End date and time of experiment in UTC ISO-8601""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "end_datetime",
+                "domain_of": ["Experiment", "ModelOutputDataset"],
+            }
+        },
+    )
 
 
 class Person(ConfiguredBaseModel):
     """
     Information about a researcher or investigator involved in the experiment.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'schema:Person', 'from_schema': 'Person'})
 
-    name: str = Field(default=..., title="Name", description="""Full name of the person.""", json_schema_extra = { "linkml_meta": {'alias': 'name',
-         'domain_of': ['Organization',
-                       'NamedLink',
-                       'ExternalProject',
-                       'MonetaryGrant',
-                       'Experiment',
-                       'Person',
-                       'Dataset',
-                       'Platform',
-                       'ModelComponent']} })
-    affiliation: Optional[Organization] = Field(default=None, title="Affiliation", description="""Institutional affiliation of the investigator.""", json_schema_extra = { "linkml_meta": {'alias': 'affiliation', 'domain_of': ['Person']} })
-    phone: Optional[str] = Field(default=None, title="Phone", description="""Contact phone number.""", json_schema_extra = { "linkml_meta": {'alias': 'phone', 'domain_of': ['Person']} })
-    email: str = Field(default=..., title="Email", description="""Contact email address.""", json_schema_extra = { "linkml_meta": {'alias': 'email', 'domain_of': ['Person']} })
-    identifier_type: Optional[ResearcherIDType] = Field(default=None, title="Researcher ID Type", description="""Type of Researcher ID (e.g., ORCID, ResearcherID).""", json_schema_extra = { "linkml_meta": {'alias': 'identifier_type', 'domain_of': ['Person']} })
-    identifier: Optional[str] = Field(default=None, title="Researcher ID", description="""Unique researcher identifier value.""", json_schema_extra = { "linkml_meta": {'alias': 'identifier',
-         'domain_of': ['Organization', 'MonetaryGrant', 'Person']} })
-    role: Optional[str] = Field(default=None, title="Role", description="""Role of the investigator in the experiment (e.g., chief scientist, data submitter).""", json_schema_extra = { "linkml_meta": {'alias': 'role', 'domain_of': ['Person']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {"class_uri": "schema:Person", "from_schema": "Person"}
+    )
 
-    @field_validator('phone')
+    name: str = Field(
+        default=...,
+        title="Name",
+        description="""Full name of the person.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "name",
+                "domain_of": [
+                    "Organization",
+                    "NamedLink",
+                    "ExternalProject",
+                    "MonetaryGrant",
+                    "Experiment",
+                    "Person",
+                    "Dataset",
+                    "Platform",
+                    "ModelComponent",
+                ],
+            }
+        },
+    )
+    affiliation: Optional[Organization] = Field(
+        default=None,
+        title="Affiliation",
+        description="""Institutional affiliation of the investigator.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "affiliation", "domain_of": ["Person"]}
+        },
+    )
+    phone: Optional[str] = Field(
+        default=None,
+        title="Phone",
+        description="""Contact phone number.""",
+        json_schema_extra={"linkml_meta": {"alias": "phone", "domain_of": ["Person"]}},
+    )
+    email: str = Field(
+        default=...,
+        title="Email",
+        description="""Contact email address.""",
+        json_schema_extra={"linkml_meta": {"alias": "email", "domain_of": ["Person"]}},
+    )
+    identifier_type: Optional[ResearcherIDType] = Field(
+        default=None,
+        title="Researcher ID Type",
+        description="""Type of Researcher ID (e.g., ORCID, ResearcherID).""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "identifier_type", "domain_of": ["Person"]}
+        },
+    )
+    identifier: Optional[str] = Field(
+        default=None,
+        title="Researcher ID",
+        description="""Unique researcher identifier value.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "identifier",
+                "domain_of": ["Organization", "MonetaryGrant", "Person"],
+            }
+        },
+    )
+    role: Optional[str] = Field(
+        default=None,
+        title="Role",
+        description="""Role of the investigator in the experiment (e.g., chief scientist, data submitter).""",
+        json_schema_extra={"linkml_meta": {"alias": "role", "domain_of": ["Person"]}},
+    )
+
+    @field_validator("phone")
     def pattern_phone(cls, v):
-        pattern=re.compile(r"^\+?[0-9\s\-\(\)]+$")
-        if isinstance(v,list):
+        pattern = re.compile(r"^\+?[0-9\s\-\(\)]+$")
+        if isinstance(v, list):
             for element in v:
                 if isinstance(v, str) and not pattern.match(element):
                     raise ValueError(f"Invalid phone format: {element}")
-        elif isinstance(v,str):
+        elif isinstance(v, str):
             if not pattern.match(v):
                 raise ValueError(f"Invalid phone format: {v}")
         return v
 
-    @field_validator('email')
+    @field_validator("email")
     def pattern_email(cls, v):
-        pattern=re.compile(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
-        if isinstance(v,list):
+        pattern = re.compile(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
+        if isinstance(v, list):
             for element in v:
                 if isinstance(v, str) and not pattern.match(element):
                     raise ValueError(f"Invalid email format: {element}")
-        elif isinstance(v,str):
+        elif isinstance(v, str):
             if not pattern.match(v):
                 raise ValueError(f"Invalid email format: {v}")
         return v
@@ -1501,1542 +3416,7706 @@ class Calibration(ConfiguredBaseModel):
     """
     Base calibration information for instruments.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Calibration'})
 
-    calibration_location: Optional[CalibrationLocation] = Field(default=None, title="Calibration location", description="""Factory calibration, lab calibration, or field calibration.""", json_schema_extra = { "linkml_meta": {'alias': 'calibration_location', 'domain_of': ['Calibration']} })
-    technique_description: str = Field(default=..., title="Calibration technique description", description="""Details of the calibration technique used.""", json_schema_extra = { "linkml_meta": {'alias': 'technique_description', 'domain_of': ['Calibration']} })
-    method_reference: Optional[str] = Field(default=None, title="Calibration method reference", description="""Citation or reference for the calibration method.""", json_schema_extra = { "linkml_meta": {'alias': 'method_reference', 'domain_of': ['Calibration', 'InSituVariable']} })
-    frequency: Optional[str] = Field(default=None, title="Frequency of calibration", description="""How often the instrument was calibrated.""", json_schema_extra = { "linkml_meta": {'alias': 'frequency', 'domain_of': ['Calibration']} })
-    last_calibration_date: Optional[datetime ] = Field(default=None, title="Last calibration date (UTC)", description="""Date and time of most recent calibration in UTC.""", json_schema_extra = { "linkml_meta": {'alias': 'last_calibration_date', 'domain_of': ['Calibration']} })
-    calibration_certificates: Optional[str] = Field(default=None, title="Calibration certificate information", description="""Information about calibration certificates. Ideally, the certificate should be made available in a PDF file with filename listed here.""", json_schema_extra = { "linkml_meta": {'alias': 'calibration_certificates', 'domain_of': ['Calibration']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({"from_schema": "Calibration"})
+
+    calibration_location: Optional[CalibrationLocation] = Field(
+        default=None,
+        title="Calibration location",
+        description="""Factory calibration, lab calibration, or field calibration.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "calibration_location",
+                "domain_of": ["Calibration"],
+            }
+        },
+    )
+    technique_description: str = Field(
+        default=...,
+        title="Calibration technique description",
+        description="""Details of the calibration technique used.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "technique_description",
+                "domain_of": ["Calibration"],
+            }
+        },
+    )
+    method_reference: Optional[str] = Field(
+        default=None,
+        title="Calibration method reference",
+        description="""Citation or reference for the calibration method.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "method_reference",
+                "domain_of": ["Calibration", "InSituVariable"],
+            }
+        },
+    )
+    frequency: Optional[str] = Field(
+        default=None,
+        title="Frequency of calibration",
+        description="""How often the instrument was calibrated.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "frequency", "domain_of": ["Calibration"]}
+        },
+    )
+    last_calibration_date: Optional[datetime] = Field(
+        default=None,
+        title="Last calibration date (UTC)",
+        description="""Date and time of most recent calibration in UTC.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "last_calibration_date",
+                "domain_of": ["Calibration"],
+            }
+        },
+    )
+    calibration_certificates: Optional[str] = Field(
+        default=None,
+        title="Calibration certificate information",
+        description="""Information about calibration certificates. Ideally, the certificate should be made available in a PDF file with filename listed here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "calibration_certificates",
+                "domain_of": ["Calibration"],
+            }
+        },
+    )
 
 
 class CRMCalibration(Calibration):
     """
     Calibration using Certified Reference Materials, used for DIC and TA instruments.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Calibration'})
 
-    crm_manufacturer: str = Field(default=..., title="CRM manufacturer", description="""Manufacturer of the Certified Reference Material (e.g., Scripps, JAMSTEC).""", json_schema_extra = { "linkml_meta": {'alias': 'crm_manufacturer', 'domain_of': ['CRMCalibration']} })
-    crm_batch_number: str = Field(default=..., title="CRM batch number", description="""Batch number of the Certified Reference Material.""", json_schema_extra = { "linkml_meta": {'alias': 'crm_batch_number', 'domain_of': ['CRMCalibration']} })
-    calibration_location: Optional[CalibrationLocation] = Field(default=None, title="Calibration location", description="""Factory calibration, lab calibration, or field calibration.""", json_schema_extra = { "linkml_meta": {'alias': 'calibration_location', 'domain_of': ['Calibration']} })
-    technique_description: str = Field(default=..., title="Calibration technique description", description="""Details of the calibration technique used.""", json_schema_extra = { "linkml_meta": {'alias': 'technique_description', 'domain_of': ['Calibration']} })
-    method_reference: Optional[str] = Field(default=None, title="Calibration method reference", description="""Citation or reference for the calibration method.""", json_schema_extra = { "linkml_meta": {'alias': 'method_reference', 'domain_of': ['Calibration', 'InSituVariable']} })
-    frequency: Optional[str] = Field(default=None, title="Frequency of calibration", description="""How often the instrument was calibrated.""", json_schema_extra = { "linkml_meta": {'alias': 'frequency', 'domain_of': ['Calibration']} })
-    last_calibration_date: Optional[datetime ] = Field(default=None, title="Last calibration date (UTC)", description="""Date and time of most recent calibration in UTC.""", json_schema_extra = { "linkml_meta": {'alias': 'last_calibration_date', 'domain_of': ['Calibration']} })
-    calibration_certificates: Optional[str] = Field(default=None, title="Calibration certificate information", description="""Information about calibration certificates. Ideally, the certificate should be made available in a PDF file with filename listed here.""", json_schema_extra = { "linkml_meta": {'alias': 'calibration_certificates', 'domain_of': ['Calibration']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({"from_schema": "Calibration"})
+
+    crm_manufacturer: str = Field(
+        default=...,
+        title="CRM manufacturer",
+        description="""Manufacturer of the Certified Reference Material (e.g., Scripps, JAMSTEC).""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "crm_manufacturer",
+                "domain_of": ["CRMCalibration"],
+            }
+        },
+    )
+    crm_batch_number: str = Field(
+        default=...,
+        title="CRM batch number",
+        description="""Batch number of the Certified Reference Material.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "crm_batch_number",
+                "domain_of": ["CRMCalibration"],
+            }
+        },
+    )
+    calibration_location: Optional[CalibrationLocation] = Field(
+        default=None,
+        title="Calibration location",
+        description="""Factory calibration, lab calibration, or field calibration.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "calibration_location",
+                "domain_of": ["Calibration"],
+            }
+        },
+    )
+    technique_description: str = Field(
+        default=...,
+        title="Calibration technique description",
+        description="""Details of the calibration technique used.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "technique_description",
+                "domain_of": ["Calibration"],
+            }
+        },
+    )
+    method_reference: Optional[str] = Field(
+        default=None,
+        title="Calibration method reference",
+        description="""Citation or reference for the calibration method.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "method_reference",
+                "domain_of": ["Calibration", "InSituVariable"],
+            }
+        },
+    )
+    frequency: Optional[str] = Field(
+        default=None,
+        title="Frequency of calibration",
+        description="""How often the instrument was calibrated.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "frequency", "domain_of": ["Calibration"]}
+        },
+    )
+    last_calibration_date: Optional[datetime] = Field(
+        default=None,
+        title="Last calibration date (UTC)",
+        description="""Date and time of most recent calibration in UTC.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "last_calibration_date",
+                "domain_of": ["Calibration"],
+            }
+        },
+    )
+    calibration_certificates: Optional[str] = Field(
+        default=None,
+        title="Calibration certificate information",
+        description="""Information about calibration certificates. Ideally, the certificate should be made available in a PDF file with filename listed here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "calibration_certificates",
+                "domain_of": ["Calibration"],
+            }
+        },
+    )
 
 
 class PHCalibration(Calibration):
     """
     pH instrument calibration with dye information.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Calibration'})
 
-    calibration_temperature: Optional[str] = Field(default=None, title="Calibration temperature", description="""Temperature at which calibration was performed.""", json_schema_extra = { "linkml_meta": {'alias': 'calibration_temperature',
-         'domain_of': ['pHCalibration', 'DiscreteCO2Calibration']} })
-    dye_type_and_manufacturer: Optional[str] = Field(default=None, title="Type of dye and manufacturer information", description="""Type of indicator dye and any detailed information about it, e.g., its manufacturer.""", json_schema_extra = { "linkml_meta": {'alias': 'dye_type_and_manufacturer', 'domain_of': ['pHCalibration']} })
-    dye_purified: Optional[bool] = Field(default=None, title="Dye purified", description="""Whether the dye has been purified.""", json_schema_extra = { "linkml_meta": {'alias': 'dye_purified', 'domain_of': ['pHCalibration']} })
-    correction_for_unpurified_dye: Optional[str] = Field(default=None, title="Correction for unpurified dye", description="""Correction method applied if dye was not purified.""", json_schema_extra = { "linkml_meta": {'alias': 'correction_for_unpurified_dye', 'domain_of': ['pHCalibration']} })
-    dye_correction_method: Optional[str] = Field(default=None, title="Dye correction method", description="""Method used to correct for dye effects.""", json_schema_extra = { "linkml_meta": {'alias': 'dye_correction_method', 'domain_of': ['pHCalibration']} })
-    ph_of_standards: Optional[str] = Field(default=None, title="pH of standards", description="""pH values of the calibration standards used.""", json_schema_extra = { "linkml_meta": {'alias': 'ph_of_standards', 'domain_of': ['pHCalibration']} })
-    calibration_location: Optional[CalibrationLocation] = Field(default=None, title="Calibration location", description="""Factory calibration, lab calibration, or field calibration.""", json_schema_extra = { "linkml_meta": {'alias': 'calibration_location', 'domain_of': ['Calibration']} })
-    technique_description: str = Field(default=..., title="Calibration technique description", description="""Details of the calibration technique used.""", json_schema_extra = { "linkml_meta": {'alias': 'technique_description', 'domain_of': ['Calibration']} })
-    method_reference: Optional[str] = Field(default=None, title="Calibration method reference", description="""Citation or reference for the calibration method.""", json_schema_extra = { "linkml_meta": {'alias': 'method_reference', 'domain_of': ['Calibration', 'InSituVariable']} })
-    frequency: Optional[str] = Field(default=None, title="Frequency of calibration", description="""How often the instrument was calibrated.""", json_schema_extra = { "linkml_meta": {'alias': 'frequency', 'domain_of': ['Calibration']} })
-    last_calibration_date: Optional[datetime ] = Field(default=None, title="Last calibration date (UTC)", description="""Date and time of most recent calibration in UTC.""", json_schema_extra = { "linkml_meta": {'alias': 'last_calibration_date', 'domain_of': ['Calibration']} })
-    calibration_certificates: Optional[str] = Field(default=None, title="Calibration certificate information", description="""Information about calibration certificates. Ideally, the certificate should be made available in a PDF file with filename listed here.""", json_schema_extra = { "linkml_meta": {'alias': 'calibration_certificates', 'domain_of': ['Calibration']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({"from_schema": "Calibration"})
+
+    calibration_temperature: Optional[str] = Field(
+        default=None,
+        title="Calibration temperature",
+        description="""Temperature at which calibration was performed.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "calibration_temperature",
+                "domain_of": ["pHCalibration", "DiscreteCO2Calibration"],
+            }
+        },
+    )
+    dye_type_and_manufacturer: Optional[str] = Field(
+        default=None,
+        title="Type of dye and manufacturer information",
+        description="""Type of indicator dye and any detailed information about it, e.g., its manufacturer.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dye_type_and_manufacturer",
+                "domain_of": ["pHCalibration"],
+            }
+        },
+    )
+    dye_purified: Optional[bool] = Field(
+        default=None,
+        title="Dye purified",
+        description="""Whether the dye has been purified.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "dye_purified", "domain_of": ["pHCalibration"]}
+        },
+    )
+    correction_for_unpurified_dye: Optional[str] = Field(
+        default=None,
+        title="Correction for unpurified dye",
+        description="""Correction method applied if dye was not purified.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "correction_for_unpurified_dye",
+                "domain_of": ["pHCalibration"],
+            }
+        },
+    )
+    dye_correction_method: Optional[str] = Field(
+        default=None,
+        title="Dye correction method",
+        description="""Method used to correct for dye effects.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dye_correction_method",
+                "domain_of": ["pHCalibration"],
+            }
+        },
+    )
+    ph_of_standards: Optional[str] = Field(
+        default=None,
+        title="pH of standards",
+        description="""pH values of the calibration standards used.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "ph_of_standards", "domain_of": ["pHCalibration"]}
+        },
+    )
+    calibration_location: Optional[CalibrationLocation] = Field(
+        default=None,
+        title="Calibration location",
+        description="""Factory calibration, lab calibration, or field calibration.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "calibration_location",
+                "domain_of": ["Calibration"],
+            }
+        },
+    )
+    technique_description: str = Field(
+        default=...,
+        title="Calibration technique description",
+        description="""Details of the calibration technique used.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "technique_description",
+                "domain_of": ["Calibration"],
+            }
+        },
+    )
+    method_reference: Optional[str] = Field(
+        default=None,
+        title="Calibration method reference",
+        description="""Citation or reference for the calibration method.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "method_reference",
+                "domain_of": ["Calibration", "InSituVariable"],
+            }
+        },
+    )
+    frequency: Optional[str] = Field(
+        default=None,
+        title="Frequency of calibration",
+        description="""How often the instrument was calibrated.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "frequency", "domain_of": ["Calibration"]}
+        },
+    )
+    last_calibration_date: Optional[datetime] = Field(
+        default=None,
+        title="Last calibration date (UTC)",
+        description="""Date and time of most recent calibration in UTC.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "last_calibration_date",
+                "domain_of": ["Calibration"],
+            }
+        },
+    )
+    calibration_certificates: Optional[str] = Field(
+        default=None,
+        title="Calibration certificate information",
+        description="""Information about calibration certificates. Ideally, the certificate should be made available in a PDF file with filename listed here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "calibration_certificates",
+                "domain_of": ["Calibration"],
+            }
+        },
+    )
 
 
 class CO2Calibration(Calibration):
     """
     Base CO2 gas detector calibration with standard gas information.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Calibration'})
 
-    standard_gas_info: Optional[StandardGas] = Field(default=None, title="Standard gas information", description="""Standard gases used for calibration.""", json_schema_extra = { "linkml_meta": {'alias': 'standard_gas_info',
-         'domain_of': ['CO2Calibration', 'ContinuousCO2Calibration']} })
-    calibration_location: Optional[CalibrationLocation] = Field(default=None, title="Calibration location", description="""Factory calibration, lab calibration, or field calibration.""", json_schema_extra = { "linkml_meta": {'alias': 'calibration_location', 'domain_of': ['Calibration']} })
-    technique_description: str = Field(default=..., title="Calibration technique description", description="""Details of the calibration technique used.""", json_schema_extra = { "linkml_meta": {'alias': 'technique_description', 'domain_of': ['Calibration']} })
-    method_reference: Optional[str] = Field(default=None, title="Calibration method reference", description="""Citation or reference for the calibration method.""", json_schema_extra = { "linkml_meta": {'alias': 'method_reference', 'domain_of': ['Calibration', 'InSituVariable']} })
-    frequency: Optional[str] = Field(default=None, title="Frequency of calibration", description="""How often the instrument was calibrated.""", json_schema_extra = { "linkml_meta": {'alias': 'frequency', 'domain_of': ['Calibration']} })
-    last_calibration_date: Optional[datetime ] = Field(default=None, title="Last calibration date (UTC)", description="""Date and time of most recent calibration in UTC.""", json_schema_extra = { "linkml_meta": {'alias': 'last_calibration_date', 'domain_of': ['Calibration']} })
-    calibration_certificates: Optional[str] = Field(default=None, title="Calibration certificate information", description="""Information about calibration certificates. Ideally, the certificate should be made available in a PDF file with filename listed here.""", json_schema_extra = { "linkml_meta": {'alias': 'calibration_certificates', 'domain_of': ['Calibration']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({"from_schema": "Calibration"})
+
+    standard_gas_info: Optional[StandardGas] = Field(
+        default=None,
+        title="Standard gas information",
+        description="""Standard gases used for calibration.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "standard_gas_info",
+                "domain_of": ["CO2Calibration", "ContinuousCO2Calibration"],
+            }
+        },
+    )
+    calibration_location: Optional[CalibrationLocation] = Field(
+        default=None,
+        title="Calibration location",
+        description="""Factory calibration, lab calibration, or field calibration.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "calibration_location",
+                "domain_of": ["Calibration"],
+            }
+        },
+    )
+    technique_description: str = Field(
+        default=...,
+        title="Calibration technique description",
+        description="""Details of the calibration technique used.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "technique_description",
+                "domain_of": ["Calibration"],
+            }
+        },
+    )
+    method_reference: Optional[str] = Field(
+        default=None,
+        title="Calibration method reference",
+        description="""Citation or reference for the calibration method.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "method_reference",
+                "domain_of": ["Calibration", "InSituVariable"],
+            }
+        },
+    )
+    frequency: Optional[str] = Field(
+        default=None,
+        title="Frequency of calibration",
+        description="""How often the instrument was calibrated.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "frequency", "domain_of": ["Calibration"]}
+        },
+    )
+    last_calibration_date: Optional[datetime] = Field(
+        default=None,
+        title="Last calibration date (UTC)",
+        description="""Date and time of most recent calibration in UTC.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "last_calibration_date",
+                "domain_of": ["Calibration"],
+            }
+        },
+    )
+    calibration_certificates: Optional[str] = Field(
+        default=None,
+        title="Calibration certificate information",
+        description="""Information about calibration certificates. Ideally, the certificate should be made available in a PDF file with filename listed here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "calibration_certificates",
+                "domain_of": ["Calibration"],
+            }
+        },
+    )
 
 
 class DiscreteCO2Calibration(CO2Calibration):
     """
     CO2 calibration for discrete measurements, with calibration temperature.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Calibration'})
 
-    calibration_temperature: Optional[str] = Field(default=None, title="Calibration temperature", description="""Temperature at which calibration was performed.""", json_schema_extra = { "linkml_meta": {'alias': 'calibration_temperature',
-         'domain_of': ['pHCalibration', 'DiscreteCO2Calibration']} })
-    standard_gas_info: Optional[StandardGas] = Field(default=None, title="Standard gas information", description="""Standard gases used for calibration.""", json_schema_extra = { "linkml_meta": {'alias': 'standard_gas_info',
-         'domain_of': ['CO2Calibration', 'ContinuousCO2Calibration']} })
-    calibration_location: Optional[CalibrationLocation] = Field(default=None, title="Calibration location", description="""Factory calibration, lab calibration, or field calibration.""", json_schema_extra = { "linkml_meta": {'alias': 'calibration_location', 'domain_of': ['Calibration']} })
-    technique_description: str = Field(default=..., title="Calibration technique description", description="""Details of the calibration technique used.""", json_schema_extra = { "linkml_meta": {'alias': 'technique_description', 'domain_of': ['Calibration']} })
-    method_reference: Optional[str] = Field(default=None, title="Calibration method reference", description="""Citation or reference for the calibration method.""", json_schema_extra = { "linkml_meta": {'alias': 'method_reference', 'domain_of': ['Calibration', 'InSituVariable']} })
-    frequency: Optional[str] = Field(default=None, title="Frequency of calibration", description="""How often the instrument was calibrated.""", json_schema_extra = { "linkml_meta": {'alias': 'frequency', 'domain_of': ['Calibration']} })
-    last_calibration_date: Optional[datetime ] = Field(default=None, title="Last calibration date (UTC)", description="""Date and time of most recent calibration in UTC.""", json_schema_extra = { "linkml_meta": {'alias': 'last_calibration_date', 'domain_of': ['Calibration']} })
-    calibration_certificates: Optional[str] = Field(default=None, title="Calibration certificate information", description="""Information about calibration certificates. Ideally, the certificate should be made available in a PDF file with filename listed here.""", json_schema_extra = { "linkml_meta": {'alias': 'calibration_certificates', 'domain_of': ['Calibration']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({"from_schema": "Calibration"})
+
+    calibration_temperature: Optional[str] = Field(
+        default=None,
+        title="Calibration temperature",
+        description="""Temperature at which calibration was performed.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "calibration_temperature",
+                "domain_of": ["pHCalibration", "DiscreteCO2Calibration"],
+            }
+        },
+    )
+    standard_gas_info: Optional[StandardGas] = Field(
+        default=None,
+        title="Standard gas information",
+        description="""Standard gases used for calibration.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "standard_gas_info",
+                "domain_of": ["CO2Calibration", "ContinuousCO2Calibration"],
+            }
+        },
+    )
+    calibration_location: Optional[CalibrationLocation] = Field(
+        default=None,
+        title="Calibration location",
+        description="""Factory calibration, lab calibration, or field calibration.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "calibration_location",
+                "domain_of": ["Calibration"],
+            }
+        },
+    )
+    technique_description: str = Field(
+        default=...,
+        title="Calibration technique description",
+        description="""Details of the calibration technique used.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "technique_description",
+                "domain_of": ["Calibration"],
+            }
+        },
+    )
+    method_reference: Optional[str] = Field(
+        default=None,
+        title="Calibration method reference",
+        description="""Citation or reference for the calibration method.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "method_reference",
+                "domain_of": ["Calibration", "InSituVariable"],
+            }
+        },
+    )
+    frequency: Optional[str] = Field(
+        default=None,
+        title="Frequency of calibration",
+        description="""How often the instrument was calibrated.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "frequency", "domain_of": ["Calibration"]}
+        },
+    )
+    last_calibration_date: Optional[datetime] = Field(
+        default=None,
+        title="Last calibration date (UTC)",
+        description="""Date and time of most recent calibration in UTC.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "last_calibration_date",
+                "domain_of": ["Calibration"],
+            }
+        },
+    )
+    calibration_certificates: Optional[str] = Field(
+        default=None,
+        title="Calibration certificate information",
+        description="""Information about calibration certificates. Ideally, the certificate should be made available in a PDF file with filename listed here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "calibration_certificates",
+                "domain_of": ["Calibration"],
+            }
+        },
+    )
 
 
 class ContinuousCO2Calibration(CO2Calibration):
     """
     CO2 calibration for continuous measurements, with extended standard gas details.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Calibration'})
 
-    standard_gas_info: Optional[ContinuousStandardGas] = Field(default=None, title="Standard gas information", description="""Standard gases used for calibration.""", json_schema_extra = { "linkml_meta": {'alias': 'standard_gas_info',
-         'domain_of': ['CO2Calibration', 'ContinuousCO2Calibration']} })
-    calibration_location: Optional[CalibrationLocation] = Field(default=None, title="Calibration location", description="""Factory calibration, lab calibration, or field calibration.""", json_schema_extra = { "linkml_meta": {'alias': 'calibration_location', 'domain_of': ['Calibration']} })
-    technique_description: str = Field(default=..., title="Calibration technique description", description="""Details of the calibration technique used.""", json_schema_extra = { "linkml_meta": {'alias': 'technique_description', 'domain_of': ['Calibration']} })
-    method_reference: Optional[str] = Field(default=None, title="Calibration method reference", description="""Citation or reference for the calibration method.""", json_schema_extra = { "linkml_meta": {'alias': 'method_reference', 'domain_of': ['Calibration', 'InSituVariable']} })
-    frequency: Optional[str] = Field(default=None, title="Frequency of calibration", description="""How often the instrument was calibrated.""", json_schema_extra = { "linkml_meta": {'alias': 'frequency', 'domain_of': ['Calibration']} })
-    last_calibration_date: Optional[datetime ] = Field(default=None, title="Last calibration date (UTC)", description="""Date and time of most recent calibration in UTC.""", json_schema_extra = { "linkml_meta": {'alias': 'last_calibration_date', 'domain_of': ['Calibration']} })
-    calibration_certificates: Optional[str] = Field(default=None, title="Calibration certificate information", description="""Information about calibration certificates. Ideally, the certificate should be made available in a PDF file with filename listed here.""", json_schema_extra = { "linkml_meta": {'alias': 'calibration_certificates', 'domain_of': ['Calibration']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({"from_schema": "Calibration"})
+
+    standard_gas_info: Optional[ContinuousStandardGas] = Field(
+        default=None,
+        title="Standard gas information",
+        description="""Standard gases used for calibration.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "standard_gas_info",
+                "domain_of": ["CO2Calibration", "ContinuousCO2Calibration"],
+            }
+        },
+    )
+    calibration_location: Optional[CalibrationLocation] = Field(
+        default=None,
+        title="Calibration location",
+        description="""Factory calibration, lab calibration, or field calibration.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "calibration_location",
+                "domain_of": ["Calibration"],
+            }
+        },
+    )
+    technique_description: str = Field(
+        default=...,
+        title="Calibration technique description",
+        description="""Details of the calibration technique used.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "technique_description",
+                "domain_of": ["Calibration"],
+            }
+        },
+    )
+    method_reference: Optional[str] = Field(
+        default=None,
+        title="Calibration method reference",
+        description="""Citation or reference for the calibration method.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "method_reference",
+                "domain_of": ["Calibration", "InSituVariable"],
+            }
+        },
+    )
+    frequency: Optional[str] = Field(
+        default=None,
+        title="Frequency of calibration",
+        description="""How often the instrument was calibrated.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "frequency", "domain_of": ["Calibration"]}
+        },
+    )
+    last_calibration_date: Optional[datetime] = Field(
+        default=None,
+        title="Last calibration date (UTC)",
+        description="""Date and time of most recent calibration in UTC.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "last_calibration_date",
+                "domain_of": ["Calibration"],
+            }
+        },
+    )
+    calibration_certificates: Optional[str] = Field(
+        default=None,
+        title="Calibration certificate information",
+        description="""Information about calibration certificates. Ideally, the certificate should be made available in a PDF file with filename listed here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "calibration_certificates",
+                "domain_of": ["Calibration"],
+            }
+        },
+    )
 
 
 class StandardGas(ConfiguredBaseModel):
     """
     Standard gas used for CO2 calibration.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Calibration'})
 
-    manufacturer: Optional[str] = Field(default=None, title="Standard Gas Manufacturer", description="""Manufacturer of the standard gas.""", json_schema_extra = { "linkml_meta": {'alias': 'manufacturer',
-         'domain_of': ['StandardGas', 'AnalyzingInstrument', 'GenericSensor']} })
-    concentration: Optional[str] = Field(default=None, title="Standard Gas Concentration", description="""Concentrations of the CO2 standard gases that are used to calibrate the CO2 sensor, e.g., 260, 350, 510ppm.""", json_schema_extra = { "linkml_meta": {'alias': 'concentration', 'domain_of': ['StandardGas']} })
-    uncertainty: Optional[str] = Field(default=None, title="Standard Gas Uncertainty", description="""Uncertainties of the CO2 standard gas, e.g., 0.5%.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty',
-         'domain_of': ['StandardGas', 'CO2GasDetector', 'QCFields']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({"from_schema": "Calibration"})
+
+    manufacturer: Optional[str] = Field(
+        default=None,
+        title="Standard Gas Manufacturer",
+        description="""Manufacturer of the standard gas.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "manufacturer",
+                "domain_of": ["StandardGas", "AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
+    concentration: Optional[str] = Field(
+        default=None,
+        title="Standard Gas Concentration",
+        description="""Concentrations of the CO2 standard gases that are used to calibrate the CO2 sensor, e.g., 260, 350, 510ppm.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "concentration", "domain_of": ["StandardGas"]}
+        },
+    )
+    uncertainty: Optional[str] = Field(
+        default=None,
+        title="Standard Gas Uncertainty",
+        description="""Uncertainties of the CO2 standard gas, e.g., 0.5%.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "uncertainty",
+                "domain_of": ["StandardGas", "CO2GasDetector", "QCFields"],
+            }
+        },
+    )
 
 
 class ContinuousStandardGas(StandardGas):
     """
     Standard gas used for continuous CO2 calibration, with additional traceability and count information.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Calibration'})
 
-    number_of_nonzero_standards: Optional[int] = Field(default=None, title="Number of non-zero gas standards", description="""How many non-zero gas standards were used for the calibration.""", json_schema_extra = { "linkml_meta": {'alias': 'number_of_nonzero_standards', 'domain_of': ['ContinuousStandardGas']} })
-    traceability_to_wmo_standards: Optional[str] = Field(default=None, title="Traceability to WMO standards", description="""Information about traceability of standard gases to WMO standards.""", json_schema_extra = { "linkml_meta": {'alias': 'traceability_to_wmo_standards',
-         'domain_of': ['ContinuousStandardGas']} })
-    manufacturer: Optional[str] = Field(default=None, title="Standard Gas Manufacturer", description="""Manufacturer of the standard gas.""", json_schema_extra = { "linkml_meta": {'alias': 'manufacturer',
-         'domain_of': ['StandardGas', 'AnalyzingInstrument', 'GenericSensor']} })
-    concentration: Optional[str] = Field(default=None, title="Standard Gas Concentration", description="""Concentrations of the CO2 standard gases that are used to calibrate the CO2 sensor, e.g., 260, 350, 510ppm.""", json_schema_extra = { "linkml_meta": {'alias': 'concentration', 'domain_of': ['StandardGas']} })
-    uncertainty: Optional[str] = Field(default=None, title="Standard Gas Uncertainty", description="""Uncertainties of the CO2 standard gas, e.g., 0.5%.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty',
-         'domain_of': ['StandardGas', 'CO2GasDetector', 'QCFields']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({"from_schema": "Calibration"})
+
+    number_of_nonzero_standards: Optional[int] = Field(
+        default=None,
+        title="Number of non-zero gas standards",
+        description="""How many non-zero gas standards were used for the calibration.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "number_of_nonzero_standards",
+                "domain_of": ["ContinuousStandardGas"],
+            }
+        },
+    )
+    traceability_to_wmo_standards: Optional[str] = Field(
+        default=None,
+        title="Traceability to WMO standards",
+        description="""Information about traceability of standard gases to WMO standards.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "traceability_to_wmo_standards",
+                "domain_of": ["ContinuousStandardGas"],
+            }
+        },
+    )
+    manufacturer: Optional[str] = Field(
+        default=None,
+        title="Standard Gas Manufacturer",
+        description="""Manufacturer of the standard gas.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "manufacturer",
+                "domain_of": ["StandardGas", "AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
+    concentration: Optional[str] = Field(
+        default=None,
+        title="Standard Gas Concentration",
+        description="""Concentrations of the CO2 standard gases that are used to calibrate the CO2 sensor, e.g., 260, 350, 510ppm.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "concentration", "domain_of": ["StandardGas"]}
+        },
+    )
+    uncertainty: Optional[str] = Field(
+        default=None,
+        title="Standard Gas Uncertainty",
+        description="""Uncertainties of the CO2 standard gas, e.g., 0.5%.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "uncertainty",
+                "domain_of": ["StandardGas", "CO2GasDetector", "QCFields"],
+            }
+        },
+    )
 
 
 class AnalyzingInstrument(ConfiguredBaseModel):
     """
     Base class for scientific instruments used in analyzing samples for measurement.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Instrument'})
 
-    manufacturer: Optional[str] = Field(default=None, title="Manufacturer", description="""Manufacturer name of the instrument.""", json_schema_extra = { "linkml_meta": {'alias': 'manufacturer',
-         'domain_of': ['StandardGas', 'AnalyzingInstrument', 'GenericSensor']} })
-    model: Optional[str] = Field(default=None, title="Model", description="""Model number or name of the instrument.""", json_schema_extra = { "linkml_meta": {'alias': 'model', 'domain_of': ['AnalyzingInstrument', 'GenericSensor']} })
-    instrument_type: AnalyzingInstrumentType = Field(default=..., title="Instrument type", description="""Type of instrument used to analyze samples or measure continuously.""", json_schema_extra = { "linkml_meta": {'alias': 'instrument_type', 'domain_of': ['AnalyzingInstrument']} })
-    instrument_type_custom: Optional[str] = Field(default=None, title="Instrument type (custom)", json_schema_extra = { "linkml_meta": {'alias': 'instrument_type_custom', 'domain_of': ['AnalyzingInstrument']} })
-    serial_number: Optional[str] = Field(default=None, title="Serial number", description="""Serial number of the instrument.""", json_schema_extra = { "linkml_meta": {'alias': 'serial_number',
-         'domain_of': ['AnalyzingInstrument', 'GenericSensor']} })
-    precision: Optional[str] = Field(default=None, title="Precision", description="""Precision of the instrument measurements.""", json_schema_extra = { "linkml_meta": {'alias': 'precision', 'domain_of': ['AnalyzingInstrument', 'GenericSensor']} })
-    accuracy: str = Field(default=..., title="Accuracy", description="""Accuracy of the instrument measurements.""", json_schema_extra = { "linkml_meta": {'alias': 'accuracy', 'domain_of': ['AnalyzingInstrument', 'GenericSensor']} })
-    calibration: Optional[Calibration] = Field(default=None, title="Calibration", description="""Calibration information for this instrument.""", json_schema_extra = { "linkml_meta": {'alias': 'calibration',
-         'domain_of': ['AnalyzingInstrument',
-                       'PHInstrument',
-                       'CRMInstrument',
-                       'CO2GasDetector',
-                       'ContinuousCO2GasDetector',
-                       'GenericSensor']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({"from_schema": "Instrument"})
+
+    manufacturer: Optional[str] = Field(
+        default=None,
+        title="Manufacturer",
+        description="""Manufacturer name of the instrument.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "manufacturer",
+                "domain_of": ["StandardGas", "AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
+    model: Optional[str] = Field(
+        default=None,
+        title="Model",
+        description="""Model number or name of the instrument.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "model",
+                "domain_of": ["AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
+    instrument_type: AnalyzingInstrumentType = Field(
+        default=...,
+        title="Instrument type",
+        description="""Type of instrument used to analyze samples or measure continuously.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "instrument_type",
+                "domain_of": ["AnalyzingInstrument"],
+            }
+        },
+    )
+    instrument_type_custom: Optional[str] = Field(
+        default=None,
+        title="Instrument type (custom)",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "instrument_type_custom",
+                "domain_of": ["AnalyzingInstrument"],
+            }
+        },
+    )
+    serial_number: Optional[str] = Field(
+        default=None,
+        title="Serial number",
+        description="""Serial number of the instrument.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "serial_number",
+                "domain_of": ["AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
+    precision: Optional[str] = Field(
+        default=None,
+        title="Precision",
+        description="""Precision of the instrument measurements.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "precision",
+                "domain_of": ["AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
+    accuracy: str = Field(
+        default=...,
+        title="Accuracy",
+        description="""Accuracy of the instrument measurements.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "accuracy",
+                "domain_of": ["AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
+    calibration: Optional[Calibration] = Field(
+        default=None,
+        title="Calibration",
+        description="""Calibration information for this instrument.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "calibration",
+                "domain_of": [
+                    "AnalyzingInstrument",
+                    "PHInstrument",
+                    "CRMInstrument",
+                    "CO2GasDetector",
+                    "ContinuousCO2GasDetector",
+                    "GenericSensor",
+                ],
+            }
+        },
+    )
 
 
 class PHInstrument(AnalyzingInstrument):
     """
     pH measurement instrument with dye-based calibration.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Instrument'})
 
-    calibration: PHCalibration = Field(default=..., title="Calibration", description="""pH calibration information for this instrument.""", json_schema_extra = { "linkml_meta": {'alias': 'calibration',
-         'domain_of': ['AnalyzingInstrument',
-                       'PHInstrument',
-                       'CRMInstrument',
-                       'CO2GasDetector',
-                       'ContinuousCO2GasDetector',
-                       'GenericSensor']} })
-    manufacturer: Optional[str] = Field(default=None, title="Manufacturer", description="""Manufacturer name of the instrument.""", json_schema_extra = { "linkml_meta": {'alias': 'manufacturer',
-         'domain_of': ['StandardGas', 'AnalyzingInstrument', 'GenericSensor']} })
-    model: Optional[str] = Field(default=None, title="Model", description="""Model number or name of the instrument.""", json_schema_extra = { "linkml_meta": {'alias': 'model', 'domain_of': ['AnalyzingInstrument', 'GenericSensor']} })
-    instrument_type: AnalyzingInstrumentType = Field(default=..., title="Instrument type", description="""Type of instrument used to analyze samples or measure continuously.""", json_schema_extra = { "linkml_meta": {'alias': 'instrument_type', 'domain_of': ['AnalyzingInstrument']} })
-    instrument_type_custom: Optional[str] = Field(default=None, title="Instrument type (custom)", json_schema_extra = { "linkml_meta": {'alias': 'instrument_type_custom', 'domain_of': ['AnalyzingInstrument']} })
-    serial_number: Optional[str] = Field(default=None, title="Serial number", description="""Serial number of the instrument.""", json_schema_extra = { "linkml_meta": {'alias': 'serial_number',
-         'domain_of': ['AnalyzingInstrument', 'GenericSensor']} })
-    precision: Optional[str] = Field(default=None, title="Precision", description="""Precision of the instrument measurements.""", json_schema_extra = { "linkml_meta": {'alias': 'precision', 'domain_of': ['AnalyzingInstrument', 'GenericSensor']} })
-    accuracy: str = Field(default=..., title="Accuracy", description="""Accuracy of the instrument measurements.""", json_schema_extra = { "linkml_meta": {'alias': 'accuracy', 'domain_of': ['AnalyzingInstrument', 'GenericSensor']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({"from_schema": "Instrument"})
+
+    calibration: PHCalibration = Field(
+        default=...,
+        title="Calibration",
+        description="""pH calibration information for this instrument.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "calibration",
+                "domain_of": [
+                    "AnalyzingInstrument",
+                    "PHInstrument",
+                    "CRMInstrument",
+                    "CO2GasDetector",
+                    "ContinuousCO2GasDetector",
+                    "GenericSensor",
+                ],
+            }
+        },
+    )
+    manufacturer: Optional[str] = Field(
+        default=None,
+        title="Manufacturer",
+        description="""Manufacturer name of the instrument.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "manufacturer",
+                "domain_of": ["StandardGas", "AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
+    model: Optional[str] = Field(
+        default=None,
+        title="Model",
+        description="""Model number or name of the instrument.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "model",
+                "domain_of": ["AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
+    instrument_type: AnalyzingInstrumentType = Field(
+        default=...,
+        title="Instrument type",
+        description="""Type of instrument used to analyze samples or measure continuously.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "instrument_type",
+                "domain_of": ["AnalyzingInstrument"],
+            }
+        },
+    )
+    instrument_type_custom: Optional[str] = Field(
+        default=None,
+        title="Instrument type (custom)",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "instrument_type_custom",
+                "domain_of": ["AnalyzingInstrument"],
+            }
+        },
+    )
+    serial_number: Optional[str] = Field(
+        default=None,
+        title="Serial number",
+        description="""Serial number of the instrument.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "serial_number",
+                "domain_of": ["AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
+    precision: Optional[str] = Field(
+        default=None,
+        title="Precision",
+        description="""Precision of the instrument measurements.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "precision",
+                "domain_of": ["AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
+    accuracy: str = Field(
+        default=...,
+        title="Accuracy",
+        description="""Accuracy of the instrument measurements.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "accuracy",
+                "domain_of": ["AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
 
 
 class CRMInstrument(AnalyzingInstrument):
     """
     Instrument calibrated with Certified Reference Materials, used for DIC and TA measurements.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Instrument'})
 
-    calibration: CRMCalibration = Field(default=..., title="Calibration", description="""CRM calibration information for this instrument.""", json_schema_extra = { "linkml_meta": {'alias': 'calibration',
-         'domain_of': ['AnalyzingInstrument',
-                       'PHInstrument',
-                       'CRMInstrument',
-                       'CO2GasDetector',
-                       'ContinuousCO2GasDetector',
-                       'GenericSensor']} })
-    manufacturer: Optional[str] = Field(default=None, title="Manufacturer", description="""Manufacturer name of the instrument.""", json_schema_extra = { "linkml_meta": {'alias': 'manufacturer',
-         'domain_of': ['StandardGas', 'AnalyzingInstrument', 'GenericSensor']} })
-    model: Optional[str] = Field(default=None, title="Model", description="""Model number or name of the instrument.""", json_schema_extra = { "linkml_meta": {'alias': 'model', 'domain_of': ['AnalyzingInstrument', 'GenericSensor']} })
-    instrument_type: AnalyzingInstrumentType = Field(default=..., title="Instrument type", description="""Type of instrument used to analyze samples or measure continuously.""", json_schema_extra = { "linkml_meta": {'alias': 'instrument_type', 'domain_of': ['AnalyzingInstrument']} })
-    instrument_type_custom: Optional[str] = Field(default=None, title="Instrument type (custom)", json_schema_extra = { "linkml_meta": {'alias': 'instrument_type_custom', 'domain_of': ['AnalyzingInstrument']} })
-    serial_number: Optional[str] = Field(default=None, title="Serial number", description="""Serial number of the instrument.""", json_schema_extra = { "linkml_meta": {'alias': 'serial_number',
-         'domain_of': ['AnalyzingInstrument', 'GenericSensor']} })
-    precision: Optional[str] = Field(default=None, title="Precision", description="""Precision of the instrument measurements.""", json_schema_extra = { "linkml_meta": {'alias': 'precision', 'domain_of': ['AnalyzingInstrument', 'GenericSensor']} })
-    accuracy: str = Field(default=..., title="Accuracy", description="""Accuracy of the instrument measurements.""", json_schema_extra = { "linkml_meta": {'alias': 'accuracy', 'domain_of': ['AnalyzingInstrument', 'GenericSensor']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({"from_schema": "Instrument"})
+
+    calibration: CRMCalibration = Field(
+        default=...,
+        title="Calibration",
+        description="""CRM calibration information for this instrument.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "calibration",
+                "domain_of": [
+                    "AnalyzingInstrument",
+                    "PHInstrument",
+                    "CRMInstrument",
+                    "CO2GasDetector",
+                    "ContinuousCO2GasDetector",
+                    "GenericSensor",
+                ],
+            }
+        },
+    )
+    manufacturer: Optional[str] = Field(
+        default=None,
+        title="Manufacturer",
+        description="""Manufacturer name of the instrument.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "manufacturer",
+                "domain_of": ["StandardGas", "AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
+    model: Optional[str] = Field(
+        default=None,
+        title="Model",
+        description="""Model number or name of the instrument.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "model",
+                "domain_of": ["AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
+    instrument_type: AnalyzingInstrumentType = Field(
+        default=...,
+        title="Instrument type",
+        description="""Type of instrument used to analyze samples or measure continuously.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "instrument_type",
+                "domain_of": ["AnalyzingInstrument"],
+            }
+        },
+    )
+    instrument_type_custom: Optional[str] = Field(
+        default=None,
+        title="Instrument type (custom)",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "instrument_type_custom",
+                "domain_of": ["AnalyzingInstrument"],
+            }
+        },
+    )
+    serial_number: Optional[str] = Field(
+        default=None,
+        title="Serial number",
+        description="""Serial number of the instrument.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "serial_number",
+                "domain_of": ["AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
+    precision: Optional[str] = Field(
+        default=None,
+        title="Precision",
+        description="""Precision of the instrument measurements.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "precision",
+                "domain_of": ["AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
+    accuracy: str = Field(
+        default=...,
+        title="Accuracy",
+        description="""Accuracy of the instrument measurements.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "accuracy",
+                "domain_of": ["AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
 
 
 class CO2GasDetector(AnalyzingInstrument):
     """
     CO2 gas detector with standard gas calibration.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Instrument',
-         'slot_usage': {'instrument_type': {'equals_string': 'gas_analyzer',
-                                            'name': 'instrument_type',
-                                            'range': 'string'},
-                        'manufacturer': {'description': 'Manufacture of the CO2 sensor',
-                                         'name': 'manufacturer',
-                                         'required': True},
-                        'model': {'description': 'Model number of the CO2 sensor, '
-                                                 'e.g., 6262',
-                                  'name': 'model'}}})
 
-    detector_type: str = Field(default=..., title="Detector Type", description="""Type of the CO2 gas detector (E.g., Infrared)""", json_schema_extra = { "linkml_meta": {'alias': 'detector_type', 'domain_of': ['CO2GasDetector']} })
-    calibration: DiscreteCO2Calibration = Field(default=..., title="Calibration", description="""CO2 calibration information for this instrument.""", json_schema_extra = { "linkml_meta": {'alias': 'calibration',
-         'domain_of': ['AnalyzingInstrument',
-                       'PHInstrument',
-                       'CRMInstrument',
-                       'CO2GasDetector',
-                       'ContinuousCO2GasDetector',
-                       'GenericSensor']} })
-    resolution: Optional[str] = Field(default=None, title="Resolution", description="""Resolution of the CO2 sensor.""", json_schema_extra = { "linkml_meta": {'alias': 'resolution', 'domain_of': ['CO2GasDetector']} })
-    uncertainty: Optional[str] = Field(default=None, title="Uncertainty", description="""Uncertainty of the CO2 sensor.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty',
-         'domain_of': ['StandardGas', 'CO2GasDetector', 'QCFields']} })
-    manufacturer: str = Field(default=..., title="Manufacturer", description="""Manufacture of the CO2 sensor""", json_schema_extra = { "linkml_meta": {'alias': 'manufacturer',
-         'domain_of': ['StandardGas', 'AnalyzingInstrument', 'GenericSensor']} })
-    model: Optional[str] = Field(default=None, title="Model", description="""Model number of the CO2 sensor, e.g., 6262""", json_schema_extra = { "linkml_meta": {'alias': 'model', 'domain_of': ['AnalyzingInstrument', 'GenericSensor']} })
-    instrument_type: Literal["gas_analyzer"] = Field(default=..., title="Instrument type", description="""Type of instrument used to analyze samples or measure continuously.""", json_schema_extra = { "linkml_meta": {'alias': 'instrument_type',
-         'domain_of': ['AnalyzingInstrument'],
-         'equals_string': 'gas_analyzer'} })
-    instrument_type_custom: Optional[str] = Field(default=None, title="Instrument type (custom)", json_schema_extra = { "linkml_meta": {'alias': 'instrument_type_custom', 'domain_of': ['AnalyzingInstrument']} })
-    serial_number: Optional[str] = Field(default=None, title="Serial number", description="""Serial number of the instrument.""", json_schema_extra = { "linkml_meta": {'alias': 'serial_number',
-         'domain_of': ['AnalyzingInstrument', 'GenericSensor']} })
-    precision: Optional[str] = Field(default=None, title="Precision", description="""Precision of the instrument measurements.""", json_schema_extra = { "linkml_meta": {'alias': 'precision', 'domain_of': ['AnalyzingInstrument', 'GenericSensor']} })
-    accuracy: str = Field(default=..., title="Accuracy", description="""Accuracy of the instrument measurements.""", json_schema_extra = { "linkml_meta": {'alias': 'accuracy', 'domain_of': ['AnalyzingInstrument', 'GenericSensor']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "from_schema": "Instrument",
+            "slot_usage": {
+                "instrument_type": {
+                    "equals_string": "gas_analyzer",
+                    "name": "instrument_type",
+                    "range": "string",
+                },
+                "manufacturer": {
+                    "description": "Manufacture of the CO2 sensor",
+                    "name": "manufacturer",
+                    "required": True,
+                },
+                "model": {
+                    "description": "Model number of the CO2 sensor, e.g., 6262",
+                    "name": "model",
+                },
+            },
+        }
+    )
+
+    detector_type: str = Field(
+        default=...,
+        title="Detector Type",
+        description="""Type of the CO2 gas detector (E.g., Infrared)""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "detector_type", "domain_of": ["CO2GasDetector"]}
+        },
+    )
+    calibration: DiscreteCO2Calibration = Field(
+        default=...,
+        title="Calibration",
+        description="""CO2 calibration information for this instrument.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "calibration",
+                "domain_of": [
+                    "AnalyzingInstrument",
+                    "PHInstrument",
+                    "CRMInstrument",
+                    "CO2GasDetector",
+                    "ContinuousCO2GasDetector",
+                    "GenericSensor",
+                ],
+            }
+        },
+    )
+    resolution: Optional[str] = Field(
+        default=None,
+        title="Resolution",
+        description="""Resolution of the CO2 sensor.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "resolution", "domain_of": ["CO2GasDetector"]}
+        },
+    )
+    uncertainty: Optional[str] = Field(
+        default=None,
+        title="Uncertainty",
+        description="""Uncertainty of the CO2 sensor.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "uncertainty",
+                "domain_of": ["StandardGas", "CO2GasDetector", "QCFields"],
+            }
+        },
+    )
+    manufacturer: str = Field(
+        default=...,
+        title="Manufacturer",
+        description="""Manufacture of the CO2 sensor""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "manufacturer",
+                "domain_of": ["StandardGas", "AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
+    model: Optional[str] = Field(
+        default=None,
+        title="Model",
+        description="""Model number of the CO2 sensor, e.g., 6262""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "model",
+                "domain_of": ["AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
+    instrument_type: Literal["gas_analyzer"] = Field(
+        default=...,
+        title="Instrument type",
+        description="""Type of instrument used to analyze samples or measure continuously.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "instrument_type",
+                "domain_of": ["AnalyzingInstrument"],
+                "equals_string": "gas_analyzer",
+            }
+        },
+    )
+    instrument_type_custom: Optional[str] = Field(
+        default=None,
+        title="Instrument type (custom)",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "instrument_type_custom",
+                "domain_of": ["AnalyzingInstrument"],
+            }
+        },
+    )
+    serial_number: Optional[str] = Field(
+        default=None,
+        title="Serial number",
+        description="""Serial number of the instrument.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "serial_number",
+                "domain_of": ["AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
+    precision: Optional[str] = Field(
+        default=None,
+        title="Precision",
+        description="""Precision of the instrument measurements.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "precision",
+                "domain_of": ["AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
+    accuracy: str = Field(
+        default=...,
+        title="Accuracy",
+        description="""Accuracy of the instrument measurements.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "accuracy",
+                "domain_of": ["AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
 
 
 class ContinuousCO2GasDetector(CO2GasDetector):
     """
     CO2 gas detector for continuous measurements, with measurement frequency.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Instrument'})
 
-    measurement_frequency: Optional[str] = Field(default=None, title="Measurement frequency", description="""How often measurements are taken, e.g., every 140 seconds except during calibration.""", json_schema_extra = { "linkml_meta": {'alias': 'measurement_frequency', 'domain_of': ['ContinuousCO2GasDetector']} })
-    calibration: ContinuousCO2Calibration = Field(default=..., title="Calibration", description="""CO2 calibration information for this continuous instrument.""", json_schema_extra = { "linkml_meta": {'alias': 'calibration',
-         'domain_of': ['AnalyzingInstrument',
-                       'PHInstrument',
-                       'CRMInstrument',
-                       'CO2GasDetector',
-                       'ContinuousCO2GasDetector',
-                       'GenericSensor']} })
-    detector_type: str = Field(default=..., title="Detector Type", description="""Type of the CO2 gas detector (E.g., Infrared)""", json_schema_extra = { "linkml_meta": {'alias': 'detector_type', 'domain_of': ['CO2GasDetector']} })
-    resolution: Optional[str] = Field(default=None, title="Resolution", description="""Resolution of the CO2 sensor.""", json_schema_extra = { "linkml_meta": {'alias': 'resolution', 'domain_of': ['CO2GasDetector']} })
-    uncertainty: Optional[str] = Field(default=None, title="Uncertainty", description="""Uncertainty of the CO2 sensor.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty',
-         'domain_of': ['StandardGas', 'CO2GasDetector', 'QCFields']} })
-    manufacturer: str = Field(default=..., title="Manufacturer", description="""Manufacture of the CO2 sensor""", json_schema_extra = { "linkml_meta": {'alias': 'manufacturer',
-         'domain_of': ['StandardGas', 'AnalyzingInstrument', 'GenericSensor']} })
-    model: Optional[str] = Field(default=None, title="Model", description="""Model number of the CO2 sensor, e.g., 6262""", json_schema_extra = { "linkml_meta": {'alias': 'model', 'domain_of': ['AnalyzingInstrument', 'GenericSensor']} })
-    instrument_type: Literal["gas_analyzer"] = Field(default=..., title="Instrument type", description="""Type of instrument used to analyze samples or measure continuously.""", json_schema_extra = { "linkml_meta": {'alias': 'instrument_type',
-         'domain_of': ['AnalyzingInstrument'],
-         'equals_string': 'gas_analyzer'} })
-    instrument_type_custom: Optional[str] = Field(default=None, title="Instrument type (custom)", json_schema_extra = { "linkml_meta": {'alias': 'instrument_type_custom', 'domain_of': ['AnalyzingInstrument']} })
-    serial_number: Optional[str] = Field(default=None, title="Serial number", description="""Serial number of the instrument.""", json_schema_extra = { "linkml_meta": {'alias': 'serial_number',
-         'domain_of': ['AnalyzingInstrument', 'GenericSensor']} })
-    precision: Optional[str] = Field(default=None, title="Precision", description="""Precision of the instrument measurements.""", json_schema_extra = { "linkml_meta": {'alias': 'precision', 'domain_of': ['AnalyzingInstrument', 'GenericSensor']} })
-    accuracy: str = Field(default=..., title="Accuracy", description="""Accuracy of the instrument measurements.""", json_schema_extra = { "linkml_meta": {'alias': 'accuracy', 'domain_of': ['AnalyzingInstrument', 'GenericSensor']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({"from_schema": "Instrument"})
+
+    measurement_frequency: Optional[str] = Field(
+        default=None,
+        title="Measurement frequency",
+        description="""How often measurements are taken, e.g., every 140 seconds except during calibration.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "measurement_frequency",
+                "domain_of": ["ContinuousCO2GasDetector"],
+            }
+        },
+    )
+    calibration: ContinuousCO2Calibration = Field(
+        default=...,
+        title="Calibration",
+        description="""CO2 calibration information for this continuous instrument.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "calibration",
+                "domain_of": [
+                    "AnalyzingInstrument",
+                    "PHInstrument",
+                    "CRMInstrument",
+                    "CO2GasDetector",
+                    "ContinuousCO2GasDetector",
+                    "GenericSensor",
+                ],
+            }
+        },
+    )
+    detector_type: str = Field(
+        default=...,
+        title="Detector Type",
+        description="""Type of the CO2 gas detector (E.g., Infrared)""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "detector_type", "domain_of": ["CO2GasDetector"]}
+        },
+    )
+    resolution: Optional[str] = Field(
+        default=None,
+        title="Resolution",
+        description="""Resolution of the CO2 sensor.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "resolution", "domain_of": ["CO2GasDetector"]}
+        },
+    )
+    uncertainty: Optional[str] = Field(
+        default=None,
+        title="Uncertainty",
+        description="""Uncertainty of the CO2 sensor.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "uncertainty",
+                "domain_of": ["StandardGas", "CO2GasDetector", "QCFields"],
+            }
+        },
+    )
+    manufacturer: str = Field(
+        default=...,
+        title="Manufacturer",
+        description="""Manufacture of the CO2 sensor""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "manufacturer",
+                "domain_of": ["StandardGas", "AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
+    model: Optional[str] = Field(
+        default=None,
+        title="Model",
+        description="""Model number of the CO2 sensor, e.g., 6262""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "model",
+                "domain_of": ["AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
+    instrument_type: Literal["gas_analyzer"] = Field(
+        default=...,
+        title="Instrument type",
+        description="""Type of instrument used to analyze samples or measure continuously.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "instrument_type",
+                "domain_of": ["AnalyzingInstrument"],
+                "equals_string": "gas_analyzer",
+            }
+        },
+    )
+    instrument_type_custom: Optional[str] = Field(
+        default=None,
+        title="Instrument type (custom)",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "instrument_type_custom",
+                "domain_of": ["AnalyzingInstrument"],
+            }
+        },
+    )
+    serial_number: Optional[str] = Field(
+        default=None,
+        title="Serial number",
+        description="""Serial number of the instrument.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "serial_number",
+                "domain_of": ["AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
+    precision: Optional[str] = Field(
+        default=None,
+        title="Precision",
+        description="""Precision of the instrument measurements.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "precision",
+                "domain_of": ["AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
+    accuracy: str = Field(
+        default=...,
+        title="Accuracy",
+        description="""Accuracy of the instrument measurements.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "accuracy",
+                "domain_of": ["AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
 
 
 class CO2Equilibrator(ConfiguredBaseModel):
     """
     Equilibrator used for continuous CO2 measurement.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Instrument'})
 
-    equilibrator_type: Optional[str] = Field(default=None, title="Equilibrator type", description="""Type of the equilibrator for the CO2 measurement.""", json_schema_extra = { "linkml_meta": {'alias': 'equilibrator_type', 'domain_of': ['CO2Equilibrator']} })
-    volume: Optional[float] = Field(default=None, title="Equilibrator volume (L)", description="""The total volume (in liters) of the CO2 equilibrator.""", json_schema_extra = { "linkml_meta": {'alias': 'volume', 'domain_of': ['CO2Equilibrator', 'SamplePreservation']} })
-    vented: Optional[bool] = Field(default=None, title="Vented or not", description="""Is the equilibrator vented or not?""", json_schema_extra = { "linkml_meta": {'alias': 'vented', 'domain_of': ['CO2Equilibrator']} })
-    water_flow_rate: Optional[float] = Field(default=None, title="Water flow rate (L/min)", description="""Flow rate (in L/min) of the flow through seawater.""", json_schema_extra = { "linkml_meta": {'alias': 'water_flow_rate', 'domain_of': ['CO2Equilibrator']} })
-    headspace_gas_flow_rate: Optional[float] = Field(default=None, title="Headspace gas flow rate (L/min)", description="""Flow rate (in L/min) of the gas from the equilibrator to the CO2 analyzer.""", json_schema_extra = { "linkml_meta": {'alias': 'headspace_gas_flow_rate', 'domain_of': ['CO2Equilibrator']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({"from_schema": "Instrument"})
+
+    equilibrator_type: Optional[str] = Field(
+        default=None,
+        title="Equilibrator type",
+        description="""Type of the equilibrator for the CO2 measurement.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "equilibrator_type",
+                "domain_of": ["CO2Equilibrator"],
+            }
+        },
+    )
+    volume: Optional[float] = Field(
+        default=None,
+        title="Equilibrator volume (L)",
+        description="""The total volume (in liters) of the CO2 equilibrator.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "volume",
+                "domain_of": ["CO2Equilibrator", "SamplePreservation"],
+            }
+        },
+    )
+    vented: Optional[bool] = Field(
+        default=None,
+        title="Vented or not",
+        description="""Is the equilibrator vented or not?""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "vented", "domain_of": ["CO2Equilibrator"]}
+        },
+    )
+    water_flow_rate: Optional[float] = Field(
+        default=None,
+        title="Water flow rate (L/min)",
+        description="""Flow rate (in L/min) of the flow through seawater.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "water_flow_rate",
+                "domain_of": ["CO2Equilibrator"],
+            }
+        },
+    )
+    headspace_gas_flow_rate: Optional[float] = Field(
+        default=None,
+        title="Headspace gas flow rate (L/min)",
+        description="""Flow rate (in L/min) of the gas from the equilibrator to the CO2 analyzer.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "headspace_gas_flow_rate",
+                "domain_of": ["CO2Equilibrator"],
+            }
+        },
+    )
 
 
 class GenericSensor(ConfiguredBaseModel):
     """
     Generic sensor base class used in continuous CO2 measurements. Subclasses (e.g., TemperatureSensor, PressureSensor) specialize accuracy and precision units via slot_usage.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Instrument'})
 
-    location: Optional[str] = Field(default=None, title="Location", description="""Location of the sensor.""", json_schema_extra = { "linkml_meta": {'alias': 'location', 'domain_of': ['GenericSensor']} })
-    manufacturer: Optional[str] = Field(default=None, title="Manufacturer", description="""Manufacturer of the sensor.""", json_schema_extra = { "linkml_meta": {'alias': 'manufacturer',
-         'domain_of': ['StandardGas', 'AnalyzingInstrument', 'GenericSensor']} })
-    model: Optional[str] = Field(default=None, title="Model", description="""Model number of the sensor.""", json_schema_extra = { "linkml_meta": {'alias': 'model', 'domain_of': ['AnalyzingInstrument', 'GenericSensor']} })
-    serial_number: Optional[str] = Field(default=None, title="Serial number", description="""Serial number of the sensor.""", json_schema_extra = { "linkml_meta": {'alias': 'serial_number',
-         'domain_of': ['AnalyzingInstrument', 'GenericSensor']} })
-    accuracy: Optional[float] = Field(default=None, title="Accuracy", description="""Accuracy of the sensor.""", json_schema_extra = { "linkml_meta": {'alias': 'accuracy', 'domain_of': ['AnalyzingInstrument', 'GenericSensor']} })
-    precision: Optional[float] = Field(default=None, title="Precision", description="""Precision of the sensor.""", json_schema_extra = { "linkml_meta": {'alias': 'precision', 'domain_of': ['AnalyzingInstrument', 'GenericSensor']} })
-    calibration: Optional[str] = Field(default=None, title="Calibration", description="""Calibration information for the sensor.""", json_schema_extra = { "linkml_meta": {'alias': 'calibration',
-         'domain_of': ['AnalyzingInstrument',
-                       'PHInstrument',
-                       'CRMInstrument',
-                       'CO2GasDetector',
-                       'ContinuousCO2GasDetector',
-                       'GenericSensor']} })
-    comments: Optional[str] = Field(default=None, title="Comments", description="""Additional comments about the sensor.""", json_schema_extra = { "linkml_meta": {'alias': 'comments', 'domain_of': ['GenericSensor']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({"from_schema": "Instrument"})
+
+    location: Optional[str] = Field(
+        default=None,
+        title="Location",
+        description="""Location of the sensor.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "location", "domain_of": ["GenericSensor"]}
+        },
+    )
+    manufacturer: Optional[str] = Field(
+        default=None,
+        title="Manufacturer",
+        description="""Manufacturer of the sensor.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "manufacturer",
+                "domain_of": ["StandardGas", "AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
+    model: Optional[str] = Field(
+        default=None,
+        title="Model",
+        description="""Model number of the sensor.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "model",
+                "domain_of": ["AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
+    serial_number: Optional[str] = Field(
+        default=None,
+        title="Serial number",
+        description="""Serial number of the sensor.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "serial_number",
+                "domain_of": ["AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
+    accuracy: Optional[float] = Field(
+        default=None,
+        title="Accuracy",
+        description="""Accuracy of the sensor.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "accuracy",
+                "domain_of": ["AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
+    precision: Optional[float] = Field(
+        default=None,
+        title="Precision",
+        description="""Precision of the sensor.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "precision",
+                "domain_of": ["AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
+    calibration: Optional[str] = Field(
+        default=None,
+        title="Calibration",
+        description="""Calibration information for the sensor.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "calibration",
+                "domain_of": [
+                    "AnalyzingInstrument",
+                    "PHInstrument",
+                    "CRMInstrument",
+                    "CO2GasDetector",
+                    "ContinuousCO2GasDetector",
+                    "GenericSensor",
+                ],
+            }
+        },
+    )
+    comments: Optional[str] = Field(
+        default=None,
+        title="Comments",
+        description="""Additional comments about the sensor.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "comments", "domain_of": ["GenericSensor"]}
+        },
+    )
 
 
 class TemperatureSensor(GenericSensor):
     """
     Temperature sensor used in continuous CO2 measurements. Accuracy and precision are reported in degrees Celsius.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Instrument',
-         'slot_usage': {'accuracy': {'description': 'Accuracy of the temperature '
-                                                    'sensor in degrees Celsius.',
-                                     'name': 'accuracy',
-                                     'title': 'Accuracy (°C)'},
-                        'precision': {'description': 'Precision of the temperature '
-                                                     'sensor in degrees Celsius.',
-                                      'name': 'precision',
-                                      'title': 'Precision (°C)'}}})
 
-    location: Optional[str] = Field(default=None, title="Location", description="""Location of the sensor.""", json_schema_extra = { "linkml_meta": {'alias': 'location', 'domain_of': ['GenericSensor']} })
-    manufacturer: Optional[str] = Field(default=None, title="Manufacturer", description="""Manufacturer of the sensor.""", json_schema_extra = { "linkml_meta": {'alias': 'manufacturer',
-         'domain_of': ['StandardGas', 'AnalyzingInstrument', 'GenericSensor']} })
-    model: Optional[str] = Field(default=None, title="Model", description="""Model number of the sensor.""", json_schema_extra = { "linkml_meta": {'alias': 'model', 'domain_of': ['AnalyzingInstrument', 'GenericSensor']} })
-    serial_number: Optional[str] = Field(default=None, title="Serial number", description="""Serial number of the sensor.""", json_schema_extra = { "linkml_meta": {'alias': 'serial_number',
-         'domain_of': ['AnalyzingInstrument', 'GenericSensor']} })
-    accuracy: Optional[float] = Field(default=None, title="Accuracy (°C)", description="""Accuracy of the temperature sensor in degrees Celsius.""", json_schema_extra = { "linkml_meta": {'alias': 'accuracy', 'domain_of': ['AnalyzingInstrument', 'GenericSensor']} })
-    precision: Optional[float] = Field(default=None, title="Precision (°C)", description="""Precision of the temperature sensor in degrees Celsius.""", json_schema_extra = { "linkml_meta": {'alias': 'precision', 'domain_of': ['AnalyzingInstrument', 'GenericSensor']} })
-    calibration: Optional[str] = Field(default=None, title="Calibration", description="""Calibration information for the sensor.""", json_schema_extra = { "linkml_meta": {'alias': 'calibration',
-         'domain_of': ['AnalyzingInstrument',
-                       'PHInstrument',
-                       'CRMInstrument',
-                       'CO2GasDetector',
-                       'ContinuousCO2GasDetector',
-                       'GenericSensor']} })
-    comments: Optional[str] = Field(default=None, title="Comments", description="""Additional comments about the sensor.""", json_schema_extra = { "linkml_meta": {'alias': 'comments', 'domain_of': ['GenericSensor']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "from_schema": "Instrument",
+            "slot_usage": {
+                "accuracy": {
+                    "description": "Accuracy of the temperature "
+                    "sensor in degrees Celsius.",
+                    "name": "accuracy",
+                    "title": "Accuracy (°C)",
+                },
+                "precision": {
+                    "description": "Precision of the temperature "
+                    "sensor in degrees Celsius.",
+                    "name": "precision",
+                    "title": "Precision (°C)",
+                },
+            },
+        }
+    )
+
+    location: Optional[str] = Field(
+        default=None,
+        title="Location",
+        description="""Location of the sensor.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "location", "domain_of": ["GenericSensor"]}
+        },
+    )
+    manufacturer: Optional[str] = Field(
+        default=None,
+        title="Manufacturer",
+        description="""Manufacturer of the sensor.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "manufacturer",
+                "domain_of": ["StandardGas", "AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
+    model: Optional[str] = Field(
+        default=None,
+        title="Model",
+        description="""Model number of the sensor.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "model",
+                "domain_of": ["AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
+    serial_number: Optional[str] = Field(
+        default=None,
+        title="Serial number",
+        description="""Serial number of the sensor.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "serial_number",
+                "domain_of": ["AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
+    accuracy: Optional[float] = Field(
+        default=None,
+        title="Accuracy (°C)",
+        description="""Accuracy of the temperature sensor in degrees Celsius.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "accuracy",
+                "domain_of": ["AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
+    precision: Optional[float] = Field(
+        default=None,
+        title="Precision (°C)",
+        description="""Precision of the temperature sensor in degrees Celsius.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "precision",
+                "domain_of": ["AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
+    calibration: Optional[str] = Field(
+        default=None,
+        title="Calibration",
+        description="""Calibration information for the sensor.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "calibration",
+                "domain_of": [
+                    "AnalyzingInstrument",
+                    "PHInstrument",
+                    "CRMInstrument",
+                    "CO2GasDetector",
+                    "ContinuousCO2GasDetector",
+                    "GenericSensor",
+                ],
+            }
+        },
+    )
+    comments: Optional[str] = Field(
+        default=None,
+        title="Comments",
+        description="""Additional comments about the sensor.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "comments", "domain_of": ["GenericSensor"]}
+        },
+    )
 
 
 class PressureSensor(GenericSensor):
     """
     Pressure sensor used in continuous CO2 measurements. Accuracy and precision are reported in hectopascals (hPa).
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Instrument',
-         'slot_usage': {'accuracy': {'description': 'Accuracy of the pressure sensor '
-                                                    'in hectopascals (hPa).',
-                                     'name': 'accuracy',
-                                     'title': 'Accuracy (hPa)'},
-                        'precision': {'description': 'Precision of the pressure sensor '
-                                                     'in hectopascals (hPa).',
-                                      'name': 'precision',
-                                      'title': 'Precision (hPa)'}}})
 
-    location: Optional[str] = Field(default=None, title="Location", description="""Location of the sensor.""", json_schema_extra = { "linkml_meta": {'alias': 'location', 'domain_of': ['GenericSensor']} })
-    manufacturer: Optional[str] = Field(default=None, title="Manufacturer", description="""Manufacturer of the sensor.""", json_schema_extra = { "linkml_meta": {'alias': 'manufacturer',
-         'domain_of': ['StandardGas', 'AnalyzingInstrument', 'GenericSensor']} })
-    model: Optional[str] = Field(default=None, title="Model", description="""Model number of the sensor.""", json_schema_extra = { "linkml_meta": {'alias': 'model', 'domain_of': ['AnalyzingInstrument', 'GenericSensor']} })
-    serial_number: Optional[str] = Field(default=None, title="Serial number", description="""Serial number of the sensor.""", json_schema_extra = { "linkml_meta": {'alias': 'serial_number',
-         'domain_of': ['AnalyzingInstrument', 'GenericSensor']} })
-    accuracy: Optional[float] = Field(default=None, title="Accuracy (hPa)", description="""Accuracy of the pressure sensor in hectopascals (hPa).""", json_schema_extra = { "linkml_meta": {'alias': 'accuracy', 'domain_of': ['AnalyzingInstrument', 'GenericSensor']} })
-    precision: Optional[float] = Field(default=None, title="Precision (hPa)", description="""Precision of the pressure sensor in hectopascals (hPa).""", json_schema_extra = { "linkml_meta": {'alias': 'precision', 'domain_of': ['AnalyzingInstrument', 'GenericSensor']} })
-    calibration: Optional[str] = Field(default=None, title="Calibration", description="""Calibration information for the sensor.""", json_schema_extra = { "linkml_meta": {'alias': 'calibration',
-         'domain_of': ['AnalyzingInstrument',
-                       'PHInstrument',
-                       'CRMInstrument',
-                       'CO2GasDetector',
-                       'ContinuousCO2GasDetector',
-                       'GenericSensor']} })
-    comments: Optional[str] = Field(default=None, title="Comments", description="""Additional comments about the sensor.""", json_schema_extra = { "linkml_meta": {'alias': 'comments', 'domain_of': ['GenericSensor']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "from_schema": "Instrument",
+            "slot_usage": {
+                "accuracy": {
+                    "description": "Accuracy of the pressure sensor "
+                    "in hectopascals (hPa).",
+                    "name": "accuracy",
+                    "title": "Accuracy (hPa)",
+                },
+                "precision": {
+                    "description": "Precision of the pressure sensor "
+                    "in hectopascals (hPa).",
+                    "name": "precision",
+                    "title": "Precision (hPa)",
+                },
+            },
+        }
+    )
+
+    location: Optional[str] = Field(
+        default=None,
+        title="Location",
+        description="""Location of the sensor.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "location", "domain_of": ["GenericSensor"]}
+        },
+    )
+    manufacturer: Optional[str] = Field(
+        default=None,
+        title="Manufacturer",
+        description="""Manufacturer of the sensor.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "manufacturer",
+                "domain_of": ["StandardGas", "AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
+    model: Optional[str] = Field(
+        default=None,
+        title="Model",
+        description="""Model number of the sensor.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "model",
+                "domain_of": ["AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
+    serial_number: Optional[str] = Field(
+        default=None,
+        title="Serial number",
+        description="""Serial number of the sensor.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "serial_number",
+                "domain_of": ["AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
+    accuracy: Optional[float] = Field(
+        default=None,
+        title="Accuracy (hPa)",
+        description="""Accuracy of the pressure sensor in hectopascals (hPa).""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "accuracy",
+                "domain_of": ["AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
+    precision: Optional[float] = Field(
+        default=None,
+        title="Precision (hPa)",
+        description="""Precision of the pressure sensor in hectopascals (hPa).""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "precision",
+                "domain_of": ["AnalyzingInstrument", "GenericSensor"],
+            }
+        },
+    )
+    calibration: Optional[str] = Field(
+        default=None,
+        title="Calibration",
+        description="""Calibration information for the sensor.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "calibration",
+                "domain_of": [
+                    "AnalyzingInstrument",
+                    "PHInstrument",
+                    "CRMInstrument",
+                    "CO2GasDetector",
+                    "ContinuousCO2GasDetector",
+                    "GenericSensor",
+                ],
+            }
+        },
+    )
+    comments: Optional[str] = Field(
+        default=None,
+        title="Comments",
+        description="""Additional comments about the sensor.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "comments", "domain_of": ["GenericSensor"]}
+        },
+    )
 
 
 class MarineAirMeasurement(ConfiguredBaseModel):
     """
     Information about CO2 measurements in marine air.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Instrument'})
 
-    measured: bool = Field(default=..., title="CO2 in marine air measured", description="""Whether CO2 in marine air was measured.""", json_schema_extra = { "linkml_meta": {'alias': 'measured', 'domain_of': ['MarineAirMeasurement']} })
-    measurement_interval: Optional[str] = Field(default=None, title="Measurement interval", description="""How often marine air CO2 is measured, e.g., 5 readings in a group every 5 hours.""", json_schema_extra = { "linkml_meta": {'alias': 'measurement_interval', 'domain_of': ['MarineAirMeasurement']} })
-    location_and_height: Optional[str] = Field(default=None, title="Location and height", description="""Location and height of the marine air intake.""", json_schema_extra = { "linkml_meta": {'alias': 'location_and_height', 'domain_of': ['MarineAirMeasurement']} })
-    drying_method: Optional[str] = Field(default=None, title="Drying method", description="""Method used to dry the gas stream for marine air measurements.""", json_schema_extra = { "linkml_meta": {'alias': 'drying_method',
-         'domain_of': ['MarineAirMeasurement', 'ContinuousCO2Variable']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({"from_schema": "Instrument"})
+
+    measured: bool = Field(
+        default=...,
+        title="CO2 in marine air measured",
+        description="""Whether CO2 in marine air was measured.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "measured", "domain_of": ["MarineAirMeasurement"]}
+        },
+    )
+    measurement_interval: Optional[str] = Field(
+        default=None,
+        title="Measurement interval",
+        description="""How often marine air CO2 is measured, e.g., 5 readings in a group every 5 hours.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "measurement_interval",
+                "domain_of": ["MarineAirMeasurement"],
+            }
+        },
+    )
+    location_and_height: Optional[str] = Field(
+        default=None,
+        title="Location and height",
+        description="""Location and height of the marine air intake.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "location_and_height",
+                "domain_of": ["MarineAirMeasurement"],
+            }
+        },
+    )
+    drying_method: Optional[str] = Field(
+        default=None,
+        title="Drying method",
+        description="""Method used to dry the gas stream for marine air measurements.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "drying_method",
+                "domain_of": ["MarineAirMeasurement", "ContinuousCO2Variable"],
+            }
+        },
+    )
 
 
 class Variable(ConfiguredBaseModel):
     """
     Abstract root for all variable types (including non-measured)
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True, 'from_schema': 'Variable'})
 
-    units: Optional[str] = Field(default=None, title="Unit", description="""Unit of measurement for this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'units', 'domain_of': ['Variable']} })
-    schema_class: Literal["Variable"] = Field(default="Variable", description="""The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.""", json_schema_extra = { "linkml_meta": {'alias': 'schema_class', 'designates_type': True, 'domain_of': ['Variable']} })
-    variable_type: VariableType = Field(default=..., title="Variable Type", description="""High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.""", json_schema_extra = { "linkml_meta": {'alias': 'variable_type', 'domain_of': ['Variable']} })
-    standard_identifier: Optional[VocabularyItemReference] = Field(default=None, json_schema_extra = { "linkml_meta": {'alias': 'standard_identifier', 'domain_of': ['Variable']} })
-    dataset_variable_name: str = Field(default=..., title="Dataset variable name", description="""The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name', 'domain_of': ['Variable']} })
-    long_name: str = Field(default=..., title="Variable full name", description="""Full descriptive name of the variable.""", json_schema_extra = { "linkml_meta": {'alias': 'long_name', 'domain_of': ['Variable']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {"abstract": True, "from_schema": "Variable"}
+    )
+
+    units: Optional[str] = Field(
+        default=None,
+        title="Unit",
+        description="""Unit of measurement for this variable.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "units", "domain_of": ["Variable"]}
+        },
+    )
+    schema_class: Literal["Variable"] = Field(
+        default="Variable",
+        description="""The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "schema_class",
+                "designates_type": True,
+                "domain_of": ["Variable"],
+            }
+        },
+    )
+    variable_type: VariableType = Field(
+        default=...,
+        title="Variable Type",
+        description="""High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "variable_type", "domain_of": ["Variable"]}
+        },
+    )
+    standard_identifier: Optional[VocabularyItemReference] = Field(
+        default=None,
+        json_schema_extra={
+            "linkml_meta": {"alias": "standard_identifier", "domain_of": ["Variable"]}
+        },
+    )
+    dataset_variable_name: str = Field(
+        default=...,
+        title="Dataset variable name",
+        description="""The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "dataset_variable_name", "domain_of": ["Variable"]}
+        },
+    )
+    long_name: str = Field(
+        default=...,
+        title="Variable full name",
+        description="""Full descriptive name of the variable.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "long_name", "domain_of": ["Variable"]}
+        },
+    )
 
 
 class NonMeasuredVariable(Variable):
     """
     A contextual or ancillary variable that is NOT directly measured or calculated by the project. Use for identifiers (Cruise_ID, Exp_ID), timestamps (Year_UTC, Time_UTC), coordinates (Latitude, Longitude), and any other data included in the dataset for context. Do NOT create a NonMeasuredVariable for quality control flag columns — instead, set dataset_variable_name_qc_flag on the parent measured or calculated variable that the flag relates to. variable_type must be \"non_measured\".
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Variable',
-         'slot_usage': {'variable_type': {'equals_string': 'non_measured',
-                                          'name': 'variable_type',
-                                          'range': 'string'}}})
 
-    units: Optional[str] = Field(default=None, title="Unit", description="""Unit of measurement for this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'units', 'domain_of': ['Variable']} })
-    schema_class: Literal["NonMeasuredVariable"] = Field(default="NonMeasuredVariable", description="""The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.""", json_schema_extra = { "linkml_meta": {'alias': 'schema_class', 'designates_type': True, 'domain_of': ['Variable']} })
-    variable_type: Literal["non_measured"] = Field(default=..., title="Variable Type", description="""High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.""", json_schema_extra = { "linkml_meta": {'alias': 'variable_type',
-         'domain_of': ['Variable'],
-         'equals_string': 'non_measured'} })
-    standard_identifier: Optional[VocabularyItemReference] = Field(default=None, json_schema_extra = { "linkml_meta": {'alias': 'standard_identifier', 'domain_of': ['Variable']} })
-    dataset_variable_name: str = Field(default=..., title="Dataset variable name", description="""The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name', 'domain_of': ['Variable']} })
-    long_name: str = Field(default=..., title="Variable full name", description="""Full descriptive name of the variable.""", json_schema_extra = { "linkml_meta": {'alias': 'long_name', 'domain_of': ['Variable']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "from_schema": "Variable",
+            "slot_usage": {
+                "variable_type": {
+                    "equals_string": "non_measured",
+                    "name": "variable_type",
+                    "range": "string",
+                }
+            },
+        }
+    )
+
+    units: Optional[str] = Field(
+        default=None,
+        title="Unit",
+        description="""Unit of measurement for this variable.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "units", "domain_of": ["Variable"]}
+        },
+    )
+    schema_class: Literal["NonMeasuredVariable"] = Field(
+        default="NonMeasuredVariable",
+        description="""The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "schema_class",
+                "designates_type": True,
+                "domain_of": ["Variable"],
+            }
+        },
+    )
+    variable_type: Literal["non_measured"] = Field(
+        default=...,
+        title="Variable Type",
+        description="""High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "variable_type",
+                "domain_of": ["Variable"],
+                "equals_string": "non_measured",
+            }
+        },
+    )
+    standard_identifier: Optional[VocabularyItemReference] = Field(
+        default=None,
+        json_schema_extra={
+            "linkml_meta": {"alias": "standard_identifier", "domain_of": ["Variable"]}
+        },
+    )
+    dataset_variable_name: str = Field(
+        default=...,
+        title="Dataset variable name",
+        description="""The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "dataset_variable_name", "domain_of": ["Variable"]}
+        },
+    )
+    long_name: str = Field(
+        default=...,
+        title="Variable full name",
+        description="""Full descriptive name of the variable.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "long_name", "domain_of": ["Variable"]}
+        },
+    )
 
 
 class InSituVariable(Variable):
     """
     Base class for project-acquired variables (measured or calculated in-situ). Reference: OAPMetadata XSD variables.xsd - insitu_variable
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
-         'from_schema': 'Variable',
-         'slot_usage': {'units': {'name': 'units', 'required': True}}})
 
-    genesis: GenesisType = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'genesis', 'domain_of': ['InSituVariable']} })
-    dataset_variable_name_qc_flag: Optional[str] = Field(default=None, title="Dataset variable name (Quality Flag)", description="""If applicable, the column header name used for the quality control flag corresponding to this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name_qc_flag', 'domain_of': ['InSituVariable']} })
-    dataset_variable_name_raw: Optional[str] = Field(default=None, title="Dataset variable name (raw)", description="""If applicable, the column header name used for the raw data corresponding to this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name_raw', 'domain_of': ['InSituVariable']} })
-    method_reference: Optional[str] = Field(default=None, title="Method Reference", description="""Citation for the method used.""", json_schema_extra = { "linkml_meta": {'alias': 'method_reference', 'domain_of': ['Calibration', 'InSituVariable']} })
-    measurement_researcher: Optional[Person] = Field(default=None, title="Researcher who measured the variable", description="""The name of the PI whose research team measured or derived this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'measurement_researcher', 'domain_of': ['InSituVariable']} })
-    other_detailed_information: Optional[str] = Field(default=None, title="Other Detailed Information", description="""Any additional information about this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'other_detailed_information', 'domain_of': ['InSituVariable']} })
-    units: str = Field(default=..., title="Unit", description="""Unit of measurement for this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'units', 'domain_of': ['Variable']} })
-    schema_class: Literal["InSituVariable"] = Field(default="InSituVariable", description="""The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.""", json_schema_extra = { "linkml_meta": {'alias': 'schema_class', 'designates_type': True, 'domain_of': ['Variable']} })
-    variable_type: VariableType = Field(default=..., title="Variable Type", description="""High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.""", json_schema_extra = { "linkml_meta": {'alias': 'variable_type', 'domain_of': ['Variable']} })
-    standard_identifier: Optional[VocabularyItemReference] = Field(default=None, json_schema_extra = { "linkml_meta": {'alias': 'standard_identifier', 'domain_of': ['Variable']} })
-    dataset_variable_name: str = Field(default=..., title="Dataset variable name", description="""The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name', 'domain_of': ['Variable']} })
-    long_name: str = Field(default=..., title="Variable full name", description="""Full descriptive name of the variable.""", json_schema_extra = { "linkml_meta": {'alias': 'long_name', 'domain_of': ['Variable']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "abstract": True,
+            "from_schema": "Variable",
+            "slot_usage": {"units": {"name": "units", "required": True}},
+        }
+    )
+
+    genesis: GenesisType = Field(
+        default=...,
+        json_schema_extra={
+            "linkml_meta": {"alias": "genesis", "domain_of": ["InSituVariable"]}
+        },
+    )
+    dataset_variable_name_qc_flag: Optional[str] = Field(
+        default=None,
+        title="Dataset variable name (Quality Flag)",
+        description="""If applicable, the column header name used for the quality control flag corresponding to this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dataset_variable_name_qc_flag",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    dataset_variable_name_raw: Optional[str] = Field(
+        default=None,
+        title="Dataset variable name (raw)",
+        description="""If applicable, the column header name used for the raw data corresponding to this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dataset_variable_name_raw",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    method_reference: Optional[str] = Field(
+        default=None,
+        title="Method Reference",
+        description="""Citation for the method used.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "method_reference",
+                "domain_of": ["Calibration", "InSituVariable"],
+            }
+        },
+    )
+    measurement_researcher: Optional[Person] = Field(
+        default=None,
+        title="Researcher who measured the variable",
+        description="""The name of the PI whose research team measured or derived this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "measurement_researcher",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    other_detailed_information: Optional[str] = Field(
+        default=None,
+        title="Other Detailed Information",
+        description="""Any additional information about this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "other_detailed_information",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    units: str = Field(
+        default=...,
+        title="Unit",
+        description="""Unit of measurement for this variable.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "units", "domain_of": ["Variable"]}
+        },
+    )
+    schema_class: Literal["InSituVariable"] = Field(
+        default="InSituVariable",
+        description="""The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "schema_class",
+                "designates_type": True,
+                "domain_of": ["Variable"],
+            }
+        },
+    )
+    variable_type: VariableType = Field(
+        default=...,
+        title="Variable Type",
+        description="""High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "variable_type", "domain_of": ["Variable"]}
+        },
+    )
+    standard_identifier: Optional[VocabularyItemReference] = Field(
+        default=None,
+        json_schema_extra={
+            "linkml_meta": {"alias": "standard_identifier", "domain_of": ["Variable"]}
+        },
+    )
+    dataset_variable_name: str = Field(
+        default=...,
+        title="Dataset variable name",
+        description="""The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "dataset_variable_name", "domain_of": ["Variable"]}
+        },
+    )
+    long_name: str = Field(
+        default=...,
+        title="Variable full name",
+        description="""Full descriptive name of the variable.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "long_name", "domain_of": ["Variable"]}
+        },
+    )
 
 
 class SamplePreservation(ConfiguredBaseModel):
     """
     Sample preservation information for DIC and TA measurements. Reference: OAPMetadata XSD variables.xsd - sample_preservation
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Variable'})
 
-    preservative: str = Field(default=..., title="Preservative used", description="""As described, e.g., Mercury Chloride.""", json_schema_extra = { "linkml_meta": {'alias': 'preservative', 'domain_of': ['SamplePreservation']} })
-    volume: str = Field(default=..., title="Preservative volume", description="""The volume of preservative used.""", json_schema_extra = { "linkml_meta": {'alias': 'volume', 'domain_of': ['CO2Equilibrator', 'SamplePreservation']} })
-    correction_description: Optional[str] = Field(default=None, title="Preservative correction description", description="""Description of how the preservative effect was corrected for.""", json_schema_extra = { "linkml_meta": {'alias': 'correction_description', 'domain_of': ['SamplePreservation']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({"from_schema": "Variable"})
+
+    preservative: str = Field(
+        default=...,
+        title="Preservative used",
+        description="""As described, e.g., Mercury Chloride.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "preservative",
+                "domain_of": ["SamplePreservation"],
+            }
+        },
+    )
+    volume: str = Field(
+        default=...,
+        title="Preservative volume",
+        description="""The volume of preservative used.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "volume",
+                "domain_of": ["CO2Equilibrator", "SamplePreservation"],
+            }
+        },
+    )
+    correction_description: Optional[str] = Field(
+        default=None,
+        title="Preservative correction description",
+        description="""Description of how the preservative effect was corrected for.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "correction_description",
+                "domain_of": ["SamplePreservation"],
+            }
+        },
+    )
 
 
 class VocabularyItemReference(ConfiguredBaseModel):
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Variable'})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({"from_schema": "Variable"})
 
-    description: Optional[str] = Field(default=None, title="Description", description="""A narrative description of the thing.""", json_schema_extra = { "linkml_meta": {'alias': 'description',
-         'domain_of': ['Project',
-                       'ExternalProject',
-                       'Experiment',
-                       'VocabularyItemReference',
-                       'Dataset',
-                       'ModelComponent'],
-         'slot_uri': 'schema:description'} })
-    term: str = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'term', 'domain_of': ['VocabularyItemReference']} })
-    uri: str = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'uri', 'domain_of': ['VocabularyItemReference']} })
+    description: Optional[str] = Field(
+        default=None,
+        title="Description",
+        description="""A narrative description of the thing.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "description",
+                "domain_of": [
+                    "Project",
+                    "ExternalProject",
+                    "Experiment",
+                    "VocabularyItemReference",
+                    "Dataset",
+                    "ModelComponent",
+                ],
+                "slot_uri": "schema:description",
+            }
+        },
+    )
+    term: str = Field(
+        default=...,
+        json_schema_extra={
+            "linkml_meta": {"alias": "term", "domain_of": ["VocabularyItemReference"]}
+        },
+    )
+    uri: str = Field(
+        default=...,
+        json_schema_extra={
+            "linkml_meta": {"alias": "uri", "domain_of": ["VocabularyItemReference"]}
+        },
+    )
 
 
 class MeasuredTAFields(ConfiguredBaseModel):
     """
     Fields applied to all measured TA variable types (discrete and continuous)
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Variable', 'mixin': True})
 
-    appropriate_use_quality: Optional[AppropriateUseQuality] = Field(default=None, title="Weather or climate quality", description="""Climate quality is defined as measurements of quality sufficient to assess long term trends with a defined level of confidence. Weather quality is defined as measurements of quality sufficient to identify relative spatial patterns and short term variation.
-For more details, refer to Newton J.A., Feely R. A., Jewett E. B., Williamson P. & Mathis J., 2015. Global Ocean Acidification Observing Network: Requirements and Governance Plan. Second Edition, GOA-ON, http://www.goa-on.org/docs/GOA-ON_plan_print.pdf.""", json_schema_extra = { "linkml_meta": {'alias': 'appropriate_use_quality',
-         'domain_of': ['MeasuredTAFields',
-                       'MeasuredDICFields',
-                       'MeasuredPHFields',
-                       'MeasuredCO2Fields']} })
-    concentration_basis: ConcentrationBasis = Field(default=..., title="Per-volume vs per-mass based units", description="""Whether measurements are expressed per unit volume or per unit mass (for DIC, TA, etc.)""", json_schema_extra = { "linkml_meta": {'alias': 'concentration_basis',
-         'domain_of': ['MeasuredTAFields', 'MeasuredDICFields']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {"from_schema": "Variable", "mixin": True}
+    )
+
+    appropriate_use_quality: Optional[AppropriateUseQuality] = Field(
+        default=None,
+        title="Weather or climate quality",
+        description="""Climate quality is defined as measurements of quality sufficient to assess long term trends with a defined level of confidence. Weather quality is defined as measurements of quality sufficient to identify relative spatial patterns and short term variation.
+For more details, refer to Newton J.A., Feely R. A., Jewett E. B., Williamson P. & Mathis J., 2015. Global Ocean Acidification Observing Network: Requirements and Governance Plan. Second Edition, GOA-ON, http://www.goa-on.org/docs/GOA-ON_plan_print.pdf.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "appropriate_use_quality",
+                "domain_of": [
+                    "MeasuredTAFields",
+                    "MeasuredDICFields",
+                    "MeasuredPHFields",
+                    "MeasuredCO2Fields",
+                ],
+            }
+        },
+    )
+    concentration_basis: ConcentrationBasis = Field(
+        default=...,
+        title="Per-volume vs per-mass based units",
+        description="""Whether measurements are expressed per unit volume or per unit mass (for DIC, TA, etc.)""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "concentration_basis",
+                "domain_of": ["MeasuredTAFields", "MeasuredDICFields"],
+            }
+        },
+    )
 
 
 class MeasuredDICFields(ConfiguredBaseModel):
     """
     Fields applied to all measured DIC variable types (discrete and continuous)
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Variable', 'mixin': True})
 
-    appropriate_use_quality: Optional[AppropriateUseQuality] = Field(default=None, title="Weather or climate quality", description="""Climate quality is defined as measurements of quality sufficient to assess long term trends with a defined level of confidence. Weather quality is defined as measurements of quality sufficient to identify relative spatial patterns and short term variation.
-For more details, refer to Newton J.A., Feely R. A., Jewett E. B., Williamson P. & Mathis J., 2015. Global Ocean Acidification Observing Network: Requirements and Governance Plan. Second Edition, GOA-ON, http://www.goa-on.org/docs/GOA-ON_plan_print.pdf.""", json_schema_extra = { "linkml_meta": {'alias': 'appropriate_use_quality',
-         'domain_of': ['MeasuredTAFields',
-                       'MeasuredDICFields',
-                       'MeasuredPHFields',
-                       'MeasuredCO2Fields']} })
-    concentration_basis: ConcentrationBasis = Field(default=..., title="Per-volume vs per-mass based units", description="""Whether measurements are expressed per unit volume or per unit mass (for DIC, TA, etc.)""", json_schema_extra = { "linkml_meta": {'alias': 'concentration_basis',
-         'domain_of': ['MeasuredTAFields', 'MeasuredDICFields']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {"from_schema": "Variable", "mixin": True}
+    )
+
+    appropriate_use_quality: Optional[AppropriateUseQuality] = Field(
+        default=None,
+        title="Weather or climate quality",
+        description="""Climate quality is defined as measurements of quality sufficient to assess long term trends with a defined level of confidence. Weather quality is defined as measurements of quality sufficient to identify relative spatial patterns and short term variation.
+For more details, refer to Newton J.A., Feely R. A., Jewett E. B., Williamson P. & Mathis J., 2015. Global Ocean Acidification Observing Network: Requirements and Governance Plan. Second Edition, GOA-ON, http://www.goa-on.org/docs/GOA-ON_plan_print.pdf.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "appropriate_use_quality",
+                "domain_of": [
+                    "MeasuredTAFields",
+                    "MeasuredDICFields",
+                    "MeasuredPHFields",
+                    "MeasuredCO2Fields",
+                ],
+            }
+        },
+    )
+    concentration_basis: ConcentrationBasis = Field(
+        default=...,
+        title="Per-volume vs per-mass based units",
+        description="""Whether measurements are expressed per unit volume or per unit mass (for DIC, TA, etc.)""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "concentration_basis",
+                "domain_of": ["MeasuredTAFields", "MeasuredDICFields"],
+            }
+        },
+    )
 
 
 class MeasuredPHFields(ConfiguredBaseModel):
     """
     Fields applied to all measured pH variable types (discrete and continuous)
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Variable', 'mixin': True})
 
-    appropriate_use_quality: Optional[AppropriateUseQuality] = Field(default=None, title="Weather or climate quality", description="""Climate quality is defined as measurements of quality sufficient to assess long term trends with a defined level of confidence. Weather quality is defined as measurements of quality sufficient to identify relative spatial patterns and short term variation.
-For more details, refer to Newton J.A., Feely R. A., Jewett E. B., Williamson P. & Mathis J., 2015. Global Ocean Acidification Observing Network: Requirements and Governance Plan. Second Edition, GOA-ON, http://www.goa-on.org/docs/GOA-ON_plan_print.pdf.""", json_schema_extra = { "linkml_meta": {'alias': 'appropriate_use_quality',
-         'domain_of': ['MeasuredTAFields',
-                       'MeasuredDICFields',
-                       'MeasuredPHFields',
-                       'MeasuredCO2Fields']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {"from_schema": "Variable", "mixin": True}
+    )
+
+    appropriate_use_quality: Optional[AppropriateUseQuality] = Field(
+        default=None,
+        title="Weather or climate quality",
+        description="""Climate quality is defined as measurements of quality sufficient to assess long term trends with a defined level of confidence. Weather quality is defined as measurements of quality sufficient to identify relative spatial patterns and short term variation.
+For more details, refer to Newton J.A., Feely R. A., Jewett E. B., Williamson P. & Mathis J., 2015. Global Ocean Acidification Observing Network: Requirements and Governance Plan. Second Edition, GOA-ON, http://www.goa-on.org/docs/GOA-ON_plan_print.pdf.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "appropriate_use_quality",
+                "domain_of": [
+                    "MeasuredTAFields",
+                    "MeasuredDICFields",
+                    "MeasuredPHFields",
+                    "MeasuredCO2Fields",
+                ],
+            }
+        },
+    )
 
 
 class MeasuredSedimentFields(ConfiguredBaseModel):
     """
     Fields applied to all measured sediment variable types (discrete and continuous)
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Variable', 'mixin': True})
 
-    sediment_type: str = Field(default=..., title="Sediment Type", description="""e.g., mud, sand, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'sediment_type', 'domain_of': ['MeasuredSedimentFields']} })
-    sediment_sampling_method: str = Field(default=..., title="Sediment Sampling Method", description="""e.g., sediment core, grab sampling, dredging, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'sediment_sampling_method', 'domain_of': ['MeasuredSedimentFields']} })
-    sediment_sampling_depth: str = Field(default=..., title="Sediment Sampling Depth", description="""Depth that sediment was collected below sediment surface. If provided as a variable (recommended), please list the column header name here.""", json_schema_extra = { "linkml_meta": {'alias': 'sediment_sampling_depth', 'domain_of': ['MeasuredSedimentFields']} })
-    sediment_sampling_water_depth: str = Field(default=..., title="Sediment Sampling Water Depth", description="""Water depth where sediment was collected. If provided as a variable (recommended), please list the column header name here.""", json_schema_extra = { "linkml_meta": {'alias': 'sediment_sampling_water_depth',
-         'domain_of': ['MeasuredSedimentFields']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {"from_schema": "Variable", "mixin": True}
+    )
+
+    sediment_type: str = Field(
+        default=...,
+        title="Sediment Type",
+        description="""e.g., mud, sand, etc.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sediment_type",
+                "domain_of": ["MeasuredSedimentFields"],
+            }
+        },
+    )
+    sediment_sampling_method: str = Field(
+        default=...,
+        title="Sediment Sampling Method",
+        description="""e.g., sediment core, grab sampling, dredging, etc.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sediment_sampling_method",
+                "domain_of": ["MeasuredSedimentFields"],
+            }
+        },
+    )
+    sediment_sampling_depth: str = Field(
+        default=...,
+        title="Sediment Sampling Depth",
+        description="""Depth that sediment was collected below sediment surface. If provided as a variable (recommended), please list the column header name here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sediment_sampling_depth",
+                "domain_of": ["MeasuredSedimentFields"],
+            }
+        },
+    )
+    sediment_sampling_water_depth: str = Field(
+        default=...,
+        title="Sediment Sampling Water Depth",
+        description="""Water depth where sediment was collected. If provided as a variable (recommended), please list the column header name here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sediment_sampling_water_depth",
+                "domain_of": ["MeasuredSedimentFields"],
+            }
+        },
+    )
 
 
 class MeasuredCO2Fields(ConfiguredBaseModel):
     """
     Fields applied to all measured CO2 variable types (discrete and continuous)
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Variable', 'mixin': True})
 
-    appropriate_use_quality: Optional[AppropriateUseQuality] = Field(default=None, title="Weather or climate quality", description="""Climate quality is defined as measurements of quality sufficient to assess long term trends with a defined level of confidence. Weather quality is defined as measurements of quality sufficient to identify relative spatial patterns and short term variation.
-For more details, refer to Newton J.A., Feely R. A., Jewett E. B., Williamson P. & Mathis J., 2015. Global Ocean Acidification Observing Network: Requirements and Governance Plan. Second Edition, GOA-ON, http://www.goa-on.org/docs/GOA-ON_plan_print.pdf.""", json_schema_extra = { "linkml_meta": {'alias': 'appropriate_use_quality',
-         'domain_of': ['MeasuredTAFields',
-                       'MeasuredDICFields',
-                       'MeasuredPHFields',
-                       'MeasuredCO2Fields']} })
-    pco2_reported_temperature: str = Field(default=..., title="Temperature at which pCO2 was reported", description="""In Celsius. The input could be a constant temperature value, or something like, in-situ temperature, temperature of analysis, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'pco2_reported_temperature', 'domain_of': ['MeasuredCO2Fields']} })
-    water_vapor_correction_method: Optional[str] = Field(default=None, title="Water vapor correction method", description="""How the water vapor pressure inside the equilibrator was determined.""", json_schema_extra = { "linkml_meta": {'alias': 'water_vapor_correction_method', 'domain_of': ['MeasuredCO2Fields']} })
-    temperature_correction_method: Optional[str] = Field(default=None, title="Temperature correction method", description="""How the temperature effect was corrected.""", json_schema_extra = { "linkml_meta": {'alias': 'temperature_correction_method',
-         'domain_of': ['DiscretePHVariable', 'MeasuredCO2Fields']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {"from_schema": "Variable", "mixin": True}
+    )
+
+    appropriate_use_quality: Optional[AppropriateUseQuality] = Field(
+        default=None,
+        title="Weather or climate quality",
+        description="""Climate quality is defined as measurements of quality sufficient to assess long term trends with a defined level of confidence. Weather quality is defined as measurements of quality sufficient to identify relative spatial patterns and short term variation.
+For more details, refer to Newton J.A., Feely R. A., Jewett E. B., Williamson P. & Mathis J., 2015. Global Ocean Acidification Observing Network: Requirements and Governance Plan. Second Edition, GOA-ON, http://www.goa-on.org/docs/GOA-ON_plan_print.pdf.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "appropriate_use_quality",
+                "domain_of": [
+                    "MeasuredTAFields",
+                    "MeasuredDICFields",
+                    "MeasuredPHFields",
+                    "MeasuredCO2Fields",
+                ],
+            }
+        },
+    )
+    pco2_reported_temperature: str = Field(
+        default=...,
+        title="Temperature at which pCO2 was reported",
+        description="""In Celsius. The input could be a constant temperature value, or something like, in-situ temperature, temperature of analysis, etc.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "pco2_reported_temperature",
+                "domain_of": ["MeasuredCO2Fields"],
+            }
+        },
+    )
+    water_vapor_correction_method: Optional[str] = Field(
+        default=None,
+        title="Water vapor correction method",
+        description="""How the water vapor pressure inside the equilibrator was determined.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "water_vapor_correction_method",
+                "domain_of": ["MeasuredCO2Fields"],
+            }
+        },
+    )
+    temperature_correction_method: Optional[str] = Field(
+        default=None,
+        title="Temperature correction method",
+        description="""How the temperature effect was corrected.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "temperature_correction_method",
+                "domain_of": ["DiscretePHVariable", "MeasuredCO2Fields"],
+            }
+        },
+    )
 
 
 class QCFields(ConfiguredBaseModel):
     """
     Quality control fields applicable to measured and calculated variables. Not applied to socioeconomic variables.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Variable', 'mixin': True})
 
-    qc_steps_taken: Optional[str] = Field(default=None, title="QC steps taken", description="""Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).
-If quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_steps_taken', 'domain_of': ['QCFields']} })
-    uncertainty: Optional[str] = Field(default=None, title="Uncertainty", description="""It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.
-If uncertainty is provided as a variable, please list the column header name here.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty',
-         'domain_of': ['StandardGas', 'CO2GasDetector', 'QCFields']} })
-    uncertainty_definition: Optional[str] = Field(default=None, title="How was the uncertainty defined", description="""A description of the uncertainties involved in this method.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty_definition', 'domain_of': ['QCFields']} })
-    missing_value_indicators: Optional[str] = Field(default=None, title="Missing value indicators", description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'missing_value_indicators', 'domain_of': ['QCFields']} })
-    qc_researcher: Optional[Person] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
-    qc_researcher_institution: Optional[str] = Field(default=None, title="QC Researcher Institution", description="""The institution of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher_institution', 'domain_of': ['QCFields']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {"from_schema": "Variable", "mixin": True}
+    )
+
+    qc_steps_taken: Optional[str] = Field(
+        default=None,
+        title="QC steps taken",
+        description="""Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).
+If quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "qc_steps_taken", "domain_of": ["QCFields"]}
+        },
+    )
+    uncertainty: Optional[str] = Field(
+        default=None,
+        title="Uncertainty",
+        description="""It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.
+If uncertainty is provided as a variable, please list the column header name here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "uncertainty",
+                "domain_of": ["StandardGas", "CO2GasDetector", "QCFields"],
+            }
+        },
+    )
+    uncertainty_definition: Optional[str] = Field(
+        default=None,
+        title="How was the uncertainty defined",
+        description="""A description of the uncertainties involved in this method.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "uncertainty_definition",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    missing_value_indicators: Optional[str] = Field(
+        default=None,
+        title="Missing value indicators",
+        description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "missing_value_indicators",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    qc_researcher: Optional[Person] = Field(
+        default=None,
+        title="Researcher who QCed this variable",
+        description="""The name of the PI whose research team QCed this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "qc_researcher", "domain_of": ["QCFields"]}
+        },
+    )
+    qc_researcher_institution: Optional[str] = Field(
+        default=None,
+        title="QC Researcher Institution",
+        description="""The institution of the PI whose research team QCed this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "qc_researcher_institution",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
 
 
 class MeasuredVariable(QCFields, InSituVariable):
     """
     Variable that is directly measured in-situ using instruments. Reference: OAPMetadata XSD variables.xsd - basic_measured_observation_base
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
-         'from_schema': 'Variable',
-         'mixins': ['QCFields'],
-         'slot_usage': {'genesis': {'equals_string': 'measured',
-                                    'name': 'genesis',
-                                    'range': 'string'},
-                        'missing_value_indicators': {'name': 'missing_value_indicators',
-                                                     'required': True},
-                        'qc_steps_taken': {'name': 'qc_steps_taken', 'required': True},
-                        'uncertainty': {'name': 'uncertainty', 'required': True},
-                        'uncertainty_definition': {'name': 'uncertainty_definition',
-                                                   'required': True}}})
 
-    analyzing_instrument: AnalyzingInstrument = Field(default=..., title="Analyzing instrument", description="""Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.""", json_schema_extra = { "linkml_meta": {'alias': 'analyzing_instrument', 'domain_of': ['MeasuredVariable']} })
-    sampling_method: str = Field(default=..., title="Sampling Method", description="""Method used to collect samples.""", json_schema_extra = { "linkml_meta": {'alias': 'sampling_method', 'domain_of': ['MeasuredVariable']} })
-    field_replicate_information: Optional[str] = Field(default=None, title="Field replicate information", description="""Repetition of sample collection and measurement, e.g., triplicate samples.""", json_schema_extra = { "linkml_meta": {'alias': 'field_replicate_information', 'domain_of': ['MeasuredVariable']} })
-    analyzing_method: str = Field(default=..., title="Analyzing Method", description="""Additional information describing how the sample was analyzed. DOIs provided as applicable.""", json_schema_extra = { "linkml_meta": {'alias': 'analyzing_method', 'domain_of': ['MeasuredVariable']} })
-    observation_type: ObservationType = Field(default=..., title="Observation Type", json_schema_extra = { "linkml_meta": {'alias': 'observation_type', 'domain_of': ['MeasuredVariable']} })
-    sampling: SamplingType = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'sampling', 'domain_of': ['MeasuredVariable']} })
-    sampling_instrument_type: SamplingInstrumentType = Field(default=..., title="Sampling instrument type", json_schema_extra = { "linkml_meta": {'alias': 'sampling_instrument_type', 'domain_of': ['MeasuredVariable']} })
-    sampling_instrument_type_custom: Optional[str] = Field(default=None, title="Sampling instrument type (custom)", json_schema_extra = { "linkml_meta": {'alias': 'sampling_instrument_type_custom', 'domain_of': ['MeasuredVariable']} })
-    qc_steps_taken: str = Field(default=..., title="QC steps taken", description="""Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).
-If quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_steps_taken', 'domain_of': ['QCFields']} })
-    uncertainty: str = Field(default=..., title="Uncertainty", description="""It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.
-If uncertainty is provided as a variable, please list the column header name here.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty',
-         'domain_of': ['StandardGas', 'CO2GasDetector', 'QCFields']} })
-    uncertainty_definition: str = Field(default=..., title="How was the uncertainty defined", description="""A description of the uncertainties involved in this method.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty_definition', 'domain_of': ['QCFields']} })
-    missing_value_indicators: str = Field(default=..., title="Missing value indicators", description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'missing_value_indicators', 'domain_of': ['QCFields']} })
-    qc_researcher: Optional[Person] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
-    qc_researcher_institution: Optional[str] = Field(default=None, title="QC Researcher Institution", description="""The institution of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher_institution', 'domain_of': ['QCFields']} })
-    genesis: Literal["measured"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'genesis',
-         'domain_of': ['InSituVariable'],
-         'equals_string': 'measured'} })
-    dataset_variable_name_qc_flag: Optional[str] = Field(default=None, title="Dataset variable name (Quality Flag)", description="""If applicable, the column header name used for the quality control flag corresponding to this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name_qc_flag', 'domain_of': ['InSituVariable']} })
-    dataset_variable_name_raw: Optional[str] = Field(default=None, title="Dataset variable name (raw)", description="""If applicable, the column header name used for the raw data corresponding to this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name_raw', 'domain_of': ['InSituVariable']} })
-    method_reference: Optional[str] = Field(default=None, title="Method Reference", description="""Citation for the method used.""", json_schema_extra = { "linkml_meta": {'alias': 'method_reference', 'domain_of': ['Calibration', 'InSituVariable']} })
-    measurement_researcher: Optional[Person] = Field(default=None, title="Researcher who measured the variable", description="""The name of the PI whose research team measured or derived this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'measurement_researcher', 'domain_of': ['InSituVariable']} })
-    other_detailed_information: Optional[str] = Field(default=None, title="Other Detailed Information", description="""Any additional information about this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'other_detailed_information', 'domain_of': ['InSituVariable']} })
-    units: str = Field(default=..., title="Unit", description="""Unit of measurement for this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'units', 'domain_of': ['Variable']} })
-    schema_class: Literal["MeasuredVariable"] = Field(default="MeasuredVariable", description="""The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.""", json_schema_extra = { "linkml_meta": {'alias': 'schema_class', 'designates_type': True, 'domain_of': ['Variable']} })
-    variable_type: VariableType = Field(default=..., title="Variable Type", description="""High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.""", json_schema_extra = { "linkml_meta": {'alias': 'variable_type', 'domain_of': ['Variable']} })
-    standard_identifier: Optional[VocabularyItemReference] = Field(default=None, json_schema_extra = { "linkml_meta": {'alias': 'standard_identifier', 'domain_of': ['Variable']} })
-    dataset_variable_name: str = Field(default=..., title="Dataset variable name", description="""The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name', 'domain_of': ['Variable']} })
-    long_name: str = Field(default=..., title="Variable full name", description="""Full descriptive name of the variable.""", json_schema_extra = { "linkml_meta": {'alias': 'long_name', 'domain_of': ['Variable']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "abstract": True,
+            "from_schema": "Variable",
+            "mixins": ["QCFields"],
+            "slot_usage": {
+                "genesis": {
+                    "equals_string": "measured",
+                    "name": "genesis",
+                    "range": "string",
+                },
+                "missing_value_indicators": {
+                    "name": "missing_value_indicators",
+                    "required": True,
+                },
+                "qc_steps_taken": {"name": "qc_steps_taken", "required": True},
+                "uncertainty": {"name": "uncertainty", "required": True},
+                "uncertainty_definition": {
+                    "name": "uncertainty_definition",
+                    "required": True,
+                },
+            },
+        }
+    )
+
+    analyzing_instrument: AnalyzingInstrument = Field(
+        default=...,
+        title="Analyzing instrument",
+        description="""Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "analyzing_instrument",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling_method: str = Field(
+        default=...,
+        title="Sampling Method",
+        description="""Method used to collect samples.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_method",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    field_replicate_information: Optional[str] = Field(
+        default=None,
+        title="Field replicate information",
+        description="""Repetition of sample collection and measurement, e.g., triplicate samples.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "field_replicate_information",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    analyzing_method: str = Field(
+        default=...,
+        title="Analyzing Method",
+        description="""Additional information describing how the sample was analyzed. DOIs provided as applicable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "analyzing_method",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    observation_type: ObservationType = Field(
+        default=...,
+        title="Observation Type",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "observation_type",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling: SamplingType = Field(
+        default=...,
+        json_schema_extra={
+            "linkml_meta": {"alias": "sampling", "domain_of": ["MeasuredVariable"]}
+        },
+    )
+    sampling_instrument_type: SamplingInstrumentType = Field(
+        default=...,
+        title="Sampling instrument type",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_instrument_type",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling_instrument_type_custom: Optional[str] = Field(
+        default=None,
+        title="Sampling instrument type (custom)",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_instrument_type_custom",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    qc_steps_taken: str = Field(
+        default=...,
+        title="QC steps taken",
+        description="""Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).
+If quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "qc_steps_taken", "domain_of": ["QCFields"]}
+        },
+    )
+    uncertainty: str = Field(
+        default=...,
+        title="Uncertainty",
+        description="""It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.
+If uncertainty is provided as a variable, please list the column header name here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "uncertainty",
+                "domain_of": ["StandardGas", "CO2GasDetector", "QCFields"],
+            }
+        },
+    )
+    uncertainty_definition: str = Field(
+        default=...,
+        title="How was the uncertainty defined",
+        description="""A description of the uncertainties involved in this method.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "uncertainty_definition",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    missing_value_indicators: str = Field(
+        default=...,
+        title="Missing value indicators",
+        description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "missing_value_indicators",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    qc_researcher: Optional[Person] = Field(
+        default=None,
+        title="Researcher who QCed this variable",
+        description="""The name of the PI whose research team QCed this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "qc_researcher", "domain_of": ["QCFields"]}
+        },
+    )
+    qc_researcher_institution: Optional[str] = Field(
+        default=None,
+        title="QC Researcher Institution",
+        description="""The institution of the PI whose research team QCed this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "qc_researcher_institution",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    genesis: Literal["measured"] = Field(
+        default=...,
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "genesis",
+                "domain_of": ["InSituVariable"],
+                "equals_string": "measured",
+            }
+        },
+    )
+    dataset_variable_name_qc_flag: Optional[str] = Field(
+        default=None,
+        title="Dataset variable name (Quality Flag)",
+        description="""If applicable, the column header name used for the quality control flag corresponding to this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dataset_variable_name_qc_flag",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    dataset_variable_name_raw: Optional[str] = Field(
+        default=None,
+        title="Dataset variable name (raw)",
+        description="""If applicable, the column header name used for the raw data corresponding to this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dataset_variable_name_raw",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    method_reference: Optional[str] = Field(
+        default=None,
+        title="Method Reference",
+        description="""Citation for the method used.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "method_reference",
+                "domain_of": ["Calibration", "InSituVariable"],
+            }
+        },
+    )
+    measurement_researcher: Optional[Person] = Field(
+        default=None,
+        title="Researcher who measured the variable",
+        description="""The name of the PI whose research team measured or derived this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "measurement_researcher",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    other_detailed_information: Optional[str] = Field(
+        default=None,
+        title="Other Detailed Information",
+        description="""Any additional information about this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "other_detailed_information",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    units: str = Field(
+        default=...,
+        title="Unit",
+        description="""Unit of measurement for this variable.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "units", "domain_of": ["Variable"]}
+        },
+    )
+    schema_class: Literal["MeasuredVariable"] = Field(
+        default="MeasuredVariable",
+        description="""The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "schema_class",
+                "designates_type": True,
+                "domain_of": ["Variable"],
+            }
+        },
+    )
+    variable_type: VariableType = Field(
+        default=...,
+        title="Variable Type",
+        description="""High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "variable_type", "domain_of": ["Variable"]}
+        },
+    )
+    standard_identifier: Optional[VocabularyItemReference] = Field(
+        default=None,
+        json_schema_extra={
+            "linkml_meta": {"alias": "standard_identifier", "domain_of": ["Variable"]}
+        },
+    )
+    dataset_variable_name: str = Field(
+        default=...,
+        title="Dataset variable name",
+        description="""The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "dataset_variable_name", "domain_of": ["Variable"]}
+        },
+    )
+    long_name: str = Field(
+        default=...,
+        title="Variable full name",
+        description="""Full descriptive name of the variable.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "long_name", "domain_of": ["Variable"]}
+        },
+    )
 
 
 class DiscreteMeasuredVariable(MeasuredVariable):
     """
     A variable measured in-situ from discrete water samples (e.g., bottle samples analyzed in a lab or shipboard). Use this class for generic measured variables that do not fall under a specific category (pH, TA, DIC, CO2, sediment, HPLC). For those, use the type-specific subclass instead (e.g., DiscretePHVariable). Set variable_type to \"other\", genesis to \"measured\", and sampling to \"discrete\".
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Variable',
-         'slot_usage': {'sampling': {'equals_string': 'discrete',
-                                     'name': 'sampling',
-                                     'range': 'string'}}})
 
-    analyzing_instrument: AnalyzingInstrument = Field(default=..., title="Analyzing instrument", description="""Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.""", json_schema_extra = { "linkml_meta": {'alias': 'analyzing_instrument', 'domain_of': ['MeasuredVariable']} })
-    sampling_method: str = Field(default=..., title="Sampling Method", description="""Method used to collect samples.""", json_schema_extra = { "linkml_meta": {'alias': 'sampling_method', 'domain_of': ['MeasuredVariable']} })
-    field_replicate_information: Optional[str] = Field(default=None, title="Field replicate information", description="""Repetition of sample collection and measurement, e.g., triplicate samples.""", json_schema_extra = { "linkml_meta": {'alias': 'field_replicate_information', 'domain_of': ['MeasuredVariable']} })
-    analyzing_method: str = Field(default=..., title="Analyzing Method", description="""Additional information describing how the sample was analyzed. DOIs provided as applicable.""", json_schema_extra = { "linkml_meta": {'alias': 'analyzing_method', 'domain_of': ['MeasuredVariable']} })
-    observation_type: ObservationType = Field(default=..., title="Observation Type", json_schema_extra = { "linkml_meta": {'alias': 'observation_type', 'domain_of': ['MeasuredVariable']} })
-    sampling: Literal["discrete"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'sampling',
-         'domain_of': ['MeasuredVariable'],
-         'equals_string': 'discrete'} })
-    sampling_instrument_type: SamplingInstrumentType = Field(default=..., title="Sampling instrument type", json_schema_extra = { "linkml_meta": {'alias': 'sampling_instrument_type', 'domain_of': ['MeasuredVariable']} })
-    sampling_instrument_type_custom: Optional[str] = Field(default=None, title="Sampling instrument type (custom)", json_schema_extra = { "linkml_meta": {'alias': 'sampling_instrument_type_custom', 'domain_of': ['MeasuredVariable']} })
-    qc_steps_taken: str = Field(default=..., title="QC steps taken", description="""Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).
-If quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_steps_taken', 'domain_of': ['QCFields']} })
-    uncertainty: str = Field(default=..., title="Uncertainty", description="""It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.
-If uncertainty is provided as a variable, please list the column header name here.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty',
-         'domain_of': ['StandardGas', 'CO2GasDetector', 'QCFields']} })
-    uncertainty_definition: str = Field(default=..., title="How was the uncertainty defined", description="""A description of the uncertainties involved in this method.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty_definition', 'domain_of': ['QCFields']} })
-    missing_value_indicators: str = Field(default=..., title="Missing value indicators", description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'missing_value_indicators', 'domain_of': ['QCFields']} })
-    qc_researcher: Optional[Person] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
-    qc_researcher_institution: Optional[str] = Field(default=None, title="QC Researcher Institution", description="""The institution of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher_institution', 'domain_of': ['QCFields']} })
-    genesis: Literal["measured"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'genesis',
-         'domain_of': ['InSituVariable'],
-         'equals_string': 'measured'} })
-    dataset_variable_name_qc_flag: Optional[str] = Field(default=None, title="Dataset variable name (Quality Flag)", description="""If applicable, the column header name used for the quality control flag corresponding to this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name_qc_flag', 'domain_of': ['InSituVariable']} })
-    dataset_variable_name_raw: Optional[str] = Field(default=None, title="Dataset variable name (raw)", description="""If applicable, the column header name used for the raw data corresponding to this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name_raw', 'domain_of': ['InSituVariable']} })
-    method_reference: Optional[str] = Field(default=None, title="Method Reference", description="""Citation for the method used.""", json_schema_extra = { "linkml_meta": {'alias': 'method_reference', 'domain_of': ['Calibration', 'InSituVariable']} })
-    measurement_researcher: Optional[Person] = Field(default=None, title="Researcher who measured the variable", description="""The name of the PI whose research team measured or derived this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'measurement_researcher', 'domain_of': ['InSituVariable']} })
-    other_detailed_information: Optional[str] = Field(default=None, title="Other Detailed Information", description="""Any additional information about this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'other_detailed_information', 'domain_of': ['InSituVariable']} })
-    units: str = Field(default=..., title="Unit", description="""Unit of measurement for this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'units', 'domain_of': ['Variable']} })
-    schema_class: Literal["DiscreteMeasuredVariable"] = Field(default="DiscreteMeasuredVariable", description="""The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.""", json_schema_extra = { "linkml_meta": {'alias': 'schema_class', 'designates_type': True, 'domain_of': ['Variable']} })
-    variable_type: VariableType = Field(default=..., title="Variable Type", description="""High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.""", json_schema_extra = { "linkml_meta": {'alias': 'variable_type', 'domain_of': ['Variable']} })
-    standard_identifier: Optional[VocabularyItemReference] = Field(default=None, json_schema_extra = { "linkml_meta": {'alias': 'standard_identifier', 'domain_of': ['Variable']} })
-    dataset_variable_name: str = Field(default=..., title="Dataset variable name", description="""The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name', 'domain_of': ['Variable']} })
-    long_name: str = Field(default=..., title="Variable full name", description="""Full descriptive name of the variable.""", json_schema_extra = { "linkml_meta": {'alias': 'long_name', 'domain_of': ['Variable']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "from_schema": "Variable",
+            "slot_usage": {
+                "sampling": {
+                    "equals_string": "discrete",
+                    "name": "sampling",
+                    "range": "string",
+                }
+            },
+        }
+    )
+
+    analyzing_instrument: AnalyzingInstrument = Field(
+        default=...,
+        title="Analyzing instrument",
+        description="""Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "analyzing_instrument",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling_method: str = Field(
+        default=...,
+        title="Sampling Method",
+        description="""Method used to collect samples.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_method",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    field_replicate_information: Optional[str] = Field(
+        default=None,
+        title="Field replicate information",
+        description="""Repetition of sample collection and measurement, e.g., triplicate samples.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "field_replicate_information",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    analyzing_method: str = Field(
+        default=...,
+        title="Analyzing Method",
+        description="""Additional information describing how the sample was analyzed. DOIs provided as applicable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "analyzing_method",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    observation_type: ObservationType = Field(
+        default=...,
+        title="Observation Type",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "observation_type",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling: Literal["discrete"] = Field(
+        default=...,
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling",
+                "domain_of": ["MeasuredVariable"],
+                "equals_string": "discrete",
+            }
+        },
+    )
+    sampling_instrument_type: SamplingInstrumentType = Field(
+        default=...,
+        title="Sampling instrument type",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_instrument_type",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling_instrument_type_custom: Optional[str] = Field(
+        default=None,
+        title="Sampling instrument type (custom)",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_instrument_type_custom",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    qc_steps_taken: str = Field(
+        default=...,
+        title="QC steps taken",
+        description="""Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).
+If quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "qc_steps_taken", "domain_of": ["QCFields"]}
+        },
+    )
+    uncertainty: str = Field(
+        default=...,
+        title="Uncertainty",
+        description="""It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.
+If uncertainty is provided as a variable, please list the column header name here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "uncertainty",
+                "domain_of": ["StandardGas", "CO2GasDetector", "QCFields"],
+            }
+        },
+    )
+    uncertainty_definition: str = Field(
+        default=...,
+        title="How was the uncertainty defined",
+        description="""A description of the uncertainties involved in this method.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "uncertainty_definition",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    missing_value_indicators: str = Field(
+        default=...,
+        title="Missing value indicators",
+        description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "missing_value_indicators",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    qc_researcher: Optional[Person] = Field(
+        default=None,
+        title="Researcher who QCed this variable",
+        description="""The name of the PI whose research team QCed this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "qc_researcher", "domain_of": ["QCFields"]}
+        },
+    )
+    qc_researcher_institution: Optional[str] = Field(
+        default=None,
+        title="QC Researcher Institution",
+        description="""The institution of the PI whose research team QCed this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "qc_researcher_institution",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    genesis: Literal["measured"] = Field(
+        default=...,
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "genesis",
+                "domain_of": ["InSituVariable"],
+                "equals_string": "measured",
+            }
+        },
+    )
+    dataset_variable_name_qc_flag: Optional[str] = Field(
+        default=None,
+        title="Dataset variable name (Quality Flag)",
+        description="""If applicable, the column header name used for the quality control flag corresponding to this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dataset_variable_name_qc_flag",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    dataset_variable_name_raw: Optional[str] = Field(
+        default=None,
+        title="Dataset variable name (raw)",
+        description="""If applicable, the column header name used for the raw data corresponding to this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dataset_variable_name_raw",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    method_reference: Optional[str] = Field(
+        default=None,
+        title="Method Reference",
+        description="""Citation for the method used.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "method_reference",
+                "domain_of": ["Calibration", "InSituVariable"],
+            }
+        },
+    )
+    measurement_researcher: Optional[Person] = Field(
+        default=None,
+        title="Researcher who measured the variable",
+        description="""The name of the PI whose research team measured or derived this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "measurement_researcher",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    other_detailed_information: Optional[str] = Field(
+        default=None,
+        title="Other Detailed Information",
+        description="""Any additional information about this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "other_detailed_information",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    units: str = Field(
+        default=...,
+        title="Unit",
+        description="""Unit of measurement for this variable.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "units", "domain_of": ["Variable"]}
+        },
+    )
+    schema_class: Literal["DiscreteMeasuredVariable"] = Field(
+        default="DiscreteMeasuredVariable",
+        description="""The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "schema_class",
+                "designates_type": True,
+                "domain_of": ["Variable"],
+            }
+        },
+    )
+    variable_type: VariableType = Field(
+        default=...,
+        title="Variable Type",
+        description="""High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "variable_type", "domain_of": ["Variable"]}
+        },
+    )
+    standard_identifier: Optional[VocabularyItemReference] = Field(
+        default=None,
+        json_schema_extra={
+            "linkml_meta": {"alias": "standard_identifier", "domain_of": ["Variable"]}
+        },
+    )
+    dataset_variable_name: str = Field(
+        default=...,
+        title="Dataset variable name",
+        description="""The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "dataset_variable_name", "domain_of": ["Variable"]}
+        },
+    )
+    long_name: str = Field(
+        default=...,
+        title="Variable full name",
+        description="""Full descriptive name of the variable.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "long_name", "domain_of": ["Variable"]}
+        },
+    )
 
 
 class ContinuousMeasuredVariable(MeasuredVariable):
     """
     A variable measured in-situ by a continuous autonomous sensor (e.g., temperature, salinity, conductivity, pressure from a deployed sonde or underway system). Use this class for generic measured variables that do not fall under a specific category (pH, TA, DIC, CO2, sediment). For those, use the type-specific subclass instead (e.g., ContinuousPHVariable). Set variable_type to \"other\", genesis to \"measured\", and sampling to \"continuous\".
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Variable',
-         'slot_usage': {'sampling': {'equals_string': 'continuous',
-                                     'name': 'sampling',
-                                     'range': 'string'}}})
 
-    raw_data_calculation_method: str = Field(default=..., title="Method to calculate reported values from raw data", description="""The method used to calculate reported values from raw sensor data.""", json_schema_extra = { "linkml_meta": {'alias': 'raw_data_calculation_method',
-         'domain_of': ['ContinuousMeasuredVariable']} })
-    calculation_software_version: Optional[str] = Field(default=None, title="Software version for the calculation", description="""Version of the software used to calculate reported values from raw values.""", json_schema_extra = { "linkml_meta": {'alias': 'calculation_software_version',
-         'domain_of': ['ContinuousMeasuredVariable']} })
-    analyzing_instrument: AnalyzingInstrument = Field(default=..., title="Analyzing instrument", description="""Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.""", json_schema_extra = { "linkml_meta": {'alias': 'analyzing_instrument', 'domain_of': ['MeasuredVariable']} })
-    sampling_method: str = Field(default=..., title="Sampling Method", description="""Method used to collect samples.""", json_schema_extra = { "linkml_meta": {'alias': 'sampling_method', 'domain_of': ['MeasuredVariable']} })
-    field_replicate_information: Optional[str] = Field(default=None, title="Field replicate information", description="""Repetition of sample collection and measurement, e.g., triplicate samples.""", json_schema_extra = { "linkml_meta": {'alias': 'field_replicate_information', 'domain_of': ['MeasuredVariable']} })
-    analyzing_method: str = Field(default=..., title="Analyzing Method", description="""Additional information describing how the sample was analyzed. DOIs provided as applicable.""", json_schema_extra = { "linkml_meta": {'alias': 'analyzing_method', 'domain_of': ['MeasuredVariable']} })
-    observation_type: ObservationType = Field(default=..., title="Observation Type", json_schema_extra = { "linkml_meta": {'alias': 'observation_type', 'domain_of': ['MeasuredVariable']} })
-    sampling: Literal["continuous"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'sampling',
-         'domain_of': ['MeasuredVariable'],
-         'equals_string': 'continuous'} })
-    sampling_instrument_type: SamplingInstrumentType = Field(default=..., title="Sampling instrument type", json_schema_extra = { "linkml_meta": {'alias': 'sampling_instrument_type', 'domain_of': ['MeasuredVariable']} })
-    sampling_instrument_type_custom: Optional[str] = Field(default=None, title="Sampling instrument type (custom)", json_schema_extra = { "linkml_meta": {'alias': 'sampling_instrument_type_custom', 'domain_of': ['MeasuredVariable']} })
-    qc_steps_taken: str = Field(default=..., title="QC steps taken", description="""Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).
-If quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_steps_taken', 'domain_of': ['QCFields']} })
-    uncertainty: str = Field(default=..., title="Uncertainty", description="""It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.
-If uncertainty is provided as a variable, please list the column header name here.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty',
-         'domain_of': ['StandardGas', 'CO2GasDetector', 'QCFields']} })
-    uncertainty_definition: str = Field(default=..., title="How was the uncertainty defined", description="""A description of the uncertainties involved in this method.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty_definition', 'domain_of': ['QCFields']} })
-    missing_value_indicators: str = Field(default=..., title="Missing value indicators", description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'missing_value_indicators', 'domain_of': ['QCFields']} })
-    qc_researcher: Optional[Person] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
-    qc_researcher_institution: Optional[str] = Field(default=None, title="QC Researcher Institution", description="""The institution of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher_institution', 'domain_of': ['QCFields']} })
-    genesis: Literal["measured"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'genesis',
-         'domain_of': ['InSituVariable'],
-         'equals_string': 'measured'} })
-    dataset_variable_name_qc_flag: Optional[str] = Field(default=None, title="Dataset variable name (Quality Flag)", description="""If applicable, the column header name used for the quality control flag corresponding to this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name_qc_flag', 'domain_of': ['InSituVariable']} })
-    dataset_variable_name_raw: Optional[str] = Field(default=None, title="Dataset variable name (raw)", description="""If applicable, the column header name used for the raw data corresponding to this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name_raw', 'domain_of': ['InSituVariable']} })
-    method_reference: Optional[str] = Field(default=None, title="Method Reference", description="""Citation for the method used.""", json_schema_extra = { "linkml_meta": {'alias': 'method_reference', 'domain_of': ['Calibration', 'InSituVariable']} })
-    measurement_researcher: Optional[Person] = Field(default=None, title="Researcher who measured the variable", description="""The name of the PI whose research team measured or derived this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'measurement_researcher', 'domain_of': ['InSituVariable']} })
-    other_detailed_information: Optional[str] = Field(default=None, title="Other Detailed Information", description="""Any additional information about this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'other_detailed_information', 'domain_of': ['InSituVariable']} })
-    units: str = Field(default=..., title="Unit", description="""Unit of measurement for this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'units', 'domain_of': ['Variable']} })
-    schema_class: Literal["ContinuousMeasuredVariable"] = Field(default="ContinuousMeasuredVariable", description="""The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.""", json_schema_extra = { "linkml_meta": {'alias': 'schema_class', 'designates_type': True, 'domain_of': ['Variable']} })
-    variable_type: VariableType = Field(default=..., title="Variable Type", description="""High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.""", json_schema_extra = { "linkml_meta": {'alias': 'variable_type', 'domain_of': ['Variable']} })
-    standard_identifier: Optional[VocabularyItemReference] = Field(default=None, json_schema_extra = { "linkml_meta": {'alias': 'standard_identifier', 'domain_of': ['Variable']} })
-    dataset_variable_name: str = Field(default=..., title="Dataset variable name", description="""The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name', 'domain_of': ['Variable']} })
-    long_name: str = Field(default=..., title="Variable full name", description="""Full descriptive name of the variable.""", json_schema_extra = { "linkml_meta": {'alias': 'long_name', 'domain_of': ['Variable']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "from_schema": "Variable",
+            "slot_usage": {
+                "sampling": {
+                    "equals_string": "continuous",
+                    "name": "sampling",
+                    "range": "string",
+                }
+            },
+        }
+    )
+
+    raw_data_calculation_method: str = Field(
+        default=...,
+        title="Method to calculate reported values from raw data",
+        description="""The method used to calculate reported values from raw sensor data.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "raw_data_calculation_method",
+                "domain_of": ["ContinuousMeasuredVariable"],
+            }
+        },
+    )
+    calculation_software_version: Optional[str] = Field(
+        default=None,
+        title="Software version for the calculation",
+        description="""Version of the software used to calculate reported values from raw values.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "calculation_software_version",
+                "domain_of": ["ContinuousMeasuredVariable"],
+            }
+        },
+    )
+    analyzing_instrument: AnalyzingInstrument = Field(
+        default=...,
+        title="Analyzing instrument",
+        description="""Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "analyzing_instrument",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling_method: str = Field(
+        default=...,
+        title="Sampling Method",
+        description="""Method used to collect samples.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_method",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    field_replicate_information: Optional[str] = Field(
+        default=None,
+        title="Field replicate information",
+        description="""Repetition of sample collection and measurement, e.g., triplicate samples.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "field_replicate_information",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    analyzing_method: str = Field(
+        default=...,
+        title="Analyzing Method",
+        description="""Additional information describing how the sample was analyzed. DOIs provided as applicable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "analyzing_method",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    observation_type: ObservationType = Field(
+        default=...,
+        title="Observation Type",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "observation_type",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling: Literal["continuous"] = Field(
+        default=...,
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling",
+                "domain_of": ["MeasuredVariable"],
+                "equals_string": "continuous",
+            }
+        },
+    )
+    sampling_instrument_type: SamplingInstrumentType = Field(
+        default=...,
+        title="Sampling instrument type",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_instrument_type",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling_instrument_type_custom: Optional[str] = Field(
+        default=None,
+        title="Sampling instrument type (custom)",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_instrument_type_custom",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    qc_steps_taken: str = Field(
+        default=...,
+        title="QC steps taken",
+        description="""Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).
+If quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "qc_steps_taken", "domain_of": ["QCFields"]}
+        },
+    )
+    uncertainty: str = Field(
+        default=...,
+        title="Uncertainty",
+        description="""It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.
+If uncertainty is provided as a variable, please list the column header name here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "uncertainty",
+                "domain_of": ["StandardGas", "CO2GasDetector", "QCFields"],
+            }
+        },
+    )
+    uncertainty_definition: str = Field(
+        default=...,
+        title="How was the uncertainty defined",
+        description="""A description of the uncertainties involved in this method.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "uncertainty_definition",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    missing_value_indicators: str = Field(
+        default=...,
+        title="Missing value indicators",
+        description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "missing_value_indicators",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    qc_researcher: Optional[Person] = Field(
+        default=None,
+        title="Researcher who QCed this variable",
+        description="""The name of the PI whose research team QCed this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "qc_researcher", "domain_of": ["QCFields"]}
+        },
+    )
+    qc_researcher_institution: Optional[str] = Field(
+        default=None,
+        title="QC Researcher Institution",
+        description="""The institution of the PI whose research team QCed this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "qc_researcher_institution",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    genesis: Literal["measured"] = Field(
+        default=...,
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "genesis",
+                "domain_of": ["InSituVariable"],
+                "equals_string": "measured",
+            }
+        },
+    )
+    dataset_variable_name_qc_flag: Optional[str] = Field(
+        default=None,
+        title="Dataset variable name (Quality Flag)",
+        description="""If applicable, the column header name used for the quality control flag corresponding to this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dataset_variable_name_qc_flag",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    dataset_variable_name_raw: Optional[str] = Field(
+        default=None,
+        title="Dataset variable name (raw)",
+        description="""If applicable, the column header name used for the raw data corresponding to this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dataset_variable_name_raw",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    method_reference: Optional[str] = Field(
+        default=None,
+        title="Method Reference",
+        description="""Citation for the method used.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "method_reference",
+                "domain_of": ["Calibration", "InSituVariable"],
+            }
+        },
+    )
+    measurement_researcher: Optional[Person] = Field(
+        default=None,
+        title="Researcher who measured the variable",
+        description="""The name of the PI whose research team measured or derived this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "measurement_researcher",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    other_detailed_information: Optional[str] = Field(
+        default=None,
+        title="Other Detailed Information",
+        description="""Any additional information about this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "other_detailed_information",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    units: str = Field(
+        default=...,
+        title="Unit",
+        description="""Unit of measurement for this variable.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "units", "domain_of": ["Variable"]}
+        },
+    )
+    schema_class: Literal["ContinuousMeasuredVariable"] = Field(
+        default="ContinuousMeasuredVariable",
+        description="""The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "schema_class",
+                "designates_type": True,
+                "domain_of": ["Variable"],
+            }
+        },
+    )
+    variable_type: VariableType = Field(
+        default=...,
+        title="Variable Type",
+        description="""High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "variable_type", "domain_of": ["Variable"]}
+        },
+    )
+    standard_identifier: Optional[VocabularyItemReference] = Field(
+        default=None,
+        json_schema_extra={
+            "linkml_meta": {"alias": "standard_identifier", "domain_of": ["Variable"]}
+        },
+    )
+    dataset_variable_name: str = Field(
+        default=...,
+        title="Dataset variable name",
+        description="""The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "dataset_variable_name", "domain_of": ["Variable"]}
+        },
+    )
+    long_name: str = Field(
+        default=...,
+        title="Variable full name",
+        description="""Full descriptive name of the variable.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "long_name", "domain_of": ["Variable"]}
+        },
+    )
 
 
 class CalculatedVariable(QCFields, InSituVariable):
     """
     A variable that is calculated or derived from other measured variables rather than directly measured by an instrument (e.g., carbonate system parameters computed via CO2SYS). Set genesis to \"calculated\". The variable_type should reflect the quantity being calculated (e.g., \"pH\", \"ta\", \"dic\", \"co2\", or \"other\").
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Variable',
-         'mixins': ['QCFields'],
-         'slot_usage': {'genesis': {'equals_string': 'calculated',
-                                    'name': 'genesis',
-                                    'range': 'string'}}})
 
-    calculation_method_and_parameters: str = Field(default=..., title="Calculated Method And Parameters", description="""Information about how the variable was calculated and the parameters used in calculation, e.g.: Calculation software = CO2SYSv1 (MATLAB)  Input variables =  pH and DIC (column header names 'ph_t_insitu' and 'dic' in associated dataset file) Additional information = the dissociation constants of Lueker et al., 2000 for carbonic acid, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'calculation_method_and_parameters',
-         'domain_of': ['CalculatedVariable']} })
-    qc_steps_taken: Optional[str] = Field(default=None, title="QC steps taken", description="""Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).
-If quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_steps_taken', 'domain_of': ['QCFields']} })
-    uncertainty: Optional[str] = Field(default=None, title="Uncertainty", description="""It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.
-If uncertainty is provided as a variable, please list the column header name here.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty',
-         'domain_of': ['StandardGas', 'CO2GasDetector', 'QCFields']} })
-    uncertainty_definition: Optional[str] = Field(default=None, title="How was the uncertainty defined", description="""A description of the uncertainties involved in this method.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty_definition', 'domain_of': ['QCFields']} })
-    missing_value_indicators: Optional[str] = Field(default=None, title="Missing value indicators", description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'missing_value_indicators', 'domain_of': ['QCFields']} })
-    qc_researcher: Optional[Person] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
-    qc_researcher_institution: Optional[str] = Field(default=None, title="QC Researcher Institution", description="""The institution of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher_institution', 'domain_of': ['QCFields']} })
-    genesis: Literal["calculated"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'genesis',
-         'domain_of': ['InSituVariable'],
-         'equals_string': 'calculated'} })
-    dataset_variable_name_qc_flag: Optional[str] = Field(default=None, title="Dataset variable name (Quality Flag)", description="""If applicable, the column header name used for the quality control flag corresponding to this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name_qc_flag', 'domain_of': ['InSituVariable']} })
-    dataset_variable_name_raw: Optional[str] = Field(default=None, title="Dataset variable name (raw)", description="""If applicable, the column header name used for the raw data corresponding to this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name_raw', 'domain_of': ['InSituVariable']} })
-    method_reference: Optional[str] = Field(default=None, title="Method Reference", description="""Citation for the method used.""", json_schema_extra = { "linkml_meta": {'alias': 'method_reference', 'domain_of': ['Calibration', 'InSituVariable']} })
-    measurement_researcher: Optional[Person] = Field(default=None, title="Researcher who measured the variable", description="""The name of the PI whose research team measured or derived this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'measurement_researcher', 'domain_of': ['InSituVariable']} })
-    other_detailed_information: Optional[str] = Field(default=None, title="Other Detailed Information", description="""Any additional information about this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'other_detailed_information', 'domain_of': ['InSituVariable']} })
-    units: str = Field(default=..., title="Unit", description="""Unit of measurement for this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'units', 'domain_of': ['Variable']} })
-    schema_class: Literal["CalculatedVariable"] = Field(default="CalculatedVariable", description="""The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.""", json_schema_extra = { "linkml_meta": {'alias': 'schema_class', 'designates_type': True, 'domain_of': ['Variable']} })
-    variable_type: VariableType = Field(default=..., title="Variable Type", description="""High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.""", json_schema_extra = { "linkml_meta": {'alias': 'variable_type', 'domain_of': ['Variable']} })
-    standard_identifier: Optional[VocabularyItemReference] = Field(default=None, json_schema_extra = { "linkml_meta": {'alias': 'standard_identifier', 'domain_of': ['Variable']} })
-    dataset_variable_name: str = Field(default=..., title="Dataset variable name", description="""The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name', 'domain_of': ['Variable']} })
-    long_name: str = Field(default=..., title="Variable full name", description="""Full descriptive name of the variable.""", json_schema_extra = { "linkml_meta": {'alias': 'long_name', 'domain_of': ['Variable']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "from_schema": "Variable",
+            "mixins": ["QCFields"],
+            "slot_usage": {
+                "genesis": {
+                    "equals_string": "calculated",
+                    "name": "genesis",
+                    "range": "string",
+                }
+            },
+        }
+    )
+
+    calculation_method_and_parameters: str = Field(
+        default=...,
+        title="Calculated Method And Parameters",
+        description="""Information about how the variable was calculated and the parameters used in calculation, e.g.: Calculation software = CO2SYSv1 (MATLAB)  Input variables =  pH and DIC (column header names 'ph_t_insitu' and 'dic' in associated dataset file) Additional information = the dissociation constants of Lueker et al., 2000 for carbonic acid, etc.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "calculation_method_and_parameters",
+                "domain_of": ["CalculatedVariable"],
+            }
+        },
+    )
+    qc_steps_taken: Optional[str] = Field(
+        default=None,
+        title="QC steps taken",
+        description="""Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).
+If quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "qc_steps_taken", "domain_of": ["QCFields"]}
+        },
+    )
+    uncertainty: Optional[str] = Field(
+        default=None,
+        title="Uncertainty",
+        description="""It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.
+If uncertainty is provided as a variable, please list the column header name here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "uncertainty",
+                "domain_of": ["StandardGas", "CO2GasDetector", "QCFields"],
+            }
+        },
+    )
+    uncertainty_definition: Optional[str] = Field(
+        default=None,
+        title="How was the uncertainty defined",
+        description="""A description of the uncertainties involved in this method.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "uncertainty_definition",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    missing_value_indicators: Optional[str] = Field(
+        default=None,
+        title="Missing value indicators",
+        description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "missing_value_indicators",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    qc_researcher: Optional[Person] = Field(
+        default=None,
+        title="Researcher who QCed this variable",
+        description="""The name of the PI whose research team QCed this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "qc_researcher", "domain_of": ["QCFields"]}
+        },
+    )
+    qc_researcher_institution: Optional[str] = Field(
+        default=None,
+        title="QC Researcher Institution",
+        description="""The institution of the PI whose research team QCed this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "qc_researcher_institution",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    genesis: Literal["calculated"] = Field(
+        default=...,
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "genesis",
+                "domain_of": ["InSituVariable"],
+                "equals_string": "calculated",
+            }
+        },
+    )
+    dataset_variable_name_qc_flag: Optional[str] = Field(
+        default=None,
+        title="Dataset variable name (Quality Flag)",
+        description="""If applicable, the column header name used for the quality control flag corresponding to this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dataset_variable_name_qc_flag",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    dataset_variable_name_raw: Optional[str] = Field(
+        default=None,
+        title="Dataset variable name (raw)",
+        description="""If applicable, the column header name used for the raw data corresponding to this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dataset_variable_name_raw",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    method_reference: Optional[str] = Field(
+        default=None,
+        title="Method Reference",
+        description="""Citation for the method used.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "method_reference",
+                "domain_of": ["Calibration", "InSituVariable"],
+            }
+        },
+    )
+    measurement_researcher: Optional[Person] = Field(
+        default=None,
+        title="Researcher who measured the variable",
+        description="""The name of the PI whose research team measured or derived this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "measurement_researcher",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    other_detailed_information: Optional[str] = Field(
+        default=None,
+        title="Other Detailed Information",
+        description="""Any additional information about this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "other_detailed_information",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    units: str = Field(
+        default=...,
+        title="Unit",
+        description="""Unit of measurement for this variable.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "units", "domain_of": ["Variable"]}
+        },
+    )
+    schema_class: Literal["CalculatedVariable"] = Field(
+        default="CalculatedVariable",
+        description="""The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "schema_class",
+                "designates_type": True,
+                "domain_of": ["Variable"],
+            }
+        },
+    )
+    variable_type: VariableType = Field(
+        default=...,
+        title="Variable Type",
+        description="""High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "variable_type", "domain_of": ["Variable"]}
+        },
+    )
+    standard_identifier: Optional[VocabularyItemReference] = Field(
+        default=None,
+        json_schema_extra={
+            "linkml_meta": {"alias": "standard_identifier", "domain_of": ["Variable"]}
+        },
+    )
+    dataset_variable_name: str = Field(
+        default=...,
+        title="Dataset variable name",
+        description="""The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "dataset_variable_name", "domain_of": ["Variable"]}
+        },
+    )
+    long_name: str = Field(
+        default=...,
+        title="Variable full name",
+        description="""Full descriptive name of the variable.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "long_name", "domain_of": ["Variable"]}
+        },
+    )
 
 
 class ContinuousPHVariable(ContinuousMeasuredVariable, MeasuredPHFields):
     """
     pH measured variable from continuous autonomous sensor
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Variable',
-         'mixins': ['MeasuredPHFields'],
-         'slot_usage': {'variable_type': {'equals_string': 'pH',
-                                          'name': 'variable_type',
-                                          'range': 'string'}}})
 
-    appropriate_use_quality: Optional[AppropriateUseQuality] = Field(default=None, title="Weather or climate quality", description="""Climate quality is defined as measurements of quality sufficient to assess long term trends with a defined level of confidence. Weather quality is defined as measurements of quality sufficient to identify relative spatial patterns and short term variation.
-For more details, refer to Newton J.A., Feely R. A., Jewett E. B., Williamson P. & Mathis J., 2015. Global Ocean Acidification Observing Network: Requirements and Governance Plan. Second Edition, GOA-ON, http://www.goa-on.org/docs/GOA-ON_plan_print.pdf.""", json_schema_extra = { "linkml_meta": {'alias': 'appropriate_use_quality',
-         'domain_of': ['MeasuredTAFields',
-                       'MeasuredDICFields',
-                       'MeasuredPHFields',
-                       'MeasuredCO2Fields']} })
-    raw_data_calculation_method: str = Field(default=..., title="Method to calculate reported values from raw data", description="""The method used to calculate reported values from raw sensor data.""", json_schema_extra = { "linkml_meta": {'alias': 'raw_data_calculation_method',
-         'domain_of': ['ContinuousMeasuredVariable']} })
-    calculation_software_version: Optional[str] = Field(default=None, title="Software version for the calculation", description="""Version of the software used to calculate reported values from raw values.""", json_schema_extra = { "linkml_meta": {'alias': 'calculation_software_version',
-         'domain_of': ['ContinuousMeasuredVariable']} })
-    analyzing_instrument: AnalyzingInstrument = Field(default=..., title="Analyzing instrument", description="""Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.""", json_schema_extra = { "linkml_meta": {'alias': 'analyzing_instrument', 'domain_of': ['MeasuredVariable']} })
-    sampling_method: str = Field(default=..., title="Sampling Method", description="""Method used to collect samples.""", json_schema_extra = { "linkml_meta": {'alias': 'sampling_method', 'domain_of': ['MeasuredVariable']} })
-    field_replicate_information: Optional[str] = Field(default=None, title="Field replicate information", description="""Repetition of sample collection and measurement, e.g., triplicate samples.""", json_schema_extra = { "linkml_meta": {'alias': 'field_replicate_information', 'domain_of': ['MeasuredVariable']} })
-    analyzing_method: str = Field(default=..., title="Analyzing Method", description="""Additional information describing how the sample was analyzed. DOIs provided as applicable.""", json_schema_extra = { "linkml_meta": {'alias': 'analyzing_method', 'domain_of': ['MeasuredVariable']} })
-    observation_type: ObservationType = Field(default=..., title="Observation Type", json_schema_extra = { "linkml_meta": {'alias': 'observation_type', 'domain_of': ['MeasuredVariable']} })
-    sampling: Literal["continuous"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'sampling',
-         'domain_of': ['MeasuredVariable'],
-         'equals_string': 'continuous'} })
-    sampling_instrument_type: SamplingInstrumentType = Field(default=..., title="Sampling instrument type", json_schema_extra = { "linkml_meta": {'alias': 'sampling_instrument_type', 'domain_of': ['MeasuredVariable']} })
-    sampling_instrument_type_custom: Optional[str] = Field(default=None, title="Sampling instrument type (custom)", json_schema_extra = { "linkml_meta": {'alias': 'sampling_instrument_type_custom', 'domain_of': ['MeasuredVariable']} })
-    qc_steps_taken: str = Field(default=..., title="QC steps taken", description="""Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).
-If quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_steps_taken', 'domain_of': ['QCFields']} })
-    uncertainty: str = Field(default=..., title="Uncertainty", description="""It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.
-If uncertainty is provided as a variable, please list the column header name here.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty',
-         'domain_of': ['StandardGas', 'CO2GasDetector', 'QCFields']} })
-    uncertainty_definition: str = Field(default=..., title="How was the uncertainty defined", description="""A description of the uncertainties involved in this method.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty_definition', 'domain_of': ['QCFields']} })
-    missing_value_indicators: str = Field(default=..., title="Missing value indicators", description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'missing_value_indicators', 'domain_of': ['QCFields']} })
-    qc_researcher: Optional[Person] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
-    qc_researcher_institution: Optional[str] = Field(default=None, title="QC Researcher Institution", description="""The institution of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher_institution', 'domain_of': ['QCFields']} })
-    genesis: Literal["measured"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'genesis',
-         'domain_of': ['InSituVariable'],
-         'equals_string': 'measured'} })
-    dataset_variable_name_qc_flag: Optional[str] = Field(default=None, title="Dataset variable name (Quality Flag)", description="""If applicable, the column header name used for the quality control flag corresponding to this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name_qc_flag', 'domain_of': ['InSituVariable']} })
-    dataset_variable_name_raw: Optional[str] = Field(default=None, title="Dataset variable name (raw)", description="""If applicable, the column header name used for the raw data corresponding to this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name_raw', 'domain_of': ['InSituVariable']} })
-    method_reference: Optional[str] = Field(default=None, title="Method Reference", description="""Citation for the method used.""", json_schema_extra = { "linkml_meta": {'alias': 'method_reference', 'domain_of': ['Calibration', 'InSituVariable']} })
-    measurement_researcher: Optional[Person] = Field(default=None, title="Researcher who measured the variable", description="""The name of the PI whose research team measured or derived this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'measurement_researcher', 'domain_of': ['InSituVariable']} })
-    other_detailed_information: Optional[str] = Field(default=None, title="Other Detailed Information", description="""Any additional information about this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'other_detailed_information', 'domain_of': ['InSituVariable']} })
-    units: str = Field(default=..., title="Unit", description="""Unit of measurement for this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'units', 'domain_of': ['Variable']} })
-    schema_class: Literal["ContinuousPHVariable"] = Field(default="ContinuousPHVariable", description="""The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.""", json_schema_extra = { "linkml_meta": {'alias': 'schema_class', 'designates_type': True, 'domain_of': ['Variable']} })
-    variable_type: Literal["pH"] = Field(default=..., title="Variable Type", description="""High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.""", json_schema_extra = { "linkml_meta": {'alias': 'variable_type', 'domain_of': ['Variable'], 'equals_string': 'pH'} })
-    standard_identifier: Optional[VocabularyItemReference] = Field(default=None, json_schema_extra = { "linkml_meta": {'alias': 'standard_identifier', 'domain_of': ['Variable']} })
-    dataset_variable_name: str = Field(default=..., title="Dataset variable name", description="""The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name', 'domain_of': ['Variable']} })
-    long_name: str = Field(default=..., title="Variable full name", description="""Full descriptive name of the variable.""", json_schema_extra = { "linkml_meta": {'alias': 'long_name', 'domain_of': ['Variable']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "from_schema": "Variable",
+            "mixins": ["MeasuredPHFields"],
+            "slot_usage": {
+                "variable_type": {
+                    "equals_string": "pH",
+                    "name": "variable_type",
+                    "range": "string",
+                }
+            },
+        }
+    )
+
+    appropriate_use_quality: Optional[AppropriateUseQuality] = Field(
+        default=None,
+        title="Weather or climate quality",
+        description="""Climate quality is defined as measurements of quality sufficient to assess long term trends with a defined level of confidence. Weather quality is defined as measurements of quality sufficient to identify relative spatial patterns and short term variation.
+For more details, refer to Newton J.A., Feely R. A., Jewett E. B., Williamson P. & Mathis J., 2015. Global Ocean Acidification Observing Network: Requirements and Governance Plan. Second Edition, GOA-ON, http://www.goa-on.org/docs/GOA-ON_plan_print.pdf.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "appropriate_use_quality",
+                "domain_of": [
+                    "MeasuredTAFields",
+                    "MeasuredDICFields",
+                    "MeasuredPHFields",
+                    "MeasuredCO2Fields",
+                ],
+            }
+        },
+    )
+    raw_data_calculation_method: str = Field(
+        default=...,
+        title="Method to calculate reported values from raw data",
+        description="""The method used to calculate reported values from raw sensor data.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "raw_data_calculation_method",
+                "domain_of": ["ContinuousMeasuredVariable"],
+            }
+        },
+    )
+    calculation_software_version: Optional[str] = Field(
+        default=None,
+        title="Software version for the calculation",
+        description="""Version of the software used to calculate reported values from raw values.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "calculation_software_version",
+                "domain_of": ["ContinuousMeasuredVariable"],
+            }
+        },
+    )
+    analyzing_instrument: AnalyzingInstrument = Field(
+        default=...,
+        title="Analyzing instrument",
+        description="""Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "analyzing_instrument",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling_method: str = Field(
+        default=...,
+        title="Sampling Method",
+        description="""Method used to collect samples.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_method",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    field_replicate_information: Optional[str] = Field(
+        default=None,
+        title="Field replicate information",
+        description="""Repetition of sample collection and measurement, e.g., triplicate samples.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "field_replicate_information",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    analyzing_method: str = Field(
+        default=...,
+        title="Analyzing Method",
+        description="""Additional information describing how the sample was analyzed. DOIs provided as applicable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "analyzing_method",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    observation_type: ObservationType = Field(
+        default=...,
+        title="Observation Type",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "observation_type",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling: Literal["continuous"] = Field(
+        default=...,
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling",
+                "domain_of": ["MeasuredVariable"],
+                "equals_string": "continuous",
+            }
+        },
+    )
+    sampling_instrument_type: SamplingInstrumentType = Field(
+        default=...,
+        title="Sampling instrument type",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_instrument_type",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling_instrument_type_custom: Optional[str] = Field(
+        default=None,
+        title="Sampling instrument type (custom)",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_instrument_type_custom",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    qc_steps_taken: str = Field(
+        default=...,
+        title="QC steps taken",
+        description="""Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).
+If quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "qc_steps_taken", "domain_of": ["QCFields"]}
+        },
+    )
+    uncertainty: str = Field(
+        default=...,
+        title="Uncertainty",
+        description="""It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.
+If uncertainty is provided as a variable, please list the column header name here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "uncertainty",
+                "domain_of": ["StandardGas", "CO2GasDetector", "QCFields"],
+            }
+        },
+    )
+    uncertainty_definition: str = Field(
+        default=...,
+        title="How was the uncertainty defined",
+        description="""A description of the uncertainties involved in this method.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "uncertainty_definition",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    missing_value_indicators: str = Field(
+        default=...,
+        title="Missing value indicators",
+        description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "missing_value_indicators",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    qc_researcher: Optional[Person] = Field(
+        default=None,
+        title="Researcher who QCed this variable",
+        description="""The name of the PI whose research team QCed this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "qc_researcher", "domain_of": ["QCFields"]}
+        },
+    )
+    qc_researcher_institution: Optional[str] = Field(
+        default=None,
+        title="QC Researcher Institution",
+        description="""The institution of the PI whose research team QCed this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "qc_researcher_institution",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    genesis: Literal["measured"] = Field(
+        default=...,
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "genesis",
+                "domain_of": ["InSituVariable"],
+                "equals_string": "measured",
+            }
+        },
+    )
+    dataset_variable_name_qc_flag: Optional[str] = Field(
+        default=None,
+        title="Dataset variable name (Quality Flag)",
+        description="""If applicable, the column header name used for the quality control flag corresponding to this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dataset_variable_name_qc_flag",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    dataset_variable_name_raw: Optional[str] = Field(
+        default=None,
+        title="Dataset variable name (raw)",
+        description="""If applicable, the column header name used for the raw data corresponding to this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dataset_variable_name_raw",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    method_reference: Optional[str] = Field(
+        default=None,
+        title="Method Reference",
+        description="""Citation for the method used.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "method_reference",
+                "domain_of": ["Calibration", "InSituVariable"],
+            }
+        },
+    )
+    measurement_researcher: Optional[Person] = Field(
+        default=None,
+        title="Researcher who measured the variable",
+        description="""The name of the PI whose research team measured or derived this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "measurement_researcher",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    other_detailed_information: Optional[str] = Field(
+        default=None,
+        title="Other Detailed Information",
+        description="""Any additional information about this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "other_detailed_information",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    units: str = Field(
+        default=...,
+        title="Unit",
+        description="""Unit of measurement for this variable.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "units", "domain_of": ["Variable"]}
+        },
+    )
+    schema_class: Literal["ContinuousPHVariable"] = Field(
+        default="ContinuousPHVariable",
+        description="""The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "schema_class",
+                "designates_type": True,
+                "domain_of": ["Variable"],
+            }
+        },
+    )
+    variable_type: Literal["pH"] = Field(
+        default=...,
+        title="Variable Type",
+        description="""High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "variable_type",
+                "domain_of": ["Variable"],
+                "equals_string": "pH",
+            }
+        },
+    )
+    standard_identifier: Optional[VocabularyItemReference] = Field(
+        default=None,
+        json_schema_extra={
+            "linkml_meta": {"alias": "standard_identifier", "domain_of": ["Variable"]}
+        },
+    )
+    dataset_variable_name: str = Field(
+        default=...,
+        title="Dataset variable name",
+        description="""The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "dataset_variable_name", "domain_of": ["Variable"]}
+        },
+    )
+    long_name: str = Field(
+        default=...,
+        title="Variable full name",
+        description="""Full descriptive name of the variable.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "long_name", "domain_of": ["Variable"]}
+        },
+    )
 
 
 class DiscretePHVariable(DiscreteMeasuredVariable, MeasuredPHFields):
     """
     pH measured variable with dye-based spectrophotometric measurement. Reference: OAPMetadata XSD variables.xsd - pH_measured
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Variable',
-         'mixins': ['MeasuredPHFields'],
-         'slot_usage': {'analyzing_instrument': {'description': 'pH instrument with '
-                                                                'dye-based calibration '
-                                                                'used for '
-                                                                'measurements.',
-                                                 'name': 'analyzing_instrument',
-                                                 'range': 'PHInstrument'},
-                        'variable_type': {'equals_string': 'pH',
-                                          'name': 'variable_type',
-                                          'range': 'string'}}})
 
-    measurement_temperature: str = Field(default=..., title="Temperature at which pH was measured", description="""Temperature at which pH was measured.""", json_schema_extra = { "linkml_meta": {'alias': 'measurement_temperature',
-         'domain_of': ['DiscretePHVariable', 'DiscreteCO2Variable']} })
-    temperature_correction_method: Optional[str] = Field(default=None, title="Temperature correction method", description="""Method used to correct pH for temperature.""", json_schema_extra = { "linkml_meta": {'alias': 'temperature_correction_method',
-         'domain_of': ['DiscretePHVariable', 'MeasuredCO2Fields']} })
-    ph_reported_temperature: str = Field(default=..., title="Temperature at which pH was reported", description="""The input could be a constant temperature value, or something like, in-situ temperature, temperature of analysis, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'ph_reported_temperature', 'domain_of': ['DiscretePHVariable']} })
-    appropriate_use_quality: Optional[AppropriateUseQuality] = Field(default=None, title="Weather or climate quality", description="""Climate quality is defined as measurements of quality sufficient to assess long term trends with a defined level of confidence. Weather quality is defined as measurements of quality sufficient to identify relative spatial patterns and short term variation.
-For more details, refer to Newton J.A., Feely R. A., Jewett E. B., Williamson P. & Mathis J., 2015. Global Ocean Acidification Observing Network: Requirements and Governance Plan. Second Edition, GOA-ON, http://www.goa-on.org/docs/GOA-ON_plan_print.pdf.""", json_schema_extra = { "linkml_meta": {'alias': 'appropriate_use_quality',
-         'domain_of': ['MeasuredTAFields',
-                       'MeasuredDICFields',
-                       'MeasuredPHFields',
-                       'MeasuredCO2Fields']} })
-    analyzing_instrument: PHInstrument = Field(default=..., title="Analyzing instrument", description="""pH instrument with dye-based calibration used for measurements.""", json_schema_extra = { "linkml_meta": {'alias': 'analyzing_instrument', 'domain_of': ['MeasuredVariable']} })
-    sampling_method: str = Field(default=..., title="Sampling Method", description="""Method used to collect samples.""", json_schema_extra = { "linkml_meta": {'alias': 'sampling_method', 'domain_of': ['MeasuredVariable']} })
-    field_replicate_information: Optional[str] = Field(default=None, title="Field replicate information", description="""Repetition of sample collection and measurement, e.g., triplicate samples.""", json_schema_extra = { "linkml_meta": {'alias': 'field_replicate_information', 'domain_of': ['MeasuredVariable']} })
-    analyzing_method: str = Field(default=..., title="Analyzing Method", description="""Additional information describing how the sample was analyzed. DOIs provided as applicable.""", json_schema_extra = { "linkml_meta": {'alias': 'analyzing_method', 'domain_of': ['MeasuredVariable']} })
-    observation_type: ObservationType = Field(default=..., title="Observation Type", json_schema_extra = { "linkml_meta": {'alias': 'observation_type', 'domain_of': ['MeasuredVariable']} })
-    sampling: Literal["discrete"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'sampling',
-         'domain_of': ['MeasuredVariable'],
-         'equals_string': 'discrete'} })
-    sampling_instrument_type: SamplingInstrumentType = Field(default=..., title="Sampling instrument type", json_schema_extra = { "linkml_meta": {'alias': 'sampling_instrument_type', 'domain_of': ['MeasuredVariable']} })
-    sampling_instrument_type_custom: Optional[str] = Field(default=None, title="Sampling instrument type (custom)", json_schema_extra = { "linkml_meta": {'alias': 'sampling_instrument_type_custom', 'domain_of': ['MeasuredVariable']} })
-    qc_steps_taken: str = Field(default=..., title="QC steps taken", description="""Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).
-If quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_steps_taken', 'domain_of': ['QCFields']} })
-    uncertainty: str = Field(default=..., title="Uncertainty", description="""It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.
-If uncertainty is provided as a variable, please list the column header name here.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty',
-         'domain_of': ['StandardGas', 'CO2GasDetector', 'QCFields']} })
-    uncertainty_definition: str = Field(default=..., title="How was the uncertainty defined", description="""A description of the uncertainties involved in this method.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty_definition', 'domain_of': ['QCFields']} })
-    missing_value_indicators: str = Field(default=..., title="Missing value indicators", description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'missing_value_indicators', 'domain_of': ['QCFields']} })
-    qc_researcher: Optional[Person] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
-    qc_researcher_institution: Optional[str] = Field(default=None, title="QC Researcher Institution", description="""The institution of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher_institution', 'domain_of': ['QCFields']} })
-    genesis: Literal["measured"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'genesis',
-         'domain_of': ['InSituVariable'],
-         'equals_string': 'measured'} })
-    dataset_variable_name_qc_flag: Optional[str] = Field(default=None, title="Dataset variable name (Quality Flag)", description="""If applicable, the column header name used for the quality control flag corresponding to this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name_qc_flag', 'domain_of': ['InSituVariable']} })
-    dataset_variable_name_raw: Optional[str] = Field(default=None, title="Dataset variable name (raw)", description="""If applicable, the column header name used for the raw data corresponding to this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name_raw', 'domain_of': ['InSituVariable']} })
-    method_reference: Optional[str] = Field(default=None, title="Method Reference", description="""Citation for the method used.""", json_schema_extra = { "linkml_meta": {'alias': 'method_reference', 'domain_of': ['Calibration', 'InSituVariable']} })
-    measurement_researcher: Optional[Person] = Field(default=None, title="Researcher who measured the variable", description="""The name of the PI whose research team measured or derived this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'measurement_researcher', 'domain_of': ['InSituVariable']} })
-    other_detailed_information: Optional[str] = Field(default=None, title="Other Detailed Information", description="""Any additional information about this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'other_detailed_information', 'domain_of': ['InSituVariable']} })
-    units: str = Field(default=..., title="Unit", description="""Unit of measurement for this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'units', 'domain_of': ['Variable']} })
-    schema_class: Literal["DiscretePHVariable"] = Field(default="DiscretePHVariable", description="""The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.""", json_schema_extra = { "linkml_meta": {'alias': 'schema_class', 'designates_type': True, 'domain_of': ['Variable']} })
-    variable_type: Literal["pH"] = Field(default=..., title="Variable Type", description="""High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.""", json_schema_extra = { "linkml_meta": {'alias': 'variable_type', 'domain_of': ['Variable'], 'equals_string': 'pH'} })
-    standard_identifier: Optional[VocabularyItemReference] = Field(default=None, json_schema_extra = { "linkml_meta": {'alias': 'standard_identifier', 'domain_of': ['Variable']} })
-    dataset_variable_name: str = Field(default=..., title="Dataset variable name", description="""The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name', 'domain_of': ['Variable']} })
-    long_name: str = Field(default=..., title="Variable full name", description="""Full descriptive name of the variable.""", json_schema_extra = { "linkml_meta": {'alias': 'long_name', 'domain_of': ['Variable']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "from_schema": "Variable",
+            "mixins": ["MeasuredPHFields"],
+            "slot_usage": {
+                "analyzing_instrument": {
+                    "description": "pH instrument with "
+                    "dye-based calibration "
+                    "used for "
+                    "measurements.",
+                    "name": "analyzing_instrument",
+                    "range": "PHInstrument",
+                },
+                "variable_type": {
+                    "equals_string": "pH",
+                    "name": "variable_type",
+                    "range": "string",
+                },
+            },
+        }
+    )
+
+    measurement_temperature: str = Field(
+        default=...,
+        title="Temperature at which pH was measured",
+        description="""Temperature at which pH was measured.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "measurement_temperature",
+                "domain_of": ["DiscretePHVariable", "DiscreteCO2Variable"],
+            }
+        },
+    )
+    temperature_correction_method: Optional[str] = Field(
+        default=None,
+        title="Temperature correction method",
+        description="""Method used to correct pH for temperature.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "temperature_correction_method",
+                "domain_of": ["DiscretePHVariable", "MeasuredCO2Fields"],
+            }
+        },
+    )
+    ph_reported_temperature: str = Field(
+        default=...,
+        title="Temperature at which pH was reported",
+        description="""The input could be a constant temperature value, or something like, in-situ temperature, temperature of analysis, etc.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "ph_reported_temperature",
+                "domain_of": ["DiscretePHVariable"],
+            }
+        },
+    )
+    appropriate_use_quality: Optional[AppropriateUseQuality] = Field(
+        default=None,
+        title="Weather or climate quality",
+        description="""Climate quality is defined as measurements of quality sufficient to assess long term trends with a defined level of confidence. Weather quality is defined as measurements of quality sufficient to identify relative spatial patterns and short term variation.
+For more details, refer to Newton J.A., Feely R. A., Jewett E. B., Williamson P. & Mathis J., 2015. Global Ocean Acidification Observing Network: Requirements and Governance Plan. Second Edition, GOA-ON, http://www.goa-on.org/docs/GOA-ON_plan_print.pdf.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "appropriate_use_quality",
+                "domain_of": [
+                    "MeasuredTAFields",
+                    "MeasuredDICFields",
+                    "MeasuredPHFields",
+                    "MeasuredCO2Fields",
+                ],
+            }
+        },
+    )
+    analyzing_instrument: PHInstrument = Field(
+        default=...,
+        title="Analyzing instrument",
+        description="""pH instrument with dye-based calibration used for measurements.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "analyzing_instrument",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling_method: str = Field(
+        default=...,
+        title="Sampling Method",
+        description="""Method used to collect samples.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_method",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    field_replicate_information: Optional[str] = Field(
+        default=None,
+        title="Field replicate information",
+        description="""Repetition of sample collection and measurement, e.g., triplicate samples.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "field_replicate_information",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    analyzing_method: str = Field(
+        default=...,
+        title="Analyzing Method",
+        description="""Additional information describing how the sample was analyzed. DOIs provided as applicable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "analyzing_method",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    observation_type: ObservationType = Field(
+        default=...,
+        title="Observation Type",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "observation_type",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling: Literal["discrete"] = Field(
+        default=...,
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling",
+                "domain_of": ["MeasuredVariable"],
+                "equals_string": "discrete",
+            }
+        },
+    )
+    sampling_instrument_type: SamplingInstrumentType = Field(
+        default=...,
+        title="Sampling instrument type",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_instrument_type",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling_instrument_type_custom: Optional[str] = Field(
+        default=None,
+        title="Sampling instrument type (custom)",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_instrument_type_custom",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    qc_steps_taken: str = Field(
+        default=...,
+        title="QC steps taken",
+        description="""Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).
+If quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "qc_steps_taken", "domain_of": ["QCFields"]}
+        },
+    )
+    uncertainty: str = Field(
+        default=...,
+        title="Uncertainty",
+        description="""It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.
+If uncertainty is provided as a variable, please list the column header name here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "uncertainty",
+                "domain_of": ["StandardGas", "CO2GasDetector", "QCFields"],
+            }
+        },
+    )
+    uncertainty_definition: str = Field(
+        default=...,
+        title="How was the uncertainty defined",
+        description="""A description of the uncertainties involved in this method.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "uncertainty_definition",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    missing_value_indicators: str = Field(
+        default=...,
+        title="Missing value indicators",
+        description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "missing_value_indicators",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    qc_researcher: Optional[Person] = Field(
+        default=None,
+        title="Researcher who QCed this variable",
+        description="""The name of the PI whose research team QCed this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "qc_researcher", "domain_of": ["QCFields"]}
+        },
+    )
+    qc_researcher_institution: Optional[str] = Field(
+        default=None,
+        title="QC Researcher Institution",
+        description="""The institution of the PI whose research team QCed this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "qc_researcher_institution",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    genesis: Literal["measured"] = Field(
+        default=...,
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "genesis",
+                "domain_of": ["InSituVariable"],
+                "equals_string": "measured",
+            }
+        },
+    )
+    dataset_variable_name_qc_flag: Optional[str] = Field(
+        default=None,
+        title="Dataset variable name (Quality Flag)",
+        description="""If applicable, the column header name used for the quality control flag corresponding to this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dataset_variable_name_qc_flag",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    dataset_variable_name_raw: Optional[str] = Field(
+        default=None,
+        title="Dataset variable name (raw)",
+        description="""If applicable, the column header name used for the raw data corresponding to this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dataset_variable_name_raw",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    method_reference: Optional[str] = Field(
+        default=None,
+        title="Method Reference",
+        description="""Citation for the method used.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "method_reference",
+                "domain_of": ["Calibration", "InSituVariable"],
+            }
+        },
+    )
+    measurement_researcher: Optional[Person] = Field(
+        default=None,
+        title="Researcher who measured the variable",
+        description="""The name of the PI whose research team measured or derived this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "measurement_researcher",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    other_detailed_information: Optional[str] = Field(
+        default=None,
+        title="Other Detailed Information",
+        description="""Any additional information about this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "other_detailed_information",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    units: str = Field(
+        default=...,
+        title="Unit",
+        description="""Unit of measurement for this variable.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "units", "domain_of": ["Variable"]}
+        },
+    )
+    schema_class: Literal["DiscretePHVariable"] = Field(
+        default="DiscretePHVariable",
+        description="""The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "schema_class",
+                "designates_type": True,
+                "domain_of": ["Variable"],
+            }
+        },
+    )
+    variable_type: Literal["pH"] = Field(
+        default=...,
+        title="Variable Type",
+        description="""High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "variable_type",
+                "domain_of": ["Variable"],
+                "equals_string": "pH",
+            }
+        },
+    )
+    standard_identifier: Optional[VocabularyItemReference] = Field(
+        default=None,
+        json_schema_extra={
+            "linkml_meta": {"alias": "standard_identifier", "domain_of": ["Variable"]}
+        },
+    )
+    dataset_variable_name: str = Field(
+        default=...,
+        title="Dataset variable name",
+        description="""The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "dataset_variable_name", "domain_of": ["Variable"]}
+        },
+    )
+    long_name: str = Field(
+        default=...,
+        title="Variable full name",
+        description="""Full descriptive name of the variable.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "long_name", "domain_of": ["Variable"]}
+        },
+    )
 
 
 class ContinuousTAVariable(ContinuousMeasuredVariable, MeasuredTAFields):
     """
     Total Alkalinity (TA) measured variable from continuous autonomous sensor
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Variable',
-         'mixins': ['MeasuredTAFields'],
-         'slot_usage': {'variable_type': {'equals_string': 'ta',
-                                          'name': 'variable_type',
-                                          'range': 'string'}}})
 
-    appropriate_use_quality: Optional[AppropriateUseQuality] = Field(default=None, title="Weather or climate quality", description="""Climate quality is defined as measurements of quality sufficient to assess long term trends with a defined level of confidence. Weather quality is defined as measurements of quality sufficient to identify relative spatial patterns and short term variation.
-For more details, refer to Newton J.A., Feely R. A., Jewett E. B., Williamson P. & Mathis J., 2015. Global Ocean Acidification Observing Network: Requirements and Governance Plan. Second Edition, GOA-ON, http://www.goa-on.org/docs/GOA-ON_plan_print.pdf.""", json_schema_extra = { "linkml_meta": {'alias': 'appropriate_use_quality',
-         'domain_of': ['MeasuredTAFields',
-                       'MeasuredDICFields',
-                       'MeasuredPHFields',
-                       'MeasuredCO2Fields']} })
-    concentration_basis: ConcentrationBasis = Field(default=..., title="Per-volume vs per-mass based units", description="""Whether measurements are expressed per unit volume or per unit mass (for DIC, TA, etc.)""", json_schema_extra = { "linkml_meta": {'alias': 'concentration_basis',
-         'domain_of': ['MeasuredTAFields', 'MeasuredDICFields']} })
-    raw_data_calculation_method: str = Field(default=..., title="Method to calculate reported values from raw data", description="""The method used to calculate reported values from raw sensor data.""", json_schema_extra = { "linkml_meta": {'alias': 'raw_data_calculation_method',
-         'domain_of': ['ContinuousMeasuredVariable']} })
-    calculation_software_version: Optional[str] = Field(default=None, title="Software version for the calculation", description="""Version of the software used to calculate reported values from raw values.""", json_schema_extra = { "linkml_meta": {'alias': 'calculation_software_version',
-         'domain_of': ['ContinuousMeasuredVariable']} })
-    analyzing_instrument: AnalyzingInstrument = Field(default=..., title="Analyzing instrument", description="""Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.""", json_schema_extra = { "linkml_meta": {'alias': 'analyzing_instrument', 'domain_of': ['MeasuredVariable']} })
-    sampling_method: str = Field(default=..., title="Sampling Method", description="""Method used to collect samples.""", json_schema_extra = { "linkml_meta": {'alias': 'sampling_method', 'domain_of': ['MeasuredVariable']} })
-    field_replicate_information: Optional[str] = Field(default=None, title="Field replicate information", description="""Repetition of sample collection and measurement, e.g., triplicate samples.""", json_schema_extra = { "linkml_meta": {'alias': 'field_replicate_information', 'domain_of': ['MeasuredVariable']} })
-    analyzing_method: str = Field(default=..., title="Analyzing Method", description="""Additional information describing how the sample was analyzed. DOIs provided as applicable.""", json_schema_extra = { "linkml_meta": {'alias': 'analyzing_method', 'domain_of': ['MeasuredVariable']} })
-    observation_type: ObservationType = Field(default=..., title="Observation Type", json_schema_extra = { "linkml_meta": {'alias': 'observation_type', 'domain_of': ['MeasuredVariable']} })
-    sampling: Literal["continuous"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'sampling',
-         'domain_of': ['MeasuredVariable'],
-         'equals_string': 'continuous'} })
-    sampling_instrument_type: SamplingInstrumentType = Field(default=..., title="Sampling instrument type", json_schema_extra = { "linkml_meta": {'alias': 'sampling_instrument_type', 'domain_of': ['MeasuredVariable']} })
-    sampling_instrument_type_custom: Optional[str] = Field(default=None, title="Sampling instrument type (custom)", json_schema_extra = { "linkml_meta": {'alias': 'sampling_instrument_type_custom', 'domain_of': ['MeasuredVariable']} })
-    qc_steps_taken: str = Field(default=..., title="QC steps taken", description="""Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).
-If quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_steps_taken', 'domain_of': ['QCFields']} })
-    uncertainty: str = Field(default=..., title="Uncertainty", description="""It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.
-If uncertainty is provided as a variable, please list the column header name here.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty',
-         'domain_of': ['StandardGas', 'CO2GasDetector', 'QCFields']} })
-    uncertainty_definition: str = Field(default=..., title="How was the uncertainty defined", description="""A description of the uncertainties involved in this method.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty_definition', 'domain_of': ['QCFields']} })
-    missing_value_indicators: str = Field(default=..., title="Missing value indicators", description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'missing_value_indicators', 'domain_of': ['QCFields']} })
-    qc_researcher: Optional[Person] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
-    qc_researcher_institution: Optional[str] = Field(default=None, title="QC Researcher Institution", description="""The institution of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher_institution', 'domain_of': ['QCFields']} })
-    genesis: Literal["measured"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'genesis',
-         'domain_of': ['InSituVariable'],
-         'equals_string': 'measured'} })
-    dataset_variable_name_qc_flag: Optional[str] = Field(default=None, title="Dataset variable name (Quality Flag)", description="""If applicable, the column header name used for the quality control flag corresponding to this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name_qc_flag', 'domain_of': ['InSituVariable']} })
-    dataset_variable_name_raw: Optional[str] = Field(default=None, title="Dataset variable name (raw)", description="""If applicable, the column header name used for the raw data corresponding to this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name_raw', 'domain_of': ['InSituVariable']} })
-    method_reference: Optional[str] = Field(default=None, title="Method Reference", description="""Citation for the method used.""", json_schema_extra = { "linkml_meta": {'alias': 'method_reference', 'domain_of': ['Calibration', 'InSituVariable']} })
-    measurement_researcher: Optional[Person] = Field(default=None, title="Researcher who measured the variable", description="""The name of the PI whose research team measured or derived this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'measurement_researcher', 'domain_of': ['InSituVariable']} })
-    other_detailed_information: Optional[str] = Field(default=None, title="Other Detailed Information", description="""Any additional information about this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'other_detailed_information', 'domain_of': ['InSituVariable']} })
-    units: str = Field(default=..., title="Unit", description="""Unit of measurement for this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'units', 'domain_of': ['Variable']} })
-    schema_class: Literal["ContinuousTAVariable"] = Field(default="ContinuousTAVariable", description="""The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.""", json_schema_extra = { "linkml_meta": {'alias': 'schema_class', 'designates_type': True, 'domain_of': ['Variable']} })
-    variable_type: Literal["ta"] = Field(default=..., title="Variable Type", description="""High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.""", json_schema_extra = { "linkml_meta": {'alias': 'variable_type', 'domain_of': ['Variable'], 'equals_string': 'ta'} })
-    standard_identifier: Optional[VocabularyItemReference] = Field(default=None, json_schema_extra = { "linkml_meta": {'alias': 'standard_identifier', 'domain_of': ['Variable']} })
-    dataset_variable_name: str = Field(default=..., title="Dataset variable name", description="""The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name', 'domain_of': ['Variable']} })
-    long_name: str = Field(default=..., title="Variable full name", description="""Full descriptive name of the variable.""", json_schema_extra = { "linkml_meta": {'alias': 'long_name', 'domain_of': ['Variable']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "from_schema": "Variable",
+            "mixins": ["MeasuredTAFields"],
+            "slot_usage": {
+                "variable_type": {
+                    "equals_string": "ta",
+                    "name": "variable_type",
+                    "range": "string",
+                }
+            },
+        }
+    )
+
+    appropriate_use_quality: Optional[AppropriateUseQuality] = Field(
+        default=None,
+        title="Weather or climate quality",
+        description="""Climate quality is defined as measurements of quality sufficient to assess long term trends with a defined level of confidence. Weather quality is defined as measurements of quality sufficient to identify relative spatial patterns and short term variation.
+For more details, refer to Newton J.A., Feely R. A., Jewett E. B., Williamson P. & Mathis J., 2015. Global Ocean Acidification Observing Network: Requirements and Governance Plan. Second Edition, GOA-ON, http://www.goa-on.org/docs/GOA-ON_plan_print.pdf.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "appropriate_use_quality",
+                "domain_of": [
+                    "MeasuredTAFields",
+                    "MeasuredDICFields",
+                    "MeasuredPHFields",
+                    "MeasuredCO2Fields",
+                ],
+            }
+        },
+    )
+    concentration_basis: ConcentrationBasis = Field(
+        default=...,
+        title="Per-volume vs per-mass based units",
+        description="""Whether measurements are expressed per unit volume or per unit mass (for DIC, TA, etc.)""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "concentration_basis",
+                "domain_of": ["MeasuredTAFields", "MeasuredDICFields"],
+            }
+        },
+    )
+    raw_data_calculation_method: str = Field(
+        default=...,
+        title="Method to calculate reported values from raw data",
+        description="""The method used to calculate reported values from raw sensor data.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "raw_data_calculation_method",
+                "domain_of": ["ContinuousMeasuredVariable"],
+            }
+        },
+    )
+    calculation_software_version: Optional[str] = Field(
+        default=None,
+        title="Software version for the calculation",
+        description="""Version of the software used to calculate reported values from raw values.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "calculation_software_version",
+                "domain_of": ["ContinuousMeasuredVariable"],
+            }
+        },
+    )
+    analyzing_instrument: AnalyzingInstrument = Field(
+        default=...,
+        title="Analyzing instrument",
+        description="""Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "analyzing_instrument",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling_method: str = Field(
+        default=...,
+        title="Sampling Method",
+        description="""Method used to collect samples.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_method",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    field_replicate_information: Optional[str] = Field(
+        default=None,
+        title="Field replicate information",
+        description="""Repetition of sample collection and measurement, e.g., triplicate samples.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "field_replicate_information",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    analyzing_method: str = Field(
+        default=...,
+        title="Analyzing Method",
+        description="""Additional information describing how the sample was analyzed. DOIs provided as applicable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "analyzing_method",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    observation_type: ObservationType = Field(
+        default=...,
+        title="Observation Type",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "observation_type",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling: Literal["continuous"] = Field(
+        default=...,
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling",
+                "domain_of": ["MeasuredVariable"],
+                "equals_string": "continuous",
+            }
+        },
+    )
+    sampling_instrument_type: SamplingInstrumentType = Field(
+        default=...,
+        title="Sampling instrument type",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_instrument_type",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling_instrument_type_custom: Optional[str] = Field(
+        default=None,
+        title="Sampling instrument type (custom)",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_instrument_type_custom",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    qc_steps_taken: str = Field(
+        default=...,
+        title="QC steps taken",
+        description="""Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).
+If quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "qc_steps_taken", "domain_of": ["QCFields"]}
+        },
+    )
+    uncertainty: str = Field(
+        default=...,
+        title="Uncertainty",
+        description="""It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.
+If uncertainty is provided as a variable, please list the column header name here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "uncertainty",
+                "domain_of": ["StandardGas", "CO2GasDetector", "QCFields"],
+            }
+        },
+    )
+    uncertainty_definition: str = Field(
+        default=...,
+        title="How was the uncertainty defined",
+        description="""A description of the uncertainties involved in this method.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "uncertainty_definition",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    missing_value_indicators: str = Field(
+        default=...,
+        title="Missing value indicators",
+        description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "missing_value_indicators",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    qc_researcher: Optional[Person] = Field(
+        default=None,
+        title="Researcher who QCed this variable",
+        description="""The name of the PI whose research team QCed this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "qc_researcher", "domain_of": ["QCFields"]}
+        },
+    )
+    qc_researcher_institution: Optional[str] = Field(
+        default=None,
+        title="QC Researcher Institution",
+        description="""The institution of the PI whose research team QCed this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "qc_researcher_institution",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    genesis: Literal["measured"] = Field(
+        default=...,
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "genesis",
+                "domain_of": ["InSituVariable"],
+                "equals_string": "measured",
+            }
+        },
+    )
+    dataset_variable_name_qc_flag: Optional[str] = Field(
+        default=None,
+        title="Dataset variable name (Quality Flag)",
+        description="""If applicable, the column header name used for the quality control flag corresponding to this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dataset_variable_name_qc_flag",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    dataset_variable_name_raw: Optional[str] = Field(
+        default=None,
+        title="Dataset variable name (raw)",
+        description="""If applicable, the column header name used for the raw data corresponding to this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dataset_variable_name_raw",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    method_reference: Optional[str] = Field(
+        default=None,
+        title="Method Reference",
+        description="""Citation for the method used.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "method_reference",
+                "domain_of": ["Calibration", "InSituVariable"],
+            }
+        },
+    )
+    measurement_researcher: Optional[Person] = Field(
+        default=None,
+        title="Researcher who measured the variable",
+        description="""The name of the PI whose research team measured or derived this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "measurement_researcher",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    other_detailed_information: Optional[str] = Field(
+        default=None,
+        title="Other Detailed Information",
+        description="""Any additional information about this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "other_detailed_information",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    units: str = Field(
+        default=...,
+        title="Unit",
+        description="""Unit of measurement for this variable.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "units", "domain_of": ["Variable"]}
+        },
+    )
+    schema_class: Literal["ContinuousTAVariable"] = Field(
+        default="ContinuousTAVariable",
+        description="""The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "schema_class",
+                "designates_type": True,
+                "domain_of": ["Variable"],
+            }
+        },
+    )
+    variable_type: Literal["ta"] = Field(
+        default=...,
+        title="Variable Type",
+        description="""High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "variable_type",
+                "domain_of": ["Variable"],
+                "equals_string": "ta",
+            }
+        },
+    )
+    standard_identifier: Optional[VocabularyItemReference] = Field(
+        default=None,
+        json_schema_extra={
+            "linkml_meta": {"alias": "standard_identifier", "domain_of": ["Variable"]}
+        },
+    )
+    dataset_variable_name: str = Field(
+        default=...,
+        title="Dataset variable name",
+        description="""The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "dataset_variable_name", "domain_of": ["Variable"]}
+        },
+    )
+    long_name: str = Field(
+        default=...,
+        title="Variable full name",
+        description="""Full descriptive name of the variable.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "long_name", "domain_of": ["Variable"]}
+        },
+    )
 
 
 class DiscreteTAVariable(DiscreteMeasuredVariable, MeasuredTAFields):
     """
     Total Alkalinity (TA) measured variable from discrete bottle samples
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Variable',
-         'mixins': ['MeasuredTAFields'],
-         'slot_usage': {'analyzing_instrument': {'description': 'CRM-calibrated '
-                                                                'instrument used to '
-                                                                'analyze TA samples.',
-                                                 'name': 'analyzing_instrument',
-                                                 'range': 'CRMInstrument'},
-                        'variable_type': {'equals_string': 'ta',
-                                          'name': 'variable_type',
-                                          'range': 'string'}}})
 
-    sample_preservation: SamplePreservation = Field(default=..., title="Sample preservation", description="""How the samples were preserved for analysis.""", json_schema_extra = { "linkml_meta": {'alias': 'sample_preservation',
-         'domain_of': ['DiscreteTAVariable', 'DiscreteDICVariable']} })
-    blank_correction: str = Field(default=..., title="Magnitude of blank correction", description="""Whether the reported variables were corrected for blank, and if so, how they were corrected.""", json_schema_extra = { "linkml_meta": {'alias': 'blank_correction',
-         'domain_of': ['DiscreteTAVariable', 'DiscreteDICVariable']} })
-    titration_type: str = Field(default=..., title="Titration type", description="""Type of the titration used to determine alkalinity.""", json_schema_extra = { "linkml_meta": {'alias': 'titration_type', 'domain_of': ['DiscreteTAVariable']} })
-    titration_cell_type: Optional[TitrationCellType] = Field(default=None, title="Cell type", description="""Whether the titration cell is open or closed.""", json_schema_extra = { "linkml_meta": {'alias': 'titration_cell_type', 'domain_of': ['DiscreteTAVariable']} })
-    curve_fitting_method: Optional[str] = Field(default=None, title="Curve fitting method", description="""Curve fitting method used to determine the alkalinity.""", json_schema_extra = { "linkml_meta": {'alias': 'curve_fitting_method', 'domain_of': ['DiscreteTAVariable']} })
-    appropriate_use_quality: Optional[AppropriateUseQuality] = Field(default=None, title="Weather or climate quality", description="""Climate quality is defined as measurements of quality sufficient to assess long term trends with a defined level of confidence. Weather quality is defined as measurements of quality sufficient to identify relative spatial patterns and short term variation.
-For more details, refer to Newton J.A., Feely R. A., Jewett E. B., Williamson P. & Mathis J., 2015. Global Ocean Acidification Observing Network: Requirements and Governance Plan. Second Edition, GOA-ON, http://www.goa-on.org/docs/GOA-ON_plan_print.pdf.""", json_schema_extra = { "linkml_meta": {'alias': 'appropriate_use_quality',
-         'domain_of': ['MeasuredTAFields',
-                       'MeasuredDICFields',
-                       'MeasuredPHFields',
-                       'MeasuredCO2Fields']} })
-    concentration_basis: ConcentrationBasis = Field(default=..., title="Per-volume vs per-mass based units", description="""Whether measurements are expressed per unit volume or per unit mass (for DIC, TA, etc.)""", json_schema_extra = { "linkml_meta": {'alias': 'concentration_basis',
-         'domain_of': ['MeasuredTAFields', 'MeasuredDICFields']} })
-    analyzing_instrument: CRMInstrument = Field(default=..., title="Analyzing instrument", description="""CRM-calibrated instrument used to analyze TA samples.""", json_schema_extra = { "linkml_meta": {'alias': 'analyzing_instrument', 'domain_of': ['MeasuredVariable']} })
-    sampling_method: str = Field(default=..., title="Sampling Method", description="""Method used to collect samples.""", json_schema_extra = { "linkml_meta": {'alias': 'sampling_method', 'domain_of': ['MeasuredVariable']} })
-    field_replicate_information: Optional[str] = Field(default=None, title="Field replicate information", description="""Repetition of sample collection and measurement, e.g., triplicate samples.""", json_schema_extra = { "linkml_meta": {'alias': 'field_replicate_information', 'domain_of': ['MeasuredVariable']} })
-    analyzing_method: str = Field(default=..., title="Analyzing Method", description="""Additional information describing how the sample was analyzed. DOIs provided as applicable.""", json_schema_extra = { "linkml_meta": {'alias': 'analyzing_method', 'domain_of': ['MeasuredVariable']} })
-    observation_type: ObservationType = Field(default=..., title="Observation Type", json_schema_extra = { "linkml_meta": {'alias': 'observation_type', 'domain_of': ['MeasuredVariable']} })
-    sampling: Literal["discrete"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'sampling',
-         'domain_of': ['MeasuredVariable'],
-         'equals_string': 'discrete'} })
-    sampling_instrument_type: SamplingInstrumentType = Field(default=..., title="Sampling instrument type", json_schema_extra = { "linkml_meta": {'alias': 'sampling_instrument_type', 'domain_of': ['MeasuredVariable']} })
-    sampling_instrument_type_custom: Optional[str] = Field(default=None, title="Sampling instrument type (custom)", json_schema_extra = { "linkml_meta": {'alias': 'sampling_instrument_type_custom', 'domain_of': ['MeasuredVariable']} })
-    qc_steps_taken: str = Field(default=..., title="QC steps taken", description="""Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).
-If quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_steps_taken', 'domain_of': ['QCFields']} })
-    uncertainty: str = Field(default=..., title="Uncertainty", description="""It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.
-If uncertainty is provided as a variable, please list the column header name here.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty',
-         'domain_of': ['StandardGas', 'CO2GasDetector', 'QCFields']} })
-    uncertainty_definition: str = Field(default=..., title="How was the uncertainty defined", description="""A description of the uncertainties involved in this method.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty_definition', 'domain_of': ['QCFields']} })
-    missing_value_indicators: str = Field(default=..., title="Missing value indicators", description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'missing_value_indicators', 'domain_of': ['QCFields']} })
-    qc_researcher: Optional[Person] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
-    qc_researcher_institution: Optional[str] = Field(default=None, title="QC Researcher Institution", description="""The institution of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher_institution', 'domain_of': ['QCFields']} })
-    genesis: Literal["measured"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'genesis',
-         'domain_of': ['InSituVariable'],
-         'equals_string': 'measured'} })
-    dataset_variable_name_qc_flag: Optional[str] = Field(default=None, title="Dataset variable name (Quality Flag)", description="""If applicable, the column header name used for the quality control flag corresponding to this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name_qc_flag', 'domain_of': ['InSituVariable']} })
-    dataset_variable_name_raw: Optional[str] = Field(default=None, title="Dataset variable name (raw)", description="""If applicable, the column header name used for the raw data corresponding to this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name_raw', 'domain_of': ['InSituVariable']} })
-    method_reference: Optional[str] = Field(default=None, title="Method Reference", description="""Citation for the method used.""", json_schema_extra = { "linkml_meta": {'alias': 'method_reference', 'domain_of': ['Calibration', 'InSituVariable']} })
-    measurement_researcher: Optional[Person] = Field(default=None, title="Researcher who measured the variable", description="""The name of the PI whose research team measured or derived this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'measurement_researcher', 'domain_of': ['InSituVariable']} })
-    other_detailed_information: Optional[str] = Field(default=None, title="Other Detailed Information", description="""Any additional information about this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'other_detailed_information', 'domain_of': ['InSituVariable']} })
-    units: str = Field(default=..., title="Unit", description="""Unit of measurement for this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'units', 'domain_of': ['Variable']} })
-    schema_class: Literal["DiscreteTAVariable"] = Field(default="DiscreteTAVariable", description="""The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.""", json_schema_extra = { "linkml_meta": {'alias': 'schema_class', 'designates_type': True, 'domain_of': ['Variable']} })
-    variable_type: Literal["ta"] = Field(default=..., title="Variable Type", description="""High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.""", json_schema_extra = { "linkml_meta": {'alias': 'variable_type', 'domain_of': ['Variable'], 'equals_string': 'ta'} })
-    standard_identifier: Optional[VocabularyItemReference] = Field(default=None, json_schema_extra = { "linkml_meta": {'alias': 'standard_identifier', 'domain_of': ['Variable']} })
-    dataset_variable_name: str = Field(default=..., title="Dataset variable name", description="""The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name', 'domain_of': ['Variable']} })
-    long_name: str = Field(default=..., title="Variable full name", description="""Full descriptive name of the variable.""", json_schema_extra = { "linkml_meta": {'alias': 'long_name', 'domain_of': ['Variable']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "from_schema": "Variable",
+            "mixins": ["MeasuredTAFields"],
+            "slot_usage": {
+                "analyzing_instrument": {
+                    "description": "CRM-calibrated "
+                    "instrument used to "
+                    "analyze TA samples.",
+                    "name": "analyzing_instrument",
+                    "range": "CRMInstrument",
+                },
+                "variable_type": {
+                    "equals_string": "ta",
+                    "name": "variable_type",
+                    "range": "string",
+                },
+            },
+        }
+    )
+
+    sample_preservation: SamplePreservation = Field(
+        default=...,
+        title="Sample preservation",
+        description="""How the samples were preserved for analysis.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sample_preservation",
+                "domain_of": ["DiscreteTAVariable", "DiscreteDICVariable"],
+            }
+        },
+    )
+    blank_correction: str = Field(
+        default=...,
+        title="Magnitude of blank correction",
+        description="""Whether the reported variables were corrected for blank, and if so, how they were corrected.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "blank_correction",
+                "domain_of": ["DiscreteTAVariable", "DiscreteDICVariable"],
+            }
+        },
+    )
+    titration_type: str = Field(
+        default=...,
+        title="Titration type",
+        description="""Type of the titration used to determine alkalinity.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "titration_type",
+                "domain_of": ["DiscreteTAVariable"],
+            }
+        },
+    )
+    titration_cell_type: Optional[TitrationCellType] = Field(
+        default=None,
+        title="Cell type",
+        description="""Whether the titration cell is open or closed.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "titration_cell_type",
+                "domain_of": ["DiscreteTAVariable"],
+            }
+        },
+    )
+    curve_fitting_method: Optional[str] = Field(
+        default=None,
+        title="Curve fitting method",
+        description="""Curve fitting method used to determine the alkalinity.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "curve_fitting_method",
+                "domain_of": ["DiscreteTAVariable"],
+            }
+        },
+    )
+    appropriate_use_quality: Optional[AppropriateUseQuality] = Field(
+        default=None,
+        title="Weather or climate quality",
+        description="""Climate quality is defined as measurements of quality sufficient to assess long term trends with a defined level of confidence. Weather quality is defined as measurements of quality sufficient to identify relative spatial patterns and short term variation.
+For more details, refer to Newton J.A., Feely R. A., Jewett E. B., Williamson P. & Mathis J., 2015. Global Ocean Acidification Observing Network: Requirements and Governance Plan. Second Edition, GOA-ON, http://www.goa-on.org/docs/GOA-ON_plan_print.pdf.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "appropriate_use_quality",
+                "domain_of": [
+                    "MeasuredTAFields",
+                    "MeasuredDICFields",
+                    "MeasuredPHFields",
+                    "MeasuredCO2Fields",
+                ],
+            }
+        },
+    )
+    concentration_basis: ConcentrationBasis = Field(
+        default=...,
+        title="Per-volume vs per-mass based units",
+        description="""Whether measurements are expressed per unit volume or per unit mass (for DIC, TA, etc.)""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "concentration_basis",
+                "domain_of": ["MeasuredTAFields", "MeasuredDICFields"],
+            }
+        },
+    )
+    analyzing_instrument: CRMInstrument = Field(
+        default=...,
+        title="Analyzing instrument",
+        description="""CRM-calibrated instrument used to analyze TA samples.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "analyzing_instrument",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling_method: str = Field(
+        default=...,
+        title="Sampling Method",
+        description="""Method used to collect samples.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_method",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    field_replicate_information: Optional[str] = Field(
+        default=None,
+        title="Field replicate information",
+        description="""Repetition of sample collection and measurement, e.g., triplicate samples.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "field_replicate_information",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    analyzing_method: str = Field(
+        default=...,
+        title="Analyzing Method",
+        description="""Additional information describing how the sample was analyzed. DOIs provided as applicable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "analyzing_method",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    observation_type: ObservationType = Field(
+        default=...,
+        title="Observation Type",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "observation_type",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling: Literal["discrete"] = Field(
+        default=...,
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling",
+                "domain_of": ["MeasuredVariable"],
+                "equals_string": "discrete",
+            }
+        },
+    )
+    sampling_instrument_type: SamplingInstrumentType = Field(
+        default=...,
+        title="Sampling instrument type",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_instrument_type",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling_instrument_type_custom: Optional[str] = Field(
+        default=None,
+        title="Sampling instrument type (custom)",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_instrument_type_custom",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    qc_steps_taken: str = Field(
+        default=...,
+        title="QC steps taken",
+        description="""Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).
+If quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "qc_steps_taken", "domain_of": ["QCFields"]}
+        },
+    )
+    uncertainty: str = Field(
+        default=...,
+        title="Uncertainty",
+        description="""It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.
+If uncertainty is provided as a variable, please list the column header name here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "uncertainty",
+                "domain_of": ["StandardGas", "CO2GasDetector", "QCFields"],
+            }
+        },
+    )
+    uncertainty_definition: str = Field(
+        default=...,
+        title="How was the uncertainty defined",
+        description="""A description of the uncertainties involved in this method.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "uncertainty_definition",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    missing_value_indicators: str = Field(
+        default=...,
+        title="Missing value indicators",
+        description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "missing_value_indicators",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    qc_researcher: Optional[Person] = Field(
+        default=None,
+        title="Researcher who QCed this variable",
+        description="""The name of the PI whose research team QCed this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "qc_researcher", "domain_of": ["QCFields"]}
+        },
+    )
+    qc_researcher_institution: Optional[str] = Field(
+        default=None,
+        title="QC Researcher Institution",
+        description="""The institution of the PI whose research team QCed this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "qc_researcher_institution",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    genesis: Literal["measured"] = Field(
+        default=...,
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "genesis",
+                "domain_of": ["InSituVariable"],
+                "equals_string": "measured",
+            }
+        },
+    )
+    dataset_variable_name_qc_flag: Optional[str] = Field(
+        default=None,
+        title="Dataset variable name (Quality Flag)",
+        description="""If applicable, the column header name used for the quality control flag corresponding to this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dataset_variable_name_qc_flag",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    dataset_variable_name_raw: Optional[str] = Field(
+        default=None,
+        title="Dataset variable name (raw)",
+        description="""If applicable, the column header name used for the raw data corresponding to this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dataset_variable_name_raw",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    method_reference: Optional[str] = Field(
+        default=None,
+        title="Method Reference",
+        description="""Citation for the method used.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "method_reference",
+                "domain_of": ["Calibration", "InSituVariable"],
+            }
+        },
+    )
+    measurement_researcher: Optional[Person] = Field(
+        default=None,
+        title="Researcher who measured the variable",
+        description="""The name of the PI whose research team measured or derived this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "measurement_researcher",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    other_detailed_information: Optional[str] = Field(
+        default=None,
+        title="Other Detailed Information",
+        description="""Any additional information about this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "other_detailed_information",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    units: str = Field(
+        default=...,
+        title="Unit",
+        description="""Unit of measurement for this variable.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "units", "domain_of": ["Variable"]}
+        },
+    )
+    schema_class: Literal["DiscreteTAVariable"] = Field(
+        default="DiscreteTAVariable",
+        description="""The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "schema_class",
+                "designates_type": True,
+                "domain_of": ["Variable"],
+            }
+        },
+    )
+    variable_type: Literal["ta"] = Field(
+        default=...,
+        title="Variable Type",
+        description="""High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "variable_type",
+                "domain_of": ["Variable"],
+                "equals_string": "ta",
+            }
+        },
+    )
+    standard_identifier: Optional[VocabularyItemReference] = Field(
+        default=None,
+        json_schema_extra={
+            "linkml_meta": {"alias": "standard_identifier", "domain_of": ["Variable"]}
+        },
+    )
+    dataset_variable_name: str = Field(
+        default=...,
+        title="Dataset variable name",
+        description="""The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "dataset_variable_name", "domain_of": ["Variable"]}
+        },
+    )
+    long_name: str = Field(
+        default=...,
+        title="Variable full name",
+        description="""Full descriptive name of the variable.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "long_name", "domain_of": ["Variable"]}
+        },
+    )
 
 
 class ContinuousDICVariable(ContinuousMeasuredVariable, MeasuredDICFields):
     """
     Dissolved Inorganic Carbon (DIC) measured variable from continuous autonomous sensor.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Variable',
-         'mixins': ['MeasuredDICFields'],
-         'slot_usage': {'variable_type': {'equals_string': 'dic',
-                                          'name': 'variable_type',
-                                          'range': 'string'}}})
 
-    appropriate_use_quality: Optional[AppropriateUseQuality] = Field(default=None, title="Weather or climate quality", description="""Climate quality is defined as measurements of quality sufficient to assess long term trends with a defined level of confidence. Weather quality is defined as measurements of quality sufficient to identify relative spatial patterns and short term variation.
-For more details, refer to Newton J.A., Feely R. A., Jewett E. B., Williamson P. & Mathis J., 2015. Global Ocean Acidification Observing Network: Requirements and Governance Plan. Second Edition, GOA-ON, http://www.goa-on.org/docs/GOA-ON_plan_print.pdf.""", json_schema_extra = { "linkml_meta": {'alias': 'appropriate_use_quality',
-         'domain_of': ['MeasuredTAFields',
-                       'MeasuredDICFields',
-                       'MeasuredPHFields',
-                       'MeasuredCO2Fields']} })
-    concentration_basis: ConcentrationBasis = Field(default=..., title="Per-volume vs per-mass based units", description="""Whether measurements are expressed per unit volume or per unit mass (for DIC, TA, etc.)""", json_schema_extra = { "linkml_meta": {'alias': 'concentration_basis',
-         'domain_of': ['MeasuredTAFields', 'MeasuredDICFields']} })
-    raw_data_calculation_method: str = Field(default=..., title="Method to calculate reported values from raw data", description="""The method used to calculate reported values from raw sensor data.""", json_schema_extra = { "linkml_meta": {'alias': 'raw_data_calculation_method',
-         'domain_of': ['ContinuousMeasuredVariable']} })
-    calculation_software_version: Optional[str] = Field(default=None, title="Software version for the calculation", description="""Version of the software used to calculate reported values from raw values.""", json_schema_extra = { "linkml_meta": {'alias': 'calculation_software_version',
-         'domain_of': ['ContinuousMeasuredVariable']} })
-    analyzing_instrument: AnalyzingInstrument = Field(default=..., title="Analyzing instrument", description="""Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.""", json_schema_extra = { "linkml_meta": {'alias': 'analyzing_instrument', 'domain_of': ['MeasuredVariable']} })
-    sampling_method: str = Field(default=..., title="Sampling Method", description="""Method used to collect samples.""", json_schema_extra = { "linkml_meta": {'alias': 'sampling_method', 'domain_of': ['MeasuredVariable']} })
-    field_replicate_information: Optional[str] = Field(default=None, title="Field replicate information", description="""Repetition of sample collection and measurement, e.g., triplicate samples.""", json_schema_extra = { "linkml_meta": {'alias': 'field_replicate_information', 'domain_of': ['MeasuredVariable']} })
-    analyzing_method: str = Field(default=..., title="Analyzing Method", description="""Additional information describing how the sample was analyzed. DOIs provided as applicable.""", json_schema_extra = { "linkml_meta": {'alias': 'analyzing_method', 'domain_of': ['MeasuredVariable']} })
-    observation_type: ObservationType = Field(default=..., title="Observation Type", json_schema_extra = { "linkml_meta": {'alias': 'observation_type', 'domain_of': ['MeasuredVariable']} })
-    sampling: Literal["continuous"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'sampling',
-         'domain_of': ['MeasuredVariable'],
-         'equals_string': 'continuous'} })
-    sampling_instrument_type: SamplingInstrumentType = Field(default=..., title="Sampling instrument type", json_schema_extra = { "linkml_meta": {'alias': 'sampling_instrument_type', 'domain_of': ['MeasuredVariable']} })
-    sampling_instrument_type_custom: Optional[str] = Field(default=None, title="Sampling instrument type (custom)", json_schema_extra = { "linkml_meta": {'alias': 'sampling_instrument_type_custom', 'domain_of': ['MeasuredVariable']} })
-    qc_steps_taken: str = Field(default=..., title="QC steps taken", description="""Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).
-If quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_steps_taken', 'domain_of': ['QCFields']} })
-    uncertainty: str = Field(default=..., title="Uncertainty", description="""It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.
-If uncertainty is provided as a variable, please list the column header name here.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty',
-         'domain_of': ['StandardGas', 'CO2GasDetector', 'QCFields']} })
-    uncertainty_definition: str = Field(default=..., title="How was the uncertainty defined", description="""A description of the uncertainties involved in this method.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty_definition', 'domain_of': ['QCFields']} })
-    missing_value_indicators: str = Field(default=..., title="Missing value indicators", description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'missing_value_indicators', 'domain_of': ['QCFields']} })
-    qc_researcher: Optional[Person] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
-    qc_researcher_institution: Optional[str] = Field(default=None, title="QC Researcher Institution", description="""The institution of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher_institution', 'domain_of': ['QCFields']} })
-    genesis: Literal["measured"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'genesis',
-         'domain_of': ['InSituVariable'],
-         'equals_string': 'measured'} })
-    dataset_variable_name_qc_flag: Optional[str] = Field(default=None, title="Dataset variable name (Quality Flag)", description="""If applicable, the column header name used for the quality control flag corresponding to this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name_qc_flag', 'domain_of': ['InSituVariable']} })
-    dataset_variable_name_raw: Optional[str] = Field(default=None, title="Dataset variable name (raw)", description="""If applicable, the column header name used for the raw data corresponding to this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name_raw', 'domain_of': ['InSituVariable']} })
-    method_reference: Optional[str] = Field(default=None, title="Method Reference", description="""Citation for the method used.""", json_schema_extra = { "linkml_meta": {'alias': 'method_reference', 'domain_of': ['Calibration', 'InSituVariable']} })
-    measurement_researcher: Optional[Person] = Field(default=None, title="Researcher who measured the variable", description="""The name of the PI whose research team measured or derived this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'measurement_researcher', 'domain_of': ['InSituVariable']} })
-    other_detailed_information: Optional[str] = Field(default=None, title="Other Detailed Information", description="""Any additional information about this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'other_detailed_information', 'domain_of': ['InSituVariable']} })
-    units: str = Field(default=..., title="Unit", description="""Unit of measurement for this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'units', 'domain_of': ['Variable']} })
-    schema_class: Literal["ContinuousDICVariable"] = Field(default="ContinuousDICVariable", description="""The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.""", json_schema_extra = { "linkml_meta": {'alias': 'schema_class', 'designates_type': True, 'domain_of': ['Variable']} })
-    variable_type: Literal["dic"] = Field(default=..., title="Variable Type", description="""High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.""", json_schema_extra = { "linkml_meta": {'alias': 'variable_type', 'domain_of': ['Variable'], 'equals_string': 'dic'} })
-    standard_identifier: Optional[VocabularyItemReference] = Field(default=None, json_schema_extra = { "linkml_meta": {'alias': 'standard_identifier', 'domain_of': ['Variable']} })
-    dataset_variable_name: str = Field(default=..., title="Dataset variable name", description="""The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name', 'domain_of': ['Variable']} })
-    long_name: str = Field(default=..., title="Variable full name", description="""Full descriptive name of the variable.""", json_schema_extra = { "linkml_meta": {'alias': 'long_name', 'domain_of': ['Variable']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "from_schema": "Variable",
+            "mixins": ["MeasuredDICFields"],
+            "slot_usage": {
+                "variable_type": {
+                    "equals_string": "dic",
+                    "name": "variable_type",
+                    "range": "string",
+                }
+            },
+        }
+    )
+
+    appropriate_use_quality: Optional[AppropriateUseQuality] = Field(
+        default=None,
+        title="Weather or climate quality",
+        description="""Climate quality is defined as measurements of quality sufficient to assess long term trends with a defined level of confidence. Weather quality is defined as measurements of quality sufficient to identify relative spatial patterns and short term variation.
+For more details, refer to Newton J.A., Feely R. A., Jewett E. B., Williamson P. & Mathis J., 2015. Global Ocean Acidification Observing Network: Requirements and Governance Plan. Second Edition, GOA-ON, http://www.goa-on.org/docs/GOA-ON_plan_print.pdf.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "appropriate_use_quality",
+                "domain_of": [
+                    "MeasuredTAFields",
+                    "MeasuredDICFields",
+                    "MeasuredPHFields",
+                    "MeasuredCO2Fields",
+                ],
+            }
+        },
+    )
+    concentration_basis: ConcentrationBasis = Field(
+        default=...,
+        title="Per-volume vs per-mass based units",
+        description="""Whether measurements are expressed per unit volume or per unit mass (for DIC, TA, etc.)""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "concentration_basis",
+                "domain_of": ["MeasuredTAFields", "MeasuredDICFields"],
+            }
+        },
+    )
+    raw_data_calculation_method: str = Field(
+        default=...,
+        title="Method to calculate reported values from raw data",
+        description="""The method used to calculate reported values from raw sensor data.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "raw_data_calculation_method",
+                "domain_of": ["ContinuousMeasuredVariable"],
+            }
+        },
+    )
+    calculation_software_version: Optional[str] = Field(
+        default=None,
+        title="Software version for the calculation",
+        description="""Version of the software used to calculate reported values from raw values.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "calculation_software_version",
+                "domain_of": ["ContinuousMeasuredVariable"],
+            }
+        },
+    )
+    analyzing_instrument: AnalyzingInstrument = Field(
+        default=...,
+        title="Analyzing instrument",
+        description="""Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "analyzing_instrument",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling_method: str = Field(
+        default=...,
+        title="Sampling Method",
+        description="""Method used to collect samples.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_method",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    field_replicate_information: Optional[str] = Field(
+        default=None,
+        title="Field replicate information",
+        description="""Repetition of sample collection and measurement, e.g., triplicate samples.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "field_replicate_information",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    analyzing_method: str = Field(
+        default=...,
+        title="Analyzing Method",
+        description="""Additional information describing how the sample was analyzed. DOIs provided as applicable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "analyzing_method",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    observation_type: ObservationType = Field(
+        default=...,
+        title="Observation Type",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "observation_type",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling: Literal["continuous"] = Field(
+        default=...,
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling",
+                "domain_of": ["MeasuredVariable"],
+                "equals_string": "continuous",
+            }
+        },
+    )
+    sampling_instrument_type: SamplingInstrumentType = Field(
+        default=...,
+        title="Sampling instrument type",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_instrument_type",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling_instrument_type_custom: Optional[str] = Field(
+        default=None,
+        title="Sampling instrument type (custom)",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_instrument_type_custom",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    qc_steps_taken: str = Field(
+        default=...,
+        title="QC steps taken",
+        description="""Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).
+If quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "qc_steps_taken", "domain_of": ["QCFields"]}
+        },
+    )
+    uncertainty: str = Field(
+        default=...,
+        title="Uncertainty",
+        description="""It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.
+If uncertainty is provided as a variable, please list the column header name here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "uncertainty",
+                "domain_of": ["StandardGas", "CO2GasDetector", "QCFields"],
+            }
+        },
+    )
+    uncertainty_definition: str = Field(
+        default=...,
+        title="How was the uncertainty defined",
+        description="""A description of the uncertainties involved in this method.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "uncertainty_definition",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    missing_value_indicators: str = Field(
+        default=...,
+        title="Missing value indicators",
+        description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "missing_value_indicators",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    qc_researcher: Optional[Person] = Field(
+        default=None,
+        title="Researcher who QCed this variable",
+        description="""The name of the PI whose research team QCed this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "qc_researcher", "domain_of": ["QCFields"]}
+        },
+    )
+    qc_researcher_institution: Optional[str] = Field(
+        default=None,
+        title="QC Researcher Institution",
+        description="""The institution of the PI whose research team QCed this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "qc_researcher_institution",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    genesis: Literal["measured"] = Field(
+        default=...,
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "genesis",
+                "domain_of": ["InSituVariable"],
+                "equals_string": "measured",
+            }
+        },
+    )
+    dataset_variable_name_qc_flag: Optional[str] = Field(
+        default=None,
+        title="Dataset variable name (Quality Flag)",
+        description="""If applicable, the column header name used for the quality control flag corresponding to this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dataset_variable_name_qc_flag",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    dataset_variable_name_raw: Optional[str] = Field(
+        default=None,
+        title="Dataset variable name (raw)",
+        description="""If applicable, the column header name used for the raw data corresponding to this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dataset_variable_name_raw",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    method_reference: Optional[str] = Field(
+        default=None,
+        title="Method Reference",
+        description="""Citation for the method used.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "method_reference",
+                "domain_of": ["Calibration", "InSituVariable"],
+            }
+        },
+    )
+    measurement_researcher: Optional[Person] = Field(
+        default=None,
+        title="Researcher who measured the variable",
+        description="""The name of the PI whose research team measured or derived this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "measurement_researcher",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    other_detailed_information: Optional[str] = Field(
+        default=None,
+        title="Other Detailed Information",
+        description="""Any additional information about this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "other_detailed_information",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    units: str = Field(
+        default=...,
+        title="Unit",
+        description="""Unit of measurement for this variable.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "units", "domain_of": ["Variable"]}
+        },
+    )
+    schema_class: Literal["ContinuousDICVariable"] = Field(
+        default="ContinuousDICVariable",
+        description="""The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "schema_class",
+                "designates_type": True,
+                "domain_of": ["Variable"],
+            }
+        },
+    )
+    variable_type: Literal["dic"] = Field(
+        default=...,
+        title="Variable Type",
+        description="""High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "variable_type",
+                "domain_of": ["Variable"],
+                "equals_string": "dic",
+            }
+        },
+    )
+    standard_identifier: Optional[VocabularyItemReference] = Field(
+        default=None,
+        json_schema_extra={
+            "linkml_meta": {"alias": "standard_identifier", "domain_of": ["Variable"]}
+        },
+    )
+    dataset_variable_name: str = Field(
+        default=...,
+        title="Dataset variable name",
+        description="""The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "dataset_variable_name", "domain_of": ["Variable"]}
+        },
+    )
+    long_name: str = Field(
+        default=...,
+        title="Variable full name",
+        description="""Full descriptive name of the variable.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "long_name", "domain_of": ["Variable"]}
+        },
+    )
 
 
 class DiscreteDICVariable(DiscreteMeasuredVariable, MeasuredDICFields):
     """
     Dissolved Inorganic Carbon (DIC) measured variable from discrete bottle samples. Uses CRM-calibrated instrument and includes sample preservation information. Reference: OAPMetadata XSD variables.xsd - DIC_measured
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Variable',
-         'mixins': ['MeasuredDICFields'],
-         'slot_usage': {'analyzing_instrument': {'description': 'CRM-calibrated '
-                                                                'instrument used to '
-                                                                'analyze DIC samples.',
-                                                 'name': 'analyzing_instrument',
-                                                 'range': 'CRMInstrument'},
-                        'variable_type': {'equals_string': 'dic',
-                                          'name': 'variable_type',
-                                          'range': 'string'}}})
 
-    sample_preservation: SamplePreservation = Field(default=..., title="Sample preservation", description="""How the samples were preserved for analysis.""", json_schema_extra = { "linkml_meta": {'alias': 'sample_preservation',
-         'domain_of': ['DiscreteTAVariable', 'DiscreteDICVariable']} })
-    blank_correction: str = Field(default=..., title="Magnitude of blank correction", description="""Whether the reported variables were corrected for blank, and if so, how they were corrected.""", json_schema_extra = { "linkml_meta": {'alias': 'blank_correction',
-         'domain_of': ['DiscreteTAVariable', 'DiscreteDICVariable']} })
-    appropriate_use_quality: Optional[AppropriateUseQuality] = Field(default=None, title="Weather or climate quality", description="""Climate quality is defined as measurements of quality sufficient to assess long term trends with a defined level of confidence. Weather quality is defined as measurements of quality sufficient to identify relative spatial patterns and short term variation.
-For more details, refer to Newton J.A., Feely R. A., Jewett E. B., Williamson P. & Mathis J., 2015. Global Ocean Acidification Observing Network: Requirements and Governance Plan. Second Edition, GOA-ON, http://www.goa-on.org/docs/GOA-ON_plan_print.pdf.""", json_schema_extra = { "linkml_meta": {'alias': 'appropriate_use_quality',
-         'domain_of': ['MeasuredTAFields',
-                       'MeasuredDICFields',
-                       'MeasuredPHFields',
-                       'MeasuredCO2Fields']} })
-    concentration_basis: ConcentrationBasis = Field(default=..., title="Per-volume vs per-mass based units", description="""Whether measurements are expressed per unit volume or per unit mass (for DIC, TA, etc.)""", json_schema_extra = { "linkml_meta": {'alias': 'concentration_basis',
-         'domain_of': ['MeasuredTAFields', 'MeasuredDICFields']} })
-    analyzing_instrument: CRMInstrument = Field(default=..., title="Analyzing instrument", description="""CRM-calibrated instrument used to analyze DIC samples.""", json_schema_extra = { "linkml_meta": {'alias': 'analyzing_instrument', 'domain_of': ['MeasuredVariable']} })
-    sampling_method: str = Field(default=..., title="Sampling Method", description="""Method used to collect samples.""", json_schema_extra = { "linkml_meta": {'alias': 'sampling_method', 'domain_of': ['MeasuredVariable']} })
-    field_replicate_information: Optional[str] = Field(default=None, title="Field replicate information", description="""Repetition of sample collection and measurement, e.g., triplicate samples.""", json_schema_extra = { "linkml_meta": {'alias': 'field_replicate_information', 'domain_of': ['MeasuredVariable']} })
-    analyzing_method: str = Field(default=..., title="Analyzing Method", description="""Additional information describing how the sample was analyzed. DOIs provided as applicable.""", json_schema_extra = { "linkml_meta": {'alias': 'analyzing_method', 'domain_of': ['MeasuredVariable']} })
-    observation_type: ObservationType = Field(default=..., title="Observation Type", json_schema_extra = { "linkml_meta": {'alias': 'observation_type', 'domain_of': ['MeasuredVariable']} })
-    sampling: Literal["discrete"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'sampling',
-         'domain_of': ['MeasuredVariable'],
-         'equals_string': 'discrete'} })
-    sampling_instrument_type: SamplingInstrumentType = Field(default=..., title="Sampling instrument type", json_schema_extra = { "linkml_meta": {'alias': 'sampling_instrument_type', 'domain_of': ['MeasuredVariable']} })
-    sampling_instrument_type_custom: Optional[str] = Field(default=None, title="Sampling instrument type (custom)", json_schema_extra = { "linkml_meta": {'alias': 'sampling_instrument_type_custom', 'domain_of': ['MeasuredVariable']} })
-    qc_steps_taken: str = Field(default=..., title="QC steps taken", description="""Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).
-If quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_steps_taken', 'domain_of': ['QCFields']} })
-    uncertainty: str = Field(default=..., title="Uncertainty", description="""It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.
-If uncertainty is provided as a variable, please list the column header name here.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty',
-         'domain_of': ['StandardGas', 'CO2GasDetector', 'QCFields']} })
-    uncertainty_definition: str = Field(default=..., title="How was the uncertainty defined", description="""A description of the uncertainties involved in this method.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty_definition', 'domain_of': ['QCFields']} })
-    missing_value_indicators: str = Field(default=..., title="Missing value indicators", description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'missing_value_indicators', 'domain_of': ['QCFields']} })
-    qc_researcher: Optional[Person] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
-    qc_researcher_institution: Optional[str] = Field(default=None, title="QC Researcher Institution", description="""The institution of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher_institution', 'domain_of': ['QCFields']} })
-    genesis: Literal["measured"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'genesis',
-         'domain_of': ['InSituVariable'],
-         'equals_string': 'measured'} })
-    dataset_variable_name_qc_flag: Optional[str] = Field(default=None, title="Dataset variable name (Quality Flag)", description="""If applicable, the column header name used for the quality control flag corresponding to this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name_qc_flag', 'domain_of': ['InSituVariable']} })
-    dataset_variable_name_raw: Optional[str] = Field(default=None, title="Dataset variable name (raw)", description="""If applicable, the column header name used for the raw data corresponding to this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name_raw', 'domain_of': ['InSituVariable']} })
-    method_reference: Optional[str] = Field(default=None, title="Method Reference", description="""Citation for the method used.""", json_schema_extra = { "linkml_meta": {'alias': 'method_reference', 'domain_of': ['Calibration', 'InSituVariable']} })
-    measurement_researcher: Optional[Person] = Field(default=None, title="Researcher who measured the variable", description="""The name of the PI whose research team measured or derived this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'measurement_researcher', 'domain_of': ['InSituVariable']} })
-    other_detailed_information: Optional[str] = Field(default=None, title="Other Detailed Information", description="""Any additional information about this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'other_detailed_information', 'domain_of': ['InSituVariable']} })
-    units: str = Field(default=..., title="Unit", description="""Unit of measurement for this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'units', 'domain_of': ['Variable']} })
-    schema_class: Literal["DiscreteDICVariable"] = Field(default="DiscreteDICVariable", description="""The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.""", json_schema_extra = { "linkml_meta": {'alias': 'schema_class', 'designates_type': True, 'domain_of': ['Variable']} })
-    variable_type: Literal["dic"] = Field(default=..., title="Variable Type", description="""High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.""", json_schema_extra = { "linkml_meta": {'alias': 'variable_type', 'domain_of': ['Variable'], 'equals_string': 'dic'} })
-    standard_identifier: Optional[VocabularyItemReference] = Field(default=None, json_schema_extra = { "linkml_meta": {'alias': 'standard_identifier', 'domain_of': ['Variable']} })
-    dataset_variable_name: str = Field(default=..., title="Dataset variable name", description="""The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name', 'domain_of': ['Variable']} })
-    long_name: str = Field(default=..., title="Variable full name", description="""Full descriptive name of the variable.""", json_schema_extra = { "linkml_meta": {'alias': 'long_name', 'domain_of': ['Variable']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "from_schema": "Variable",
+            "mixins": ["MeasuredDICFields"],
+            "slot_usage": {
+                "analyzing_instrument": {
+                    "description": "CRM-calibrated "
+                    "instrument used to "
+                    "analyze DIC samples.",
+                    "name": "analyzing_instrument",
+                    "range": "CRMInstrument",
+                },
+                "variable_type": {
+                    "equals_string": "dic",
+                    "name": "variable_type",
+                    "range": "string",
+                },
+            },
+        }
+    )
+
+    sample_preservation: SamplePreservation = Field(
+        default=...,
+        title="Sample preservation",
+        description="""How the samples were preserved for analysis.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sample_preservation",
+                "domain_of": ["DiscreteTAVariable", "DiscreteDICVariable"],
+            }
+        },
+    )
+    blank_correction: str = Field(
+        default=...,
+        title="Magnitude of blank correction",
+        description="""Whether the reported variables were corrected for blank, and if so, how they were corrected.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "blank_correction",
+                "domain_of": ["DiscreteTAVariable", "DiscreteDICVariable"],
+            }
+        },
+    )
+    appropriate_use_quality: Optional[AppropriateUseQuality] = Field(
+        default=None,
+        title="Weather or climate quality",
+        description="""Climate quality is defined as measurements of quality sufficient to assess long term trends with a defined level of confidence. Weather quality is defined as measurements of quality sufficient to identify relative spatial patterns and short term variation.
+For more details, refer to Newton J.A., Feely R. A., Jewett E. B., Williamson P. & Mathis J., 2015. Global Ocean Acidification Observing Network: Requirements and Governance Plan. Second Edition, GOA-ON, http://www.goa-on.org/docs/GOA-ON_plan_print.pdf.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "appropriate_use_quality",
+                "domain_of": [
+                    "MeasuredTAFields",
+                    "MeasuredDICFields",
+                    "MeasuredPHFields",
+                    "MeasuredCO2Fields",
+                ],
+            }
+        },
+    )
+    concentration_basis: ConcentrationBasis = Field(
+        default=...,
+        title="Per-volume vs per-mass based units",
+        description="""Whether measurements are expressed per unit volume or per unit mass (for DIC, TA, etc.)""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "concentration_basis",
+                "domain_of": ["MeasuredTAFields", "MeasuredDICFields"],
+            }
+        },
+    )
+    analyzing_instrument: CRMInstrument = Field(
+        default=...,
+        title="Analyzing instrument",
+        description="""CRM-calibrated instrument used to analyze DIC samples.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "analyzing_instrument",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling_method: str = Field(
+        default=...,
+        title="Sampling Method",
+        description="""Method used to collect samples.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_method",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    field_replicate_information: Optional[str] = Field(
+        default=None,
+        title="Field replicate information",
+        description="""Repetition of sample collection and measurement, e.g., triplicate samples.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "field_replicate_information",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    analyzing_method: str = Field(
+        default=...,
+        title="Analyzing Method",
+        description="""Additional information describing how the sample was analyzed. DOIs provided as applicable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "analyzing_method",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    observation_type: ObservationType = Field(
+        default=...,
+        title="Observation Type",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "observation_type",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling: Literal["discrete"] = Field(
+        default=...,
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling",
+                "domain_of": ["MeasuredVariable"],
+                "equals_string": "discrete",
+            }
+        },
+    )
+    sampling_instrument_type: SamplingInstrumentType = Field(
+        default=...,
+        title="Sampling instrument type",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_instrument_type",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling_instrument_type_custom: Optional[str] = Field(
+        default=None,
+        title="Sampling instrument type (custom)",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_instrument_type_custom",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    qc_steps_taken: str = Field(
+        default=...,
+        title="QC steps taken",
+        description="""Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).
+If quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "qc_steps_taken", "domain_of": ["QCFields"]}
+        },
+    )
+    uncertainty: str = Field(
+        default=...,
+        title="Uncertainty",
+        description="""It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.
+If uncertainty is provided as a variable, please list the column header name here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "uncertainty",
+                "domain_of": ["StandardGas", "CO2GasDetector", "QCFields"],
+            }
+        },
+    )
+    uncertainty_definition: str = Field(
+        default=...,
+        title="How was the uncertainty defined",
+        description="""A description of the uncertainties involved in this method.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "uncertainty_definition",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    missing_value_indicators: str = Field(
+        default=...,
+        title="Missing value indicators",
+        description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "missing_value_indicators",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    qc_researcher: Optional[Person] = Field(
+        default=None,
+        title="Researcher who QCed this variable",
+        description="""The name of the PI whose research team QCed this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "qc_researcher", "domain_of": ["QCFields"]}
+        },
+    )
+    qc_researcher_institution: Optional[str] = Field(
+        default=None,
+        title="QC Researcher Institution",
+        description="""The institution of the PI whose research team QCed this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "qc_researcher_institution",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    genesis: Literal["measured"] = Field(
+        default=...,
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "genesis",
+                "domain_of": ["InSituVariable"],
+                "equals_string": "measured",
+            }
+        },
+    )
+    dataset_variable_name_qc_flag: Optional[str] = Field(
+        default=None,
+        title="Dataset variable name (Quality Flag)",
+        description="""If applicable, the column header name used for the quality control flag corresponding to this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dataset_variable_name_qc_flag",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    dataset_variable_name_raw: Optional[str] = Field(
+        default=None,
+        title="Dataset variable name (raw)",
+        description="""If applicable, the column header name used for the raw data corresponding to this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dataset_variable_name_raw",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    method_reference: Optional[str] = Field(
+        default=None,
+        title="Method Reference",
+        description="""Citation for the method used.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "method_reference",
+                "domain_of": ["Calibration", "InSituVariable"],
+            }
+        },
+    )
+    measurement_researcher: Optional[Person] = Field(
+        default=None,
+        title="Researcher who measured the variable",
+        description="""The name of the PI whose research team measured or derived this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "measurement_researcher",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    other_detailed_information: Optional[str] = Field(
+        default=None,
+        title="Other Detailed Information",
+        description="""Any additional information about this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "other_detailed_information",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    units: str = Field(
+        default=...,
+        title="Unit",
+        description="""Unit of measurement for this variable.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "units", "domain_of": ["Variable"]}
+        },
+    )
+    schema_class: Literal["DiscreteDICVariable"] = Field(
+        default="DiscreteDICVariable",
+        description="""The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "schema_class",
+                "designates_type": True,
+                "domain_of": ["Variable"],
+            }
+        },
+    )
+    variable_type: Literal["dic"] = Field(
+        default=...,
+        title="Variable Type",
+        description="""High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "variable_type",
+                "domain_of": ["Variable"],
+                "equals_string": "dic",
+            }
+        },
+    )
+    standard_identifier: Optional[VocabularyItemReference] = Field(
+        default=None,
+        json_schema_extra={
+            "linkml_meta": {"alias": "standard_identifier", "domain_of": ["Variable"]}
+        },
+    )
+    dataset_variable_name: str = Field(
+        default=...,
+        title="Dataset variable name",
+        description="""The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "dataset_variable_name", "domain_of": ["Variable"]}
+        },
+    )
+    long_name: str = Field(
+        default=...,
+        title="Variable full name",
+        description="""Full descriptive name of the variable.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "long_name", "domain_of": ["Variable"]}
+        },
+    )
 
 
 class ContinuousSedimentVariable(ContinuousMeasuredVariable, MeasuredSedimentFields):
     """
     Measured sediment variable collected from continuous autonomous sensor
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Variable',
-         'mixins': ['MeasuredSedimentFields'],
-         'slot_usage': {'variable_type': {'equals_string': 'sediment',
-                                          'name': 'variable_type',
-                                          'range': 'string'}}})
 
-    sediment_type: str = Field(default=..., title="Sediment Type", description="""e.g., mud, sand, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'sediment_type', 'domain_of': ['MeasuredSedimentFields']} })
-    sediment_sampling_method: str = Field(default=..., title="Sediment Sampling Method", description="""e.g., sediment core, grab sampling, dredging, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'sediment_sampling_method', 'domain_of': ['MeasuredSedimentFields']} })
-    sediment_sampling_depth: str = Field(default=..., title="Sediment Sampling Depth", description="""Depth that sediment was collected below sediment surface. If provided as a variable (recommended), please list the column header name here.""", json_schema_extra = { "linkml_meta": {'alias': 'sediment_sampling_depth', 'domain_of': ['MeasuredSedimentFields']} })
-    sediment_sampling_water_depth: str = Field(default=..., title="Sediment Sampling Water Depth", description="""Water depth where sediment was collected. If provided as a variable (recommended), please list the column header name here.""", json_schema_extra = { "linkml_meta": {'alias': 'sediment_sampling_water_depth',
-         'domain_of': ['MeasuredSedimentFields']} })
-    raw_data_calculation_method: str = Field(default=..., title="Method to calculate reported values from raw data", description="""The method used to calculate reported values from raw sensor data.""", json_schema_extra = { "linkml_meta": {'alias': 'raw_data_calculation_method',
-         'domain_of': ['ContinuousMeasuredVariable']} })
-    calculation_software_version: Optional[str] = Field(default=None, title="Software version for the calculation", description="""Version of the software used to calculate reported values from raw values.""", json_schema_extra = { "linkml_meta": {'alias': 'calculation_software_version',
-         'domain_of': ['ContinuousMeasuredVariable']} })
-    analyzing_instrument: AnalyzingInstrument = Field(default=..., title="Analyzing instrument", description="""Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.""", json_schema_extra = { "linkml_meta": {'alias': 'analyzing_instrument', 'domain_of': ['MeasuredVariable']} })
-    sampling_method: str = Field(default=..., title="Sampling Method", description="""Method used to collect samples.""", json_schema_extra = { "linkml_meta": {'alias': 'sampling_method', 'domain_of': ['MeasuredVariable']} })
-    field_replicate_information: Optional[str] = Field(default=None, title="Field replicate information", description="""Repetition of sample collection and measurement, e.g., triplicate samples.""", json_schema_extra = { "linkml_meta": {'alias': 'field_replicate_information', 'domain_of': ['MeasuredVariable']} })
-    analyzing_method: str = Field(default=..., title="Analyzing Method", description="""Additional information describing how the sample was analyzed. DOIs provided as applicable.""", json_schema_extra = { "linkml_meta": {'alias': 'analyzing_method', 'domain_of': ['MeasuredVariable']} })
-    observation_type: ObservationType = Field(default=..., title="Observation Type", json_schema_extra = { "linkml_meta": {'alias': 'observation_type', 'domain_of': ['MeasuredVariable']} })
-    sampling: Literal["continuous"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'sampling',
-         'domain_of': ['MeasuredVariable'],
-         'equals_string': 'continuous'} })
-    sampling_instrument_type: SamplingInstrumentType = Field(default=..., title="Sampling instrument type", json_schema_extra = { "linkml_meta": {'alias': 'sampling_instrument_type', 'domain_of': ['MeasuredVariable']} })
-    sampling_instrument_type_custom: Optional[str] = Field(default=None, title="Sampling instrument type (custom)", json_schema_extra = { "linkml_meta": {'alias': 'sampling_instrument_type_custom', 'domain_of': ['MeasuredVariable']} })
-    qc_steps_taken: str = Field(default=..., title="QC steps taken", description="""Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).
-If quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_steps_taken', 'domain_of': ['QCFields']} })
-    uncertainty: str = Field(default=..., title="Uncertainty", description="""It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.
-If uncertainty is provided as a variable, please list the column header name here.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty',
-         'domain_of': ['StandardGas', 'CO2GasDetector', 'QCFields']} })
-    uncertainty_definition: str = Field(default=..., title="How was the uncertainty defined", description="""A description of the uncertainties involved in this method.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty_definition', 'domain_of': ['QCFields']} })
-    missing_value_indicators: str = Field(default=..., title="Missing value indicators", description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'missing_value_indicators', 'domain_of': ['QCFields']} })
-    qc_researcher: Optional[Person] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
-    qc_researcher_institution: Optional[str] = Field(default=None, title="QC Researcher Institution", description="""The institution of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher_institution', 'domain_of': ['QCFields']} })
-    genesis: Literal["measured"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'genesis',
-         'domain_of': ['InSituVariable'],
-         'equals_string': 'measured'} })
-    dataset_variable_name_qc_flag: Optional[str] = Field(default=None, title="Dataset variable name (Quality Flag)", description="""If applicable, the column header name used for the quality control flag corresponding to this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name_qc_flag', 'domain_of': ['InSituVariable']} })
-    dataset_variable_name_raw: Optional[str] = Field(default=None, title="Dataset variable name (raw)", description="""If applicable, the column header name used for the raw data corresponding to this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name_raw', 'domain_of': ['InSituVariable']} })
-    method_reference: Optional[str] = Field(default=None, title="Method Reference", description="""Citation for the method used.""", json_schema_extra = { "linkml_meta": {'alias': 'method_reference', 'domain_of': ['Calibration', 'InSituVariable']} })
-    measurement_researcher: Optional[Person] = Field(default=None, title="Researcher who measured the variable", description="""The name of the PI whose research team measured or derived this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'measurement_researcher', 'domain_of': ['InSituVariable']} })
-    other_detailed_information: Optional[str] = Field(default=None, title="Other Detailed Information", description="""Any additional information about this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'other_detailed_information', 'domain_of': ['InSituVariable']} })
-    units: str = Field(default=..., title="Unit", description="""Unit of measurement for this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'units', 'domain_of': ['Variable']} })
-    schema_class: Literal["ContinuousSedimentVariable"] = Field(default="ContinuousSedimentVariable", description="""The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.""", json_schema_extra = { "linkml_meta": {'alias': 'schema_class', 'designates_type': True, 'domain_of': ['Variable']} })
-    variable_type: Literal["sediment"] = Field(default=..., title="Variable Type", description="""High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.""", json_schema_extra = { "linkml_meta": {'alias': 'variable_type',
-         'domain_of': ['Variable'],
-         'equals_string': 'sediment'} })
-    standard_identifier: Optional[VocabularyItemReference] = Field(default=None, json_schema_extra = { "linkml_meta": {'alias': 'standard_identifier', 'domain_of': ['Variable']} })
-    dataset_variable_name: str = Field(default=..., title="Dataset variable name", description="""The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name', 'domain_of': ['Variable']} })
-    long_name: str = Field(default=..., title="Variable full name", description="""Full descriptive name of the variable.""", json_schema_extra = { "linkml_meta": {'alias': 'long_name', 'domain_of': ['Variable']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "from_schema": "Variable",
+            "mixins": ["MeasuredSedimentFields"],
+            "slot_usage": {
+                "variable_type": {
+                    "equals_string": "sediment",
+                    "name": "variable_type",
+                    "range": "string",
+                }
+            },
+        }
+    )
+
+    sediment_type: str = Field(
+        default=...,
+        title="Sediment Type",
+        description="""e.g., mud, sand, etc.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sediment_type",
+                "domain_of": ["MeasuredSedimentFields"],
+            }
+        },
+    )
+    sediment_sampling_method: str = Field(
+        default=...,
+        title="Sediment Sampling Method",
+        description="""e.g., sediment core, grab sampling, dredging, etc.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sediment_sampling_method",
+                "domain_of": ["MeasuredSedimentFields"],
+            }
+        },
+    )
+    sediment_sampling_depth: str = Field(
+        default=...,
+        title="Sediment Sampling Depth",
+        description="""Depth that sediment was collected below sediment surface. If provided as a variable (recommended), please list the column header name here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sediment_sampling_depth",
+                "domain_of": ["MeasuredSedimentFields"],
+            }
+        },
+    )
+    sediment_sampling_water_depth: str = Field(
+        default=...,
+        title="Sediment Sampling Water Depth",
+        description="""Water depth where sediment was collected. If provided as a variable (recommended), please list the column header name here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sediment_sampling_water_depth",
+                "domain_of": ["MeasuredSedimentFields"],
+            }
+        },
+    )
+    raw_data_calculation_method: str = Field(
+        default=...,
+        title="Method to calculate reported values from raw data",
+        description="""The method used to calculate reported values from raw sensor data.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "raw_data_calculation_method",
+                "domain_of": ["ContinuousMeasuredVariable"],
+            }
+        },
+    )
+    calculation_software_version: Optional[str] = Field(
+        default=None,
+        title="Software version for the calculation",
+        description="""Version of the software used to calculate reported values from raw values.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "calculation_software_version",
+                "domain_of": ["ContinuousMeasuredVariable"],
+            }
+        },
+    )
+    analyzing_instrument: AnalyzingInstrument = Field(
+        default=...,
+        title="Analyzing instrument",
+        description="""Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "analyzing_instrument",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling_method: str = Field(
+        default=...,
+        title="Sampling Method",
+        description="""Method used to collect samples.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_method",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    field_replicate_information: Optional[str] = Field(
+        default=None,
+        title="Field replicate information",
+        description="""Repetition of sample collection and measurement, e.g., triplicate samples.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "field_replicate_information",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    analyzing_method: str = Field(
+        default=...,
+        title="Analyzing Method",
+        description="""Additional information describing how the sample was analyzed. DOIs provided as applicable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "analyzing_method",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    observation_type: ObservationType = Field(
+        default=...,
+        title="Observation Type",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "observation_type",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling: Literal["continuous"] = Field(
+        default=...,
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling",
+                "domain_of": ["MeasuredVariable"],
+                "equals_string": "continuous",
+            }
+        },
+    )
+    sampling_instrument_type: SamplingInstrumentType = Field(
+        default=...,
+        title="Sampling instrument type",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_instrument_type",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling_instrument_type_custom: Optional[str] = Field(
+        default=None,
+        title="Sampling instrument type (custom)",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_instrument_type_custom",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    qc_steps_taken: str = Field(
+        default=...,
+        title="QC steps taken",
+        description="""Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).
+If quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "qc_steps_taken", "domain_of": ["QCFields"]}
+        },
+    )
+    uncertainty: str = Field(
+        default=...,
+        title="Uncertainty",
+        description="""It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.
+If uncertainty is provided as a variable, please list the column header name here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "uncertainty",
+                "domain_of": ["StandardGas", "CO2GasDetector", "QCFields"],
+            }
+        },
+    )
+    uncertainty_definition: str = Field(
+        default=...,
+        title="How was the uncertainty defined",
+        description="""A description of the uncertainties involved in this method.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "uncertainty_definition",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    missing_value_indicators: str = Field(
+        default=...,
+        title="Missing value indicators",
+        description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "missing_value_indicators",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    qc_researcher: Optional[Person] = Field(
+        default=None,
+        title="Researcher who QCed this variable",
+        description="""The name of the PI whose research team QCed this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "qc_researcher", "domain_of": ["QCFields"]}
+        },
+    )
+    qc_researcher_institution: Optional[str] = Field(
+        default=None,
+        title="QC Researcher Institution",
+        description="""The institution of the PI whose research team QCed this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "qc_researcher_institution",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    genesis: Literal["measured"] = Field(
+        default=...,
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "genesis",
+                "domain_of": ["InSituVariable"],
+                "equals_string": "measured",
+            }
+        },
+    )
+    dataset_variable_name_qc_flag: Optional[str] = Field(
+        default=None,
+        title="Dataset variable name (Quality Flag)",
+        description="""If applicable, the column header name used for the quality control flag corresponding to this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dataset_variable_name_qc_flag",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    dataset_variable_name_raw: Optional[str] = Field(
+        default=None,
+        title="Dataset variable name (raw)",
+        description="""If applicable, the column header name used for the raw data corresponding to this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dataset_variable_name_raw",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    method_reference: Optional[str] = Field(
+        default=None,
+        title="Method Reference",
+        description="""Citation for the method used.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "method_reference",
+                "domain_of": ["Calibration", "InSituVariable"],
+            }
+        },
+    )
+    measurement_researcher: Optional[Person] = Field(
+        default=None,
+        title="Researcher who measured the variable",
+        description="""The name of the PI whose research team measured or derived this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "measurement_researcher",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    other_detailed_information: Optional[str] = Field(
+        default=None,
+        title="Other Detailed Information",
+        description="""Any additional information about this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "other_detailed_information",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    units: str = Field(
+        default=...,
+        title="Unit",
+        description="""Unit of measurement for this variable.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "units", "domain_of": ["Variable"]}
+        },
+    )
+    schema_class: Literal["ContinuousSedimentVariable"] = Field(
+        default="ContinuousSedimentVariable",
+        description="""The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "schema_class",
+                "designates_type": True,
+                "domain_of": ["Variable"],
+            }
+        },
+    )
+    variable_type: Literal["sediment"] = Field(
+        default=...,
+        title="Variable Type",
+        description="""High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "variable_type",
+                "domain_of": ["Variable"],
+                "equals_string": "sediment",
+            }
+        },
+    )
+    standard_identifier: Optional[VocabularyItemReference] = Field(
+        default=None,
+        json_schema_extra={
+            "linkml_meta": {"alias": "standard_identifier", "domain_of": ["Variable"]}
+        },
+    )
+    dataset_variable_name: str = Field(
+        default=...,
+        title="Dataset variable name",
+        description="""The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "dataset_variable_name", "domain_of": ["Variable"]}
+        },
+    )
+    long_name: str = Field(
+        default=...,
+        title="Variable full name",
+        description="""Full descriptive name of the variable.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "long_name", "domain_of": ["Variable"]}
+        },
+    )
 
 
 class DiscreteSedimentVariable(DiscreteMeasuredVariable, MeasuredSedimentFields):
     """
     Measured sediment variable collected from discrete bottle samples
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Variable',
-         'mixins': ['MeasuredSedimentFields'],
-         'slot_usage': {'variable_type': {'equals_string': 'sediment',
-                                          'name': 'variable_type',
-                                          'range': 'string'}}})
 
-    sediment_type: str = Field(default=..., title="Sediment Type", description="""e.g., mud, sand, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'sediment_type', 'domain_of': ['MeasuredSedimentFields']} })
-    sediment_sampling_method: str = Field(default=..., title="Sediment Sampling Method", description="""e.g., sediment core, grab sampling, dredging, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'sediment_sampling_method', 'domain_of': ['MeasuredSedimentFields']} })
-    sediment_sampling_depth: str = Field(default=..., title="Sediment Sampling Depth", description="""Depth that sediment was collected below sediment surface. If provided as a variable (recommended), please list the column header name here.""", json_schema_extra = { "linkml_meta": {'alias': 'sediment_sampling_depth', 'domain_of': ['MeasuredSedimentFields']} })
-    sediment_sampling_water_depth: str = Field(default=..., title="Sediment Sampling Water Depth", description="""Water depth where sediment was collected. If provided as a variable (recommended), please list the column header name here.""", json_schema_extra = { "linkml_meta": {'alias': 'sediment_sampling_water_depth',
-         'domain_of': ['MeasuredSedimentFields']} })
-    analyzing_instrument: AnalyzingInstrument = Field(default=..., title="Analyzing instrument", description="""Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.""", json_schema_extra = { "linkml_meta": {'alias': 'analyzing_instrument', 'domain_of': ['MeasuredVariable']} })
-    sampling_method: str = Field(default=..., title="Sampling Method", description="""Method used to collect samples.""", json_schema_extra = { "linkml_meta": {'alias': 'sampling_method', 'domain_of': ['MeasuredVariable']} })
-    field_replicate_information: Optional[str] = Field(default=None, title="Field replicate information", description="""Repetition of sample collection and measurement, e.g., triplicate samples.""", json_schema_extra = { "linkml_meta": {'alias': 'field_replicate_information', 'domain_of': ['MeasuredVariable']} })
-    analyzing_method: str = Field(default=..., title="Analyzing Method", description="""Additional information describing how the sample was analyzed. DOIs provided as applicable.""", json_schema_extra = { "linkml_meta": {'alias': 'analyzing_method', 'domain_of': ['MeasuredVariable']} })
-    observation_type: ObservationType = Field(default=..., title="Observation Type", json_schema_extra = { "linkml_meta": {'alias': 'observation_type', 'domain_of': ['MeasuredVariable']} })
-    sampling: Literal["discrete"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'sampling',
-         'domain_of': ['MeasuredVariable'],
-         'equals_string': 'discrete'} })
-    sampling_instrument_type: SamplingInstrumentType = Field(default=..., title="Sampling instrument type", json_schema_extra = { "linkml_meta": {'alias': 'sampling_instrument_type', 'domain_of': ['MeasuredVariable']} })
-    sampling_instrument_type_custom: Optional[str] = Field(default=None, title="Sampling instrument type (custom)", json_schema_extra = { "linkml_meta": {'alias': 'sampling_instrument_type_custom', 'domain_of': ['MeasuredVariable']} })
-    qc_steps_taken: str = Field(default=..., title="QC steps taken", description="""Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).
-If quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_steps_taken', 'domain_of': ['QCFields']} })
-    uncertainty: str = Field(default=..., title="Uncertainty", description="""It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.
-If uncertainty is provided as a variable, please list the column header name here.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty',
-         'domain_of': ['StandardGas', 'CO2GasDetector', 'QCFields']} })
-    uncertainty_definition: str = Field(default=..., title="How was the uncertainty defined", description="""A description of the uncertainties involved in this method.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty_definition', 'domain_of': ['QCFields']} })
-    missing_value_indicators: str = Field(default=..., title="Missing value indicators", description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'missing_value_indicators', 'domain_of': ['QCFields']} })
-    qc_researcher: Optional[Person] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
-    qc_researcher_institution: Optional[str] = Field(default=None, title="QC Researcher Institution", description="""The institution of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher_institution', 'domain_of': ['QCFields']} })
-    genesis: Literal["measured"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'genesis',
-         'domain_of': ['InSituVariable'],
-         'equals_string': 'measured'} })
-    dataset_variable_name_qc_flag: Optional[str] = Field(default=None, title="Dataset variable name (Quality Flag)", description="""If applicable, the column header name used for the quality control flag corresponding to this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name_qc_flag', 'domain_of': ['InSituVariable']} })
-    dataset_variable_name_raw: Optional[str] = Field(default=None, title="Dataset variable name (raw)", description="""If applicable, the column header name used for the raw data corresponding to this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name_raw', 'domain_of': ['InSituVariable']} })
-    method_reference: Optional[str] = Field(default=None, title="Method Reference", description="""Citation for the method used.""", json_schema_extra = { "linkml_meta": {'alias': 'method_reference', 'domain_of': ['Calibration', 'InSituVariable']} })
-    measurement_researcher: Optional[Person] = Field(default=None, title="Researcher who measured the variable", description="""The name of the PI whose research team measured or derived this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'measurement_researcher', 'domain_of': ['InSituVariable']} })
-    other_detailed_information: Optional[str] = Field(default=None, title="Other Detailed Information", description="""Any additional information about this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'other_detailed_information', 'domain_of': ['InSituVariable']} })
-    units: str = Field(default=..., title="Unit", description="""Unit of measurement for this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'units', 'domain_of': ['Variable']} })
-    schema_class: Literal["DiscreteSedimentVariable"] = Field(default="DiscreteSedimentVariable", description="""The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.""", json_schema_extra = { "linkml_meta": {'alias': 'schema_class', 'designates_type': True, 'domain_of': ['Variable']} })
-    variable_type: Literal["sediment"] = Field(default=..., title="Variable Type", description="""High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.""", json_schema_extra = { "linkml_meta": {'alias': 'variable_type',
-         'domain_of': ['Variable'],
-         'equals_string': 'sediment'} })
-    standard_identifier: Optional[VocabularyItemReference] = Field(default=None, json_schema_extra = { "linkml_meta": {'alias': 'standard_identifier', 'domain_of': ['Variable']} })
-    dataset_variable_name: str = Field(default=..., title="Dataset variable name", description="""The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name', 'domain_of': ['Variable']} })
-    long_name: str = Field(default=..., title="Variable full name", description="""Full descriptive name of the variable.""", json_schema_extra = { "linkml_meta": {'alias': 'long_name', 'domain_of': ['Variable']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "from_schema": "Variable",
+            "mixins": ["MeasuredSedimentFields"],
+            "slot_usage": {
+                "variable_type": {
+                    "equals_string": "sediment",
+                    "name": "variable_type",
+                    "range": "string",
+                }
+            },
+        }
+    )
+
+    sediment_type: str = Field(
+        default=...,
+        title="Sediment Type",
+        description="""e.g., mud, sand, etc.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sediment_type",
+                "domain_of": ["MeasuredSedimentFields"],
+            }
+        },
+    )
+    sediment_sampling_method: str = Field(
+        default=...,
+        title="Sediment Sampling Method",
+        description="""e.g., sediment core, grab sampling, dredging, etc.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sediment_sampling_method",
+                "domain_of": ["MeasuredSedimentFields"],
+            }
+        },
+    )
+    sediment_sampling_depth: str = Field(
+        default=...,
+        title="Sediment Sampling Depth",
+        description="""Depth that sediment was collected below sediment surface. If provided as a variable (recommended), please list the column header name here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sediment_sampling_depth",
+                "domain_of": ["MeasuredSedimentFields"],
+            }
+        },
+    )
+    sediment_sampling_water_depth: str = Field(
+        default=...,
+        title="Sediment Sampling Water Depth",
+        description="""Water depth where sediment was collected. If provided as a variable (recommended), please list the column header name here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sediment_sampling_water_depth",
+                "domain_of": ["MeasuredSedimentFields"],
+            }
+        },
+    )
+    analyzing_instrument: AnalyzingInstrument = Field(
+        default=...,
+        title="Analyzing instrument",
+        description="""Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "analyzing_instrument",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling_method: str = Field(
+        default=...,
+        title="Sampling Method",
+        description="""Method used to collect samples.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_method",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    field_replicate_information: Optional[str] = Field(
+        default=None,
+        title="Field replicate information",
+        description="""Repetition of sample collection and measurement, e.g., triplicate samples.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "field_replicate_information",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    analyzing_method: str = Field(
+        default=...,
+        title="Analyzing Method",
+        description="""Additional information describing how the sample was analyzed. DOIs provided as applicable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "analyzing_method",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    observation_type: ObservationType = Field(
+        default=...,
+        title="Observation Type",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "observation_type",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling: Literal["discrete"] = Field(
+        default=...,
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling",
+                "domain_of": ["MeasuredVariable"],
+                "equals_string": "discrete",
+            }
+        },
+    )
+    sampling_instrument_type: SamplingInstrumentType = Field(
+        default=...,
+        title="Sampling instrument type",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_instrument_type",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling_instrument_type_custom: Optional[str] = Field(
+        default=None,
+        title="Sampling instrument type (custom)",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_instrument_type_custom",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    qc_steps_taken: str = Field(
+        default=...,
+        title="QC steps taken",
+        description="""Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).
+If quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "qc_steps_taken", "domain_of": ["QCFields"]}
+        },
+    )
+    uncertainty: str = Field(
+        default=...,
+        title="Uncertainty",
+        description="""It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.
+If uncertainty is provided as a variable, please list the column header name here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "uncertainty",
+                "domain_of": ["StandardGas", "CO2GasDetector", "QCFields"],
+            }
+        },
+    )
+    uncertainty_definition: str = Field(
+        default=...,
+        title="How was the uncertainty defined",
+        description="""A description of the uncertainties involved in this method.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "uncertainty_definition",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    missing_value_indicators: str = Field(
+        default=...,
+        title="Missing value indicators",
+        description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "missing_value_indicators",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    qc_researcher: Optional[Person] = Field(
+        default=None,
+        title="Researcher who QCed this variable",
+        description="""The name of the PI whose research team QCed this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "qc_researcher", "domain_of": ["QCFields"]}
+        },
+    )
+    qc_researcher_institution: Optional[str] = Field(
+        default=None,
+        title="QC Researcher Institution",
+        description="""The institution of the PI whose research team QCed this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "qc_researcher_institution",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    genesis: Literal["measured"] = Field(
+        default=...,
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "genesis",
+                "domain_of": ["InSituVariable"],
+                "equals_string": "measured",
+            }
+        },
+    )
+    dataset_variable_name_qc_flag: Optional[str] = Field(
+        default=None,
+        title="Dataset variable name (Quality Flag)",
+        description="""If applicable, the column header name used for the quality control flag corresponding to this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dataset_variable_name_qc_flag",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    dataset_variable_name_raw: Optional[str] = Field(
+        default=None,
+        title="Dataset variable name (raw)",
+        description="""If applicable, the column header name used for the raw data corresponding to this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dataset_variable_name_raw",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    method_reference: Optional[str] = Field(
+        default=None,
+        title="Method Reference",
+        description="""Citation for the method used.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "method_reference",
+                "domain_of": ["Calibration", "InSituVariable"],
+            }
+        },
+    )
+    measurement_researcher: Optional[Person] = Field(
+        default=None,
+        title="Researcher who measured the variable",
+        description="""The name of the PI whose research team measured or derived this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "measurement_researcher",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    other_detailed_information: Optional[str] = Field(
+        default=None,
+        title="Other Detailed Information",
+        description="""Any additional information about this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "other_detailed_information",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    units: str = Field(
+        default=...,
+        title="Unit",
+        description="""Unit of measurement for this variable.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "units", "domain_of": ["Variable"]}
+        },
+    )
+    schema_class: Literal["DiscreteSedimentVariable"] = Field(
+        default="DiscreteSedimentVariable",
+        description="""The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "schema_class",
+                "designates_type": True,
+                "domain_of": ["Variable"],
+            }
+        },
+    )
+    variable_type: Literal["sediment"] = Field(
+        default=...,
+        title="Variable Type",
+        description="""High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "variable_type",
+                "domain_of": ["Variable"],
+                "equals_string": "sediment",
+            }
+        },
+    )
+    standard_identifier: Optional[VocabularyItemReference] = Field(
+        default=None,
+        json_schema_extra={
+            "linkml_meta": {"alias": "standard_identifier", "domain_of": ["Variable"]}
+        },
+    )
+    dataset_variable_name: str = Field(
+        default=...,
+        title="Dataset variable name",
+        description="""The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "dataset_variable_name", "domain_of": ["Variable"]}
+        },
+    )
+    long_name: str = Field(
+        default=...,
+        title="Variable full name",
+        description="""Full descriptive name of the variable.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "long_name", "domain_of": ["Variable"]}
+        },
+    )
 
 
 class DiscreteCO2Variable(DiscreteMeasuredVariable, MeasuredCO2Fields):
     """
     CO2 discrete (bottle) measured variable (pCO2/fCO2). Reference: OAPMetadata XSD variables.xsd - co2_discrete
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Variable',
-         'mixins': ['MeasuredCO2Fields'],
-         'slot_usage': {'analyzing_instrument': {'description': 'CO2 gas detector with '
-                                                                'standard gas '
-                                                                'calibration.',
-                                                 'name': 'analyzing_instrument',
-                                                 'range': 'CO2GasDetector'},
-                        'variable_type': {'equals_string': 'co2',
-                                          'name': 'variable_type',
-                                          'range': 'string'}}})
 
-    storage_method: str = Field(default=..., title="Storage method", description="""How the samples were stored before the measurement.""", json_schema_extra = { "linkml_meta": {'alias': 'storage_method', 'domain_of': ['DiscreteCO2Variable']} })
-    seawater_volume: Optional[float] = Field(default=None, title="Seawater volume (mL)", description="""Volume (in mL) of seawater in the flask.""", json_schema_extra = { "linkml_meta": {'alias': 'seawater_volume', 'domain_of': ['DiscreteCO2Variable']} })
-    headspace_volume: Optional[float] = Field(default=None, title="Headspace volume (mL)", description="""Volume (in mL) of headspace (water displaced in the flask plus volume of the tubing).""", json_schema_extra = { "linkml_meta": {'alias': 'headspace_volume', 'domain_of': ['DiscreteCO2Variable']} })
-    measurement_temperature: float = Field(default=..., title="Temperature of measurement (°C)", description="""Temperature at which the samples were analyzed in Celsius.""", json_schema_extra = { "linkml_meta": {'alias': 'measurement_temperature',
-         'domain_of': ['DiscretePHVariable', 'DiscreteCO2Variable']} })
-    appropriate_use_quality: Optional[AppropriateUseQuality] = Field(default=None, title="Weather or climate quality", description="""Climate quality is defined as measurements of quality sufficient to assess long term trends with a defined level of confidence. Weather quality is defined as measurements of quality sufficient to identify relative spatial patterns and short term variation.
-For more details, refer to Newton J.A., Feely R. A., Jewett E. B., Williamson P. & Mathis J., 2015. Global Ocean Acidification Observing Network: Requirements and Governance Plan. Second Edition, GOA-ON, http://www.goa-on.org/docs/GOA-ON_plan_print.pdf.""", json_schema_extra = { "linkml_meta": {'alias': 'appropriate_use_quality',
-         'domain_of': ['MeasuredTAFields',
-                       'MeasuredDICFields',
-                       'MeasuredPHFields',
-                       'MeasuredCO2Fields']} })
-    pco2_reported_temperature: str = Field(default=..., title="Temperature at which pCO2 was reported", description="""In Celsius. The input could be a constant temperature value, or something like, in-situ temperature, temperature of analysis, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'pco2_reported_temperature', 'domain_of': ['MeasuredCO2Fields']} })
-    water_vapor_correction_method: Optional[str] = Field(default=None, title="Water vapor correction method", description="""How the water vapor pressure inside the equilibrator was determined.""", json_schema_extra = { "linkml_meta": {'alias': 'water_vapor_correction_method', 'domain_of': ['MeasuredCO2Fields']} })
-    temperature_correction_method: Optional[str] = Field(default=None, title="Temperature correction method", description="""How the temperature effect was corrected.""", json_schema_extra = { "linkml_meta": {'alias': 'temperature_correction_method',
-         'domain_of': ['DiscretePHVariable', 'MeasuredCO2Fields']} })
-    analyzing_instrument: CO2GasDetector = Field(default=..., title="Analyzing instrument", description="""CO2 gas detector with standard gas calibration.""", json_schema_extra = { "linkml_meta": {'alias': 'analyzing_instrument', 'domain_of': ['MeasuredVariable']} })
-    sampling_method: str = Field(default=..., title="Sampling Method", description="""Method used to collect samples.""", json_schema_extra = { "linkml_meta": {'alias': 'sampling_method', 'domain_of': ['MeasuredVariable']} })
-    field_replicate_information: Optional[str] = Field(default=None, title="Field replicate information", description="""Repetition of sample collection and measurement, e.g., triplicate samples.""", json_schema_extra = { "linkml_meta": {'alias': 'field_replicate_information', 'domain_of': ['MeasuredVariable']} })
-    analyzing_method: str = Field(default=..., title="Analyzing Method", description="""Additional information describing how the sample was analyzed. DOIs provided as applicable.""", json_schema_extra = { "linkml_meta": {'alias': 'analyzing_method', 'domain_of': ['MeasuredVariable']} })
-    observation_type: ObservationType = Field(default=..., title="Observation Type", json_schema_extra = { "linkml_meta": {'alias': 'observation_type', 'domain_of': ['MeasuredVariable']} })
-    sampling: Literal["discrete"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'sampling',
-         'domain_of': ['MeasuredVariable'],
-         'equals_string': 'discrete'} })
-    sampling_instrument_type: SamplingInstrumentType = Field(default=..., title="Sampling instrument type", json_schema_extra = { "linkml_meta": {'alias': 'sampling_instrument_type', 'domain_of': ['MeasuredVariable']} })
-    sampling_instrument_type_custom: Optional[str] = Field(default=None, title="Sampling instrument type (custom)", json_schema_extra = { "linkml_meta": {'alias': 'sampling_instrument_type_custom', 'domain_of': ['MeasuredVariable']} })
-    qc_steps_taken: str = Field(default=..., title="QC steps taken", description="""Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).
-If quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_steps_taken', 'domain_of': ['QCFields']} })
-    uncertainty: str = Field(default=..., title="Uncertainty", description="""It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.
-If uncertainty is provided as a variable, please list the column header name here.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty',
-         'domain_of': ['StandardGas', 'CO2GasDetector', 'QCFields']} })
-    uncertainty_definition: str = Field(default=..., title="How was the uncertainty defined", description="""A description of the uncertainties involved in this method.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty_definition', 'domain_of': ['QCFields']} })
-    missing_value_indicators: str = Field(default=..., title="Missing value indicators", description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'missing_value_indicators', 'domain_of': ['QCFields']} })
-    qc_researcher: Optional[Person] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
-    qc_researcher_institution: Optional[str] = Field(default=None, title="QC Researcher Institution", description="""The institution of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher_institution', 'domain_of': ['QCFields']} })
-    genesis: Literal["measured"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'genesis',
-         'domain_of': ['InSituVariable'],
-         'equals_string': 'measured'} })
-    dataset_variable_name_qc_flag: Optional[str] = Field(default=None, title="Dataset variable name (Quality Flag)", description="""If applicable, the column header name used for the quality control flag corresponding to this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name_qc_flag', 'domain_of': ['InSituVariable']} })
-    dataset_variable_name_raw: Optional[str] = Field(default=None, title="Dataset variable name (raw)", description="""If applicable, the column header name used for the raw data corresponding to this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name_raw', 'domain_of': ['InSituVariable']} })
-    method_reference: Optional[str] = Field(default=None, title="Method Reference", description="""Citation for the method used.""", json_schema_extra = { "linkml_meta": {'alias': 'method_reference', 'domain_of': ['Calibration', 'InSituVariable']} })
-    measurement_researcher: Optional[Person] = Field(default=None, title="Researcher who measured the variable", description="""The name of the PI whose research team measured or derived this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'measurement_researcher', 'domain_of': ['InSituVariable']} })
-    other_detailed_information: Optional[str] = Field(default=None, title="Other Detailed Information", description="""Any additional information about this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'other_detailed_information', 'domain_of': ['InSituVariable']} })
-    units: str = Field(default=..., title="Unit", description="""Unit of measurement for this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'units', 'domain_of': ['Variable']} })
-    schema_class: Literal["DiscreteCO2Variable"] = Field(default="DiscreteCO2Variable", description="""The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.""", json_schema_extra = { "linkml_meta": {'alias': 'schema_class', 'designates_type': True, 'domain_of': ['Variable']} })
-    variable_type: Literal["co2"] = Field(default=..., title="Variable Type", description="""High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.""", json_schema_extra = { "linkml_meta": {'alias': 'variable_type', 'domain_of': ['Variable'], 'equals_string': 'co2'} })
-    standard_identifier: Optional[VocabularyItemReference] = Field(default=None, json_schema_extra = { "linkml_meta": {'alias': 'standard_identifier', 'domain_of': ['Variable']} })
-    dataset_variable_name: str = Field(default=..., title="Dataset variable name", description="""The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name', 'domain_of': ['Variable']} })
-    long_name: str = Field(default=..., title="Variable full name", description="""Full descriptive name of the variable.""", json_schema_extra = { "linkml_meta": {'alias': 'long_name', 'domain_of': ['Variable']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "from_schema": "Variable",
+            "mixins": ["MeasuredCO2Fields"],
+            "slot_usage": {
+                "analyzing_instrument": {
+                    "description": "CO2 gas detector with standard gas calibration.",
+                    "name": "analyzing_instrument",
+                    "range": "CO2GasDetector",
+                },
+                "variable_type": {
+                    "equals_string": "co2",
+                    "name": "variable_type",
+                    "range": "string",
+                },
+            },
+        }
+    )
+
+    storage_method: str = Field(
+        default=...,
+        title="Storage method",
+        description="""How the samples were stored before the measurement.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "storage_method",
+                "domain_of": ["DiscreteCO2Variable"],
+            }
+        },
+    )
+    seawater_volume: Optional[float] = Field(
+        default=None,
+        title="Seawater volume (mL)",
+        description="""Volume (in mL) of seawater in the flask.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "seawater_volume",
+                "domain_of": ["DiscreteCO2Variable"],
+            }
+        },
+    )
+    headspace_volume: Optional[float] = Field(
+        default=None,
+        title="Headspace volume (mL)",
+        description="""Volume (in mL) of headspace (water displaced in the flask plus volume of the tubing).""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "headspace_volume",
+                "domain_of": ["DiscreteCO2Variable"],
+            }
+        },
+    )
+    measurement_temperature: float = Field(
+        default=...,
+        title="Temperature of measurement (°C)",
+        description="""Temperature at which the samples were analyzed in Celsius.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "measurement_temperature",
+                "domain_of": ["DiscretePHVariable", "DiscreteCO2Variable"],
+            }
+        },
+    )
+    appropriate_use_quality: Optional[AppropriateUseQuality] = Field(
+        default=None,
+        title="Weather or climate quality",
+        description="""Climate quality is defined as measurements of quality sufficient to assess long term trends with a defined level of confidence. Weather quality is defined as measurements of quality sufficient to identify relative spatial patterns and short term variation.
+For more details, refer to Newton J.A., Feely R. A., Jewett E. B., Williamson P. & Mathis J., 2015. Global Ocean Acidification Observing Network: Requirements and Governance Plan. Second Edition, GOA-ON, http://www.goa-on.org/docs/GOA-ON_plan_print.pdf.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "appropriate_use_quality",
+                "domain_of": [
+                    "MeasuredTAFields",
+                    "MeasuredDICFields",
+                    "MeasuredPHFields",
+                    "MeasuredCO2Fields",
+                ],
+            }
+        },
+    )
+    pco2_reported_temperature: str = Field(
+        default=...,
+        title="Temperature at which pCO2 was reported",
+        description="""In Celsius. The input could be a constant temperature value, or something like, in-situ temperature, temperature of analysis, etc.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "pco2_reported_temperature",
+                "domain_of": ["MeasuredCO2Fields"],
+            }
+        },
+    )
+    water_vapor_correction_method: Optional[str] = Field(
+        default=None,
+        title="Water vapor correction method",
+        description="""How the water vapor pressure inside the equilibrator was determined.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "water_vapor_correction_method",
+                "domain_of": ["MeasuredCO2Fields"],
+            }
+        },
+    )
+    temperature_correction_method: Optional[str] = Field(
+        default=None,
+        title="Temperature correction method",
+        description="""How the temperature effect was corrected.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "temperature_correction_method",
+                "domain_of": ["DiscretePHVariable", "MeasuredCO2Fields"],
+            }
+        },
+    )
+    analyzing_instrument: CO2GasDetector = Field(
+        default=...,
+        title="Analyzing instrument",
+        description="""CO2 gas detector with standard gas calibration.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "analyzing_instrument",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling_method: str = Field(
+        default=...,
+        title="Sampling Method",
+        description="""Method used to collect samples.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_method",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    field_replicate_information: Optional[str] = Field(
+        default=None,
+        title="Field replicate information",
+        description="""Repetition of sample collection and measurement, e.g., triplicate samples.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "field_replicate_information",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    analyzing_method: str = Field(
+        default=...,
+        title="Analyzing Method",
+        description="""Additional information describing how the sample was analyzed. DOIs provided as applicable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "analyzing_method",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    observation_type: ObservationType = Field(
+        default=...,
+        title="Observation Type",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "observation_type",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling: Literal["discrete"] = Field(
+        default=...,
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling",
+                "domain_of": ["MeasuredVariable"],
+                "equals_string": "discrete",
+            }
+        },
+    )
+    sampling_instrument_type: SamplingInstrumentType = Field(
+        default=...,
+        title="Sampling instrument type",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_instrument_type",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling_instrument_type_custom: Optional[str] = Field(
+        default=None,
+        title="Sampling instrument type (custom)",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_instrument_type_custom",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    qc_steps_taken: str = Field(
+        default=...,
+        title="QC steps taken",
+        description="""Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).
+If quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "qc_steps_taken", "domain_of": ["QCFields"]}
+        },
+    )
+    uncertainty: str = Field(
+        default=...,
+        title="Uncertainty",
+        description="""It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.
+If uncertainty is provided as a variable, please list the column header name here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "uncertainty",
+                "domain_of": ["StandardGas", "CO2GasDetector", "QCFields"],
+            }
+        },
+    )
+    uncertainty_definition: str = Field(
+        default=...,
+        title="How was the uncertainty defined",
+        description="""A description of the uncertainties involved in this method.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "uncertainty_definition",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    missing_value_indicators: str = Field(
+        default=...,
+        title="Missing value indicators",
+        description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "missing_value_indicators",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    qc_researcher: Optional[Person] = Field(
+        default=None,
+        title="Researcher who QCed this variable",
+        description="""The name of the PI whose research team QCed this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "qc_researcher", "domain_of": ["QCFields"]}
+        },
+    )
+    qc_researcher_institution: Optional[str] = Field(
+        default=None,
+        title="QC Researcher Institution",
+        description="""The institution of the PI whose research team QCed this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "qc_researcher_institution",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    genesis: Literal["measured"] = Field(
+        default=...,
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "genesis",
+                "domain_of": ["InSituVariable"],
+                "equals_string": "measured",
+            }
+        },
+    )
+    dataset_variable_name_qc_flag: Optional[str] = Field(
+        default=None,
+        title="Dataset variable name (Quality Flag)",
+        description="""If applicable, the column header name used for the quality control flag corresponding to this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dataset_variable_name_qc_flag",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    dataset_variable_name_raw: Optional[str] = Field(
+        default=None,
+        title="Dataset variable name (raw)",
+        description="""If applicable, the column header name used for the raw data corresponding to this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dataset_variable_name_raw",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    method_reference: Optional[str] = Field(
+        default=None,
+        title="Method Reference",
+        description="""Citation for the method used.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "method_reference",
+                "domain_of": ["Calibration", "InSituVariable"],
+            }
+        },
+    )
+    measurement_researcher: Optional[Person] = Field(
+        default=None,
+        title="Researcher who measured the variable",
+        description="""The name of the PI whose research team measured or derived this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "measurement_researcher",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    other_detailed_information: Optional[str] = Field(
+        default=None,
+        title="Other Detailed Information",
+        description="""Any additional information about this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "other_detailed_information",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    units: str = Field(
+        default=...,
+        title="Unit",
+        description="""Unit of measurement for this variable.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "units", "domain_of": ["Variable"]}
+        },
+    )
+    schema_class: Literal["DiscreteCO2Variable"] = Field(
+        default="DiscreteCO2Variable",
+        description="""The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "schema_class",
+                "designates_type": True,
+                "domain_of": ["Variable"],
+            }
+        },
+    )
+    variable_type: Literal["co2"] = Field(
+        default=...,
+        title="Variable Type",
+        description="""High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "variable_type",
+                "domain_of": ["Variable"],
+                "equals_string": "co2",
+            }
+        },
+    )
+    standard_identifier: Optional[VocabularyItemReference] = Field(
+        default=None,
+        json_schema_extra={
+            "linkml_meta": {"alias": "standard_identifier", "domain_of": ["Variable"]}
+        },
+    )
+    dataset_variable_name: str = Field(
+        default=...,
+        title="Dataset variable name",
+        description="""The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "dataset_variable_name", "domain_of": ["Variable"]}
+        },
+    )
+    long_name: str = Field(
+        default=...,
+        title="Variable full name",
+        description="""Full descriptive name of the variable.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "long_name", "domain_of": ["Variable"]}
+        },
+    )
 
 
 class ContinuousCO2Variable(ContinuousMeasuredVariable, MeasuredCO2Fields):
     """
     CO2 continuous (sensor) measured variable (xCO2/pCO2/fCO2). Reference: OAPMetadata XSD variables.xsd - co2_continuous
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Variable',
-         'mixins': ['MeasuredCO2Fields'],
-         'slot_usage': {'analyzing_instrument': {'description': 'CO2 gas detector with '
-                                                                'standard gas '
-                                                                'calibration for '
-                                                                'continuous '
-                                                                'measurements.',
-                                                 'name': 'analyzing_instrument',
-                                                 'range': 'ContinuousCO2GasDetector'},
-                        'variable_type': {'equals_string': 'co2',
-                                          'name': 'variable_type',
-                                          'range': 'string'}}})
 
-    equilibrator: Optional[CO2Equilibrator] = Field(default=None, title="Equilibrator", description="""Equilibrator used for CO2 measurement.""", json_schema_extra = { "linkml_meta": {'alias': 'equilibrator', 'domain_of': ['ContinuousCO2Variable']} })
-    equilibrator_temperature_sensor: Optional[TemperatureSensor] = Field(default=None, title="Equilibrator temperature sensor", description="""Temperature sensor for the equilibrator.""", json_schema_extra = { "linkml_meta": {'alias': 'equilibrator_temperature_sensor',
-         'domain_of': ['ContinuousCO2Variable']} })
-    equilibrator_pressure_sensor: Optional[PressureSensor] = Field(default=None, title="Equilibrator pressure sensor", description="""Pressure sensor for the equilibrator.""", json_schema_extra = { "linkml_meta": {'alias': 'equilibrator_pressure_sensor',
-         'domain_of': ['ContinuousCO2Variable']} })
-    atmospheric_pressure_sensor: Optional[PressureSensor] = Field(default=None, title="Atmospheric pressure sensor", description="""Atmospheric pressure sensor.""", json_schema_extra = { "linkml_meta": {'alias': 'atmospheric_pressure_sensor', 'domain_of': ['ContinuousCO2Variable']} })
-    seawater_intake_location: str = Field(default=..., title="Location of seawater intake", description="""Whereabouts of the seawater intake.""", json_schema_extra = { "linkml_meta": {'alias': 'seawater_intake_location', 'domain_of': ['ContinuousCO2Variable']} })
-    seawater_intake_depth: str = Field(default=..., title="Depth of seawater intake", description="""Water depth of the seawater intake.""", json_schema_extra = { "linkml_meta": {'alias': 'seawater_intake_depth', 'domain_of': ['ContinuousCO2Variable']} })
-    drying_method: Optional[str] = Field(default=None, title="Drying method for CO2 gas", description="""The method used to dry the gas coming out of CO2 equilibrator, before it is pumped into the CO2 sensor.""", json_schema_extra = { "linkml_meta": {'alias': 'drying_method',
-         'domain_of': ['MarineAirMeasurement', 'ContinuousCO2Variable']} })
-    marine_air_measurement: Optional[MarineAirMeasurement] = Field(default=None, title="CO2 in marine air", description="""Information about CO2 measurements in marine air.""", json_schema_extra = { "linkml_meta": {'alias': 'marine_air_measurement', 'domain_of': ['ContinuousCO2Variable']} })
-    appropriate_use_quality: Optional[AppropriateUseQuality] = Field(default=None, title="Weather or climate quality", description="""Climate quality is defined as measurements of quality sufficient to assess long term trends with a defined level of confidence. Weather quality is defined as measurements of quality sufficient to identify relative spatial patterns and short term variation.
-For more details, refer to Newton J.A., Feely R. A., Jewett E. B., Williamson P. & Mathis J., 2015. Global Ocean Acidification Observing Network: Requirements and Governance Plan. Second Edition, GOA-ON, http://www.goa-on.org/docs/GOA-ON_plan_print.pdf.""", json_schema_extra = { "linkml_meta": {'alias': 'appropriate_use_quality',
-         'domain_of': ['MeasuredTAFields',
-                       'MeasuredDICFields',
-                       'MeasuredPHFields',
-                       'MeasuredCO2Fields']} })
-    pco2_reported_temperature: str = Field(default=..., title="Temperature at which pCO2 was reported", description="""In Celsius. The input could be a constant temperature value, or something like, in-situ temperature, temperature of analysis, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'pco2_reported_temperature', 'domain_of': ['MeasuredCO2Fields']} })
-    water_vapor_correction_method: Optional[str] = Field(default=None, title="Water vapor correction method", description="""How the water vapor pressure inside the equilibrator was determined.""", json_schema_extra = { "linkml_meta": {'alias': 'water_vapor_correction_method', 'domain_of': ['MeasuredCO2Fields']} })
-    temperature_correction_method: Optional[str] = Field(default=None, title="Temperature correction method", description="""How the temperature effect was corrected.""", json_schema_extra = { "linkml_meta": {'alias': 'temperature_correction_method',
-         'domain_of': ['DiscretePHVariable', 'MeasuredCO2Fields']} })
-    raw_data_calculation_method: str = Field(default=..., title="Method to calculate reported values from raw data", description="""The method used to calculate reported values from raw sensor data.""", json_schema_extra = { "linkml_meta": {'alias': 'raw_data_calculation_method',
-         'domain_of': ['ContinuousMeasuredVariable']} })
-    calculation_software_version: Optional[str] = Field(default=None, title="Software version for the calculation", description="""Version of the software used to calculate reported values from raw values.""", json_schema_extra = { "linkml_meta": {'alias': 'calculation_software_version',
-         'domain_of': ['ContinuousMeasuredVariable']} })
-    analyzing_instrument: ContinuousCO2GasDetector = Field(default=..., title="Analyzing instrument", description="""CO2 gas detector with standard gas calibration for continuous measurements.""", json_schema_extra = { "linkml_meta": {'alias': 'analyzing_instrument', 'domain_of': ['MeasuredVariable']} })
-    sampling_method: str = Field(default=..., title="Sampling Method", description="""Method used to collect samples.""", json_schema_extra = { "linkml_meta": {'alias': 'sampling_method', 'domain_of': ['MeasuredVariable']} })
-    field_replicate_information: Optional[str] = Field(default=None, title="Field replicate information", description="""Repetition of sample collection and measurement, e.g., triplicate samples.""", json_schema_extra = { "linkml_meta": {'alias': 'field_replicate_information', 'domain_of': ['MeasuredVariable']} })
-    analyzing_method: str = Field(default=..., title="Analyzing Method", description="""Additional information describing how the sample was analyzed. DOIs provided as applicable.""", json_schema_extra = { "linkml_meta": {'alias': 'analyzing_method', 'domain_of': ['MeasuredVariable']} })
-    observation_type: ObservationType = Field(default=..., title="Observation Type", json_schema_extra = { "linkml_meta": {'alias': 'observation_type', 'domain_of': ['MeasuredVariable']} })
-    sampling: Literal["continuous"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'sampling',
-         'domain_of': ['MeasuredVariable'],
-         'equals_string': 'continuous'} })
-    sampling_instrument_type: SamplingInstrumentType = Field(default=..., title="Sampling instrument type", json_schema_extra = { "linkml_meta": {'alias': 'sampling_instrument_type', 'domain_of': ['MeasuredVariable']} })
-    sampling_instrument_type_custom: Optional[str] = Field(default=None, title="Sampling instrument type (custom)", json_schema_extra = { "linkml_meta": {'alias': 'sampling_instrument_type_custom', 'domain_of': ['MeasuredVariable']} })
-    qc_steps_taken: str = Field(default=..., title="QC steps taken", description="""Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).
-If quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_steps_taken', 'domain_of': ['QCFields']} })
-    uncertainty: str = Field(default=..., title="Uncertainty", description="""It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.
-If uncertainty is provided as a variable, please list the column header name here.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty',
-         'domain_of': ['StandardGas', 'CO2GasDetector', 'QCFields']} })
-    uncertainty_definition: str = Field(default=..., title="How was the uncertainty defined", description="""A description of the uncertainties involved in this method.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty_definition', 'domain_of': ['QCFields']} })
-    missing_value_indicators: str = Field(default=..., title="Missing value indicators", description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'missing_value_indicators', 'domain_of': ['QCFields']} })
-    qc_researcher: Optional[Person] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
-    qc_researcher_institution: Optional[str] = Field(default=None, title="QC Researcher Institution", description="""The institution of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher_institution', 'domain_of': ['QCFields']} })
-    genesis: Literal["measured"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'genesis',
-         'domain_of': ['InSituVariable'],
-         'equals_string': 'measured'} })
-    dataset_variable_name_qc_flag: Optional[str] = Field(default=None, title="Dataset variable name (Quality Flag)", description="""If applicable, the column header name used for the quality control flag corresponding to this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name_qc_flag', 'domain_of': ['InSituVariable']} })
-    dataset_variable_name_raw: Optional[str] = Field(default=None, title="Dataset variable name (raw)", description="""If applicable, the column header name used for the raw data corresponding to this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name_raw', 'domain_of': ['InSituVariable']} })
-    method_reference: Optional[str] = Field(default=None, title="Method Reference", description="""Citation for the method used.""", json_schema_extra = { "linkml_meta": {'alias': 'method_reference', 'domain_of': ['Calibration', 'InSituVariable']} })
-    measurement_researcher: Optional[Person] = Field(default=None, title="Researcher who measured the variable", description="""The name of the PI whose research team measured or derived this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'measurement_researcher', 'domain_of': ['InSituVariable']} })
-    other_detailed_information: Optional[str] = Field(default=None, title="Other Detailed Information", description="""Any additional information about this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'other_detailed_information', 'domain_of': ['InSituVariable']} })
-    units: str = Field(default=..., title="Unit", description="""Unit of measurement for this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'units', 'domain_of': ['Variable']} })
-    schema_class: Literal["ContinuousCO2Variable"] = Field(default="ContinuousCO2Variable", description="""The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.""", json_schema_extra = { "linkml_meta": {'alias': 'schema_class', 'designates_type': True, 'domain_of': ['Variable']} })
-    variable_type: Literal["co2"] = Field(default=..., title="Variable Type", description="""High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.""", json_schema_extra = { "linkml_meta": {'alias': 'variable_type', 'domain_of': ['Variable'], 'equals_string': 'co2'} })
-    standard_identifier: Optional[VocabularyItemReference] = Field(default=None, json_schema_extra = { "linkml_meta": {'alias': 'standard_identifier', 'domain_of': ['Variable']} })
-    dataset_variable_name: str = Field(default=..., title="Dataset variable name", description="""The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name', 'domain_of': ['Variable']} })
-    long_name: str = Field(default=..., title="Variable full name", description="""Full descriptive name of the variable.""", json_schema_extra = { "linkml_meta": {'alias': 'long_name', 'domain_of': ['Variable']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "from_schema": "Variable",
+            "mixins": ["MeasuredCO2Fields"],
+            "slot_usage": {
+                "analyzing_instrument": {
+                    "description": "CO2 gas detector with "
+                    "standard gas "
+                    "calibration for "
+                    "continuous "
+                    "measurements.",
+                    "name": "analyzing_instrument",
+                    "range": "ContinuousCO2GasDetector",
+                },
+                "variable_type": {
+                    "equals_string": "co2",
+                    "name": "variable_type",
+                    "range": "string",
+                },
+            },
+        }
+    )
+
+    equilibrator: Optional[CO2Equilibrator] = Field(
+        default=None,
+        title="Equilibrator",
+        description="""Equilibrator used for CO2 measurement.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "equilibrator",
+                "domain_of": ["ContinuousCO2Variable"],
+            }
+        },
+    )
+    equilibrator_temperature_sensor: Optional[TemperatureSensor] = Field(
+        default=None,
+        title="Equilibrator temperature sensor",
+        description="""Temperature sensor for the equilibrator.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "equilibrator_temperature_sensor",
+                "domain_of": ["ContinuousCO2Variable"],
+            }
+        },
+    )
+    equilibrator_pressure_sensor: Optional[PressureSensor] = Field(
+        default=None,
+        title="Equilibrator pressure sensor",
+        description="""Pressure sensor for the equilibrator.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "equilibrator_pressure_sensor",
+                "domain_of": ["ContinuousCO2Variable"],
+            }
+        },
+    )
+    atmospheric_pressure_sensor: Optional[PressureSensor] = Field(
+        default=None,
+        title="Atmospheric pressure sensor",
+        description="""Atmospheric pressure sensor.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "atmospheric_pressure_sensor",
+                "domain_of": ["ContinuousCO2Variable"],
+            }
+        },
+    )
+    seawater_intake_location: str = Field(
+        default=...,
+        title="Location of seawater intake",
+        description="""Whereabouts of the seawater intake.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "seawater_intake_location",
+                "domain_of": ["ContinuousCO2Variable"],
+            }
+        },
+    )
+    seawater_intake_depth: str = Field(
+        default=...,
+        title="Depth of seawater intake",
+        description="""Water depth of the seawater intake.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "seawater_intake_depth",
+                "domain_of": ["ContinuousCO2Variable"],
+            }
+        },
+    )
+    drying_method: Optional[str] = Field(
+        default=None,
+        title="Drying method for CO2 gas",
+        description="""The method used to dry the gas coming out of CO2 equilibrator, before it is pumped into the CO2 sensor.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "drying_method",
+                "domain_of": ["MarineAirMeasurement", "ContinuousCO2Variable"],
+            }
+        },
+    )
+    marine_air_measurement: Optional[MarineAirMeasurement] = Field(
+        default=None,
+        title="CO2 in marine air",
+        description="""Information about CO2 measurements in marine air.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "marine_air_measurement",
+                "domain_of": ["ContinuousCO2Variable"],
+            }
+        },
+    )
+    appropriate_use_quality: Optional[AppropriateUseQuality] = Field(
+        default=None,
+        title="Weather or climate quality",
+        description="""Climate quality is defined as measurements of quality sufficient to assess long term trends with a defined level of confidence. Weather quality is defined as measurements of quality sufficient to identify relative spatial patterns and short term variation.
+For more details, refer to Newton J.A., Feely R. A., Jewett E. B., Williamson P. & Mathis J., 2015. Global Ocean Acidification Observing Network: Requirements and Governance Plan. Second Edition, GOA-ON, http://www.goa-on.org/docs/GOA-ON_plan_print.pdf.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "appropriate_use_quality",
+                "domain_of": [
+                    "MeasuredTAFields",
+                    "MeasuredDICFields",
+                    "MeasuredPHFields",
+                    "MeasuredCO2Fields",
+                ],
+            }
+        },
+    )
+    pco2_reported_temperature: str = Field(
+        default=...,
+        title="Temperature at which pCO2 was reported",
+        description="""In Celsius. The input could be a constant temperature value, or something like, in-situ temperature, temperature of analysis, etc.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "pco2_reported_temperature",
+                "domain_of": ["MeasuredCO2Fields"],
+            }
+        },
+    )
+    water_vapor_correction_method: Optional[str] = Field(
+        default=None,
+        title="Water vapor correction method",
+        description="""How the water vapor pressure inside the equilibrator was determined.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "water_vapor_correction_method",
+                "domain_of": ["MeasuredCO2Fields"],
+            }
+        },
+    )
+    temperature_correction_method: Optional[str] = Field(
+        default=None,
+        title="Temperature correction method",
+        description="""How the temperature effect was corrected.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "temperature_correction_method",
+                "domain_of": ["DiscretePHVariable", "MeasuredCO2Fields"],
+            }
+        },
+    )
+    raw_data_calculation_method: str = Field(
+        default=...,
+        title="Method to calculate reported values from raw data",
+        description="""The method used to calculate reported values from raw sensor data.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "raw_data_calculation_method",
+                "domain_of": ["ContinuousMeasuredVariable"],
+            }
+        },
+    )
+    calculation_software_version: Optional[str] = Field(
+        default=None,
+        title="Software version for the calculation",
+        description="""Version of the software used to calculate reported values from raw values.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "calculation_software_version",
+                "domain_of": ["ContinuousMeasuredVariable"],
+            }
+        },
+    )
+    analyzing_instrument: ContinuousCO2GasDetector = Field(
+        default=...,
+        title="Analyzing instrument",
+        description="""CO2 gas detector with standard gas calibration for continuous measurements.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "analyzing_instrument",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling_method: str = Field(
+        default=...,
+        title="Sampling Method",
+        description="""Method used to collect samples.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_method",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    field_replicate_information: Optional[str] = Field(
+        default=None,
+        title="Field replicate information",
+        description="""Repetition of sample collection and measurement, e.g., triplicate samples.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "field_replicate_information",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    analyzing_method: str = Field(
+        default=...,
+        title="Analyzing Method",
+        description="""Additional information describing how the sample was analyzed. DOIs provided as applicable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "analyzing_method",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    observation_type: ObservationType = Field(
+        default=...,
+        title="Observation Type",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "observation_type",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling: Literal["continuous"] = Field(
+        default=...,
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling",
+                "domain_of": ["MeasuredVariable"],
+                "equals_string": "continuous",
+            }
+        },
+    )
+    sampling_instrument_type: SamplingInstrumentType = Field(
+        default=...,
+        title="Sampling instrument type",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_instrument_type",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling_instrument_type_custom: Optional[str] = Field(
+        default=None,
+        title="Sampling instrument type (custom)",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_instrument_type_custom",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    qc_steps_taken: str = Field(
+        default=...,
+        title="QC steps taken",
+        description="""Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).
+If quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "qc_steps_taken", "domain_of": ["QCFields"]}
+        },
+    )
+    uncertainty: str = Field(
+        default=...,
+        title="Uncertainty",
+        description="""It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.
+If uncertainty is provided as a variable, please list the column header name here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "uncertainty",
+                "domain_of": ["StandardGas", "CO2GasDetector", "QCFields"],
+            }
+        },
+    )
+    uncertainty_definition: str = Field(
+        default=...,
+        title="How was the uncertainty defined",
+        description="""A description of the uncertainties involved in this method.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "uncertainty_definition",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    missing_value_indicators: str = Field(
+        default=...,
+        title="Missing value indicators",
+        description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "missing_value_indicators",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    qc_researcher: Optional[Person] = Field(
+        default=None,
+        title="Researcher who QCed this variable",
+        description="""The name of the PI whose research team QCed this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "qc_researcher", "domain_of": ["QCFields"]}
+        },
+    )
+    qc_researcher_institution: Optional[str] = Field(
+        default=None,
+        title="QC Researcher Institution",
+        description="""The institution of the PI whose research team QCed this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "qc_researcher_institution",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    genesis: Literal["measured"] = Field(
+        default=...,
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "genesis",
+                "domain_of": ["InSituVariable"],
+                "equals_string": "measured",
+            }
+        },
+    )
+    dataset_variable_name_qc_flag: Optional[str] = Field(
+        default=None,
+        title="Dataset variable name (Quality Flag)",
+        description="""If applicable, the column header name used for the quality control flag corresponding to this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dataset_variable_name_qc_flag",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    dataset_variable_name_raw: Optional[str] = Field(
+        default=None,
+        title="Dataset variable name (raw)",
+        description="""If applicable, the column header name used for the raw data corresponding to this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dataset_variable_name_raw",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    method_reference: Optional[str] = Field(
+        default=None,
+        title="Method Reference",
+        description="""Citation for the method used.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "method_reference",
+                "domain_of": ["Calibration", "InSituVariable"],
+            }
+        },
+    )
+    measurement_researcher: Optional[Person] = Field(
+        default=None,
+        title="Researcher who measured the variable",
+        description="""The name of the PI whose research team measured or derived this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "measurement_researcher",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    other_detailed_information: Optional[str] = Field(
+        default=None,
+        title="Other Detailed Information",
+        description="""Any additional information about this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "other_detailed_information",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    units: str = Field(
+        default=...,
+        title="Unit",
+        description="""Unit of measurement for this variable.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "units", "domain_of": ["Variable"]}
+        },
+    )
+    schema_class: Literal["ContinuousCO2Variable"] = Field(
+        default="ContinuousCO2Variable",
+        description="""The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "schema_class",
+                "designates_type": True,
+                "domain_of": ["Variable"],
+            }
+        },
+    )
+    variable_type: Literal["co2"] = Field(
+        default=...,
+        title="Variable Type",
+        description="""High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "variable_type",
+                "domain_of": ["Variable"],
+                "equals_string": "co2",
+            }
+        },
+    )
+    standard_identifier: Optional[VocabularyItemReference] = Field(
+        default=None,
+        json_schema_extra={
+            "linkml_meta": {"alias": "standard_identifier", "domain_of": ["Variable"]}
+        },
+    )
+    dataset_variable_name: str = Field(
+        default=...,
+        title="Dataset variable name",
+        description="""The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "dataset_variable_name", "domain_of": ["Variable"]}
+        },
+    )
+    long_name: str = Field(
+        default=...,
+        title="Variable full name",
+        description="""Full descriptive name of the variable.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "long_name", "domain_of": ["Variable"]}
+        },
+    )
 
 
 class HPLCVariable(DiscreteMeasuredVariable):
     """
     HPLC (High-Performance Liquid Chromatography) measured variable for pigment analysis. Always measured, not calculated.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Variable',
-         'slot_usage': {'variable_type': {'equals_string': 'hplc',
-                                          'name': 'variable_type',
-                                          'range': 'string'}}})
 
-    hplc_lab: str = Field(default=..., title="HPLC Lab", description="""The name of the lab where the HPLC analysis was run (e.g., 'NASA_GSFC'""", json_schema_extra = { "linkml_meta": {'alias': 'hplc_lab', 'domain_of': ['HPLCVariable']} })
-    hplc_lab_technician: Optional[str] = Field(default=None, title="HPLC Lab Technician", description="""Name and contact information for HPLC technician.""", json_schema_extra = { "linkml_meta": {'alias': 'hplc_lab_technician', 'domain_of': ['HPLCVariable']} })
-    analyzing_instrument: AnalyzingInstrument = Field(default=..., title="Analyzing instrument", description="""Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.""", json_schema_extra = { "linkml_meta": {'alias': 'analyzing_instrument', 'domain_of': ['MeasuredVariable']} })
-    sampling_method: str = Field(default=..., title="Sampling Method", description="""Method used to collect samples.""", json_schema_extra = { "linkml_meta": {'alias': 'sampling_method', 'domain_of': ['MeasuredVariable']} })
-    field_replicate_information: Optional[str] = Field(default=None, title="Field replicate information", description="""Repetition of sample collection and measurement, e.g., triplicate samples.""", json_schema_extra = { "linkml_meta": {'alias': 'field_replicate_information', 'domain_of': ['MeasuredVariable']} })
-    analyzing_method: str = Field(default=..., title="Analyzing Method", description="""Additional information describing how the sample was analyzed. DOIs provided as applicable.""", json_schema_extra = { "linkml_meta": {'alias': 'analyzing_method', 'domain_of': ['MeasuredVariable']} })
-    observation_type: ObservationType = Field(default=..., title="Observation Type", json_schema_extra = { "linkml_meta": {'alias': 'observation_type', 'domain_of': ['MeasuredVariable']} })
-    sampling: Literal["discrete"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'sampling',
-         'domain_of': ['MeasuredVariable'],
-         'equals_string': 'discrete'} })
-    sampling_instrument_type: SamplingInstrumentType = Field(default=..., title="Sampling instrument type", json_schema_extra = { "linkml_meta": {'alias': 'sampling_instrument_type', 'domain_of': ['MeasuredVariable']} })
-    sampling_instrument_type_custom: Optional[str] = Field(default=None, title="Sampling instrument type (custom)", json_schema_extra = { "linkml_meta": {'alias': 'sampling_instrument_type_custom', 'domain_of': ['MeasuredVariable']} })
-    qc_steps_taken: str = Field(default=..., title="QC steps taken", description="""Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).
-If quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_steps_taken', 'domain_of': ['QCFields']} })
-    uncertainty: str = Field(default=..., title="Uncertainty", description="""It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.
-If uncertainty is provided as a variable, please list the column header name here.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty',
-         'domain_of': ['StandardGas', 'CO2GasDetector', 'QCFields']} })
-    uncertainty_definition: str = Field(default=..., title="How was the uncertainty defined", description="""A description of the uncertainties involved in this method.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty_definition', 'domain_of': ['QCFields']} })
-    missing_value_indicators: str = Field(default=..., title="Missing value indicators", description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'missing_value_indicators', 'domain_of': ['QCFields']} })
-    qc_researcher: Optional[Person] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
-    qc_researcher_institution: Optional[str] = Field(default=None, title="QC Researcher Institution", description="""The institution of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher_institution', 'domain_of': ['QCFields']} })
-    genesis: Literal["measured"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'genesis',
-         'domain_of': ['InSituVariable'],
-         'equals_string': 'measured'} })
-    dataset_variable_name_qc_flag: Optional[str] = Field(default=None, title="Dataset variable name (Quality Flag)", description="""If applicable, the column header name used for the quality control flag corresponding to this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name_qc_flag', 'domain_of': ['InSituVariable']} })
-    dataset_variable_name_raw: Optional[str] = Field(default=None, title="Dataset variable name (raw)", description="""If applicable, the column header name used for the raw data corresponding to this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name_raw', 'domain_of': ['InSituVariable']} })
-    method_reference: Optional[str] = Field(default=None, title="Method Reference", description="""Citation for the method used.""", json_schema_extra = { "linkml_meta": {'alias': 'method_reference', 'domain_of': ['Calibration', 'InSituVariable']} })
-    measurement_researcher: Optional[Person] = Field(default=None, title="Researcher who measured the variable", description="""The name of the PI whose research team measured or derived this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'measurement_researcher', 'domain_of': ['InSituVariable']} })
-    other_detailed_information: Optional[str] = Field(default=None, title="Other Detailed Information", description="""Any additional information about this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'other_detailed_information', 'domain_of': ['InSituVariable']} })
-    units: str = Field(default=..., title="Unit", description="""Unit of measurement for this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'units', 'domain_of': ['Variable']} })
-    schema_class: Literal["HPLCVariable"] = Field(default="HPLCVariable", description="""The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.""", json_schema_extra = { "linkml_meta": {'alias': 'schema_class', 'designates_type': True, 'domain_of': ['Variable']} })
-    variable_type: Literal["hplc"] = Field(default=..., title="Variable Type", description="""High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.""", json_schema_extra = { "linkml_meta": {'alias': 'variable_type', 'domain_of': ['Variable'], 'equals_string': 'hplc'} })
-    standard_identifier: Optional[VocabularyItemReference] = Field(default=None, json_schema_extra = { "linkml_meta": {'alias': 'standard_identifier', 'domain_of': ['Variable']} })
-    dataset_variable_name: str = Field(default=..., title="Dataset variable name", description="""The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name', 'domain_of': ['Variable']} })
-    long_name: str = Field(default=..., title="Variable full name", description="""Full descriptive name of the variable.""", json_schema_extra = { "linkml_meta": {'alias': 'long_name', 'domain_of': ['Variable']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "from_schema": "Variable",
+            "slot_usage": {
+                "variable_type": {
+                    "equals_string": "hplc",
+                    "name": "variable_type",
+                    "range": "string",
+                }
+            },
+        }
+    )
+
+    hplc_lab: str = Field(
+        default=...,
+        title="HPLC Lab",
+        description="""The name of the lab where the HPLC analysis was run (e.g., 'NASA_GSFC'""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "hplc_lab", "domain_of": ["HPLCVariable"]}
+        },
+    )
+    hplc_lab_technician: Optional[str] = Field(
+        default=None,
+        title="HPLC Lab Technician",
+        description="""Name and contact information for HPLC technician.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "hplc_lab_technician",
+                "domain_of": ["HPLCVariable"],
+            }
+        },
+    )
+    analyzing_instrument: AnalyzingInstrument = Field(
+        default=...,
+        title="Analyzing instrument",
+        description="""Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "analyzing_instrument",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling_method: str = Field(
+        default=...,
+        title="Sampling Method",
+        description="""Method used to collect samples.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_method",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    field_replicate_information: Optional[str] = Field(
+        default=None,
+        title="Field replicate information",
+        description="""Repetition of sample collection and measurement, e.g., triplicate samples.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "field_replicate_information",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    analyzing_method: str = Field(
+        default=...,
+        title="Analyzing Method",
+        description="""Additional information describing how the sample was analyzed. DOIs provided as applicable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "analyzing_method",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    observation_type: ObservationType = Field(
+        default=...,
+        title="Observation Type",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "observation_type",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling: Literal["discrete"] = Field(
+        default=...,
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling",
+                "domain_of": ["MeasuredVariable"],
+                "equals_string": "discrete",
+            }
+        },
+    )
+    sampling_instrument_type: SamplingInstrumentType = Field(
+        default=...,
+        title="Sampling instrument type",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_instrument_type",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    sampling_instrument_type_custom: Optional[str] = Field(
+        default=None,
+        title="Sampling instrument type (custom)",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "sampling_instrument_type_custom",
+                "domain_of": ["MeasuredVariable"],
+            }
+        },
+    )
+    qc_steps_taken: str = Field(
+        default=...,
+        title="QC steps taken",
+        description="""Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).
+If quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "qc_steps_taken", "domain_of": ["QCFields"]}
+        },
+    )
+    uncertainty: str = Field(
+        default=...,
+        title="Uncertainty",
+        description="""It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.
+If uncertainty is provided as a variable, please list the column header name here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "uncertainty",
+                "domain_of": ["StandardGas", "CO2GasDetector", "QCFields"],
+            }
+        },
+    )
+    uncertainty_definition: str = Field(
+        default=...,
+        title="How was the uncertainty defined",
+        description="""A description of the uncertainties involved in this method.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "uncertainty_definition",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    missing_value_indicators: str = Field(
+        default=...,
+        title="Missing value indicators",
+        description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "missing_value_indicators",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    qc_researcher: Optional[Person] = Field(
+        default=None,
+        title="Researcher who QCed this variable",
+        description="""The name of the PI whose research team QCed this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "qc_researcher", "domain_of": ["QCFields"]}
+        },
+    )
+    qc_researcher_institution: Optional[str] = Field(
+        default=None,
+        title="QC Researcher Institution",
+        description="""The institution of the PI whose research team QCed this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "qc_researcher_institution",
+                "domain_of": ["QCFields"],
+            }
+        },
+    )
+    genesis: Literal["measured"] = Field(
+        default=...,
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "genesis",
+                "domain_of": ["InSituVariable"],
+                "equals_string": "measured",
+            }
+        },
+    )
+    dataset_variable_name_qc_flag: Optional[str] = Field(
+        default=None,
+        title="Dataset variable name (Quality Flag)",
+        description="""If applicable, the column header name used for the quality control flag corresponding to this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dataset_variable_name_qc_flag",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    dataset_variable_name_raw: Optional[str] = Field(
+        default=None,
+        title="Dataset variable name (raw)",
+        description="""If applicable, the column header name used for the raw data corresponding to this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "dataset_variable_name_raw",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    method_reference: Optional[str] = Field(
+        default=None,
+        title="Method Reference",
+        description="""Citation for the method used.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "method_reference",
+                "domain_of": ["Calibration", "InSituVariable"],
+            }
+        },
+    )
+    measurement_researcher: Optional[Person] = Field(
+        default=None,
+        title="Researcher who measured the variable",
+        description="""The name of the PI whose research team measured or derived this parameter.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "measurement_researcher",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    other_detailed_information: Optional[str] = Field(
+        default=None,
+        title="Other Detailed Information",
+        description="""Any additional information about this variable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "other_detailed_information",
+                "domain_of": ["InSituVariable"],
+            }
+        },
+    )
+    units: str = Field(
+        default=...,
+        title="Unit",
+        description="""Unit of measurement for this variable.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "units", "domain_of": ["Variable"]}
+        },
+    )
+    schema_class: Literal["HPLCVariable"] = Field(
+        default="HPLCVariable",
+        description="""The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "schema_class",
+                "designates_type": True,
+                "domain_of": ["Variable"],
+            }
+        },
+    )
+    variable_type: Literal["hplc"] = Field(
+        default=...,
+        title="Variable Type",
+        description="""High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "variable_type",
+                "domain_of": ["Variable"],
+                "equals_string": "hplc",
+            }
+        },
+    )
+    standard_identifier: Optional[VocabularyItemReference] = Field(
+        default=None,
+        json_schema_extra={
+            "linkml_meta": {"alias": "standard_identifier", "domain_of": ["Variable"]}
+        },
+    )
+    dataset_variable_name: str = Field(
+        default=...,
+        title="Dataset variable name",
+        description="""The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "dataset_variable_name", "domain_of": ["Variable"]}
+        },
+    )
+    long_name: str = Field(
+        default=...,
+        title="Variable full name",
+        description="""Full descriptive name of the variable.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "long_name", "domain_of": ["Variable"]}
+        },
+    )
 
 
 class Dataset(ConfiguredBaseModel):
     """
     Abstract base class for all dataset types. Contains fields common to both field/observational and model simulation datasets. Generally following guidelines & best practices as outlined in [science-on-schema.org](https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md)
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'exact_mappings': ['schema:Dataset', 'dcat:Dataset'],
-         'from_schema': 'Dataset',
-         'slot_usage': {'description': {'description': 'The abstract of a dataset is a '
-                                                       'brief summary that provides an '
-                                                       "overview of the dataset's "
-                                                       'content, purpose, and scope. '
-                                                       'It is used to provide context '
-                                                       'and background information to '
-                                                       'users who are interested in '
-                                                       'using the dataset. An abstract '
-                                                       'may include information such '
-                                                       "as the dataset's source, how "
-                                                       'the data was collected or '
-                                                       'generated, the variables or '
-                                                       'attributes included in the '
-                                                       'dataset, and any limitations '
-                                                       'or restrictions on the use of '
-                                                       'the data. It may also include '
-                                                       'information on how the data '
-                                                       'can be accessed or used.',
-                                        'name': 'description',
-                                        'range': 'string',
-                                        'required': True},
-                        'experiment_id': {'name': 'experiment_id', 'required': True},
-                        'name': {'description': 'A brief descriptive sentence that '
-                                                'summarizes the content of a dataset. '
-                                                'Here is one example:\n'
-                                                '"Dissolved inorganic carbon, total '
-                                                'alkalinity, pH, temperature, salinity '
-                                                'and other variables collected from '
-                                                'profile and discrete sample '
-                                                'observations using CTD, Niskin '
-                                                'bottle, and other instruments from '
-                                                'R/V Wecoma in the U.S. West Coast '
-                                                'California Current System during the '
-                                                '2011 West Coast Ocean Acidification '
-                                                'Cruise (WCOA2011) from 2011-08-12 to '
-                                                '2011-08-30"',
-                                 'name': 'name',
-                                 'range': 'string',
-                                 'required': True,
-                                 'title': 'Dataset Title'},
-                        'project_id': {'name': 'project_id', 'required': True}}})
 
-    name: str = Field(default=..., title="Dataset Title", description="""A brief descriptive sentence that summarizes the content of a dataset. Here is one example:
-\"Dissolved inorganic carbon, total alkalinity, pH, temperature, salinity and other variables collected from profile and discrete sample observations using CTD, Niskin bottle, and other instruments from R/V Wecoma in the U.S. West Coast California Current System during the 2011 West Coast Ocean Acidification Cruise (WCOA2011) from 2011-08-12 to 2011-08-30\"""", json_schema_extra = { "linkml_meta": {'alias': 'name',
-         'domain_of': ['Organization',
-                       'NamedLink',
-                       'ExternalProject',
-                       'MonetaryGrant',
-                       'Experiment',
-                       'Person',
-                       'Dataset',
-                       'Platform',
-                       'ModelComponent'],
-         'slot_uri': 'schema:name'} })
-    description: str = Field(default=..., title="Description", description="""The abstract of a dataset is a brief summary that provides an overview of the dataset's content, purpose, and scope. It is used to provide context and background information to users who are interested in using the dataset. An abstract may include information such as the dataset's source, how the data was collected or generated, the variables or attributes included in the dataset, and any limitations or restrictions on the use of the data. It may also include information on how the data can be accessed or used.""", json_schema_extra = { "linkml_meta": {'alias': 'description',
-         'domain_of': ['Project',
-                       'ExternalProject',
-                       'Experiment',
-                       'VocabularyItemReference',
-                       'Dataset',
-                       'ModelComponent'],
-         'slot_uri': 'schema:description'} })
-    project_id: str = Field(default=..., title="Project ID", description="""The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "exact_mappings": ["schema:Dataset", "dcat:Dataset"],
+            "from_schema": "Dataset",
+            "slot_usage": {
+                "description": {
+                    "description": "The abstract of a dataset is a "
+                    "brief summary that provides an "
+                    "overview of the dataset's "
+                    "content, purpose, and scope. "
+                    "It is used to provide context "
+                    "and background information to "
+                    "users who are interested in "
+                    "using the dataset. An abstract "
+                    "may include information such "
+                    "as the dataset's source, how "
+                    "the data was collected or "
+                    "generated, the variables or "
+                    "attributes included in the "
+                    "dataset, and any limitations "
+                    "or restrictions on the use of "
+                    "the data. It may also include "
+                    "information on how the data "
+                    "can be accessed or used.",
+                    "name": "description",
+                    "range": "string",
+                    "required": True,
+                },
+                "experiment_id": {"name": "experiment_id", "required": True},
+                "name": {
+                    "description": "A brief descriptive sentence that "
+                    "summarizes the content of a dataset. "
+                    "Here is one example:\n"
+                    '"Dissolved inorganic carbon, total '
+                    "alkalinity, pH, temperature, salinity "
+                    "and other variables collected from "
+                    "profile and discrete sample "
+                    "observations using CTD, Niskin "
+                    "bottle, and other instruments from "
+                    "R/V Wecoma in the U.S. West Coast "
+                    "California Current System during the "
+                    "2011 West Coast Ocean Acidification "
+                    "Cruise (WCOA2011) from 2011-08-12 to "
+                    '2011-08-30"',
+                    "name": "name",
+                    "range": "string",
+                    "required": True,
+                    "title": "Dataset Title",
+                },
+                "project_id": {"name": "project_id", "required": True},
+            },
+        }
+    )
+
+    name: str = Field(
+        default=...,
+        title="Dataset Title",
+        description="""A brief descriptive sentence that summarizes the content of a dataset. Here is one example:
+\"Dissolved inorganic carbon, total alkalinity, pH, temperature, salinity and other variables collected from profile and discrete sample observations using CTD, Niskin bottle, and other instruments from R/V Wecoma in the U.S. West Coast California Current System during the 2011 West Coast Ocean Acidification Cruise (WCOA2011) from 2011-08-12 to 2011-08-30\"""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "name",
+                "domain_of": [
+                    "Organization",
+                    "NamedLink",
+                    "ExternalProject",
+                    "MonetaryGrant",
+                    "Experiment",
+                    "Person",
+                    "Dataset",
+                    "Platform",
+                    "ModelComponent",
+                ],
+                "slot_uri": "schema:name",
+            }
+        },
+    )
+    description: str = Field(
+        default=...,
+        title="Description",
+        description="""The abstract of a dataset is a brief summary that provides an overview of the dataset's content, purpose, and scope. It is used to provide context and background information to users who are interested in using the dataset. An abstract may include information such as the dataset's source, how the data was collected or generated, the variables or attributes included in the dataset, and any limitations or restrictions on the use of the data. It may also include information on how the data can be accessed or used.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "description",
+                "domain_of": [
+                    "Project",
+                    "ExternalProject",
+                    "Experiment",
+                    "VocabularyItemReference",
+                    "Dataset",
+                    "ModelComponent",
+                ],
+                "slot_uri": "schema:description",
+            }
+        },
+    )
+    project_id: str = Field(
+        default=...,
+        title="Project ID",
+        description="""The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.
 If no Project ID has been assigned, one may be generated by combining: lead organizer surname and first initial or company, a unique date, and location.
-Any method that creates a unique ID that will link all project data is acceptable.""", json_schema_extra = { "linkml_meta": {'alias': 'project_id', 'domain_of': ['Project', 'Experiment', 'Dataset']} })
-    experiment_id: str = Field(default=..., title="Experiment ID", description="""The experiment to which the data belong. Any naming convention that produces a unique ID is usable. The recommended naming convention is:
-Project ID + Experiment type + Optional numerical indicator to differentiate between various experiments of the same type for a project. A two digit consecutive number beginning with 01""", json_schema_extra = { "linkml_meta": {'alias': 'experiment_id', 'domain_of': ['Experiment', 'Dataset']} })
-    filenames: List[str] = Field(default=..., title="Filenames", min_length=1, json_schema_extra = { "linkml_meta": {'alias': 'filenames', 'domain_of': ['Dataset']} })
-    dataset_type: DatasetType = Field(default=..., title="Dataset Type", description="""Selected controlled vocabularies for data types relevant to mCDR have been referenced from NASA's SeaBASS metadata system and are provided below, for additional data types of optical characteristics see the [SeaBASS controlled definitions list](https://seabass.gsfc.nasa.gov/wiki/metadataheaders#data_type). Additional data types have been included to meet the needs of mCDR field projects.""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_type', 'domain_of': ['Dataset']} })
-    dataset_type_custom: Optional[str] = Field(default=None, title="Dataset Type (Custom)", description="""Custom \"data type\" when an appropriate value is not found in the controlled vocabulary list for mCDR Data Type and the corresponding `data_type` field is set to \"other\".""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_type_custom', 'domain_of': ['Dataset']} })
-    data_submitter: Person = Field(default=..., title="Data Submitter", json_schema_extra = { "linkml_meta": {'alias': 'data_submitter', 'domain_of': ['Dataset']} })
-    author_list_for_citation: Optional[str] = Field(default=None, title="Author List (for citation)", description="""Author list in the format of Lastname1, Firstname1 Middlename1; Lastname2, Firstname2 Middlename2; ...""", json_schema_extra = { "linkml_meta": {'alias': 'author_list_for_citation', 'domain_of': ['Dataset']} })
-    license: Optional[str] = Field(default=None, title="License", description="""Link a Dataset to its license to document legal constraints by adding a schema:license property. The guide recommends providing a URL that unambiguously identifies a specific version of the license used, but for many licenses it is hard to determine what that URL should be. Thus, we recommend that the license URL be drawn from the [SPDX license list](https://spdx.org/licenses/), which provides a curated list of licenses and their properties that is well maintained. For each SPDX entry, SPDX provides a canonical URL for the license (e.g., http://spdx.org/licenses/CC0-1.0), a unique licenseId (e.g., CC0-1.0), and other metadata about the license.""", json_schema_extra = { "linkml_meta": {'alias': 'license', 'domain_of': ['Dataset'], 'slot_uri': 'schema:license'} })
-    fair_use_data_request: Optional[str] = Field(default=None, title="Fair Use Data Request", description="""A statement from the data producer regarding how this dataset should be used.""", json_schema_extra = { "linkml_meta": {'alias': 'fair_use_data_request', 'domain_of': ['Dataset']} })
+Any method that creates a unique ID that will link all project data is acceptable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "project_id",
+                "domain_of": ["Project", "Experiment", "Dataset"],
+            }
+        },
+    )
+    experiment_id: str = Field(
+        default=...,
+        title="Experiment ID",
+        description="""The experiment to which the data belong. Any naming convention that produces a unique ID is usable. The recommended naming convention is:
+Project ID + Experiment type + Optional numerical indicator to differentiate between various experiments of the same type for a project. A two digit consecutive number beginning with 01""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "experiment_id",
+                "domain_of": ["Experiment", "Dataset"],
+            }
+        },
+    )
+    filenames: List[str] = Field(
+        default=...,
+        title="Filenames",
+        min_length=1,
+        json_schema_extra={
+            "linkml_meta": {"alias": "filenames", "domain_of": ["Dataset"]}
+        },
+    )
+    dataset_type: DatasetType = Field(
+        default=...,
+        title="Dataset Type",
+        description="""Selected controlled vocabularies for data types relevant to mCDR have been referenced from NASA's SeaBASS metadata system and are provided below, for additional data types of optical characteristics see the [SeaBASS controlled definitions list](https://seabass.gsfc.nasa.gov/wiki/metadataheaders#data_type). Additional data types have been included to meet the needs of mCDR field projects.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "dataset_type", "domain_of": ["Dataset"]}
+        },
+    )
+    dataset_type_custom: Optional[str] = Field(
+        default=None,
+        title="Dataset Type (Custom)",
+        description="""Custom \"data type\" when an appropriate value is not found in the controlled vocabulary list for mCDR Data Type and the corresponding `data_type` field is set to \"other\".""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "dataset_type_custom", "domain_of": ["Dataset"]}
+        },
+    )
+    data_submitter: Person = Field(
+        default=...,
+        title="Data Submitter",
+        json_schema_extra={
+            "linkml_meta": {"alias": "data_submitter", "domain_of": ["Dataset"]}
+        },
+    )
+    author_list_for_citation: Optional[str] = Field(
+        default=None,
+        title="Author List (for citation)",
+        description="""Author list in the format of Lastname1, Firstname1 Middlename1; Lastname2, Firstname2 Middlename2; ...""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "author_list_for_citation",
+                "domain_of": ["Dataset"],
+            }
+        },
+    )
+    license: Optional[str] = Field(
+        default=None,
+        title="License",
+        description="""Link a Dataset to its license to document legal constraints by adding a schema:license property. The guide recommends providing a URL that unambiguously identifies a specific version of the license used, but for many licenses it is hard to determine what that URL should be. Thus, we recommend that the license URL be drawn from the [SPDX license list](https://spdx.org/licenses/), which provides a curated list of licenses and their properties that is well maintained. For each SPDX entry, SPDX provides a canonical URL for the license (e.g., http://spdx.org/licenses/CC0-1.0), a unique licenseId (e.g., CC0-1.0), and other metadata about the license.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "license",
+                "domain_of": ["Dataset"],
+                "slot_uri": "schema:license",
+            }
+        },
+    )
+    fair_use_data_request: Optional[str] = Field(
+        default=None,
+        title="Fair Use Data Request",
+        description="""A statement from the data producer regarding how this dataset should be used.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "fair_use_data_request", "domain_of": ["Dataset"]}
+        },
+    )
 
 
 class FieldDataset(Dataset):
     """
     A field or observational dataset related to an OAE experiment. Contains fields specific to in-situ data collection such as platform information, calibration files, QC flags, and measured variables.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Dataset'})
 
-    temporal_coverage: str = Field(default=..., title="Temporal Coverage", description="""Start date and end date (if known) of the project in ISO-8601 interval format (YYYY-MM-DD/YYY-MM-DD). If the end date is not known, use open-ended format YYYY-MM-DD/..""", json_schema_extra = { "linkml_meta": {'alias': 'temporal_coverage',
-         'domain_of': ['Project', 'ExternalProject', 'FieldDataset'],
-         'slot_uri': 'schema:temporalCoverage'} })
-    data_product_type: DataProductType = Field(default=..., title="Data Product Type", description="""\"Controlled vocabulary\" One of the three choices: (a) Originally collected dataset (e.g., a dataset collected from a research cruise or laboratory experiment), (b) Data compilation product (e.g., SOCAT, GLODAP), or (c) Derived product (e.g., gridded products, or model output).""", json_schema_extra = { "linkml_meta": {'alias': 'data_product_type', 'domain_of': ['FieldDataset']} })
-    qc_flag_scheme: Optional[str] = Field(default=None, title="QC Flag Scheme", description="""Describe what the quality control flags stand for, e.g.,
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({"from_schema": "Dataset"})
+
+    temporal_coverage: str = Field(
+        default=...,
+        title="Temporal Coverage",
+        description="""Start date and end date (if known) of the project in ISO-8601 interval format (YYYY-MM-DD/YYY-MM-DD). If the end date is not known, use open-ended format YYYY-MM-DD/..""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "temporal_coverage",
+                "domain_of": ["Project", "ExternalProject", "FieldDataset"],
+                "slot_uri": "schema:temporalCoverage",
+            }
+        },
+    )
+    data_product_type: DataProductType = Field(
+        default=...,
+        title="Data Product Type",
+        description="""\"Controlled vocabulary\" One of the three choices: (a) Originally collected dataset (e.g., a dataset collected from a research cruise or laboratory experiment), (b) Data compilation product (e.g., SOCAT, GLODAP), or (c) Derived product (e.g., gridded products, or model output).""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "data_product_type", "domain_of": ["FieldDataset"]}
+        },
+    )
+    qc_flag_scheme: Optional[str] = Field(
+        default=None,
+        title="QC Flag Scheme",
+        description="""Describe what the quality control flags stand for, e.g.,
   0 = interpolated or calculated data
   1 = not evaluated/quality unknown
   2 = acceptable
   3 = questionable
   4 = known bad
   6 = median of replicates
-  9 = missing value\"""", json_schema_extra = { "linkml_meta": {'alias': 'qc_flag_scheme', 'domain_of': ['FieldDataset']} })
-    platform_info: Platform = Field(default=..., title="Platform Information", json_schema_extra = { "linkml_meta": {'alias': 'platform_info', 'domain_of': ['FieldDataset']} })
-    calibration_files: Optional[List[str]] = Field(default=None, title="Calibration Files", description="""A list of supplementary file names containing coefficients and techniques used to calibrate the instruments used in data collection. The named files can be found within the relevant documents folder accompanying the submitted data files.""", json_schema_extra = { "linkml_meta": {'alias': 'calibration_files', 'domain_of': ['FieldDataset']} })
-    variables: Optional[List[Union[Variable,NonMeasuredVariable,InSituVariable,MeasuredVariable,CalculatedVariable,DiscreteMeasuredVariable,ContinuousMeasuredVariable,ContinuousPHVariable,ContinuousTAVariable,ContinuousDICVariable,ContinuousSedimentVariable,ContinuousCO2Variable,DiscretePHVariable,DiscreteTAVariable,DiscreteDICVariable,DiscreteSedimentVariable,DiscreteCO2Variable,HPLCVariable]]] = Field(default=None, title="Variables", json_schema_extra = { "linkml_meta": {'alias': 'variables',
-         'domain_of': ['FieldDataset'],
-         'slot_uri': 'schema:variableMeasured'} })
-    name: str = Field(default=..., title="Dataset Title", description="""A brief descriptive sentence that summarizes the content of a dataset. Here is one example:
-\"Dissolved inorganic carbon, total alkalinity, pH, temperature, salinity and other variables collected from profile and discrete sample observations using CTD, Niskin bottle, and other instruments from R/V Wecoma in the U.S. West Coast California Current System during the 2011 West Coast Ocean Acidification Cruise (WCOA2011) from 2011-08-12 to 2011-08-30\"""", json_schema_extra = { "linkml_meta": {'alias': 'name',
-         'domain_of': ['Organization',
-                       'NamedLink',
-                       'ExternalProject',
-                       'MonetaryGrant',
-                       'Experiment',
-                       'Person',
-                       'Dataset',
-                       'Platform',
-                       'ModelComponent'],
-         'slot_uri': 'schema:name'} })
-    description: str = Field(default=..., title="Description", description="""The abstract of a dataset is a brief summary that provides an overview of the dataset's content, purpose, and scope. It is used to provide context and background information to users who are interested in using the dataset. An abstract may include information such as the dataset's source, how the data was collected or generated, the variables or attributes included in the dataset, and any limitations or restrictions on the use of the data. It may also include information on how the data can be accessed or used.""", json_schema_extra = { "linkml_meta": {'alias': 'description',
-         'domain_of': ['Project',
-                       'ExternalProject',
-                       'Experiment',
-                       'VocabularyItemReference',
-                       'Dataset',
-                       'ModelComponent'],
-         'slot_uri': 'schema:description'} })
-    project_id: str = Field(default=..., title="Project ID", description="""The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.
+  9 = missing value\"""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "qc_flag_scheme", "domain_of": ["FieldDataset"]}
+        },
+    )
+    platform_info: Platform = Field(
+        default=...,
+        title="Platform Information",
+        json_schema_extra={
+            "linkml_meta": {"alias": "platform_info", "domain_of": ["FieldDataset"]}
+        },
+    )
+    calibration_files: Optional[List[str]] = Field(
+        default=None,
+        title="Calibration Files",
+        description="""A list of supplementary file names containing coefficients and techniques used to calibrate the instruments used in data collection. The named files can be found within the relevant documents folder accompanying the submitted data files.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "calibration_files", "domain_of": ["FieldDataset"]}
+        },
+    )
+    variables: Optional[
+        List[
+            Union[
+                Variable,
+                NonMeasuredVariable,
+                InSituVariable,
+                MeasuredVariable,
+                CalculatedVariable,
+                DiscreteMeasuredVariable,
+                ContinuousMeasuredVariable,
+                ContinuousPHVariable,
+                ContinuousTAVariable,
+                ContinuousDICVariable,
+                ContinuousSedimentVariable,
+                ContinuousCO2Variable,
+                DiscretePHVariable,
+                DiscreteTAVariable,
+                DiscreteDICVariable,
+                DiscreteSedimentVariable,
+                DiscreteCO2Variable,
+                HPLCVariable,
+            ]
+        ]
+    ] = Field(
+        default=None,
+        title="Variables",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "variables",
+                "domain_of": ["FieldDataset"],
+                "slot_uri": "schema:variableMeasured",
+            }
+        },
+    )
+    name: str = Field(
+        default=...,
+        title="Dataset Title",
+        description="""A brief descriptive sentence that summarizes the content of a dataset. Here is one example:
+\"Dissolved inorganic carbon, total alkalinity, pH, temperature, salinity and other variables collected from profile and discrete sample observations using CTD, Niskin bottle, and other instruments from R/V Wecoma in the U.S. West Coast California Current System during the 2011 West Coast Ocean Acidification Cruise (WCOA2011) from 2011-08-12 to 2011-08-30\"""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "name",
+                "domain_of": [
+                    "Organization",
+                    "NamedLink",
+                    "ExternalProject",
+                    "MonetaryGrant",
+                    "Experiment",
+                    "Person",
+                    "Dataset",
+                    "Platform",
+                    "ModelComponent",
+                ],
+                "slot_uri": "schema:name",
+            }
+        },
+    )
+    description: str = Field(
+        default=...,
+        title="Description",
+        description="""The abstract of a dataset is a brief summary that provides an overview of the dataset's content, purpose, and scope. It is used to provide context and background information to users who are interested in using the dataset. An abstract may include information such as the dataset's source, how the data was collected or generated, the variables or attributes included in the dataset, and any limitations or restrictions on the use of the data. It may also include information on how the data can be accessed or used.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "description",
+                "domain_of": [
+                    "Project",
+                    "ExternalProject",
+                    "Experiment",
+                    "VocabularyItemReference",
+                    "Dataset",
+                    "ModelComponent",
+                ],
+                "slot_uri": "schema:description",
+            }
+        },
+    )
+    project_id: str = Field(
+        default=...,
+        title="Project ID",
+        description="""The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.
 If no Project ID has been assigned, one may be generated by combining: lead organizer surname and first initial or company, a unique date, and location.
-Any method that creates a unique ID that will link all project data is acceptable.""", json_schema_extra = { "linkml_meta": {'alias': 'project_id', 'domain_of': ['Project', 'Experiment', 'Dataset']} })
-    experiment_id: str = Field(default=..., title="Experiment ID", description="""The experiment to which the data belong. Any naming convention that produces a unique ID is usable. The recommended naming convention is:
-Project ID + Experiment type + Optional numerical indicator to differentiate between various experiments of the same type for a project. A two digit consecutive number beginning with 01""", json_schema_extra = { "linkml_meta": {'alias': 'experiment_id', 'domain_of': ['Experiment', 'Dataset']} })
-    filenames: List[str] = Field(default=..., title="Filenames", min_length=1, json_schema_extra = { "linkml_meta": {'alias': 'filenames', 'domain_of': ['Dataset']} })
-    dataset_type: DatasetType = Field(default=..., title="Dataset Type", description="""Selected controlled vocabularies for data types relevant to mCDR have been referenced from NASA's SeaBASS metadata system and are provided below, for additional data types of optical characteristics see the [SeaBASS controlled definitions list](https://seabass.gsfc.nasa.gov/wiki/metadataheaders#data_type). Additional data types have been included to meet the needs of mCDR field projects.""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_type', 'domain_of': ['Dataset']} })
-    dataset_type_custom: Optional[str] = Field(default=None, title="Dataset Type (Custom)", description="""Custom \"data type\" when an appropriate value is not found in the controlled vocabulary list for mCDR Data Type and the corresponding `data_type` field is set to \"other\".""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_type_custom', 'domain_of': ['Dataset']} })
-    data_submitter: Person = Field(default=..., title="Data Submitter", json_schema_extra = { "linkml_meta": {'alias': 'data_submitter', 'domain_of': ['Dataset']} })
-    author_list_for_citation: Optional[str] = Field(default=None, title="Author List (for citation)", description="""Author list in the format of Lastname1, Firstname1 Middlename1; Lastname2, Firstname2 Middlename2; ...""", json_schema_extra = { "linkml_meta": {'alias': 'author_list_for_citation', 'domain_of': ['Dataset']} })
-    license: Optional[str] = Field(default=None, title="License", description="""Link a Dataset to its license to document legal constraints by adding a schema:license property. The guide recommends providing a URL that unambiguously identifies a specific version of the license used, but for many licenses it is hard to determine what that URL should be. Thus, we recommend that the license URL be drawn from the [SPDX license list](https://spdx.org/licenses/), which provides a curated list of licenses and their properties that is well maintained. For each SPDX entry, SPDX provides a canonical URL for the license (e.g., http://spdx.org/licenses/CC0-1.0), a unique licenseId (e.g., CC0-1.0), and other metadata about the license.""", json_schema_extra = { "linkml_meta": {'alias': 'license', 'domain_of': ['Dataset'], 'slot_uri': 'schema:license'} })
-    fair_use_data_request: Optional[str] = Field(default=None, title="Fair Use Data Request", description="""A statement from the data producer regarding how this dataset should be used.""", json_schema_extra = { "linkml_meta": {'alias': 'fair_use_data_request', 'domain_of': ['Dataset']} })
+Any method that creates a unique ID that will link all project data is acceptable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "project_id",
+                "domain_of": ["Project", "Experiment", "Dataset"],
+            }
+        },
+    )
+    experiment_id: str = Field(
+        default=...,
+        title="Experiment ID",
+        description="""The experiment to which the data belong. Any naming convention that produces a unique ID is usable. The recommended naming convention is:
+Project ID + Experiment type + Optional numerical indicator to differentiate between various experiments of the same type for a project. A two digit consecutive number beginning with 01""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "experiment_id",
+                "domain_of": ["Experiment", "Dataset"],
+            }
+        },
+    )
+    filenames: List[str] = Field(
+        default=...,
+        title="Filenames",
+        min_length=1,
+        json_schema_extra={
+            "linkml_meta": {"alias": "filenames", "domain_of": ["Dataset"]}
+        },
+    )
+    dataset_type: DatasetType = Field(
+        default=...,
+        title="Dataset Type",
+        description="""Selected controlled vocabularies for data types relevant to mCDR have been referenced from NASA's SeaBASS metadata system and are provided below, for additional data types of optical characteristics see the [SeaBASS controlled definitions list](https://seabass.gsfc.nasa.gov/wiki/metadataheaders#data_type). Additional data types have been included to meet the needs of mCDR field projects.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "dataset_type", "domain_of": ["Dataset"]}
+        },
+    )
+    dataset_type_custom: Optional[str] = Field(
+        default=None,
+        title="Dataset Type (Custom)",
+        description="""Custom \"data type\" when an appropriate value is not found in the controlled vocabulary list for mCDR Data Type and the corresponding `data_type` field is set to \"other\".""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "dataset_type_custom", "domain_of": ["Dataset"]}
+        },
+    )
+    data_submitter: Person = Field(
+        default=...,
+        title="Data Submitter",
+        json_schema_extra={
+            "linkml_meta": {"alias": "data_submitter", "domain_of": ["Dataset"]}
+        },
+    )
+    author_list_for_citation: Optional[str] = Field(
+        default=None,
+        title="Author List (for citation)",
+        description="""Author list in the format of Lastname1, Firstname1 Middlename1; Lastname2, Firstname2 Middlename2; ...""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "author_list_for_citation",
+                "domain_of": ["Dataset"],
+            }
+        },
+    )
+    license: Optional[str] = Field(
+        default=None,
+        title="License",
+        description="""Link a Dataset to its license to document legal constraints by adding a schema:license property. The guide recommends providing a URL that unambiguously identifies a specific version of the license used, but for many licenses it is hard to determine what that URL should be. Thus, we recommend that the license URL be drawn from the [SPDX license list](https://spdx.org/licenses/), which provides a curated list of licenses and their properties that is well maintained. For each SPDX entry, SPDX provides a canonical URL for the license (e.g., http://spdx.org/licenses/CC0-1.0), a unique licenseId (e.g., CC0-1.0), and other metadata about the license.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "license",
+                "domain_of": ["Dataset"],
+                "slot_uri": "schema:license",
+            }
+        },
+    )
+    fair_use_data_request: Optional[str] = Field(
+        default=None,
+        title="Fair Use Data Request",
+        description="""A statement from the data producer regarding how this dataset should be used.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "fair_use_data_request", "domain_of": ["Dataset"]}
+        },
+    )
 
-    @field_validator('temporal_coverage')
+    @field_validator("temporal_coverage")
     def pattern_temporal_coverage(cls, v):
-        pattern=re.compile(r"^\d{4}-\d{2}-\d{2}/(\d{4}-\d{2}-\d{2}|\.\.)$")
-        if isinstance(v,list):
+        pattern = re.compile(r"^\d{4}-\d{2}-\d{2}/(\d{4}-\d{2}-\d{2}|\.\.)$")
+        if isinstance(v, list):
             for element in v:
                 if isinstance(v, str) and not pattern.match(element):
                     raise ValueError(f"Invalid temporal_coverage format: {element}")
-        elif isinstance(v,str):
+        elif isinstance(v, str):
             if not pattern.match(v):
                 raise ValueError(f"Invalid temporal_coverage format: {v}")
         return v
@@ -3046,279 +11125,1024 @@ class ModelOutputDataset(Dataset):
     """
     A model simulation output dataset. Contains fields specific to computational model output including simulation configuration, output variables, and hardware information.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Dataset',
-         'rules': [{'postconditions': {'slot_conditions': {'mcdr_forcing_description': {'name': 'mcdr_forcing_description',
-                                                                                        'required': True}}},
-                    'preconditions': {'slot_conditions': {'simulation_type': {'equals_string': 'perturbation',
-                                                                              'name': 'simulation_type'}}}}],
-         'slot_usage': {'filenames': {'name': 'filenames',
-                                      'title': 'Model Output Filenames'}}})
 
-    simulation_type: SimulationType = Field(default=..., title="Simulation Type", description="""Whether this is a counterfactual (control/baseline) or perturbation simulation.""", json_schema_extra = { "linkml_meta": {'alias': 'simulation_type', 'domain_of': ['ModelOutputDataset']} })
-    spin_up_protocol: Optional[str] = Field(default=None, title="Spin-up Protocol", description="""Description of the model spin-up process.""", json_schema_extra = { "linkml_meta": {'alias': 'spin_up_protocol', 'domain_of': ['ModelOutputDataset']} })
-    start_datetime: datetime  = Field(default=..., title="Start Date and Time", description="""Start date and time of the simulation in UTC ISO-8601.""", json_schema_extra = { "linkml_meta": {'alias': 'start_datetime', 'domain_of': ['Experiment', 'ModelOutputDataset']} })
-    end_datetime: datetime  = Field(default=..., title="End Date and Time", description="""End date and time of the simulation in UTC ISO-8601.""", json_schema_extra = { "linkml_meta": {'alias': 'end_datetime', 'domain_of': ['Experiment', 'ModelOutputDataset']} })
-    output_frequency: Optional[str] = Field(default=None, title="Output Frequency", description="""Frequency of model output (e.g., 'hourly mean', 'daily mean').""", json_schema_extra = { "linkml_meta": {'alias': 'output_frequency', 'domain_of': ['ModelOutputDataset']} })
-    time_stepping_scheme: Optional[str] = Field(default=None, title="Time-stepping Scheme", description="""Time-stepping method and time step used in the simulation.""", json_schema_extra = { "linkml_meta": {'alias': 'time_stepping_scheme', 'domain_of': ['ModelOutputDataset']} })
-    mcdr_forcing_description: Optional[str] = Field(default=None, title="Description of mCDR Forcing", description="""Description of the mCDR forcing applied in the simulation (e.g., the alkalinity perturbation). Required when simulation_type is \"perturbation\".""", json_schema_extra = { "linkml_meta": {'alias': 'mcdr_forcing_description', 'domain_of': ['ModelOutputDataset']} })
-    hardware_configuration: Optional[HardwareConfiguration] = Field(default=None, title="Hardware Configuration", description="""Details about the computational hardware used for the simulation.""", json_schema_extra = { "linkml_meta": {'alias': 'hardware_configuration', 'domain_of': ['ModelOutputDataset']} })
-    model_output_variables: Optional[List[ModelOutputVariable]] = Field(default=None, title="Key Model Output Variables", description="""Checklist of variables included in the model simulation output.""", json_schema_extra = { "linkml_meta": {'alias': 'model_output_variables', 'domain_of': ['ModelOutputDataset']} })
-    name: str = Field(default=..., title="Dataset Title", description="""A brief descriptive sentence that summarizes the content of a dataset. Here is one example:
-\"Dissolved inorganic carbon, total alkalinity, pH, temperature, salinity and other variables collected from profile and discrete sample observations using CTD, Niskin bottle, and other instruments from R/V Wecoma in the U.S. West Coast California Current System during the 2011 West Coast Ocean Acidification Cruise (WCOA2011) from 2011-08-12 to 2011-08-30\"""", json_schema_extra = { "linkml_meta": {'alias': 'name',
-         'domain_of': ['Organization',
-                       'NamedLink',
-                       'ExternalProject',
-                       'MonetaryGrant',
-                       'Experiment',
-                       'Person',
-                       'Dataset',
-                       'Platform',
-                       'ModelComponent'],
-         'slot_uri': 'schema:name'} })
-    description: str = Field(default=..., title="Description", description="""The abstract of a dataset is a brief summary that provides an overview of the dataset's content, purpose, and scope. It is used to provide context and background information to users who are interested in using the dataset. An abstract may include information such as the dataset's source, how the data was collected or generated, the variables or attributes included in the dataset, and any limitations or restrictions on the use of the data. It may also include information on how the data can be accessed or used.""", json_schema_extra = { "linkml_meta": {'alias': 'description',
-         'domain_of': ['Project',
-                       'ExternalProject',
-                       'Experiment',
-                       'VocabularyItemReference',
-                       'Dataset',
-                       'ModelComponent'],
-         'slot_uri': 'schema:description'} })
-    project_id: str = Field(default=..., title="Project ID", description="""The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "from_schema": "Dataset",
+            "rules": [
+                {
+                    "postconditions": {
+                        "slot_conditions": {
+                            "mcdr_forcing_description": {
+                                "name": "mcdr_forcing_description",
+                                "required": True,
+                            }
+                        }
+                    },
+                    "preconditions": {
+                        "slot_conditions": {
+                            "simulation_type": {
+                                "equals_string": "perturbation",
+                                "name": "simulation_type",
+                            }
+                        }
+                    },
+                }
+            ],
+            "slot_usage": {
+                "filenames": {"name": "filenames", "title": "Model Output Filenames"}
+            },
+        }
+    )
+
+    simulation_type: SimulationType = Field(
+        default=...,
+        title="Simulation Type",
+        description="""Whether this is a counterfactual (control/baseline) or perturbation simulation.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "simulation_type",
+                "domain_of": ["ModelOutputDataset"],
+            }
+        },
+    )
+    spin_up_protocol: Optional[str] = Field(
+        default=None,
+        title="Spin-up Protocol",
+        description="""Description of the model spin-up process.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "spin_up_protocol",
+                "domain_of": ["ModelOutputDataset"],
+            }
+        },
+    )
+    start_datetime: datetime = Field(
+        default=...,
+        title="Start Date and Time",
+        description="""Start date and time of the simulation in UTC ISO-8601.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "start_datetime",
+                "domain_of": ["Experiment", "ModelOutputDataset"],
+            }
+        },
+    )
+    end_datetime: datetime = Field(
+        default=...,
+        title="End Date and Time",
+        description="""End date and time of the simulation in UTC ISO-8601.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "end_datetime",
+                "domain_of": ["Experiment", "ModelOutputDataset"],
+            }
+        },
+    )
+    output_frequency: Optional[str] = Field(
+        default=None,
+        title="Output Frequency",
+        description="""Frequency of model output (e.g., 'hourly mean', 'daily mean').""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "output_frequency",
+                "domain_of": ["ModelOutputDataset"],
+            }
+        },
+    )
+    time_stepping_scheme: Optional[str] = Field(
+        default=None,
+        title="Time-stepping Scheme",
+        description="""Time-stepping method and time step used in the simulation.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "time_stepping_scheme",
+                "domain_of": ["ModelOutputDataset"],
+            }
+        },
+    )
+    mcdr_forcing_description: Optional[str] = Field(
+        default=None,
+        title="Description of mCDR Forcing",
+        description="""Description of the mCDR forcing applied in the simulation (e.g., the alkalinity perturbation). Required when simulation_type is \"perturbation\".""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "mcdr_forcing_description",
+                "domain_of": ["ModelOutputDataset"],
+            }
+        },
+    )
+    hardware_configuration: Optional[HardwareConfiguration] = Field(
+        default=None,
+        title="Hardware Configuration",
+        description="""Details about the computational hardware used for the simulation.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "hardware_configuration",
+                "domain_of": ["ModelOutputDataset"],
+            }
+        },
+    )
+    model_output_variables: Optional[List[ModelOutputVariable]] = Field(
+        default=None,
+        title="Key Model Output Variables",
+        description="""Checklist of variables included in the model simulation output.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "model_output_variables",
+                "domain_of": ["ModelOutputDataset"],
+            }
+        },
+    )
+    name: str = Field(
+        default=...,
+        title="Dataset Title",
+        description="""A brief descriptive sentence that summarizes the content of a dataset. Here is one example:
+\"Dissolved inorganic carbon, total alkalinity, pH, temperature, salinity and other variables collected from profile and discrete sample observations using CTD, Niskin bottle, and other instruments from R/V Wecoma in the U.S. West Coast California Current System during the 2011 West Coast Ocean Acidification Cruise (WCOA2011) from 2011-08-12 to 2011-08-30\"""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "name",
+                "domain_of": [
+                    "Organization",
+                    "NamedLink",
+                    "ExternalProject",
+                    "MonetaryGrant",
+                    "Experiment",
+                    "Person",
+                    "Dataset",
+                    "Platform",
+                    "ModelComponent",
+                ],
+                "slot_uri": "schema:name",
+            }
+        },
+    )
+    description: str = Field(
+        default=...,
+        title="Description",
+        description="""The abstract of a dataset is a brief summary that provides an overview of the dataset's content, purpose, and scope. It is used to provide context and background information to users who are interested in using the dataset. An abstract may include information such as the dataset's source, how the data was collected or generated, the variables or attributes included in the dataset, and any limitations or restrictions on the use of the data. It may also include information on how the data can be accessed or used.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "description",
+                "domain_of": [
+                    "Project",
+                    "ExternalProject",
+                    "Experiment",
+                    "VocabularyItemReference",
+                    "Dataset",
+                    "ModelComponent",
+                ],
+                "slot_uri": "schema:description",
+            }
+        },
+    )
+    project_id: str = Field(
+        default=...,
+        title="Project ID",
+        description="""The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.
 If no Project ID has been assigned, one may be generated by combining: lead organizer surname and first initial or company, a unique date, and location.
-Any method that creates a unique ID that will link all project data is acceptable.""", json_schema_extra = { "linkml_meta": {'alias': 'project_id', 'domain_of': ['Project', 'Experiment', 'Dataset']} })
-    experiment_id: str = Field(default=..., title="Experiment ID", description="""The experiment to which the data belong. Any naming convention that produces a unique ID is usable. The recommended naming convention is:
-Project ID + Experiment type + Optional numerical indicator to differentiate between various experiments of the same type for a project. A two digit consecutive number beginning with 01""", json_schema_extra = { "linkml_meta": {'alias': 'experiment_id', 'domain_of': ['Experiment', 'Dataset']} })
-    filenames: List[str] = Field(default=..., title="Model Output Filenames", min_length=1, json_schema_extra = { "linkml_meta": {'alias': 'filenames', 'domain_of': ['Dataset']} })
-    dataset_type: DatasetType = Field(default=..., title="Dataset Type", description="""Selected controlled vocabularies for data types relevant to mCDR have been referenced from NASA's SeaBASS metadata system and are provided below, for additional data types of optical characteristics see the [SeaBASS controlled definitions list](https://seabass.gsfc.nasa.gov/wiki/metadataheaders#data_type). Additional data types have been included to meet the needs of mCDR field projects.""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_type', 'domain_of': ['Dataset']} })
-    dataset_type_custom: Optional[str] = Field(default=None, title="Dataset Type (Custom)", description="""Custom \"data type\" when an appropriate value is not found in the controlled vocabulary list for mCDR Data Type and the corresponding `data_type` field is set to \"other\".""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_type_custom', 'domain_of': ['Dataset']} })
-    data_submitter: Person = Field(default=..., title="Data Submitter", json_schema_extra = { "linkml_meta": {'alias': 'data_submitter', 'domain_of': ['Dataset']} })
-    author_list_for_citation: Optional[str] = Field(default=None, title="Author List (for citation)", description="""Author list in the format of Lastname1, Firstname1 Middlename1; Lastname2, Firstname2 Middlename2; ...""", json_schema_extra = { "linkml_meta": {'alias': 'author_list_for_citation', 'domain_of': ['Dataset']} })
-    license: Optional[str] = Field(default=None, title="License", description="""Link a Dataset to its license to document legal constraints by adding a schema:license property. The guide recommends providing a URL that unambiguously identifies a specific version of the license used, but for many licenses it is hard to determine what that URL should be. Thus, we recommend that the license URL be drawn from the [SPDX license list](https://spdx.org/licenses/), which provides a curated list of licenses and their properties that is well maintained. For each SPDX entry, SPDX provides a canonical URL for the license (e.g., http://spdx.org/licenses/CC0-1.0), a unique licenseId (e.g., CC0-1.0), and other metadata about the license.""", json_schema_extra = { "linkml_meta": {'alias': 'license', 'domain_of': ['Dataset'], 'slot_uri': 'schema:license'} })
-    fair_use_data_request: Optional[str] = Field(default=None, title="Fair Use Data Request", description="""A statement from the data producer regarding how this dataset should be used.""", json_schema_extra = { "linkml_meta": {'alias': 'fair_use_data_request', 'domain_of': ['Dataset']} })
+Any method that creates a unique ID that will link all project data is acceptable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "project_id",
+                "domain_of": ["Project", "Experiment", "Dataset"],
+            }
+        },
+    )
+    experiment_id: str = Field(
+        default=...,
+        title="Experiment ID",
+        description="""The experiment to which the data belong. Any naming convention that produces a unique ID is usable. The recommended naming convention is:
+Project ID + Experiment type + Optional numerical indicator to differentiate between various experiments of the same type for a project. A two digit consecutive number beginning with 01""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "experiment_id",
+                "domain_of": ["Experiment", "Dataset"],
+            }
+        },
+    )
+    filenames: List[str] = Field(
+        default=...,
+        title="Model Output Filenames",
+        min_length=1,
+        json_schema_extra={
+            "linkml_meta": {"alias": "filenames", "domain_of": ["Dataset"]}
+        },
+    )
+    dataset_type: DatasetType = Field(
+        default=...,
+        title="Dataset Type",
+        description="""Selected controlled vocabularies for data types relevant to mCDR have been referenced from NASA's SeaBASS metadata system and are provided below, for additional data types of optical characteristics see the [SeaBASS controlled definitions list](https://seabass.gsfc.nasa.gov/wiki/metadataheaders#data_type). Additional data types have been included to meet the needs of mCDR field projects.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "dataset_type", "domain_of": ["Dataset"]}
+        },
+    )
+    dataset_type_custom: Optional[str] = Field(
+        default=None,
+        title="Dataset Type (Custom)",
+        description="""Custom \"data type\" when an appropriate value is not found in the controlled vocabulary list for mCDR Data Type and the corresponding `data_type` field is set to \"other\".""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "dataset_type_custom", "domain_of": ["Dataset"]}
+        },
+    )
+    data_submitter: Person = Field(
+        default=...,
+        title="Data Submitter",
+        json_schema_extra={
+            "linkml_meta": {"alias": "data_submitter", "domain_of": ["Dataset"]}
+        },
+    )
+    author_list_for_citation: Optional[str] = Field(
+        default=None,
+        title="Author List (for citation)",
+        description="""Author list in the format of Lastname1, Firstname1 Middlename1; Lastname2, Firstname2 Middlename2; ...""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "author_list_for_citation",
+                "domain_of": ["Dataset"],
+            }
+        },
+    )
+    license: Optional[str] = Field(
+        default=None,
+        title="License",
+        description="""Link a Dataset to its license to document legal constraints by adding a schema:license property. The guide recommends providing a URL that unambiguously identifies a specific version of the license used, but for many licenses it is hard to determine what that URL should be. Thus, we recommend that the license URL be drawn from the [SPDX license list](https://spdx.org/licenses/), which provides a curated list of licenses and their properties that is well maintained. For each SPDX entry, SPDX provides a canonical URL for the license (e.g., http://spdx.org/licenses/CC0-1.0), a unique licenseId (e.g., CC0-1.0), and other metadata about the license.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "license",
+                "domain_of": ["Dataset"],
+                "slot_uri": "schema:license",
+            }
+        },
+    )
+    fair_use_data_request: Optional[str] = Field(
+        default=None,
+        title="Fair Use Data Request",
+        description="""A statement from the data producer regarding how this dataset should be used.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "fair_use_data_request", "domain_of": ["Dataset"]}
+        },
+    )
 
 
 class HardwareConfiguration(ConfiguredBaseModel):
     """
     Details about the computational hardware used to run a model simulation.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Dataset'})
 
-    machine: Optional[str] = Field(default=None, title="Machine", description="""Name of the machine or cluster (e.g., 'Perlmutter').""", json_schema_extra = { "linkml_meta": {'alias': 'machine', 'domain_of': ['HardwareConfiguration']} })
-    operating_system: Optional[str] = Field(default=None, title="Operating System", description="""Operating system used (e.g., 'Linux').""", json_schema_extra = { "linkml_meta": {'alias': 'operating_system', 'domain_of': ['HardwareConfiguration']} })
-    cpu_gpu_details: Optional[str] = Field(default=None, title="CPU/GPU Details", description="""Details about CPU/GPU hardware or link to specifications.""", json_schema_extra = { "linkml_meta": {'alias': 'cpu_gpu_details', 'domain_of': ['HardwareConfiguration']} })
-    memory: Optional[str] = Field(default=None, title="Memory", description="""Memory available (e.g., '512 GB DDR4').""", json_schema_extra = { "linkml_meta": {'alias': 'memory', 'domain_of': ['HardwareConfiguration']} })
-    storage: Optional[str] = Field(default=None, title="Storage", description="""Storage available (e.g., '44 PB').""", json_schema_extra = { "linkml_meta": {'alias': 'storage', 'domain_of': ['HardwareConfiguration']} })
-    parallelization: Optional[str] = Field(default=None, title="Parallelization", description="""Parallelization details (e.g., '3 nodes, 108 ntasks per node').""", json_schema_extra = { "linkml_meta": {'alias': 'parallelization', 'domain_of': ['HardwareConfiguration']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({"from_schema": "Dataset"})
+
+    machine: Optional[str] = Field(
+        default=None,
+        title="Machine",
+        description="""Name of the machine or cluster (e.g., 'Perlmutter').""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "machine", "domain_of": ["HardwareConfiguration"]}
+        },
+    )
+    operating_system: Optional[str] = Field(
+        default=None,
+        title="Operating System",
+        description="""Operating system used (e.g., 'Linux').""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "operating_system",
+                "domain_of": ["HardwareConfiguration"],
+            }
+        },
+    )
+    cpu_gpu_details: Optional[str] = Field(
+        default=None,
+        title="CPU/GPU Details",
+        description="""Details about CPU/GPU hardware or link to specifications.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "cpu_gpu_details",
+                "domain_of": ["HardwareConfiguration"],
+            }
+        },
+    )
+    memory: Optional[str] = Field(
+        default=None,
+        title="Memory",
+        description="""Memory available (e.g., '512 GB DDR4').""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "memory", "domain_of": ["HardwareConfiguration"]}
+        },
+    )
+    storage: Optional[str] = Field(
+        default=None,
+        title="Storage",
+        description="""Storage available (e.g., '44 PB').""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "storage", "domain_of": ["HardwareConfiguration"]}
+        },
+    )
+    parallelization: Optional[str] = Field(
+        default=None,
+        title="Parallelization",
+        description="""Parallelization details (e.g., '3 nodes, 108 ntasks per node').""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "parallelization",
+                "domain_of": ["HardwareConfiguration"],
+            }
+        },
+    )
 
 
 class Platform(ConfiguredBaseModel):
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Platform',
-         'slot_usage': {'name': {'description': 'Name of the observing platform, e.g., '
-                                                'RV Ronald Brown, Saildrone#0132, '
-                                                'Mooring_First_Landing, etc.',
-                                 'name': 'name'}}})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "from_schema": "Platform",
+            "slot_usage": {
+                "name": {
+                    "description": "Name of the observing platform, e.g., "
+                    "RV Ronald Brown, Saildrone#0132, "
+                    "Mooring_First_Landing, etc.",
+                    "name": "name",
+                }
+            },
+        }
+    )
 
-    name: Optional[str] = Field(default=None, title="Name", description="""Name of the observing platform, e.g., RV Ronald Brown, Saildrone#0132, Mooring_First_Landing, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'name',
-         'domain_of': ['Organization',
-                       'NamedLink',
-                       'ExternalProject',
-                       'MonetaryGrant',
-                       'Experiment',
-                       'Person',
-                       'Dataset',
-                       'Platform',
-                       'ModelComponent'],
-         'slot_uri': 'schema:name'} })
-    platform_type: PlatformType = Field(default=..., title="Platform Type", description="""Controlled vocabularies for the types of the platform: https://www.ncei.noaa.gov/access/ocean-carbon-acidification-data-system/vocabularies/platform-types.html""", json_schema_extra = { "linkml_meta": {'alias': 'platform_type', 'domain_of': ['Platform']} })
-    platform_id: Optional[str] = Field(default=None, title="Platform ID", description="""Synonymous with glider ID, cruise ID. A unique name assigned to oceanographic assets such as buoys, moorings, floats, drifters, towed vehicles like the Scanfish or StingRay. This is synonymous with the BCO-DMO “platform” parameter (https://www.bco-dmo.org/parameter/932), NERC “platform type” term (https://vocab.nerc.ac.uk/collection/W06/current/CLSS0001/), and the “platform_id” term within the Climate and Forecast (CF) metadata conventions (https://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html). e.g., ICES platform code (e.g., 33RO).""", json_schema_extra = { "linkml_meta": {'alias': 'platform_id', 'domain_of': ['Platform']} })
-    owner: Optional[str] = Field(default=None, title="Owner", description="""Institution that owns the platform.""", json_schema_extra = { "linkml_meta": {'alias': 'owner', 'domain_of': ['Platform']} })
-    country: Optional[str] = Field(default=None, title="Country", description="""Country to which the platform belongs.""", json_schema_extra = { "linkml_meta": {'alias': 'country', 'domain_of': ['Organization', 'Platform']} })
+    name: Optional[str] = Field(
+        default=None,
+        title="Name",
+        description="""Name of the observing platform, e.g., RV Ronald Brown, Saildrone#0132, Mooring_First_Landing, etc.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "name",
+                "domain_of": [
+                    "Organization",
+                    "NamedLink",
+                    "ExternalProject",
+                    "MonetaryGrant",
+                    "Experiment",
+                    "Person",
+                    "Dataset",
+                    "Platform",
+                    "ModelComponent",
+                ],
+                "slot_uri": "schema:name",
+            }
+        },
+    )
+    platform_type: PlatformType = Field(
+        default=...,
+        title="Platform Type",
+        description="""Controlled vocabularies for the types of the platform: https://www.ncei.noaa.gov/access/ocean-carbon-acidification-data-system/vocabularies/platform-types.html""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "platform_type", "domain_of": ["Platform"]}
+        },
+    )
+    platform_id: Optional[str] = Field(
+        default=None,
+        title="Platform ID",
+        description="""Synonymous with glider ID, cruise ID. A unique name assigned to oceanographic assets such as buoys, moorings, floats, drifters, towed vehicles like the Scanfish or StingRay. This is synonymous with the BCO-DMO “platform” parameter (https://www.bco-dmo.org/parameter/932), NERC “platform type” term (https://vocab.nerc.ac.uk/collection/W06/current/CLSS0001/), and the “platform_id” term within the Climate and Forecast (CF) metadata conventions (https://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html). e.g., ICES platform code (e.g., 33RO).""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "platform_id", "domain_of": ["Platform"]}
+        },
+    )
+    owner: Optional[str] = Field(
+        default=None,
+        title="Owner",
+        description="""Institution that owns the platform.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "owner", "domain_of": ["Platform"]}
+        },
+    )
+    country: Optional[str] = Field(
+        default=None,
+        title="Country",
+        description="""Country to which the platform belongs.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "country",
+                "domain_of": ["Organization", "Platform"],
+            }
+        },
+    )
 
 
 class Model(Experiment):
     """
     A computational model experiment related to OAE.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Model'})
 
-    model_configuration: Optional[List[str]] = Field(default=None, title="Model Configuration", description="""Links to model configuration files or documentation.""", json_schema_extra = { "linkml_meta": {'alias': 'model_configuration', 'domain_of': ['Model']} })
-    model_components: Optional[List[ModelComponent]] = Field(default=None, title="Model Components", description="""Components of the model (e.g., physics, biogeochemistry).""", json_schema_extra = { "linkml_meta": {'alias': 'model_components', 'domain_of': ['Model']} })
-    grid_details: Optional[List[ModelGrid]] = Field(default=None, title="Grid Details", description="""Details about the model grid(s). Use multiple entries for nested grid configurations.""", json_schema_extra = { "linkml_meta": {'alias': 'grid_details', 'domain_of': ['Model']} })
-    input_details: Optional[ModelInputDetails] = Field(default=None, title="Input Details", description="""Details about input data sources used to drive the model.""", json_schema_extra = { "linkml_meta": {'alias': 'input_details', 'domain_of': ['Model']} })
-    name: Optional[str] = Field(default=None, title="Name", description="""Optional common name for experiment.""", json_schema_extra = { "linkml_meta": {'alias': 'name',
-         'domain_of': ['Organization',
-                       'NamedLink',
-                       'ExternalProject',
-                       'MonetaryGrant',
-                       'Experiment',
-                       'Person',
-                       'Dataset',
-                       'Platform',
-                       'ModelComponent'],
-         'slot_uri': 'schema:name'} })
-    description: str = Field(default=..., title="Experiment Description", description="""A narrative description of the experiment. For example, what part of the project do these data represent (e.g., baseline, intervention, control) and what do they contribute to the overall project? Are all project research questions listed in Project description relevant? What were the processes to achieve these goals and answer these questions? Data submitters are encouraged to note any significant changes to the original experimental plan due to unforeseen circumstances here.""", json_schema_extra = { "linkml_meta": {'alias': 'description',
-         'domain_of': ['Project',
-                       'ExternalProject',
-                       'Experiment',
-                       'VocabularyItemReference',
-                       'Dataset',
-                       'ModelComponent'],
-         'slot_uri': 'schema:description'} })
-    spatial_coverage: SpatialCoverage = Field(default=..., title="Spatial Coverage", description="""Latitude/longitude bounds of observed data in experiment, provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]""", json_schema_extra = { "linkml_meta": {'alias': 'spatial_coverage',
-         'domain_of': ['Project', 'ExternalProject', 'Experiment', 'ModelGrid'],
-         'slot_uri': 'schema:spatialCoverage'} })
-    project_id: str = Field(default=..., title="Project ID", description="""The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({"from_schema": "Model"})
+
+    model_configuration: Optional[List[str]] = Field(
+        default=None,
+        title="Model Configuration",
+        description="""Links to model configuration files or documentation.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "model_configuration", "domain_of": ["Model"]}
+        },
+    )
+    model_components: Optional[List[ModelComponent]] = Field(
+        default=None,
+        title="Model Components",
+        description="""Components of the model (e.g., physics, biogeochemistry).""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "model_components", "domain_of": ["Model"]}
+        },
+    )
+    grid_details: Optional[List[ModelGrid]] = Field(
+        default=None,
+        title="Grid Details",
+        description="""Details about the model grid(s). Use multiple entries for nested grid configurations.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "grid_details", "domain_of": ["Model"]}
+        },
+    )
+    input_details: Optional[ModelInputDetails] = Field(
+        default=None,
+        title="Input Details",
+        description="""Details about input data sources used to drive the model.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "input_details", "domain_of": ["Model"]}
+        },
+    )
+    name: Optional[str] = Field(
+        default=None,
+        title="Name",
+        description="""Optional common name for experiment.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "name",
+                "domain_of": [
+                    "Organization",
+                    "NamedLink",
+                    "ExternalProject",
+                    "MonetaryGrant",
+                    "Experiment",
+                    "Person",
+                    "Dataset",
+                    "Platform",
+                    "ModelComponent",
+                ],
+                "slot_uri": "schema:name",
+            }
+        },
+    )
+    description: str = Field(
+        default=...,
+        title="Experiment Description",
+        description="""A narrative description of the experiment. For example, what part of the project do these data represent (e.g., baseline, intervention, control) and what do they contribute to the overall project? Are all project research questions listed in Project description relevant? What were the processes to achieve these goals and answer these questions? Data submitters are encouraged to note any significant changes to the original experimental plan due to unforeseen circumstances here.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "description",
+                "domain_of": [
+                    "Project",
+                    "ExternalProject",
+                    "Experiment",
+                    "VocabularyItemReference",
+                    "Dataset",
+                    "ModelComponent",
+                ],
+                "slot_uri": "schema:description",
+            }
+        },
+    )
+    spatial_coverage: SpatialCoverage = Field(
+        default=...,
+        title="Spatial Coverage",
+        description="""Latitude/longitude bounds of observed data in experiment, provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "spatial_coverage",
+                "domain_of": ["Project", "ExternalProject", "Experiment", "ModelGrid"],
+                "slot_uri": "schema:spatialCoverage",
+            }
+        },
+    )
+    project_id: str = Field(
+        default=...,
+        title="Project ID",
+        description="""The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.
 If no Project ID has been assigned, one may be generated by combining: lead organizer surname and first initial or company, a unique date, and location.
-Any method that creates a unique ID that will link all project data is acceptable.""", json_schema_extra = { "linkml_meta": {'alias': 'project_id', 'domain_of': ['Project', 'Experiment', 'Dataset']} })
-    experiment_id: str = Field(default=..., title="Experiment ID", description="""The experiment to which the data belong. Any naming convention that produces a unique ID is usable. The recommended naming convention is:
-Project ID + Experiment type + Optional numerical indicator to differentiate between various experiments of the same type for a project. A two digit consecutive number beginning with 01""", json_schema_extra = { "linkml_meta": {'alias': 'experiment_id', 'domain_of': ['Experiment', 'Dataset']} })
-    experiment_types: List[ExperimentType] = Field(default=..., title="mCDR Experiment Type(s)", description="""The type(s) of mCDR experiment conducted. See Controlled Vocabularies section for definitions.""", json_schema_extra = { "linkml_meta": {'alias': 'experiment_types', 'domain_of': ['Experiment']} })
-    public_comments: Optional[str] = Field(default=None, title="Public Comments", description="""File name(s) of public comment related documents. If possible, please provide public comments concatenated into a single pdf""", json_schema_extra = { "linkml_meta": {'alias': 'public_comments', 'domain_of': ['Experiment'], 'recommended': True} })
-    experiment_leads: List[Person] = Field(default=..., title="Experiment Lead(s)", description="""Provide details for each experiment lead / principal investigator (PI) including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.""", json_schema_extra = { "linkml_meta": {'alias': 'experiment_leads', 'domain_of': ['Experiment']} })
-    start_datetime: datetime  = Field(default=..., title="Start Date and Time (UTC)", description="""Start date and time of experiment in UTC ISO-8601""", json_schema_extra = { "linkml_meta": {'alias': 'start_datetime', 'domain_of': ['Experiment', 'ModelOutputDataset']} })
-    end_datetime: Optional[datetime ] = Field(default=None, title="End Date and Time (UTC)", description="""End date and time of experiment in UTC ISO-8601""", json_schema_extra = { "linkml_meta": {'alias': 'end_datetime', 'domain_of': ['Experiment', 'ModelOutputDataset']} })
+Any method that creates a unique ID that will link all project data is acceptable.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "project_id",
+                "domain_of": ["Project", "Experiment", "Dataset"],
+            }
+        },
+    )
+    experiment_id: str = Field(
+        default=...,
+        title="Experiment ID",
+        description="""The experiment to which the data belong. Any naming convention that produces a unique ID is usable. The recommended naming convention is:
+Project ID + Experiment type + Optional numerical indicator to differentiate between various experiments of the same type for a project. A two digit consecutive number beginning with 01""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "experiment_id",
+                "domain_of": ["Experiment", "Dataset"],
+            }
+        },
+    )
+    experiment_types: List[ExperimentType] = Field(
+        default=...,
+        title="mCDR Experiment Type(s)",
+        description="""The type(s) of mCDR experiment conducted. See Controlled Vocabularies section for definitions.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "experiment_types", "domain_of": ["Experiment"]}
+        },
+    )
+    public_comments: Optional[str] = Field(
+        default=None,
+        title="Public Comments",
+        description="""File name(s) of public comment related documents. If possible, please provide public comments concatenated into a single pdf""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "public_comments",
+                "domain_of": ["Experiment"],
+                "recommended": True,
+            }
+        },
+    )
+    experiment_leads: List[Person] = Field(
+        default=...,
+        title="Experiment Lead(s)",
+        description="""Provide details for each experiment lead / principal investigator (PI) including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "experiment_leads", "domain_of": ["Experiment"]}
+        },
+    )
+    start_datetime: datetime = Field(
+        default=...,
+        title="Start Date and Time (UTC)",
+        description="""Start date and time of experiment in UTC ISO-8601""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "start_datetime",
+                "domain_of": ["Experiment", "ModelOutputDataset"],
+            }
+        },
+    )
+    end_datetime: Optional[datetime] = Field(
+        default=None,
+        title="End Date and Time (UTC)",
+        description="""End date and time of experiment in UTC ISO-8601""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "end_datetime",
+                "domain_of": ["Experiment", "ModelOutputDataset"],
+            }
+        },
+    )
 
 
 class ModelComponent(ConfiguredBaseModel):
     """
     A component of a model (e.g., physics, biogeochemistry/ecosystem).
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Model',
-         'rules': [{'postconditions': {'slot_conditions': {'model_component_type_custom': {'name': 'model_component_type_custom',
-                                                                                           'required': True}}},
-                    'preconditions': {'slot_conditions': {'model_component_type': {'equals_string': 'other',
-                                                                                   'name': 'model_component_type'}}}}],
-         'slot_usage': {'description': {'description': 'A description of the model '
-                                                       'component characteristics.\n'
-                                                       'For physics components, this '
-                                                       'should include the version of '
-                                                       'equations being solved '
-                                                       '(hydrostatic vs '
-                                                       'non-hydrostatic), tracer '
-                                                       'advection scheme, how bottom '
-                                                       'drag is represented, mixed '
-                                                       'layer parameterizations, '
-                                                       'sub-grid mixing '
-                                                       'parameterizations if '
-                                                       'applicable, etc.\n'
-                                                       'For BGC components, this '
-                                                       'should include details of '
-                                                       'which parameters are modeled '
-                                                       'explicitly, derived carbonate '
-                                                       'system parameters, advection '
-                                                       'scheme for biological tracers, '
-                                                       'CO₂ solver protocol (e.g., '
-                                                       'CO₂SYS), links to data/code '
-                                                       'with biological model '
-                                                       'parameters (e.g., growth and '
-                                                       'mortality rates), etc. '
-                                                       'Equations for each explicitly '
-                                                       'modeled parameter should be '
-                                                       'provided (can be links to '
-                                                       'publications), and it should '
-                                                       'be noted if any equations or '
-                                                       'parameter values (e.g. growth '
-                                                       'rates) were modified. '
-                                                       'Description and/or references '
-                                                       'of air-sea CO₂ flux '
-                                                       'parameterization used, gas '
-                                                       'transfer velocity formulation '
-                                                       'and atmospheric CO₂ details '
-                                                       '(e.g., fixed or time varying, '
-                                                       'and if time varying which data '
-                                                       'were used). Also include '
-                                                       'details on whether dissolution '
-                                                       'and precipitation of calcium '
-                                                       'carbonate are considered, how '
-                                                       'exchanges between sediment and '
-                                                       'overlying water are '
-                                                       'represented (if applicable), '
-                                                       'and whether active feedbacks '
-                                                       'between biological processes '
-                                                       'and the carbonate system are '
-                                                       'represented.\n'
-                                                       'Associated links to data, '
-                                                       'DOIs, or publications can be '
-                                                       'noted here, but should be '
-                                                       'supplemental.',
-                                        'name': 'description',
-                                        'title': 'Model Component Description'}}})
 
-    description: Optional[str] = Field(default=None, title="Model Component Description", description="""A description of the model component characteristics.
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {
+            "from_schema": "Model",
+            "rules": [
+                {
+                    "postconditions": {
+                        "slot_conditions": {
+                            "model_component_type_custom": {
+                                "name": "model_component_type_custom",
+                                "required": True,
+                            }
+                        }
+                    },
+                    "preconditions": {
+                        "slot_conditions": {
+                            "model_component_type": {
+                                "equals_string": "other",
+                                "name": "model_component_type",
+                            }
+                        }
+                    },
+                }
+            ],
+            "slot_usage": {
+                "description": {
+                    "description": "A description of the model "
+                    "component characteristics.\n"
+                    "For physics components, this "
+                    "should include the version of "
+                    "equations being solved "
+                    "(hydrostatic vs "
+                    "non-hydrostatic), tracer "
+                    "advection scheme, how bottom "
+                    "drag is represented, mixed "
+                    "layer parameterizations, "
+                    "sub-grid mixing "
+                    "parameterizations if "
+                    "applicable, etc.\n"
+                    "For BGC components, this "
+                    "should include details of "
+                    "which parameters are modeled "
+                    "explicitly, derived carbonate "
+                    "system parameters, advection "
+                    "scheme for biological tracers, "
+                    "CO₂ solver protocol (e.g., "
+                    "CO₂SYS), links to data/code "
+                    "with biological model "
+                    "parameters (e.g., growth and "
+                    "mortality rates), etc. "
+                    "Equations for each explicitly "
+                    "modeled parameter should be "
+                    "provided (can be links to "
+                    "publications), and it should "
+                    "be noted if any equations or "
+                    "parameter values (e.g. growth "
+                    "rates) were modified. "
+                    "Description and/or references "
+                    "of air-sea CO₂ flux "
+                    "parameterization used, gas "
+                    "transfer velocity formulation "
+                    "and atmospheric CO₂ details "
+                    "(e.g., fixed or time varying, "
+                    "and if time varying which data "
+                    "were used). Also include "
+                    "details on whether dissolution "
+                    "and precipitation of calcium "
+                    "carbonate are considered, how "
+                    "exchanges between sediment and "
+                    "overlying water are "
+                    "represented (if applicable), "
+                    "and whether active feedbacks "
+                    "between biological processes "
+                    "and the carbonate system are "
+                    "represented.\n"
+                    "Associated links to data, "
+                    "DOIs, or publications can be "
+                    "noted here, but should be "
+                    "supplemental.",
+                    "name": "description",
+                    "title": "Model Component Description",
+                }
+            },
+        }
+    )
+
+    description: Optional[str] = Field(
+        default=None,
+        title="Model Component Description",
+        description="""A description of the model component characteristics.
 For physics components, this should include the version of equations being solved (hydrostatic vs non-hydrostatic), tracer advection scheme, how bottom drag is represented, mixed layer parameterizations, sub-grid mixing parameterizations if applicable, etc.
 For BGC components, this should include details of which parameters are modeled explicitly, derived carbonate system parameters, advection scheme for biological tracers, CO₂ solver protocol (e.g., CO₂SYS), links to data/code with biological model parameters (e.g., growth and mortality rates), etc. Equations for each explicitly modeled parameter should be provided (can be links to publications), and it should be noted if any equations or parameter values (e.g. growth rates) were modified. Description and/or references of air-sea CO₂ flux parameterization used, gas transfer velocity formulation and atmospheric CO₂ details (e.g., fixed or time varying, and if time varying which data were used). Also include details on whether dissolution and precipitation of calcium carbonate are considered, how exchanges between sediment and overlying water are represented (if applicable), and whether active feedbacks between biological processes and the carbonate system are represented.
-Associated links to data, DOIs, or publications can be noted here, but should be supplemental.""", json_schema_extra = { "linkml_meta": {'alias': 'description',
-         'domain_of': ['Project',
-                       'ExternalProject',
-                       'Experiment',
-                       'VocabularyItemReference',
-                       'Dataset',
-                       'ModelComponent'],
-         'slot_uri': 'schema:description'} })
-    model_component_type: ModelComponentType = Field(default=..., title="Model Component Type", description="""The type of model component (physics, BGC/ecosystem, or other).""", json_schema_extra = { "linkml_meta": {'alias': 'model_component_type', 'domain_of': ['ModelComponent']} })
-    model_component_type_custom: Optional[str] = Field(default=None, title="Model Component Type (custom)", json_schema_extra = { "linkml_meta": {'alias': 'model_component_type_custom', 'domain_of': ['ModelComponent']} })
-    name: str = Field(default=..., title="Component Name", description="""Name of the model component (e.g., ROMS, MARBL, Oceananigans).""", json_schema_extra = { "linkml_meta": {'alias': 'name',
-         'domain_of': ['Organization',
-                       'NamedLink',
-                       'ExternalProject',
-                       'MonetaryGrant',
-                       'Experiment',
-                       'Person',
-                       'Dataset',
-                       'Platform',
-                       'ModelComponent']} })
-    version: Optional[str] = Field(default=None, title="Version", description="""Release version of the model component.""", json_schema_extra = { "linkml_meta": {'alias': 'version', 'domain_of': ['ModelComponent', 'Container']} })
-    codebase: Optional[str] = Field(default=None, title="Codebase", description="""Link to model code repository.""", json_schema_extra = { "linkml_meta": {'alias': 'codebase', 'domain_of': ['ModelComponent']} })
-    references: Optional[List[str]] = Field(default=None, title="References", description="""Links or DOIs to any reference(s) relevant to the model components/development, specific model configuration, model validation etc.""", json_schema_extra = { "linkml_meta": {'alias': 'references', 'domain_of': ['ModelComponent']} })
+Associated links to data, DOIs, or publications can be noted here, but should be supplemental.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "description",
+                "domain_of": [
+                    "Project",
+                    "ExternalProject",
+                    "Experiment",
+                    "VocabularyItemReference",
+                    "Dataset",
+                    "ModelComponent",
+                ],
+                "slot_uri": "schema:description",
+            }
+        },
+    )
+    model_component_type: ModelComponentType = Field(
+        default=...,
+        title="Model Component Type",
+        description="""The type of model component (physics, BGC/ecosystem, or other).""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "model_component_type",
+                "domain_of": ["ModelComponent"],
+            }
+        },
+    )
+    model_component_type_custom: Optional[str] = Field(
+        default=None,
+        title="Model Component Type (custom)",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "model_component_type_custom",
+                "domain_of": ["ModelComponent"],
+            }
+        },
+    )
+    name: str = Field(
+        default=...,
+        title="Component Name",
+        description="""Name of the model component (e.g., ROMS, MARBL, Oceananigans).""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "name",
+                "domain_of": [
+                    "Organization",
+                    "NamedLink",
+                    "ExternalProject",
+                    "MonetaryGrant",
+                    "Experiment",
+                    "Person",
+                    "Dataset",
+                    "Platform",
+                    "ModelComponent",
+                ],
+            }
+        },
+    )
+    version: Optional[str] = Field(
+        default=None,
+        title="Version",
+        description="""Release version of the model component.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "version",
+                "domain_of": ["ModelComponent", "Container"],
+            }
+        },
+    )
+    codebase: Optional[str] = Field(
+        default=None,
+        title="Codebase",
+        description="""Link to model code repository.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "codebase", "domain_of": ["ModelComponent"]}
+        },
+    )
+    references: Optional[List[str]] = Field(
+        default=None,
+        title="References",
+        description="""Links or DOIs to any reference(s) relevant to the model components/development, specific model configuration, model validation etc.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "references", "domain_of": ["ModelComponent"]}
+        },
+    )
 
 
 class ModelGrid(ConfiguredBaseModel):
     """
     Details about a model grid. Use multiple ModelGrid entries to describe nested or multi-grid configurations.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Model'})
 
-    grid_name: Optional[str] = Field(default=None, title="Grid Name", description="""Name of the grid (e.g., 'inner grid', 'L1', 'global').""", json_schema_extra = { "linkml_meta": {'alias': 'grid_name', 'domain_of': ['ModelGrid']} })
-    grid_geometry: Optional[str] = Field(default=None, title="Grid Geometry", description="""Descriptive structure of the grid (e.g., latitude-longitude, unstructured triangular, tripolar).""", json_schema_extra = { "linkml_meta": {'alias': 'grid_geometry', 'domain_of': ['ModelGrid']} })
-    grid_type: GridType = Field(default=..., title="Grid Type", description="""Role of this grid in a nested or multi-grid configuration.""", json_schema_extra = { "linkml_meta": {'alias': 'grid_type', 'domain_of': ['ModelGrid']} })
-    region: Optional[str] = Field(default=None, title="Region", description="""Region covered by the grid.""", json_schema_extra = { "linkml_meta": {'alias': 'region', 'domain_of': ['ModelGrid']} })
-    spatial_coverage: Optional[SpatialCoverage] = Field(default=None, title="Spatial Coverage", description="""Bounding box for this grid, provided as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude.""", json_schema_extra = { "linkml_meta": {'alias': 'spatial_coverage',
-         'domain_of': ['Project', 'ExternalProject', 'Experiment', 'ModelGrid']} })
-    arrangement: Optional[str] = Field(default=None, title="Arrangement", description="""The grid arrangement of orthogonal physical quantities (e.g., Arakawa A, Arakawa B, Arakawa C).""", json_schema_extra = { "linkml_meta": {'alias': 'arrangement', 'domain_of': ['ModelGrid']} })
-    vertical_coordinate_type: Optional[str] = Field(default=None, title="Vertical coordinate type", description="""The vertical grid coordinate type (e.g. z-coordinate, z*-coordinate, terrain-following coordinate, isopycnal coordinate)""", json_schema_extra = { "linkml_meta": {'alias': 'vertical_coordinate_type', 'domain_of': ['ModelGrid']} })
-    n_x: Optional[int] = Field(default=None, title="Nx", description="""Number of grid points in the x-direction.""", json_schema_extra = { "linkml_meta": {'alias': 'n_x', 'domain_of': ['ModelGrid']} })
-    n_y: Optional[int] = Field(default=None, title="Ny", description="""Number of grid points in the y-direction.""", json_schema_extra = { "linkml_meta": {'alias': 'n_y', 'domain_of': ['ModelGrid']} })
-    n_z: Optional[int] = Field(default=None, title="Nz", description="""Number of vertical coordinate levels.""", json_schema_extra = { "linkml_meta": {'alias': 'n_z', 'domain_of': ['ModelGrid']} })
-    n_nodes: Optional[int] = Field(default=None, title="N nodes", description="""Number of nodes in the grid (for unstructured grids).""", json_schema_extra = { "linkml_meta": {'alias': 'n_nodes', 'domain_of': ['ModelGrid']} })
-    horizontal_resolution_range: Optional[str] = Field(default=None, title="Horizontal Resolution Range", description="""Description of horizontal resolution (e.g., '3.3 km', '1/12 degree').""", json_schema_extra = { "linkml_meta": {'alias': 'horizontal_resolution_range', 'domain_of': ['ModelGrid']} })
-    vertical_resolution_range: Optional[str] = Field(default=None, title="Vertical Resolution Range", description="""Description of vertical resolution (e.g., 'Max. 4 m near surface, stretching to 500 m at depth').""", json_schema_extra = { "linkml_meta": {'alias': 'vertical_resolution_range', 'domain_of': ['ModelGrid']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({"from_schema": "Model"})
+
+    grid_name: Optional[str] = Field(
+        default=None,
+        title="Grid Name",
+        description="""Name of the grid (e.g., 'inner grid', 'L1', 'global').""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "grid_name", "domain_of": ["ModelGrid"]}
+        },
+    )
+    grid_geometry: Optional[str] = Field(
+        default=None,
+        title="Grid Geometry",
+        description="""Descriptive structure of the grid (e.g., latitude-longitude, unstructured triangular, tripolar).""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "grid_geometry", "domain_of": ["ModelGrid"]}
+        },
+    )
+    grid_type: GridType = Field(
+        default=...,
+        title="Grid Type",
+        description="""Role of this grid in a nested or multi-grid configuration.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "grid_type", "domain_of": ["ModelGrid"]}
+        },
+    )
+    region: Optional[str] = Field(
+        default=None,
+        title="Region",
+        description="""Region covered by the grid.""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "region", "domain_of": ["ModelGrid"]}
+        },
+    )
+    spatial_coverage: Optional[SpatialCoverage] = Field(
+        default=None,
+        title="Spatial Coverage",
+        description="""Bounding box for this grid, provided as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "spatial_coverage",
+                "domain_of": ["Project", "ExternalProject", "Experiment", "ModelGrid"],
+            }
+        },
+    )
+    arrangement: Optional[str] = Field(
+        default=None,
+        title="Arrangement",
+        description="""The grid arrangement of orthogonal physical quantities (e.g., Arakawa A, Arakawa B, Arakawa C).""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "arrangement", "domain_of": ["ModelGrid"]}
+        },
+    )
+    vertical_coordinate_type: Optional[str] = Field(
+        default=None,
+        title="Vertical coordinate type",
+        description="""The vertical grid coordinate type (e.g. z-coordinate, z*-coordinate, terrain-following coordinate, isopycnal coordinate)""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "vertical_coordinate_type",
+                "domain_of": ["ModelGrid"],
+            }
+        },
+    )
+    n_x: Optional[int] = Field(
+        default=None,
+        title="Nx",
+        description="""Number of grid points in the x-direction.""",
+        json_schema_extra={"linkml_meta": {"alias": "n_x", "domain_of": ["ModelGrid"]}},
+    )
+    n_y: Optional[int] = Field(
+        default=None,
+        title="Ny",
+        description="""Number of grid points in the y-direction.""",
+        json_schema_extra={"linkml_meta": {"alias": "n_y", "domain_of": ["ModelGrid"]}},
+    )
+    n_z: Optional[int] = Field(
+        default=None,
+        title="Nz",
+        description="""Number of vertical coordinate levels.""",
+        json_schema_extra={"linkml_meta": {"alias": "n_z", "domain_of": ["ModelGrid"]}},
+    )
+    n_nodes: Optional[int] = Field(
+        default=None,
+        title="N nodes",
+        description="""Number of nodes in the grid (for unstructured grids).""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "n_nodes", "domain_of": ["ModelGrid"]}
+        },
+    )
+    horizontal_resolution_range: Optional[str] = Field(
+        default=None,
+        title="Horizontal Resolution Range",
+        description="""Description of horizontal resolution (e.g., '3.3 km', '1/12 degree').""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "horizontal_resolution_range",
+                "domain_of": ["ModelGrid"],
+            }
+        },
+    )
+    vertical_resolution_range: Optional[str] = Field(
+        default=None,
+        title="Vertical Resolution Range",
+        description="""Description of vertical resolution (e.g., 'Max. 4 m near surface, stretching to 500 m at depth').""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "vertical_resolution_range",
+                "domain_of": ["ModelGrid"],
+            }
+        },
+    )
 
 
 class ModelInputDetails(ConfiguredBaseModel):
     """
     Details about input data sources used to drive the model.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Model'})
 
-    bathymetry: Optional[List[NamedLink]] = Field(default=None, title="Bathymetry", description="""Bathymetry data source(s).""", json_schema_extra = { "linkml_meta": {'alias': 'bathymetry', 'domain_of': ['ModelInputDetails']} })
-    initial_conditions: Optional[List[NamedLink]] = Field(default=None, title="Initial Conditions", description="""Initial condition data source(s).""", json_schema_extra = { "linkml_meta": {'alias': 'initial_conditions', 'domain_of': ['ModelInputDetails']} })
-    boundary_conditions: Optional[List[NamedLink]] = Field(default=None, title="Boundary Conditions", description="""Boundary condition data source(s).""", json_schema_extra = { "linkml_meta": {'alias': 'boundary_conditions', 'domain_of': ['ModelInputDetails']} })
-    atmospheric_forcing: Optional[List[NamedLink]] = Field(default=None, title="Atmospheric Forcing", description="""Atmospheric forcing data source(s).""", json_schema_extra = { "linkml_meta": {'alias': 'atmospheric_forcing', 'domain_of': ['ModelInputDetails']} })
-    tidal_forcing: Optional[List[NamedLink]] = Field(default=None, title="Tidal Forcing", description="""Tidal forcing data source(s).""", json_schema_extra = { "linkml_meta": {'alias': 'tidal_forcing', 'domain_of': ['ModelInputDetails']} })
-    river_sediment_flux_details: Optional[List[NamedLink]] = Field(default=None, title="River/Sediment Flux Details", description="""River and/or sediment flux data source(s).""", json_schema_extra = { "linkml_meta": {'alias': 'river_sediment_flux_details', 'domain_of': ['ModelInputDetails']} })
-    processing_of_input_data: Optional[str] = Field(default=None, title="Processing of Input Data", description="""Narrative description of any processing applied to input data before use in the model.""", json_schema_extra = { "linkml_meta": {'alias': 'processing_of_input_data', 'domain_of': ['ModelInputDetails']} })
-    processing_code: Optional[List[NamedLink]] = Field(default=None, title="Processing code", description="""If applicable, link to any code for processing of raw forcing and input data listed in the fields above.""", json_schema_extra = { "linkml_meta": {'alias': 'processing_code', 'domain_of': ['ModelInputDetails']} })
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({"from_schema": "Model"})
+
+    bathymetry: Optional[List[NamedLink]] = Field(
+        default=None,
+        title="Bathymetry",
+        description="""Bathymetry data source(s).""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "bathymetry", "domain_of": ["ModelInputDetails"]}
+        },
+    )
+    initial_conditions: Optional[List[NamedLink]] = Field(
+        default=None,
+        title="Initial Conditions",
+        description="""Initial condition data source(s).""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "initial_conditions",
+                "domain_of": ["ModelInputDetails"],
+            }
+        },
+    )
+    boundary_conditions: Optional[List[NamedLink]] = Field(
+        default=None,
+        title="Boundary Conditions",
+        description="""Boundary condition data source(s).""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "boundary_conditions",
+                "domain_of": ["ModelInputDetails"],
+            }
+        },
+    )
+    atmospheric_forcing: Optional[List[NamedLink]] = Field(
+        default=None,
+        title="Atmospheric Forcing",
+        description="""Atmospheric forcing data source(s).""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "atmospheric_forcing",
+                "domain_of": ["ModelInputDetails"],
+            }
+        },
+    )
+    tidal_forcing: Optional[List[NamedLink]] = Field(
+        default=None,
+        title="Tidal Forcing",
+        description="""Tidal forcing data source(s).""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "tidal_forcing",
+                "domain_of": ["ModelInputDetails"],
+            }
+        },
+    )
+    river_sediment_flux_details: Optional[List[NamedLink]] = Field(
+        default=None,
+        title="River/Sediment Flux Details",
+        description="""River and/or sediment flux data source(s).""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "river_sediment_flux_details",
+                "domain_of": ["ModelInputDetails"],
+            }
+        },
+    )
+    processing_of_input_data: Optional[str] = Field(
+        default=None,
+        title="Processing of Input Data",
+        description="""Narrative description of any processing applied to input data before use in the model.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "processing_of_input_data",
+                "domain_of": ["ModelInputDetails"],
+            }
+        },
+    )
+    processing_code: Optional[List[NamedLink]] = Field(
+        default=None,
+        title="Processing code",
+        description="""If applicable, link to any code for processing of raw forcing and input data listed in the fields above.""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "processing_code",
+                "domain_of": ["ModelInputDetails"],
+            }
+        },
+    )
 
 
 class Container(ConfiguredBaseModel):
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://schema.oaedata.org/OAEDataSchema', 'tree_root': True})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta(
+        {"from_schema": "https://schema.oaedata.org/OAEDataSchema", "tree_root": True}
+    )
 
-    project: Optional[Project] = Field(default=None, json_schema_extra = { "linkml_meta": {'alias': 'project', 'domain_of': ['Container']} })
-    experiments: Optional[List[Experiment]] = Field(default=None, json_schema_extra = { "linkml_meta": {'alias': 'experiments', 'domain_of': ['Project', 'Container']} })
-    datasets: Optional[List[Dataset]] = Field(default=None, json_schema_extra = { "linkml_meta": {'alias': 'datasets', 'domain_of': ['Container']} })
-    version: Optional[str] = Field(default=None, description="""Version of the oae-data-protocol""", json_schema_extra = { "linkml_meta": {'alias': 'version', 'domain_of': ['ModelComponent', 'Container']} })
-    protocol_git_hash: Optional[str] = Field(default=None, description="""Git commit hash of the oae-data-protocol""", json_schema_extra = { "linkml_meta": {'alias': 'protocol_git_hash', 'domain_of': ['Container']} })
-    metadata_builder_git_hash: Optional[str] = Field(default=None, description="""Git commit hash of the metadata-builder UI""", json_schema_extra = { "linkml_meta": {'alias': 'metadata_builder_git_hash', 'domain_of': ['Container']} })
+    project: Optional[Project] = Field(
+        default=None,
+        json_schema_extra={
+            "linkml_meta": {"alias": "project", "domain_of": ["Container"]}
+        },
+    )
+    experiments: Optional[List[Experiment]] = Field(
+        default=None,
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "experiments",
+                "domain_of": ["Project", "Container"],
+            }
+        },
+    )
+    datasets: Optional[List[Dataset]] = Field(
+        default=None,
+        json_schema_extra={
+            "linkml_meta": {"alias": "datasets", "domain_of": ["Container"]}
+        },
+    )
+    version: Optional[str] = Field(
+        default=None,
+        description="""Version of the oae-data-protocol""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "version",
+                "domain_of": ["ModelComponent", "Container"],
+            }
+        },
+    )
+    protocol_git_hash: Optional[str] = Field(
+        default=None,
+        description="""Git commit hash of the oae-data-protocol""",
+        json_schema_extra={
+            "linkml_meta": {"alias": "protocol_git_hash", "domain_of": ["Container"]}
+        },
+    )
+    metadata_builder_git_hash: Optional[str] = Field(
+        default=None,
+        description="""Git commit hash of the metadata-builder UI""",
+        json_schema_extra={
+            "linkml_meta": {
+                "alias": "metadata_builder_git_hash",
+                "domain_of": ["Container"],
+            }
+        },
+    )
 
 
 # Model rebuild
@@ -3400,4 +12224,3 @@ ModelComponent.model_rebuild()
 ModelGrid.model_rebuild()
 ModelInputDetails.model_rebuild()
 Container.model_rebuild()
-

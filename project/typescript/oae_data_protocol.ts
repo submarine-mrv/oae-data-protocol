@@ -1,8 +1,8 @@
 /**
-* Type of dataset being submitted. This usually 
+* Type of dataset being submitted. This usually
 */
 export enum DatasetType {
-    
+
     /** Variables such as dosing_onoff, dosing_rate, and flow_rate should be included here. */
     dosing = "dosing",
     /** Vertical profiles (e.g., optical packages, CTD) */
@@ -48,7 +48,7 @@ export enum DatasetType {
 * Type of marine Carbon Dioxide Removal (mCDR) pathways.
 */
 export enum MCDRPathway {
-    
+
     /** Ocean Alkalinity Enhancement (OAE) is a method to help mitigate climate change by increasing the alkalinity of seawater to enhance its capacity to absorb and store atmospheric carbon dioxide (CO₂). */
     Ocean_Alkalinity_Enhancement = "ocean_alkalinity_enhancement",
     /** Biomass Sinking is a method that involves taking terrestrial or ocean biomass and sinking it into the deep ocean surface, subsurface, or anoxic basins, where it is sequestered. This can be accomplished by large-scale seaweed farming or macroalgae cultivation, which incorporates atmospheric CO2 as it grows, and then is sunk to the ocean floor. Alternatively, terrestrial plant biomass can be sunk to the ocean floor. */
@@ -66,7 +66,7 @@ export enum MCDRPathway {
 * Types of mCDR experiments
 */
 export enum ExperimentType {
-    
+
     /** Baseline measurements taken before any intervention */
     baseline = "baseline",
     /** Control experiment without intervention for comparison */
@@ -84,7 +84,7 @@ export enum ExperimentType {
 * Methods used to process alkalinity feedstock
 */
 export enum AlkalinityFeedstockProcessing {
-    
+
     /** Alkalinity generated via electrochemical processes (e.g., seawater electrolysis). */
     electrochemistry = "electrochemistry",
     /** Intentionally industrially manufactured chemical compounds (e.g., Ca(OH)2 via lime kilns). */
@@ -100,7 +100,7 @@ export enum AlkalinityFeedstockProcessing {
 * Physical form of the alkalinity feedstock upon ocean delivery
 */
 export enum AlkalinityFeedstockForm {
-    
+
     /** Involves adding alkaline minerals or particulate slurry (such as MgOH2, MgO, or CaO) to seawater or river systems either directly, through coastal outfalls (such as wastewater), or at breaking shorelines to increase its alkalinity. */
     solid = "solid",
     /** Aqueous alkalinity addition may use electrochemistry or fully dissolved mineral feedstock to increase seawater alkalinity. */
@@ -112,7 +112,7 @@ export enum AlkalinityFeedstockForm {
 * Equilibration status of the alkalinity feedstock
 */
 export enum EquilibrationStatus {
-    
+
     /** Pre-equilibrated with atmosphere before dosing */
     Pre_equilibrated = "pre_equilibrated",
     /** Not pre-equilibrated before dosing */
@@ -122,7 +122,7 @@ export enum EquilibrationStatus {
 * Hydrologic location types for dosing
 */
 export enum HydrologicLocation {
-    
+
     /** Surface waters in coastal areas */
     Coastal_Surface = "coastal_surface",
     /** Surface waters in offshore areas */
@@ -138,7 +138,7 @@ export enum HydrologicLocation {
 * Types of dosing delivery methods
 */
 export enum DosingDeliveryType {
-    
+
     /** A single dosing location such as an outflow from a static platform with a pipe */
     Static_Point_Source = "static_point_source",
     /** A mobile dosing regimen described by a single location at each time step, such as an outflow from a mobile platform such as a ship or surface vessel. */
@@ -152,7 +152,7 @@ export enum DosingDeliveryType {
 * Forms of tracer used in tracer studies
 */
 export enum TracerForm {
-    
+
     /** Gas tracer */
     gas = "gas",
     /** Dye tracer (eg- rhodamine) */
@@ -164,7 +164,7 @@ export enum TracerForm {
 * Types of materials used for alkalinity addition, as sourced from NCEI's OCADS controlled vocabulary: https://www.ncei.noaa.gov/access/ocean-carbon-acidification-data-system/vocabularies/alkalinization-types.html
 */
 export enum FeedstockType {
-    
+
     /** Lime (CaO) used as an alkalinity source. */
     lime = "lime",
     /** Portlandite (Ca(OH)₂) used as an alkalinity source. */
@@ -198,7 +198,7 @@ export enum FeedstockType {
 * Type of grid in a multi-grid or nested model configuration
 */
 export enum GridType {
-    
+
     /** Inner (nested, higher-resolution) grid */
     inner_grid = "inner_grid",
     /** Outer (coarser-resolution) grid */
@@ -210,7 +210,7 @@ export enum GridType {
 * Type of model component
 */
 export enum ModelComponentType {
-    
+
     /** Physical model component (e.g., ocean circulation) */
     Physics = "physics",
     /** Biogeochemical or ecosystem model component */
@@ -224,7 +224,7 @@ export enum ModelComponentType {
 };
 
 export enum DataProductType {
-    
+
     /** A dataset collected from a research cruise or laboratory experiment */
     originally_collected_dataset = "originally_collected_dataset",
     /** (e.g., SOCAT, GLODAP) */
@@ -236,7 +236,7 @@ export enum DataProductType {
 * Type of model simulation dataset
 */
 export enum SimulationType {
-    
+
     /** Control/baseline simulation without alkalinity perturbation */
     counterfactual = "counterfactual",
     /** Simulation with alkalinity perturbation applied */
@@ -246,7 +246,7 @@ export enum SimulationType {
 * Variables commonly included in model simulation output datasets
 */
 export enum ModelOutputVariable {
-    
+
     /** Air-sea exchange of carbon dioxide */
     Air_sea_CO2_flux = "air_sea_co2_flux",
     /** Dissolved inorganic carbon (DIC) */
@@ -268,7 +268,7 @@ export enum ModelOutputVariable {
 };
 
 export enum SeaNames {
-    
+
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUSZZSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/ZZ/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUSIJMSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/IJM/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUSMKMSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/MKM/",
@@ -399,7 +399,7 @@ export enum SeaNames {
 };
 
 export enum PlatformType {
-    
+
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS99SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/99/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS6DSOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/6D/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS3CSOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/3C/",
@@ -442,7 +442,7 @@ export enum PlatformType {
 };
 
 export enum MassConcentrationUnit {
-    
+
     unitCOLONKiloGM_PER_M3 = "unit:KiloGM-PER-M3",
     unitCOLONMicroGM_PER_L = "unit:MicroGM-PER-L",
     unitCOLONMicroGM_PER_L_DAY = "unit:MicroGM-PER-L-DAY",
@@ -456,7 +456,7 @@ export enum MassConcentrationUnit {
 };
 
 export enum ResearcherIDType {
-    
+
     orcid = "orcid",
     researcher_id = "researcher_id",
     ocean_expert = "ocean_expert",
@@ -465,7 +465,7 @@ export enum ResearcherIDType {
 * Where the calibration was performed.
 */
 export enum CalibrationLocation {
-    
+
     /** Factory calibration performed by manufacturer. */
     factory = "factory",
     /** Laboratory calibration. */
@@ -475,7 +475,7 @@ export enum CalibrationLocation {
 };
 
 export enum SamplingInstrumentType {
-    
+
     /** A CTD rosette consists of a metal frame that houses a collection of sensors and water sampling bottles (e.g., Niskin) */
     ctd_rosette = "ctd_rosette",
     /** A device that collects an in-situ discrete water sample from any depth and returns it to the surface without contamination by the waters through which it passes, such as a water bottle. */
@@ -498,7 +498,7 @@ export enum SamplingInstrumentType {
 };
 
 export enum AnalyzingInstrumentType {
-    
+
     /** A reusable instrument that always simultaneously measures conductivity and temperature (for salinity) and pressure (for depth). */
     ctd_sensor = "ctd_sensor",
     /** A device that continuously supplies a flow of water either to an analytical instrument, over a sensor or from which samples may be drawn. */
@@ -569,7 +569,7 @@ export enum AnalyzingInstrumentType {
 };
 
 export enum SamplingType {
-    
+
     discrete = "discrete",
     continuous = "continuous",
 };
@@ -577,7 +577,7 @@ export enum SamplingType {
 * High-level classification of the variable. Determines which schema class to use in combination with genesis (measured/calculated) and sampling (discrete/continuous).
 */
 export enum VariableType {
-    
+
     /** pH measurement — use with Discrete/ContinuousPHVariable or CalculatedVariable */
     pH = "pH",
     /** Total alkalinity — use with Discrete/ContinuousTAVariable or CalculatedVariable */
@@ -597,13 +597,13 @@ export enum VariableType {
 };
 
 export enum GenesisType {
-    
+
     measured = "measured",
     calculated = "calculated",
 };
 
 export enum ObservationType {
-    
+
     profile = "profile",
     surface_underway = "surface_underway",
     time_series = "time_series",
@@ -615,14 +615,14 @@ export enum ObservationType {
 };
 
 export enum AppropriateUseQuality {
-    
+
     weather_quality = "weather_quality",
     climate_quality = "climate_quality",
     other = "other",
 };
 
 export enum TitrationCellType {
-    
+
     open = "open",
     closed = "closed",
 };
@@ -630,7 +630,7 @@ export enum TitrationCellType {
 * Whether concentration measurements are expressed per unit volume or per unit mass.
 */
 export enum ConcentrationBasis {
-    
+
     /** Concentration expressed per unit volume (e.g., μmol/L, mmol/L) */
     per_volume = "per_volume",
     /** Concentration expressed per unit mass (e.g., μmol/kg-seawater) */
@@ -1773,6 +1773,3 @@ export interface Container {
     /** Git commit hash of the metadata-builder UI */
     metadata_builder_git_hash?: string,
 }
-
-
-

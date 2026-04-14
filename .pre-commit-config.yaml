@@ -6,6 +6,7 @@ repos:
     hooks:
       - id: check-toml
       - id: check-yaml
+        exclude: mkdocs.yml  # uses !!python/name tag unsupported by generic checker
       - id: end-of-file-fixer
       - id: trailing-whitespace
         args: [--markdown-linebreak-ext=md]
@@ -15,6 +16,7 @@ repos:
     hooks:
       - id: yamllint
         args: [-c=.yamllint.yaml]
+        exclude: (mkdocs\.yml|dynamic_enums_expanded\.yaml|examples/)  # generated/config/samples with different conventions
 
   - repo: https://github.com/codespell-project/codespell
     rev: v2.4.1
@@ -27,16 +29,19 @@ repos:
     rev: v1.31.1
     hooks:
       - id: typos
+        exclude: ^ontologies/  # downloaded TTL files from NERC/QUDT — not our code
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
     # Ruff version.
     rev: v0.11.3
     hooks:
-      # Run the linter.
+      # Run the linter (exclude generated datamodel files).
       - id: ruff
         args: [--fix, --exit-non-zero-on-fix]
-      # Run the formatter.
+        exclude: ^src/oae_data_protocol/datamodel/
+      # Run the formatter (exclude generated datamodel files).
       - id: ruff-format
+        exclude: ^src/oae_data_protocol/datamodel/
 
   - repo: https://github.com/astral-sh/uv-pre-commit
     # uv version.

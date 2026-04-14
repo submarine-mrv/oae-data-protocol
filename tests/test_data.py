@@ -1,19 +1,19 @@
 """Data test."""
+
 import os
 import glob
 import unittest
 import logging
 
-from linkml_runtime.loaders import yaml_loader
 # from oae_data_protocol.datamodel.oae_data_protocol import Experiment
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
 
-ROOT = os.path.join(os.path.dirname(__file__), '..')
+ROOT = os.path.join(os.path.dirname(__file__), "..")
 DATA_DIR = os.path.join(ROOT, "src", "data", "examples")
 
-EXAMPLE_FILES = glob.glob(os.path.join(DATA_DIR, '*.yaml'))
+EXAMPLE_FILES = glob.glob(os.path.join(DATA_DIR, "*.yaml"))
 
 
 class TestData(unittest.TestCase):

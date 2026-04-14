@@ -53,6 +53,7 @@ skip = [
   "pyproject.toml",
   "uv.lock",
   "project/*",
+  "ontologies/*",
   "src/oae_data_protocol/datamodel/oae_data_protocol_pydantic.py",
   "src/oae_data_protocol/datamodel/oae_data_protocol.py",
 ]

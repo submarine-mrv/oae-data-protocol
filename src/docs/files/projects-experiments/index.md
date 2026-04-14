@@ -34,7 +34,7 @@ graph TD
     ISE --> I[Intervention]
     ISE --> T[Tracer]
     ISE --> IWT[InterventionWithTracer]
-    
+
     style E fill:#e8f4f8
     style M fill:#f0e8f8
     style I fill:#e8f8e8

@@ -6,6 +6,7 @@ This script reads the VERSION file and injects it as a custom metadata field
 at the root of the JSON schema. Git hashes should be obtained at runtime by
 consuming applications to avoid version control conflicts.
 """
+
 import json
 import sys
 from pathlib import Path
@@ -21,15 +22,15 @@ def get_version(version_file: Path) -> str:
 
 def inject_metadata(schema_file: Path, version: str) -> None:
     """Inject version metadata into JSON schema."""
-    with open(schema_file, 'r') as f:
+    with open(schema_file, "r") as f:
         schema = json.load(f)
 
     # Add custom metadata field at the root
     # Using 'x-' prefix for custom JSON Schema fields
-    schema['x-protocol-version'] = version
+    schema["x-protocol-version"] = version
 
     # Write back with pretty formatting
-    with open(schema_file, 'w') as f:
+    with open(schema_file, "w") as f:
         json.dump(schema, f, indent=4)
 
     print(f"✓ Injected version into {schema_file.name}")

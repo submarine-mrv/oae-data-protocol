@@ -10,11 +10,11 @@ graph TD
     AI --> PHI["PHInstrument"]
     AI --> CRMI["CRMInstrument"]
     AI --> CO2D["CO2GasDetector"]
-    
+
     PHI -->|calibration| PHC["pHCalibration"]
     CRMI -->|calibration| CRMC["CRMCalibration"]
     CO2D -->|calibration| CO2C["CO2Calibration"]
-    
+
     style AI fill:#e0e8f0
     style PHI fill:#d0d8e0
     style CRMI fill:#d0d8e0

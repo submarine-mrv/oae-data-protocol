@@ -356,17 +356,17 @@ enums:
           TA in seawater or other natural waters in situ, without the need for manual sampling and
           laboratory analysis.
       showerhead_equilibrator:
-        meaning: SDN_L05:EQUIL
+        meaning: SDN_L05:EQUAL
         description: >-
           This type of equilibrator works by spraying seawater into a gas chamber, allowing the CO2
           in the water to equilibrate with a gas mixture in the chamber.
       floating_air_water_equilibrator:
-        meaning: SDN_L05:EQUIL
+        meaning: SDN_L05:EQUAL
         description: >-
           An "h"-shaped bubble equilibrator assembly commonly used in MAPCO2 systems on moorings.
           For more information, refer to Friederich et al. (1995).
       membrane_equilibrator:
-        meaning: SDN_L05:EQUIL
+        meaning: SDN_L05:EQUAL
         description: >-
           While seawater is passed through a membrane, CO2 in the water diffuses across the membrane
           and equilibrates with the gas mixture, which is then analyzed to determine the CO2
@@ -389,7 +389,7 @@ enums:
         meaning: SDN_L22:TOOL1292
         description: >-
           A pH sensor. The sensor can be used for ocean acidification, research coral reef sensitivity analysis and
-          environmental monitoring. The sensor measures pH with a range of 6.5 to 9.0. The sensing element is an ion 
+          environmental monitoring. The sensor measures pH with a range of 6.5 to 9.0. The sensing element is an ion
           sensitive field effect transistor. The pH sensor has an initial accuracy of +/-0.05 pH, precision of 0.001 pH
           and stability of 0.005 pH/month. It can operate in temperatures ranging from 0 deg C to 50 deg C and up to
           depths of 50 m.

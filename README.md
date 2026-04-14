@@ -87,7 +87,7 @@ just testdoc           # Build and serve documentation locally
 
 The schema files in `src/oae_data_protocol/schema/` are the source of truth. Edit these files and run `just gen-all` to regenerate all derived artifacts.
 
-## Project Status 
+## Project Status
 
 **Current Status**: Alpha development
 
@@ -101,7 +101,7 @@ This project is built with:
 - [LinkML](https://linkml.io) for schema definitions
 - [linkml-project-copier](https://github.com/linkml/linkml-project-copier) for project structure
 
-Development of the OAE Data Protocol and its corresponding technical tooling has been made possible with 
+Development of the OAE Data Protocol and its corresponding technical tooling has been made possible with
 funding and steering support from [Carbon To Sea](https://carbontosea.org).
 
 ## License

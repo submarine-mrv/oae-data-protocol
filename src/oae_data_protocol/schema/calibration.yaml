@@ -157,9 +157,6 @@ classes:
         description: Information about traceability of standard gases to WMO standards.
         range: string
 
-
-
-
 slots:
   calibration_location:
     title: Calibration location
