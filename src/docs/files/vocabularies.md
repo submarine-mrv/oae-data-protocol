@@ -2,7 +2,7 @@
 
 The OAE Data Protocol uses controlled vocabularies to standardize categorical values across metadata submissions. Some are defined as part of the protocol, while others reference established community standards.
 
-For detailed definitions of each vocabulary, see the [Controlled Vocabularies](https://www.carbontosea.org/oae-data-protocol/1-0-0/#controlled-vocabularies) section of the OAE Data Protocol website.
+For detailed definitions of each vocabulary, see the [Controlled Vocabularies](https://www.carbontosea.org/oae-data-protocol#controlled-vocabularies) section of the OAE Data Protocol website.
 
 ## Community Standard Vocabularies
 
@@ -11,13 +11,13 @@ The following vocabularies are sourced from established oceanographic & scientif
 | Vocabulary | Source                                                                                                                                                                                     | Used For |
 |-----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|
 | **Sea Names** | NERC [SDN:C16](https://vocab.nerc.ac.uk/collection/C16/current/)                                                                                                                           | Project geographic classification |
-| **[Platform Type](https://www.carbontosea.org/oae-data-protocol/1-0-0/#platform-type)** | NERC [SDN:L06](https://vocab.nerc.ac.uk/collection/L06/current/)                                                                                                                           | Dataset platform classification |
-| **[Instrument Type](https://www.carbontosea.org/oae-data-protocol/1-0-0/#instrument-type)** | NERC [SDN:L05](https://vocab.nerc.ac.uk/collection/L05/current/), [SDN:L22](https://vocab.nerc.ac.uk/collection/L22/current/), [SDN:B75](https://vocab.nerc.ac.uk/collection/B75/current/) | Sampling and analyzing instruments |
+| **[Platform Type](https://www.carbontosea.org/oae-data-protocol#platform-type)** | NERC [SDN:L06](https://vocab.nerc.ac.uk/collection/L06/current/)                                                                                                                           | Dataset platform classification |
+| **[Instrument Type](https://www.carbontosea.org/oae-data-protocol#instrument-type)** | NERC [SDN:L05](https://vocab.nerc.ac.uk/collection/L05/current/), [SDN:L22](https://vocab.nerc.ac.uk/collection/L22/current/), [SDN:B75](https://vocab.nerc.ac.uk/collection/B75/current/) | Sampling and analyzing instruments |
 | **Units** | [QUDT](https://qudt.org/vocab/unit/)                                                                                                                                                       | Dosing concentration units |
 
 ## OAE Data Protocol Vocabularies
 
-These vocabularies are defined as part of the [OAE Data Protocol](https://www.carbontosea.org/oae-data-protocol/1-0-0/#controlled-vocabularies) and maintained in this schema.
+These vocabularies are defined as part of the [OAE Data Protocol](https://www.carbontosea.org/oae-data-protocol#controlled-vocabularies) and maintained in this schema.
 
 ### Classification
 
