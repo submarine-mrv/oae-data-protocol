@@ -4,7 +4,7 @@ The OAE Data Protocol uses **JSON** as its preferred metadata file format.
 
 Each metadata file is a self-contained document called a **Container** that holds all the metadata for a project, its experiments, and its datasets.
 
-The recommended way to create metadata is with the **[OAE Metadata Builder](https://metadata.oaedata.org)**, which validates inputs against the schema in real time and exports well-formed JSON files. While [Excel templates](https://www.carbontosea.org/oae-data-protocol/1-0-0/#metadata-and-templates) are still available on the protocol website, they do not validate against the schema and require manual attention to ensure controlled vocabularies and field formats are correct. We encourage all researchers to use the Metadata Builder as the primary tool for creating and managing project metadata.
+The recommended way to create metadata is with the **[OAE Metadata Builder](https://metadata.oaedata.org)**, which validates inputs against the schema in real time and exports well-formed JSON files. While [Excel templates](https://www.carbontosea.org/oae-data-protocol#metadata-and-templates) are still available on the protocol website, they do not validate against the schema and require manual attention to ensure controlled vocabularies and field formats are correct. We encourage all researchers to use the Metadata Builder as the primary tool for creating and managing project metadata.
 
 ## The Container
 
