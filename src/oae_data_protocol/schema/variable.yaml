@@ -507,27 +507,71 @@ classes:
 
 
 
-#  # =============================================================================
-#  # Physiological Variable Class
-#  # =============================================================================
-#  PhysiologicalVariable:
-#    description: >-
-#      Physiological response measured variable for organism response data.
-#    is_a: MeasuredVariable
-#    attributes:
-#      # Physiological-specific fields to be added per Excel spec
-#
-#  # =============================================================================
-#  # Socioeconomic Variable Class
-#  # =============================================================================
-#  SocioeconomicVariable:
-#    description: >-
-#      Socioeconomic variable for social and economic data.
-#      Note: Does NOT include QCFields mixin as QC is not applicable.
-#    is_a: InSituVariable
-#    attributes:
-#      # Socioeconomic-specific fields to be added per Excel spec
+  # =============================================================================
+  # Physiological Variable Classes
+  # =============================================================================
+  DiscretePhysiologicalVariable:
+    description: >-
+      Physiological response variable from discrete field samples (e.g.,
+      organism growth rates, calcification rates, gene expression from
+      bottle or tissue samples collected in the field).
+    is_a: DiscreteMeasuredVariable
+    mixins:
+      - MeasuredPhysiologicalFields
+    slot_usage:
+      variable_type:
+        range: string
+        equals_string: "physiological"
 
+  ContinuousPhysiologicalVariable:
+    description: >-
+      Physiological response variable from continuous autonomous field
+      sensors (e.g., respiration rates from deployed oxygen consumption
+      monitors, heart rate from bio-loggers).
+    is_a: ContinuousMeasuredVariable
+    mixins:
+      - MeasuredPhysiologicalFields
+    slot_usage:
+      variable_type:
+        range: string
+        equals_string: "physiological"
+
+  # =============================================================================
+  # Socioeconomic Variable Class
+  # =============================================================================
+  SocioeconomicVariable:
+    description: >-
+      Socioeconomic variable for social and economic data such as survey
+      responses, ecosystem service valuations, or text analysis. Extends
+      InSituVariable to inherit method_reference and measurement_researcher,
+      but does NOT include QCFields, instrument details, or calibration.
+    is_a: InSituVariable
+    slot_usage:
+      variable_type:
+        range: string
+        equals_string: "socioeconomic"
+    attributes:
+      quantitative_or_qualitative:
+        title: Quantitative or Qualitative
+        description: >-
+          Whether this variable captures quantitative (numerical) or
+          qualitative (categorical/textual) data.
+        range: QuantitativeQualitative
+        required: true
+      social_study_type:
+        title: Social Study Type
+        description: The type of social science study this variable comes from.
+        range: SocialStudyType
+      social_study_type_custom:
+        title: Social Study Type (custom)
+        description: Custom study type description when "other" is selected.
+        range: string
+      social_study_site_characterization:
+        title: Study Site Characterization
+        description: >-
+          Time period and location description for the social study
+          (e.g., "2023-2024, coastal communities in Maine, USA").
+        range: string
 
   # =============================================================================
   # Supporting Classes for Variables
@@ -621,6 +665,73 @@ classes:
         range: string
         required: true
 
+  MeasuredPhysiologicalFields:
+    mixin: true
+    description: >-
+      Fields applied to all measured physiological variable types (discrete
+      and continuous). Captures biological subject identification and
+      experimental design information for organism response field studies.
+    attributes:
+      biological_subject:
+        title: Biological Subject
+        description: >-
+          Taxonomy (species, genus, or community) being studied
+          (e.g., Crassostrea gigas, coral reef community).
+        range: string
+        required: true
+      species_identification_code:
+        title: Species Identification Code
+        description: >-
+          Species reference code from a taxonomic database (e.g., WoRMS
+          AphiaID 140656, ITIS TSN 79861).
+        range: string
+      taxonomic_code_system:
+        title: Taxonomic Code System
+        description: Which taxonomic code system the identification code refers to.
+        range: TaxonomicCodeSystem
+      life_stage:
+        title: Life Stage
+        description: Life stage of the organism at time of measurement.
+        range: LifeStage
+      life_stage_custom:
+        title: Life Stage (custom)
+        description: Custom life stage description when "other" is selected.
+        range: string
+      targeted_acidity_levels:
+        title: Targeted Acidity or Alkalinity Levels
+        description: >-
+          Target pCO2 or alkalinity levels for the manipulation experiment
+          (e.g., "400, 800, 1200 uatm pCO2").
+        range: string
+      manipulation_method:
+        title: Manipulation Method
+        description: >-
+          How ocean chemistry conditions were manipulated (e.g., CO2
+          bubbling, acid addition, alkalinity addition).
+        range: string
+      experiment_location:
+        title: Experiment Location
+        description: >-
+          Where the experiment was carried out (e.g., outdoor mesocosm
+          facility, natural field site).
+        range: string
+      subject_collection_location:
+        title: Subject Collection Location
+        description: Where the biological subjects were collected from.
+        range: string
+      treatment_start_datetime:
+        title: Treatment Start Date/Time
+        description: Start of the experimental treatment period (UTC).
+        range: datetime
+      treatment_end_datetime:
+        title: Treatment End Date/Time
+        description: End of the experimental treatment period (UTC).
+        range: datetime
+      additional_details:
+        title: Additional Details
+        description: Any additional information about the physiological experiment.
+        range: string
+
   MeasuredCO2Fields:
     mixin: true
     description: Fields applied to all measured CO2 variable types (discrete and continuous)
@@ -675,7 +786,7 @@ slots:
     range: string
     # TODO: Upgrade this to controlled vocab with QUDT
 
-  # DiscreteMeasuredVariable slots
+  # MeasuredVariable slots
   analyzing_instrument:
     title: Analyzing instrument
     description: >-
@@ -769,6 +880,15 @@ enums:
         description: Sediment variable — use with Discrete/ContinuousSedimentVariable or CalculatedVariable
       hplc:
         description: HPLC pigment analysis — use with HPLCVariable (always discrete, always measured)
+      physiological:
+        description: >-
+          Physiological response variable — organism response data from
+          field experiments. Use with
+          Discrete/ContinuousPhysiologicalVariable or CalculatedVariable.
+      socioeconomic:
+        description: >-
+          Socioeconomic variable — social and economic data. Use only
+          with SocioeconomicVariable. Does not include QC fields.
       other:
         description: >-
           Any directly measured or calculated variable that does not fall into a
@@ -813,5 +933,45 @@ enums:
         description: Concentration expressed per unit volume (e.g., μmol/L, mmol/L)
       per_mass:
         description: Concentration expressed per unit mass (e.g., μmol/kg-seawater)
+
+  TaxonomicCodeSystem:
+    description: Taxonomic code system used for species identification.
+    permissible_values:
+      itis:
+        description: Integrated Taxonomic Information System
+      worms:
+        description: World Register of Marine Species
+      col:
+        description: Catalogue of Life
+      pbdb:
+        description: Paleobiology Database
+
+  LifeStage:
+    description: Life stage of the biological subject.
+    permissible_values:
+      egg:
+      embryo:
+      larva:
+      juvenile:
+      adult:
+      other:
+
+  QuantitativeQualitative:
+    description: Whether the socioeconomic data is quantitative or qualitative.
+    permissible_values:
+      quantitative:
+      qualitative:
+
+  SocialStudyType:
+    description: Type of social study conducted.
+    permissible_values:
+      public_perception_survey:
+        description: Public perception survey
+      ecosystem_service_valuation_survey:
+        description: Ecosystem service valuation survey
+      text_analysis:
+        description: Text analysis
+      other:
+        description: Other study type
 
 

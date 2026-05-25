@@ -606,6 +606,10 @@ export enum VariableType {
     sediment = "sediment",
     /** HPLC pigment analysis — use with HPLCVariable (always discrete, always measured) */
     hplc = "hplc",
+    /** Physiological response variable — organism response data from field experiments. Use with Discrete/ContinuousPhysiologicalVariable or CalculatedVariable. */
+    physiological = "physiological",
+    /** Socioeconomic variable — social and economic data. Use only with SocioeconomicVariable. Does not include QC fields. */
+    socioeconomic = "socioeconomic",
     /** Any directly measured or calculated variable that does not fall into a specific category above (e.g., temperature, salinity, conductivity, pressure, fluorescence). Use with DiscreteMeasuredVariable, ContinuousMeasuredVariable, or CalculatedVariable. */
     other = "other",
     /** Contextual or ancillary columns that are not directly measured or calculated by the project — identifiers, timestamps, coordinates and external source data. QC flag columns should NOT be listed as separate variables; instead set dataset_variable_name_qc_flag on the parent variable. Use only with NonMeasuredVariable. */
@@ -651,6 +655,54 @@ export enum ConcentrationBasis {
     per_volume = "per_volume",
     /** Concentration expressed per unit mass (e.g., μmol/kg-seawater) */
     per_mass = "per_mass",
+};
+/**
+* Taxonomic code system used for species identification.
+*/
+export enum TaxonomicCodeSystem {
+    
+    /** Integrated Taxonomic Information System */
+    itis = "itis",
+    /** World Register of Marine Species */
+    worms = "worms",
+    /** Catalogue of Life */
+    col = "col",
+    /** Paleobiology Database */
+    pbdb = "pbdb",
+};
+/**
+* Life stage of the biological subject.
+*/
+export enum LifeStage {
+    
+    egg = "egg",
+    embryo = "embryo",
+    larva = "larva",
+    juvenile = "juvenile",
+    adult = "adult",
+    other = "other",
+};
+/**
+* Whether the socioeconomic data is quantitative or qualitative.
+*/
+export enum QuantitativeQualitative {
+    
+    quantitative = "quantitative",
+    qualitative = "qualitative",
+};
+/**
+* Type of social study conducted.
+*/
+export enum SocialStudyType {
+    
+    /** Public perception survey */
+    public_perception_survey = "public_perception_survey",
+    /** Ecosystem service valuation survey */
+    ecosystem_service_valuation_survey = "ecosystem_service_valuation_survey",
+    /** Text analysis */
+    text_analysis = "text_analysis",
+    /** Other study type */
+    other = "other",
 };
 
 
@@ -1462,6 +1514,35 @@ export interface HPLCVariable extends DiscreteMeasuredVariable {
 
 
 /**
+ * Physiological response variable from discrete field samples (e.g., organism growth rates, calcification rates, gene expression from bottle or tissue samples collected in the field).
+ */
+export interface DiscretePhysiologicalVariable extends DiscreteMeasuredVariable, MeasuredPhysiologicalFields {
+}
+
+
+/**
+ * Physiological response variable from continuous autonomous field sensors (e.g., respiration rates from deployed oxygen consumption monitors, heart rate from bio-loggers).
+ */
+export interface ContinuousPhysiologicalVariable extends ContinuousMeasuredVariable, MeasuredPhysiologicalFields {
+}
+
+
+/**
+ * Socioeconomic variable for social and economic data such as survey responses, ecosystem service valuations, or text analysis. Extends InSituVariable to inherit method_reference and measurement_researcher, but does NOT include QCFields, instrument details, or calibration.
+ */
+export interface SocioeconomicVariable extends InSituVariable {
+    /** Whether this variable captures quantitative (numerical) or qualitative (categorical/textual) data. */
+    quantitative_or_qualitative: string,
+    /** The type of social science study this variable comes from. */
+    social_study_type?: string,
+    /** Custom study type description when "other" is selected. */
+    social_study_type_custom?: string,
+    /** Time period and location description for the social study (e.g., "2023-2024, coastal communities in Maine, USA"). */
+    social_study_site_characterization?: string,
+}
+
+
+/**
  * Sample preservation information for DIC and TA measurements. Reference: OAPMetadata XSD variables.xsd - sample_preservation
  */
 export interface SamplePreservation {
@@ -1529,6 +1610,37 @@ export interface MeasuredSedimentFields {
     sediment_sampling_depth: string,
     /** Water depth where sediment was collected. If provided as a variable (recommended), please list the column header name here. */
     sediment_sampling_water_depth: string,
+}
+
+
+/**
+ * Fields applied to all measured physiological variable types (discrete and continuous). Captures biological subject identification and experimental design information for organism response field studies.
+ */
+export interface MeasuredPhysiologicalFields {
+    /** Taxonomy (species, genus, or community) being studied (e.g., Crassostrea gigas, coral reef community). */
+    biological_subject: string,
+    /** Species reference code from a taxonomic database (e.g., WoRMS AphiaID 140656, ITIS TSN 79861). */
+    species_identification_code?: string,
+    /** Which taxonomic code system the identification code refers to. */
+    taxonomic_code_system?: string,
+    /** Life stage of the organism at time of measurement. */
+    life_stage?: string,
+    /** Custom life stage description when "other" is selected. */
+    life_stage_custom?: string,
+    /** Target pCO2 or alkalinity levels for the manipulation experiment (e.g., "400, 800, 1200 uatm pCO2"). */
+    targeted_acidity_levels?: string,
+    /** How ocean chemistry conditions were manipulated (e.g., CO2 bubbling, acid addition, alkalinity addition). */
+    manipulation_method?: string,
+    /** Where the experiment was carried out (e.g., outdoor mesocosm facility, natural field site). */
+    experiment_location?: string,
+    /** Where the biological subjects were collected from. */
+    subject_collection_location?: string,
+    /** Start of the experimental treatment period (UTC). */
+    treatment_start_datetime?: string,
+    /** End of the experimental treatment period (UTC). */
+    treatment_end_datetime?: string,
+    /** Any additional information about the physiological experiment. */
+    additional_details?: string,
 }
 
 

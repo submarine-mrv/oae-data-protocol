@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-04-09T20:11:07
+# Generation date: 2026-05-24T19:36:26
 # Schema: OAEDataSchema
 #
 # id: https://schema.oaedata.org/OAEDataSchema
@@ -2330,6 +2330,236 @@ class HPLCVariable(DiscreteMeasuredVariable):
 
 
 @dataclass(repr=False)
+class DiscretePhysiologicalVariable(DiscreteMeasuredVariable):
+    """
+    Physiological response variable from discrete field samples (e.g., organism growth rates, calcification rates,
+    gene expression from bottle or tissue samples collected in the field).
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["DiscretePhysiologicalVariable"]
+    class_class_curie: ClassVar[str] = "oae:DiscretePhysiologicalVariable"
+    class_name: ClassVar[str] = "DiscretePhysiologicalVariable"
+    class_model_uri: ClassVar[URIRef] = OAE.DiscretePhysiologicalVariable
+
+    schema_class: str = None
+    dataset_variable_name: str = None
+    long_name: str = None
+    units: str = None
+    analyzing_instrument: Union[dict, "AnalyzingInstrument"] = None
+    sampling_method: str = None
+    analyzing_method: str = None
+    observation_type: Union[str, "ObservationType"] = None
+    sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
+    qc_steps_taken: str = None
+    uncertainty: str = None
+    uncertainty_definition: str = None
+    missing_value_indicators: str = None
+    genesis: str = None
+    sampling: str = None
+    biological_subject: str = None
+    variable_type: Optional[str] = None
+    species_identification_code: Optional[str] = None
+    taxonomic_code_system: Optional[Union[str, "TaxonomicCodeSystem"]] = None
+    life_stage: Optional[Union[str, "LifeStage"]] = None
+    life_stage_custom: Optional[str] = None
+    targeted_acidity_levels: Optional[str] = None
+    manipulation_method: Optional[str] = None
+    experiment_location: Optional[str] = None
+    subject_collection_location: Optional[str] = None
+    treatment_start_datetime: Optional[Union[str, XSDDateTime]] = None
+    treatment_end_datetime: Optional[Union[str, XSDDateTime]] = None
+    additional_details: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.biological_subject):
+            self.MissingRequiredField("biological_subject")
+        if not isinstance(self.biological_subject, str):
+            self.biological_subject = str(self.biological_subject)
+
+        if self.variable_type is not None and not isinstance(self.variable_type, str):
+            self.variable_type = str(self.variable_type)
+
+        if self.species_identification_code is not None and not isinstance(self.species_identification_code, str):
+            self.species_identification_code = str(self.species_identification_code)
+
+        if self.taxonomic_code_system is not None and not isinstance(self.taxonomic_code_system, TaxonomicCodeSystem):
+            self.taxonomic_code_system = TaxonomicCodeSystem(self.taxonomic_code_system)
+
+        if self.life_stage is not None and not isinstance(self.life_stage, LifeStage):
+            self.life_stage = LifeStage(self.life_stage)
+
+        if self.life_stage_custom is not None and not isinstance(self.life_stage_custom, str):
+            self.life_stage_custom = str(self.life_stage_custom)
+
+        if self.targeted_acidity_levels is not None and not isinstance(self.targeted_acidity_levels, str):
+            self.targeted_acidity_levels = str(self.targeted_acidity_levels)
+
+        if self.manipulation_method is not None and not isinstance(self.manipulation_method, str):
+            self.manipulation_method = str(self.manipulation_method)
+
+        if self.experiment_location is not None and not isinstance(self.experiment_location, str):
+            self.experiment_location = str(self.experiment_location)
+
+        if self.subject_collection_location is not None and not isinstance(self.subject_collection_location, str):
+            self.subject_collection_location = str(self.subject_collection_location)
+
+        if self.treatment_start_datetime is not None and not isinstance(self.treatment_start_datetime, XSDDateTime):
+            self.treatment_start_datetime = XSDDateTime(self.treatment_start_datetime)
+
+        if self.treatment_end_datetime is not None and not isinstance(self.treatment_end_datetime, XSDDateTime):
+            self.treatment_end_datetime = XSDDateTime(self.treatment_end_datetime)
+
+        if self.additional_details is not None and not isinstance(self.additional_details, str):
+            self.additional_details = str(self.additional_details)
+
+        super().__post_init__(**kwargs)
+        if self._is_empty(self.unknown_schema_class):
+            self.MissingRequiredField("unknown_schema_class")
+        self.unknown_schema_class = str(self.class_name)
+
+
+@dataclass(repr=False)
+class ContinuousPhysiologicalVariable(ContinuousMeasuredVariable):
+    """
+    Physiological response variable from continuous autonomous field sensors (e.g., respiration rates from deployed
+    oxygen consumption monitors, heart rate from bio-loggers).
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["ContinuousPhysiologicalVariable"]
+    class_class_curie: ClassVar[str] = "oae:ContinuousPhysiologicalVariable"
+    class_name: ClassVar[str] = "ContinuousPhysiologicalVariable"
+    class_model_uri: ClassVar[URIRef] = OAE.ContinuousPhysiologicalVariable
+
+    schema_class: str = None
+    dataset_variable_name: str = None
+    long_name: str = None
+    units: str = None
+    analyzing_instrument: Union[dict, "AnalyzingInstrument"] = None
+    sampling_method: str = None
+    analyzing_method: str = None
+    observation_type: Union[str, "ObservationType"] = None
+    sampling_instrument_type: Union[str, "SamplingInstrumentType"] = None
+    qc_steps_taken: str = None
+    uncertainty: str = None
+    uncertainty_definition: str = None
+    missing_value_indicators: str = None
+    genesis: str = None
+    raw_data_calculation_method: str = None
+    sampling: str = None
+    biological_subject: str = None
+    variable_type: Optional[str] = None
+    species_identification_code: Optional[str] = None
+    taxonomic_code_system: Optional[Union[str, "TaxonomicCodeSystem"]] = None
+    life_stage: Optional[Union[str, "LifeStage"]] = None
+    life_stage_custom: Optional[str] = None
+    targeted_acidity_levels: Optional[str] = None
+    manipulation_method: Optional[str] = None
+    experiment_location: Optional[str] = None
+    subject_collection_location: Optional[str] = None
+    treatment_start_datetime: Optional[Union[str, XSDDateTime]] = None
+    treatment_end_datetime: Optional[Union[str, XSDDateTime]] = None
+    additional_details: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.biological_subject):
+            self.MissingRequiredField("biological_subject")
+        if not isinstance(self.biological_subject, str):
+            self.biological_subject = str(self.biological_subject)
+
+        if self.variable_type is not None and not isinstance(self.variable_type, str):
+            self.variable_type = str(self.variable_type)
+
+        if self.species_identification_code is not None and not isinstance(self.species_identification_code, str):
+            self.species_identification_code = str(self.species_identification_code)
+
+        if self.taxonomic_code_system is not None and not isinstance(self.taxonomic_code_system, TaxonomicCodeSystem):
+            self.taxonomic_code_system = TaxonomicCodeSystem(self.taxonomic_code_system)
+
+        if self.life_stage is not None and not isinstance(self.life_stage, LifeStage):
+            self.life_stage = LifeStage(self.life_stage)
+
+        if self.life_stage_custom is not None and not isinstance(self.life_stage_custom, str):
+            self.life_stage_custom = str(self.life_stage_custom)
+
+        if self.targeted_acidity_levels is not None and not isinstance(self.targeted_acidity_levels, str):
+            self.targeted_acidity_levels = str(self.targeted_acidity_levels)
+
+        if self.manipulation_method is not None and not isinstance(self.manipulation_method, str):
+            self.manipulation_method = str(self.manipulation_method)
+
+        if self.experiment_location is not None and not isinstance(self.experiment_location, str):
+            self.experiment_location = str(self.experiment_location)
+
+        if self.subject_collection_location is not None and not isinstance(self.subject_collection_location, str):
+            self.subject_collection_location = str(self.subject_collection_location)
+
+        if self.treatment_start_datetime is not None and not isinstance(self.treatment_start_datetime, XSDDateTime):
+            self.treatment_start_datetime = XSDDateTime(self.treatment_start_datetime)
+
+        if self.treatment_end_datetime is not None and not isinstance(self.treatment_end_datetime, XSDDateTime):
+            self.treatment_end_datetime = XSDDateTime(self.treatment_end_datetime)
+
+        if self.additional_details is not None and not isinstance(self.additional_details, str):
+            self.additional_details = str(self.additional_details)
+
+        super().__post_init__(**kwargs)
+        if self._is_empty(self.unknown_schema_class):
+            self.MissingRequiredField("unknown_schema_class")
+        self.unknown_schema_class = str(self.class_name)
+
+
+@dataclass(repr=False)
+class SocioeconomicVariable(InSituVariable):
+    """
+    Socioeconomic variable for social and economic data such as survey responses, ecosystem service valuations, or
+    text analysis. Extends InSituVariable to inherit method_reference and measurement_researcher, but does NOT include
+    QCFields, instrument details, or calibration.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["SocioeconomicVariable"]
+    class_class_curie: ClassVar[str] = "oae:SocioeconomicVariable"
+    class_name: ClassVar[str] = "SocioeconomicVariable"
+    class_model_uri: ClassVar[URIRef] = OAE.SocioeconomicVariable
+
+    schema_class: str = None
+    dataset_variable_name: str = None
+    long_name: str = None
+    genesis: Union[str, "GenesisType"] = None
+    units: str = None
+    quantitative_or_qualitative: Union[str, "QuantitativeQualitative"] = None
+    social_study_type: Optional[Union[str, "SocialStudyType"]] = None
+    social_study_type_custom: Optional[str] = None
+    social_study_site_characterization: Optional[str] = None
+    variable_type: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.quantitative_or_qualitative):
+            self.MissingRequiredField("quantitative_or_qualitative")
+        if not isinstance(self.quantitative_or_qualitative, QuantitativeQualitative):
+            self.quantitative_or_qualitative = QuantitativeQualitative(self.quantitative_or_qualitative)
+
+        if self.social_study_type is not None and not isinstance(self.social_study_type, SocialStudyType):
+            self.social_study_type = SocialStudyType(self.social_study_type)
+
+        if self.social_study_type_custom is not None and not isinstance(self.social_study_type_custom, str):
+            self.social_study_type_custom = str(self.social_study_type_custom)
+
+        if self.social_study_site_characterization is not None and not isinstance(self.social_study_site_characterization, str):
+            self.social_study_site_characterization = str(self.social_study_site_characterization)
+
+        if self.variable_type is not None and not isinstance(self.variable_type, str):
+            self.variable_type = str(self.variable_type)
+
+        super().__post_init__(**kwargs)
+        if self._is_empty(self.unknown_schema_class):
+            self.MissingRequiredField("unknown_schema_class")
+        self.unknown_schema_class = str(self.class_name)
+
+
+@dataclass(repr=False)
 class SamplePreservation(YAMLRoot):
     """
     Sample preservation information for DIC and TA measurements. Reference: OAPMetadata XSD variables.xsd -
@@ -2505,6 +2735,74 @@ class MeasuredSedimentFields(YAMLRoot):
             self.MissingRequiredField("sediment_sampling_water_depth")
         if not isinstance(self.sediment_sampling_water_depth, str):
             self.sediment_sampling_water_depth = str(self.sediment_sampling_water_depth)
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class MeasuredPhysiologicalFields(YAMLRoot):
+    """
+    Fields applied to all measured physiological variable types (discrete and continuous). Captures biological subject
+    identification and experimental design information for organism response field studies.
+    """
+    _inherited_slots: ClassVar[List[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = OAE["MeasuredPhysiologicalFields"]
+    class_class_curie: ClassVar[str] = "oae:MeasuredPhysiologicalFields"
+    class_name: ClassVar[str] = "MeasuredPhysiologicalFields"
+    class_model_uri: ClassVar[URIRef] = OAE.MeasuredPhysiologicalFields
+
+    biological_subject: str = None
+    species_identification_code: Optional[str] = None
+    taxonomic_code_system: Optional[Union[str, "TaxonomicCodeSystem"]] = None
+    life_stage: Optional[Union[str, "LifeStage"]] = None
+    life_stage_custom: Optional[str] = None
+    targeted_acidity_levels: Optional[str] = None
+    manipulation_method: Optional[str] = None
+    experiment_location: Optional[str] = None
+    subject_collection_location: Optional[str] = None
+    treatment_start_datetime: Optional[Union[str, XSDDateTime]] = None
+    treatment_end_datetime: Optional[Union[str, XSDDateTime]] = None
+    additional_details: Optional[str] = None
+
+    def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
+        if self._is_empty(self.biological_subject):
+            self.MissingRequiredField("biological_subject")
+        if not isinstance(self.biological_subject, str):
+            self.biological_subject = str(self.biological_subject)
+
+        if self.species_identification_code is not None and not isinstance(self.species_identification_code, str):
+            self.species_identification_code = str(self.species_identification_code)
+
+        if self.taxonomic_code_system is not None and not isinstance(self.taxonomic_code_system, TaxonomicCodeSystem):
+            self.taxonomic_code_system = TaxonomicCodeSystem(self.taxonomic_code_system)
+
+        if self.life_stage is not None and not isinstance(self.life_stage, LifeStage):
+            self.life_stage = LifeStage(self.life_stage)
+
+        if self.life_stage_custom is not None and not isinstance(self.life_stage_custom, str):
+            self.life_stage_custom = str(self.life_stage_custom)
+
+        if self.targeted_acidity_levels is not None and not isinstance(self.targeted_acidity_levels, str):
+            self.targeted_acidity_levels = str(self.targeted_acidity_levels)
+
+        if self.manipulation_method is not None and not isinstance(self.manipulation_method, str):
+            self.manipulation_method = str(self.manipulation_method)
+
+        if self.experiment_location is not None and not isinstance(self.experiment_location, str):
+            self.experiment_location = str(self.experiment_location)
+
+        if self.subject_collection_location is not None and not isinstance(self.subject_collection_location, str):
+            self.subject_collection_location = str(self.subject_collection_location)
+
+        if self.treatment_start_datetime is not None and not isinstance(self.treatment_start_datetime, XSDDateTime):
+            self.treatment_start_datetime = XSDDateTime(self.treatment_start_datetime)
+
+        if self.treatment_end_datetime is not None and not isinstance(self.treatment_end_datetime, XSDDateTime):
+            self.treatment_end_datetime = XSDDateTime(self.treatment_end_datetime)
+
+        if self.additional_details is not None and not isinstance(self.additional_details, str):
+            self.additional_details = str(self.additional_details)
 
         super().__post_init__(**kwargs)
 
@@ -4923,6 +5221,12 @@ class VariableType(EnumDefinitionImpl):
     hplc = PermissibleValue(
         text="hplc",
         description="HPLC pigment analysis — use with HPLCVariable (always discrete, always measured)")
+    physiological = PermissibleValue(
+        text="physiological",
+        description="""Physiological response variable — organism response data from field experiments. Use with Discrete/ContinuousPhysiologicalVariable or CalculatedVariable.""")
+    socioeconomic = PermissibleValue(
+        text="socioeconomic",
+        description="""Socioeconomic variable — social and economic data. Use only with SocioeconomicVariable. Does not include QC fields.""")
     other = PermissibleValue(
         text="other",
         description="""Any directly measured or calculated variable that does not fall into a specific category above (e.g., temperature, salinity, conductivity, pressure, fluorescence). Use with DiscreteMeasuredVariable, ContinuousMeasuredVariable, or CalculatedVariable.""")
@@ -4992,6 +5296,78 @@ class ConcentrationBasis(EnumDefinitionImpl):
     _defn = EnumDefinition(
         name="ConcentrationBasis",
         description="Whether concentration measurements are expressed per unit volume or per unit mass.",
+    )
+
+class TaxonomicCodeSystem(EnumDefinitionImpl):
+    """
+    Taxonomic code system used for species identification.
+    """
+    itis = PermissibleValue(
+        text="itis",
+        description="Integrated Taxonomic Information System")
+    worms = PermissibleValue(
+        text="worms",
+        description="World Register of Marine Species")
+    col = PermissibleValue(
+        text="col",
+        description="Catalogue of Life")
+    pbdb = PermissibleValue(
+        text="pbdb",
+        description="Paleobiology Database")
+
+    _defn = EnumDefinition(
+        name="TaxonomicCodeSystem",
+        description="Taxonomic code system used for species identification.",
+    )
+
+class LifeStage(EnumDefinitionImpl):
+    """
+    Life stage of the biological subject.
+    """
+    egg = PermissibleValue(text="egg")
+    embryo = PermissibleValue(text="embryo")
+    larva = PermissibleValue(text="larva")
+    juvenile = PermissibleValue(text="juvenile")
+    adult = PermissibleValue(text="adult")
+    other = PermissibleValue(text="other")
+
+    _defn = EnumDefinition(
+        name="LifeStage",
+        description="Life stage of the biological subject.",
+    )
+
+class QuantitativeQualitative(EnumDefinitionImpl):
+    """
+    Whether the socioeconomic data is quantitative or qualitative.
+    """
+    quantitative = PermissibleValue(text="quantitative")
+    qualitative = PermissibleValue(text="qualitative")
+
+    _defn = EnumDefinition(
+        name="QuantitativeQualitative",
+        description="Whether the socioeconomic data is quantitative or qualitative.",
+    )
+
+class SocialStudyType(EnumDefinitionImpl):
+    """
+    Type of social study conducted.
+    """
+    public_perception_survey = PermissibleValue(
+        text="public_perception_survey",
+        description="Public perception survey")
+    ecosystem_service_valuation_survey = PermissibleValue(
+        text="ecosystem_service_valuation_survey",
+        description="Ecosystem service valuation survey")
+    text_analysis = PermissibleValue(
+        text="text_analysis",
+        description="Text analysis")
+    other = PermissibleValue(
+        text="other",
+        description="Other study type")
+
+    _defn = EnumDefinition(
+        name="SocialStudyType",
+        description="Type of social study conducted.",
     )
 
 class SamplingInstrumentType(EnumDefinitionImpl):
@@ -5635,6 +6011,18 @@ slots.hPLCVariable__hplc_lab = Slot(uri=OAE.hplc_lab, name="hPLCVariable__hplc_l
 slots.hPLCVariable__hplc_lab_technician = Slot(uri=OAE.hplc_lab_technician, name="hPLCVariable__hplc_lab_technician", curie=OAE.curie('hplc_lab_technician'),
                    model_uri=OAE.hPLCVariable__hplc_lab_technician, domain=None, range=Optional[str])
 
+slots.socioeconomicVariable__quantitative_or_qualitative = Slot(uri=OAE.quantitative_or_qualitative, name="socioeconomicVariable__quantitative_or_qualitative", curie=OAE.curie('quantitative_or_qualitative'),
+                   model_uri=OAE.socioeconomicVariable__quantitative_or_qualitative, domain=None, range=Union[str, "QuantitativeQualitative"])
+
+slots.socioeconomicVariable__social_study_type = Slot(uri=OAE.social_study_type, name="socioeconomicVariable__social_study_type", curie=OAE.curie('social_study_type'),
+                   model_uri=OAE.socioeconomicVariable__social_study_type, domain=None, range=Optional[Union[str, "SocialStudyType"]])
+
+slots.socioeconomicVariable__social_study_type_custom = Slot(uri=OAE.social_study_type_custom, name="socioeconomicVariable__social_study_type_custom", curie=OAE.curie('social_study_type_custom'),
+                   model_uri=OAE.socioeconomicVariable__social_study_type_custom, domain=None, range=Optional[str])
+
+slots.socioeconomicVariable__social_study_site_characterization = Slot(uri=OAE.social_study_site_characterization, name="socioeconomicVariable__social_study_site_characterization", curie=OAE.curie('social_study_site_characterization'),
+                   model_uri=OAE.socioeconomicVariable__social_study_site_characterization, domain=None, range=Optional[str])
+
 slots.samplePreservation__preservative = Slot(uri=OAE.preservative, name="samplePreservation__preservative", curie=OAE.curie('preservative'),
                    model_uri=OAE.samplePreservation__preservative, domain=None, range=str)
 
@@ -5661,6 +6049,42 @@ slots.measuredSedimentFields__sediment_sampling_depth = Slot(uri=OAE.sediment_sa
 
 slots.measuredSedimentFields__sediment_sampling_water_depth = Slot(uri=OAE.sediment_sampling_water_depth, name="measuredSedimentFields__sediment_sampling_water_depth", curie=OAE.curie('sediment_sampling_water_depth'),
                    model_uri=OAE.measuredSedimentFields__sediment_sampling_water_depth, domain=None, range=str)
+
+slots.measuredPhysiologicalFields__biological_subject = Slot(uri=OAE.biological_subject, name="measuredPhysiologicalFields__biological_subject", curie=OAE.curie('biological_subject'),
+                   model_uri=OAE.measuredPhysiologicalFields__biological_subject, domain=None, range=str)
+
+slots.measuredPhysiologicalFields__species_identification_code = Slot(uri=OAE.species_identification_code, name="measuredPhysiologicalFields__species_identification_code", curie=OAE.curie('species_identification_code'),
+                   model_uri=OAE.measuredPhysiologicalFields__species_identification_code, domain=None, range=Optional[str])
+
+slots.measuredPhysiologicalFields__taxonomic_code_system = Slot(uri=OAE.taxonomic_code_system, name="measuredPhysiologicalFields__taxonomic_code_system", curie=OAE.curie('taxonomic_code_system'),
+                   model_uri=OAE.measuredPhysiologicalFields__taxonomic_code_system, domain=None, range=Optional[Union[str, "TaxonomicCodeSystem"]])
+
+slots.measuredPhysiologicalFields__life_stage = Slot(uri=OAE.life_stage, name="measuredPhysiologicalFields__life_stage", curie=OAE.curie('life_stage'),
+                   model_uri=OAE.measuredPhysiologicalFields__life_stage, domain=None, range=Optional[Union[str, "LifeStage"]])
+
+slots.measuredPhysiologicalFields__life_stage_custom = Slot(uri=OAE.life_stage_custom, name="measuredPhysiologicalFields__life_stage_custom", curie=OAE.curie('life_stage_custom'),
+                   model_uri=OAE.measuredPhysiologicalFields__life_stage_custom, domain=None, range=Optional[str])
+
+slots.measuredPhysiologicalFields__targeted_acidity_levels = Slot(uri=OAE.targeted_acidity_levels, name="measuredPhysiologicalFields__targeted_acidity_levels", curie=OAE.curie('targeted_acidity_levels'),
+                   model_uri=OAE.measuredPhysiologicalFields__targeted_acidity_levels, domain=None, range=Optional[str])
+
+slots.measuredPhysiologicalFields__manipulation_method = Slot(uri=OAE.manipulation_method, name="measuredPhysiologicalFields__manipulation_method", curie=OAE.curie('manipulation_method'),
+                   model_uri=OAE.measuredPhysiologicalFields__manipulation_method, domain=None, range=Optional[str])
+
+slots.measuredPhysiologicalFields__experiment_location = Slot(uri=OAE.experiment_location, name="measuredPhysiologicalFields__experiment_location", curie=OAE.curie('experiment_location'),
+                   model_uri=OAE.measuredPhysiologicalFields__experiment_location, domain=None, range=Optional[str])
+
+slots.measuredPhysiologicalFields__subject_collection_location = Slot(uri=OAE.subject_collection_location, name="measuredPhysiologicalFields__subject_collection_location", curie=OAE.curie('subject_collection_location'),
+                   model_uri=OAE.measuredPhysiologicalFields__subject_collection_location, domain=None, range=Optional[str])
+
+slots.measuredPhysiologicalFields__treatment_start_datetime = Slot(uri=OAE.treatment_start_datetime, name="measuredPhysiologicalFields__treatment_start_datetime", curie=OAE.curie('treatment_start_datetime'),
+                   model_uri=OAE.measuredPhysiologicalFields__treatment_start_datetime, domain=None, range=Optional[Union[str, XSDDateTime]])
+
+slots.measuredPhysiologicalFields__treatment_end_datetime = Slot(uri=OAE.treatment_end_datetime, name="measuredPhysiologicalFields__treatment_end_datetime", curie=OAE.curie('treatment_end_datetime'),
+                   model_uri=OAE.measuredPhysiologicalFields__treatment_end_datetime, domain=None, range=Optional[Union[str, XSDDateTime]])
+
+slots.measuredPhysiologicalFields__additional_details = Slot(uri=OAE.additional_details, name="measuredPhysiologicalFields__additional_details", curie=OAE.curie('additional_details'),
+                   model_uri=OAE.measuredPhysiologicalFields__additional_details, domain=None, range=Optional[str])
 
 slots.measuredCO2Fields__pco2_reported_temperature = Slot(uri=OAE.pco2_reported_temperature, name="measuredCO2Fields__pco2_reported_temperature", curie=OAE.curie('pco2_reported_temperature'),
                    model_uri=OAE.measuredCO2Fields__pco2_reported_temperature, domain=None, range=str)
@@ -6142,6 +6566,15 @@ slots.ContinuousCO2Variable_analyzing_instrument = Slot(uri=OAE.analyzing_instru
 
 slots.HPLCVariable_variable_type = Slot(uri=OAE.variable_type, name="HPLCVariable_variable_type", curie=OAE.curie('variable_type'),
                    model_uri=OAE.HPLCVariable_variable_type, domain=HPLCVariable, range=Optional[str])
+
+slots.DiscretePhysiologicalVariable_variable_type = Slot(uri=OAE.variable_type, name="DiscretePhysiologicalVariable_variable_type", curie=OAE.curie('variable_type'),
+                   model_uri=OAE.DiscretePhysiologicalVariable_variable_type, domain=DiscretePhysiologicalVariable, range=Optional[str])
+
+slots.ContinuousPhysiologicalVariable_variable_type = Slot(uri=OAE.variable_type, name="ContinuousPhysiologicalVariable_variable_type", curie=OAE.curie('variable_type'),
+                   model_uri=OAE.ContinuousPhysiologicalVariable_variable_type, domain=ContinuousPhysiologicalVariable, range=Optional[str])
+
+slots.SocioeconomicVariable_variable_type = Slot(uri=OAE.variable_type, name="SocioeconomicVariable_variable_type", curie=OAE.curie('variable_type'),
+                   model_uri=OAE.SocioeconomicVariable_variable_type, domain=SocioeconomicVariable, range=Optional[str])
 
 slots.Dataset_name = Slot(uri=SCHEMA.name, name="Dataset_name", curie=SCHEMA.curie('name'),
                    model_uri=OAE.Dataset_name, domain=Dataset, range=str)
