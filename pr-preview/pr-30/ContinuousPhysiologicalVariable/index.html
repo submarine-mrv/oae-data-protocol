@@ -556,8 +556,6 @@
       ContinuousMeasuredVariable &lt;|-- ContinuousPhysiologicalVariable
         click ContinuousMeasuredVariable href "../ContinuousMeasuredVariable"
 
-      ContinuousPhysiologicalVariable : additional_details
-
       ContinuousPhysiologicalVariable : analyzing_instrument
 
 
@@ -579,8 +577,6 @@
 
       ContinuousPhysiologicalVariable : dataset_variable_name_raw
 
-      ContinuousPhysiologicalVariable : experiment_location
-
       ContinuousPhysiologicalVariable : field_replicate_information
 
       ContinuousPhysiologicalVariable : genesis
@@ -597,8 +593,6 @@
       ContinuousPhysiologicalVariable : life_stage_custom
 
       ContinuousPhysiologicalVariable : long_name
-
-      ContinuousPhysiologicalVariable : manipulation_method
 
       ContinuousPhysiologicalVariable : measurement_researcher
 
@@ -667,10 +661,6 @@
     click VocabularyItemReference href "../VocabularyItemReference"
 
 
-      ContinuousPhysiologicalVariable : subject_collection_location
-
-      ContinuousPhysiologicalVariable : targeted_acidity_levels
-
       ContinuousPhysiologicalVariable : taxonomic_code_system
 
 
@@ -679,10 +669,6 @@
     ContinuousPhysiologicalVariable --&gt; "0..1" TaxonomicCodeSystem : taxonomic_code_system
     click TaxonomicCodeSystem href "../TaxonomicCodeSystem"
 
-
-      ContinuousPhysiologicalVariable : treatment_end_datetime
-
-      ContinuousPhysiologicalVariable : treatment_start_datetime
 
       ContinuousPhysiologicalVariable : uncertainty
 
@@ -749,48 +735,6 @@
 <td><a href="../life_stage_custom/">life_stage_custom</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Custom life stage description when "other" is selected</td>
-<td><a href="../MeasuredPhysiologicalFields/">MeasuredPhysiologicalFields</a></td>
-</tr>
-<tr>
-<td><a href="../targeted_acidity_levels/">targeted_acidity_levels</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Target pCO2 or alkalinity levels for the manipulation experiment (e</td>
-<td><a href="../MeasuredPhysiologicalFields/">MeasuredPhysiologicalFields</a></td>
-</tr>
-<tr>
-<td><a href="../manipulation_method/">manipulation_method</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>How ocean chemistry conditions were manipulated (e</td>
-<td><a href="../MeasuredPhysiologicalFields/">MeasuredPhysiologicalFields</a></td>
-</tr>
-<tr>
-<td><a href="../experiment_location/">experiment_location</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Where the experiment was carried out (e</td>
-<td><a href="../MeasuredPhysiologicalFields/">MeasuredPhysiologicalFields</a></td>
-</tr>
-<tr>
-<td><a href="../subject_collection_location/">subject_collection_location</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Where the biological subjects were collected from</td>
-<td><a href="../MeasuredPhysiologicalFields/">MeasuredPhysiologicalFields</a></td>
-</tr>
-<tr>
-<td><a href="../treatment_start_datetime/">treatment_start_datetime</a></td>
-<td>0..1 <br/> <a href="../Datetime/">Datetime</a></td>
-<td>Start of the experimental treatment period (UTC)</td>
-<td><a href="../MeasuredPhysiologicalFields/">MeasuredPhysiologicalFields</a></td>
-</tr>
-<tr>
-<td><a href="../treatment_end_datetime/">treatment_end_datetime</a></td>
-<td>0..1 <br/> <a href="../Datetime/">Datetime</a></td>
-<td>End of the experimental treatment period (UTC)</td>
-<td><a href="../MeasuredPhysiologicalFields/">MeasuredPhysiologicalFields</a></td>
-</tr>
-<tr>
-<td><a href="../additional_details/">additional_details</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Any additional information about the physiological experiment</td>
 <td><a href="../MeasuredPhysiologicalFields/">MeasuredPhysiologicalFields</a></td>
 </tr>
 <tr>
@@ -1078,87 +1022,6 @@
 <span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">life_stage_custom</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ContinuousPhysiologicalVariable</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MeasuredPhysiologicalFields</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">  </span><span class="nt">targeted_acidity_levels</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">targeted_acidity_levels</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Target pCO2 or alkalinity levels for the manipulation experiment</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">(e.g., "400, 800, 1200 uatm pCO2").</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Targeted Acidity or Alkalinity Levels</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">targeted_acidity_levels</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ContinuousPhysiologicalVariable</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MeasuredPhysiologicalFields</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">  </span><span class="nt">manipulation_method</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">manipulation_method</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">How ocean chemistry conditions were manipulated (e.g., CO2 bubbling,</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">acid addition, alkalinity addition).</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Manipulation Method</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">manipulation_method</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ContinuousPhysiologicalVariable</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MeasuredPhysiologicalFields</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">  </span><span class="nt">experiment_location</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">experiment_location</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Where the experiment was carried out (e.g., outdoor mesocosm facility,</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">natural field site).</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Experiment Location</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">experiment_location</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ContinuousPhysiologicalVariable</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MeasuredPhysiologicalFields</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">  </span><span class="nt">subject_collection_location</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">subject_collection_location</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Where the biological subjects were collected from.</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Subject Collection Location</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">subject_collection_location</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ContinuousPhysiologicalVariable</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MeasuredPhysiologicalFields</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">  </span><span class="nt">treatment_start_datetime</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">treatment_start_datetime</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Start of the experimental treatment period (UTC).</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Treatment Start Date/Time</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">treatment_start_datetime</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ContinuousPhysiologicalVariable</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MeasuredPhysiologicalFields</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">datetime</span>
-<span class="w">  </span><span class="nt">treatment_end_datetime</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">treatment_end_datetime</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">End of the experimental treatment period (UTC).</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Treatment End Date/Time</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">treatment_end_datetime</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ContinuousPhysiologicalVariable</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MeasuredPhysiologicalFields</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">datetime</span>
-<span class="w">  </span><span class="nt">additional_details</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">additional_details</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Any additional information about the physiological experiment.</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Additional Details</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">additional_details</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ContinuousPhysiologicalVariable</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Project</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InSituExperiment</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MeasuredPhysiologicalFields</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">  </span><span class="nt">raw_data_calculation_method</span><span class="p">:</span>
