@@ -1627,20 +1627,6 @@ export interface MeasuredPhysiologicalFields {
     life_stage?: string,
     /** Custom life stage description when "other" is selected. */
     life_stage_custom?: string,
-    /** Target pCO2 or alkalinity levels for the manipulation experiment (e.g., "400, 800, 1200 uatm pCO2"). */
-    targeted_acidity_levels?: string,
-    /** How ocean chemistry conditions were manipulated (e.g., CO2 bubbling, acid addition, alkalinity addition). */
-    manipulation_method?: string,
-    /** Where the experiment was carried out (e.g., outdoor mesocosm facility, natural field site). */
-    experiment_location?: string,
-    /** Where the biological subjects were collected from. */
-    subject_collection_location?: string,
-    /** Start of the experimental treatment period (UTC). */
-    treatment_start_datetime?: string,
-    /** End of the experimental treatment period (UTC). */
-    treatment_end_datetime?: string,
-    /** Any additional information about the physiological experiment. */
-    additional_details?: string,
 }
 
 

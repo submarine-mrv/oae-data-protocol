@@ -697,40 +697,7 @@ classes:
         title: Life Stage (custom)
         description: Custom life stage description when "other" is selected.
         range: string
-      targeted_acidity_levels:
-        title: Targeted Acidity or Alkalinity Levels
-        description: >-
-          Target pCO2 or alkalinity levels for the manipulation experiment
-          (e.g., "400, 800, 1200 uatm pCO2").
-        range: string
-      manipulation_method:
-        title: Manipulation Method
-        description: >-
-          How ocean chemistry conditions were manipulated (e.g., CO2
-          bubbling, acid addition, alkalinity addition).
-        range: string
-      experiment_location:
-        title: Experiment Location
-        description: >-
-          Where the experiment was carried out (e.g., outdoor mesocosm
-          facility, natural field site).
-        range: string
-      subject_collection_location:
-        title: Subject Collection Location
-        description: Where the biological subjects were collected from.
-        range: string
-      treatment_start_datetime:
-        title: Treatment Start Date/Time
-        description: Start of the experimental treatment period (UTC).
-        range: datetime
-      treatment_end_datetime:
-        title: Treatment End Date/Time
-        description: End of the experimental treatment period (UTC).
-        range: datetime
-      additional_details:
-        title: Additional Details
-        description: Any additional information about the physiological experiment.
-        range: string
+
 
   MeasuredCO2Fields:
     mixin: true

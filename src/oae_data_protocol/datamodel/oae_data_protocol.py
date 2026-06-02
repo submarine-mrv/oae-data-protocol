@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-05-24T19:36:26
+# Generation date: 2026-06-02T09:56:20
 # Schema: OAEDataSchema
 #
 # id: https://schema.oaedata.org/OAEDataSchema
@@ -2363,13 +2363,6 @@ class DiscretePhysiologicalVariable(DiscreteMeasuredVariable):
     taxonomic_code_system: Optional[Union[str, "TaxonomicCodeSystem"]] = None
     life_stage: Optional[Union[str, "LifeStage"]] = None
     life_stage_custom: Optional[str] = None
-    targeted_acidity_levels: Optional[str] = None
-    manipulation_method: Optional[str] = None
-    experiment_location: Optional[str] = None
-    subject_collection_location: Optional[str] = None
-    treatment_start_datetime: Optional[Union[str, XSDDateTime]] = None
-    treatment_end_datetime: Optional[Union[str, XSDDateTime]] = None
-    additional_details: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.biological_subject):
@@ -2391,27 +2384,6 @@ class DiscretePhysiologicalVariable(DiscreteMeasuredVariable):
 
         if self.life_stage_custom is not None and not isinstance(self.life_stage_custom, str):
             self.life_stage_custom = str(self.life_stage_custom)
-
-        if self.targeted_acidity_levels is not None and not isinstance(self.targeted_acidity_levels, str):
-            self.targeted_acidity_levels = str(self.targeted_acidity_levels)
-
-        if self.manipulation_method is not None and not isinstance(self.manipulation_method, str):
-            self.manipulation_method = str(self.manipulation_method)
-
-        if self.experiment_location is not None and not isinstance(self.experiment_location, str):
-            self.experiment_location = str(self.experiment_location)
-
-        if self.subject_collection_location is not None and not isinstance(self.subject_collection_location, str):
-            self.subject_collection_location = str(self.subject_collection_location)
-
-        if self.treatment_start_datetime is not None and not isinstance(self.treatment_start_datetime, XSDDateTime):
-            self.treatment_start_datetime = XSDDateTime(self.treatment_start_datetime)
-
-        if self.treatment_end_datetime is not None and not isinstance(self.treatment_end_datetime, XSDDateTime):
-            self.treatment_end_datetime = XSDDateTime(self.treatment_end_datetime)
-
-        if self.additional_details is not None and not isinstance(self.additional_details, str):
-            self.additional_details = str(self.additional_details)
 
         super().__post_init__(**kwargs)
         if self._is_empty(self.unknown_schema_class):
@@ -2454,13 +2426,6 @@ class ContinuousPhysiologicalVariable(ContinuousMeasuredVariable):
     taxonomic_code_system: Optional[Union[str, "TaxonomicCodeSystem"]] = None
     life_stage: Optional[Union[str, "LifeStage"]] = None
     life_stage_custom: Optional[str] = None
-    targeted_acidity_levels: Optional[str] = None
-    manipulation_method: Optional[str] = None
-    experiment_location: Optional[str] = None
-    subject_collection_location: Optional[str] = None
-    treatment_start_datetime: Optional[Union[str, XSDDateTime]] = None
-    treatment_end_datetime: Optional[Union[str, XSDDateTime]] = None
-    additional_details: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.biological_subject):
@@ -2482,27 +2447,6 @@ class ContinuousPhysiologicalVariable(ContinuousMeasuredVariable):
 
         if self.life_stage_custom is not None and not isinstance(self.life_stage_custom, str):
             self.life_stage_custom = str(self.life_stage_custom)
-
-        if self.targeted_acidity_levels is not None and not isinstance(self.targeted_acidity_levels, str):
-            self.targeted_acidity_levels = str(self.targeted_acidity_levels)
-
-        if self.manipulation_method is not None and not isinstance(self.manipulation_method, str):
-            self.manipulation_method = str(self.manipulation_method)
-
-        if self.experiment_location is not None and not isinstance(self.experiment_location, str):
-            self.experiment_location = str(self.experiment_location)
-
-        if self.subject_collection_location is not None and not isinstance(self.subject_collection_location, str):
-            self.subject_collection_location = str(self.subject_collection_location)
-
-        if self.treatment_start_datetime is not None and not isinstance(self.treatment_start_datetime, XSDDateTime):
-            self.treatment_start_datetime = XSDDateTime(self.treatment_start_datetime)
-
-        if self.treatment_end_datetime is not None and not isinstance(self.treatment_end_datetime, XSDDateTime):
-            self.treatment_end_datetime = XSDDateTime(self.treatment_end_datetime)
-
-        if self.additional_details is not None and not isinstance(self.additional_details, str):
-            self.additional_details = str(self.additional_details)
 
         super().__post_init__(**kwargs)
         if self._is_empty(self.unknown_schema_class):
@@ -2757,13 +2701,6 @@ class MeasuredPhysiologicalFields(YAMLRoot):
     taxonomic_code_system: Optional[Union[str, "TaxonomicCodeSystem"]] = None
     life_stage: Optional[Union[str, "LifeStage"]] = None
     life_stage_custom: Optional[str] = None
-    targeted_acidity_levels: Optional[str] = None
-    manipulation_method: Optional[str] = None
-    experiment_location: Optional[str] = None
-    subject_collection_location: Optional[str] = None
-    treatment_start_datetime: Optional[Union[str, XSDDateTime]] = None
-    treatment_end_datetime: Optional[Union[str, XSDDateTime]] = None
-    additional_details: Optional[str] = None
 
     def __post_init__(self, *_: List[str], **kwargs: Dict[str, Any]):
         if self._is_empty(self.biological_subject):
@@ -2782,27 +2719,6 @@ class MeasuredPhysiologicalFields(YAMLRoot):
 
         if self.life_stage_custom is not None and not isinstance(self.life_stage_custom, str):
             self.life_stage_custom = str(self.life_stage_custom)
-
-        if self.targeted_acidity_levels is not None and not isinstance(self.targeted_acidity_levels, str):
-            self.targeted_acidity_levels = str(self.targeted_acidity_levels)
-
-        if self.manipulation_method is not None and not isinstance(self.manipulation_method, str):
-            self.manipulation_method = str(self.manipulation_method)
-
-        if self.experiment_location is not None and not isinstance(self.experiment_location, str):
-            self.experiment_location = str(self.experiment_location)
-
-        if self.subject_collection_location is not None and not isinstance(self.subject_collection_location, str):
-            self.subject_collection_location = str(self.subject_collection_location)
-
-        if self.treatment_start_datetime is not None and not isinstance(self.treatment_start_datetime, XSDDateTime):
-            self.treatment_start_datetime = XSDDateTime(self.treatment_start_datetime)
-
-        if self.treatment_end_datetime is not None and not isinstance(self.treatment_end_datetime, XSDDateTime):
-            self.treatment_end_datetime = XSDDateTime(self.treatment_end_datetime)
-
-        if self.additional_details is not None and not isinstance(self.additional_details, str):
-            self.additional_details = str(self.additional_details)
 
         super().__post_init__(**kwargs)
 
@@ -6064,27 +5980,6 @@ slots.measuredPhysiologicalFields__life_stage = Slot(uri=OAE.life_stage, name="m
 
 slots.measuredPhysiologicalFields__life_stage_custom = Slot(uri=OAE.life_stage_custom, name="measuredPhysiologicalFields__life_stage_custom", curie=OAE.curie('life_stage_custom'),
                    model_uri=OAE.measuredPhysiologicalFields__life_stage_custom, domain=None, range=Optional[str])
-
-slots.measuredPhysiologicalFields__targeted_acidity_levels = Slot(uri=OAE.targeted_acidity_levels, name="measuredPhysiologicalFields__targeted_acidity_levels", curie=OAE.curie('targeted_acidity_levels'),
-                   model_uri=OAE.measuredPhysiologicalFields__targeted_acidity_levels, domain=None, range=Optional[str])
-
-slots.measuredPhysiologicalFields__manipulation_method = Slot(uri=OAE.manipulation_method, name="measuredPhysiologicalFields__manipulation_method", curie=OAE.curie('manipulation_method'),
-                   model_uri=OAE.measuredPhysiologicalFields__manipulation_method, domain=None, range=Optional[str])
-
-slots.measuredPhysiologicalFields__experiment_location = Slot(uri=OAE.experiment_location, name="measuredPhysiologicalFields__experiment_location", curie=OAE.curie('experiment_location'),
-                   model_uri=OAE.measuredPhysiologicalFields__experiment_location, domain=None, range=Optional[str])
-
-slots.measuredPhysiologicalFields__subject_collection_location = Slot(uri=OAE.subject_collection_location, name="measuredPhysiologicalFields__subject_collection_location", curie=OAE.curie('subject_collection_location'),
-                   model_uri=OAE.measuredPhysiologicalFields__subject_collection_location, domain=None, range=Optional[str])
-
-slots.measuredPhysiologicalFields__treatment_start_datetime = Slot(uri=OAE.treatment_start_datetime, name="measuredPhysiologicalFields__treatment_start_datetime", curie=OAE.curie('treatment_start_datetime'),
-                   model_uri=OAE.measuredPhysiologicalFields__treatment_start_datetime, domain=None, range=Optional[Union[str, XSDDateTime]])
-
-slots.measuredPhysiologicalFields__treatment_end_datetime = Slot(uri=OAE.treatment_end_datetime, name="measuredPhysiologicalFields__treatment_end_datetime", curie=OAE.curie('treatment_end_datetime'),
-                   model_uri=OAE.measuredPhysiologicalFields__treatment_end_datetime, domain=None, range=Optional[Union[str, XSDDateTime]])
-
-slots.measuredPhysiologicalFields__additional_details = Slot(uri=OAE.additional_details, name="measuredPhysiologicalFields__additional_details", curie=OAE.curie('additional_details'),
-                   model_uri=OAE.measuredPhysiologicalFields__additional_details, domain=None, range=Optional[str])
 
 slots.measuredCO2Fields__pco2_reported_temperature = Slot(uri=OAE.pco2_reported_temperature, name="measuredCO2Fields__pco2_reported_temperature", curie=OAE.curie('pco2_reported_temperature'),
                    model_uri=OAE.measuredCO2Fields__pco2_reported_temperature, domain=None, range=str)

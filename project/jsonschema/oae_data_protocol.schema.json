@@ -1461,11 +1461,6 @@
             "additionalProperties": false,
             "description": "Physiological response variable from continuous autonomous field sensors (e.g., respiration rates from deployed oxygen consumption monitors, heart rate from bio-loggers).",
             "properties": {
-                "additional_details": {
-                    "description": "Any additional information about the physiological experiment.",
-                    "title": "Additional Details",
-                    "type": "string"
-                },
                 "analyzing_instrument": {
                     "$ref": "#/$defs/AnalyzingInstrument",
                     "description": "Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.",
@@ -1501,11 +1496,6 @@
                     "title": "Dataset variable name (raw)",
                     "type": "string"
                 },
-                "experiment_location": {
-                    "description": "Where the experiment was carried out (e.g., outdoor mesocosm facility, natural field site).",
-                    "title": "Experiment Location",
-                    "type": "string"
-                },
                 "field_replicate_information": {
                     "description": "Repetition of sample collection and measurement, e.g., triplicate samples.",
                     "title": "Field replicate information",
@@ -1528,11 +1518,6 @@
                 "long_name": {
                     "description": "Full descriptive name of the variable.",
                     "title": "Variable full name",
-                    "type": "string"
-                },
-                "manipulation_method": {
-                    "description": "How ocean chemistry conditions were manipulated (e.g., CO2 bubbling, acid addition, alkalinity addition).",
-                    "title": "Manipulation Method",
                     "type": "string"
                 },
                 "measurement_researcher": {
@@ -1611,32 +1596,10 @@
                 "standard_identifier": {
                     "$ref": "#/$defs/VocabularyItemReference"
                 },
-                "subject_collection_location": {
-                    "description": "Where the biological subjects were collected from.",
-                    "title": "Subject Collection Location",
-                    "type": "string"
-                },
-                "targeted_acidity_levels": {
-                    "description": "Target pCO2 or alkalinity levels for the manipulation experiment (e.g., \"400, 800, 1200 uatm pCO2\").",
-                    "title": "Targeted Acidity or Alkalinity Levels",
-                    "type": "string"
-                },
                 "taxonomic_code_system": {
                     "$ref": "#/$defs/TaxonomicCodeSystem",
                     "description": "Which taxonomic code system the identification code refers to.",
                     "title": "Taxonomic Code System"
-                },
-                "treatment_end_datetime": {
-                    "description": "End of the experimental treatment period (UTC).",
-                    "format": "date-time",
-                    "title": "Treatment End Date/Time",
-                    "type": "string"
-                },
-                "treatment_start_datetime": {
-                    "description": "Start of the experimental treatment period (UTC).",
-                    "format": "date-time",
-                    "title": "Treatment Start Date/Time",
-                    "type": "string"
                 },
                 "uncertainty": {
                     "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.\nIf uncertainty is provided as a variable, please list the column header name here.",
@@ -2956,11 +2919,6 @@
             "additionalProperties": false,
             "description": "Physiological response variable from discrete field samples (e.g., organism growth rates, calcification rates, gene expression from bottle or tissue samples collected in the field).",
             "properties": {
-                "additional_details": {
-                    "description": "Any additional information about the physiological experiment.",
-                    "title": "Additional Details",
-                    "type": "string"
-                },
                 "analyzing_instrument": {
                     "$ref": "#/$defs/AnalyzingInstrument",
                     "description": "Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.",
@@ -2991,11 +2949,6 @@
                     "title": "Dataset variable name (raw)",
                     "type": "string"
                 },
-                "experiment_location": {
-                    "description": "Where the experiment was carried out (e.g., outdoor mesocosm facility, natural field site).",
-                    "title": "Experiment Location",
-                    "type": "string"
-                },
                 "field_replicate_information": {
                     "description": "Repetition of sample collection and measurement, e.g., triplicate samples.",
                     "title": "Field replicate information",
@@ -3018,11 +2971,6 @@
                 "long_name": {
                     "description": "Full descriptive name of the variable.",
                     "title": "Variable full name",
-                    "type": "string"
-                },
-                "manipulation_method": {
-                    "description": "How ocean chemistry conditions were manipulated (e.g., CO2 bubbling, acid addition, alkalinity addition).",
-                    "title": "Manipulation Method",
                     "type": "string"
                 },
                 "measurement_researcher": {
@@ -3096,32 +3044,10 @@
                 "standard_identifier": {
                     "$ref": "#/$defs/VocabularyItemReference"
                 },
-                "subject_collection_location": {
-                    "description": "Where the biological subjects were collected from.",
-                    "title": "Subject Collection Location",
-                    "type": "string"
-                },
-                "targeted_acidity_levels": {
-                    "description": "Target pCO2 or alkalinity levels for the manipulation experiment (e.g., \"400, 800, 1200 uatm pCO2\").",
-                    "title": "Targeted Acidity or Alkalinity Levels",
-                    "type": "string"
-                },
                 "taxonomic_code_system": {
                     "$ref": "#/$defs/TaxonomicCodeSystem",
                     "description": "Which taxonomic code system the identification code refers to.",
                     "title": "Taxonomic Code System"
-                },
-                "treatment_end_datetime": {
-                    "description": "End of the experimental treatment period (UTC).",
-                    "format": "date-time",
-                    "title": "Treatment End Date/Time",
-                    "type": "string"
-                },
-                "treatment_start_datetime": {
-                    "description": "Start of the experimental treatment period (UTC).",
-                    "format": "date-time",
-                    "title": "Treatment Start Date/Time",
-                    "type": "string"
                 },
                 "uncertainty": {
                     "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.\nIf uncertainty is provided as a variable, please list the column header name here.",
