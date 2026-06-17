@@ -1527,6 +1527,10 @@
 <td>Fields applied to all measured pH variable types (discrete and continuous)</td>
 </tr>
 <tr>
+<td><a href="../MeasuredPhysiologicalFields/">MeasuredPhysiologicalFields</a></td>
+<td>Fields applied to all measured physiological variable types (discrete and continuous). Captures biological subject identification and experimental design information for organism response field studies.</td>
+</tr>
+<tr>
 <td><a href="../MeasuredSedimentFields/">MeasuredSedimentFields</a></td>
 <td>Fields applied to all measured sediment variable types (discrete and continuous)</td>
 </tr>
@@ -1643,6 +1647,10 @@
 <td>pH measured variable from continuous autonomous sensor</td>
 </tr>
 <tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../ContinuousPhysiologicalVariable/">ContinuousPhysiologicalVariable</a></td>
+<td>Physiological response variable from continuous autonomous field sensors (e.g., respiration rates from deployed oxygen consumption monitors, heart rate from bio-loggers).</td>
+</tr>
+<tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../ContinuousSedimentVariable/">ContinuousSedimentVariable</a></td>
 <td>Measured sediment variable collected from continuous autonomous sensor</td>
 </tr>
@@ -1667,6 +1675,10 @@
 <td>pH measured variable with dye-based spectrophotometric measurement. Reference: OAPMetadata XSD variables.xsd - pH_measured</td>
 </tr>
 <tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../DiscretePhysiologicalVariable/">DiscretePhysiologicalVariable</a></td>
+<td>Physiological response variable from discrete field samples (e.g., organism growth rates, calcification rates, gene expression from bottle or tissue samples collected in the field).</td>
+</tr>
+<tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../DiscreteSedimentVariable/">DiscreteSedimentVariable</a></td>
 <td>Measured sediment variable collected from discrete bottle samples</td>
 </tr>
@@ -1677,6 +1689,10 @@
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../HPLCVariable/">HPLCVariable</a></td>
 <td>HPLC (High-Performance Liquid Chromatography) measured variable for pigment analysis. Always measured, not calculated.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../SocioeconomicVariable/">SocioeconomicVariable</a></td>
+<td>Socioeconomic variable for social and economic data such as survey responses, ecosystem service valuations, or text analysis. Extends InSituVariable to inherit method_reference and measurement_researcher, but does NOT include QCFields, instrument details, or calibration.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../NonMeasuredVariable/">NonMeasuredVariable</a></td>
@@ -1788,6 +1804,10 @@
 <tr>
 <td><a href="../bathymetry/">bathymetry</a></td>
 <td>Bathymetry data source(s)</td>
+</tr>
+<tr>
+<td><a href="../biological_subject/">biological_subject</a></td>
+<td>Taxonomy (species, genus, or community) being studied (e</td>
 </tr>
 <tr>
 <td><a href="../blank_correction/">blank_correction</a></td>
@@ -2138,6 +2158,14 @@
 <td>Link a Dataset to its license to document legal constraints by adding a schem...</td>
 </tr>
 <tr>
+<td><a href="../life_stage/">life_stage</a></td>
+<td>Life stage of the organism at time of measurement</td>
+</tr>
+<tr>
+<td><a href="../life_stage_custom/">life_stage_custom</a></td>
+<td>Custom life stage description when "other" is selected</td>
+</tr>
+<tr>
 <td><a href="../line/">line</a></td>
 <td>A line is a point-to-point path consisting of two or more points</td>
 </tr>
@@ -2410,6 +2438,10 @@
 <td>Describe what QC steps have been taken to improve the quality of the data (e</td>
 </tr>
 <tr>
+<td><a href="../quantitative_or_qualitative/">quantitative_or_qualitative</a></td>
+<td>Whether this variable captures quantitative (numerical) or qualitative (categ...</td>
+</tr>
+<tr>
 <td><a href="../raw_data_calculation_method/">raw_data_calculation_method</a></td>
 <td>The method used to calculate reported values from raw sensor data</td>
 </tr>
@@ -2514,8 +2546,24 @@
 <td>A description of any social research conducted to date</td>
 </tr>
 <tr>
+<td><a href="../social_study_site_characterization/">social_study_site_characterization</a></td>
+<td>Time period and location description for the social study (e</td>
+</tr>
+<tr>
+<td><a href="../social_study_type/">social_study_type</a></td>
+<td>The type of social science study this variable comes from</td>
+</tr>
+<tr>
+<td><a href="../social_study_type_custom/">social_study_type_custom</a></td>
+<td>Custom study type description when "other" is selected</td>
+</tr>
+<tr>
 <td><a href="../spatial_coverage/">spatial_coverage</a></td>
 <td>Latitude/longitude bounds of project site (e</td>
+</tr>
+<tr>
+<td><a href="../species_identification_code/">species_identification_code</a></td>
+<td>Species reference code from a taxonomic database (e</td>
 </tr>
 <tr>
 <td><a href="../spin_up_protocol/">spin_up_protocol</a></td>
@@ -2544,6 +2592,10 @@
 <tr>
 <td><a href="../storage_method/">storage_method</a></td>
 <td>How the samples were stored before the measurement</td>
+</tr>
+<tr>
+<td><a href="../taxonomic_code_system/">taxonomic_code_system</a></td>
+<td>Which taxonomic code system the identification code refers to</td>
 </tr>
 <tr>
 <td><a href="../technique_description/">technique_description</a></td>
@@ -2741,6 +2793,10 @@
 <td>Hydrologic location types for dosing</td>
 </tr>
 <tr>
+<td><a href="../LifeStage/">LifeStage</a></td>
+<td>Life stage of the biological subject</td>
+</tr>
+<tr>
 <td><a href="../MassConcentrationUnit/">MassConcentrationUnit</a></td>
 <td></td>
 </tr>
@@ -2765,6 +2821,10 @@
 <td></td>
 </tr>
 <tr>
+<td><a href="../QuantitativeQualitative/">QuantitativeQualitative</a></td>
+<td>Whether the socioeconomic data is quantitative or qualitative</td>
+</tr>
+<tr>
 <td><a href="../ResearcherIDType/">ResearcherIDType</a></td>
 <td></td>
 </tr>
@@ -2783,6 +2843,14 @@
 <tr>
 <td><a href="../SimulationType/">SimulationType</a></td>
 <td>Type of model simulation dataset</td>
+</tr>
+<tr>
+<td><a href="../SocialStudyType/">SocialStudyType</a></td>
+<td>Type of social study conducted</td>
+</tr>
+<tr>
+<td><a href="../TaxonomicCodeSystem/">TaxonomicCodeSystem</a></td>
+<td>Taxonomic code system used for species identification</td>
 </tr>
 <tr>
 <td><a href="../TitrationCellType/">TitrationCellType</a></td>

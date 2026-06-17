@@ -1310,18 +1310,23 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../MeasuredVariable/">MeasuredVariable</a></td>
-<td>Variable that is directly measured in-situ using instruments</td>
-<td>yes</td>
-</tr>
-<tr>
-<td><a href="../DiscreteTAVariable/">DiscreteTAVariable</a></td>
-<td>Total Alkalinity (TA) measured variable from discrete bottle samples</td>
+<td><a href="../CO2GasDetector/">CO2GasDetector</a></td>
+<td>CO2 gas detector with standard gas calibration</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../ContinuousDICVariable/">ContinuousDICVariable</a></td>
-<td>Dissolved Inorganic Carbon (DIC) measured variable from continuous autonomous...</td>
+<td><a href="../ContinuousCO2GasDetector/">ContinuousCO2GasDetector</a></td>
+<td>CO2 gas detector for continuous measurements, with measurement frequency</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../ContinuousMeasuredVariable/">ContinuousMeasuredVariable</a></td>
+<td>A variable measured in-situ by a continuous autonomous sensor (e</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../CalculatedVariable/">CalculatedVariable</a></td>
+<td>A variable that is calculated or derived from other measured variables rather...</td>
 <td>no</td>
 </tr>
 <tr>
@@ -1335,13 +1340,13 @@
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../ContinuousCO2GasDetector/">ContinuousCO2GasDetector</a></td>
-<td>CO2 gas detector for continuous measurements, with measurement frequency</td>
-<td>no</td>
+<td><a href="../MeasuredVariable/">MeasuredVariable</a></td>
+<td>Variable that is directly measured in-situ using instruments</td>
+<td>yes</td>
 </tr>
 <tr>
-<td><a href="../CO2GasDetector/">CO2GasDetector</a></td>
-<td>CO2 gas detector with standard gas calibration</td>
+<td><a href="../DiscreteMeasuredVariable/">DiscreteMeasuredVariable</a></td>
+<td>A variable measured in-situ from discrete water samples (e</td>
 <td>no</td>
 </tr>
 <tr>
@@ -1350,38 +1355,13 @@
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../DiscreteSedimentVariable/">DiscreteSedimentVariable</a></td>
-<td>Measured sediment variable collected from discrete bottle samples</td>
+<td><a href="../ContinuousStandardGas/">ContinuousStandardGas</a></td>
+<td>Standard gas used for continuous CO2 calibration, with additional traceabilit...</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../ContinuousPHVariable/">ContinuousPHVariable</a></td>
-<td>pH measured variable from continuous autonomous sensor</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../DiscreteDICVariable/">DiscreteDICVariable</a></td>
-<td>Dissolved Inorganic Carbon (DIC) measured variable from discrete bottle sampl...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../StandardGas/">StandardGas</a></td>
-<td>Standard gas used for CO2 calibration</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ContinuousMeasuredVariable/">ContinuousMeasuredVariable</a></td>
-<td>A variable measured in-situ by a continuous autonomous sensor (e</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../DiscreteMeasuredVariable/">DiscreteMeasuredVariable</a></td>
-<td>A variable measured in-situ from discrete water samples (e</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../DiscreteCO2Variable/">DiscreteCO2Variable</a></td>
-<td>CO2 discrete (bottle) measured variable (pCO2/fCO2)</td>
+<td><a href="../ContinuousDICVariable/">ContinuousDICVariable</a></td>
+<td>Dissolved Inorganic Carbon (DIC) measured variable from continuous autonomous...</td>
 <td>no</td>
 </tr>
 <tr>
@@ -1390,8 +1370,28 @@
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../CalculatedVariable/">CalculatedVariable</a></td>
-<td>A variable that is calculated or derived from other measured variables rather...</td>
+<td><a href="../DiscreteTAVariable/">DiscreteTAVariable</a></td>
+<td>Total Alkalinity (TA) measured variable from discrete bottle samples</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../DiscretePhysiologicalVariable/">DiscretePhysiologicalVariable</a></td>
+<td>Physiological response variable from discrete field samples (e</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../StandardGas/">StandardGas</a></td>
+<td>Standard gas used for CO2 calibration</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../DiscreteDICVariable/">DiscreteDICVariable</a></td>
+<td>Dissolved Inorganic Carbon (DIC) measured variable from discrete bottle sampl...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../DiscreteCO2Variable/">DiscreteCO2Variable</a></td>
+<td>CO2 discrete (bottle) measured variable (pCO2/fCO2)</td>
 <td>no</td>
 </tr>
 <tr>
@@ -1405,8 +1405,18 @@
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../ContinuousStandardGas/">ContinuousStandardGas</a></td>
-<td>Standard gas used for continuous CO2 calibration, with additional traceabilit...</td>
+<td><a href="../ContinuousPHVariable/">ContinuousPHVariable</a></td>
+<td>pH measured variable from continuous autonomous sensor</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../ContinuousPhysiologicalVariable/">ContinuousPhysiologicalVariable</a></td>
+<td>Physiological response variable from continuous autonomous field sensors (e</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../DiscreteSedimentVariable/">DiscreteSedimentVariable</a></td>
+<td>Measured sediment variable collected from discrete bottle samples</td>
 <td>no</td>
 </tr>
 </tbody>

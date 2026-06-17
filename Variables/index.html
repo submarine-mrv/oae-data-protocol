@@ -559,35 +559,14 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#chemistry-specific-classes">
+<a class="md-nav__link" href="#type-specific-fields-traits-mixins">
 <span class="md-ellipsis">
-      Chemistry-Specific Classes
+      Type-Specific Fields (Traits / Mixins)
     </span>
 </a>
 </li>
 </ul>
 </nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#example-ph-variable">
-<span class="md-ellipsis">
-      Example: pH Variable
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#example-calculated-variable">
-<span class="md-ellipsis">
-      Example: Calculated Variable
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#example-contextual-variable">
-<span class="md-ellipsis">
-      Example: Contextual Variable
-    </span>
-</a>
 </li>
 </ul>
 </nav>
@@ -607,20 +586,24 @@
     MV("`*MeasuredVariable*
     (abstract)`")
     NMV["NonMeasuredVariable"]
+    SEV["SocioeconomicVariable"]
     CV["CalculatedVariable"]
     DM["DiscreteMeasuredVariable"]
     CM["ContinuousMeasuredVariable"]
     DPH["`DiscretePHVariable
     DiscreteTAVariable
     DiscreteDICVariable
+    DiscretePhysiologicalVariable
     *…and others*`"]
     CPH["`ContinuousPHVariable
     ContinuousTAVariable
     ContinuousDICVariable
+    ContinuousPhysiologicalVariable
     *…and others*`"]
 
     V --&gt; NMV
     V --&gt; ISV
+    ISV --&gt; SEV
     ISV --&gt; CV
     ISV --&gt; MV
     MV --&gt; DM
@@ -632,7 +615,7 @@
     classDef concrete fill:#e0e8f0,stroke:#4F656A
     classDef leaf fill:#d0e8d0,stroke:#4F656A
     class V,ISV,MV abstract
-    class NMV,CV,DPH,CPH concrete
+    class NMV,SEV,CV,DPH,CPH concrete
     class DM,CM leaf
 </code></pre>
 <p>This hierarchy aims to align with <a href="https://github.com/NOAA-PMEL/OAPMetadata">NOAA-PMEL's OAPMetadata</a> XSD schema to make
@@ -680,6 +663,16 @@ their data, whether they be other ocean data repositories, and generalist reposi
 <td><code>hplc</code></td>
 <td>HPLC pigments</td>
 <td>Chlorophyll, carotenoids</td>
+</tr>
+<tr>
+<td><code>physiological</code></td>
+<td>Physiological response</td>
+<td>Organism growth rates, calcification</td>
+</tr>
+<tr>
+<td><code>socioeconomic</code></td>
+<td>Social/economic data</td>
+<td>Survey responses, ecosystem valuations</td>
 </tr>
 <tr>
 <td><code>other</code></td>
@@ -787,6 +780,12 @@ their data, whether they be other ocean data repositories, and generalist reposi
 <td><a href="../DiscreteCO2Variable/">DiscreteCO2Variable</a></td>
 </tr>
 <tr>
+<td><code>co2</code></td>
+<td><code>measured</code></td>
+<td><code>continuous</code></td>
+<td><a href="../ContinuousCO2Variable/">ContinuousCO2Variable</a></td>
+</tr>
+<tr>
 <td><code>sediment</code></td>
 <td><code>measured</code></td>
 <td><code>discrete</code></td>
@@ -803,6 +802,24 @@ their data, whether they be other ocean data repositories, and generalist reposi
 <td><code>measured</code></td>
 <td><code>discrete</code></td>
 <td><a href="../HPLCVariable/">HPLCVariable</a></td>
+</tr>
+<tr>
+<td><code>physiological</code></td>
+<td><code>measured</code></td>
+<td><code>discrete</code></td>
+<td><a href="../DiscretePhysiologicalVariable/">DiscretePhysiologicalVariable</a></td>
+</tr>
+<tr>
+<td><code>physiological</code></td>
+<td><code>measured</code></td>
+<td><code>continuous</code></td>
+<td><a href="../ContinuousPhysiologicalVariable/">ContinuousPhysiologicalVariable</a></td>
+</tr>
+<tr>
+<td><code>socioeconomic</code></td>
+<td><code>measured</code></td>
+<td>—</td>
+<td><a href="../SocioeconomicVariable/">SocioeconomicVariable</a></td>
 </tr>
 <tr>
 <td><code>other</code></td>
@@ -861,49 +878,52 @@ their data, whether they be other ocean data repositories, and generalist reposi
 <ul>
 <li><code>calculation_method_and_parameters</code> — software, input variables, constants used</li>
 </ul>
-<h3 id="chemistry-specific-classes">Chemistry-Specific Classes</h3>
-<p>Each chemistry type (pH, TA, DIC, CO₂) adds specialized fields:</p>
-<ul>
-<li><strong>pH</strong>: measurement temperature, temperature correction method, reported temperature, dye calibration</li>
-<li><strong>TA</strong>: titration type, cell type, curve fitting method, CRM calibration</li>
-<li><strong>DIC</strong>: CRM calibration, sample preservation</li>
-<li><strong>CO₂</strong>: storage method, headspace volume, measurement temperature, gas detector calibration</li>
-</ul>
-<h2 id="example-ph-variable">Example: pH Variable</h2>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">"schema_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DiscretePHVariable"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"variable_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pH"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"genesis"</span><span class="p">:</span><span class="w"> </span><span class="s2">"measured"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"sampling"</span><span class="p">:</span><span class="w"> </span><span class="s2">"discrete"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"dataset_variable_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pH_total"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"long_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pH on total scale at in-situ temperature"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"units"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pH units"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"sampling_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Niskin bottle"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"analyzing_method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spectrophotometric, purified m-cresol purple"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"observation_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"profile"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"measurement_temperature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"25"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"ph_reported_temperature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"in-situ temperature"</span>
-<span class="p">}</span>
-</code></pre></div>
-<h2 id="example-calculated-variable">Example: Calculated Variable</h2>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">"schema_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CalculatedVariable"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"variable_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ta"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"genesis"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calculated"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"dataset_variable_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ta_calc"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"long_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Total alkalinity calculated from salinity regression"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"units"</span><span class="p">:</span><span class="w"> </span><span class="s2">"umol/kg"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"calculation_method_and_parameters"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lee et al. 2006 salinity-TA relationship"</span>
-<span class="p">}</span>
-</code></pre></div>
-<h2 id="example-contextual-variable">Example: Contextual Variable</h2>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">"schema_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NonMeasuredVariable"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"variable_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"non_measured"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"dataset_variable_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"expocode"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"long_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cruise expedition code"</span>
-<span class="p">}</span>
-</code></pre></div>
+<h3 id="type-specific-fields-traits-mixins">Type-Specific Fields (Traits / Mixins)</h3>
+<p>Many measured variables (either discrete or continuous) inherit additional fields based on their <code>variable_type</code> that are
+always present whether the specific variable is discrete or continuous. In these instances, we use LinkML's <a href="https://linkml.io/linkml/schemas/inheritance.html#mixin-classes-and-slots">mixin</a>
+feature to allow for trait-like composability of these fields into both the corresponding DiscreteVariable and
+ContinuousVariable classes for that <code>variable_type</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Variable Type</th>
+<th>Mixin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pH</code></td>
+<td><a href="../MeasuredPHFields/">MeasuredPHFields</a></td>
+</tr>
+<tr>
+<td><code>ta</code></td>
+<td><a href="../MeasuredTAFields/">MeasuredTAFields</a></td>
+</tr>
+<tr>
+<td><code>dic</code></td>
+<td><a href="../MeasuredDICFields/">MeasuredDICFields</a></td>
+</tr>
+<tr>
+<td><code>co2</code></td>
+<td><a href="../MeasuredCO2Fields/">MeasuredCO2Fields</a></td>
+</tr>
+<tr>
+<td><code>sediment</code></td>
+<td><a href="../MeasuredSedimentFields/">MeasuredSedimentFields</a></td>
+</tr>
+<tr>
+<td><code>physiological</code></td>
+<td><a href="../MeasuredPhysiologicalFields/">MeasuredPhysiologicalFields</a></td>
+</tr>
+<tr>
+<td><code>other</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Leaf classes (e.g., <a href="../DiscretePHVariable/">DiscretePHVariable</a>, <a href="../DiscreteTAVariable/">DiscreteTAVariable</a>) may
+add further type-specific fields as well. For a comprehensive list of all required and optional fields please refer
+to the individual class pages linked in the <a href="#selection-schema-class-mapping">mapping table</a> above.</p>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
