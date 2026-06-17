@@ -1457,6 +1457,195 @@
             "title": "ContinuousPHVariable",
             "type": "object"
         },
+        "ContinuousPhysiologicalVariable": {
+            "additionalProperties": false,
+            "description": "Physiological response variable from continuous autonomous field sensors (e.g., respiration rates from deployed oxygen consumption monitors, heart rate from bio-loggers).",
+            "properties": {
+                "analyzing_instrument": {
+                    "$ref": "#/$defs/AnalyzingInstrument",
+                    "description": "Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.",
+                    "title": "Analyzing instrument"
+                },
+                "analyzing_method": {
+                    "description": "Additional information describing how the sample was analyzed. DOIs provided as applicable.",
+                    "title": "Analyzing Method",
+                    "type": "string"
+                },
+                "biological_subject": {
+                    "description": "Taxonomy (species, genus, or community) being studied (e.g., Crassostrea gigas, coral reef community).",
+                    "title": "Biological Subject",
+                    "type": "string"
+                },
+                "calculation_software_version": {
+                    "description": "Version of the software used to calculate reported values from raw values.",
+                    "title": "Software version for the calculation",
+                    "type": "string"
+                },
+                "dataset_variable_name": {
+                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
+                    "title": "Dataset variable name",
+                    "type": "string"
+                },
+                "dataset_variable_name_qc_flag": {
+                    "description": "If applicable, the column header name used for the quality control flag corresponding to this variable.",
+                    "title": "Dataset variable name (Quality Flag)",
+                    "type": "string"
+                },
+                "dataset_variable_name_raw": {
+                    "description": "If applicable, the column header name used for the raw data corresponding to this variable.",
+                    "title": "Dataset variable name (raw)",
+                    "type": "string"
+                },
+                "field_replicate_information": {
+                    "description": "Repetition of sample collection and measurement, e.g., triplicate samples.",
+                    "title": "Field replicate information",
+                    "type": "string"
+                },
+                "genesis": {
+                    "const": "measured",
+                    "type": "string"
+                },
+                "life_stage": {
+                    "$ref": "#/$defs/LifeStage",
+                    "description": "Life stage of the organism at time of measurement.",
+                    "title": "Life Stage"
+                },
+                "life_stage_custom": {
+                    "description": "Custom life stage description when \"other\" is selected.",
+                    "title": "Life Stage (custom)",
+                    "type": "string"
+                },
+                "long_name": {
+                    "description": "Full descriptive name of the variable.",
+                    "title": "Variable full name",
+                    "type": "string"
+                },
+                "measurement_researcher": {
+                    "$ref": "#/$defs/Person",
+                    "description": "The name of the PI whose research team measured or derived this parameter.",
+                    "title": "Researcher who measured the variable"
+                },
+                "method_reference": {
+                    "description": "Citation for the method used.",
+                    "title": "Method Reference",
+                    "type": "string"
+                },
+                "missing_value_indicators": {
+                    "description": "The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.",
+                    "title": "Missing value indicators",
+                    "type": "string"
+                },
+                "observation_type": {
+                    "$ref": "#/$defs/ObservationType",
+                    "title": "Observation Type"
+                },
+                "other_detailed_information": {
+                    "description": "Any additional information about this variable.",
+                    "title": "Other Detailed Information",
+                    "type": "string"
+                },
+                "qc_researcher": {
+                    "$ref": "#/$defs/Person",
+                    "description": "The name of the PI whose research team QCed this parameter.",
+                    "title": "Researcher who QCed this variable"
+                },
+                "qc_researcher_institution": {
+                    "description": "The institution of the PI whose research team QCed this parameter.",
+                    "title": "QC Researcher Institution",
+                    "type": "string"
+                },
+                "qc_steps_taken": {
+                    "description": "Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).\nIf quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.",
+                    "title": "QC steps taken",
+                    "type": "string"
+                },
+                "raw_data_calculation_method": {
+                    "description": "The method used to calculate reported values from raw sensor data.",
+                    "title": "Method to calculate reported values from raw data",
+                    "type": "string"
+                },
+                "sampling": {
+                    "const": "continuous",
+                    "type": "string"
+                },
+                "sampling_instrument_type": {
+                    "$ref": "#/$defs/SamplingInstrumentType",
+                    "title": "Sampling instrument type"
+                },
+                "sampling_instrument_type_custom": {
+                    "title": "Sampling instrument type (custom)",
+                    "type": "string"
+                },
+                "sampling_method": {
+                    "description": "Method used to collect samples.",
+                    "title": "Sampling Method",
+                    "type": "string"
+                },
+                "schema_class": {
+                    "description": "The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.",
+                    "enum": [
+                        "ContinuousPhysiologicalVariable"
+                    ],
+                    "type": "string"
+                },
+                "species_identification_code": {
+                    "description": "Species reference code from a taxonomic database (e.g., WoRMS AphiaID 140656, ITIS TSN 79861).",
+                    "title": "Species Identification Code",
+                    "type": "string"
+                },
+                "standard_identifier": {
+                    "$ref": "#/$defs/VocabularyItemReference"
+                },
+                "taxonomic_code_system": {
+                    "$ref": "#/$defs/TaxonomicCodeSystem",
+                    "description": "Which taxonomic code system the identification code refers to.",
+                    "title": "Taxonomic Code System"
+                },
+                "uncertainty": {
+                    "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.\nIf uncertainty is provided as a variable, please list the column header name here.",
+                    "title": "Uncertainty",
+                    "type": "string"
+                },
+                "uncertainty_definition": {
+                    "description": "A description of the uncertainties involved in this method.",
+                    "title": "How was the uncertainty defined",
+                    "type": "string"
+                },
+                "units": {
+                    "description": "Unit of measurement for this variable.",
+                    "title": "Unit",
+                    "type": "string"
+                },
+                "variable_type": {
+                    "const": "physiological",
+                    "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
+                    "title": "Variable Type",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "biological_subject",
+                "raw_data_calculation_method",
+                "analyzing_instrument",
+                "sampling_method",
+                "analyzing_method",
+                "observation_type",
+                "sampling",
+                "sampling_instrument_type",
+                "qc_steps_taken",
+                "uncertainty",
+                "uncertainty_definition",
+                "missing_value_indicators",
+                "genesis",
+                "units",
+                "schema_class",
+                "variable_type",
+                "dataset_variable_name",
+                "long_name"
+            ],
+            "title": "ContinuousPhysiologicalVariable",
+            "type": "object"
+        },
         "ContinuousSedimentVariable": {
             "additionalProperties": false,
             "description": "Measured sediment variable collected from continuous autonomous sensor",
@@ -2726,6 +2915,184 @@
             "title": "DiscretePHVariable",
             "type": "object"
         },
+        "DiscretePhysiologicalVariable": {
+            "additionalProperties": false,
+            "description": "Physiological response variable from discrete field samples (e.g., organism growth rates, calcification rates, gene expression from bottle or tissue samples collected in the field).",
+            "properties": {
+                "analyzing_instrument": {
+                    "$ref": "#/$defs/AnalyzingInstrument",
+                    "description": "Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information.",
+                    "title": "Analyzing instrument"
+                },
+                "analyzing_method": {
+                    "description": "Additional information describing how the sample was analyzed. DOIs provided as applicable.",
+                    "title": "Analyzing Method",
+                    "type": "string"
+                },
+                "biological_subject": {
+                    "description": "Taxonomy (species, genus, or community) being studied (e.g., Crassostrea gigas, coral reef community).",
+                    "title": "Biological Subject",
+                    "type": "string"
+                },
+                "dataset_variable_name": {
+                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
+                    "title": "Dataset variable name",
+                    "type": "string"
+                },
+                "dataset_variable_name_qc_flag": {
+                    "description": "If applicable, the column header name used for the quality control flag corresponding to this variable.",
+                    "title": "Dataset variable name (Quality Flag)",
+                    "type": "string"
+                },
+                "dataset_variable_name_raw": {
+                    "description": "If applicable, the column header name used for the raw data corresponding to this variable.",
+                    "title": "Dataset variable name (raw)",
+                    "type": "string"
+                },
+                "field_replicate_information": {
+                    "description": "Repetition of sample collection and measurement, e.g., triplicate samples.",
+                    "title": "Field replicate information",
+                    "type": "string"
+                },
+                "genesis": {
+                    "const": "measured",
+                    "type": "string"
+                },
+                "life_stage": {
+                    "$ref": "#/$defs/LifeStage",
+                    "description": "Life stage of the organism at time of measurement.",
+                    "title": "Life Stage"
+                },
+                "life_stage_custom": {
+                    "description": "Custom life stage description when \"other\" is selected.",
+                    "title": "Life Stage (custom)",
+                    "type": "string"
+                },
+                "long_name": {
+                    "description": "Full descriptive name of the variable.",
+                    "title": "Variable full name",
+                    "type": "string"
+                },
+                "measurement_researcher": {
+                    "$ref": "#/$defs/Person",
+                    "description": "The name of the PI whose research team measured or derived this parameter.",
+                    "title": "Researcher who measured the variable"
+                },
+                "method_reference": {
+                    "description": "Citation for the method used.",
+                    "title": "Method Reference",
+                    "type": "string"
+                },
+                "missing_value_indicators": {
+                    "description": "The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.",
+                    "title": "Missing value indicators",
+                    "type": "string"
+                },
+                "observation_type": {
+                    "$ref": "#/$defs/ObservationType",
+                    "title": "Observation Type"
+                },
+                "other_detailed_information": {
+                    "description": "Any additional information about this variable.",
+                    "title": "Other Detailed Information",
+                    "type": "string"
+                },
+                "qc_researcher": {
+                    "$ref": "#/$defs/Person",
+                    "description": "The name of the PI whose research team QCed this parameter.",
+                    "title": "Researcher who QCed this variable"
+                },
+                "qc_researcher_institution": {
+                    "description": "The institution of the PI whose research team QCed this parameter.",
+                    "title": "QC Researcher Institution",
+                    "type": "string"
+                },
+                "qc_steps_taken": {
+                    "description": "Describe what QC steps have been taken to improve the quality of the data (e.g., DOI, software and settings used, outlier removal, etc.).\nIf quality control procedures are described in a separate document uploaded with the data, provide the name of the document here.",
+                    "title": "QC steps taken",
+                    "type": "string"
+                },
+                "sampling": {
+                    "const": "discrete",
+                    "type": "string"
+                },
+                "sampling_instrument_type": {
+                    "$ref": "#/$defs/SamplingInstrumentType",
+                    "title": "Sampling instrument type"
+                },
+                "sampling_instrument_type_custom": {
+                    "title": "Sampling instrument type (custom)",
+                    "type": "string"
+                },
+                "sampling_method": {
+                    "description": "Method used to collect samples.",
+                    "title": "Sampling Method",
+                    "type": "string"
+                },
+                "schema_class": {
+                    "description": "The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.",
+                    "enum": [
+                        "DiscretePhysiologicalVariable"
+                    ],
+                    "type": "string"
+                },
+                "species_identification_code": {
+                    "description": "Species reference code from a taxonomic database (e.g., WoRMS AphiaID 140656, ITIS TSN 79861).",
+                    "title": "Species Identification Code",
+                    "type": "string"
+                },
+                "standard_identifier": {
+                    "$ref": "#/$defs/VocabularyItemReference"
+                },
+                "taxonomic_code_system": {
+                    "$ref": "#/$defs/TaxonomicCodeSystem",
+                    "description": "Which taxonomic code system the identification code refers to.",
+                    "title": "Taxonomic Code System"
+                },
+                "uncertainty": {
+                    "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.\nIf uncertainty is provided as a variable, please list the column header name here.",
+                    "title": "Uncertainty",
+                    "type": "string"
+                },
+                "uncertainty_definition": {
+                    "description": "A description of the uncertainties involved in this method.",
+                    "title": "How was the uncertainty defined",
+                    "type": "string"
+                },
+                "units": {
+                    "description": "Unit of measurement for this variable.",
+                    "title": "Unit",
+                    "type": "string"
+                },
+                "variable_type": {
+                    "const": "physiological",
+                    "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
+                    "title": "Variable Type",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "biological_subject",
+                "analyzing_instrument",
+                "sampling_method",
+                "analyzing_method",
+                "observation_type",
+                "sampling",
+                "sampling_instrument_type",
+                "qc_steps_taken",
+                "uncertainty",
+                "uncertainty_definition",
+                "missing_value_indicators",
+                "genesis",
+                "units",
+                "schema_class",
+                "variable_type",
+                "dataset_variable_name",
+                "long_name"
+            ],
+            "title": "DiscretePhysiologicalVariable",
+            "type": "object"
+        },
         "DiscreteSedimentVariable": {
             "additionalProperties": false,
             "description": "Measured sediment variable collected from discrete bottle samples",
@@ -3424,6 +3791,9 @@
                                 "$ref": "#/$defs/CalculatedVariable"
                             },
                             {
+                                "$ref": "#/$defs/SocioeconomicVariable"
+                            },
+                            {
                                 "$ref": "#/$defs/DiscreteMeasuredVariable"
                             },
                             {
@@ -3445,6 +3815,9 @@
                                 "$ref": "#/$defs/ContinuousCO2Variable"
                             },
                             {
+                                "$ref": "#/$defs/ContinuousPhysiologicalVariable"
+                            },
+                            {
                                 "$ref": "#/$defs/DiscretePHVariable"
                             },
                             {
@@ -3461,6 +3834,9 @@
                             },
                             {
                                 "$ref": "#/$defs/HPLCVariable"
+                            },
+                            {
+                                "$ref": "#/$defs/DiscretePhysiologicalVariable"
                             }
                         ]
                     },
@@ -4443,6 +4819,19 @@
             ],
             "title": "InterventionWithTracer",
             "type": "object"
+        },
+        "LifeStage": {
+            "description": "Life stage of the biological subject.",
+            "enum": [
+                "egg",
+                "embryo",
+                "larva",
+                "juvenile",
+                "adult",
+                "other"
+            ],
+            "title": "LifeStage",
+            "type": "string"
         },
         "MCDRPathway": {
             "description": "Type of marine Carbon Dioxide Removal (mCDR) pathways.",
@@ -5676,6 +6065,15 @@
             "title": "PropertyValue",
             "type": "object"
         },
+        "QuantitativeQualitative": {
+            "description": "Whether the socioeconomic data is quantitative or qualitative.",
+            "enum": [
+                "quantitative",
+                "qualitative"
+            ],
+            "title": "QuantitativeQualitative",
+            "type": "string"
+        },
         "ResearcherIDType": {
             "description": "",
             "enum": [
@@ -5883,6 +6281,113 @@
             "title": "SimulationType",
             "type": "string"
         },
+        "SocialStudyType": {
+            "description": "Type of social study conducted.",
+            "enum": [
+                "public_perception_survey",
+                "ecosystem_service_valuation_survey",
+                "text_analysis",
+                "other"
+            ],
+            "title": "SocialStudyType",
+            "type": "string"
+        },
+        "SocioeconomicVariable": {
+            "additionalProperties": false,
+            "description": "Socioeconomic variable for social and economic data such as survey responses, ecosystem service valuations, or text analysis. Extends InSituVariable to inherit method_reference and measurement_researcher, but does NOT include QCFields, instrument details, or calibration.",
+            "properties": {
+                "dataset_variable_name": {
+                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
+                    "title": "Dataset variable name",
+                    "type": "string"
+                },
+                "dataset_variable_name_qc_flag": {
+                    "description": "If applicable, the column header name used for the quality control flag corresponding to this variable.",
+                    "title": "Dataset variable name (Quality Flag)",
+                    "type": "string"
+                },
+                "dataset_variable_name_raw": {
+                    "description": "If applicable, the column header name used for the raw data corresponding to this variable.",
+                    "title": "Dataset variable name (raw)",
+                    "type": "string"
+                },
+                "genesis": {
+                    "$ref": "#/$defs/GenesisType"
+                },
+                "long_name": {
+                    "description": "Full descriptive name of the variable.",
+                    "title": "Variable full name",
+                    "type": "string"
+                },
+                "measurement_researcher": {
+                    "$ref": "#/$defs/Person",
+                    "description": "The name of the PI whose research team measured or derived this parameter.",
+                    "title": "Researcher who measured the variable"
+                },
+                "method_reference": {
+                    "description": "Citation for the method used.",
+                    "title": "Method Reference",
+                    "type": "string"
+                },
+                "other_detailed_information": {
+                    "description": "Any additional information about this variable.",
+                    "title": "Other Detailed Information",
+                    "type": "string"
+                },
+                "quantitative_or_qualitative": {
+                    "$ref": "#/$defs/QuantitativeQualitative",
+                    "description": "Whether this variable captures quantitative (numerical) or qualitative (categorical/textual) data.",
+                    "title": "Quantitative or Qualitative"
+                },
+                "schema_class": {
+                    "description": "The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.",
+                    "enum": [
+                        "SocioeconomicVariable"
+                    ],
+                    "type": "string"
+                },
+                "social_study_site_characterization": {
+                    "description": "Time period and location description for the social study (e.g., \"2023-2024, coastal communities in Maine, USA\").",
+                    "title": "Study Site Characterization",
+                    "type": "string"
+                },
+                "social_study_type": {
+                    "$ref": "#/$defs/SocialStudyType",
+                    "description": "The type of social science study this variable comes from.",
+                    "title": "Social Study Type"
+                },
+                "social_study_type_custom": {
+                    "description": "Custom study type description when \"other\" is selected.",
+                    "title": "Social Study Type (custom)",
+                    "type": "string"
+                },
+                "standard_identifier": {
+                    "$ref": "#/$defs/VocabularyItemReference"
+                },
+                "units": {
+                    "description": "Unit of measurement for this variable.",
+                    "title": "Unit",
+                    "type": "string"
+                },
+                "variable_type": {
+                    "const": "socioeconomic",
+                    "description": "High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.",
+                    "title": "Variable Type",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "quantitative_or_qualitative",
+                "genesis",
+                "units",
+                "schema_class",
+                "variable_type",
+                "dataset_variable_name",
+                "long_name"
+            ],
+            "title": "SocioeconomicVariable",
+            "type": "object"
+        },
         "SpatialCoverage": {
             "additionalProperties": false,
             "description": "A bounding box defined by latitude and longitude coordinates.",
@@ -5928,6 +6433,17 @@
             },
             "title": "StandardGas",
             "type": "object"
+        },
+        "TaxonomicCodeSystem": {
+            "description": "Taxonomic code system used for species identification.",
+            "enum": [
+                "itis",
+                "worms",
+                "col",
+                "pbdb"
+            ],
+            "title": "TaxonomicCodeSystem",
+            "type": "string"
         },
         "TemperatureSensor": {
             "additionalProperties": false,
@@ -6194,6 +6710,8 @@
                 "co2",
                 "sediment",
                 "hplc",
+                "physiological",
+                "socioeconomic",
                 "other",
                 "non_measured"
             ],
