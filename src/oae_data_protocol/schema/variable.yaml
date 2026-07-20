@@ -505,8 +505,6 @@ classes:
         description: Name and contact information for HPLC technician.
         range: string
 
-
-
   # =============================================================================
   # Physiological Variable Classes
   # =============================================================================

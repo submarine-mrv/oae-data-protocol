@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-07-19T20:45:49
+# Generation date: 2026-07-19T21:00:18
 # Schema: OAEDataSchema
 #
 # id: https://schema.oaedata.org/OAEDataSchema
@@ -68,11 +68,15 @@ dataclasses._init_fn = dataclasses_init_fn_with_kwargs
 
 # Namespaces
 PUBCHEM = CurieNamespace('PUBCHEM', 'https://pubchem.ncbi.nlm.nih.gov/compound/')
+SDN_B75 = CurieNamespace('SDN_B75', 'http://vocab.nerc.ac.uk/collection/B75/current/')
+SDN_L05 = CurieNamespace('SDN_L05', 'http://vocab.nerc.ac.uk/collection/L05/current/')
+SDN_L22 = CurieNamespace('SDN_L22', 'http://vocab.nerc.ac.uk/collection/L22/current/')
 DCAT = CurieNamespace('dcat', 'http://www.w3.org/ns/dcat#')
 ENVTHES = CurieNamespace('envthes', 'https://w3id.org/envthes/')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
 OAE = CurieNamespace('oae', 'https://schema.oaedata.org/')
 SCHEMA = CurieNamespace('schema', 'http://schema.org/')
+UNIT = CurieNamespace('unit', 'https://qudt.org/vocab/unit/')
 XSD = CurieNamespace('xsd', 'http://www.w3.org/2001/XMLSchema#')
 DEFAULT_ = OAE
 

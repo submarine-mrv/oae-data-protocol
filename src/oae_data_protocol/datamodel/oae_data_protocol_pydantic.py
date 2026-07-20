@@ -1,4 +1,4 @@
-from __future__ import annotations 
+from __future__ import annotations
 
 import re
 import sys
@@ -7,8 +7,8 @@ from datetime import (
     datetime,
     time
 )
-from decimal import Decimal 
-from enum import Enum 
+from decimal import Decimal
+from enum import Enum
 from typing import (
     Any,
     ClassVar,
@@ -82,6 +82,12 @@ linkml_meta = LinkMLMeta({'default_prefix': 'oae',
      'name': 'OAEDataSchema',
      'prefixes': {'PUBCHEM': {'prefix_prefix': 'PUBCHEM',
                               'prefix_reference': 'https://pubchem.ncbi.nlm.nih.gov/compound/'},
+                  'SDN_B75': {'prefix_prefix': 'SDN_B75',
+                              'prefix_reference': 'http://vocab.nerc.ac.uk/collection/B75/current/'},
+                  'SDN_L05': {'prefix_prefix': 'SDN_L05',
+                              'prefix_reference': 'http://vocab.nerc.ac.uk/collection/L05/current/'},
+                  'SDN_L22': {'prefix_prefix': 'SDN_L22',
+                              'prefix_reference': 'http://vocab.nerc.ac.uk/collection/L22/current/'},
                   'dcat': {'prefix_prefix': 'dcat',
                            'prefix_reference': 'http://www.w3.org/ns/dcat#'},
                   'envthes': {'prefix_prefix': 'envthes',
@@ -89,13 +95,15 @@ linkml_meta = LinkMLMeta({'default_prefix': 'oae',
                   'linkml': {'prefix_prefix': 'linkml',
                              'prefix_reference': 'https://w3id.org/linkml/'},
                   'oae': {'prefix_prefix': 'oae',
-                          'prefix_reference': 'https://schema.oaedata.org/'}},
+                          'prefix_reference': 'https://schema.oaedata.org/'},
+                  'unit': {'prefix_prefix': 'unit',
+                           'prefix_reference': 'https://qudt.org/vocab/unit/'}},
      'source_file': 'src/oae_data_protocol/schema/oae_data_protocol.yaml',
      'title': 'OAE Data Protocol - Technical Documentation'} )
 
 class DatasetType(str, Enum):
     """
-    Type of dataset being submitted. This usually 
+    Type of dataset being submitted. This usually
     """
     # Variables such as dosing_onoff, dosing_rate, and flow_rate should be included here.
     dosing = "dosing"
@@ -3625,4 +3633,3 @@ ModelComponent.model_rebuild()
 ModelGrid.model_rebuild()
 ModelInputDetails.model_rebuild()
 Container.model_rebuild()
-
