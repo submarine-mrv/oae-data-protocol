@@ -1,5 +1,5 @@
 # Configuration of generators
-# See `make gen-project` task or https://linkml.io/linkml/generators/project-generator.html
+# See `just gen-project` task or https://linkml.io/linkml/generators/project-generator.html
 ---
 includes:
   - jsonschema

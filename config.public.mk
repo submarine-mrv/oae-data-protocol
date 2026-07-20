@@ -8,7 +8,7 @@
 # - just works fine with quoted variables of dot-env files like this one
 LINKML_SCHEMA_NAME="oae_data_protocol"
 LINKML_SCHEMA_AUTHOR="Cory Levinson <cjlevinson@gmail.com>"
-LINKML_SCHEMA_DESCRIPTION="This is the project description."
+LINKML_SCHEMA_DESCRIPTION="Base ontology and data schemas for ocean alkalinity enhancement projects, experiments, and field trials. This project aims to be a technical complement to Submarine Scientific's OAE Data Protocol, developed in conjunction with Carbon To Sea and NOAA."
 LINKML_SCHEMA_SOURCE_DIR="src/oae_data_protocol/schema"
 
 ###### linkml generator variables, used by justfile
