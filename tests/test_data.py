@@ -11,7 +11,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger()
 
 ROOT = os.path.join(os.path.dirname(__file__), "..")
-DATA_DIR = os.path.join(ROOT, "src", "data", "examples")
+DATA_DIR = os.path.join(os.path.dirname(__file__), "data", "valid")
 
 EXAMPLE_FILES = glob.glob(os.path.join(DATA_DIR, "*.yaml"))
 
