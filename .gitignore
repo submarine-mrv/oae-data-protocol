@@ -7,8 +7,14 @@
 
 # Derived schemas, generated from the schema.yaml
 tmp/
-project/
+project/*
 !project/README.md
+# Tracked generated artifacts: consumed by oae-form (`make schema`) and docs
+!project/jsonschema/
+!project/typescript/
+
+# macOS
+.DS_Store
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
