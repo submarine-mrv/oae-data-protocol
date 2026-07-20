@@ -81,7 +81,7 @@ site: gen-project gen-doc
 # Deploy documentation site to Github Pages
 [group('deployment')]
 deploy: site
-  mkd-gh-deploy
+  uv run mkdocs gh-deploy
 
 # Run all tests
 [group('model development')]
@@ -221,6 +221,9 @@ _gen-yaml:
 
 # Overridable recipe to add project-specific artifacts to the distribution schema path
 _add-artifacts:
+  @# Publish the JSON-LD context at /context.jsonld — referenced as "@context" by
+  @# metadata files in the wild (see metadata-format.md), so the URL must not break.
+  uv run gen-jsonld-context {{source_schema_path}} > {{docdir}}/context.jsonld
 
 # Run documentation server
 _serve:
