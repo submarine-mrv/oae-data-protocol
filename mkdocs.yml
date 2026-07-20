@@ -1,14 +1,15 @@
 ---
-site_name: "oae-data-protocol"
+site_name: "OAE Data Protocol: Schema Documentation"
 theme:
   # https://www.mkdocs.org/user-guide/configuration/#theme
   name: material
-  icon:
-    logo: material/book-open-page-variant
+  favicon: img/favicon.ico
+  logo: img/cts-logo.png
   # palette:
   #  scheme: slate
   #  primary: cyan
   features:
+    - navigation.indexes
     - content.tabs.link
     - header.autohide      # maximum screen space during scrolling
     - navigation.expand    # optimize user experience
@@ -35,6 +36,10 @@ plugins:
     # https://pypi.org/project/mkdocs-pymdownx-material-extras
 
 markdown_extensions:
+  - tables
+  - admonition
+  - pymdownx.details
+  - attr_list
   - pymdownx.superfences:
       # https://mkdocs-mermaid2.readthedocs.io/en/latest/superfences
       # custom code highlighting rules
