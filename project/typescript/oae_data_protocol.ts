@@ -1,8 +1,8 @@
 /**
-* Type of dataset being submitted. This usually
+* Type of dataset being submitted. This usually 
 */
 export enum DatasetType {
-
+    
     /** Variables such as dosing_onoff, dosing_rate, and flow_rate should be included here. */
     dosing = "dosing",
     /** Vertical profiles (e.g., optical packages, CTD) */
@@ -41,6 +41,8 @@ export enum DatasetType {
     socioeconomic = "socioeconomic",
     /** For measurements captured via net (e.g., zooplankton via MOCNESS) */
     net_tow = "net_tow",
+    /** Data collected continuously from a moving platform (e.g., ship underway system sampling surface seawater during transit). */
+    underway = "underway",
     /** For data types not included in the controlled vocabulary. Please fill in a the `dataset_type_custom` field with a more specific name for the custom mCDR data type. */
     other = "other",
 };
@@ -48,7 +50,7 @@ export enum DatasetType {
 * Type of marine Carbon Dioxide Removal (mCDR) pathways.
 */
 export enum MCDRPathway {
-
+    
     /** Ocean Alkalinity Enhancement (OAE) is a method to help mitigate climate change by increasing the alkalinity of seawater to enhance its capacity to absorb and store atmospheric carbon dioxide (CO₂). */
     Ocean_Alkalinity_Enhancement = "ocean_alkalinity_enhancement",
     /** Biomass Sinking is a method that involves taking terrestrial or ocean biomass and sinking it into the deep ocean surface, subsurface, or anoxic basins, where it is sequestered. This can be accomplished by large-scale seaweed farming or macroalgae cultivation, which incorporates atmospheric CO2 as it grows, and then is sunk to the ocean floor. Alternatively, terrestrial plant biomass can be sunk to the ocean floor. */
@@ -66,7 +68,7 @@ export enum MCDRPathway {
 * Types of mCDR experiments
 */
 export enum ExperimentType {
-
+    
     /** Baseline measurements taken before any intervention */
     baseline = "baseline",
     /** Control experiment without intervention for comparison */
@@ -84,7 +86,7 @@ export enum ExperimentType {
 * Methods used to process alkalinity feedstock
 */
 export enum AlkalinityFeedstockProcessing {
-
+    
     /** Alkalinity generated via electrochemical processes (e.g., seawater electrolysis). */
     electrochemistry = "electrochemistry",
     /** Intentionally industrially manufactured chemical compounds (e.g., Ca(OH)2 via lime kilns). */
@@ -100,7 +102,7 @@ export enum AlkalinityFeedstockProcessing {
 * Physical form of the alkalinity feedstock upon ocean delivery
 */
 export enum AlkalinityFeedstockForm {
-
+    
     /** Involves adding alkaline minerals or particulate slurry (such as MgOH2, MgO, or CaO) to seawater or river systems either directly, through coastal outfalls (such as wastewater), or at breaking shorelines to increase its alkalinity. */
     solid = "solid",
     /** Aqueous alkalinity addition may use electrochemistry or fully dissolved mineral feedstock to increase seawater alkalinity. */
@@ -112,7 +114,7 @@ export enum AlkalinityFeedstockForm {
 * Equilibration status of the alkalinity feedstock
 */
 export enum EquilibrationStatus {
-
+    
     /** Pre-equilibrated with atmosphere before dosing */
     Pre_equilibrated = "pre_equilibrated",
     /** Not pre-equilibrated before dosing */
@@ -122,7 +124,7 @@ export enum EquilibrationStatus {
 * Hydrologic location types for dosing
 */
 export enum HydrologicLocation {
-
+    
     /** Surface waters in coastal areas */
     Coastal_Surface = "coastal_surface",
     /** Surface waters in offshore areas */
@@ -138,7 +140,7 @@ export enum HydrologicLocation {
 * Types of dosing delivery methods
 */
 export enum DosingDeliveryType {
-
+    
     /** A single dosing location such as an outflow from a static platform with a pipe */
     Static_Point_Source = "static_point_source",
     /** A mobile dosing regimen described by a single location at each time step, such as an outflow from a mobile platform such as a ship or surface vessel. */
@@ -152,7 +154,7 @@ export enum DosingDeliveryType {
 * Forms of tracer used in tracer studies
 */
 export enum TracerForm {
-
+    
     /** Gas tracer */
     gas = "gas",
     /** Dye tracer (eg- rhodamine) */
@@ -164,7 +166,7 @@ export enum TracerForm {
 * Types of materials used for alkalinity addition, as sourced from NCEI's OCADS controlled vocabulary: https://www.ncei.noaa.gov/access/ocean-carbon-acidification-data-system/vocabularies/alkalinization-types.html
 */
 export enum FeedstockType {
-
+    
     /** Lime (CaO) used as an alkalinity source. */
     lime = "lime",
     /** Portlandite (Ca(OH)₂) used as an alkalinity source. */
@@ -198,7 +200,7 @@ export enum FeedstockType {
 * Type of grid in a multi-grid or nested model configuration
 */
 export enum GridType {
-
+    
     /** Inner (nested, higher-resolution) grid */
     inner_grid = "inner_grid",
     /** Outer (coarser-resolution) grid */
@@ -210,7 +212,7 @@ export enum GridType {
 * Type of model component
 */
 export enum ModelComponentType {
-
+    
     /** Physical model component (e.g., ocean circulation) */
     Physics = "physics",
     /** Biogeochemical or ecosystem model component */
@@ -224,7 +226,7 @@ export enum ModelComponentType {
 };
 
 export enum DataProductType {
-
+    
     /** A dataset collected from a research cruise or laboratory experiment */
     originally_collected_dataset = "originally_collected_dataset",
     /** (e.g., SOCAT, GLODAP) */
@@ -236,17 +238,19 @@ export enum DataProductType {
 * Type of model simulation dataset
 */
 export enum SimulationType {
-
+    
     /** Control/baseline simulation without alkalinity perturbation */
     counterfactual = "counterfactual",
     /** Simulation with alkalinity perturbation applied */
     perturbation = "perturbation",
+    /** Other simulation type not listed above */
+    other = "other",
 };
 /**
 * Variables commonly included in model simulation output datasets
 */
 export enum ModelOutputVariable {
-
+    
     /** Air-sea exchange of carbon dioxide */
     Air_sea_CO2_flux = "air_sea_co2_flux",
     /** Dissolved inorganic carbon (DIC) */
@@ -266,9 +270,21 @@ export enum ModelOutputVariable {
     /** Vertical velocity component (w) */
     Vertical_velocity = "vertical_velocity",
 };
+/**
+* Level of access to a dataset.
+*/
+export enum DataAccessibility {
+    
+    /** Data are freely available without restriction. */
+    Open_Access = "open_access",
+    /** Data are available upon request, subject to review. */
+    Conditional_Access = "conditional_access",
+    /** Data will become openly available after a specified date. */
+    Scheduled_Access = "scheduled_access",
+};
 
 export enum SeaNames {
-
+    
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUSZZSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/ZZ/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUSIJMSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/IJM/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUSMKMSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/MKM/",
@@ -399,7 +415,7 @@ export enum SeaNames {
 };
 
 export enum PlatformType {
-
+    
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS99SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/99/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS6DSOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/6D/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS3CSOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/3C/",
@@ -442,7 +458,7 @@ export enum PlatformType {
 };
 
 export enum MassConcentrationUnit {
-
+    
     unitCOLONKiloGM_PER_M3 = "unit:KiloGM-PER-M3",
     unitCOLONMicroGM_PER_L = "unit:MicroGM-PER-L",
     unitCOLONMicroGM_PER_L_DAY = "unit:MicroGM-PER-L-DAY",
@@ -456,7 +472,7 @@ export enum MassConcentrationUnit {
 };
 
 export enum ResearcherIDType {
-
+    
     orcid = "orcid",
     researcher_id = "researcher_id",
     ocean_expert = "ocean_expert",
@@ -465,7 +481,7 @@ export enum ResearcherIDType {
 * Where the calibration was performed.
 */
 export enum CalibrationLocation {
-
+    
     /** Factory calibration performed by manufacturer. */
     factory = "factory",
     /** Laboratory calibration. */
@@ -475,7 +491,7 @@ export enum CalibrationLocation {
 };
 
 export enum SamplingInstrumentType {
-
+    
     /** A CTD rosette consists of a metal frame that houses a collection of sensors and water sampling bottles (e.g., Niskin) */
     ctd_rosette = "ctd_rosette",
     /** A device that collects an in-situ discrete water sample from any depth and returns it to the surface without contamination by the waters through which it passes, such as a water bottle. */
@@ -498,7 +514,7 @@ export enum SamplingInstrumentType {
 };
 
 export enum AnalyzingInstrumentType {
-
+    
     /** A reusable instrument that always simultaneously measures conductivity and temperature (for salinity) and pressure (for depth). */
     ctd_sensor = "ctd_sensor",
     /** A device that continuously supplies a flow of water either to an analytical instrument, over a sensor or from which samples may be drawn. */
@@ -529,7 +545,7 @@ export enum AnalyzingInstrumentType {
     handheld_ph_spectrophotometer = "handheld_ph_spectrophotometer",
     /** A pH electrode, sometimes referred to as a pH probe or pH sensor, is a glass device used to measure the pH of a solution. */
     ph_electrode = "ph_electrode",
-    /** A pH sensor. The sensor can be used for ocean acidification, research coral reef sensitivity analysis and environmental monitoring. The sensor measures pH with a range of 6.5 to 9.0. The sensing element is an ion  sensitive field effect transistor. The pH sensor has an initial accuracy of +/-0.05 pH, precision of 0.001 pH and stability of 0.005 pH/month. It can operate in temperatures ranging from 0 deg C to 50 deg C and up to depths of 50 m. */
+    /** A pH sensor. The sensor can be used for ocean acidification, research coral reef sensitivity analysis and environmental monitoring. The sensor measures pH with a range of 6.5 to 9.0. The sensing element is an ion sensitive field effect transistor. The pH sensor has an initial accuracy of +/-0.05 pH, precision of 0.001 pH and stability of 0.005 pH/month. It can operate in temperatures ranging from 0 deg C to 50 deg C and up to depths of 50 m. */
     sea_bird_seafet_v1 = "sea_bird_seafet_v1",
     /** A pH sensor. The sensor can be used for ocean acidification, research coral reef sensitivity analysis and environmental monitoring. The sensor measures pH with a range of 6.5 to 9.0. The sensing element is an ion sensitive field effect transistor. V2 implements improvements to the original SeaFET's reliability, data quality, ease of operation, and deployment endurance, with significant changes to how users interface with the instrument. The pH sensor has an accuracy to +/-0.05 pH, precision of 0.004 pH and stability of 0.003 pH/month. It can operate in temperatures ranging from 0 deg C to 50 deg C and up to depths of 50 m. */
     sea_bird_seafet_v2 = "sea_bird_seafet_v2",
@@ -569,7 +585,7 @@ export enum AnalyzingInstrumentType {
 };
 
 export enum SamplingType {
-
+    
     discrete = "discrete",
     continuous = "continuous",
 };
@@ -577,7 +593,7 @@ export enum SamplingType {
 * High-level classification of the variable. Determines which schema class to use in combination with genesis (measured/calculated) and sampling (discrete/continuous).
 */
 export enum VariableType {
-
+    
     /** pH measurement — use with Discrete/ContinuousPHVariable or CalculatedVariable */
     pH = "pH",
     /** Total alkalinity — use with Discrete/ContinuousTAVariable or CalculatedVariable */
@@ -590,6 +606,10 @@ export enum VariableType {
     sediment = "sediment",
     /** HPLC pigment analysis — use with HPLCVariable (always discrete, always measured) */
     hplc = "hplc",
+    /** Physiological response variable — organism response data from field experiments. Use with Discrete/ContinuousPhysiologicalVariable or CalculatedVariable. */
+    physiological = "physiological",
+    /** Socioeconomic variable — social and economic data. Use only with SocioeconomicVariable. Does not include QC fields. */
+    socioeconomic = "socioeconomic",
     /** Any directly measured or calculated variable that does not fall into a specific category above (e.g., temperature, salinity, conductivity, pressure, fluorescence). Use with DiscreteMeasuredVariable, ContinuousMeasuredVariable, or CalculatedVariable. */
     other = "other",
     /** Contextual or ancillary columns that are not directly measured or calculated by the project — identifiers, timestamps, coordinates and external source data. QC flag columns should NOT be listed as separate variables; instead set dataset_variable_name_qc_flag on the parent variable. Use only with NonMeasuredVariable. */
@@ -597,13 +617,13 @@ export enum VariableType {
 };
 
 export enum GenesisType {
-
+    
     measured = "measured",
     calculated = "calculated",
 };
 
 export enum ObservationType {
-
+    
     profile = "profile",
     surface_underway = "surface_underway",
     time_series = "time_series",
@@ -615,14 +635,14 @@ export enum ObservationType {
 };
 
 export enum AppropriateUseQuality {
-
+    
     weather_quality = "weather_quality",
     climate_quality = "climate_quality",
     other = "other",
 };
 
 export enum TitrationCellType {
-
+    
     open = "open",
     closed = "closed",
 };
@@ -630,11 +650,59 @@ export enum TitrationCellType {
 * Whether concentration measurements are expressed per unit volume or per unit mass.
 */
 export enum ConcentrationBasis {
-
+    
     /** Concentration expressed per unit volume (e.g., μmol/L, mmol/L) */
     per_volume = "per_volume",
     /** Concentration expressed per unit mass (e.g., μmol/kg-seawater) */
     per_mass = "per_mass",
+};
+/**
+* Taxonomic code system used for species identification.
+*/
+export enum TaxonomicCodeSystem {
+    
+    /** Integrated Taxonomic Information System */
+    itis = "itis",
+    /** World Register of Marine Species */
+    worms = "worms",
+    /** Catalogue of Life */
+    col = "col",
+    /** Paleobiology Database */
+    pbdb = "pbdb",
+};
+/**
+* Life stage of the biological subject.
+*/
+export enum LifeStage {
+    
+    egg = "egg",
+    embryo = "embryo",
+    larva = "larva",
+    juvenile = "juvenile",
+    adult = "adult",
+    other = "other",
+};
+/**
+* Whether the socioeconomic data is quantitative or qualitative.
+*/
+export enum QuantitativeQualitative {
+    
+    quantitative = "quantitative",
+    qualitative = "qualitative",
+};
+/**
+* Type of social study conducted.
+*/
+export enum SocialStudyType {
+    
+    /** Public perception survey */
+    public_perception_survey = "public_perception_survey",
+    /** Ecosystem service valuation survey */
+    ecosystem_service_valuation_survey = "ecosystem_service_valuation_survey",
+    /** Text analysis */
+    text_analysis = "text_analysis",
+    /** Other study type */
+    other = "other",
 };
 
 
@@ -649,7 +717,7 @@ export interface Any {
 
 
 /**
- * A geospatial area of interest, defined by a bounding box, polygon/line, or a point designated as a  pair of geo-coordinates.
+ * A geospatial area of interest, defined by a bounding box, polygon/line, or a point designated as a pair of geo-coordinates.
  */
 export interface Place {
     /** Entities that have a somewhat fixed, physical extension. (imported from schema.org) */
@@ -677,7 +745,7 @@ export interface DosingLocation extends Place {
  * The geographic shape of a place. A GeoShape can be described using several properties whose values are based on latitude/longitude pairs. Either whitespace or commas can be used to separate latitude and longitude; whitespace should be used when writing a list of several such points. (imported from schema.org)
  */
 export interface GeoShape {
-    /** A box defined by two latitude-longitude points, southwest and northeast. */
+    /** A bounding box defined by two corner points — the southwest (lower-left) corner followed by the northeast (upper-right) corner. Per science-on-schema.org, each point is written as `<latitude> <longitude>` in decimal degrees (WGS 84), with all four values space-separated: `"<minLat> <minLon> <maxLat> <maxLon>"`. Example: `"39.3280 120.1633 40.445 123.7878"`. See https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md#spatial-coverage */
     box?: string,
     /** A line is a point-to-point path consisting of two or more points. A line is expressed as a series of two or more point objects separated by space. */
     line?: string,
@@ -734,7 +802,7 @@ If there are relevant regulatory parameters and/or limits to dosing trials at th
     description: string,
     /** The start and end date (optional) of the project */
     temporal_coverage: string,
-    /** Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities) provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E] */
+    /** Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities), expressed as a schema.org GeoShape bounding box. */
     spatial_coverage: SpatialCoverage,
     experiments?: Experiment[],
     /** Provide details for each project lead / principal investigator (PI) including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role. */
@@ -789,7 +857,7 @@ export interface NamedLink {
 export interface ExternalProject {
     /** Start date and end date (if known) of the project in ISO-8601 interval format (YYYY-MM-DD/YYY-MM-DD). If the end date is not known, use open-ended format YYYY-MM-DD/.. */
     temporal_coverage: string,
-    /** Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities) provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E] */
+    /** Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities), expressed as a schema.org GeoShape bounding box. */
     spatial_coverage: SpatialCoverage,
     /** The name of the external research project. */
     name: string,
@@ -841,7 +909,7 @@ export interface Experiment {
     name?: string,
     /** A narrative description of the experiment. For example, what part of the project do these data represent (e.g., baseline, intervention, control) and what do they contribute to the overall project? Are all project research questions listed in Project description relevant? What were the processes to achieve these goals and answer these questions? Data submitters are encouraged to note any significant changes to the original experimental plan due to unforeseen circumstances here. */
     description: string,
-    /** Latitude/longitude bounds of observed data in experiment, provided in decimal degrees as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E] */
+    /** Latitude/longitude bounds of observed data in experiment, expressed as a schema.org GeoShape bounding box. */
     spatial_coverage: SpatialCoverage,
     /** The project to which the submitted data belong. A unique project identifier that can be used to link project data across data submissions, and link baseline data to intervention data, for example.
 If no Project ID has been assigned, one may be generated by combining: lead organizer surname and first initial or company, a unique date, and location.
@@ -902,7 +970,7 @@ export interface InterventionWithTracer extends Intervention, TracerDetails {
 
 
 /**
- * An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are  specific to an Experiment with type "Intervention"
+ * An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are specific to an Experiment with type "Intervention"
  */
 export interface InterventionDetails {
     /** Method(s) used to process the alkalinity feedstock. See Controlled Vocabularies section for definitions. */
@@ -928,7 +996,7 @@ See Controlled Vocabularies section for selected examples (this list is not exha
 
 
 /**
- * An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are  specific to an Experiment with type "Tracer"
+ * An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are specific to an Experiment with type "Tracer"
  */
 export interface TracerDetails {
     /** The form of tracer upon delivery to the ocean (e.g. gas or dye-release) */
@@ -937,7 +1005,7 @@ export interface TracerDetails {
     tracer_form_custom?: string,
     /** state the kind of tracer used (e.g. rhodamine, or a specific gas) */
     tracer_details: string,
-    /** Fixed concentration or provide link/source to tracer concentration separately in the dosing file. Please include whether concentration is directly measured or a derived value. If this is a variable included with  your data, please note so here as 'tracer concentration provided as a variable' and use 'tracer_concentration' for your column header name. */
+    /** Fixed concentration or provide link/source to tracer concentration separately in the dosing file. Please include whether concentration is directly measured or a derived value. If this is a variable included with your data, please note so here as 'tracer concentration provided as a variable' and use 'tracer_concentration' for your column header name. */
     tracer_concentration: DosingConcentration,
 }
 
@@ -956,7 +1024,7 @@ export interface DosingConcentration {
 
 
 /**
- * An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are  specific to an Experiment with active dosing (e.g. type "Tracer", "Intervention", or "InterventionWithDosing")
+ * An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are specific to an Experiment with active dosing (e.g. type "Tracer", "Intervention", or "InterventionWithDosing")
  */
 export interface DosingDetails {
     /** Type of dosing delivery method. See Controlled Vocabularies for definitions. */
@@ -1242,7 +1310,7 @@ export interface Variable {
     /** High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use. */
     variable_type: string,
     standard_identifier?: VocabularyItemReference,
-    /** The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name). */
+    /** The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name). */
     dataset_variable_name: string,
     /** Full descriptive name of the variable. */
     long_name: string,
@@ -1315,7 +1383,7 @@ export interface ContinuousMeasuredVariable extends MeasuredVariable {
  * A variable that is calculated or derived from other measured variables rather than directly measured by an instrument (e.g., carbonate system parameters computed via CO2SYS). Set genesis to "calculated". The variable_type should reflect the quantity being calculated (e.g., "pH", "ta", "dic", "co2", or "other").
  */
 export interface CalculatedVariable extends InSituVariable, QCFields {
-    /** Information about how the variable was calculated and the parameters used in calculation, e.g.: Calculation software = CO2SYSv1 (MATLAB)  Input variables =  pH and DIC (column header names 'ph_t_insitu' and 'dic' in associated dataset file) Additional information = the dissociation constants of Lueker et al., 2000 for carbonic acid, etc. */
+    /** Information about how the variable was calculated and the parameters used in calculation, e.g.: Calculation software = CO2SYSv1 (MATLAB) Input variables =  pH and DIC (column header names 'ph_t_insitu' and 'dic' in associated dataset file) Additional information = the dissociation constants of Lueker et al., 2000 for carbonic acid, etc. */
     calculation_method_and_parameters: string,
 }
 
@@ -1446,6 +1514,35 @@ export interface HPLCVariable extends DiscreteMeasuredVariable {
 
 
 /**
+ * Physiological response variable from discrete field samples (e.g., organism growth rates, calcification rates, gene expression from bottle or tissue samples collected in the field).
+ */
+export interface DiscretePhysiologicalVariable extends DiscreteMeasuredVariable, MeasuredPhysiologicalFields {
+}
+
+
+/**
+ * Physiological response variable from continuous autonomous field sensors (e.g., respiration rates from deployed oxygen consumption monitors, heart rate from bio-loggers).
+ */
+export interface ContinuousPhysiologicalVariable extends ContinuousMeasuredVariable, MeasuredPhysiologicalFields {
+}
+
+
+/**
+ * Socioeconomic variable for social and economic data such as survey responses, ecosystem service valuations, or text analysis. Extends InSituVariable to inherit method_reference and measurement_researcher, but does NOT include QCFields, instrument details, or calibration.
+ */
+export interface SocioeconomicVariable extends InSituVariable {
+    /** Whether this variable captures quantitative (numerical) or qualitative (categorical/textual) data. */
+    quantitative_or_qualitative: string,
+    /** The type of social science study this variable comes from. */
+    social_study_type?: string,
+    /** Custom study type description when "other" is selected. */
+    social_study_type_custom?: string,
+    /** Time period and location description for the social study (e.g., "2023-2024, coastal communities in Maine, USA"). */
+    social_study_site_characterization?: string,
+}
+
+
+/**
  * Sample preservation information for DIC and TA measurements. Reference: OAPMetadata XSD variables.xsd - sample_preservation
  */
 export interface SamplePreservation {
@@ -1517,6 +1614,23 @@ export interface MeasuredSedimentFields {
 
 
 /**
+ * Fields applied to all measured physiological variable types (discrete and continuous). Captures biological subject identification and experimental design information for organism response field studies.
+ */
+export interface MeasuredPhysiologicalFields {
+    /** Taxonomy (species, genus, or community) being studied (e.g., Crassostrea gigas, coral reef community). */
+    biological_subject: string,
+    /** Species reference code from a taxonomic database (e.g., WoRMS AphiaID 140656, ITIS TSN 79861). */
+    species_identification_code?: string,
+    /** Which taxonomic code system the identification code refers to. */
+    taxonomic_code_system?: string,
+    /** Life stage of the organism at time of measurement. */
+    life_stage?: string,
+    /** Custom life stage description when "other" is selected. */
+    life_stage_custom?: string,
+}
+
+
+/**
  * Fields applied to all measured CO2 variable types (discrete and continuous)
  */
 export interface MeasuredCO2Fields {
@@ -1581,6 +1695,8 @@ Project ID + Experiment type + Optional numerical indicator to differentiate bet
     license?: string,
     /** A statement from the data producer regarding how this dataset should be used. */
     fair_use_data_request?: string,
+    /** Level of access to this dataset. Open Access data are freely available without restriction. Conditional Access data are available upon request, subject to review. Scheduled Access data will become openly available after a specified date. */
+    data_accessibility: string,
 }
 
 
@@ -1612,18 +1728,14 @@ export interface FieldDataset extends Dataset {
  * A model simulation output dataset. Contains fields specific to computational model output including simulation configuration, output variables, and hardware information.
  */
 export interface ModelOutputDataset extends Dataset {
-    /** Whether this is a counterfactual (control/baseline) or perturbation simulation. */
+    /** The type(s) of model simulation (e.g., counterfactual, perturbation, or both). */
     simulation_type: string,
-    /** Description of the model spin-up process. */
-    spin_up_protocol?: string,
     /** Start date and time of the simulation in UTC ISO-8601. */
     start_datetime: string,
     /** End date and time of the simulation in UTC ISO-8601. */
     end_datetime: string,
     /** Frequency of model output (e.g., 'hourly mean', 'daily mean'). */
     output_frequency?: string,
-    /** Time-stepping method and time step used in the simulation. */
-    time_stepping_scheme?: string,
     /** Description of the mCDR forcing applied in the simulation (e.g., the alkalinity perturbation). Required when simulation_type is "perturbation". */
     mcdr_forcing_description?: string,
     /** Details about the computational hardware used for the simulation. */
@@ -1677,8 +1789,10 @@ export interface Model extends Experiment {
     model_components?: ModelComponent[],
     /** Details about the model grid(s). Use multiple entries for nested grid configurations. */
     grid_details?: ModelGrid[],
-    /** Details about input data sources used to drive the model. */
-    input_details?: ModelInputDetails,
+    /** Description of the model spin-up process. */
+    spin_up_protocol?: string,
+    /** Time-stepping method and time step used in the simulation. */
+    time_stepping_scheme?: string,
 }
 
 
@@ -1717,7 +1831,7 @@ export interface ModelGrid {
     grid_type: string,
     /** Region covered by the grid. */
     region?: string,
-    /** Bounding box for this grid, provided as westernmost longitude, southernmost latitude, easternmost longitude, northernmost latitude. */
+    /** Bounding box for this grid, expressed as a schema.org GeoShape bounding box. */
     spatial_coverage?: SpatialCoverage,
     /** The grid arrangement of orthogonal physical quantities (e.g., Arakawa A, Arakawa B, Arakawa C). */
     arrangement?: string,
@@ -1735,6 +1849,8 @@ export interface ModelGrid {
     horizontal_resolution_range?: string,
     /** Description of vertical resolution (e.g., 'Max. 4 m near surface, stretching to 500 m at depth'). */
     vertical_resolution_range?: string,
+    /** Details about input data sources used to drive the model on this grid. */
+    input_details?: ModelInputDetails,
 }
 
 
@@ -1773,3 +1889,6 @@ export interface Container {
     /** Git commit hash of the metadata-builder UI */
     metadata_builder_git_hash?: string,
 }
+
+
+

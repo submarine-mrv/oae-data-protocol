@@ -38,8 +38,8 @@ classes:
         description: Optional common name for experiment.
       spatial_coverage:
         description: >-
-          Latitude/longitude bounds of observed data in experiment, provided in decimal degrees as westernmost
-          longitude, southernmost latitude, easternmost longitude, northernmost latitude. [S, W, N, E]
+          Latitude/longitude bounds of observed data in experiment, expressed as a schema.org
+          GeoShape bounding box.
         required: true
     attributes:
       experiment_types:

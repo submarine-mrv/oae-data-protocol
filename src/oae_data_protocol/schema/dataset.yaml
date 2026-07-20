@@ -90,6 +90,14 @@ classes:
         title: Fair Use Data Request
         description: A statement from the data producer regarding how this dataset should be used.
         range: string
+      data_accessibility:
+        title: Data Accessibility
+        description: >-
+          Level of access to this dataset. Open Access data are freely available without restriction.
+          Conditional Access data are available upon request, subject to review. Scheduled Access data
+          will become openly available after a specified date.
+        range: DataAccessibility
+        required: true
 
     exact_mappings:
       - "schema:Dataset"
@@ -152,13 +160,11 @@ classes:
     attributes:
       simulation_type:
         title: Simulation Type
-        description: "Whether this is a counterfactual (control/baseline) or perturbation simulation."
+        description: "The type(s) of model simulation (e.g., counterfactual, perturbation, or both)."
         range: SimulationType
+        multivalued: true
         required: true
-      spin_up_protocol:
-        title: Spin-up Protocol
-        description: "Description of the model spin-up process."
-        range: string
+        minimum_cardinality: 1
       start_datetime:
         title: Start Date and Time
         description: "Start date and time of the simulation in UTC ISO-8601."
@@ -172,10 +178,6 @@ classes:
       output_frequency:
         title: Output Frequency
         description: "Frequency of model output (e.g., 'hourly mean', 'daily mean')."
-        range: string
-      time_stepping_scheme:
-        title: Time-stepping Scheme
-        description: "Time-stepping method and time step used in the simulation."
         range: string
       mcdr_forcing_description:
         title: Description of mCDR Forcing
@@ -197,7 +199,8 @@ classes:
       - preconditions:
           slot_conditions:
             simulation_type:
-              equals_string: "perturbation"
+              has_member:
+                equals_string: "perturbation"
         postconditions:
           slot_conditions:
             mcdr_forcing_description:

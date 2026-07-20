@@ -13,20 +13,24 @@ graph LR
     MV("`*MeasuredVariable*
     (abstract)`")
     NMV["NonMeasuredVariable"]
+    SEV["SocioeconomicVariable"]
     CV["CalculatedVariable"]
     DM["DiscreteMeasuredVariable"]
     CM["ContinuousMeasuredVariable"]
     DPH["`DiscretePHVariable
     DiscreteTAVariable
     DiscreteDICVariable
+    DiscretePhysiologicalVariable
     *…and others*`"]
     CPH["`ContinuousPHVariable
     ContinuousTAVariable
     ContinuousDICVariable
+    ContinuousPhysiologicalVariable
     *…and others*`"]
 
     V --> NMV
     V --> ISV
+    ISV --> SEV
     ISV --> CV
     ISV --> MV
     MV --> DM
@@ -38,7 +42,7 @@ graph LR
     classDef concrete fill:#e0e8f0,stroke:#4F656A
     classDef leaf fill:#d0e8d0,stroke:#4F656A
     class V,ISV,MV abstract
-    class NMV,CV,DPH,CPH concrete
+    class NMV,SEV,CV,DPH,CPH concrete
     class DM,CM leaf
 ```
 
@@ -62,6 +66,8 @@ What kind of measurement is this?
 | `co2` | CO₂ measurement variables  | pCO₂, fCO₂, xCO₂ |
 | `sediment` | Sediment variable          | Sediment core measurements |
 | `hplc` | HPLC pigments              | Chlorophyll, carotenoids |
+| `physiological` | Physiological response | Organism growth rates, calcification |
+| `socioeconomic` | Social/economic data   | Survey responses, ecosystem valuations |
 | `other` | Generic variable           | Temperature, salinity, nutrients |
 | `non_measured` | Contextual data            | Station ID, timestamps, coordinates |
 
@@ -94,9 +100,13 @@ How were measurements collected? (Only for `measured` genesis)
 | `dic` | `measured` | `discrete` | [DiscreteDICVariable](../DiscreteDICVariable.md) |
 | `dic` | `measured` | `continuous` | [ContinuousDICVariable](../ContinuousDICVariable.md) |
 | `co2` | `measured` | `discrete` | [DiscreteCO2Variable](../DiscreteCO2Variable.md) |
+| `co2` | `measured` | `continuous` | [ContinuousCO2Variable](../ContinuousCO2Variable.md) |
 | `sediment` | `measured` | `discrete` | [DiscreteSedimentVariable](../DiscreteSedimentVariable.md) |
 | `sediment` | `measured` | `continuous` | [ContinuousSedimentVariable](../ContinuousSedimentVariable.md) |
 | `hplc` | `measured` | `discrete` | [HPLCVariable](../HPLCVariable.md) |
+| `physiological` | `measured` | `discrete` | [DiscretePhysiologicalVariable](../DiscretePhysiologicalVariable.md) |
+| `physiological` | `measured` | `continuous` | [ContinuousPhysiologicalVariable](../ContinuousPhysiologicalVariable.md) |
+| `socioeconomic` | `measured` | — | [SocioeconomicVariable](../SocioeconomicVariable.md) |
 | `other` | `measured` | `discrete` | [DiscreteMeasuredVariable](../DiscreteMeasuredVariable.md) |
 | `other` | `measured` | `continuous` | [ContinuousMeasuredVariable](../ContinuousMeasuredVariable.md) |
 | Any except `non_measured` | `calculated` | — | [CalculatedVariable](../CalculatedVariable.md) |
@@ -138,55 +148,23 @@ Adds calculation provenance:
 
 - `calculation_method_and_parameters` — software, input variables, constants used
 
-### Chemistry-Specific Classes
+### Type-Specific Fields (Traits / Mixins)
 
-Each chemistry type (pH, TA, DIC, CO₂) adds specialized fields:
+Many measured variables (either discrete or continuous) inherit additional fields based on their `variable_type` that are
+always present whether the specific variable is discrete or continuous. In these instances, we use LinkML's [mixin](https://linkml.io/linkml/schemas/inheritance.html#mixin-classes-and-slots)
+feature to allow for trait-like composability of these fields into both the corresponding DiscreteVariable and
+ContinuousVariable classes for that `variable_type`.
 
-- **pH**: measurement temperature, temperature correction method, reported temperature, dye calibration
-- **TA**: titration type, cell type, curve fitting method, CRM calibration
-- **DIC**: CRM calibration, sample preservation
-- **CO₂**: storage method, headspace volume, measurement temperature, gas detector calibration
+| Variable Type | Mixin                                                            |
+|---------------|------------------------------------------------------------------|
+| `pH` | [MeasuredPHFields](../MeasuredPHFields.md)                       |
+| `ta` | [MeasuredTAFields](../MeasuredTAFields.md)                       |
+| `dic` | [MeasuredDICFields](../MeasuredDICFields.md)                     |
+| `co2` | [MeasuredCO2Fields](../MeasuredCO2Fields.md)                     |
+| `sediment` | [MeasuredSedimentFields](../MeasuredSedimentFields.md)           |
+| `physiological` | [MeasuredPhysiologicalFields](../MeasuredPhysiologicalFields.md) |
+| `other` | —                                                                |
 
-## Example: pH Variable
-
-```json
-{
-  "schema_class": "DiscretePHVariable",
-  "variable_type": "pH",
-  "genesis": "measured",
-  "sampling": "discrete",
-  "dataset_variable_name": "pH_total",
-  "long_name": "pH on total scale at in-situ temperature",
-  "units": "pH units",
-  "sampling_method": "Niskin bottle",
-  "analyzing_method": "Spectrophotometric, purified m-cresol purple",
-  "observation_type": "profile",
-  "measurement_temperature": "25",
-  "ph_reported_temperature": "in-situ temperature"
-}
-```
-
-## Example: Calculated Variable
-
-```json
-{
-  "schema_class": "CalculatedVariable",
-  "variable_type": "ta",
-  "genesis": "calculated",
-  "dataset_variable_name": "ta_calc",
-  "long_name": "Total alkalinity calculated from salinity regression",
-  "units": "umol/kg",
-  "calculation_method_and_parameters": "Lee et al. 2006 salinity-TA relationship"
-}
-```
-
-## Example: Contextual Variable
-
-```json
-{
-  "schema_class": "NonMeasuredVariable",
-  "variable_type": "non_measured",
-  "dataset_variable_name": "expocode",
-  "long_name": "Cruise expedition code"
-}
-```
+Leaf classes (e.g., [DiscretePHVariable](../DiscretePHVariable.md), [DiscreteTAVariable](../DiscreteTAVariable.md)) may
+add further type-specific fields as well. For a comprehensive list of all required and optional fields please refer
+to the individual class pages linked in the [mapping table](#selection-schema-class-mapping) above.

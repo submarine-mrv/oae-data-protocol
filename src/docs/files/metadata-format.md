@@ -4,7 +4,7 @@ The OAE Data Protocol uses **JSON** as its preferred metadata file format.
 
 Each metadata file is a self-contained document called a **Container** that holds all the metadata for a project, its experiments, and its datasets.
 
-The recommended way to create metadata is with the **[OAE Metadata Builder](https://metadata.oaedata.org)**, which validates inputs against the schema in real time and exports well-formed JSON files. While [Excel templates](https://www.carbontosea.org/oae-data-protocol/1-0-0/#metadata-and-templates) are still available on the protocol website, they do not validate against the schema and require manual attention to ensure controlled vocabularies and field formats are correct. We encourage all researchers to use the Metadata Builder as the primary tool for creating and managing project metadata.
+The recommended way to create metadata is with the **[OAE Metadata Builder](https://metadata.oaedata.org)**, which validates inputs against the schema in real time and exports well-formed JSON files. While [Excel templates](https://www.carbontosea.org/oae-data-protocol#metadata-and-templates) are still available on the protocol website, they do not validate against the schema and require manual attention to ensure controlled vocabularies and field formats are correct. We encourage all researchers to use the Metadata Builder as the primary tool for creating and managing project metadata.
 
 ## The Container
 
@@ -55,7 +55,7 @@ A Container holds one **Project**, one or more **Experiments**, and one or more 
     "mcdr_pathway": "ocean_alkalinity_enhancement",
     "sea_names": ["http://vocab.nerc.ac.uk/collection/C16/current/23/"],
     "spatial_coverage": {
-      "geo": { "box": "-70.0 40.0 -65.0 45.0" }
+      "geo": { "box": "40.0 -70.0 45.0 -65.0" }
     },
     "temporal_coverage": "2025-01-01/2025-12-31"
   },
@@ -65,7 +65,7 @@ A Container holds one **Project**, one or more **Experiments**, and one or more 
       "experiment_types": ["baseline"],
       "description": "Baseline water chemistry prior to intervention",
       "spatial_coverage": {
-        "geo": { "box": "-70.0 40.0 -65.0 45.0" }
+        "geo": { "box": "40.0 -70.0 45.0 -65.0" }
       },
       "start_datetime": "2025-01-01T00:00:00Z",
       "end_datetime": "2025-06-30T23:59:59Z"

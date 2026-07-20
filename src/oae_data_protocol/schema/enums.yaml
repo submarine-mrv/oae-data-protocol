@@ -49,6 +49,10 @@ enums:
         description: "Information (quantitative or qualitative) from socioeconomic studies"
       net_tow:
         description: "For measurements captured via net (e.g., zooplankton via MOCNESS)"
+      underway:
+        description: >-
+          Data collected continuously from a moving platform (e.g., ship underway
+          system sampling surface seawater during transit).
       other:
         description: >-
           For data types not included in the controlled vocabulary. Please fill in a the `dataset_type_custom` field
@@ -268,6 +272,8 @@ enums:
         description: "Control/baseline simulation without alkalinity perturbation"
       perturbation:
         description: "Simulation with alkalinity perturbation applied"
+      other:
+        description: "Other simulation type not listed above"
 
   ModelOutputVariable:
     description: "Variables commonly included in model simulation output datasets"
@@ -296,3 +302,15 @@ enums:
       vertical_velocity:
         title: "Vertical velocity"
         description: "Vertical velocity component (w)"
+  DataAccessibility:
+    description: "Level of access to a dataset."
+    permissible_values:
+      open_access:
+        title: "Open Access"
+        description: "Data are freely available without restriction."
+      conditional_access:
+        title: "Conditional Access"
+        description: "Data are available upon request, subject to review."
+      scheduled_access:
+        title: "Scheduled Access"
+        description: "Data will become openly available after a specified date."
