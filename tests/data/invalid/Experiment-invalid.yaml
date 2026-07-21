@@ -1,0 +1,18 @@
+# Counter-example: this file MUST fail schema validation. linkml-run-examples
+# validates everything in tests/data/invalid/ and asserts the schema REJECTS it.
+# It is named Experiment-*.yaml so it is validated against the Experiment class
+# (linkml-run-examples derives the target class from the filename prefix).
+#
+# Two deliberate violations:
+#   - experiment_types uses "not_a_real_experiment_type", which is outside the
+#     ExperimentType enum.
+#   - the required project_id slot is omitted.
+description: "Invalid experiment used to assert the schema rejects malformed input."
+experiment_id: "BAD001"
+experiment_types: ["not_a_real_experiment_type"]
+experiment_leads:
+  - name: "Test Lead"
+spatial_coverage:
+  geo:
+    box: "36.5 -123.5 38.5 -121.5"
+start_datetime: "2025-03-01T00:00:00+00:00"
