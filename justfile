@@ -126,17 +126,18 @@ gen-project:
   uv run gen-pydantic {{gen_pydantic_args}} {{source_schema_path}} > {{pymodel}}/{{schema_name}}_pydantic.py
 
   @# Some generators ignore config_yaml or cannot create directories, so we run them separately.
-  uv run gen-java {{gen_java_args}} --output-directory {{dest}}/java/ {{source_schema_path}}
+  @# NOTE: java and owl generation intentionally disabled — we don't consume those
+  @# artifacts. The gen-java/gen-owl lines from the copier template are commented out
+  @# below; re-enable if a downstream consumer ever needs them. (See copier-migration
+  @# follow-up epic.) TypeScript is kept — it's consumed by oae-form.
+  # uv run gen-java {{gen_java_args}} --output-directory {{dest}}/java/ {{source_schema_path}}
 
   @if [ ! -d "{{dest}}/typescript" ]; then \
     mkdir -p {{dest}}/typescript ; \
   fi
   uv run gen-typescript {{gen_ts_args}} {{source_schema_path}} > {{dest}}/typescript/{{schema_name}}.ts
 
-  @if [ ! -d "{{dest}}/owl" ]; then \
-    mkdir -p {{dest}}/owl ; \
-  fi
-  uv run gen-owl {{gen_owl_args}} {{source_schema_path}} > "{{dest}}/owl/{{schema_name}}.owl.ttl"
+  # uv run gen-owl {{gen_owl_args}} {{source_schema_path}} > "{{dest}}/owl/{{schema_name}}.owl.ttl"
 
 # ============== Migrations recipes for Copier ==============
 
