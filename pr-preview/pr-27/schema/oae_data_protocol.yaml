@@ -1665,18 +1665,18 @@ enums:
         description: This type of equilibrator works by spraying seawater into a gas
           chamber, allowing the CO2 in the water to equilibrate with a gas mixture
           in the chamber.
-        meaning: SDN_L05:EQUAL
+        meaning: SDN_L05:EQUIL
       floating_air_water_equilibrator:
         text: floating_air_water_equilibrator
         description: An "h"-shaped bubble equilibrator assembly commonly used in MAPCO2
           systems on moorings. For more information, refer to Friederich et al. (1995).
-        meaning: SDN_L05:EQUAL
+        meaning: SDN_L05:EQUIL
       membrane_equilibrator:
         text: membrane_equilibrator
         description: While seawater is passed through a membrane, CO2 in the water
           diffuses across the membrane and equilibrates with the gas mixture, which
           is then analyzed to determine the CO2 concentration.
-        meaning: SDN_L05:EQUAL
+        meaning: SDN_L05:EQUIL
       spectrophotometer:
         text: spectrophotometer
         description: Instruments measuring the relative absorption of electromagnetic
@@ -10223,7 +10223,7 @@ classes:
     class_uri: oae:ContinuousStandardGas
 metamodel_version: 1.7.0
 source_file: oae_data_protocol.yaml
-source_file_date: '2026-07-21T21:57:59'
+source_file_date: '2026-07-21T22:46:47'
 source_file_size: 1743
-generation_date: '2026-07-21T21:58:11'
+generation_date: '2026-07-21T22:47:03'
 
