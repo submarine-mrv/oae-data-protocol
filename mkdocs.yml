@@ -5,9 +5,8 @@ theme:
   name: material
   favicon: img/favicon.ico
   logo: img/cts-logo.png
-  # palette:
-  #  scheme: slate
-  #  primary: cyan
+  # Light theme only. Dark mode intentionally omitted — no palette/toggle
+  # configured. Custom brand colors live in stylesheets/extra.css.
   features:
     - navigation.indexes
     - content.tabs.link
@@ -28,12 +27,8 @@ extra_javascript:
 
 plugins:
   - search
-  - mknotebooks:
-      execute: false
   - mermaid2:
       version: 11.4.1
-  - mkdocs_pymdownx_material_extras:
-    # https://pypi.org/project/mkdocs-pymdownx-material-extras
 
 markdown_extensions:
   - tables
@@ -78,16 +73,17 @@ nav:
     - FieldDataset: FieldDataset.md
     - ModelOutputDataset: ModelOutputDataset.md
   - Variables:
+    # Only the abstract/intermediate classes are listed here. Concrete leaf
+    # variable types (DiscretePHVariable, HPLCVariable, physiological, etc.)
+    # are reachable from their parent pages, which enumerate their subclasses.
     - Variables/index.md
+    - Variable: Variable.md
     - InSituVariable: InSituVariable.md
     - MeasuredVariable: MeasuredVariable.md
+    - DiscreteMeasuredVariable: DiscreteMeasuredVariable.md
+    - ContinuousMeasuredVariable: ContinuousMeasuredVariable.md
     - CalculatedVariable: CalculatedVariable.md
     - NonMeasuredVariable: NonMeasuredVariable.md
-    - DiscretePHVariable: DiscretePHVariable.md
-    - DiscreteTAVariable: DiscreteTAVariable.md
-    - DiscreteDICVariable: DiscreteDICVariable.md
-    - DiscreteCO2Variable: DiscreteCO2Variable.md
-    - HPLCVariable: HPLCVariable.md
   - Instruments & Calibration:
     - instruments-calibration/index.md
     - AnalyzingInstrument: AnalyzingInstrument.md
