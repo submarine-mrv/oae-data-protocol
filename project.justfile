@@ -41,7 +41,9 @@ fetch-platform-types:
     rm -f ontologies/platform_types.ttl
     curl 'https://vocab.nerc.ac.uk/collection/L06/current/' -H "Accept: text/turtle" > ontologies/platform_types.ttl
 
-# Note: append hasQuantityKind ObjectProperty declaration (see old project.Makefile).
+# QUDT's unit.ttl omits an rdf:type declaration for qudt:hasQuantityKind, so
+# vskit/oaklib can't resolve it as an ObjectProperty when expanding the unit
+# enum. We append the missing declaration to the fetched file.
 fetch-qudt-units:
     @mkdir -p ontologies
     rm -f ontologies/unit.ttl
