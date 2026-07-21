@@ -53,3 +53,44 @@ jobs:
 
       - name: Run test suite
         run: just test
+
+  # Regenerate all artifacts from the LinkML schema and fail if the committed
+  # copies are out of date. Guards against editing the schema YAML without
+  # running `just gen-all` and committing the regenerated JSON Schema, TypeScript,
+  # and Pydantic model. Generated files are excluded from the whitespace hooks
+  # (see .pre-commit-config.yaml) so committed output matches gen-all byte-for-byte.
+  check-generated:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6.0.2
+        with:
+          persist-credentials: false
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7.2.1
+        with:
+          python-version: "3.12"
+          enable-cache: true
+          cache-dependency-glob: "uv.lock"
+
+      - name: Set up Python
+        uses: actions/setup-python@v6.2.0
+        with:
+          python-version: "3.12"
+
+      - name: Install just
+        run: uv tool install rust-just
+
+      - name: Install project
+        run: uv sync --dev
+
+      - name: Regenerate artifacts
+        run: just gen-all
+
+      - name: Fail if generated artifacts are out of date
+        run: |
+          if ! git diff --exit-code -- project/ src/oae_data_protocol/datamodel/; then
+            echo "::error::Generated artifacts are out of date. Run 'just gen-all' and commit the result."
+            exit 1
+          fi

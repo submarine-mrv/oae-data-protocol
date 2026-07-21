@@ -7,11 +7,15 @@ repos:
       - id: check-toml
       - id: check-yaml
         exclude: mkdocs.yml  # uses !!python/name tag unsupported by generic checker
+      # Never reformat machine-generated / externally-fetched files. Reformatting
+      # them makes committed output diverge from `just gen-all`, which breaks the
+      # generated-artifact drift check in CI. Covers: ontologies/ (NERC/QUDT TTL),
+      # project/ (gen-project output), and the generated datamodel.
       - id: end-of-file-fixer
-        exclude: ^ontologies/  # authoritative TTL fetched from NERC/QUDT — never reformat
+        exclude: ^(ontologies|project|src/oae_data_protocol/datamodel)/
       - id: trailing-whitespace
         args: [--markdown-linebreak-ext=md]
-        exclude: ^ontologies/  # authoritative TTL fetched from NERC/QUDT — never reformat
+        exclude: ^(ontologies|project|src/oae_data_protocol/datamodel)/
 
   - repo: https://github.com/adrienverge/yamllint.git
     rev: v1.37.0

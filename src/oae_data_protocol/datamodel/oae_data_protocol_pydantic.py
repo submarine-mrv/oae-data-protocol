@@ -1,4 +1,4 @@
-from __future__ import annotations
+from __future__ import annotations 
 
 import re
 import sys
@@ -7,8 +7,8 @@ from datetime import (
     datetime,
     time
 )
-from decimal import Decimal
-from enum import Enum
+from decimal import Decimal 
+from enum import Enum 
 from typing import (
     Any,
     ClassVar,
@@ -103,7 +103,7 @@ linkml_meta = LinkMLMeta({'default_prefix': 'oae',
 
 class DatasetType(str, Enum):
     """
-    Type of dataset being submitted. This usually
+    Type of dataset being submitted. This usually 
     """
     # Variables such as dosing_onoff, dosing_rate, and flow_rate should be included here.
     dosing = "dosing"
@@ -3633,3 +3633,4 @@ ModelComponent.model_rebuild()
 ModelGrid.model_rebuild()
 ModelInputDetails.model_rebuild()
 Container.model_rebuild()
+
