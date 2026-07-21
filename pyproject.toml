@@ -55,7 +55,6 @@ skip = [
   "project/*",
   "ontologies/*",
   "src/oae_data_protocol/datamodel/oae_data_protocol_pydantic.py",
-  "src/oae_data_protocol/datamodel/oae_data_protocol.py",
 ]
 
 # Reminder: words have to be lowercased for the ignore-words-list
@@ -74,5 +73,4 @@ extend-exclude = [
   "pyproject.toml",
   "project/*",
   "src/oae_data_protocol/datamodel/oae_data_protocol_pydantic.py",
-  "src/oae_data_protocol/datamodel/oae_data_protocol.py",
 ]

@@ -1,5 +1,5 @@
 from pathlib import Path
-from .oae_data_protocol import *
+from .oae_data_protocol_pydantic import *
 
 THIS_PATH = Path(__file__).parent
 

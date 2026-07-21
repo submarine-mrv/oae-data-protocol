@@ -3,7 +3,6 @@
 ---
 includes:
   - jsonschema
-  - python
 
 generator_args:
   jsonschema:
@@ -11,8 +10,6 @@ generator_args:
     include_null: false
     title_from: title
     include_range_class_descendants: false
-  python:
-    mergeimports: true
 
 # Unused generators (can be re-enabled as needed):
 # excel, owl, markdown, graphql, java, jsonld, jsonldcontext,

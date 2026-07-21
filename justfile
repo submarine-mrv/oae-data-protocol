@@ -113,25 +113,27 @@ gen-doc: _gen-yaml && _add-artifacts
 [group('model development')]
 testdoc: gen-doc _serve
 
-# Generate the Python data models (dataclasses & pydantic)
+# Generate the Python data model (Pydantic only)
 gen-python:
-  uv run gen-project -d  {{pymodel}} -I python {{source_schema_path}}
   uv run gen-pydantic {{gen_pydantic_args}} {{source_schema_path}} > {{pymodel}}/{{schema_name}}_pydantic.py
 
 # Generate project files including Python data model
 [group('model development')]
 gen-project:
+  @# config.yaml includes only the jsonschema generator, so this writes the JSON
+  @# Schema into {{dest}}/jsonschema and emits no Python (we use Pydantic instead).
   uv run gen-project {{config_yaml}} -d {{dest}} {{source_schema_path}}
-  mv {{dest}}/*.py {{pymodel}}
+  @# Python data model: Pydantic only. The classic LinkML dataclass generator is
+  @# intentionally not run — nothing consumes it, and LinkML tooling favors Pydantic.
   uv run gen-pydantic {{gen_pydantic_args}} {{source_schema_path}} > {{pymodel}}/{{schema_name}}_pydantic.py
 
-  @# Some generators ignore config_yaml or cannot create directories, so we run them separately.
-  @# NOTE: java and owl generation intentionally disabled — we don't consume those
-  @# artifacts. The gen-java/gen-owl lines from the copier template are commented out
-  @# below; re-enable if a downstream consumer ever needs them. (See copier-migration
-  @# follow-up epic.) TypeScript is kept — it's consumed by oae-form.
+  @# Some generators ignore config_yaml or cannot create directories, so we run them
+  @# separately. java and owl generation are intentionally disabled — nothing consumes
+  @# those artifacts. Re-enable the commented gen-java/gen-owl lines below if that changes.
   # uv run gen-java {{gen_java_args}} --output-directory {{dest}}/java/ {{source_schema_path}}
 
+  @# TypeScript is not consumed downstream yet; kept so it's available if we add a
+  @# TypeScript consumer later.
   @if [ ! -d "{{dest}}/typescript" ]; then \
     mkdir -p {{dest}}/typescript ; \
   fi
