@@ -93,7 +93,6 @@ nav:
     - Calibration: Calibration.md
   - Controlled Vocabularies: vocabularies.md
   - Full Schema Index: OAEDataSchema.md
-  - About: about.md
 
 exclude_docs: |
   /templates-linkml/
