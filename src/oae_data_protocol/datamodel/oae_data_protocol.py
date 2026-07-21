@@ -1,5 +1,5 @@
 # Auto generated from oae_data_protocol.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-07-19T21:00:18
+# Generation date: 2026-07-21T15:44:31
 # Schema: OAEDataSchema
 #
 # id: https://schema.oaedata.org/OAEDataSchema
@@ -5368,15 +5368,15 @@ class AnalyzingInstrumentType(EnumDefinitionImpl):
     showerhead_equilibrator = PermissibleValue(
         text="showerhead_equilibrator",
         description="""This type of equilibrator works by spraying seawater into a gas chamber, allowing the CO2 in the water to equilibrate with a gas mixture in the chamber.""",
-        meaning=SDN_L05["EQUAL"])
+        meaning=SDN_L05["EQUIL"])
     floating_air_water_equilibrator = PermissibleValue(
         text="floating_air_water_equilibrator",
         description="""An \"h\"-shaped bubble equilibrator assembly commonly used in MAPCO2 systems on moorings. For more information, refer to Friederich et al. (1995).""",
-        meaning=SDN_L05["EQUAL"])
+        meaning=SDN_L05["EQUIL"])
     membrane_equilibrator = PermissibleValue(
         text="membrane_equilibrator",
         description="""While seawater is passed through a membrane, CO2 in the water diffuses across the membrane and equilibrates with the gas mixture, which is then analyzed to determine the CO2 concentration.""",
-        meaning=SDN_L05["EQUAL"])
+        meaning=SDN_L05["EQUIL"])
     spectrophotometer = PermissibleValue(
         text="spectrophotometer",
         description="""Instruments measuring the relative absorption of electromagnetic radiation of different wavelengths in the near infra-red, visible and ultraviolet wavebands by samples.""",

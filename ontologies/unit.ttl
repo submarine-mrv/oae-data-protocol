@@ -47,11 +47,11 @@
 .
 unit:A
   a qudt:Unit ;
-  dcterms:description """$\\textit{Ampere}$, often shortened to $\\text{amp}$,
+  dcterms:description """$\\textit{Ampere}$, often shortened to $\\text{amp}$, 
 is the SI unit of electric current and is one of the seven SI base units defined as:
 
-$$\\text{A} \\equiv \\frac{\\textit{C}}{\\textit{s}}
-\\equiv \\frac{\\textit{coulomb}}{\\textit{second}}
+$$\\text{A} \\equiv \\frac{\\textit{C}}{\\textit{s}} 
+\\equiv \\frac{\\textit{coulomb}}{\\textit{second}} 
 \\equiv \\frac{\\text{joule}}{\\text{weber}}$$
 
 Note that SI supports only the use of symbols and deprecates the use of any abbreviations for units.
@@ -112,13 +112,13 @@ unit:A-HR
   a qudt:DerivedUnit ;
   a qudt:Unit ;
   dcterms:description """$\\textit{Ampere Hour}$ is a practical unit of electric charge equal to the charge flowing
-   in one hour through a conductor passing one ampere.
+   in one hour through a conductor passing one ampere. 
    An ampere-hour or amp-hour (symbol $Ah,\\,AHr,\\, A \\cdot h, A h$) is a unit of electric
     charge, with sub-units milliampere-hour ($mAh$) and milliampere second ($mAs$).
     One ampere-hour is equal to 3600 coulombs (ampere-seconds), the electric charge transferred
-     by a steady current of one ampere for one hour.
+     by a steady current of one ampere for one hour. 
     The ampere-hour is frequently used in measurements of electrochemical systems such as
-     electroplating and electrical batteries.
+     electroplating and electrical batteries. 
     The commonly seen milliampere-hour ($mAh$ or $mA \\cdot h$) is one-thousandth of an
      ampere-hour ($3.6 \\,coulombs$).
   """^^qudt:LatexString ;
@@ -395,7 +395,7 @@ unit:A-M2-PER-J-SEC
   rdfs:label "Ampere Square Metre per Joule Second"@en ;
   rdfs:label "Amperio Metro Cuadrado por Julio Segundo"@es ;
   rdfs:label "Amperium Metrum Quadratum per Joulium Secundum"@la ;
-  rdfs:label "Ampère Mètre Carré par Joule Second"@fr ;
+  rdfs:label "Ampère Mètre Carré par Joule Seconde"@fr ;
   rdfs:label "Ampér Čtvereční Metr na Joule Sekunda"@cs ;
   rdfs:label "Αμπέρ Τετραγωνικό Μέτρο ανά Τζάουλ Δευτερόλεπτο"@el ;
   rdfs:label "Ампер Квадратен Метър на Джаул Секунда"@bg ;
@@ -575,7 +575,7 @@ unit:A-PER-DEG_C
 unit:A-PER-GM
   a qudt:DerivedUnit ;
   a qudt:Unit ;
-  dcterms:description """$\\textit{Ampere per gram}$ is a practical unit to describe an (applied) current relative to the involved amount of material.
+  dcterms:description """$\\textit{Ampere per gram}$ is a practical unit to describe an (applied) current relative to the involved amount of material. 
   This unit is often found in electrochemistry to standardize test conditions and compare various scales of investigated materials.
   """^^qudt:LatexString ;
   qudt:conversionMultiplier 1000.0 ;
@@ -612,7 +612,7 @@ unit:A-PER-GM
 .
 unit:A-PER-J
   a qudt:Unit ;
-  dcterms:description """$\\textit{Ampere per Joule}$ is the inverse measure of $joule-per-ampere$ or $weber$.
+  dcterms:description """$\\textit{Ampere per Joule}$ is the inverse measure of $joule-per-ampere$ or $weber$. 
   The measure for the reciprical of magnetic flux.
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:CGS-EMU ;
@@ -790,7 +790,7 @@ unit:A-PER-M
 unit:A-PER-M2
   a qudt:DerivedUnit ;
   a qudt:Unit ;
-  dcterms:description """$\\textit{Ampere Per Square Meter}$ is a unit in the category of electric current density.
+  dcterms:description """$\\textit{Ampere Per Square Meter}$ is a unit in the category of electric current density. 
 This unit is commonly used in the SI unit system.
 """^^qudt:LatexString ;
   qudt:applicableSystem sou:CGS-EMU ;
@@ -1095,7 +1095,7 @@ unit:A-SEC
   rdfs:label "Ampere Sekunde"@de ;
   rdfs:label "Amperio Segundo"@es ;
   rdfs:label "Amperium Secundum"@la ;
-  rdfs:label "Ampère Second"@fr ;
+  rdfs:label "Ampère Seconde"@fr ;
   rdfs:label "Ampér Sekunda"@cs ;
   rdfs:label "Αμπέρ Δευτερόλεπτο"@el ;
   rdfs:label "Ампер Секунда"@bg ;
@@ -1131,7 +1131,7 @@ unit:A-SEC2
   rdfs:label "Ampere Square Second"@en ;
   rdfs:label "Amperio Segundo Cuadrado"@es ;
   rdfs:label "Amperium Secundum Quadratum"@la ;
-  rdfs:label "Ampère Second Carré"@fr ;
+  rdfs:label "Ampère Seconde Carré"@fr ;
   rdfs:label "Ampér Čtvereční Sekunda"@cs ;
   rdfs:label "Αμπέρ Τετραγωνικό Δευτερόλεπτο"@el ;
   rdfs:label "Ампер Квадратен Секунда"@bg ;
@@ -1166,7 +1166,7 @@ unit:A2-SEC
   rdfs:label "Amperio Cuadrado Segundo"@es ;
   rdfs:label "Amperium Quadratum Secundum"@la ;
   rdfs:label "Amperkare Saniye"@tr ;
-  rdfs:label "Ampère Carré Second"@fr ;
+  rdfs:label "Ampère Carré Seconde"@fr ;
   rdfs:label "Kvadratni Amper Sekunda"@sl ;
   rdfs:label "Quadratampere Sekunde"@de ;
   rdfs:label "Square Ampere Second" ;
@@ -1445,8 +1445,8 @@ unit:AT-PER-M
   a qudt:DerivedUnit ;
   a qudt:Unit ;
   dcterms:description """
-  The  $\\textit{Ampere Turn per Metre}$ is the SI unit of magnetic field strength.
-  One ampere per meter is equal to $\\pi/250$ oersteds (12.566 371 millioersteds) in CGS units.
+  The  $\\textit{Ampere Turn per Metre}$ is the SI unit of magnetic field strength. 
+  One ampere per meter is equal to $\\pi/250$ oersteds (12.566 371 millioersteds) in CGS units. 
   The ampere per meter is also the SI unit of \"magnetization\" in the sense of magnetic dipole moment per unit volume;
    in this context $1 A/m = 0.001 emu per cubic centimeter$.
   """^^qudt:LatexString ;
@@ -1477,7 +1477,7 @@ unit:ATM
   a qudt:Unit ;
   dcterms:description """
   The unit for $\\textit{Standard Atmosphere}$, symbol: $atm$, is an international reference pressure defined as $101.325 \\,kPa$ and formerly used as unit of pressure.
-  For practical purposes it has been replaced by the bar which is $100 kPa$.
+  For practical purposes it has been replaced by the bar which is $100 kPa$. 
   The difference of about 1% is not significant for many applications, and is within the error range of common pressure gauges.
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:CGS ;
@@ -1558,11 +1558,11 @@ unit:ATM-PER-M
 unit:ATM_T
   a qudt:Unit ;
   dcterms:description """
-  The unit for $\\textit{Technical Atmosphere}$, symbol: $at$, is a non-SI unit of pressure equal to one kilogram-force per square centimeter.
-  The symbol $at$ clashes with that of the katal (symbol: $kat$), the SI unit of catalytic activity; a kilotechnical atmosphere would have the symbol $kat$, indistinguishable from the symbol for katal.
-  It also clashes with that of the non-SI unit, the $attotonne$, but that unit would be more likely be rendered as the equivalent SI unit.
+  The unit for $\\textit{Technical Atmosphere}$, symbol: $at$, is a non-SI unit of pressure equal to one kilogram-force per square centimeter. 
+  The symbol $at$ clashes with that of the katal (symbol: $kat$), the SI unit of catalytic activity; a kilotechnical atmosphere would have the symbol $kat$, indistinguishable from the symbol for katal. 
+  It also clashes with that of the non-SI unit, the $attotonne$, but that unit would be more likely be rendered as the equivalent SI unit. 
   Assay ton (abbreviation $AT$) is not a unit of measurement, but a standard quantity used in assaying ores of precious metals; it is $29 1D6 \\,grams$ (short assay ton) or $32 2D3 \\,grams$ (long assay ton),
-   the amount which bears the same ratio to a milligram as a short or long ton bears to a troy ounce.
+   the amount which bears the same ratio to a milligram as a short or long ton bears to a troy ounce. 
   In other words, the number of milligrams of a particular metal found in a sample of this size gives the number of troy ounces contained in a short or long ton of ore.
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:CGS ;
@@ -1664,8 +1664,8 @@ unit:AWG
 unit:A_Ab
   a qudt:Unit ;
   dcterms:description """
-  The $\\textit{Abampere (aA)}$, also called the $biot$ after Jean-Baptiste Biot, is the basic electromagnetic unit of electric current in the emu-cgs system of units (electromagnetic cgs).
-  One $abampere$ is equal to ten amperes in the SI system of units.
+  The $\\textit{Abampere (aA)}$, also called the $biot$ after Jean-Baptiste Biot, is the basic electromagnetic unit of electric current in the emu-cgs system of units (electromagnetic cgs). 
+  One $abampere$ is equal to ten amperes in the SI system of units. 
   An $abampere$ is the constant current that produces, when maintained in two parallel conductors of negligible circular section and of infinite length placed 1 centimetre apart,
    a force of 2 dynes per centimetre between the two conductors.
   """^^qudt:LatexString ;
@@ -1726,11 +1726,11 @@ unit:A_Ab-CentiM2
 unit:A_Ab-PER-CentiM2
   a qudt:Unit ;
   dcterms:description """
-  The unit $\\textit{Abampere Per Square Centimeter}$, symbol $aA/cm^2$, is a unit in the category of Electric current density.
+  The unit $\\textit{Abampere Per Square Centimeter}$, symbol $aA/cm^2$, is a unit in the category of Electric current density. 
   It is also known as $\\textit{abamperes per square centimeter}$, $\\textit{abampere/square centimeter}$,
-   and $\\textit{abampere per square centimetre}$.
+   and $\\textit{abampere per square centimetre}$. 
    This unit is commonly used in the cgs unit system.
-  $\\textit{Abampere Per Square Centimeter}$ has a dimension of $L^{-2}I$ where $L$ is length, and $I$ is electric current.
+  $\\textit{Abampere Per Square Centimeter}$ has a dimension of $L^{-2}I$ where $L$ is length, and $I$ is electric current. 
   It can be converted to the corresponding standard SI unit $A/m^{2}$ by multiplying its value by a factor of 100000.
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:CGS ;
@@ -1762,10 +1762,10 @@ unit:A_Ab-PER-CentiM2
 unit:A_Stat
   a qudt:Unit ;
   dcterms:description """
-  The unit $\\textit{Statampere}$, symbol $statA$ is a unit in the category of Electric current.
-  It is also known as statamperes.
-  This unit is commonly used in the cgs unit system.
-  $\\textit{Statampere (statA)}$ has a dimension of $I$ where $I$ is electric current.
+  The unit $\\textit{Statampere}$, symbol $statA$ is a unit in the category of Electric current. 
+  It is also known as statamperes. 
+  This unit is commonly used in the cgs unit system. 
+  $\\textit{Statampere (statA)}$ has a dimension of $I$ where $I$ is electric current. 
   It can be converted to the corresponding standard SI unit $A$ by multiplying its value by a factor of 3.355641E-010.
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:CGS ;
@@ -1989,7 +1989,7 @@ unit:AttoJ-SEC
   rdfs:label "Attojoule Saniye"@tr ;
   rdfs:label "Attojoule Second" ;
   rdfs:label "Attojoule Second"@en ;
-  rdfs:label "Attojoule Second"@fr ;
+  rdfs:label "Attojoule Seconde"@fr ;
   rdfs:label "Attojoule Secondo"@it ;
   rdfs:label "Attojoule Secundă"@ro ;
   rdfs:label "Attojoule Sekunda"@cs ;
@@ -2039,7 +2039,7 @@ unit:B
   a qudt:LogarithmicUnit ;
   a qudt:Unit ;
   dcterms:description """
-  The $\\textit{Bel}$ is a logarithmic unit of sound pressure equal to 10 decibels (dB).
+  The $\\textit{Bel}$ is a logarithmic unit of sound pressure equal to 10 decibels (dB). 
   It is defined as: $1 B = (1/2) \\log_{10}(Np)$
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:ASU ;
@@ -2137,7 +2137,7 @@ unit:BAN
   dcterms:description """
   A $\\textit{ban}$ is a logarithmic unit which measures information or entropy,
    based on base 10 logarithms and powers of 10, rather than the powers of 2
-   and base 2 logarithms which define the bit.
+   and base 2 logarithms which define the bit. 
   One $\\textit{ban}$ is approximately $3.32 (log_2 10) bits$.
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:ASU ;
@@ -2166,12 +2166,12 @@ unit:BAR
   a qudt:Unit ;
   dcterms:description """
   The $\\textit{bar}$ is a non-SI unit of pressure, defined by the IUPAC as exactly equal
-   to $100,000\\,Pa$.
+   to $100,000\\,Pa$. 
   It is about equal to the atmospheric pressure on Earth at sea level, and since 1982
    the IUPAC has recommended that the standard for atmospheric pressure should be
-   harmonized to $100,000\\,Pa = 1 \\,bar \\approx 750.0616827\\, Torr$.
+   harmonized to $100,000\\,Pa = 1 \\,bar \\approx 750.0616827\\, Torr$. 
   Units derived from the bar are the megabar (symbol: $Mbar$), kilobar (symbol: $kbar$),
-   decibar (symbol: $dbar$), centibar (symbol: $cbar$), and millibar (symbol: $mbar$ or $mb$).
+   decibar (symbol: $dbar$), centibar (symbol: $cbar$), and millibar (symbol: $mbar$ or $mb$). 
   They are not SI or cgs units, but they are accepted for use with the SI.
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:CGS ;
@@ -3106,15 +3106,15 @@ unit:BQ
   a qudt:Unit ;
   dcterms:description """
   The $\\textit{Becquerel}$ is the SI derived unit of activity, usually meaning radioactivity.
-  Radioactivity is caused when atoms disintegrate, ejecting energetic particles.
-  One becquerel is the radiation caused by one disintegration per second;
-  this is equivalent to about $27.0270 \\text{picocuries (pCi)}$.
-  The unit is named for a French physicist, Antoine-Henri Becquerel (1852-1908),
-  the discoverer of radioactivity.
-  Note: both the becquerel and the hertz are basically defined as one event per second,
-  yet they measure different things.
-  The hertz is used to measure the rates of events that happen periodically in a fixed and definite cycle.
-  The becquerel is used to measure the rates of events that happen sporadically and unpredictably,
+  Radioactivity is caused when atoms disintegrate, ejecting energetic particles. 
+  One becquerel is the radiation caused by one disintegration per second; 
+  this is equivalent to about $27.0270 \\text{picocuries (pCi)}$. 
+  The unit is named for a French physicist, Antoine-Henri Becquerel (1852-1908), 
+  the discoverer of radioactivity. 
+  Note: both the becquerel and the hertz are basically defined as one event per second, 
+  yet they measure different things. 
+  The hertz is used to measure the rates of events that happen periodically in a fixed and definite cycle. 
+  The becquerel is used to measure the rates of events that happen sporadically and unpredictably, 
   not in a definite cycle.
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:CGS ;
@@ -3371,7 +3371,7 @@ unit:BQ-SEC-PER-M3
   rdfs:label "Becquerel Second per Cubic Meter"@en-US ;
   rdfs:label "Becquerel Second per Cubic Metre" ;
   rdfs:label "Becquerel Second per Cubic Metre"@en ;
-  rdfs:label "Becquerel Second par Mètre Cube"@fr ;
+  rdfs:label "Becquerel Seconde par Mètre Cube"@fr ;
   rdfs:label "Becquerel Secondo per Metro Cubo"@it ;
   rdfs:label "Becquerel Secundă pe Metru Cub"@ro ;
   rdfs:label "Becquerel Segundo por Metro Cúbico"@es ;
@@ -3494,10 +3494,10 @@ unit:BTU_60DEG_F
 .
 unit:BTU_IT
   a qudt:Unit ;
-  dcterms:description """$\\textit{British Thermal Unit}$ (BTU or Btu) is a traditional unit of energy equal to about $1.0550558526 \\textit{ kilojoule}$.
-  It is approximately the amount of energy needed to heat 1 pound (0.454 kg) of water from $39^{\\circ}{F}$ to $40^{\\circ}{F}$ .
-  The unit is most often used in the power, steam generation, heating and air conditioning industries.
-  In scientific contexts the BTU has largely been replaced by the SI unit of energy, the $joule$, though it may be used as a measure of agricultural energy production (BTU/kg).
+  dcterms:description """$\\textit{British Thermal Unit}$ (BTU or Btu) is a traditional unit of energy equal to about $1.0550558526 \\textit{ kilojoule}$. 
+  It is approximately the amount of energy needed to heat 1 pound (0.454 kg) of water from $39^{\\circ}{F}$ to $40^{\\circ}{F}$ . 
+  The unit is most often used in the power, steam generation, heating and air conditioning industries. 
+  In scientific contexts the BTU has largely been replaced by the SI unit of energy, the $joule$, though it may be used as a measure of agricultural energy production (BTU/kg). 
   It is still used unofficially in metric English-speaking countries (such as Canada), and remains the standard unit of classification for air conditioning units manufactured and sold in many non-English-speaking metric countries.
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:IMPERIAL ;
@@ -3630,7 +3630,7 @@ unit:BTU_IT-IN-PER-FT2-HR-DEG_F
   a qudt:Unit ;
   dcterms:description """
   $BTU_{th}$ Inch per Square Foot Hour Degree Fahrenheit is an Imperial unit for 'Thermal Conductivity' expressed as $Btu_{it}-in/(h-ft^{2}-degF)$.
-  An International British thermal unit inch per second per square foot per degree Fahrenheit is a unit of thermal conductivity in the US Customary Units and British Imperial Units.
+  An International British thermal unit inch per second per square foot per degree Fahrenheit is a unit of thermal conductivity in the US Customary Units and British Imperial Units. 
   $1\\,Btu_{it} \\cdot in/(h \\cdot ft^{2} \\cdot degF)$ shows that one thermochemical BTU of heat per one hour moves through one square foot of material, which is one foot thick due to a temperature difference of one degree Fahrenheit.
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:IMPERIAL ;
@@ -3802,7 +3802,7 @@ unit:BTU_IT-IN-PER-SEC-FT2-DEG_F
 unit:BTU_IT-PER-DEG_F
   a qudt:DerivedUnit ;
   a qudt:Unit ;
-  dcterms:description """$\\textit{British Thermal Unit (IT) Per Fahrenheit Degree}$ ($Btu (IT)/^\\circ F$) is a measure of heat capacity.
+  dcterms:description """$\\textit{British Thermal Unit (IT) Per Fahrenheit Degree}$ ($Btu (IT)/^\\circ F$) is a measure of heat capacity. 
   It can be converted to the corresponding standard SI unit $J/K$ by multiplying its value by a factor of $1899.10534$.
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:IMPERIAL ;
@@ -4027,10 +4027,10 @@ unit:BTU_IT-PER-FT2-SEC-DEG_F
 .
 unit:BTU_IT-PER-FT3
   a qudt:Unit ;
-  dcterms:description """$\\textit{British Thermal Unit (IT) Per Cubic Foot}$ ($Btu (IT)/ft^3$) is a unit in the category of Energy density.
-  It is also known as Btu per cubic foot, Btu/cubic foot.
-  This unit is commonly used in the UK, US unit systems.
-  It has a dimension of $ML^{-1}T^{-2}$ where $M$ is mass, $L$ is length, and $T$ is time.
+  dcterms:description """$\\textit{British Thermal Unit (IT) Per Cubic Foot}$ ($Btu (IT)/ft^3$) is a unit in the category of Energy density. 
+  It is also known as Btu per cubic foot, Btu/cubic foot. 
+  This unit is commonly used in the UK, US unit systems. 
+  It has a dimension of $ML^{-1}T^{-2}$ where $M$ is mass, $L$ is length, and $T$ is time. 
   It can be converted to the corresponding standard SI unit $J/m^3$ by multiplying its value by a factor of 37258.94579.
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:IMPERIAL ;
@@ -4064,7 +4064,7 @@ unit:BTU_IT-PER-HR
   a qudt:DerivedUnit ;
   a qudt:Unit ;
   dcterms:description """
-  The $\\text{BTU per Hour}$ is the amount of energy that is being produced or consumed per hour.
+  The $\\text{BTU per Hour}$ is the amount of energy that is being produced or consumed per hour. 
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:IMPERIAL ;
   qudt:applicableSystem sou:USCS ;
@@ -4678,9 +4678,9 @@ unit:BTU_MEAN
 unit:BTU_TH
   a qudt:Unit ;
   dcterms:description """
-  The $\\textit{British Thermal Unit (thermochemical definition)}$ ($BTU_{th}$), is a traditional unit of energy equal to about $1.0543502645 kilojoule$.
-  It is approximately the amount of energy needed to heat 1 pound (0.454 kg) of water from $39^{\\circ}\\text{F}$ ($3.9^{\\circ}\\text{C}$) to $40^{\\circ}\\text{F}$ ($4.4^{\\circ}\\text{C}$).
-  The unit is most often used in the power, steam generation, heating and air conditioning industries.
+  The $\\textit{British Thermal Unit (thermochemical definition)}$ ($BTU_{th}$), is a traditional unit of energy equal to about $1.0543502645 kilojoule$. 
+  It is approximately the amount of energy needed to heat 1 pound (0.454 kg) of water from $39^{\\circ}\\text{F}$ ($3.9^{\\circ}\\text{C}$) to $40^{\\circ}\\text{F}$ ($4.4^{\\circ}\\text{C}$). 
+  The unit is most often used in the power, steam generation, heating and air conditioning industries. 
   In scientific contexts the BTU has largely been replaced by the SI unit of energy, the $joule$.
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:IMPERIAL ;
@@ -4931,7 +4931,7 @@ unit:BTU_TH-PER-DEG_R
 .
 unit:BTU_TH-PER-FT2
   a qudt:Unit ;
-  dcterms:description "unit of the areal-related energy transmission according to the Imperial system of units" ;
+  dcterms:description "unit of the areal-related energy transmisson according to the Imperial system of units" ;
   qudt:conversionMultiplier 11348.93179491220093551298213707538 ;
   qudt:conversionMultiplierSN 1.134893179491220093551298213707538E4 ;
   qudt:hasDimensionVector qkdv:A0E0L0I0M1H0T-2D0 ;
@@ -5738,10 +5738,10 @@ unit:C-M
   a qudt:DerivedUnit ;
   a qudt:Unit ;
   dcterms:description """
-  The $\\text{Coulomb Meter (C-m)}$ is a unit in the category of Electric dipole moment.
-  It is also known as atomic unit, u.a., au, ua.
-  This unit is commonly used in the SI unit system.
-  Coulomb Meter (C-m) has a dimension of LTI where $L$ is length, $T$ is time, and $I$ is electric current.
+  The $\\text{Coulomb Meter (C-m)}$ is a unit in the category of Electric dipole moment. 
+  It is also known as atomic unit, u.a., au, ua. 
+  This unit is commonly used in the SI unit system. 
+  Coulomb Meter (C-m) has a dimension of LTI where $L$ is length, $T$ is time, and $I$ is electric current. 
   This unit is the standard SI unit in this category.
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:CGS ;
@@ -6098,7 +6098,7 @@ unit:C-PER-KiloGM-SEC
   rdfs:isDefinedBy <http://qudt.org/3.1.7/vocab/unit> ;
   rdfs:label "Coulomb na Kilogram Sekunda"@cs ;
   rdfs:label "Coulomb na Kilogram Sekunda"@sl ;
-  rdfs:label "Coulomb par Kilogramme Second"@fr ;
+  rdfs:label "Coulomb par Kilogramme Seconde"@fr ;
   rdfs:label "Coulomb pe Kilogram Secundă"@ro ;
   rdfs:label "Coulomb per Chilogrammo Secondo"@it ;
   rdfs:label "Coulomb per Kilogram Saat"@ms ;
@@ -6882,7 +6882,7 @@ unit:CAL_TH-PER-CentiM-SEC-DEG_C
 .
 unit:CAL_TH-PER-CentiM2
   a qudt:Unit ;
-  dcterms:description "unit of the areal-related energy transmission according to the Imperial system of units" ;
+  dcterms:description "unit of the areal-related energy transmisson according to the Imperial system of units" ;
   qudt:conversionMultiplier 41840.0 ;
   qudt:conversionMultiplierSN 4.184E4 ;
   qudt:hasDimensionVector qkdv:A0E0L0I0M1H0T-2D0 ;
@@ -8922,16 +8922,16 @@ unit:CCY_JMD
   rdfs:label "Jamaican Dollar" ;
   rdfs:label "Jamaican Dollar"@en ;
 .
-unit:CCY_JOB
+unit:CCY_JOD
   a qudt:CurrencyUnit ;
   a qudt:Unit ;
   qudt:conversionMultiplier 1.0 ;
   qudt:conversionMultiplierSN 1.0E0 ;
-  qudt:currencyCode "JOB" ;
+  qudt:currencyCode "JOD" ;
   qudt:currencyExponent 3 ;
   qudt:currencyNumber "400" ;
   qudt:dbpediaMatch "http://dbpedia.org/resource/Jordanian_dinar"^^xsd:anyURI ;
-  qudt:expression "$JOB$"^^qudt:LatexString ;
+  qudt:expression "$JOD$"^^qudt:LatexString ;
   qudt:hasDimensionVector qkdv:A0E0L0I0M0H0T0D1 ;
   qudt:hasQuantityKind quantitykind:Currency ;
   qudt:informativeReference "http://en.wikipedia.org/wiki/Jordanian_dinar?oldid=495270728"^^xsd:anyURI ;
@@ -8993,8 +8993,8 @@ unit:CCY_KGS
   qudt:informativeReference "http://en.wikipedia.org/wiki/Som?oldid=495411674"^^xsd:anyURI ;
   qudt:wikidataMatch <http://www.wikidata.org/entity/Q35881> ;
   rdfs:isDefinedBy <http://qudt.org/3.1.7/vocab/unit> ;
-  rdfs:label "Some" ;
-  rdfs:label "Some"@en ;
+  rdfs:label "Som" ;
+  rdfs:label "Som"@en ;
 .
 unit:CCY_KHR
   a qudt:CurrencyUnit ;
@@ -10525,8 +10525,8 @@ unit:CCY_UZS
   qudt:informativeReference "http://en.wikipedia.org/wiki/Uzbekistani_som?oldid=490522228"^^xsd:anyURI ;
   qudt:wikidataMatch <http://www.wikidata.org/entity/Q487888> ;
   rdfs:isDefinedBy <http://qudt.org/3.1.7/vocab/unit> ;
-  rdfs:label "Uzbekistan Some" ;
-  rdfs:label "Uzbekistan Some"@en ;
+  rdfs:label "Uzbekistan Som" ;
+  rdfs:label "Uzbekistan Som"@en ;
 .
 unit:CCY_VES
   a qudt:CurrencyUnit ;
@@ -11521,7 +11521,7 @@ unit:C_Stat
 .
 unit:C_Stat-PER-CentiM2
   a qudt:Unit ;
-  dcterms:description """$\\textit{Statcoulomb per Square Centimeter}$ is a unit of measure for electric flux density and electric polarization.
+  dcterms:description """$\\textit{Statcoulomb per Square Centimeter}$ is a unit of measure for electric flux density and electric polarization. 
   One Statcoulomb per Square Centimeter is $2.15\\times 10^9 \\, coulomb\\,per\\,square\\,inch$.
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:CGS ;
@@ -11548,7 +11548,7 @@ unit:C_Stat-PER-CentiM2
 .
 unit:C_Stat-PER-MOL
   a qudt:Unit ;
-  dcterms:description "\"Statcoulomb per Mole\" is a unit of measure for the electrical charge associated with one mole of a substance. The mole is a unit of measurement used in chemistry to express amounts of a chemical substance, defined as an amount of a substance that contains as many elementary entities (e.g., atoms, molecules, ions, electrons) as there are atoms in 12 grams of pure carbon-12 (12C), the isotope of carbon with atomic weight 12."^^rdf:HTML ;
+  dcterms:description "\"Statcoulomb per Mole\" is a unit of measure for the electical charge associated with one mole of a substance. The mole is a unit of measurement used in chemistry to express amounts of a chemical substance, defined as an amount of a substance that contains as many elementary entities (e.g., atoms, molecules, ions, electrons) as there are atoms in 12 grams of pure carbon-12 (12C), the isotope of carbon with atomic weight 12."^^rdf:HTML ;
   qudt:applicableSystem sou:CGS ;
   qudt:conversionMultiplier 0.00000000033356409519815204957557671447492 ;
   qudt:conversionMultiplierSN 3.3356409519815204957557671447492E-10 ;
@@ -11913,7 +11913,7 @@ unit:CentiM-PER-SEC
   rdfs:label "Centimetro per Secondo"@it ;
   rdfs:label "Centimetro por Segundo"@es ;
   rdfs:label "Centimetru pe Secundă"@ro ;
-  rdfs:label "Centimètre par Second"@fr ;
+  rdfs:label "Centimètre par Seconde"@fr ;
 .
 unit:CentiM-PER-SEC-BAR
   a qudt:Unit ;
@@ -11981,7 +11981,7 @@ unit:CentiM-PER-SEC-K
   rdfs:label "Centimetro per Secondo Kelvin"@it ;
   rdfs:label "Centimetro por Segundo Kelvin"@es ;
   rdfs:label "Centimetru pe Secundă Kelvin"@ro ;
-  rdfs:label "Centimètre par Second Kelvin"@fr ;
+  rdfs:label "Centimètre par Seconde Kelvin"@fr ;
 .
 unit:CentiM-PER-SEC2
   a qudt:DerivedUnit ;
@@ -12026,7 +12026,7 @@ unit:CentiM-PER-SEC2
   rdfs:label "Centimetro per Secondo Quadrato"@it ;
   rdfs:label "Centimetro por Segundo Cuadrado"@es ;
   rdfs:label "Centimetru pe Secundă Pătrat"@ro ;
-  rdfs:label "Centimètre par Second Carré"@fr ;
+  rdfs:label "Centimètre par Seconde Carré"@fr ;
 .
 unit:CentiM-PER-YR
   a qudt:Unit ;
@@ -12093,7 +12093,7 @@ unit:CentiM-SEC-DEG_C
   rdfs:label "Centimetro Secondo Grado Celsius"@it ;
   rdfs:label "Centimetro Segundo Grado Celsius"@es ;
   rdfs:label "Centimetru Secundă Grad Celsius"@ro ;
-  rdfs:label "Centimètre Second Degré Celsius"@fr ;
+  rdfs:label "Centimètre Seconde Degré Celsius"@fr ;
 .
 unit:CentiM2
   a qudt:DerivedUnit ;
@@ -12294,7 +12294,7 @@ unit:CentiM2-PER-SEC
   rdfs:label "Centimetro Cuadrado por Segundo"@es ;
   rdfs:label "Centimetro Quadrato per Secondo"@it ;
   rdfs:label "Centimetru Pătrat pe Secundă"@ro ;
-  rdfs:label "Centimètre Carré par Second"@fr ;
+  rdfs:label "Centimètre Carré par Seconde"@fr ;
   rdfs:label "Kvadratni Centimeter na Sekunda"@sl ;
   rdfs:label "Quadratcentimeter pro Sekunde"@de ;
   rdfs:label "Square Centimeter per Second"@en-US ;
@@ -12363,7 +12363,7 @@ unit:CentiM2-PER-V-SEC
   rdfs:label "Centimetro Cuadrado por Voltio Segundo"@es ;
   rdfs:label "Centimetro Quadrato per Volt Secondo"@it ;
   rdfs:label "Centimetru Pătrat pe Volt Secundă"@ro ;
-  rdfs:label "Centimètre Carré par Volt Second"@fr ;
+  rdfs:label "Centimètre Carré par Volt Seconde"@fr ;
   rdfs:label "Kvadratni Centimeter na Volt Sekunda"@sl ;
   rdfs:label "Quadratcentimeter pro Volt Sekunde"@de ;
   rdfs:label "Square Centimeter per Volt Second"@en-US ;
@@ -12403,7 +12403,7 @@ unit:CentiM2-SEC
   rdfs:label "Centimetro Cuadrado Segundo"@es ;
   rdfs:label "Centimetro Quadrato Secondo"@it ;
   rdfs:label "Centimetru Pătrat Secundă"@ro ;
-  rdfs:label "Centimètre Carré Second"@fr ;
+  rdfs:label "Centimètre Carré Seconde"@fr ;
   rdfs:label "Kvadratni Centimeter Sekunda"@sl ;
   rdfs:label "Quadratcentimeter Sekunde"@de ;
   rdfs:label "Square Centimeter Second"@en-US ;
@@ -12974,7 +12974,7 @@ unit:CentiM3-PER-MOL-SEC
   rdfs:label "Centimetro Cubo per Mole Secondo"@it ;
   rdfs:label "Centimetro Cúbico por Mol Segundo"@es ;
   rdfs:label "Centimetru Cub pe Mol Secundă"@ro ;
-  rdfs:label "Centimètre Cube par Mole Second"@fr ;
+  rdfs:label "Centimètre Cube par Mole Seconde"@fr ;
   rdfs:label "Cubic Centimeter per Mole Second"@en-US ;
   rdfs:label "Cubic Centimetre per Mole Second" ;
   rdfs:label "Cubic Centimetre per Mole Second"@en ;
@@ -13016,7 +13016,7 @@ unit:CentiM3-PER-SEC
   rdfs:label "Centimetro Cubo per Secondo"@it ;
   rdfs:label "Centimetro Cúbico por Segundo"@es ;
   rdfs:label "Centimetru Cub pe Secundă"@ro ;
-  rdfs:label "Centimètre Cube par Second"@fr ;
+  rdfs:label "Centimètre Cube par Seconde"@fr ;
   rdfs:label "Cubic Centimeter per Second"@en-US ;
   rdfs:label "Cubic Centimetre per Second" ;
   rdfs:label "Cubic Centimetre per Second"@en ;
@@ -13084,7 +13084,7 @@ unit:CentiM3-PER-SEC-K
   rdfs:label "Centimetro Cubo per Secondo Kelvin"@it ;
   rdfs:label "Centimetro Cúbico por Segundo Kelvin"@es ;
   rdfs:label "Centimetru Cub pe Secundă Kelvin"@ro ;
-  rdfs:label "Centimètre Cube par Second Kelvin"@fr ;
+  rdfs:label "Centimètre Cube par Seconde Kelvin"@fr ;
   rdfs:label "Cubic Centimeter per Second Kelvin"@en-US ;
   rdfs:label "Cubic Centimetre per Second Kelvin" ;
   rdfs:label "Cubic Centimetre per Second Kelvin"@en ;
@@ -14011,7 +14011,7 @@ unit:DEGREE_BALLING
 .
 unit:DEGREE_BAUME
   a qudt:Unit ;
-  dcterms:description """graduation of the areometer scale for determination of density of fluids.
+  dcterms:description """graduation of the areometer scale for determination of densitiy of fluids.
 
 The Baumé scale is a pair of hydrometer scales developed by French pharmacist Antoine Baumé in 1768 to measure density of various liquids. The unit of the Baumé scale has been notated variously as degrees Baumé, B°, Bé° and simply Baumé (the accent is not always present). One scale measures the density of liquids heavier than water and the other, liquids lighter than water. The Baumé of distilled water is 0. The API gravity scale is based on errors in early implementations of the Baumé scale.""" ;
   qudt:conversionMultiplier 0.0 ;
@@ -14021,7 +14021,7 @@ The Baumé scale is a pair of hydrometer scales developed by French pharmacist A
   qudt:hasQuantityKind quantitykind:MassDensity ;
   qudt:iec61360Code "0112/2///62720#UAA028" ;
   qudt:informativeReference "https://cdd.iec.ch/cdd/iec62720/iec62720.nsf/Units/0112-2---62720%23UAA028"^^xsd:anyURI ;
-  qudt:plainTextDescription """graduation of the areometer scale for determination of density of fluids.
+  qudt:plainTextDescription """graduation of the areometer scale for determination of densitiy of fluids.
 
 The Baumé scale is a pair of hydrometer scales developed by French pharmacist Antoine Baumé in 1768 to measure density of various liquids. The unit of the Baumé scale has been notated variously as degrees Baumé, B°, Bé° and simply Baumé (the accent is not always present). One scale measures the density of liquids heavier than water and the other, liquids lighter than water. The Baumé of distilled water is 0. The API gravity scale is based on errors in early implementations of the Baumé scale.""" ;
   qudt:symbol "°Bé{origin}" ;
@@ -14140,12 +14140,12 @@ unit:DEG_C
   a qudt:DerivedUnit ;
   a qudt:Unit ;
   dcterms:description """
-  The unit $\\textit{Celsius}$, also known as centigrade, is a scale and unit of measurement for temperature.
-  It can refer to a specific temperature on the Celsius scale as well as a unit to indicate a temperature interval,
-  a difference between two temperatures or an uncertainty.
-  This definition fixes the magnitude of both the degree Celsius and the kelvin as precisely 1 part
-  in 273.16 (approximately 0.00366) of the difference between absolute zero and the triple point of water.
-  Thus, it sets the magnitude of one degree Celsius and that of one kelvin as exactly the same.
+  The unit $\\textit{Celsius}$, also known as centigrade, is a scale and unit of measurement for temperature. 
+  It can refer to a specific temperature on the Celsius scale as well as a unit to indicate a temperature interval, 
+  a difference between two temperatures or an uncertainty. 
+  This definition fixes the magnitude of both the degree Celsius and the kelvin as precisely 1 part 
+  in 273.16 (approximately 0.00366) of the difference between absolute zero and the triple point of water. 
+  Thus, it sets the magnitude of one degree Celsius and that of one kelvin as exactly the same. 
   Additionally, it establishes the difference between the two scales' null points as being precisely $273.15^{\\circ}\\text{C}$.
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:CGS ;
@@ -14516,7 +14516,7 @@ unit:DEG_C-PER-SEC
   rdfs:label "Darjah Celsius per Saat"@ms ;
   rdfs:label "Degree Celsius per Second" ;
   rdfs:label "Degree Celsius per Second"@en ;
-  rdfs:label "Degré Celsius par Second"@fr ;
+  rdfs:label "Degré Celsius par Seconde"@fr ;
   rdfs:label "Grad Celsius pe Secundă"@ro ;
   rdfs:label "Grad Celsius pro Sekunde"@de ;
   rdfs:label "Grado Celsius per Secondo"@it ;
@@ -14631,7 +14631,7 @@ unit:DEG_C2-PER-SEC
   rdfs:isDefinedBy <http://qudt.org/3.1.7/vocab/unit> ;
   rdfs:label "Celsiuskare per Saniye"@tr ;
   rdfs:label "Darjah Celsius Persegi per Saat"@ms ;
-  rdfs:label "Degré Celsius Carré par Second"@fr ;
+  rdfs:label "Degré Celsius Carré par Seconde"@fr ;
   rdfs:label "Grad Celsius Pătrat pe Secundă"@ro ;
   rdfs:label "Grado Celsius Cuadrado por Segundo"@es ;
   rdfs:label "Grado Celsius Quadrato per Secondo"@it ;
@@ -14686,7 +14686,7 @@ unit:DEG_C_GROWING_CEREAL-DAY
 unit:DEG_F
   a qudt:Unit ;
   dcterms:description """
-  The unit $\\textit{Degree Fahrenheit}$ is an Imperial unit for 'Thermodynamic Temperature' expressed as
+  The unit $\\textit{Degree Fahrenheit}$ is an Imperial unit for 'Thermodynamic Temperature' expressed as 
   $\\circ\\text{F}$
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:IMPERIAL ;
@@ -15215,10 +15215,10 @@ unit:DEG_F-SEC-PER-BTU_TH
 unit:DEG_R
   a qudt:Unit ;
   dcterms:description """
-  The unit $\\textit{Degree Rankine}$ is a thermodynamic (absolute) temperature scale.
-  The symbol for degrees Rankine is $^\\circ R$ or $^\\circ Ra$ if necessary to distinguish it from the Rømer and Réaumur scales).
+  The unit $\\textit{Degree Rankine}$ is a thermodynamic (absolute) temperature scale. 
+  The symbol for degrees Rankine is $^\\circ R$ or $^\\circ Ra$ if necessary to distinguish it from the Rømer and Réaumur scales). 
   Zero on both the Kelvin and Rankine scales is absolute zero, but the Rankine degree is defined as equal
-   to one degree Fahrenheit, rather than the one degree Celsius used by the Kelvin scale.
+   to one degree Fahrenheit, rather than the one degree Celsius used by the Kelvin scale. 
   A temperature of $-459.67 ^\\circ F$ is exactly equal to $0 ^\\circ R$.
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:CGS ;
@@ -15353,10 +15353,10 @@ unit:DIOPTER
   a qudt:Unit ;
   dcterms:description """
   The unit $\\textit{Dioptre}$, or $\\textit{Diopter}$, is a unit of measurement for the optical power of a lens or curved mirror,
-   which is equal to the reciprocal of the focal length measured in metres (that is, $1/metre$).
-  For example, a $3 \\; dioptre$ lens brings parallel rays of light to focus at $1/3\\,metre$.
+   which is equal to the reciprocal of the focal length measured in metres (that is, $1/metre$). 
+  For example, a $3 \\; dioptre$ lens brings parallel rays of light to focus at $1/3\\,metre$. 
   The same unit is also sometimes used for other reciprocals of distance, particularly radii of curvature
-   and the vergence of optical beams.
+   and the vergence of optical beams. 
   Though the diopter is based on the SI-metric system it has not been included in the standard so that there is
    no international name or abbreviation for this unit of measurement within the international system of units
     this unit for optical power would need to be specified explicitly as the inverse metre.
@@ -15473,10 +15473,10 @@ unit:DYN
   a qudt:DerivedUnit ;
   a qudt:Unit ;
   dcterms:description """
-  In physics, the $dyne$ is a unit of force specified in the centimetre-gram-second (CGS) system of units.
-  The $dyne$ is a unit of force specified in the centimetre-gram-second (CGS) system of units.
-  One $dyne$ is equal to $\\SI{10}{\\micro\\newton}$.
-  Equivalently, the $dyne$ is defined as 'the force required to accelerate a mass of one gram at a rate of one centimetre per square second'.
+  In physics, the $dyne$ is a unit of force specified in the centimetre-gram-second (CGS) system of units. 
+  The $dyne$ is a unit of force specified in the centimetre-gram-second (CGS) system of units. 
+  One $dyne$ is equal to $\\SI{10}{\\micro\\newton}$. 
+  Equivalently, the $dyne$ is defined as 'the force required to accelerate a mass of one gram at a rate of one centimetre per square second'. 
   A $\\textit{dyne per centimetre}$ is the unit traditionally used to measure surface tension.
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:CGS ;
@@ -15776,9 +15776,9 @@ unit:DecaARE
   qudt:plainTextDescription "unit of the area which is mainly common in the agriculture and forestry: 1 da = 10 a" ;
   qudt:prefix prefix:Deca ;
   qudt:scalingOf unit:ARE ;
-  qudt:symbol "data" ;
+  qudt:symbol "daa" ;
   qudt:ucumCode "daar"^^qudt:UCUMcs ;
-  qudt:uneceCommonCode "DATA" ;
+  qudt:uneceCommonCode "DAA" ;
   qudt:wikidataMatch <http://www.wikidata.org/entity/Q3396758> ;
   rdfs:isDefinedBy <http://qudt.org/3.1.7/vocab/unit> ;
   rdfs:label "Decaare" ;
@@ -16097,7 +16097,7 @@ unit:DeciB-MilliW
 .
 unit:DeciB-MilliW-PER-MegaHZ
   a qudt:Unit ;
-  dcterms:description "unit of level used to indicate that a power ratio is expressed in decibel (dB) with reference to one milliwatt (mW) divided by the 1,000,000-fold of the derived unit hertz" ;
+  dcterms:description "unit of level used to indicate that a power ratio is expressed in decibel (dB) with reference to one milliwatt (mW) devided by the 1,000,000-fold of the derived unit hertz" ;
   qudt:conversionMultiplier 0.0 ;
   qudt:conversionMultiplierSN 0.0E0 ;
   qudt:hasDimensionVector qkdv:A0E0L2I0M1H0T-2D0 ;
@@ -16823,7 +16823,7 @@ unit:DeciM3-PER-SEC
   rdfs:label "Decimetro Cubo per Secondo"@it ;
   rdfs:label "Decimetro Cúbico por Segundo"@es ;
   rdfs:label "Decimetru Cub pe Secundă"@ro ;
-  rdfs:label "Decimètre Cube par Second"@fr ;
+  rdfs:label "Decimètre Cube par Seconde"@fr ;
   rdfs:label "Kubikdecimeter pro Sekunde"@de ;
   rdfs:label "Kubični Decimeter na Sekunda"@sl ;
 .
@@ -17066,10 +17066,10 @@ unit:Denier
 .
 unit:E
   a qudt:Unit ;
-  dcterms:description """$\\textit{Elementary Charge}$, usually denoted as $e$, is the electric charge carried by a single proton,
-  or equivalently, the negation (opposite) of the electric charge carried by a single electron.
-  This elementary charge is a fundamental physical constant.
-  To avoid confusion over its sign, e is sometimes called the elementary positive charge.
+  dcterms:description """$\\textit{Elementary Charge}$, usually denoted as $e$, is the electric charge carried by a single proton, 
+  or equivalently, the negation (opposite) of the electric charge carried by a single electron. 
+  This elementary charge is a fundamental physical constant. 
+  To avoid confusion over its sign, e is sometimes called the elementary positive charge. 
   This charge has a measured value of approximately $1.602176634 \\times 10^{-19} coulombs$.
   In the cgs system, $e$ is $4.80320471257026372 \\times 10^{-10} statcoulombs$.
   """^^qudt:LatexString ;
@@ -17924,7 +17924,7 @@ unit:ExaJ-PER-SEC
   rdfs:label "Exadżul na Sekunda"@pl ;
   rdfs:label "Exajoule na Sekunda"@cs ;
   rdfs:label "Exajoule na Sekunda"@sl ;
-  rdfs:label "Exajoule par Second"@fr ;
+  rdfs:label "Exajoule par Seconde"@fr ;
   rdfs:label "Exajoule pe Secundă"@ro ;
   rdfs:label "Exajoule per Saat"@ms ;
   rdfs:label "Exajoule per Saniye"@tr ;
@@ -18406,10 +18406,10 @@ unit:FARAD_Ab-PER-CentiM
 unit:FARAD_Stat
   a qudt:Unit ;
   dcterms:description """
-  The $\\text{Statfarad (statF)}$ is a unit in the category of Electric capacitance.
-  It is also known as $statfarads$.
-  This unit is commonly used in the cgs unit system.
-  $Statfarad$ has a dimension of $M^{-1}L^{-2}T^4I^2$ where $M$ is mass, $L$ is length, $T$ is time, and $I$ is electric current.
+  The $\\text{Statfarad (statF)}$ is a unit in the category of Electric capacitance. 
+  It is also known as $statfarads$. 
+  This unit is commonly used in the cgs unit system. 
+  $Statfarad$ has a dimension of $M^{-1}L^{-2}T^4I^2$ where $M$ is mass, $L$ is length, $T$ is time, and $I$ is electric current. 
   It can be converted to the corresponding standard SI unit F by multiplying its value by a factor of 1.11265E-012.
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:CGS ;
@@ -19620,8 +19620,8 @@ unit:FT3
   a qudt:DerivedUnit ;
   a qudt:Unit ;
   dcterms:description """
-  The cubic foot is an Imperial and US customary unit of volume, used in the United States and the United Kingdom.
-  It is defined as the volume of a cube with sides of one foot (0.3048 m) in length.
+  The cubic foot is an Imperial and US customary unit of volume, used in the United States and the United Kingdom. 
+  It is defined as the volume of a cube with sides of one foot (0.3048 m) in length. 
   To calculate cubic feet multiply length X width X height.
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:IMPERIAL ;
@@ -21264,7 +21264,7 @@ unit:GM-CentiM-PER-SEC
   rdfs:label "Gram Centimetre per Second"@en ;
   rdfs:label "Gram Centimetru pe Secundă"@ro ;
   rdfs:label "Gramm Centimeter pro Sekunde"@de ;
-  rdfs:label "Gramme Centimètre par Second"@fr ;
+  rdfs:label "Gramme Centimètre par Seconde"@fr ;
   rdfs:label "Grammo Centimetro per Secondo"@it ;
   rdfs:label "Gramo Centimetro por Segundo"@es ;
 .
@@ -21762,7 +21762,7 @@ unit:GM-PER-CentiM-SEC
   rdfs:label "Gram per Centimetre Second" ;
   rdfs:label "Gram per Centimetre Second"@en ;
   rdfs:label "Gramm pro Centimeter Sekunde"@de ;
-  rdfs:label "Gramme par Centimètre Second"@fr ;
+  rdfs:label "Gramme par Centimètre Seconde"@fr ;
   rdfs:label "Grammo per Centimetro Secondo"@it ;
   rdfs:label "Gramo por Centimetro Segundo"@es ;
 .
@@ -23126,7 +23126,7 @@ unit:GM-PER-M3-MilliPA-SEC
   rdfs:label "Gram per Meter Kubik Millipascal Saat"@ms ;
   rdfs:label "Gram per Metreküp Millipascal Saniye"@tr ;
   rdfs:label "Gramm pro Kubikmeter Millipascal Sekunde"@de ;
-  rdfs:label "Gramme par Mètre Cube Millipascal Second"@fr ;
+  rdfs:label "Gramme par Mètre Cube Millipascal Seconde"@fr ;
   rdfs:label "Grammo per Metro Cubo Millipascal Secondo"@it ;
   rdfs:label "Gramo por Metro Cúbico Millipascal Segundo"@es ;
 .
@@ -23170,7 +23170,7 @@ unit:GM-PER-M3-PA-SEC
   rdfs:label "Grama por Metro Cúbico Pascal Segundo"@pt ;
   rdfs:label "Gramm pro Kubikmeter Pascal Sekunde"@de ;
   rdfs:label "Gramma per Metrum Cubicum Pascalium Secundum"@la ;
-  rdfs:label "Gramme par Mètre Cube Pascal Second"@fr ;
+  rdfs:label "Gramme par Mètre Cube Pascal Seconde"@fr ;
   rdfs:label "Grammo per Metro Cubo Pascal Secondo"@it ;
   rdfs:label "Gramo por Metro Cúbico Pascal Segundo"@es ;
 .
@@ -23561,7 +23561,7 @@ unit:GM-PER-SEC
   rdfs:label "Grama por Segundo"@pt ;
   rdfs:label "Gramm pro Sekunde"@de ;
   rdfs:label "Gramma per Secundum"@la ;
-  rdfs:label "Gramme par Second"@fr ;
+  rdfs:label "Gramme par Seconde"@fr ;
   rdfs:label "Grammo per Secondo"@it ;
   rdfs:label "Gramo por Segundo"@es ;
 .
@@ -23629,7 +23629,7 @@ unit:GM-PER-SEC-K
   rdfs:label "Grama por Segundo Kelvin"@pt ;
   rdfs:label "Gramm pro Sekunde Kelvin"@de ;
   rdfs:label "Gramma per Secundum Kelvin"@la ;
-  rdfs:label "Gramme par Second Kelvin"@fr ;
+  rdfs:label "Gramme par Seconde Kelvin"@fr ;
   rdfs:label "Grammo per Secondo Kelvin"@it ;
   rdfs:label "Gramo por Segundo Kelvin"@es ;
 .
@@ -23763,7 +23763,7 @@ unit:GM-SEC-PER-M3-CentiM3
   rdfs:label "Gram Sekunda na Metr Krychlový Centimetr Krychlový"@cs ;
   rdfs:label "Gram Sekunda na Metr Sześcienny Centimetr Sześcienny"@pl ;
   rdfs:label "Gramm Sekunde pro Kubikmeter Kubikcentimeter"@de ;
-  rdfs:label "Gramme Second par Mètre Cube Centimètre Cube"@fr ;
+  rdfs:label "Gramme Seconde par Mètre Cube Centimètre Cube"@fr ;
   rdfs:label "Grammo Secondo per Metro Cubo Centimetro Cubo"@it ;
   rdfs:label "Gramo Segundo por Metro Cúbico Centimetro Cúbico"@es ;
 .
@@ -24325,7 +24325,7 @@ unit:GRAY-PER-SEC
   rdfs:label "Graium per Secundum"@la ;
   rdfs:label "Gray na Sekunda"@cs ;
   rdfs:label "Gray na Sekunda"@sl ;
-  rdfs:label "Gray par Second"@fr ;
+  rdfs:label "Gray par Seconde"@fr ;
   rdfs:label "Gray pe Secundă"@ro ;
   rdfs:label "Gray per Saat"@ms ;
   rdfs:label "Gray per Saniye"@tr ;
@@ -25053,7 +25053,7 @@ unit:GigaJ-PER-SEC
   rdfs:label "Gigadżul na Sekunda"@pl ;
   rdfs:label "Gigajoule na Sekunda"@cs ;
   rdfs:label "Gigajoule na Sekunda"@sl ;
-  rdfs:label "Gigajoule par Second"@fr ;
+  rdfs:label "Gigajoule par Seconde"@fr ;
   rdfs:label "Gigajoule pe Secundă"@ro ;
   rdfs:label "Gigajoule per Saat"@ms ;
   rdfs:label "Gigajoule per Saniye"@tr ;
@@ -25510,13 +25510,13 @@ unit:GigaW-HR
 unit:Gs
   a qudt:Unit ;
   dcterms:description """
-  The $gauss$, abbreviated as $G$, is the cgs unit of measurement of a magnetic field $B$,
+  The $gauss$, abbreviated as $G$, is the cgs unit of measurement of a magnetic field $B$, 
   which is also known as the \"magnetic flux density\" or the \"magnetic induction\".
-  One gauss is defined as one maxwell per square centimeter; it equals $10^{-4} tesla$ (or $100 micro T$).
-  The Gauss is identical to maxwells per square centimetre; technically defined in a three-dimensional system,
-  it corresponds in the SI, with its extra base unit the ampere.
-  The gauss is quite small by earthly standards, 1 Gs being only about four times Earth's flux density,
-  but it is subdivided, with $1 gauss = 105 gamma$.
+  One gauss is defined as one maxwell per square centimeter; it equals $10^{-4} tesla$ (or $100 micro T$). 
+  The Gauss is identical to maxwells per square centimetre; technically defined in a three-dimensional system, 
+  it corresponds in the SI, with its extra base unit the ampere. 
+  The gauss is quite small by earthly standards, 1 Gs being only about four times Earth's flux density, 
+  but it is subdivided, with $1 gauss = 105 gamma$. 
   This unit of magnetic induction is also known as the $\\textit{abtesla}$.
   """^^qudt:LatexString ;
   dcterms:isReplacedBy unit:GAUSS ;
@@ -25545,14 +25545,14 @@ unit:H
   a qudt:DerivedUnit ;
   a qudt:Unit ;
   dcterms:description """
-  The unit $\\textit{Henry}$ is the SI unit of electric inductance.
-  A changing magnetic field induces an electric current in a loop of wire (or in a coil of many loops) located in the field.
-  Although the induced voltage depends only on the rate at which the magnetic flux changes, measured in webers per second, the amount of the current depends also on the physical properties of the coil.
-  A coil with an inductance of one henry requires a flux of one weber for each ampere of induced current.
-  If, on the other hand, it is the current which changes, then the induced field will generate a potential difference within the coil:
-  if the inductance is one henry a current change of one ampere per second generates a potential difference of one volt.
-  The henry is a large unit; inductances in practical circuits are measured in millihenrys (mH) or microhenrys (u03bc H).
-  The unit is named for the American physicist Joseph Henry (1797-1878), one of several scientists who discovered independently how magnetic fields can be used to generate alternating currents.
+  The unit $\\textit{Henry}$ is the SI unit of electric inductance. 
+  A changing magnetic field induces an electric current in a loop of wire (or in a coil of many loops) located in the field. 
+  Although the induced voltage depends only on the rate at which the magnetic flux changes, measured in webers per second, the amount of the current depends also on the physical properties of the coil. 
+  A coil with an inductance of one henry requires a flux of one weber for each ampere of induced current. 
+  If, on the other hand, it is the current which changes, then the induced field will generate a potential difference within the coil: 
+  if the inductance is one henry a current change of one ampere per second generates a potential difference of one volt. 
+  The henry is a large unit; inductances in practical circuits are measured in millihenrys (mH) or microhenrys (u03bc H). 
+  The unit is named for the American physicist Joseph Henry (1797-1878), one of several scientists who discovered independently how magnetic fields can be used to generate alternating currents. 
 
   A $\\textit{Henry}$ is defined as:
 
@@ -26132,8 +26132,8 @@ unit:HZ
   a qudt:DerivedUnit ;
   a qudt:Unit ;
   dcterms:description """
-  $\\textit{Hertz}$ (symbol $Hz$) is the SI unit of frequency defined as the number of cycles per second of a periodic phenomenon.
-  One of its most common uses is the description of the sine wave, particularly those used in radio and audio applications, such as the frequency of musical tones.
+  $\\textit{Hertz}$ (symbol $Hz$) is the SI unit of frequency defined as the number of cycles per second of a periodic phenomenon. 
+  One of its most common uses is the description of the sine wave, particularly those used in radio and audio applications, such as the frequency of musical tones. 
   The word $\\bf{hertz}$ is named for Heinrich Rudolf Hertz, who was the first to conclusively prove the existence of electromagnetic waves.
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:CGS ;
@@ -26392,10 +26392,10 @@ unit:H_Ab
 unit:H_Stat
   a qudt:Unit ;
   dcterms:description """
-  The $\\text{Stathenry (statH)}$ is a unit in the category of Electric inductance.
-  It is also known as $tathenries$.
-  This unit is commonly used in the cgs unit system.
-  $Stathenry$ has a dimension of $ML^2T^{-2}I^{-2}$ where $M$ is mass, $L$ is length, $T$ is time, and $I$ is electric current.
+  The $\\text{Stathenry (statH)}$ is a unit in the category of Electric inductance. 
+  It is also known as $tathenries$. 
+  This unit is commonly used in the cgs unit system. 
+  $Stathenry$ has a dimension of $ML^2T^{-2}I^{-2}$ where $M$ is mass, $L$ is length, $T$ is time, and $I$ is electric current. 
   It can be converted to the corresponding standard SI unit H by multiplying its value by a factor of $8.987552 \\times 10^{11}$.
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:CGS ;
@@ -26446,7 +26446,7 @@ unit:HeartBeat
   a qudt:Unit ;
   dcterms:description """A heart beat is a single contraction of the heart muscle,
   which pumps blood through the circulatory system. The heart rate is the number of heart beats
-  per unit of time, typically measured in beats per minute (bpm). A normal resting
+  per unit of time, typically measured in beats per minute (bpm). A normal resting 
   heart rate for adults ranges from 60 to 100 beats per minute."""^^rdf:HTML ;
   qudt:applicableSystem sou:ASU ;
   qudt:applicableSystem sou:CGS ;
@@ -26734,7 +26734,7 @@ unit:HectoPA-M3-PER-SEC
   rdfs:label "Hectopascal Metreküp per Saniye"@tr ;
   rdfs:label "Hectopascal Metro Cúbico por Segundo"@es ;
   rdfs:label "Hectopascal Metru Cub pe Secundă"@ro ;
-  rdfs:label "Hectopascal Mètre Cube par Second"@fr ;
+  rdfs:label "Hectopascal Mètre Cube par Seconde"@fr ;
   rdfs:label "Hectopaskal Metr Sześcienny na Sekunda"@pl ;
 .
 unit:HectoPA-PER-BAR
@@ -26919,7 +26919,7 @@ unit:IN
   qudt:symbol "in" ;
   qudt:ucumCode "[in_i]"^^qudt:UCUMcs ;
   qudt:udunitsCode "in" ;
-  qudt:uneceCommonCode "IN" ;
+  qudt:uneceCommonCode "INH" ;
   qudt:wikidataMatch <http://www.wikidata.org/entity/Q218593> ;
   rdfs:isDefinedBy <http://qudt.org/3.1.7/vocab/unit> ;
   rdfs:label "Inch" ;
@@ -27689,7 +27689,7 @@ The magnitude of one $IU/L$ depends on the material, so there is no single conve
 unit:J
   a qudt:DerivedUnit ;
   a qudt:Unit ;
-  dcterms:description """$\\textit{Joule}$ is the SI unit of work or energy, defined to be the work done by a force of one newton acting to move an object through a distance of one meter in the direction in which the force is applied.
+  dcterms:description """$\\textit{Joule}$ is the SI unit of work or energy, defined to be the work done by a force of one newton acting to move an object through a distance of one meter in the direction in which the force is applied. 
   Equivalently, since kinetic energy is one half the mass times the square of the velocity, one joule is the kinetic energy of a mass of two kilograms moving at a velocity of $1 m/s$.
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:CGS ;
@@ -28247,9 +28247,9 @@ unit:J-PER-KiloGM
   a qudt:DerivedUnit ;
   a qudt:Unit ;
   dcterms:description """
-  A $\\textit{Joule Per Kilogram}$, ($J/kg$), is a unit in the category of total energy per unit mass, commonly known as specific enthalpy.
-  It is also known as $\\textit{joules per kilogram}$.
-  The unit has a dimension of $L2T^{-2}$ where $L$ is length, and $T$ is time.
+  A $\\textit{Joule Per Kilogram}$, ($J/kg$), is a unit in the category of total energy per unit mass, commonly known as specific enthalpy. 
+  It is also known as $\\textit{joules per kilogram}$.  
+  The unit has a dimension of $L2T^{-2}$ where $L$ is length, and $T$ is time. 
   This unit is the standard SI unit in this category.
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:CGS ;
@@ -28347,7 +28347,7 @@ unit:J-PER-KiloGM-K
   a qudt:Unit ;
   dcterms:description """
   Specific heat capacity - The heat required to raise unit mass of a substance by unit temperature interval under specified conditions,
-   such as constant pressure: usually measured in joules per kelvin per kilogram.
+   such as constant pressure: usually measured in joules per kelvin per kilogram. 
   Symbol $c_p$ (for constant pressure).
   Also called specific heat.
   """^^qudt:LatexString ;
@@ -28713,7 +28713,7 @@ unit:J-PER-M4
   a qudt:DerivedUnit ;
   a qudt:Unit ;
   dcterms:description """
-  The unit $\\textit{Joule Per Quartic Meter}$ ($J/m^4$) is a unit for the spectral concentration of radiant energy density (in terms of wavelength), or the spectral radiant energy density (in terms of wave length).
+  The unit $\\textit{Joule Per Quartic Meter}$ ($J/m^4$) is a unit for the spectral concentration of radiant energy density (in terms of wavelength), or the spectral radiant energy density (in terms of wave length). 
   This unit is commonly used in the SI unit system.
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:CGS ;
@@ -28901,7 +28901,7 @@ unit:J-PER-SEC
   rdfs:label "Dżul na Sekunda"@pl ;
   rdfs:label "Joule na Sekunda"@cs ;
   rdfs:label "Joule na Sekunda"@sl ;
-  rdfs:label "Joule par Second"@fr ;
+  rdfs:label "Joule par Seconde"@fr ;
   rdfs:label "Joule pe Secundă"@ro ;
   rdfs:label "Joule per Saat"@ms ;
   rdfs:label "Joule per Saniye"@tr ;
@@ -29015,7 +29015,7 @@ unit:J-SEC
   a qudt:DerivedUnit ;
   a qudt:Unit ;
   dcterms:description """
-  The $\\textit{joule-second}$ is a unit equal to a $joule$ multiplied by a second, used to measure action or angular momentum.
+  The $\\textit{joule-second}$ is a unit equal to a $joule$ multiplied by a second, used to measure action or angular momentum. 
   The joule-second is the unit used for Planck's constant.
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:CGS ;
@@ -29050,7 +29050,7 @@ unit:J-SEC
   rdfs:label "Joule Saniye"@tr ;
   rdfs:label "Joule Second" ;
   rdfs:label "Joule Second"@en ;
-  rdfs:label "Joule Second"@fr ;
+  rdfs:label "Joule Seconde"@fr ;
   rdfs:label "Joule Secondo"@it ;
   rdfs:label "Joule Secundă"@ro ;
   rdfs:label "Joule Segundo"@pt ;
@@ -29098,7 +29098,7 @@ unit:J-SEC-PER-MOL
   rdfs:label "Joule Saniye per Mol"@tr ;
   rdfs:label "Joule Second per Mole" ;
   rdfs:label "Joule Second per Mole"@en ;
-  rdfs:label "Joule Second par Mole"@fr ;
+  rdfs:label "Joule Seconde par Mole"@fr ;
   rdfs:label "Joule Secondo per Mole"@it ;
   rdfs:label "Joule Secundă pe Mol"@ro ;
   rdfs:label "Joule Segundo por Mol"@pt ;
@@ -29114,12 +29114,12 @@ unit:J-SEC-PER-MOL
 unit:K
   a qudt:Unit ;
   dcterms:description """
-  The unit $\\textit{Kelvin}$ is the SI base unit of temperature, previously called the degree Kelvin.
-  One kelvin represents the same temperature difference as one degree Celsius.
+  The unit $\\textit{Kelvin}$ is the SI base unit of temperature, previously called the degree Kelvin. 
+  One kelvin represents the same temperature difference as one degree Celsius. 
   In 1967 the General Conference on Weights and Measures defined the temperature of the triple point of water
-   (the temperature at which water exists simultaneously in the gaseous, liquid, and solid states) to be exactly 273.16 kelvins.
-  Since this temperature is also equal to 0.01 u00b0C, the temperature in kelvins is always equal to 273.15 plus the temperature in degrees Celsius.
-  The kelvin equals exactly 1.8 degrees Fahrenheit.
+   (the temperature at which water exists simultaneously in the gaseous, liquid, and solid states) to be exactly 273.16 kelvins. 
+  Since this temperature is also equal to 0.01 u00b0C, the temperature in kelvins is always equal to 273.15 plus the temperature in degrees Celsius. 
+  The kelvin equals exactly 1.8 degrees Fahrenheit. 
   The unit is named for the British mathematician and physicist William Thomson (1824-1907),
    later known as Lord Kelvin after he was named Baron Kelvin of Largs.
   """^^qudt:LatexString ;
@@ -29264,7 +29264,7 @@ unit:K-M-PER-SEC
   rdfs:label "Kelvin Metro por Segundo"@pt ;
   rdfs:label "Kelvin Metru pe Secundă"@ro ;
   rdfs:label "Kelvin Metrum per Secundum"@la ;
-  rdfs:label "Kelvin Mètre par Second"@fr ;
+  rdfs:label "Kelvin Mètre par Seconde"@fr ;
   rdfs:label "Kelwin Metr na Sekunda"@pl ;
   rdfs:label "Κέλβιν Μέτρο ανά Δευτερόλεπτο"@el ;
   rdfs:label "Келвин Метър на Секунда"@bg ;
@@ -29352,7 +29352,7 @@ unit:K-M2-PER-KiloGM-SEC
   rdfs:label "Kelvin Metro Quadrato per Chilogrammo Secondo"@it ;
   rdfs:label "Kelvin Metru Pătrat pe Kilogram Secundă"@ro ;
   rdfs:label "Kelvin Metrum Quadratum per Chiliogramma Secundum"@la ;
-  rdfs:label "Kelvin Mètre Carré par Kilogramme Second"@fr ;
+  rdfs:label "Kelvin Mètre Carré par Kilogramme Seconde"@fr ;
   rdfs:label "Kelvin Quadratmeter pro Kilogramm Sekunde"@de ;
   rdfs:label "Kelvin Square Meter per Kilogram Second"@en-US ;
   rdfs:label "Kelvin Square Metre per Kilogram Second" ;
@@ -29387,7 +29387,7 @@ unit:K-PA-PER-SEC
   rdfs:isDefinedBy <http://qudt.org/3.1.7/vocab/unit> ;
   rdfs:label "Kelvin Pascal na Sekunda"@cs ;
   rdfs:label "Kelvin Pascal na Sekunda"@sl ;
-  rdfs:label "Kelvin Pascal par Second"@fr ;
+  rdfs:label "Kelvin Pascal par Seconde"@fr ;
   rdfs:label "Kelvin Pascal pe Secundă"@ro ;
   rdfs:label "Kelvin Pascal per Saat"@ms ;
   rdfs:label "Kelvin Pascal per Saniye"@tr ;
@@ -29627,7 +29627,7 @@ unit:K-PER-SEC
   rdfs:isDefinedBy <http://qudt.org/3.1.7/vocab/unit> ;
   rdfs:label "Kelvin na Sekunda"@cs ;
   rdfs:label "Kelvin na Sekunda"@sl ;
-  rdfs:label "Kelvin par Second"@fr ;
+  rdfs:label "Kelvin par Seconde"@fr ;
   rdfs:label "Kelvin pe Secundă"@ro ;
   rdfs:label "Kelvin per Saat"@ms ;
   rdfs:label "Kelvin per Saniye"@tr ;
@@ -29666,7 +29666,7 @@ unit:K-PER-SEC2
   rdfs:isDefinedBy <http://qudt.org/3.1.7/vocab/unit> ;
   rdfs:label "Kelvin na Kvadratni Sekunda"@sl ;
   rdfs:label "Kelvin na Čtvereční Sekunda"@cs ;
-  rdfs:label "Kelvin par Second Carré"@fr ;
+  rdfs:label "Kelvin par Seconde Carré"@fr ;
   rdfs:label "Kelvin pe Secundă Pătrat"@ro ;
   rdfs:label "Kelvin per Saat Persegi"@ms ;
   rdfs:label "Kelvin per Saniyekare"@tr ;
@@ -29789,7 +29789,7 @@ unit:K-SEC
   rdfs:label "Kelvin Saniye"@tr ;
   rdfs:label "Kelvin Second" ;
   rdfs:label "Kelvin Second"@en ;
-  rdfs:label "Kelvin Second"@fr ;
+  rdfs:label "Kelvin Seconde"@fr ;
   rdfs:label "Kelvin Secondo"@it ;
   rdfs:label "Kelvin Secundum"@la ;
   rdfs:label "Kelvin Secundă"@ro ;
@@ -31703,7 +31703,7 @@ unit:KiloGM-CentiM-PER-SEC
   rdfs:label "Kilogram Centimetre per Second"@en ;
   rdfs:label "Kilogram Centimetru pe Secundă"@ro ;
   rdfs:label "Kilogramm Centimeter pro Sekunde"@de ;
-  rdfs:label "Kilogramme Centimètre par Second"@fr ;
+  rdfs:label "Kilogramme Centimètre par Seconde"@fr ;
   rdfs:label "Kilogramo Centimetro por Segundo"@es ;
 .
 unit:KiloGM-CentiM2
@@ -31873,7 +31873,7 @@ unit:KiloGM-M-PER-SEC
   rdfs:label "Kilogram Metre per Second"@en ;
   rdfs:label "Kilogram Metru pe Secundă"@ro ;
   rdfs:label "Kilogramm Meter pro Sekunde"@de ;
-  rdfs:label "Kilogramme Mètre par Second"@fr ;
+  rdfs:label "Kilogramme Mètre par Seconde"@fr ;
   rdfs:label "Kilogramo Metro por Segundo"@es ;
   rdfs:label "Quilograma Metro por Segundo"@pt ;
   rdfs:label "Χιλιόγραμμο Μέτρο ανά Δευτερόλεπτο"@el ;
@@ -31920,7 +31920,7 @@ unit:KiloGM-M-PER-SEC2
   rdfs:label "Kilogram Metre per Square Second"@en ;
   rdfs:label "Kilogram Metru pe Secundă Pătrat"@ro ;
   rdfs:label "Kilogramm Meter pro Quadratsekunde"@de ;
-  rdfs:label "Kilogramme Mètre par Second Carré"@fr ;
+  rdfs:label "Kilogramme Mètre par Seconde Carré"@fr ;
   rdfs:label "Kilogramo Metro por Segundo Cuadrado"@es ;
   rdfs:label "Quilograma Metro por Segundo Quadrado"@pt ;
   rdfs:label "Χιλιόγραμμο Μέτρο ανά Τετραγωνικό Δευτερόλεπτο"@el ;
@@ -32027,7 +32027,7 @@ unit:KiloGM-M2-PER-SEC
   rdfs:label "Kilogram Square Metre per Second"@en ;
   rdfs:label "Kilogram Čtvereční Metr na Sekunda"@cs ;
   rdfs:label "Kilogramm Quadratmeter pro Sekunde"@de ;
-  rdfs:label "Kilogramme Mètre Carré par Second"@fr ;
+  rdfs:label "Kilogramme Mètre Carré par Seconde"@fr ;
   rdfs:label "Kilogramo Metro Cuadrado por Segundo"@es ;
   rdfs:label "Quilograma Metro Quadrado por Segundo"@pt ;
   rdfs:label "Χιλιόγραμμο Τετραγωνικό Μέτρο ανά Δευτερόλεπτο"@el ;
@@ -33178,7 +33178,7 @@ unit:KiloGM-PER-M-SEC
   rdfs:label "Kilogram per Metre Second" ;
   rdfs:label "Kilogram per Metre Second"@en ;
   rdfs:label "Kilogramm pro Meter Sekunde"@de ;
-  rdfs:label "Kilogramme par Mètre Second"@fr ;
+  rdfs:label "Kilogramme par Mètre Seconde"@fr ;
   rdfs:label "Kilogramo por Metro Segundo"@es ;
   rdfs:label "Quilograma por Metro Segundo"@pt ;
   rdfs:label "Χιλιόγραμμο ανά Μέτρο Δευτερόλεπτο"@el ;
@@ -33229,7 +33229,7 @@ unit:KiloGM-PER-M-SEC2
   rdfs:label "Kilogram per Metre Square Second" ;
   rdfs:label "Kilogram per Metre Square Second"@en ;
   rdfs:label "Kilogramm pro Meter Quadratsekunde"@de ;
-  rdfs:label "Kilogramme par Mètre Second Carré"@fr ;
+  rdfs:label "Kilogramme par Mètre Seconde Carré"@fr ;
   rdfs:label "Kilogramo por Metro Segundo Cuadrado"@es ;
   rdfs:label "Quilograma por Metro Segundo Quadrado"@pt ;
   rdfs:label "Χιλιόγραμμο ανά Μέτρο Τετραγωνικό Δευτερόλεπτο"@el ;
@@ -33366,7 +33366,7 @@ unit:KiloGM-PER-M2-PA-SEC
   rdfs:label "Kilogram per Square Metre Pascal Second" ;
   rdfs:label "Kilogram per Square Metre Pascal Second"@en ;
   rdfs:label "Kilogramm pro Quadratmeter Pascal Sekunde"@de ;
-  rdfs:label "Kilogramme par Mètre Carré Pascal Second"@fr ;
+  rdfs:label "Kilogramme par Mètre Carré Pascal Seconde"@fr ;
   rdfs:label "Kilogramo por Metro Cuadrado Pascal Segundo"@es ;
   rdfs:label "Quilograma por Metro Quadrado Pascal Segundo"@pt ;
   rdfs:label "Χιλιόγραμμο ανά Τετραγωνικό Μέτρο Πασκάλ Δευτερόλεπτο"@el ;
@@ -33412,7 +33412,7 @@ unit:KiloGM-PER-M2-SEC
   rdfs:label "Kilogram per Square Metre Second" ;
   rdfs:label "Kilogram per Square Metre Second"@en ;
   rdfs:label "Kilogramm pro Quadratmeter Sekunde"@de ;
-  rdfs:label "Kilogramme par Mètre Carré Second"@fr ;
+  rdfs:label "Kilogramme par Mètre Carré Seconde"@fr ;
   rdfs:label "Kilogramo por Metro Cuadrado Segundo"@es ;
   rdfs:label "Quilograma por Metro Quadrado Segundo"@pt ;
   rdfs:label "Χιλιόγραμμο ανά Τετραγωνικό Μέτρο Δευτερόλεπτο"@el ;
@@ -33458,7 +33458,7 @@ unit:KiloGM-PER-M2-SEC2
   rdfs:label "Kilogram per Square Metre Square Second" ;
   rdfs:label "Kilogram per Square Metre Square Second"@en ;
   rdfs:label "Kilogramm pro Quadratmeter Quadratsekunde"@de ;
-  rdfs:label "Kilogramme par Mètre Carré Second Carré"@fr ;
+  rdfs:label "Kilogramme par Mètre Carré Seconde Carré"@fr ;
   rdfs:label "Kilogramo por Metro Cuadrado Segundo Cuadrado"@es ;
   rdfs:label "Quilograma por Metro Quadrado Segundo Quadrado"@pt ;
   rdfs:label "Χιλιόγραμμο ανά Τετραγωνικό Μέτρο Τετραγωνικό Δευτερόλεπτο"@el ;
@@ -33677,7 +33677,7 @@ unit:KiloGM-PER-M3-SEC
   rdfs:label "Kilogram per Meter Kubik Saat"@ms ;
   rdfs:label "Kilogram per Metreküp Saniye"@tr ;
   rdfs:label "Kilogramm pro Kubikmeter Sekunde"@de ;
-  rdfs:label "Kilogramme par Mètre Cube Second"@fr ;
+  rdfs:label "Kilogramme par Mètre Cube Seconde"@fr ;
   rdfs:label "Kilogramo por Metro Cúbico Segundo"@es ;
   rdfs:label "Quilograma por Metro Cúbico Segundo"@pt ;
   rdfs:label "Χιλιόγραμμο ανά Κυβικό Μέτρο Δευτερόλεπτο"@el ;
@@ -33774,9 +33774,9 @@ unit:KiloGM-PER-MOL
   a qudt:Unit ;
   dcterms:description """
   The unit $\\textit{}$, symbol $kg/mol$, is the base SI unit for molar mass.
-  In chemistry, the molar mass $M$ is defined as the mass of a given substance (chemical element or chemical compound) divided by its amount of substance.
-  It is a physical property of a given substance.
-  However, for historical reasons, molar masses are almost always expressed in $g/mol$.
+  In chemistry, the molar mass $M$ is defined as the mass of a given substance (chemical element or chemical compound) divided by its amount of substance. 
+  It is a physical property of a given substance.  
+  However, for historical reasons, molar masses are almost always expressed in $g/mol$. 
   As an example, the molar mass of water is approximately: $18.01528(33) \\; g/mol$.
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:SI ;
@@ -33970,7 +33970,7 @@ unit:KiloGM-PER-PA-SEC-M
   rdfs:label "Kilogram per Pascal Second Metre" ;
   rdfs:label "Kilogram per Pascal Second Metre"@en ;
   rdfs:label "Kilogramm pro Pascal Sekunde Meter"@de ;
-  rdfs:label "Kilogramme par Pascal Second Mètre"@fr ;
+  rdfs:label "Kilogramme par Pascal Seconde Mètre"@fr ;
   rdfs:label "Kilogramo por Pascal Segundo Metro"@es ;
   rdfs:label "Quilograma por Pascal Segundo Metro"@pt ;
   rdfs:label "Χιλιόγραμμο ανά Πασκάλ Δευτερόλεπτο Μέτρο"@el ;
@@ -34020,7 +34020,7 @@ unit:KiloGM-PER-SEC
   rdfs:label "Kilogram per Second" ;
   rdfs:label "Kilogram per Second"@en ;
   rdfs:label "Kilogramm pro Sekunde"@de ;
-  rdfs:label "Kilogramme par Second"@fr ;
+  rdfs:label "Kilogramme par Seconde"@fr ;
   rdfs:label "Kilogramo por Segundo"@es ;
   rdfs:label "Quilograma por Segundo"@pt ;
   rdfs:label "Χιλιόγραμμο ανά Δευτερόλεπτο"@el ;
@@ -34091,7 +34091,7 @@ unit:KiloGM-PER-SEC-K
   rdfs:label "Kilogram per Second Kelvin" ;
   rdfs:label "Kilogram per Second Kelvin"@en ;
   rdfs:label "Kilogramm pro Sekunde Kelvin"@de ;
-  rdfs:label "Kilogramme par Second Kelvin"@fr ;
+  rdfs:label "Kilogramme par Seconde Kelvin"@fr ;
   rdfs:label "Kilogramo por Segundo Kelvin"@es ;
   rdfs:label "Quilograma por Segundo Kelvin"@pt ;
   rdfs:label "Χιλιόγραμμο ανά Δευτερόλεπτο Κέλβιν"@el ;
@@ -34142,7 +34142,7 @@ unit:KiloGM-PER-SEC-M2
   rdfs:label "Kilogram per Second Square Metre" ;
   rdfs:label "Kilogram per Second Square Metre"@en ;
   rdfs:label "Kilogramm pro Sekunde Quadratmeter"@de ;
-  rdfs:label "Kilogramme par Second Mètre Carré"@fr ;
+  rdfs:label "Kilogramme par Seconde Mètre Carré"@fr ;
   rdfs:label "Kilogramo por Segundo Metro Cuadrado"@es ;
   rdfs:label "Quilograma por Segundo Metro Quadrado"@pt ;
   rdfs:label "Χιλιόγραμμο ανά Δευτερόλεπτο Τετραγωνικό Μέτρο"@el ;
@@ -34185,7 +34185,7 @@ unit:KiloGM-PER-SEC-PA
   rdfs:label "Kilogram per Second Pascal" ;
   rdfs:label "Kilogram per Second Pascal"@en ;
   rdfs:label "Kilogramm pro Sekunde Pascal"@de ;
-  rdfs:label "Kilogramme par Second Pascal"@fr ;
+  rdfs:label "Kilogramme par Seconde Pascal"@fr ;
   rdfs:label "Kilogramo por Segundo Pascal"@es ;
   rdfs:label "Quilograma por Segundo Pascal"@pt ;
   rdfs:label "Χιλιόγραμμο ανά Δευτερόλεπτο Πασκάλ"@el ;
@@ -34230,7 +34230,7 @@ unit:KiloGM-PER-SEC2
   rdfs:label "Kilogram per Square Second" ;
   rdfs:label "Kilogram per Square Second"@en ;
   rdfs:label "Kilogramm pro Quadratsekunde"@de ;
-  rdfs:label "Kilogramme par Second Carré"@fr ;
+  rdfs:label "Kilogramme par Seconde Carré"@fr ;
   rdfs:label "Kilogramo por Segundo Cuadrado"@es ;
   rdfs:label "Quilograma por Segundo Quadrado"@pt ;
   rdfs:label "Χιλιόγραμμο ανά Τετραγωνικό Δευτερόλεπτο"@el ;
@@ -34271,7 +34271,7 @@ unit:KiloGM-PER-SEC3-K
   rdfs:label "Kilogram per Saat Kubik Kelvin"@ms ;
   rdfs:label "Kilogram per Saniyeküp Kelvin"@tr ;
   rdfs:label "Kilogramm pro Kubiksekunde Kelvin"@de ;
-  rdfs:label "Kilogramme par Second Cube Kelvin"@fr ;
+  rdfs:label "Kilogramme par Seconde Cube Kelvin"@fr ;
   rdfs:label "Kilogramo por Segundo Cúbico Kelvin"@es ;
   rdfs:label "Quilograma por Segundo Cúbico Kelvin"@pt ;
   rdfs:label "Χιλιόγραμμο ανά Κυβικό Δευτερόλεπτο Κέλβιν"@el ;
@@ -34341,7 +34341,7 @@ unit:KiloGM-SEC2
   rdfs:label "Kilogram Square Second"@en ;
   rdfs:label "Kilogram Čtvereční Sekunda"@cs ;
   rdfs:label "Kilogramm Quadratsekunde"@de ;
-  rdfs:label "Kilogramme Second Carré"@fr ;
+  rdfs:label "Kilogramme Seconde Carré"@fr ;
   rdfs:label "Kilogramo Segundo Cuadrado"@es ;
   rdfs:label "Quilograma Segundo Quadrado"@pt ;
   rdfs:label "Χιλιόγραμμο Τετραγωνικό Δευτερόλεπτο"@el ;
@@ -34375,7 +34375,7 @@ unit:KiloGM2-PER-SEC2
   rdfs:label "Kilogram Persegi per Saat Persegi"@ms ;
   rdfs:label "Kilogram Pătrat pe Secundă Pătrat"@ro ;
   rdfs:label "Kilogramkare per Saniyekare"@tr ;
-  rdfs:label "Kilogramme Carré par Second Carré"@fr ;
+  rdfs:label "Kilogramme Carré par Seconde Carré"@fr ;
   rdfs:label "Kilogramo Cuadrado por Segundo Cuadrado"@es ;
   rdfs:label "Kvadratni Kilogram na Kvadratni Sekunda"@sl ;
   rdfs:label "Quadratkilogramm pro Quadratsekunde"@de ;
@@ -35056,7 +35056,7 @@ unit:KiloJ-PER-SEC
   rdfs:label "Kilodżul na Sekunda"@pl ;
   rdfs:label "Kilojoule na Sekunda"@cs ;
   rdfs:label "Kilojoule na Sekunda"@sl ;
-  rdfs:label "Kilojoule par Second"@fr ;
+  rdfs:label "Kilojoule par Seconde"@fr ;
   rdfs:label "Kilojoule pe Secundă"@ro ;
   rdfs:label "Kilojoule per Saat"@ms ;
   rdfs:label "Kilojoule per Saniye"@tr ;
@@ -35469,7 +35469,7 @@ unit:KiloM-PER-SEC
   rdfs:label "Kilometre per Second"@en ;
   rdfs:label "Kilometro por Segundo"@es ;
   rdfs:label "Kilometru pe Secundă"@ro ;
-  rdfs:label "Kilomètre par Second"@fr ;
+  rdfs:label "Kilomètre par Seconde"@fr ;
 .
 unit:KiloM-PER-SEC-BAR
   a qudt:Unit ;
@@ -35533,7 +35533,7 @@ unit:KiloM-PER-SEC2
   rdfs:label "Kilometre per Square Second"@en ;
   rdfs:label "Kilometro por Segundo Cuadrado"@es ;
   rdfs:label "Kilometru pe Secundă Pătrat"@ro ;
-  rdfs:label "Kilomètre par Second Carré"@fr ;
+  rdfs:label "Kilomètre par Seconde Carré"@fr ;
 .
 unit:KiloM2
   a qudt:Unit ;
@@ -35596,7 +35596,7 @@ unit:KiloM2-PER-SEC2
   rdfs:label "Kilometrekare per Saniyekare"@tr ;
   rdfs:label "Kilometro Cuadrado por Segundo Cuadrado"@es ;
   rdfs:label "Kilometru Pătrat pe Secundă Pătrat"@ro ;
-  rdfs:label "Kilomètre Carré par Second Carré"@fr ;
+  rdfs:label "Kilomètre Carré par Seconde Carré"@fr ;
   rdfs:label "Kvadratni Kilometer na Kvadratni Sekunda"@sl ;
   rdfs:label "Quadratkilometer pro Quadratsekunde"@de ;
   rdfs:label "Square Kilometer per Square Second"@en-US ;
@@ -35637,7 +35637,7 @@ unit:KiloM3-PER-SEC2
   rdfs:label "Kilometreküp per Saniyekare"@tr ;
   rdfs:label "Kilometro Cúbico por Segundo Cuadrado"@es ;
   rdfs:label "Kilometru Cub pe Secundă Pătrat"@ro ;
-  rdfs:label "Kilomètre Cube par Second Carré"@fr ;
+  rdfs:label "Kilomètre Cube par Seconde Carré"@fr ;
   rdfs:label "Kubikkilometer pro Quadratsekunde"@de ;
   rdfs:label "Kubični Kilometer na Kvadratni Sekunda"@sl ;
 .
@@ -35922,7 +35922,7 @@ unit:KiloMOL-PER-SEC
   rdfs:label "Kilomol per Saniye"@tr ;
   rdfs:label "Kilomol por Segundo"@es ;
   rdfs:label "Kilomol pro Sekunde"@de ;
-  rdfs:label "Kilomole par Second"@fr ;
+  rdfs:label "Kilomole par Seconde"@fr ;
   rdfs:label "Kilomole per Saat"@ms ;
   rdfs:label "Kilomole per Second" ;
   rdfs:label "Kilomole per Second"@en ;
@@ -37465,7 +37465,7 @@ unit:KiloW
   a qudt:DerivedUnit ;
   a qudt:Unit ;
   dcterms:description """
-  The unit $\\textit{Kilowatt}$ is a derived unit of power in the International System of Units (SI).
+  The unit $\\textit{Kilowatt}$ is a derived unit of power in the International System of Units (SI). 
   The unit, defined as 1,000 joule per second, measures the rate of energy conversion or transfer.
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:CGS ;
@@ -42373,7 +42373,7 @@ unit:LM-SEC
   rdfs:label "Lumen Saat"@ms ;
   rdfs:label "Lumen Second" ;
   rdfs:label "Lumen Second"@en ;
-  rdfs:label "Lumen Second"@fr ;
+  rdfs:label "Lumen Seconde"@fr ;
   rdfs:label "Lumen Secondo"@it ;
   rdfs:label "Lumen Secundum"@la ;
   rdfs:label "Lumen Secundă"@ro ;
@@ -42503,7 +42503,7 @@ unit:LUX-SEC
   rdfs:label "Lux Saat"@ms ;
   rdfs:label "Lux Second" ;
   rdfs:label "Lux Second"@en ;
-  rdfs:label "Lux Second"@fr ;
+  rdfs:label "Lux Seconde"@fr ;
   rdfs:label "Lux Secondo"@it ;
   rdfs:label "Lux Secundă"@ro ;
   rdfs:label "Lux Segundo"@es ;
@@ -42781,7 +42781,7 @@ unit:M-PA-PER-SEC
   rdfs:label "Metro Pascal por Segundo"@pt ;
   rdfs:label "Metru Pascal pe Secundă"@ro ;
   rdfs:label "Metrum Pascalium per Secundum"@la ;
-  rdfs:label "Mètre Pascal par Second"@fr ;
+  rdfs:label "Mètre Pascal par Seconde"@fr ;
   rdfs:label "Μέτρο Πασκάλ ανά Δευτερόλεπτο"@el ;
   rdfs:label "Метр Паскаль на Секунда"@ru ;
   rdfs:label "Метър Паскал на Секунда"@bg ;
@@ -43244,7 +43244,7 @@ The official SI symbolic abbreviation is mu00b7s-1, or equivalently either m/s."
   rdfs:label "Metro por Segundo"@pt ;
   rdfs:label "Metru pe Secundă"@ro ;
   rdfs:label "Metrum per Secundum"@la ;
-  rdfs:label "Mètre par Second"@fr ;
+  rdfs:label "Mètre par Seconde"@fr ;
   rdfs:label "Μέτρο ανά Δευτερόλεπτο"@el ;
   rdfs:label "Метр на Секунда"@ru ;
   rdfs:label "Метър на Секунда"@bg ;
@@ -43323,7 +43323,7 @@ unit:M-PER-SEC-K
   rdfs:label "Metro por Segundo Kelvin"@pt ;
   rdfs:label "Metru pe Secundă Kelvin"@ro ;
   rdfs:label "Metrum per Secundum Kelvin"@la ;
-  rdfs:label "Mètre par Second Kelvin"@fr ;
+  rdfs:label "Mètre par Seconde Kelvin"@fr ;
   rdfs:label "Μέτρο ανά Δευτερόλεπτο Κέλβιν"@el ;
   rdfs:label "Метр на Секунда Кельвин"@ru ;
   rdfs:label "Метър на Секунда Келвин"@bg ;
@@ -43368,7 +43368,7 @@ unit:M-PER-SEC-PA
   rdfs:label "Metro por Segundo Pascal"@pt ;
   rdfs:label "Metru pe Secundă Pascal"@ro ;
   rdfs:label "Metrum per Secundum Pascalium"@la ;
-  rdfs:label "Mètre par Second Pascal"@fr ;
+  rdfs:label "Mètre par Seconde Pascal"@fr ;
   rdfs:label "Μέτρο ανά Δευτερόλεπτο Πασκάλ"@el ;
   rdfs:label "Метр на Секунда Паскаль"@ru ;
   rdfs:label "Метър на Секунда Паскал"@bg ;
@@ -43418,7 +43418,7 @@ unit:M-PER-SEC2
   rdfs:label "Metro por Segundo Quadrado"@pt ;
   rdfs:label "Metru pe Secundă Pătrat"@ro ;
   rdfs:label "Metrum per Secundum Quadratum"@la ;
-  rdfs:label "Mètre par Second Carré"@fr ;
+  rdfs:label "Mètre par Seconde Carré"@fr ;
   rdfs:label "Μέτρο ανά Τετραγωνικό Δευτερόλεπτο"@el ;
   rdfs:label "Метр на Квадратный Секунда"@ru ;
   rdfs:label "Метър на Квадратен Секунда"@bg ;
@@ -43463,7 +43463,7 @@ unit:M-PER-V-SEC
   rdfs:label "Metro por Voltio Segundo"@es ;
   rdfs:label "Metru pe Volt Secundă"@ro ;
   rdfs:label "Metrum per Voltium Secundum"@la ;
-  rdfs:label "Mètre par Volt Second"@fr ;
+  rdfs:label "Mètre par Volt Seconde"@fr ;
   rdfs:label "Μέτρο ανά Βολτ Δευτερόλεπτο"@el ;
   rdfs:label "Метр на Вольт Секунда"@ru ;
   rdfs:label "Метър на Волт Секунда"@bg ;
@@ -43530,7 +43530,7 @@ unit:M-SEC
   rdfs:label "Metro Segundo"@pt ;
   rdfs:label "Metru Secundă"@ro ;
   rdfs:label "Metrum Secundum"@la ;
-  rdfs:label "Mètre Second"@fr ;
+  rdfs:label "Mètre Seconde"@fr ;
   rdfs:label "Μέτρο Δευτερόλεπτο"@el ;
   rdfs:label "Метр Секунда"@ru ;
   rdfs:label "Метър Секунда"@bg ;
@@ -43569,7 +43569,7 @@ unit:M-SEC2
   rdfs:label "Metro Segundo Quadrado"@pt ;
   rdfs:label "Metru Secundă Pătrat"@ro ;
   rdfs:label "Metrum Secundum Quadratum"@la ;
-  rdfs:label "Mètre Second Carré"@fr ;
+  rdfs:label "Mètre Seconde Carré"@fr ;
   rdfs:label "Μέτρο Τετραγωνικό Δευτερόλεπτο"@el ;
   rdfs:label "Метр Квадратный Секунда"@ru ;
   rdfs:label "Метър Квадратен Секунда"@bg ;
@@ -44255,11 +44255,11 @@ unit:M2-PER-KiloGM
   a qudt:DerivedUnit ;
   a qudt:Unit ;
   dcterms:description """
-  Square Meter Per Kilogram (m2/kg) is a unit in the category of Specific Area.
+  Square Meter Per Kilogram (m2/kg) is a unit in the category of Specific Area. 
   It is also known as square meters per kilogram, square metre per kilogram, square metres per kilogram,
-   square meter/kilogram, square metre/kilogram.
+   square meter/kilogram, square metre/kilogram. 
    This unit is commonly used in the SI unit system.
-  Square Meter Per Kilogram (m2/kg) has a dimension of M-1L2 where $M$ is mass, and $L$ is length.
+  Square Meter Per Kilogram (m2/kg) has a dimension of M-1L2 where $M$ is mass, and $L$ is length. 
   This unit is the standard SI unit in this category.
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:CGS ;
@@ -44530,8 +44530,8 @@ unit:M2-PER-SEC
   a qudt:Unit ;
   dcterms:description """
   The unit $\\textit{Square Metres per Second}$ is the SI derived unit of angular momentum, defined by distance
-   or displacement in metres multiplied by distance again in metres and divided by time in seconds.
-  The unit is written in symbols as $m^2/s$ or $m^22s^{-1}$.
+   or displacement in metres multiplied by distance again in metres and divided by time in seconds. 
+  The unit is written in symbols as $m^2/s$ or $m^22s^{-1}$. 
   It may be better understood when phrased as $\\textit{metres per second times metres}$, i.e. the momentum
    of an object with respect to a position.
   """^^qudt:LatexString ;
@@ -44573,7 +44573,7 @@ unit:M2-PER-SEC
   rdfs:label "Metro Quadrato per Secondo"@it ;
   rdfs:label "Metru Pătrat pe Secundă"@ro ;
   rdfs:label "Metrum Quadratum per Secundum"@la ;
-  rdfs:label "Mètre Carré par Second"@fr ;
+  rdfs:label "Mètre Carré par Seconde"@fr ;
   rdfs:label "Quadratmeter pro Sekunde"@de ;
   rdfs:label "Square Meter per Second"@en-US ;
   rdfs:label "Square Metre per Second" ;
@@ -44593,7 +44593,7 @@ unit:M2-PER-SEC-BAR
   dcterms:description """
   The unit $\\textit{Square Metre per Second Bar}$ typically refers to a measure of fluid permeability in the
    context of materials science or engineering.
-  It is the volume of fluid (in square metres) that can pass through a material in one second under a pressure difference of one bar.
+  It is the volume of fluid (in square metres) that can pass through a material in one second under a pressure difference of one bar. 
   This unit is particularly important in fields such as petrophysics, hydrogeology, and materials engineering,
    where understanding the flow of fluids through porous media is crucial.
   A $Bar$ is not an SI unit but is a unit of pressure that is widely used in various scientific and engineering contexts.
@@ -44629,7 +44629,7 @@ unit:M2-PER-SEC-K
   a qudt:Unit ;
   dcterms:description """
   The unit $\\textit{Square Metre per Second Kelvin}$ is a heat transfer coefficient that is area-dependent
-   and varies with time and temperature difference.
+   and varies with time and temperature difference. 
   Heat transfer is typically defined in terms of watts per square meter per kelvin ($W/m^{2}K$),
    representing the rate of heat transfer across a surface per unit area per unit temperature difference.
   """^^qudt:LatexString ;
@@ -44664,7 +44664,7 @@ unit:M2-PER-SEC-K
   rdfs:label "Metro Quadrato per Secondo Kelvin"@it ;
   rdfs:label "Metru Pătrat pe Secundă Kelvin"@ro ;
   rdfs:label "Metrum Quadratum per Secundum Kelvin"@la ;
-  rdfs:label "Mètre Carré par Second Kelvin"@fr ;
+  rdfs:label "Mètre Carré par Seconde Kelvin"@fr ;
   rdfs:label "Quadratmeter pro Sekunde Kelvin"@de ;
   rdfs:label "Square Meter per Second Kelvin"@en-US ;
   rdfs:label "Square Metre per Second Kelvin" ;
@@ -44678,7 +44678,7 @@ unit:M2-PER-SEC-PA
   a qudt:Unit ;
   dcterms:description """
   The unit $\\textit{Square Metre per Second Pascal}$, symbol $m^{2}/s\\cdot Pa$, is a measure of permeability, which describes the ability
-   of a material to allow fluids to pass through it under a pressure gradient.
+   of a material to allow fluids to pass through it under a pressure gradient. 
   It's particularly relevant in fields like hydrogeology, petroleum engineering, and civil engineering,
    where understanding fluid flow through porous materials is essential.
   """^^qudt:LatexString ;
@@ -44713,7 +44713,7 @@ unit:M2-PER-SEC-PA
   rdfs:label "Metro Quadrato per Secondo Pascal"@it ;
   rdfs:label "Metru Pătrat pe Secundă Pascal"@ro ;
   rdfs:label "Metrum Quadratum per Secundum Pascalium"@la ;
-  rdfs:label "Mètre Carré par Second Pascal"@fr ;
+  rdfs:label "Mètre Carré par Seconde Pascal"@fr ;
   rdfs:label "Quadratmeter pro Sekunde Pascal"@de ;
   rdfs:label "Square Meter per Second Pascal"@en-US ;
   rdfs:label "Square Metre per Second Pascal" ;
@@ -44755,7 +44755,7 @@ unit:M2-PER-SEC2
   rdfs:label "Metro Quadrato per Secondo Quadrato"@it ;
   rdfs:label "Metru Pătrat pe Secundă Pătrat"@ro ;
   rdfs:label "Metrum Quadratum per Secundum Quadratum"@la ;
-  rdfs:label "Mètre Carré par Second Carré"@fr ;
+  rdfs:label "Mètre Carré par Seconde Carré"@fr ;
   rdfs:label "Quadratmeter pro Quadratsekunde"@de ;
   rdfs:label "Square Meter per Square Second"@en-US ;
   rdfs:label "Square Metre per Square Second" ;
@@ -44797,7 +44797,7 @@ unit:M2-PER-SEC2-K
   rdfs:label "Metro Quadrato per Secondo Quadrato Kelvin"@it ;
   rdfs:label "Metru Pătrat pe Secundă Pătrat Kelvin"@ro ;
   rdfs:label "Metrum Quadratum per Secundum Quadratum Kelvin"@la ;
-  rdfs:label "Mètre Carré par Second Carré Kelvin"@fr ;
+  rdfs:label "Mètre Carré par Seconde Carré Kelvin"@fr ;
   rdfs:label "Quadratmeter pro Quadratsekunde Kelvin"@de ;
   rdfs:label "Square Meter per Square Second Kelvin"@en-US ;
   rdfs:label "Square Metre per Square Second Kelvin" ;
@@ -44948,7 +44948,7 @@ unit:M2-PER-V-SEC
   rdfs:label "Metro Quadrato per Volt Secondo"@it ;
   rdfs:label "Metru Pătrat pe Volt Secundă"@ro ;
   rdfs:label "Metrum Quadratum per Voltium Secundum"@la ;
-  rdfs:label "Mètre Carré par Volt Second"@fr ;
+  rdfs:label "Mètre Carré par Volt Seconde"@fr ;
   rdfs:label "Quadratmeter pro Volt Sekunde"@de ;
   rdfs:label "Square Meter per Volt Second"@en-US ;
   rdfs:label "Square Metre per Volt Second" ;
@@ -45031,7 +45031,7 @@ unit:M2-SEC-PER-RAD
   rdfs:label "Metro Quadrato Secondo per Radiante"@it ;
   rdfs:label "Metru Pătrat Secundă pe Radian"@ro ;
   rdfs:label "Metrum Quadratum Secundum per Radian"@la ;
-  rdfs:label "Mètre Carré Second par Radian"@fr ;
+  rdfs:label "Mètre Carré Seconde par Radian"@fr ;
   rdfs:label "Quadratmeter Sekunde pro Radiant"@de ;
   rdfs:label "Square Meter Second per Radian"@en-US ;
   rdfs:label "Square Metre Second per Radian" ;
@@ -45581,7 +45581,7 @@ unit:M3-PER-KiloGM-SEC2
   rdfs:label "Metro Cúbico por Quilograma Segundo Quadrado"@pt ;
   rdfs:label "Metru Cub pe Kilogram Secundă Pătrat"@ro ;
   rdfs:label "Metrum Cubicum per Chiliogramma Secundum Quadratum"@la ;
-  rdfs:label "Mètre Cube par Kilogramme Second Carré"@fr ;
+  rdfs:label "Mètre Cube par Kilogramme Seconde Carré"@fr ;
   rdfs:label "Κυβικό Μέτρο ανά Χιλιόγραμμο Τετραγωνικό Δευτερόλεπτο"@el ;
   rdfs:label "Кубичен Метър на Килограм Квадратен Секунда"@bg ;
   rdfs:label "Кубический Метр на Килограмм Квадратный Секунда"@ru ;
@@ -45855,7 +45855,7 @@ unit:M3-PER-MOL-SEC
   rdfs:label "Metro Cúbico por Mol Segundo"@pt ;
   rdfs:label "Metru Cub pe Mol Secundă"@ro ;
   rdfs:label "Metrum Cubicum per Moles Secundum"@la ;
-  rdfs:label "Mètre Cube par Mole Second"@fr ;
+  rdfs:label "Mètre Cube par Mole Seconde"@fr ;
   rdfs:label "Κυβικό Μέτρο ανά Μολ Δευτερόλεπτο"@el ;
   rdfs:label "Кубичен Метър на Мол Секунда"@bg ;
   rdfs:label "Кубический Метр на Моль Секунда"@ru ;
@@ -45947,7 +45947,7 @@ unit:M3-PER-SEC
   rdfs:label "Metro Cúbico por Segundo"@pt ;
   rdfs:label "Metru Cub pe Secundă"@ro ;
   rdfs:label "Metrum Cubicum per Secundum"@la ;
-  rdfs:label "Mètre Cube par Second"@fr ;
+  rdfs:label "Mètre Cube par Seconde"@fr ;
   rdfs:label "Κυβικό Μέτρο ανά Δευτερόλεπτο"@el ;
   rdfs:label "Кубичен Метър на Секунда"@bg ;
   rdfs:label "Кубический Метр на Секунда"@ru ;
@@ -46020,7 +46020,7 @@ unit:M3-PER-SEC-K
   rdfs:label "Metro Cúbico por Segundo Kelvin"@pt ;
   rdfs:label "Metru Cub pe Secundă Kelvin"@ro ;
   rdfs:label "Metrum Cubicum per Secundum Kelvin"@la ;
-  rdfs:label "Mètre Cube par Second Kelvin"@fr ;
+  rdfs:label "Mètre Cube par Seconde Kelvin"@fr ;
   rdfs:label "Κυβικό Μέτρο ανά Δευτερόλεπτο Κέλβιν"@el ;
   rdfs:label "Кубичен Метър на Секунда Келвин"@bg ;
   rdfs:label "Кубический Метр на Секунда Кельвин"@ru ;
@@ -46064,7 +46064,7 @@ unit:M3-PER-SEC-M2
   rdfs:label "Metro Cúbico por Segundo Metro Quadrado"@pt ;
   rdfs:label "Metru Cub pe Secundă Metru Pătrat"@ro ;
   rdfs:label "Metrum Cubicum per Secundum Metrum Quadratum"@la ;
-  rdfs:label "Mètre Cube par Second Mètre Carré"@fr ;
+  rdfs:label "Mètre Cube par Seconde Mètre Carré"@fr ;
   rdfs:label "Κυβικό Μέτρο ανά Δευτερόλεπτο Τετραγωνικό Μέτρο"@el ;
   rdfs:label "Кубичен Метър на Секунда Квадратен Метър"@bg ;
   rdfs:label "Кубический Метр на Секунда Квадратный Метр"@ru ;
@@ -46109,7 +46109,7 @@ unit:M3-PER-SEC-PA
   rdfs:label "Metro Cúbico por Segundo Pascal"@pt ;
   rdfs:label "Metru Cub pe Secundă Pascal"@ro ;
   rdfs:label "Metrum Cubicum per Secundum Pascalium"@la ;
-  rdfs:label "Mètre Cube par Second Pascal"@fr ;
+  rdfs:label "Mètre Cube par Seconde Pascal"@fr ;
   rdfs:label "Κυβικό Μέτρο ανά Δευτερόλεπτο Πασκάλ"@el ;
   rdfs:label "Кубичен Метър на Секунда Паскал"@bg ;
   rdfs:label "Кубический Метр на Секунда Паскаль"@ru ;
@@ -46151,7 +46151,7 @@ unit:M3-PER-SEC2
   rdfs:label "Metro Cúbico por Segundo Quadrado"@pt ;
   rdfs:label "Metru Cub pe Secundă Pătrat"@ro ;
   rdfs:label "Metrum Cubicum per Secundum Quadratum"@la ;
-  rdfs:label "Mètre Cube par Second Carré"@fr ;
+  rdfs:label "Mètre Cube par Seconde Carré"@fr ;
   rdfs:label "Κυβικό Μέτρο ανά Τετραγωνικό Δευτερόλεπτο"@el ;
   rdfs:label "Кубичен Метър на Квадратен Секунда"@bg ;
   rdfs:label "Кубический Метр на Квадратный Секунда"@ru ;
@@ -47051,7 +47051,7 @@ unit:MO-PER-NUM
 unit:MOHM
   a qudt:Unit ;
   dcterms:description """
-  The $\\textit{Mohm}$ is a unit of mechanical mobility for sound waves, being the reciprocal of the mechanical $ohm$ unit of impedance, i.e., for an acoustic medium, the ratio of the flux or volumic speed (area times particle speed) of the resulting waves through it to the effective sound pressure (i.e. force) causing them, the unit being qualified, according to the units used, as m.k.s. or c.g.s.
+  The $\\textit{Mohm}$ is a unit of mechanical mobility for sound waves, being the reciprocal of the mechanical $ohm$ unit of impedance, i.e., for an acoustic medium, the ratio of the flux or volumic speed (area times particle speed) of the resulting waves through it to the effective sound pressure (i.e. force) causing them, the unit being qualified, according to the units used, as m.k.s. or c.g.s. 
   The mechanical ohm is defined as:
   $$Mohm \\equiv 1\\,dyn\\cdot\\,s\\cdot cm^{-1} \\text{ or } 10^{-3} N\\cdot s\\cdot m^{-1}$$.
   """^^qudt:LatexString ;
@@ -47073,12 +47073,12 @@ unit:MOHM
 unit:MOL
   a qudt:Unit ;
   dcterms:description """
-  The $\\textit{mole}$ is a unit of measurement used in chemistry to express amounts of a chemical substance.
+  The $\\textit{mole}$ is a unit of measurement used in chemistry to express amounts of a chemical substance. 
   The official definition, adopted as part of the SI system in 1971, is that one mole of a substance contains just as many elementary entities (atoms, molecules, ions, or other kinds of particles) as there are atoms in 12 grams of carbon-12 (carbon-12 is the most common atomic form of carbon, consisting of atoms having 6 protons and 6 neutrons).
-  This corresponds to a value of $6.02214179(30) \\times 10^{23}$ elementary entities of the substance.
-  It is one of the base units in the International System of Units, and has the unit symbol $mol$.
-  A Mole is the SI base unit of the amount of a substance (as distinct from its mass or weight).
-  Moles measure the actual number of atoms or molecules in an object.
+  This corresponds to a value of $6.02214179(30) \\times 10^{23}$ elementary entities of the substance. 
+  It is one of the base units in the International System of Units, and has the unit symbol $mol$. 
+  A Mole is the SI base unit of the amount of a substance (as distinct from its mass or weight). 
+  Moles measure the actual number of atoms or molecules in an object. 
   An earlier name is gram molecular weight, because one mole of a chemical compound is the same number of grams as the molecular weight of a molecule of that compound measured in atomic mass units.
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:SI ;
@@ -47650,7 +47650,7 @@ unit:MOL-PER-M2-SEC
   rdfs:label "Mol por Metro Cuadrado Segundo"@es ;
   rdfs:label "Mol por Metro Quadrado Segundo"@pt ;
   rdfs:label "Mol pro Quadratmeter Sekunde"@de ;
-  rdfs:label "Mole par Mètre Carré Second"@fr ;
+  rdfs:label "Mole par Mètre Carré Seconde"@fr ;
   rdfs:label "Mole per Meter Persegi Saat"@ms ;
   rdfs:label "Mole per Metro Quadrato Secondo"@it ;
   rdfs:label "Mole per Square Meter Second"@en-US ;
@@ -47695,7 +47695,7 @@ unit:MOL-PER-M2-SEC-M
   rdfs:label "Mol por Metro Cuadrado Segundo Metro"@es ;
   rdfs:label "Mol por Metro Quadrado Segundo Metro"@pt ;
   rdfs:label "Mol pro Quadratmeter Sekunde Meter"@de ;
-  rdfs:label "Mole par Mètre Carré Second Mètre"@fr ;
+  rdfs:label "Mole par Mètre Carré Seconde Mètre"@fr ;
   rdfs:label "Mole per Meter Persegi Saat Meter"@ms ;
   rdfs:label "Mole per Metro Quadrato Secondo Metro"@it ;
   rdfs:label "Mole per Square Meter Second Meter"@en-US ;
@@ -47744,7 +47744,7 @@ unit:MOL-PER-M2-SEC-M-SR
   rdfs:label "Mol por Metro Cuadrado Segundo Metro Estereorradián"@es ;
   rdfs:label "Mol por Metro Quadrado Segundo Metro Esterradiano"@pt ;
   rdfs:label "Mol pro Quadratmeter Sekunde Meter Steradiant"@de ;
-  rdfs:label "Mole par Mètre Carré Second Mètre Stéradian"@fr ;
+  rdfs:label "Mole par Mètre Carré Seconde Mètre Stéradian"@fr ;
   rdfs:label "Mole per Meter Persegi Saat Meter Steradian"@ms ;
   rdfs:label "Mole per Metro Quadrato Secondo Metro Steradiante"@it ;
   rdfs:label "Mole per Square Meter Second Meter Steradian"@en-US ;
@@ -47789,7 +47789,7 @@ unit:MOL-PER-M2-SEC-SR
   rdfs:label "Mol por Metro Cuadrado Segundo Estereorradián"@es ;
   rdfs:label "Mol por Metro Quadrado Segundo Esterradiano"@pt ;
   rdfs:label "Mol pro Quadratmeter Sekunde Steradiant"@de ;
-  rdfs:label "Mole par Mètre Carré Second Stéradian"@fr ;
+  rdfs:label "Mole par Mètre Carré Seconde Stéradian"@fr ;
   rdfs:label "Mole per Meter Persegi Saat Steradian"@ms ;
   rdfs:label "Mole per Metro Quadrato Secondo Steradiante"@it ;
   rdfs:label "Mole per Square Meter Second Steradian"@en-US ;
@@ -47996,7 +47996,7 @@ unit:MOL-PER-M3-SEC
   rdfs:label "Mol por Metro Cúbico Segundo"@es ;
   rdfs:label "Mol por Metro Cúbico Segundo"@pt ;
   rdfs:label "Mol pro Kubikmeter Sekunde"@de ;
-  rdfs:label "Mole par Mètre Cube Second"@fr ;
+  rdfs:label "Mole par Mètre Cube Seconde"@fr ;
   rdfs:label "Mole per Cubic Meter Second"@en-US ;
   rdfs:label "Mole per Cubic Metre Second" ;
   rdfs:label "Mole per Cubic Metre Second"@en ;
@@ -48104,7 +48104,7 @@ unit:MOL-PER-SEC
   rdfs:label "Mol por Segundo"@es ;
   rdfs:label "Mol por Segundo"@pt ;
   rdfs:label "Mol pro Sekunde"@de ;
-  rdfs:label "Mole par Second"@fr ;
+  rdfs:label "Mole par Seconde"@fr ;
   rdfs:label "Mole per Saat"@ms ;
   rdfs:label "Mole per Second" ;
   rdfs:label "Mole per Second"@en ;
@@ -48795,7 +48795,7 @@ unit:MegaBYTE
 .
 unit:MegaBYTE-PER-SEC
   a qudt:Unit ;
-  dcterms:description "1,000,000-fold of the unit byte divided by the SI base unit second" ;
+  dcterms:description "1,000,000-fold of the unit byte devided by the SI base unit second" ;
   qudt:conversionMultiplier 5545177.44447956247533785697166544 ;
   qudt:conversionMultiplierSN 5.54517744447956247533785697166544E6 ;
   qudt:hasDimensionVector qkdv:A0E0L0I0M0H0T-1D0 ;
@@ -49791,7 +49791,7 @@ unit:MegaJ-PER-SEC
   rdfs:label "Megadżul na Sekunda"@pl ;
   rdfs:label "Megajoule na Sekunda"@cs ;
   rdfs:label "Megajoule na Sekunda"@sl ;
-  rdfs:label "Megajoule par Second"@fr ;
+  rdfs:label "Megajoule par Seconde"@fr ;
   rdfs:label "Megajoule pe Secundă"@ro ;
   rdfs:label "Megajoule per Saat"@ms ;
   rdfs:label "Megajoule per Saniye"@tr ;
@@ -50429,7 +50429,7 @@ unit:MegaPA-M3-PER-SEC
   rdfs:label "Megapascal Metro Cubo per Secondo"@it ;
   rdfs:label "Megapascal Metro Cúbico por Segundo"@es ;
   rdfs:label "Megapascal Metru Cub pe Secundă"@ro ;
-  rdfs:label "Megapascal Mètre Cube par Second"@fr ;
+  rdfs:label "Megapascal Mètre Cube par Seconde"@fr ;
   rdfs:label "Megapaskal Metr Sześcienny na Sekunda"@pl ;
 .
 unit:MegaPA-PER-BAR
@@ -52395,7 +52395,7 @@ unit:MicroGRAY-PER-SEC
   rdfs:isDefinedBy <http://qudt.org/3.1.7/vocab/unit> ;
   rdfs:label "Microgray na Sekunda"@cs ;
   rdfs:label "Microgray na Sekunda"@sl ;
-  rdfs:label "Microgray par Second"@fr ;
+  rdfs:label "Microgray par Seconde"@fr ;
   rdfs:label "Microgray pe Secundă"@ro ;
   rdfs:label "Microgray per Saat"@ms ;
   rdfs:label "Microgray per Saniye"@tr ;
@@ -52642,7 +52642,7 @@ unit:MicroJ-PER-SEC
   rdfs:label "Microdżul na Sekunda"@pl ;
   rdfs:label "Microjoule na Sekunda"@cs ;
   rdfs:label "Microjoule na Sekunda"@sl ;
-  rdfs:label "Microjoule par Second"@fr ;
+  rdfs:label "Microjoule par Seconde"@fr ;
   rdfs:label "Microjoule pe Secundă"@ro ;
   rdfs:label "Microjoule per Saat"@ms ;
   rdfs:label "Microjoule per Saniye"@tr ;
@@ -53037,7 +53037,7 @@ unit:MicroM-PER-SEC
   rdfs:label "Micrometro per Secondo"@it ;
   rdfs:label "Micrometro por Segundo"@es ;
   rdfs:label "Micrometru pe Secundă"@ro ;
-  rdfs:label "Micromètre par Second"@fr ;
+  rdfs:label "Micromètre par Seconde"@fr ;
 .
 unit:MicroM-PER-SEC2
   a qudt:DerivedUnit ;
@@ -53074,7 +53074,7 @@ unit:MicroM-PER-SEC2
   rdfs:label "Micrometro per Secondo Quadrato"@it ;
   rdfs:label "Micrometro por Segundo Cuadrado"@es ;
   rdfs:label "Micrometru pe Secundă Pătrat"@ro ;
-  rdfs:label "Micromètre par Second Carré"@fr ;
+  rdfs:label "Micromètre par Seconde Carré"@fr ;
 .
 unit:MicroM2
   a qudt:Unit ;
@@ -53353,7 +53353,7 @@ unit:MicroMOL-PER-GM-SEC
   rdfs:label "Micromol per Gram Saniye"@tr ;
   rdfs:label "Micromol por Gramo Segundo"@es ;
   rdfs:label "Micromol pro Gramm Sekunde"@de ;
-  rdfs:label "Micromole par Gramme Second"@fr ;
+  rdfs:label "Micromole par Gramme Seconde"@fr ;
   rdfs:label "Micromole per Gram Saat"@ms ;
   rdfs:label "Micromole per Gram Second" ;
   rdfs:label "Micromole per Gram Second"@en ;
@@ -53556,7 +53556,7 @@ unit:MicroMOL-PER-M2-SEC
   rdfs:label "Micromol per Metrekare Saniye"@tr ;
   rdfs:label "Micromol por Metro Cuadrado Segundo"@es ;
   rdfs:label "Micromol pro Quadratmeter Sekunde"@de ;
-  rdfs:label "Micromole par Mètre Carré Second"@fr ;
+  rdfs:label "Micromole par Mètre Carré Seconde"@fr ;
   rdfs:label "Micromole per Meter Persegi Saat"@ms ;
   rdfs:label "Micromole per Metro Quadrato Secondo"@it ;
   rdfs:label "Micromole per Square Meter Second"@en-US ;
@@ -53595,7 +53595,7 @@ unit:MicroMOL-PER-M2-SEC2
   rdfs:label "Micromol per Metrekare Saniyekare"@tr ;
   rdfs:label "Micromol por Metro Cuadrado Segundo Cuadrado"@es ;
   rdfs:label "Micromol pro Quadratmeter Quadratsekunde"@de ;
-  rdfs:label "Micromole par Mètre Carré Second Carré"@fr ;
+  rdfs:label "Micromole par Mètre Carré Seconde Carré"@fr ;
   rdfs:label "Micromole per Meter Persegi Saat Persegi"@ms ;
   rdfs:label "Micromole per Metro Quadrato Secondo Quadrato"@it ;
   rdfs:label "Micromole per Square Meter Square Second"@en-US ;
@@ -53686,7 +53686,7 @@ unit:MicroMOL-PER-SEC
   rdfs:label "Micromol per Saniye"@tr ;
   rdfs:label "Micromol por Segundo"@es ;
   rdfs:label "Micromol pro Sekunde"@de ;
-  rdfs:label "Micromole par Second"@fr ;
+  rdfs:label "Micromole par Seconde"@fr ;
   rdfs:label "Micromole per Saat"@ms ;
   rdfs:label "Micromole per Second" ;
   rdfs:label "Micromole per Second"@en ;
@@ -54301,7 +54301,7 @@ unit:MicroSV-PER-MIN
 .
 unit:MicroSV-PER-SEC
   a qudt:Unit ;
-  dcterms:description "0.000001-fold of the SI derived unit sievert divided by the SI base unit second" ;
+  dcterms:description "0.000001-fold of the SI derived unit sievert devided by the SI base unit second" ;
   qudt:conversionMultiplier 0.000001 ;
   qudt:conversionMultiplierSN 1.0E-6 ;
   qudt:hasDimensionVector qkdv:A0E0L2I0M0H0T-3D0 ;
@@ -54324,7 +54324,7 @@ unit:MicroSV-PER-SEC
   rdfs:isDefinedBy <http://qudt.org/3.1.7/vocab/unit> ;
   rdfs:label "Microsievert na Sekunda"@cs ;
   rdfs:label "Microsievert na Sekunda"@sl ;
-  rdfs:label "Microsievert par Second"@fr ;
+  rdfs:label "Microsievert par Seconde"@fr ;
   rdfs:label "Microsievert pe Secundă"@ro ;
   rdfs:label "Microsievert per Saat"@ms ;
   rdfs:label "Microsievert per Saniye"@tr ;
@@ -54875,8 +54875,8 @@ unit:MilliA-HR
 unit:MilliA-HR-PER-GM
   a qudt:DerivedUnit ;
   a qudt:Unit ;
-  dcterms:description """$\\textit{Milliampere hour per gram}$ is a practical unit of electric charge relative to the mass of the (active) parts.
-  1mAh/g describes the capability of a material to store charge equivalent to 1h charge with 1mA per gram.
+  dcterms:description """$\\textit{Milliampere hour per gram}$ is a practical unit of electric charge relative to the mass of the (active) parts. 
+  1mAh/g describes the capability of a material to store charge equivalent to 1h charge with 1mA per gram. 
   The unit is often used in electrochemistry to describe the properties of active components like electrodes.
   """^^qudt:LatexString ;
   qudt:conversionMultiplier 3600.0 ;
@@ -55138,7 +55138,7 @@ unit:MilliA-SEC
   rdfs:label "Milliampere Secondo"@it ;
   rdfs:label "Milliampere Sekunde"@de ;
   rdfs:label "Milliamperio Segundo"@es ;
-  rdfs:label "Milliampère Second"@fr ;
+  rdfs:label "Milliampère Seconde"@fr ;
   rdfs:label "Milliampér Sekunda"@cs ;
 .
 unit:MilliARCSEC
@@ -55715,10 +55715,10 @@ unit:MilliDARCY
   a qudt:DerivedUnit ;
   a qudt:Unit ;
   dcterms:description """
-  The $\\textit{Millidarcy}$ ($md$) is a unit of permeability named after Henry Darcy.
-  It is not an SI unit, but it is widely used in petroleum engineering and geology.
-  The unit has also been used in biophysics and biomechanics, where the flow of fluids such as
-  blood through capillary beds and cerebrospinal fluid through the brain interstitial space is being examined.
+  The $\\textit{Millidarcy}$ ($md$) is a unit of permeability named after Henry Darcy. 
+  It is not an SI unit, but it is widely used in petroleum engineering and geology. 
+  The unit has also been used in biophysics and biomechanics, where the flow of fluids such as 
+  blood through capillary beds and cerebrospinal fluid through the brain interstitial space is being examined. 
   A millidarcy has dimensional units of $length^2$.
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:CGS ;
@@ -57161,7 +57161,7 @@ unit:MilliGM-PER-M2-SEC
   rdfs:label "Milligram per Square Metre Second" ;
   rdfs:label "Milligram per Square Metre Second"@en ;
   rdfs:label "Milligramm pro Quadratmeter Sekunde"@de ;
-  rdfs:label "Milligramme par Mètre Carré Second"@fr ;
+  rdfs:label "Milligramme par Mètre Carré Seconde"@fr ;
   rdfs:label "Milligrammo per Metro Quadrato Secondo"@it ;
   rdfs:label "Milligramo por Metro Cuadrado Segundo"@es ;
 .
@@ -57401,7 +57401,7 @@ unit:MilliGM-PER-M3-MilliPA-SEC
   rdfs:label "Milligram per Meter Kubik Millipascal Saat"@ms ;
   rdfs:label "Milligram per Metreküp Millipascal Saniye"@tr ;
   rdfs:label "Milligramm pro Kubikmeter Millipascal Sekunde"@de ;
-  rdfs:label "Milligramme par Mètre Cube Millipascal Second"@fr ;
+  rdfs:label "Milligramme par Mètre Cube Millipascal Seconde"@fr ;
   rdfs:label "Milligrammo per Metro Cubo Millipascal Secondo"@it ;
   rdfs:label "Milligramo por Metro Cúbico Millipascal Segundo"@es ;
 .
@@ -57443,7 +57443,7 @@ unit:MilliGM-PER-M3-PA-SEC
   rdfs:label "Milligram per Meter Kubik Pascal Saat"@ms ;
   rdfs:label "Milligram per Metreküp Pascal Saniye"@tr ;
   rdfs:label "Milligramm pro Kubikmeter Pascal Sekunde"@de ;
-  rdfs:label "Milligramme par Mètre Cube Pascal Second"@fr ;
+  rdfs:label "Milligramme par Mètre Cube Pascal Seconde"@fr ;
   rdfs:label "Milligrammo per Metro Cubo Pascal Secondo"@it ;
   rdfs:label "Milligramo por Metro Cúbico Pascal Segundo"@es ;
 .
@@ -57510,7 +57510,7 @@ unit:MilliGM-PER-M3-SEC
   rdfs:label "Milligram per Meter Kubik Saat"@ms ;
   rdfs:label "Milligram per Metreküp Saniye"@tr ;
   rdfs:label "Milligramm pro Kubikmeter Sekunde"@de ;
-  rdfs:label "Milligramme par Mètre Cube Second"@fr ;
+  rdfs:label "Milligramme par Mètre Cube Seconde"@fr ;
   rdfs:label "Milligrammo per Metro Cubo Secondo"@it ;
   rdfs:label "Milligramo por Metro Cúbico Segundo"@es ;
 .
@@ -57665,7 +57665,7 @@ unit:MilliGM-PER-SEC
   rdfs:label "Milligram per Second" ;
   rdfs:label "Milligram per Second"@en ;
   rdfs:label "Milligramm pro Sekunde"@de ;
-  rdfs:label "Milligramme par Second"@fr ;
+  rdfs:label "Milligramme par Seconde"@fr ;
   rdfs:label "Milligrammo per Secondo"@it ;
   rdfs:label "Milligramo por Segundo"@es ;
 .
@@ -57731,7 +57731,7 @@ unit:MilliGM-PER-SEC-K
   rdfs:label "Milligram per Second Kelvin" ;
   rdfs:label "Milligram per Second Kelvin"@en ;
   rdfs:label "Milligramm pro Sekunde Kelvin"@de ;
-  rdfs:label "Milligramme par Second Kelvin"@fr ;
+  rdfs:label "Milligramme par Seconde Kelvin"@fr ;
   rdfs:label "Milligrammo per Secondo Kelvin"@it ;
   rdfs:label "Milligramo por Segundo Kelvin"@es ;
 .
@@ -57865,7 +57865,7 @@ unit:MilliGM-SEC-PER-M3-CentiM3
   rdfs:label "Milligram Sekunda na Metr Krychlový Centimetr Krychlový"@cs ;
   rdfs:label "Milligram Sekunda na Metr Sześcienny Centimetr Sześcienny"@pl ;
   rdfs:label "Milligramm Sekunde pro Kubikmeter Kubikcentimeter"@de ;
-  rdfs:label "Milligramme Second par Mètre Cube Centimètre Cube"@fr ;
+  rdfs:label "Milligramme Seconde par Mètre Cube Centimètre Cube"@fr ;
   rdfs:label "Milligrammo Secondo per Metro Cubo Centimetro Cubo"@it ;
   rdfs:label "Milligramo Segundo por Metro Cúbico Centimetro Cúbico"@es ;
 .
@@ -58044,7 +58044,7 @@ unit:MilliGRAY-PER-SEC
   rdfs:isDefinedBy <http://qudt.org/3.1.7/vocab/unit> ;
   rdfs:label "Milligray na Sekunda"@cs ;
   rdfs:label "Milligray na Sekunda"@sl ;
-  rdfs:label "Milligray par Second"@fr ;
+  rdfs:label "Milligray par Seconde"@fr ;
   rdfs:label "Milligray pe Secundă"@ro ;
   rdfs:label "Milligray per Saat"@ms ;
   rdfs:label "Milligray per Saniye"@tr ;
@@ -58354,7 +58354,7 @@ unit:MilliJ-PER-SEC
   rdfs:label "Millidżul na Sekunda"@pl ;
   rdfs:label "Millijoule na Sekunda"@cs ;
   rdfs:label "Millijoule na Sekunda"@sl ;
-  rdfs:label "Millijoule par Second"@fr ;
+  rdfs:label "Millijoule par Seconde"@fr ;
   rdfs:label "Millijoule pe Secundă"@ro ;
   rdfs:label "Millijoule per Saat"@ms ;
   rdfs:label "Millijoule per Saniye"@tr ;
@@ -59508,7 +59508,7 @@ unit:MilliM-PER-SEC
   rdfs:label "Millimetro per Secondo"@it ;
   rdfs:label "Millimetro por Segundo"@es ;
   rdfs:label "Millimetru pe Secundă"@ro ;
-  rdfs:label "Millimètre par Second"@fr ;
+  rdfs:label "Millimètre par Seconde"@fr ;
 .
 unit:MilliM-PER-SEC2
   a qudt:Unit ;
@@ -59544,7 +59544,7 @@ unit:MilliM-PER-SEC2
   rdfs:label "Millimetro per Secondo Quadrato"@it ;
   rdfs:label "Millimetro por Segundo Cuadrado"@es ;
   rdfs:label "Millimetru pe Secundă Pătrat"@ro ;
-  rdfs:label "Millimètre par Second Carré"@fr ;
+  rdfs:label "Millimètre par Seconde Carré"@fr ;
 .
 unit:MilliM-PER-YR
   a qudt:Unit ;
@@ -59650,7 +59650,7 @@ unit:MilliM2-PER-SEC
   rdfs:label "Millimetro Cuadrado por Segundo"@es ;
   rdfs:label "Millimetro Quadrato per Secondo"@it ;
   rdfs:label "Millimetru Pătrat pe Secundă"@ro ;
-  rdfs:label "Millimètre Carré par Second"@fr ;
+  rdfs:label "Millimètre Carré par Seconde"@fr ;
   rdfs:label "Quadratmillimeter pro Sekunde"@de ;
   rdfs:label "Square Millimeter per Second"@en-US ;
   rdfs:label "Square Millimetre per Second" ;
@@ -60101,7 +60101,7 @@ unit:MilliMOL-PER-M2-SEC
   rdfs:label "Millimol per Metrekare Saniye"@tr ;
   rdfs:label "Millimol por Metro Cuadrado Segundo"@es ;
   rdfs:label "Millimol pro Quadratmeter Sekunde"@de ;
-  rdfs:label "Millimole par Mètre Carré Second"@fr ;
+  rdfs:label "Millimole par Mètre Carré Seconde"@fr ;
   rdfs:label "Millimole per Meter Persegi Saat"@ms ;
   rdfs:label "Millimole per Metro Quadrato Secondo"@it ;
   rdfs:label "Millimole per Square Meter Second"@en-US ;
@@ -60727,7 +60727,7 @@ unit:MilliPA-SEC
   rdfs:label "Millipascal Saniye"@tr ;
   rdfs:label "Millipascal Second" ;
   rdfs:label "Millipascal Second"@en ;
-  rdfs:label "Millipascal Second"@fr ;
+  rdfs:label "Millipascal Seconde"@fr ;
   rdfs:label "Millipascal Secondo"@it ;
   rdfs:label "Millipascal Secundă"@ro ;
   rdfs:label "Millipascal Segundo"@es ;
@@ -60795,7 +60795,7 @@ unit:MilliPA-SEC-PER-K
   rdfs:label "Millipascal Saniye per Kelvin"@tr ;
   rdfs:label "Millipascal Second per Kelvin" ;
   rdfs:label "Millipascal Second per Kelvin"@en ;
-  rdfs:label "Millipascal Second par Kelvin"@fr ;
+  rdfs:label "Millipascal Seconde par Kelvin"@fr ;
   rdfs:label "Millipascal Secondo per Kelvin"@it ;
   rdfs:label "Millipascal Secundă pe Kelvin"@ro ;
   rdfs:label "Millipascal Segundo por Kelvin"@es ;
@@ -61165,7 +61165,7 @@ unit:MilliSV-PER-MIN
 .
 unit:MilliSV-PER-SEC
   a qudt:Unit ;
-  dcterms:description "0.001-fold of the SI derived unit sievert divided by the SI base unit second" ;
+  dcterms:description "0.001-fold of the SI derived unit sievert devided by the SI base unit second" ;
   qudt:conversionMultiplier 0.001 ;
   qudt:conversionMultiplierSN 1.0E-3 ;
   qudt:hasDimensionVector qkdv:A0E0L2I0M0H0T-3D0 ;
@@ -61188,7 +61188,7 @@ unit:MilliSV-PER-SEC
   rdfs:isDefinedBy <http://qudt.org/3.1.7/vocab/unit> ;
   rdfs:label "Millisievert na Sekunda"@cs ;
   rdfs:label "Millisievert na Sekunda"@sl ;
-  rdfs:label "Millisievert par Second"@fr ;
+  rdfs:label "Millisievert par Seconde"@fr ;
   rdfs:label "Millisievert pe Secundă"@ro ;
   rdfs:label "Millisievert per Saat"@ms ;
   rdfs:label "Millisievert per Saniye"@tr ;
@@ -62559,7 +62559,7 @@ unit:N-M-SEC
   rdfs:label "Newton Metro Segundo"@es ;
   rdfs:label "Newton Metro Segundo"@pt ;
   rdfs:label "Newton Metru Secundă"@ro ;
-  rdfs:label "Newton Mètre Second"@fr ;
+  rdfs:label "Newton Mètre Seconde"@fr ;
   rdfs:label "Newtonium Metrum Secundum"@la ;
   rdfs:label "Niuton Metr Sekunda"@pl ;
   rdfs:label "Νιούτον Μέτρο Δευτερόλεπτο"@el ;
@@ -62617,7 +62617,7 @@ unit:N-M-SEC-PER-M
   rdfs:label "Newton Metro Segundo por Metro"@es ;
   rdfs:label "Newton Metro Segundo por Metro"@pt ;
   rdfs:label "Newton Metru Secundă pe Metru"@ro ;
-  rdfs:label "Newton Mètre Second par Mètre"@fr ;
+  rdfs:label "Newton Mètre Seconde par Mètre"@fr ;
   rdfs:label "Newtonium Metrum Secundum per Metrum"@la ;
   rdfs:label "Niuton Metr Sekunda na Metr"@pl ;
   rdfs:label "Νιούτον Μέτρο Δευτερόλεπτο ανά Μέτρο"@el ;
@@ -62669,7 +62669,7 @@ unit:N-M-SEC-PER-RAD
   rdfs:label "Newton Metro Segundo por Radiano"@pt ;
   rdfs:label "Newton Metro Segundo por Radián"@es ;
   rdfs:label "Newton Metru Secundă pe Radian"@ro ;
-  rdfs:label "Newton Mètre Second par Radian"@fr ;
+  rdfs:label "Newton Mètre Seconde par Radian"@fr ;
   rdfs:label "Newtonium Metrum Secundum per Radian"@la ;
   rdfs:label "Niuton Metr Sekunda na Radian"@pl ;
   rdfs:label "Νιούτον Μέτρο Δευτερόλεπτο ανά Ακτίνιο"@el ;
@@ -63338,7 +63338,7 @@ unit:N-SEC
   rdfs:label "Newton Saniye"@tr ;
   rdfs:label "Newton Second" ;
   rdfs:label "Newton Second"@en ;
-  rdfs:label "Newton Second"@fr ;
+  rdfs:label "Newton Seconde"@fr ;
   rdfs:label "Newton Secondo"@it ;
   rdfs:label "Newton Secundă"@ro ;
   rdfs:label "Newton Segundo"@es ;
@@ -63397,7 +63397,7 @@ unit:N-SEC-PER-M
   rdfs:label "Newton Second per Meter"@en-US ;
   rdfs:label "Newton Second per Metre" ;
   rdfs:label "Newton Second per Metre"@en ;
-  rdfs:label "Newton Second par Mètre"@fr ;
+  rdfs:label "Newton Seconde par Mètre"@fr ;
   rdfs:label "Newton Secondo per Metro"@it ;
   rdfs:label "Newton Secundă pe Metru"@ro ;
   rdfs:label "Newton Segundo por Metro"@es ;
@@ -63442,7 +63442,7 @@ unit:N-SEC-PER-M2
   rdfs:label "Newton Second per Square Meter"@en-US ;
   rdfs:label "Newton Second per Square Metre" ;
   rdfs:label "Newton Second per Square Metre"@en ;
-  rdfs:label "Newton Second par Mètre Carré"@fr ;
+  rdfs:label "Newton Seconde par Mètre Carré"@fr ;
   rdfs:label "Newton Secondo per Metro Quadrato"@it ;
   rdfs:label "Newton Secundă pe Metru Pătrat"@ro ;
   rdfs:label "Newton Segundo por Metro Cuadrado"@es ;
@@ -63460,9 +63460,9 @@ unit:N-SEC-PER-M3
   a qudt:DerivedUnit ;
   a qudt:Unit ;
   dcterms:description """
-  The SI unit of specific acoustic impedance.
-  When sound waves pass through any physical substance the pressure of the waves causes the particles of the substance to move.
-  The sound specific impedance is the ratio between the sound pressure and the particle velocity it produces.
+  The SI unit of specific acoustic impedance. 
+  When sound waves pass through any physical substance the pressure of the waves causes the particles of the substance to move. 
+  The sound specific impedance is the ratio between the sound pressure and the particle velocity it produces. 
   The specific impedance is $1 N \\cdot s \\cdot m^{-3}$ if unit pressure produces unit velocity.
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:CGS ;
@@ -63496,7 +63496,7 @@ unit:N-SEC-PER-M3
   rdfs:label "Newton Second per Cubic Meter"@en-US ;
   rdfs:label "Newton Second per Cubic Metre" ;
   rdfs:label "Newton Second per Cubic Metre"@en ;
-  rdfs:label "Newton Second par Mètre Cube"@fr ;
+  rdfs:label "Newton Seconde par Mètre Cube"@fr ;
   rdfs:label "Newton Secondo per Metro Cubo"@it ;
   rdfs:label "Newton Secundă pe Metru Cub"@ro ;
   rdfs:label "Newton Segundo por Metro Cúbico"@es ;
@@ -63543,7 +63543,7 @@ unit:N-SEC-PER-RAD
   rdfs:label "Newton Saniye per Radyan"@tr ;
   rdfs:label "Newton Second per Radian" ;
   rdfs:label "Newton Second per Radian"@en ;
-  rdfs:label "Newton Second par Radian"@fr ;
+  rdfs:label "Newton Seconde par Radian"@fr ;
   rdfs:label "Newton Secondo per Radiante"@it ;
   rdfs:label "Newton Seconds per Radian"@en-US ;
   rdfs:label "Newton Secundă pe Radian"@ro ;
@@ -63705,10 +63705,10 @@ unit:NT
   qudt:hasDimensionVector qkdv:A0E0L3I0M0H0T0D0 ;
   qudt:hasQuantityKind quantitykind:Volume ;
   qudt:informativeReference "http://en.wikipedia.org/wiki/Net_tonnage"^^xsd:anyURI ;
-  qudt:plainTextDescription """Net tonnage is used in the United States to determine eligibility for registering boats with
- the federal government. It is a nonlinear unit derived from the total volume of a ship's cargo space as well as some
- dimensionless factors. Net tonnage is not a measure of the weight of the ship or its cargo, and should not be confused
- with terms such as deadweight tonnage or displacement. Net tonnage is also used to determine the amount of money that
+  qudt:plainTextDescription """Net tonnage is used in the United States to determine eligibility for registering boats with 
+ the federal government. It is a nonlinear unit derived from the total volume of a ship's cargo space as well as some 
+ dimensionless factors. Net tonnage is not a measure of the weight of the ship or its cargo, and should not be confused 
+ with terms such as deadweight tonnage or displacement. Net tonnage is also used to determine the amount of money that 
  can be charged to a ship for using a port's facilities.""" ;
   qudt:scalingOf unit:M3 ;
   qudt:symbol "NT" ;
@@ -64772,7 +64772,7 @@ unit:NanoGM-PER-M2-PA-SEC
   rdfs:label "Nanogram per Square Metre Pascal Second" ;
   rdfs:label "Nanogram per Square Metre Pascal Second"@en ;
   rdfs:label "Nanogramm pro Quadratmeter Pascal Sekunde"@de ;
-  rdfs:label "Nanogramme par Mètre Carré Pascal Second"@fr ;
+  rdfs:label "Nanogramme par Mètre Carré Pascal Seconde"@fr ;
   rdfs:label "Nanogrammo per Metro Quadrato Pascal Secondo"@it ;
   rdfs:label "Nanogramo por Metro Cuadrado Pascal Segundo"@es ;
 .
@@ -65013,7 +65013,7 @@ unit:NanoGRAY-PER-SEC
   rdfs:isDefinedBy <http://qudt.org/3.1.7/vocab/unit> ;
   rdfs:label "Nanogray na Sekunda"@cs ;
   rdfs:label "Nanogray na Sekunda"@sl ;
-  rdfs:label "Nanogray par Second"@fr ;
+  rdfs:label "Nanogray par Seconde"@fr ;
   rdfs:label "Nanogray pe Secundă"@ro ;
   rdfs:label "Nanogray per Saat"@ms ;
   rdfs:label "Nanogray per Saniye"@tr ;
@@ -65157,7 +65157,7 @@ unit:NanoJ-PER-SEC
   rdfs:label "Nanodżul na Sekunda"@pl ;
   rdfs:label "Nanojoule na Sekunda"@cs ;
   rdfs:label "Nanojoule na Sekunda"@sl ;
-  rdfs:label "Nanojoule par Second"@fr ;
+  rdfs:label "Nanojoule par Seconde"@fr ;
   rdfs:label "Nanojoule pe Secundă"@ro ;
   rdfs:label "Nanojoule per Saat"@ms ;
   rdfs:label "Nanojoule per Saniye"@tr ;
@@ -65577,7 +65577,7 @@ unit:NanoMOL-PER-GM-SEC
   rdfs:label "Nanomol per Gram Saniye"@tr ;
   rdfs:label "Nanomol por Gramo Segundo"@es ;
   rdfs:label "Nanomol pro Gramm Sekunde"@de ;
-  rdfs:label "Nanomole par Gramme Second"@fr ;
+  rdfs:label "Nanomole par Gramme Seconde"@fr ;
   rdfs:label "Nanomole per Gram Saat"@ms ;
   rdfs:label "Nanomole per Gram Second" ;
   rdfs:label "Nanomole per Gram Second"@en ;
@@ -65750,7 +65750,7 @@ unit:NanoMOL-PER-M2-SEC
   rdfs:label "Nanomol per Metrekare Saniye"@tr ;
   rdfs:label "Nanomol por Metro Cuadrado Segundo"@es ;
   rdfs:label "Nanomol pro Quadratmeter Sekunde"@de ;
-  rdfs:label "Nanomole par Mètre Carré Second"@fr ;
+  rdfs:label "Nanomole par Mètre Carré Seconde"@fr ;
   rdfs:label "Nanomole per Meter Persegi Saat"@ms ;
   rdfs:label "Nanomole per Metro Quadrato Secondo"@it ;
   rdfs:label "Nanomole per Square Meter Second"@en-US ;
@@ -66200,7 +66200,7 @@ unit:NanoSV-PER-MIN
 .
 unit:NanoSV-PER-SEC
   a qudt:Unit ;
-  dcterms:description "0.000000001-fold of the SI derived unit sievert divided by the SI base unit second" ;
+  dcterms:description "0.000000001-fold of the SI derived unit sievert devided by the SI base unit second" ;
   qudt:conversionMultiplier 0.000000001 ;
   qudt:conversionMultiplierSN 1.0E-9 ;
   qudt:hasDimensionVector qkdv:A0E0L2I0M0H0T-3D0 ;
@@ -66223,7 +66223,7 @@ unit:NanoSV-PER-SEC
   rdfs:isDefinedBy <http://qudt.org/3.1.7/vocab/unit> ;
   rdfs:label "Nanosievert na Sekunda"@cs ;
   rdfs:label "Nanosievert na Sekunda"@sl ;
-  rdfs:label "Nanosievert par Second"@fr ;
+  rdfs:label "Nanosievert par Seconde"@fr ;
   rdfs:label "Nanosievert pe Secundă"@ro ;
   rdfs:label "Nanosievert per Saat"@ms ;
   rdfs:label "Nanosievert per Saniye"@tr ;
@@ -66594,12 +66594,12 @@ unit:OHM
   a qudt:DerivedUnit ;
   a qudt:Unit ;
   dcterms:description """
-  The $\\textit{ohm}$ is the SI derived unit of electrical resistance, named after German physicist Georg Simon Ohm.
-
+  The $\\textit{ohm}$ is the SI derived unit of electrical resistance, named after German physicist Georg Simon Ohm. 
+  
   It is defined as:
-
+  
   $$\\Omega \\equiv\\ \\frac{\\text{V}}{\\text{A}}\\ \\equiv\\ \\frac{\\text{volt}}{\\text{amp}}\\ \\equiv\\ \\frac{\\text{W}}{\\text {A}^{2}}\\ \\equiv\\ \\frac{\\text{watt}}{\\text{amp}^{2}}\\ \\equiv\\ \\frac{\\text{H}}{\\text {s}}\\ \\equiv\\ \\frac{\\text{henry}}{\\text{second}}$$
-
+  
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:CGS-EMU ;
   qudt:applicableSystem sou:CGS-GAUSS ;
@@ -68726,7 +68726,7 @@ unit:PA-M-PER-SEC
   rdfs:label "Pascal Metro por Segundo"@es ;
   rdfs:label "Pascal Metro por Segundo"@pt ;
   rdfs:label "Pascal Metru pe Secundă"@ro ;
-  rdfs:label "Pascal Mètre par Second"@fr ;
+  rdfs:label "Pascal Mètre par Seconde"@fr ;
   rdfs:label "Pascalium Metrum per Secundum"@la ;
   rdfs:label "Paskal Metr na Sekunda"@pl ;
   rdfs:label "Πασκάλ Μέτρο ανά Δευτερόλεπτο"@el ;
@@ -68770,7 +68770,7 @@ unit:PA-M-PER-SEC2
   rdfs:label "Pascal Metro por Segundo Cuadrado"@es ;
   rdfs:label "Pascal Metro por Segundo Quadrado"@pt ;
   rdfs:label "Pascal Metru pe Secundă Pătrat"@ro ;
-  rdfs:label "Pascal Mètre par Second Carré"@fr ;
+  rdfs:label "Pascal Mètre par Seconde Carré"@fr ;
   rdfs:label "Pascalium Metrum per Secundum Quadratum"@la ;
   rdfs:label "Paskal Metr na Sekunda Kwadratowy"@pl ;
   rdfs:label "Πασκάλ Μέτρο ανά Τετραγωνικό Δευτερόλεπτο"@el ;
@@ -68890,7 +68890,7 @@ unit:PA-M3-PER-SEC
   rdfs:label "Pascal Metro Cúbico por Segundo"@es ;
   rdfs:label "Pascal Metro Cúbico por Segundo"@pt ;
   rdfs:label "Pascal Metru Cub pe Secundă"@ro ;
-  rdfs:label "Pascal Mètre Cube par Second"@fr ;
+  rdfs:label "Pascal Mètre Cube par Seconde"@fr ;
   rdfs:label "Pascalium Metrum Cubicum per Secundum"@la ;
   rdfs:label "Paskal Metr Sześcienny na Sekunda"@pl ;
   rdfs:label "Πασκάλ Κυβικό Μέτρο ανά Δευτερόλεπτο"@el ;
@@ -69089,7 +69089,7 @@ unit:PA-PER-SEC
   rdfs:isDefinedBy <http://qudt.org/3.1.7/vocab/unit> ;
   rdfs:label "Pascal na Sekunda"@cs ;
   rdfs:label "Pascal na Sekunda"@sl ;
-  rdfs:label "Pascal par Second"@fr ;
+  rdfs:label "Pascal par Seconde"@fr ;
   rdfs:label "Pascal pe Secundă"@ro ;
   rdfs:label "Pascal per Saat"@ms ;
   rdfs:label "Pascal per Saniye"@tr ;
@@ -69142,7 +69142,7 @@ unit:PA-SEC
   rdfs:label "Pascal Saniye"@tr ;
   rdfs:label "Pascal Second" ;
   rdfs:label "Pascal Second"@en ;
-  rdfs:label "Pascal Second"@fr ;
+  rdfs:label "Pascal Seconde"@fr ;
   rdfs:label "Pascal Secondo"@it ;
   rdfs:label "Pascal Secundă"@ro ;
   rdfs:label "Pascal Segundo"@es ;
@@ -69220,7 +69220,7 @@ unit:PA-SEC-PER-K
   rdfs:label "Pascal Saniye per Kelvin"@tr ;
   rdfs:label "Pascal Second per Kelvin" ;
   rdfs:label "Pascal Second per Kelvin"@en ;
-  rdfs:label "Pascal Second par Kelvin"@fr ;
+  rdfs:label "Pascal Seconde par Kelvin"@fr ;
   rdfs:label "Pascal Secondo per Kelvin"@it ;
   rdfs:label "Pascal Secundă pe Kelvin"@ro ;
   rdfs:label "Pascal Segundo por Kelvin"@es ;
@@ -69303,7 +69303,7 @@ unit:PA-SEC-PER-M
   rdfs:label "Pascal Second per Meter"@en-US ;
   rdfs:label "Pascal Second per Metre" ;
   rdfs:label "Pascal Second per Metre"@en ;
-  rdfs:label "Pascal Second par Mètre"@fr ;
+  rdfs:label "Pascal Seconde par Mètre"@fr ;
   rdfs:label "Pascal Secondo per Metro"@it ;
   rdfs:label "Pascal Secundă pe Metru"@ro ;
   rdfs:label "Pascal Segundo por Metro"@es ;
@@ -69357,7 +69357,7 @@ unit:PA-SEC-PER-M3
   rdfs:label "Pascal Second per Cubic Meter"@en-US ;
   rdfs:label "Pascal Second per Cubic Metre" ;
   rdfs:label "Pascal Second per Cubic Metre"@en ;
-  rdfs:label "Pascal Second par Mètre Cube"@fr ;
+  rdfs:label "Pascal Seconde par Mètre Cube"@fr ;
   rdfs:label "Pascal Secondo per Metro Cubo"@it ;
   rdfs:label "Pascal Secundă pe Metru Cub"@ro ;
   rdfs:label "Pascal Segundo por Metro Cúbico"@es ;
@@ -69397,7 +69397,7 @@ unit:PA2-PER-SEC2
   qudt:ucumCode "Pa2.s-2"^^qudt:UCUMcs ;
   rdfs:isDefinedBy <http://qudt.org/3.1.7/vocab/unit> ;
   rdfs:label "Kvadratni Pascal na Kvadratni Sekunda"@sl ;
-  rdfs:label "Pascal Carré par Second Carré"@fr ;
+  rdfs:label "Pascal Carré par Seconde Carré"@fr ;
   rdfs:label "Pascal Cuadrado por Segundo Cuadrado"@es ;
   rdfs:label "Pascal Persegi per Saat Persegi"@ms ;
   rdfs:label "Pascal Pătrat pe Secundă Pătrat"@ro ;
@@ -69445,7 +69445,7 @@ unit:PA2-SEC
   qudt:wikidataMatch <http://www.wikidata.org/entity/Q86897783> ;
   rdfs:isDefinedBy <http://qudt.org/3.1.7/vocab/unit> ;
   rdfs:label "Kvadratni Pascal Sekunda"@sl ;
-  rdfs:label "Pascal Carré Second"@fr ;
+  rdfs:label "Pascal Carré Seconde"@fr ;
   rdfs:label "Pascal Cuadrado Segundo"@es ;
   rdfs:label "Pascal Persegi Saat"@ms ;
   rdfs:label "Pascal Pătrat Secundă"@ro ;
@@ -69579,11 +69579,11 @@ unit:PDL-IN
 unit:PDL-PER-FT2
   a qudt:Unit ;
   dcterms:description """
-  A $\\textit{Poundal Per Square Foot}$, ($pdl/ft^2$), is a unit in the category of Pressure.
-  It is also known as poundals per square foot, poundal/square foot.
-  This unit is commonly used in the UK, US unit systems.
+  A $\\textit{Poundal Per Square Foot}$, ($pdl/ft^2$), is a unit in the category of Pressure. 
+  It is also known as poundals per square foot, poundal/square foot. 
+  This unit is commonly used in the UK, US unit systems. 
   A $\\textit{Poundal Per Square Foot}$ has a dimension of $ML^{-1}T^{-2}$,
-   where $M$ is mass, $L$ is length, and $T$ is time.
+   where $M$ is mass, $L$ is length, and $T$ is time. 
    It can be converted to the corresponding standard SI unit $\\textit{Pa}$ by multiplying its value
     by a factor of 1.488163944.
   """^^qudt:LatexString ;
@@ -70436,7 +70436,7 @@ unit:PER-KiloGM-SEC
   rdfs:label "Na Kilogram Sekunda"@cs ;
   rdfs:label "Na Kilogram Sekunda"@pl ;
   rdfs:label "Na Kilogram Sekunda"@sl ;
-  rdfs:label "Par Kilogramme Second"@fr ;
+  rdfs:label "Par Kilogramme Seconde"@fr ;
   rdfs:label "Pe Kilogram Secundă"@ro ;
   rdfs:label "Per Chiliogramma Secundum"@la ;
   rdfs:label "Per Chilogrammo Secondo"@it ;
@@ -70828,7 +70828,7 @@ unit:PER-M-SEC
   rdfs:label "Na Meter Sekunda"@sl ;
   rdfs:label "Na Metr Sekunda"@cs ;
   rdfs:label "Na Metr Sekunda"@pl ;
-  rdfs:label "Par Mètre Second"@fr ;
+  rdfs:label "Par Mètre Seconde"@fr ;
   rdfs:label "Pe Metru Secundă"@ro ;
   rdfs:label "Per Meter Saat"@ms ;
   rdfs:label "Per Metre Saniye"@tr ;
@@ -70963,7 +70963,7 @@ unit:PER-M2-SEC
   rdfs:label "Na Kvadratni Meter Sekunda"@sl ;
   rdfs:label "Na Metr Kwadratowy Sekunda"@pl ;
   rdfs:label "Na Čtvereční Metr Sekunda"@cs ;
-  rdfs:label "Par Mètre Carré Second"@fr ;
+  rdfs:label "Par Mètre Carré Seconde"@fr ;
   rdfs:label "Pe Metru Pătrat Secundă"@ro ;
   rdfs:label "Per Meter Persegi Saat"@ms ;
   rdfs:label "Per Metrekare Saniye"@tr ;
@@ -71058,7 +71058,7 @@ unit:PER-M3-SEC
   rdfs:label "Na Kubični Meter Sekunda"@sl ;
   rdfs:label "Na Metr Krychlový Sekunda"@cs ;
   rdfs:label "Na Metr Sześcienny Sekunda"@pl ;
-  rdfs:label "Par Mètre Cube Second"@fr ;
+  rdfs:label "Par Mètre Cube Seconde"@fr ;
   rdfs:label "Pe Metru Cub Secundă"@ro ;
   rdfs:label "Per Meter Kubik Saat"@ms ;
   rdfs:label "Per Metreküp Saniye"@tr ;
@@ -71632,7 +71632,7 @@ unit:PER-PA-SEC
   rdfs:label "Na Pascal Sekunda"@cs ;
   rdfs:label "Na Pascal Sekunda"@sl ;
   rdfs:label "Na Paskal Sekunda"@pl ;
-  rdfs:label "Par Pascal Second"@fr ;
+  rdfs:label "Par Pascal Seconde"@fr ;
   rdfs:label "Pe Pascal Secundă"@ro ;
   rdfs:label "Per Pascal Saat"@ms ;
   rdfs:label "Per Pascal Saniye"@tr ;
@@ -71823,7 +71823,7 @@ unit:PER-SEC
   rdfs:label "Na Sekunda"@cs ;
   rdfs:label "Na Sekunda"@pl ;
   rdfs:label "Na Sekunda"@sl ;
-  rdfs:label "Par Second"@fr ;
+  rdfs:label "Par Seconde"@fr ;
   rdfs:label "Pe Secundă"@ro ;
   rdfs:label "Per Saat"@ms ;
   rdfs:label "Per Saniye"@tr ;
@@ -71867,7 +71867,7 @@ unit:PER-SEC-M2
   rdfs:label "Na Sekunda Kvadratni Meter"@sl ;
   rdfs:label "Na Sekunda Metr Kwadratowy"@pl ;
   rdfs:label "Na Sekunda Čtvereční Metr"@cs ;
-  rdfs:label "Par Second Mètre Carré"@fr ;
+  rdfs:label "Par Seconde Mètre Carré"@fr ;
   rdfs:label "Pe Secundă Metru Pătrat"@ro ;
   rdfs:label "Per Saat Meter Persegi"@ms ;
   rdfs:label "Per Saniye Metrekare"@tr ;
@@ -71916,7 +71916,7 @@ unit:PER-SEC-M2-SR
   rdfs:label "Na Sekunda Kvadratni Meter Steradian"@sl ;
   rdfs:label "Na Sekunda Metr Kwadratowy Steradian"@pl ;
   rdfs:label "Na Sekunda Čtvereční Metr Steradián"@cs ;
-  rdfs:label "Par Second Mètre Carré Stéradian"@fr ;
+  rdfs:label "Par Seconde Mètre Carré Stéradian"@fr ;
   rdfs:label "Pe Secundă Metru Pătrat Steradian"@ro ;
   rdfs:label "Per Saat Meter Persegi Steradian"@ms ;
   rdfs:label "Per Saniye Metrekare Steradyan"@tr ;
@@ -71956,7 +71956,7 @@ unit:PER-SEC-M3
   rdfs:label "Na Sekunda Kubični Meter"@sl ;
   rdfs:label "Na Sekunda Metr Krychlový"@cs ;
   rdfs:label "Na Sekunda Metr Sześcienny"@pl ;
-  rdfs:label "Par Second Mètre Cube"@fr ;
+  rdfs:label "Par Seconde Mètre Cube"@fr ;
   rdfs:label "Pe Secundă Metru Cub"@ro ;
   rdfs:label "Per Saat Meter Kubik"@ms ;
   rdfs:label "Per Saniye Metreküp"@tr ;
@@ -72003,7 +72003,7 @@ unit:PER-SEC-SR
   rdfs:label "Na Sekunda Steradian"@pl ;
   rdfs:label "Na Sekunda Steradian"@sl ;
   rdfs:label "Na Sekunda Steradián"@cs ;
-  rdfs:label "Par Second Stéradian"@fr ;
+  rdfs:label "Par Seconde Stéradian"@fr ;
   rdfs:label "Pe Secundă Steradian"@ro ;
   rdfs:label "Per Saat Steradian"@ms ;
   rdfs:label "Per Saniye Steradyan"@tr ;
@@ -72046,7 +72046,7 @@ unit:PER-SEC-SR-M2
   rdfs:label "Na Sekunda Steradian Kvadratni Meter"@sl ;
   rdfs:label "Na Sekunda Steradian Metr Kwadratowy"@pl ;
   rdfs:label "Na Sekunda Steradián Čtvereční Metr"@cs ;
-  rdfs:label "Par Second Stéradian Mètre Carré"@fr ;
+  rdfs:label "Par Seconde Stéradian Mètre Carré"@fr ;
   rdfs:label "Pe Secundă Steradian Metru Pătrat"@ro ;
   rdfs:label "Per Saat Steradian Meter Persegi"@ms ;
   rdfs:label "Per Saniye Steradyan Metrekare"@tr ;
@@ -72086,7 +72086,7 @@ unit:PER-SEC2
   rdfs:label "Na Kvadratni Sekunda"@sl ;
   rdfs:label "Na Sekunda Kwadratowy"@pl ;
   rdfs:label "Na Čtvereční Sekunda"@cs ;
-  rdfs:label "Par Second Carré"@fr ;
+  rdfs:label "Par Seconde Carré"@fr ;
   rdfs:label "Pe Secundă Pătrat"@ro ;
   rdfs:label "Per Saat Persegi"@ms ;
   rdfs:label "Per Saniyekare"@tr ;
@@ -72210,7 +72210,7 @@ unit:PER-T-SEC
   rdfs:label "Na Tesla Sekunda"@cs ;
   rdfs:label "Na Tesla Sekunda"@pl ;
   rdfs:label "Na Tesla Sekunda"@sl ;
-  rdfs:label "Par Tesla Second"@fr ;
+  rdfs:label "Par Tesla Seconde"@fr ;
   rdfs:label "Pe Tesla Secundă"@ro ;
   rdfs:label "Per Tesla Saat"@ms ;
   rdfs:label "Per Tesla Saniye"@tr ;
@@ -72325,7 +72325,7 @@ unit:PER-V-A-SEC
   rdfs:label "Na Volt Amper Sekunda"@sl ;
   rdfs:label "Na Volt Ampér Sekunda"@cs ;
   rdfs:label "Na Wolt Amper Sekunda"@pl ;
-  rdfs:label "Par Volt Ampère Second"@fr ;
+  rdfs:label "Par Volt Ampère Seconde"@fr ;
   rdfs:label "Pe Volt Amper Secundă"@ro ;
   rdfs:label "Per Volt Amper Saniye"@tr ;
   rdfs:label "Per Volt Ampere Saat"@ms ;
@@ -72359,7 +72359,7 @@ unit:PER-VA-SEC
   qudt:symbol "/(VA·s)" ;
   qudt:ucumCode "VA-1.s-1"^^qudt:UCUMcs ;
   rdfs:isDefinedBy <http://qudt.org/3.1.7/vocab/unit> ;
-  rdfs:label "Par Voltampère Second"@fr ;
+  rdfs:label "Par Voltampère Seconde"@fr ;
   rdfs:label "Per Volt Ampere Secondo"@it ;
   rdfs:label "Por Volt-ampere Segundo"@pt ;
   rdfs:label "Por Voltiamperio Segundo"@es ;
@@ -74188,11 +74188,11 @@ unit:PERMILLE-PER-PSI
 unit:PERMITTIVITY_REL
   a qudt:Unit ;
   dcterms:description """
-  The $\\textit{relative permittivity}$ of a material under given conditions reflects the extent to which it concentrates electrostatic lines of flux.
-  In technical terms, it is the ratio of the amount of electrical energy stored in a material by an applied voltage,
-  relative to that stored in a vacuum.
-  Likewise, it is also the ratio of the capacitance of a capacitor using that material as a dielectric, compared to a similar capacitor that has a vacuum as its dielectric.
-  Relative permittivity is a dimensionless number that is in general complex.
+  The $\\textit{relative permittivity}$ of a material under given conditions reflects the extent to which it concentrates electrostatic lines of flux. 
+  In technical terms, it is the ratio of the amount of electrical energy stored in a material by an applied voltage, 
+  relative to that stored in a vacuum. 
+  Likewise, it is also the ratio of the capacitance of a capacitor using that material as a dielectric, compared to a similar capacitor that has a vacuum as its dielectric. 
+  Relative permittivity is a dimensionless number that is in general complex. 
   The imaginary portion of the permittivity corresponds to a phase shift of the polarization $P$ relative to $E$ and leads to the attenuation of electromagnetic waves passing through the medium.
   $$\\epsilon_r(w) = \\frac{\\epsilon(w)}{\\epsilon_O}$$,
    where $\\epsilon_r(w)$ is the complex frequency-dependent absolute permittivity of the material,
@@ -74355,19 +74355,19 @@ unit:PH
   Where $a_{H^+}$ is the equilibrium molar concentration of $H^+$ in the solution, the activity of
    the hydrogen ion in the solution.
   $$$$
-  This definition is appropriate for concentrations equal to, or less than $1\\ mol/l$,
+  This definition is appropriate for concentrations equal to, or less than $1\\ mol/l$, 
    where $aH+ \\equiv [H+]$, that is, $1\\ mol/L\\ HCl$ has a $pH$ of zero.
   $$$$
-  To relate this to standard molality ($b^\\circ$), typically taken as $1 \\ mol/kg$,
+  To relate this to standard molality ($b^\\circ$), typically taken as $1 \\ mol/kg$, 
    consideration is given to the activity ($a_{H^+}$) of the hydrogen ions.
   $$$$
   The activity can be expressed as:
 
-  $$a_{H^+} = \\gamma_{H^+} \\times m_{H^+}$$
+  $$a_{H^+} = \\gamma_{H^+} \\times m_{H^+}$$ 
 
   Where, $\\gamma_{H^+}$ is the activity coefficient, which adjusts the molality to account for
    non-ideal behavior due to interactions between ions in the solution.
-  $m_{H^+}$ is the molality of hydrogen ions in the solution relative to the standard molality,
+  $m_{H^+}$ is the molality of hydrogen ions in the solution relative to the standard molality, 
    expressed in $mol/kg$.
   $$$$
   The expansion of $pH$ then becomes:
@@ -74375,7 +74375,7 @@ unit:PH
   $$\\text{pH} = -log_{10}\\left(m_{H+}\\times\\gamma_{H^+}\\right)$$
 
   $$$$
-  This definition is relevant in more concentrated solutions or when precise thermodynamic calculations are required.
+  This definition is relevant in more concentrated solutions or when precise thermodynamic calculations are required. 
   It reflects how the properties of the solution deviate from ideal behavior and provides a more accurate understanding of the $pH$ under various conditions.
   $$$$
   While $pH$ is a universally recognized scale for expressing hydrogen ion activity,
@@ -74743,7 +74743,7 @@ unit:PINT_US_DRY
   qudt:symbol "pt{US Dry}" ;
   qudt:ucumCode "[dpt_us]"^^qudt:UCUMcs ;
   qudt:uneceCommonCode "L61" ;
-  qudt:uneceCommonCode "PDF" ;
+  qudt:uneceCommonCode "PTD" ;
   qudt:wikidataMatch <http://www.wikidata.org/entity/Q32751272> ;
   rdfs:isDefinedBy <http://qudt.org/3.1.7/vocab/unit> ;
   rdfs:label "Us Dry Pint" ;
@@ -76120,7 +76120,7 @@ unit:PetaJ-PER-SEC
   rdfs:label "Petadżul na Sekunda"@pl ;
   rdfs:label "Petajoule na Sekunda"@cs ;
   rdfs:label "Petajoule na Sekunda"@sl ;
-  rdfs:label "Petajoule par Second"@fr ;
+  rdfs:label "Petajoule par Seconde"@fr ;
   rdfs:label "Petajoule pe Secundă"@ro ;
   rdfs:label "Petajoule per Saat"@ms ;
   rdfs:label "Petajoule per Saniye"@tr ;
@@ -76742,7 +76742,7 @@ unit:PicoJ-PER-SEC
   rdfs:label "Picodżul na Sekunda"@pl ;
   rdfs:label "Picojoule na Sekunda"@cs ;
   rdfs:label "Picojoule na Sekunda"@sl ;
-  rdfs:label "Picojoule par Second"@fr ;
+  rdfs:label "Picojoule par Seconde"@fr ;
   rdfs:label "Picojoule pe Secundă"@ro ;
   rdfs:label "Picojoule per Saat"@ms ;
   rdfs:label "Picojoule per Saniye"@tr ;
@@ -77030,7 +77030,7 @@ unit:PicoMOL-PER-M-W-SEC
   rdfs:label "Picomol per Metre Watt Saniye"@tr ;
   rdfs:label "Picomol por Metro Vatio Segundo"@es ;
   rdfs:label "Picomol pro Meter Watt Sekunde"@de ;
-  rdfs:label "Picomole par Mètre Watt Second"@fr ;
+  rdfs:label "Picomole par Mètre Watt Seconde"@fr ;
   rdfs:label "Picomole per Meter Watt Saat"@ms ;
   rdfs:label "Picomole per Meter Watt Second"@en-US ;
   rdfs:label "Picomole per Metre Watt Second" ;
@@ -77125,7 +77125,7 @@ unit:PicoMOL-PER-M3-SEC
   rdfs:label "Picomol per Metreküp Saniye"@tr ;
   rdfs:label "Picomol por Metro Cúbico Segundo"@es ;
   rdfs:label "Picomol pro Kubikmeter Sekunde"@de ;
-  rdfs:label "Picomole par Mètre Cube Second"@fr ;
+  rdfs:label "Picomole par Mètre Cube Seconde"@fr ;
   rdfs:label "Picomole per Cubic Meter Second"@en-US ;
   rdfs:label "Picomole per Cubic Metre Second" ;
   rdfs:label "Picomole per Cubic Metre Second"@en ;
@@ -77845,16 +77845,16 @@ unit:PlanckTemperature
 unit:PlanckTime
   a qudt:Unit ;
   dcterms:description """
-  In physics, the Planck time, denoted by $t_P$, is the unit of time in the system of natural units known as Planck units.
-  It is the time required for light to travel, in a vacuum, a distance of 1 Planck length.
+  In physics, the Planck time, denoted by $t_P$, is the unit of time in the system of natural units known as Planck units. 
+  It is the time required for light to travel, in a vacuum, a distance of 1 Planck length. 
   The unit is named after Max Planck, who was the first to propose it.
-
+  
   The formula for $\\textit{PlankTime}$ is:
-
+  
   $$ \\\\ t_P \\equiv  \\sqrt{\\frac{\\hbar G}{c^5}} \\approx 5.39106(32) \\times 10^{-44} s$$
-
+  
    where, $c$ is the speed of light in a vacuum, $\\hbar$ is the reduced Planck's constant
-    (defined as $\\hbar = \\frac{h}{2 \\pi}$ and $G$ is the gravitational constant.
+    (defined as $\\hbar = \\frac{h}{2 \\pi}$ and $G$ is the gravitational constant. 
   The two digits between parentheses denote the standard error of the estimated value.
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:PLANCK ;
@@ -78197,9 +78197,9 @@ unit:QUAD
   a qudt:Unit ;
   dcterms:description """
   A $\\textit{quad}$ is a unit of energy equal to $10 BTU$, or $1.055 \\times 10\\,\\text{joule}$,
-   which is $1.055 exajoule$ or $EJ$ in SI units.
-  The unit is used by the U.S. Department of Energy in discussing world and national energy budgets.
-
+   which is $1.055 exajoule$ or $EJ$ in SI units. 
+  The unit is used by the U.S. Department of Energy in discussing world and national energy budgets. 
+  
   Some common types of an energy carrier approximately equal 1 quad are:
 
   8,007,000,000 Gallons (US) of gasoline, 293,083,000,000 Kilowatt-hours (kWh), 36,000,000 Tonnes of coal,
@@ -78599,7 +78599,7 @@ unit:RAD-PER-SEC
   rdfs:isDefinedBy <http://qudt.org/3.1.7/vocab/unit> ;
   rdfs:label "Radian na Sekunda"@pl ;
   rdfs:label "Radian na Sekunda"@sl ;
-  rdfs:label "Radian par Second"@fr ;
+  rdfs:label "Radian par Seconde"@fr ;
   rdfs:label "Radian pe Secundă"@ro ;
   rdfs:label "Radian per Saat"@ms ;
   rdfs:label "Radian per Second" ;
@@ -78652,7 +78652,7 @@ unit:RAD-PER-SEC2
   rdfs:isDefinedBy <http://qudt.org/3.1.7/vocab/unit> ;
   rdfs:label "Radian na Kvadratni Sekunda"@sl ;
   rdfs:label "Radian na Sekunda Kwadratowy"@pl ;
-  rdfs:label "Radian par Second Carré"@fr ;
+  rdfs:label "Radian par Seconde Carré"@fr ;
   rdfs:label "Radian pe Secundă Pătrat"@ro ;
   rdfs:label "Radian per Saat Persegi"@ms ;
   rdfs:label "Radian per Secundum Quadratum"@la ;
@@ -78690,10 +78690,10 @@ unit:RAD_R
 .
 unit:RAYL
   a qudt:Unit ;
-  dcterms:description """The $Rayl$ is one of two units of specific acoustic impedance. There is a CGS version and an MKS version of different magnitude.
-  When sound waves pass through any physical substance the pressure of the waves causes the particles of the substance to move.
-  The sound specific impedance is the ratio between the sound pressure and the particle velocity it produces.
-  The specific impedance is one rayl if unit pressure produces unit velocity. It is defined as follows: $1\\; rayl = 1 dyn\\cdot s\\cdot cm^{-3}$ Or in
+  dcterms:description """The $Rayl$ is one of two units of specific acoustic impedance. There is a CGS version and an MKS version of different magnitude. 
+  When sound waves pass through any physical substance the pressure of the waves causes the particles of the substance to move. 
+  The sound specific impedance is the ratio between the sound pressure and the particle velocity it produces. 
+  The specific impedance is one rayl if unit pressure produces unit velocity. It is defined as follows: $1\\; rayl = 1 dyn\\cdot s\\cdot cm^{-3}$ Or in 
   SI as: $1 \\; rayl = 10^{-1}Pa\\cdot s\\cdot m^{-1}$, which equals $10\\,N \\cdot s\\cdot m^{-3}$."""^^qudt:LatexString ;
   qudt:applicableSystem sou:CGS ;
   qudt:conversionMultiplier 10.0 ;
@@ -78712,10 +78712,10 @@ unit:RAYL
 .
 unit:RAYL_MKS
   a qudt:Unit ;
-  dcterms:description """The $Rayl$ is one of two units of specific acoustic impedance. There is a CGS version and an MKS version of different magnitude.
-  When sound waves pass through any physical substance the pressure of the waves causes the particles of the substance to move.
-  The sound specific impedance is the ratio between the sound pressure and the particle velocity it produces.
-  The specific impedance is one rayl if unit pressure produces unit velocity. It is defined as follows: $1\\; rayl = 1 dyn\\cdot s\\cdot cm^{-3}$ Or in
+  dcterms:description """The $Rayl$ is one of two units of specific acoustic impedance. There is a CGS version and an MKS version of different magnitude. 
+  When sound waves pass through any physical substance the pressure of the waves causes the particles of the substance to move. 
+  The sound specific impedance is the ratio between the sound pressure and the particle velocity it produces. 
+  The specific impedance is one rayl if unit pressure produces unit velocity. It is defined as follows: $1\\; rayl = 1 dyn\\cdot s\\cdot cm^{-3}$ Or in 
   SI as: $1 \\; rayl = 10^{-1}Pa\\cdot s\\cdot m^{-1}$, which equals $10\\,N \\cdot s\\cdot m^{-3}$."""^^qudt:LatexString ;
   qudt:applicableSystem sou:SI ;
   qudt:conversionMultiplier 1.0 ;
@@ -78936,7 +78936,7 @@ unit:REV-PER-SEC2
   rdfs:label "Revolution per Square Second" ;
   rdfs:label "Revolution per Square Second"@en ;
 .
-unit:THE
+unit:RHE
   a qudt:Unit ;
   dcterms:description "non SI-conforming unit of fluidity of dynamic viscosity" ;
   qudt:conversionMultiplier 10.0 ;
@@ -78946,12 +78946,12 @@ unit:THE
   qudt:iec61360Code "0112/2///62720#UAB228" ;
   qudt:informativeReference "https://cdd.iec.ch/cdd/iec62720/iec62720.nsf/Units/0112-2---62720%23UAB228"^^xsd:anyURI ;
   qudt:scalingOf unit:PER-PA-SEC ;
-  qudt:symbol "the" ;
+  qudt:symbol "rhe" ;
   qudt:uneceCommonCode "P88" ;
   qudt:wikidataMatch <http://www.wikidata.org/entity/Q2147412> ;
   rdfs:isDefinedBy <http://qudt.org/3.1.7/vocab/unit> ;
-  rdfs:label "The" ;
-  rdfs:label "The"@en ;
+  rdfs:label "Rhe" ;
+  rdfs:label "Rhe"@en ;
 .
 unit:ROD
   a qudt:Unit ;
@@ -79041,11 +79041,11 @@ unit:RichterMagnitude
 unit:S
   a qudt:DerivedUnit ;
   a qudt:Unit ;
-  dcterms:description """$\\textit{Siemens}$ is the SI unit of electric conductance, susceptance, and admittance.
-The most important property of a conductor is the amount of current it will carry when a voltage is applied.
-Current flow is opposed by resistance in all circuits, and by also by reactance and impedance in alternating current circuits.
-Conductance, susceptance, and admittance are the inverses of resistance, reactance, and impedance, respectively.
-To measure these properties, the siemens is the reciprocal of the ohm. In other words, the conductance, susceptance, or admittance, in siemens, is simply 1 divided by the resistance, reactance or impedance, respectively, in ohms.
+  dcterms:description """$\\textit{Siemens}$ is the SI unit of electric conductance, susceptance, and admittance. 
+The most important property of a conductor is the amount of current it will carry when a voltage is applied. 
+Current flow is opposed by resistance in all circuits, and by also by reactance and impedance in alternating current circuits. 
+Conductance, susceptance, and admittance are the inverses of resistance, reactance, and impedance, respectively. 
+To measure these properties, the siemens is the reciprocal of the ohm. In other words, the conductance, susceptance, or admittance, in siemens, is simply 1 divided by the resistance, reactance or impedance, respectively, in ohms. 
 The unit is named for the German electrical engineer Werner von Siemens (1816-1892).
 $$\\  \\text{Siemens}\\equiv\\frac{\\text{A}}{\\text{V}}\\equiv\\frac{\\text{amp}}{\\text{volt}}\\equiv\\frac{\\text{F}}{\\text {s}}\\equiv\\frac{\\text{farad}}{\\text{second}}$$
   """^^qudt:LatexString ;
@@ -79288,7 +79288,7 @@ unit:SAMPLE-PER-SEC
 unit:SCF
   a qudt:Unit ;
   dcterms:description """
-The $\\textit{standard cubic foot}$ (scf) is a unit representing the amount of gas (such as natural gas)
+The $\\textit{standard cubic foot}$ (scf) is a unit representing the amount of gas (such as natural gas) 
 contained in a volume of one cubic foot at reference temperature and pressure conditions. As such, it is a measure of the actual amount of gas,
 not the volume of the gas. The reference conditions for standard cubic foot are 60 degrees Fahrenheit and 14.7 pounds per square inch (psi) of pressure.
   """^^qudt:LatexString ;
@@ -79308,7 +79308,7 @@ unit:SCF-PER-HR
   dcterms:description """
 The $\\textit{standard cubic foot per hour}$ (scfm) is the molar flow rate of a gas (such as natural gas)
 contained in a volume of one cubic foot at reference temperature and pressure conditions. As such, it is a measure of the actual amount of gas,
-not the volume of the gas. The reference conditions for standard cubic foot per minute are 60 degrees Fahrenheit and 14.7 pounds per
+not the volume of the gas. The reference conditions for standard cubic foot per minute are 60 degrees Fahrenheit and 14.7 pounds per 
 square inch (psi) of pressure.
   """^^qudt:LatexString ;
   qudt:conversionMultiplier 0.0003328055555555555555555555555555556 ;
@@ -79334,7 +79334,7 @@ unit:SCF-PER-MIN
   dcterms:description """
 The $\\textit{standard cubic foot per minute}$ (scfm) is the molar flow rate of a gas (such as natural gas)
 contained in a volume of one cubic foot at reference temperature and pressure conditions. As such, it is a measure of the actual amount of gas,
-not the volume of the gas. The reference conditions for standard cubic foot per minute are 60 degrees Fahrenheit and 14.7 pounds per
+not the volume of the gas. The reference conditions for standard cubic foot per minute are 60 degrees Fahrenheit and 14.7 pounds per 
 square inch (psi) of pressure.
   """^^qudt:LatexString ;
   qudt:conversionMultiplier 0.01996833333333333333333333333333334 ;
@@ -79522,7 +79522,7 @@ Under the International System of Units (via the International Committee for Wei
   rdfs:label "Saniye"@tr ;
   rdfs:label "Second" ;
   rdfs:label "Second"@en ;
-  rdfs:label "Second"@fr ;
+  rdfs:label "Seconde"@fr ;
   rdfs:label "Secondo"@it ;
   rdfs:label "Secundum"@la ;
   rdfs:label "Secundă"@ro ;
@@ -79618,7 +79618,7 @@ unit:SEC-PER-KiloGM
   rdfs:label "Saniye per Kilogram"@tr ;
   rdfs:label "Second per Kilogram" ;
   rdfs:label "Second per Kilogram"@en ;
-  rdfs:label "Second par Kilogramme"@fr ;
+  rdfs:label "Seconde par Kilogramme"@fr ;
   rdfs:label "Secondo per Chilogrammo"@it ;
   rdfs:label "Secundum per Chiliogramma"@la ;
   rdfs:label "Secundă pe Kilogram"@ro ;
@@ -79661,7 +79661,7 @@ unit:SEC-PER-M
   rdfs:label "Second per Meter"@en-US ;
   rdfs:label "Second per Metre" ;
   rdfs:label "Second per Metre"@en ;
-  rdfs:label "Second par Mètre"@fr ;
+  rdfs:label "Seconde par Mètre"@fr ;
   rdfs:label "Secondo per Metro"@it ;
   rdfs:label "Secundum per Metrum"@la ;
   rdfs:label "Secundă pe Metru"@ro ;
@@ -79705,7 +79705,7 @@ unit:SEC-PER-M3-RAD
   rdfs:label "Second per Cubic Meter Radian"@en-US ;
   rdfs:label "Second per Cubic Metre Radian" ;
   rdfs:label "Second per Cubic Metre Radian"@en ;
-  rdfs:label "Second par Mètre Cube Radian"@fr ;
+  rdfs:label "Seconde par Mètre Cube Radian"@fr ;
   rdfs:label "Secondo per Metro Cubo Radiante"@it ;
   rdfs:label "Secundum per Metrum Cubicum Radian"@la ;
   rdfs:label "Secundă pe Metru Cub Radian"@ro ;
@@ -79778,7 +79778,7 @@ unit:SEC-PER-RAD-M3
   rdfs:label "Second per Radian Cubic Meter"@en-US ;
   rdfs:label "Second per Radian Cubic Metre" ;
   rdfs:label "Second per Radian Cubic Metre"@en ;
-  rdfs:label "Second par Radian Mètre Cube"@fr ;
+  rdfs:label "Seconde par Radian Mètre Cube"@fr ;
   rdfs:label "Secondo per Radiante Metro Cubo"@it ;
   rdfs:label "Secundum per Radian Metrum Cubicum"@la ;
   rdfs:label "Secundă pe Radian Metru Cub"@ro ;
@@ -79822,7 +79822,7 @@ unit:SEC2
   rdfs:label "Quadratsekunde"@de ;
   rdfs:label "Saat Persegi"@ms ;
   rdfs:label "Saniyekare"@tr ;
-  rdfs:label "Second Carré"@fr ;
+  rdfs:label "Seconde Carré"@fr ;
   rdfs:label "Secondo Quadrato"@it ;
   rdfs:label "Secundum Quadratum"@la ;
   rdfs:label "Secundă Pătrat"@ro ;
@@ -80381,12 +80381,12 @@ unit:STANDARD
 unit:STILB
   a qudt:Unit ;
   dcterms:description """
-  The $\\textit{stilb (sb)}$ is the CGS unit of luminance for objects that are not self-luminous.
-  It is equal to one candela per square centimeter or 10 nits (candelas per square meter).
-  The name was coined by the French physicist A. Blondel around 1920.
-  It comes from the Greek word stilbein meaning 'to glitter'.
-  It was in common use in Europe up to World War I.
-  In North America self-explanatory terms such as candle per square inch and candle per square meter were more common.
+  The $\\textit{stilb (sb)}$ is the CGS unit of luminance for objects that are not self-luminous. 
+  It is equal to one candela per square centimeter or 10 nits (candelas per square meter). 
+  The name was coined by the French physicist A. Blondel around 1920. 
+  It comes from the Greek word stilbein meaning 'to glitter'. 
+  It was in common use in Europe up to World War I. 
+  In North America self-explanatory terms such as candle per square inch and candle per square meter were more common. 
   The unit has since largely been replaced by the SI unit: $\\textit{candela per square meter}$.
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:CGS ;
@@ -80593,7 +80593,7 @@ unit:SV-PER-MIN
 .
 unit:SV-PER-SEC
   a qudt:Unit ;
-  dcterms:description "SI derived unit sievert divided by the SI base unit second" ;
+  dcterms:description "SI derived unit sievert devided by the SI base unit second" ;
   qudt:conversionMultiplier 1.0 ;
   qudt:conversionMultiplierSN 1.0E0 ;
   qudt:hasDimensionVector qkdv:A0E0L2I0M0H0T-3D0 ;
@@ -80616,7 +80616,7 @@ unit:SV-PER-SEC
   rdfs:isDefinedBy <http://qudt.org/3.1.7/vocab/unit> ;
   rdfs:label "Sievert na Sekunda"@cs ;
   rdfs:label "Sievert na Sekunda"@sl ;
-  rdfs:label "Sievert par Second"@fr ;
+  rdfs:label "Sievert par Seconde"@fr ;
   rdfs:label "Sievert pe Secundă"@ro ;
   rdfs:label "Sievert per Saat"@ms ;
   rdfs:label "Sievert per Saniye"@tr ;
@@ -80868,7 +80868,7 @@ unit:T-SEC
   rdfs:label "Tesla Saniye"@tr ;
   rdfs:label "Tesla Second" ;
   rdfs:label "Tesla Second"@en ;
-  rdfs:label "Tesla Second"@fr ;
+  rdfs:label "Tesla Seconde"@fr ;
   rdfs:label "Tesla Secondo"@it ;
   rdfs:label "Tesla Secundum"@la ;
   rdfs:label "Tesla Secundă"@ro ;
@@ -80958,17 +80958,17 @@ unit:TEX
 .
 unit:THERM_EC
   a qudt:Unit ;
-  dcterms:description "unit of heat energy in commercial use, within the EU defined: 1 them (EC) = 100 000 BtuIT" ;
+  dcterms:description "unit of heat energy in commercial use, within the EU defined: 1 thm (EC) = 100 000 BtuIT" ;
   qudt:conversionMultiplier 1055055852.62 ;
   qudt:conversionMultiplierSN 1.05505585262E9 ;
-  qudt:exactMatch unit:THEM_EEC ;
+  qudt:exactMatch unit:THM_EEC ;
   qudt:hasDimensionVector qkdv:A0E0L2I0M1H0T-2D0 ;
   qudt:hasQuantityKind quantitykind:Energy ;
   qudt:hasQuantityKind quantitykind:ThermalEnergy ;
   qudt:iec61360Code "0112/2///62720#UAB222" ;
   qudt:informativeReference "https://cdd.iec.ch/cdd/iec62720/iec62720.nsf/Units/0112-2---62720%23UAB222"^^xsd:anyURI ;
   qudt:scalingOf unit:J ;
-  qudt:symbol "them{EC}" ;
+  qudt:symbol "thm{EC}" ;
   qudt:uneceCommonCode "N71" ;
   rdfs:isDefinedBy <http://qudt.org/3.1.7/vocab/unit> ;
   rdfs:label "Therm (ec)" ;
@@ -80979,20 +80979,20 @@ unit:THERM_US
   dcterms:description "unit of heat energy in commercial use" ;
   qudt:conversionMultiplier 105480400.0 ;
   qudt:conversionMultiplierSN 1.054804E8 ;
-  qudt:exactMatch unit:THEM_US ;
+  qudt:exactMatch unit:THM_US ;
   qudt:hasDimensionVector qkdv:A0E0L2I0M1H0T-2D0 ;
   qudt:hasQuantityKind quantitykind:Energy ;
   qudt:hasQuantityKind quantitykind:ThermalEnergy ;
   qudt:iec61360Code "0112/2///62720#UAB223" ;
   qudt:informativeReference "https://cdd.iec.ch/cdd/iec62720/iec62720.nsf/Units/0112-2---62720%23UAB223"^^xsd:anyURI ;
   qudt:scalingOf unit:J ;
-  qudt:symbol "them{US}" ;
+  qudt:symbol "thm{US}" ;
   qudt:uneceCommonCode "N72" ;
   rdfs:isDefinedBy <http://qudt.org/3.1.7/vocab/unit> ;
   rdfs:label "Therm (u.s.)" ;
   rdfs:label "Therm (u.s.)"@en ;
 .
-unit:THEM_EEC
+unit:THM_EEC
   a qudt:Unit ;
   qudt:conversionMultiplier 1055055852.62 ;
   qudt:conversionMultiplierSN 1.05505585262E9 ;
@@ -81002,19 +81002,19 @@ unit:THEM_EEC
   qudt:hasQuantityKind quantitykind:Energy ;
   qudt:hasQuantityKind quantitykind:ThermalEnergy ;
   qudt:scalingOf unit:J ;
-  qudt:symbol "them{EEC}" ;
+  qudt:symbol "thm{EEC}" ;
   qudt:ucumCode "100000.[Btu_IT]"^^qudt:UCUMcs ;
   rdfs:isDefinedBy <http://qudt.org/3.1.7/vocab/unit> ;
-  rdfs:label "Them_eec" ;
-  rdfs:label "Them_eec"@en ;
+  rdfs:label "Thm_eec" ;
+  rdfs:label "Thm_eec"@en ;
 .
-unit:THEM_US
+unit:THM_US
   a qudt:Unit ;
   dcterms:description """
-  $\\textit{Therm}$ (symbol $them$) is a non-SI unit of heat energy.
-  It was defined in the United States in 1968 as the energy equivalent of burning 100 cubic feet of
-  natural gas at standard temperature and pressure.
-  In the US gas industry its SI equivalent is defined as exactly $100,000 BTU59^{\\circ}{F}$ or $105.4804 megajoules$.
+  $\\textit{Therm}$ (symbol $thm$) is a non-SI unit of heat energy. 
+  It was defined in the United States in 1968 as the energy equivalent of burning 100 cubic feet of 
+  natural gas at standard temperature and pressure. 
+  In the US gas industry its SI equivalent is defined as exactly $100,000 BTU59^{\\circ}{F}$ or $105.4804 megajoules$. 
   Public utilities in the U.S. use the therm unit for measuring customer usage of gas and calculating the monthly bills.
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:USCS ;
@@ -81026,17 +81026,17 @@ unit:THEM_US
   qudt:hasQuantityKind quantitykind:ThermalEnergy ;
   qudt:informativeReference "http://www.convertunits.com/info/therm%2B%5BU.S.%5D"^^xsd:anyURI ;
   qudt:scalingOf unit:J ;
-  qudt:symbol "them{US}" ;
+  qudt:symbol "thm{US}" ;
   qudt:ucumCode "100000.[Btu_59]"^^qudt:UCUMcs ;
   qudt:uneceCommonCode "N72" ;
   rdfs:isDefinedBy <http://qudt.org/3.1.7/vocab/unit> ;
   rdfs:label "Therm Us" ;
   rdfs:label "Therm Us"@en ;
 .
-unit:THEM_US-PER-HR
+unit:THM_US-PER-HR
   a qudt:DerivedUnit ;
   a qudt:Unit ;
-  dcterms:description "$\\textit{Therm}$ (symbol $them$) is a non-SI unit of heat energy. It was defined in the United States in 1968 as the energy equivalent of burning 100 cubic feet of natural gas at standard temperature and pressure. Industrial processes in the U.S. use therm/h unit most often in the power, steam generation, heating, and air conditioning industries."^^qudt:LatexString ;
+  dcterms:description "$\\textit{Therm}$ (symbol $thm$) is a non-SI unit of heat energy. It was defined in the United States in 1968 as the energy equivalent of burning 100 cubic feet of natural gas at standard temperature and pressure. Industrial processes in the U.S. use therm/h unit most often in the power, steam generation, heating, and air conditioning industries."^^qudt:LatexString ;
   qudt:applicableSystem sou:USCS ;
   qudt:conversionMultiplier 29300.11111111111111111111111111111 ;
   qudt:conversionMultiplierSN 2.930011111111111111111111111111111E4 ;
@@ -81048,12 +81048,12 @@ unit:THEM_US-PER-HR
     ] ;
   qudt:hasFactorUnit [
       qudt:exponent 1 ;
-      qudt:hasUnit unit:THEM_US ;
+      qudt:hasUnit unit:THM_US ;
     ] ;
   qudt:hasQuantityKind quantitykind:HeatFlowRate ;
   qudt:hasQuantityKind quantitykind:Power ;
   qudt:informativeReference "http://www.convertunits.com/info/therm%2B%5BU.S.%5D"^^xsd:anyURI ;
-  qudt:symbol "them{US}/h" ;
+  qudt:symbol "thm{US}/h" ;
   qudt:ucumCode "100000.[Btu_59].h-1"^^qudt:UCUMcs ;
   rdfs:isDefinedBy <http://qudt.org/3.1.7/vocab/unit> ;
   rdfs:label "Therm Us per Hour" ;
@@ -81115,7 +81115,7 @@ unit:TON
   qudt:symbol "tn" ;
   qudt:ucumCode "ston_av"^^qudt:UCUMcs ;
   qudt:udunitsCode "t" ;
-  qudt:uneceCommonCode "THE" ;
+  qudt:uneceCommonCode "TNE" ;
   rdfs:isDefinedBy <http://qudt.org/3.1.7/vocab/unit> ;
   rdfs:label "Ton" ;
   rdfs:label "Ton"@en ;
@@ -81139,7 +81139,7 @@ unit:TONNE
   qudt:symbol "t" ;
   qudt:ucumCode "t"^^qudt:UCUMcs ;
   qudt:udunitsCode "t" ;
-  qudt:uneceCommonCode "THE" ;
+  qudt:uneceCommonCode "TNE" ;
   qudt:wikidataMatch <http://www.wikidata.org/entity/Q191118> ;
   rdfs:isDefinedBy <http://qudt.org/3.1.7/vocab/unit> ;
   rdfs:label "Tonne" ;
@@ -81908,7 +81908,7 @@ unit:TON_Metric
   qudt:scalingOf unit:KiloGM ;
   qudt:symbol "t" ;
   qudt:ucumCode "t"^^qudt:UCUMcs ;
-  qudt:uneceCommonCode "THE" ;
+  qudt:uneceCommonCode "TNE" ;
   rdfs:isDefinedBy <http://qudt.org/3.1.7/vocab/unit> ;
   rdfs:label "Metric Ton" ;
   rdfs:label "Metric Ton"@en ;
@@ -83339,7 +83339,7 @@ unit:TeraJ-PER-SEC
   rdfs:label "Teradżul na Sekunda"@pl ;
   rdfs:label "Terajoule na Sekunda"@cs ;
   rdfs:label "Terajoule na Sekunda"@sl ;
-  rdfs:label "Terajoule par Second"@fr ;
+  rdfs:label "Terajoule par Seconde"@fr ;
   rdfs:label "Terajoule pe Secundă"@ro ;
   rdfs:label "Terajoule per Saat"@ms ;
   rdfs:label "Terajoule per Saniye"@tr ;
@@ -83787,12 +83787,12 @@ unit:UnitPole
 .
 unit:V
   a qudt:Unit ;
-  dcterms:description """$\\textit{Volt}$ is the SI unit of electric potential.
-  Separating electric charges creates potential energy, which can be measured in energy units such as joules.
-  Electric potential is defined as the amount of potential energy present per unit of charge.
-  Electric potential is measured in volts, with one volt representing a potential of one joule per coulomb of charge.
+  dcterms:description """$\\textit{Volt}$ is the SI unit of electric potential. 
+  Separating electric charges creates potential energy, which can be measured in energy units such as joules. 
+  Electric potential is defined as the amount of potential energy present per unit of charge. 
+  Electric potential is measured in volts, with one volt representing a potential of one joule per coulomb of charge. 
   The name of the unit honors the Italian scientist Count Alessandro Volta (1745-1827), the inventor of the first battery.
-  The volt also may be expressed with a variety of other units.
+  The volt also may be expressed with a variety of other units. 
   For example, a volt is also equal to one watt per ampere ($W/A$) and one joule per ampere per second ($J/A/s$).
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:CGS-EMU ;
@@ -84294,10 +84294,10 @@ unit:V-PER-M
   a qudt:DerivedUnit ;
   a qudt:Unit ;
   dcterms:description """
-  The unit $\\{Volt Per Meter (V/m)}$ is a unit in the category of Electric field strength.
-  It is also known as volts per meter, volt/meter, volt/metre, volt per metre, volts per metre.
-  This unit is commonly used in the SI unit system.
-  $\\{Volt Per Meter}$ has a dimension of $MLT^{-3}I^{-1}$ where $M$ is mass, $L$ is length, $T$ is time, and $I$ is electric current.
+  The unit $\\{Volt Per Meter (V/m)}$ is a unit in the category of Electric field strength. 
+  It is also known as volts per meter, volt/meter, volt/metre, volt per metre, volts per metre. 
+  This unit is commonly used in the SI unit system. 
+  $\\{Volt Per Meter}$ has a dimension of $MLT^{-3}I^{-1}$ where $M$ is mass, $L$ is length, $T$ is time, and $I$ is electric current. 
   This unit is the standard SI unit in this category.
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:CGS-EMU ;
@@ -84354,8 +84354,8 @@ unit:V-PER-M
 unit:V-PER-M2
   a qudt:Unit ;
   dcterms:description """
-  $\\textit{Volt per Square Metre}$ is the divergence at a particular point in a vector field is (roughly) how much the vector field 'spreads out' from that point.
-  Operationally, we take the partial derivative of each of the field with respect to each of its space variables and add all the derivatives together to get the divergence.
+  $\\textit{Volt per Square Metre}$ is the divergence at a particular point in a vector field is (roughly) how much the vector field 'spreads out' from that point. 
+  Operationally, we take the partial derivative of each of the field with respect to each of its space variables and add all the derivatives together to get the divergence. 
   $\\textit{Electric field}$ ($V/m$) differentiated with respect to distance ($m$) yields $V/(m^2)$.
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:CGS-EMU ;
@@ -84543,7 +84543,7 @@ unit:V-PER-SEC
   rdfs:isDefinedBy <http://qudt.org/3.1.7/vocab/unit> ;
   rdfs:label "Volt na Sekunda"@cs ;
   rdfs:label "Volt na Sekunda"@sl ;
-  rdfs:label "Volt par Second"@fr ;
+  rdfs:label "Volt par Seconde"@fr ;
   rdfs:label "Volt pe Secundă"@ro ;
   rdfs:label "Volt per Saat"@ms ;
   rdfs:label "Volt per Saniye"@tr ;
@@ -84636,7 +84636,7 @@ unit:V-SEC-PER-M
   rdfs:label "Volt Second per Meter"@en-US ;
   rdfs:label "Volt Second per Metre" ;
   rdfs:label "Volt Second per Metre"@en ;
-  rdfs:label "Volt Second par Mètre"@fr ;
+  rdfs:label "Volt Seconde par Mètre"@fr ;
   rdfs:label "Volt Secondo per Metro"@it ;
   rdfs:label "Volt Secundă pe Metru"@ro ;
   rdfs:label "Volt Segundo por Metro"@pt ;
@@ -85770,10 +85770,10 @@ unit:W-PER-M2-K
   a qudt:DerivedUnit ;
   a qudt:Unit ;
   dcterms:description """
-  The unit $\\textit{Watt Per Square Meter Kelvin }$ ($W m^{-2} K^{-1}$) is a unit in the category of Thermal heat transfer coefficient.
-  It is also known as $\\textit{watt/square meter-kelvin}$.
-  This unit is commonly used in the SI unit system.
-  $\\textit{Watt Per Square Meter Kelvin }$ has a dimension of $MT^{-1}Q^{-1}$ where $M$ is mass, $T$ is time, and $Q$ is temperature.
+  The unit $\\textit{Watt Per Square Meter Kelvin }$ ($W m^{-2} K^{-1}$) is a unit in the category of Thermal heat transfer coefficient. 
+  It is also known as $\\textit{watt/square meter-kelvin}$. 
+  This unit is commonly used in the SI unit system. 
+  $\\textit{Watt Per Square Meter Kelvin }$ has a dimension of $MT^{-1}Q^{-1}$ where $M$ is mass, $T$ is time, and $Q$ is temperature. 
   This unit is the standard SI unit in this category.
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:SI ;
@@ -86167,8 +86167,8 @@ unit:W-PER-M2-SR
   while that of spectral radiance in frequency is the watt per steradian per square metre
   per hertz ($W·sr^{-1}·m^{-2}·Hz^{-1}$) and that of spectral radiance in wavelength is
   the watt per steradian per square metre, per metre ($W·sr^{-1}·m^{-3}$),
-  commonly the watt per steradian per square metre per nanometre ($W·sr^{-1}·m^{-2}·nm^{-1}$).
-  It has a dimension of $ML^{-4}T^{-3}$ where $M$ is mass, $L$ is length, and $T$ is time.
+  commonly the watt per steradian per square metre per nanometre ($W·sr^{-1}·m^{-2}·nm^{-1}$). 
+  It has a dimension of $ML^{-4}T^{-3}$ where $M$ is mass, $L$ is length, and $T$ is time. 
   This unit is the standard SI unit in this category.\"
   """^^qudt:LatexString ;
   qudt:applicableSystem sou:CGS ;
@@ -86350,7 +86350,7 @@ unit:W-SEC
   rdfs:label "Watt Saniye"@tr ;
   rdfs:label "Watt Second" ;
   rdfs:label "Watt Second"@en ;
-  rdfs:label "Watt Second"@fr ;
+  rdfs:label "Watt Seconde"@fr ;
   rdfs:label "Watt Secondo"@it ;
   rdfs:label "Watt Secundă"@ro ;
   rdfs:label "Watt Segundo"@pt ;
@@ -86394,7 +86394,7 @@ unit:W-SEC-PER-M2
   rdfs:label "Watt Second per Square Meter"@en-US ;
   rdfs:label "Watt Second per Square Metre" ;
   rdfs:label "Watt Second per Square Metre"@en ;
-  rdfs:label "Watt Second par Mètre Carré"@fr ;
+  rdfs:label "Watt Seconde par Mètre Carré"@fr ;
   rdfs:label "Watt Secondo per Metro Quadrato"@it ;
   rdfs:label "Watt Secundă pe Metru Pătrat"@ro ;
   rdfs:label "Watt Segundo por Metro Quadrado"@pt ;
@@ -87407,10 +87407,10 @@ vaem:GMD_QUDT-UNITS-ALL
   dcterms:modified "2025-10-27T20:16:21Z"^^xsd:dateTime ;
   dcterms:rights """
   This product includes all or a portion of the UCUM table, UCUM codes, and UCUM definitions
-   or is derived from it, subject to a license from Regenstrief Institute, Inc. and The UCUM Organization.
+   or is derived from it, subject to a license from Regenstrief Institute, Inc. and The UCUM Organization. 
   Your use of the UCUM table, UCUM codes, UCUM definitions also is subject to this license,
-   a copy of which is available at ​http://unitsofmeasure.org.
-  The current complete UCUM table, UCUM Specification are available for download at ​http://unitsofmeasure.org.
+   a copy of which is available at ​http://unitsofmeasure.org. 
+  The current complete UCUM table, UCUM Specification are available for download at ​http://unitsofmeasure.org. 
   The UCUM table and UCUM codes are copyright © 1995-2009, Regenstrief Institute, Inc. and the Unified Codes for Units of Measures (UCUM) Organization.
   All rights reserved.
   THE UCUM TABLE (IN ALL FORMATS), UCUM DEFINITIONS, AND SPECIFICATION ARE PROVIDED 'AS IS.' ANY EXPRESS OR IMPLIED WARRANTIES ARE DISCLAIMED,

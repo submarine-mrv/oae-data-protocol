@@ -8,8 +8,10 @@ repos:
       - id: check-yaml
         exclude: mkdocs.yml  # uses !!python/name tag unsupported by generic checker
       - id: end-of-file-fixer
+        exclude: ^ontologies/  # authoritative TTL fetched from NERC/QUDT — never reformat
       - id: trailing-whitespace
         args: [--markdown-linebreak-ext=md]
+        exclude: ^ontologies/  # authoritative TTL fetched from NERC/QUDT — never reformat
 
   - repo: https://github.com/adrienverge/yamllint.git
     rev: v1.37.0
@@ -22,6 +24,7 @@ repos:
     rev: v2.4.1
     hooks:
       - id: codespell
+        exclude: ^ontologies/  # authoritative TTL fetched from NERC/QUDT — real place names, not typos
         additional_dependencies:
           - tomli
 

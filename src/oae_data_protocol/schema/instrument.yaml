@@ -356,17 +356,17 @@ enums:
           TA in seawater or other natural waters in situ, without the need for manual sampling and
           laboratory analysis.
       showerhead_equilibrator:
-        meaning: SDN_L05:EQUAL
+        meaning: SDN_L05:EQUIL
         description: >-
           This type of equilibrator works by spraying seawater into a gas chamber, allowing the CO2
           in the water to equilibrate with a gas mixture in the chamber.
       floating_air_water_equilibrator:
-        meaning: SDN_L05:EQUAL
+        meaning: SDN_L05:EQUIL
         description: >-
           An "h"-shaped bubble equilibrator assembly commonly used in MAPCO2 systems on moorings.
           For more information, refer to Friederich et al. (1995).
       membrane_equilibrator:
-        meaning: SDN_L05:EQUAL
+        meaning: SDN_L05:EQUIL
         description: >-
           While seawater is passed through a membrane, CO2 in the water diffuses across the membrane
           and equilibrates with the gas mixture, which is then analyzed to determine the CO2

@@ -59,12 +59,14 @@ skip = [
 ]
 
 # Reminder: words have to be lowercased for the ignore-words-list
-ignore-words-list = "linke"
+# equil: NERC L05 CURIE token (SDN_L05:EQUIL), not a misspelling of "equal"
+ignore-words-list = "linke,equil"
 quiet-level = 3
 
 # Ref.: https://github.com/crate-ci/typos (spell checker)
 [tool.typos.default.extend-words]
 linke = "linke"
+EQUIL = "EQUIL"  # NERC L05 CURIE token (SDN_L05:EQUIL), not a misspelling of "equal"
 [tool.typos.files]
 extend-exclude = [
   "LICENSE",

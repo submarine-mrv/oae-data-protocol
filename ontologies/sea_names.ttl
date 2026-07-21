@@ -1044,7 +1044,7 @@ PREFIX void:   <http://rdfs.org/ns/void#>
         skos:definition        "";
         skos:notation          "SDN:C16::50";
         skos:note              "accepted"@en;
-        skos:prefLabel         "Eastern China Sea (Tongue Hai)"@en .
+        skos:prefLabel         "Eastern China Sea (Tung Hai)"@en .
 
 <http://vocab.nerc.ac.uk/collection/C16/current/ARA/>
         rdf:type               skos:Concept;
@@ -2179,7 +2179,7 @@ PREFIX void:   <http://rdfs.org/ns/void#>
         skos:definition        "Body of water between Greenland and Svalbard"@en;
         skos:notation          "SDN:C16::FRM";
         skos:note              "accepted"@en;
-        skos:prefLabel         "Frame Strait"@en .
+        skos:prefLabel         "Fram Strait"@en .
 
 <http://vocab.nerc.ac.uk/collection/C16/current/500/>
         rdf:type               skos:Concept;
