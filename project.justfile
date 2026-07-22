@@ -20,13 +20,14 @@ gen-validation-schema:
         > project/jsonschema/oae_data_protocol.validation.schema.json
     @echo "✓ Generated validation schema (with range class descendants)"
 
-# Post-processing step: inject version metadata into generated artifacts.
-inject-version:
-    uv run python scripts/inject_version_metadata.py
-
 # Convenience wrapper: run the upstream gen-project, then our custom steps.
 # Call this instead of bare `just gen-project` when you want the full OAE build.
-gen-all: gen-project gen-validation-schema inject-version
+#
+# Note: the schema's semantic version comes from `version:` in the LinkML schema
+# (oae_data_protocol.yaml) and flows into the JSON Schema as the root `version`
+# field — no separate injection step. The Python package version is independent
+# and derived from git tags via uv-dynamic-versioning.
+gen-all: gen-project gen-validation-schema
     @echo "✓ Full gen-all completed"
 
 # ---------- Dynamic enum pipeline (NERC + QUDT) ----------

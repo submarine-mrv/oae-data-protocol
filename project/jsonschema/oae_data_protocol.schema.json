@@ -6816,6 +6816,5 @@
     },
     "title": "OAE Data Protocol - Technical Documentation",
     "type": "object",
-    "version": "0.1.0",
-    "x-protocol-version": "0.0.0-prerelease"
+    "version": "0.1.0"
 }
