@@ -3198,6 +3198,19 @@ Project ID + Experiment type + Optional numerical indicator to differentiate bet
     license: Optional[str] = Field(default=None, title="License", description="""Link a Dataset to its license to document legal constraints by adding a schema:license property. The guide recommends providing a URL that unambiguously identifies a specific version of the license used, but for many licenses it is hard to determine what that URL should be. Thus, we recommend that the license URL be drawn from the [SPDX license list](https://spdx.org/licenses/), which provides a curated list of licenses and their properties that is well maintained. For each SPDX entry, SPDX provides a canonical URL for the license (e.g., http://spdx.org/licenses/CC0-1.0), a unique licenseId (e.g., CC0-1.0), and other metadata about the license.""", json_schema_extra = { "linkml_meta": {'alias': 'license', 'domain_of': ['Dataset'], 'slot_uri': 'schema:license'} })
     fair_use_data_request: Optional[str] = Field(default=None, title="Fair Use Data Request", description="""A statement from the data producer regarding how this dataset should be used.""", json_schema_extra = { "linkml_meta": {'alias': 'fair_use_data_request', 'domain_of': ['Dataset']} })
     data_accessibility: DataAccessibility = Field(default=..., title="Data Accessibility", description="""Level of access to this dataset. Open Access data are freely available without restriction. Conditional Access data are available upon request, subject to review. Scheduled Access data will become openly available after a specified date.""", json_schema_extra = { "linkml_meta": {'alias': 'data_accessibility', 'domain_of': ['Dataset']} })
+    data_access_link: Optional[str] = Field(default=None, title="Data access link", description="""URL to access this dataset, if it is already archived or published elsewhere. DOIs are preferred if available (e.g., https://doi.org/10.25921/xxxx-xxx). Optional, and applicable for any accessibility type.""", json_schema_extra = { "linkml_meta": {'alias': 'data_access_link', 'domain_of': ['Dataset']} })
+
+    @field_validator('data_access_link')
+    def pattern_data_access_link(cls, v):
+        pattern=re.compile(r"^https?://.+")
+        if isinstance(v,list):
+            for element in v:
+                if isinstance(v, str) and not pattern.match(element):
+                    raise ValueError(f"Invalid data_access_link format: {element}")
+        elif isinstance(v,str):
+            if not pattern.match(v):
+                raise ValueError(f"Invalid data_access_link format: {v}")
+        return v
 
 
 class FieldDataset(Dataset):
@@ -3256,6 +3269,7 @@ Project ID + Experiment type + Optional numerical indicator to differentiate bet
     license: Optional[str] = Field(default=None, title="License", description="""Link a Dataset to its license to document legal constraints by adding a schema:license property. The guide recommends providing a URL that unambiguously identifies a specific version of the license used, but for many licenses it is hard to determine what that URL should be. Thus, we recommend that the license URL be drawn from the [SPDX license list](https://spdx.org/licenses/), which provides a curated list of licenses and their properties that is well maintained. For each SPDX entry, SPDX provides a canonical URL for the license (e.g., http://spdx.org/licenses/CC0-1.0), a unique licenseId (e.g., CC0-1.0), and other metadata about the license.""", json_schema_extra = { "linkml_meta": {'alias': 'license', 'domain_of': ['Dataset'], 'slot_uri': 'schema:license'} })
     fair_use_data_request: Optional[str] = Field(default=None, title="Fair Use Data Request", description="""A statement from the data producer regarding how this dataset should be used.""", json_schema_extra = { "linkml_meta": {'alias': 'fair_use_data_request', 'domain_of': ['Dataset']} })
     data_accessibility: DataAccessibility = Field(default=..., title="Data Accessibility", description="""Level of access to this dataset. Open Access data are freely available without restriction. Conditional Access data are available upon request, subject to review. Scheduled Access data will become openly available after a specified date.""", json_schema_extra = { "linkml_meta": {'alias': 'data_accessibility', 'domain_of': ['Dataset']} })
+    data_access_link: Optional[str] = Field(default=None, title="Data access link", description="""URL to access this dataset, if it is already archived or published elsewhere. DOIs are preferred if available (e.g., https://doi.org/10.25921/xxxx-xxx). Optional, and applicable for any accessibility type.""", json_schema_extra = { "linkml_meta": {'alias': 'data_access_link', 'domain_of': ['Dataset']} })
 
     @field_validator('temporal_coverage')
     def pattern_temporal_coverage(cls, v):
@@ -3267,6 +3281,18 @@ Project ID + Experiment type + Optional numerical indicator to differentiate bet
         elif isinstance(v,str):
             if not pattern.match(v):
                 raise ValueError(f"Invalid temporal_coverage format: {v}")
+        return v
+
+    @field_validator('data_access_link')
+    def pattern_data_access_link(cls, v):
+        pattern=re.compile(r"^https?://.+")
+        if isinstance(v,list):
+            for element in v:
+                if isinstance(v, str) and not pattern.match(element):
+                    raise ValueError(f"Invalid data_access_link format: {element}")
+        elif isinstance(v,str):
+            if not pattern.match(v):
+                raise ValueError(f"Invalid data_access_link format: {v}")
         return v
 
 
@@ -3322,6 +3348,19 @@ Project ID + Experiment type + Optional numerical indicator to differentiate bet
     license: Optional[str] = Field(default=None, title="License", description="""Link a Dataset to its license to document legal constraints by adding a schema:license property. The guide recommends providing a URL that unambiguously identifies a specific version of the license used, but for many licenses it is hard to determine what that URL should be. Thus, we recommend that the license URL be drawn from the [SPDX license list](https://spdx.org/licenses/), which provides a curated list of licenses and their properties that is well maintained. For each SPDX entry, SPDX provides a canonical URL for the license (e.g., http://spdx.org/licenses/CC0-1.0), a unique licenseId (e.g., CC0-1.0), and other metadata about the license.""", json_schema_extra = { "linkml_meta": {'alias': 'license', 'domain_of': ['Dataset'], 'slot_uri': 'schema:license'} })
     fair_use_data_request: Optional[str] = Field(default=None, title="Fair Use Data Request", description="""A statement from the data producer regarding how this dataset should be used.""", json_schema_extra = { "linkml_meta": {'alias': 'fair_use_data_request', 'domain_of': ['Dataset']} })
     data_accessibility: DataAccessibility = Field(default=..., title="Data Accessibility", description="""Level of access to this dataset. Open Access data are freely available without restriction. Conditional Access data are available upon request, subject to review. Scheduled Access data will become openly available after a specified date.""", json_schema_extra = { "linkml_meta": {'alias': 'data_accessibility', 'domain_of': ['Dataset']} })
+    data_access_link: Optional[str] = Field(default=None, title="Data access link", description="""URL to access this dataset, if it is already archived or published elsewhere. DOIs are preferred if available (e.g., https://doi.org/10.25921/xxxx-xxx). Optional, and applicable for any accessibility type.""", json_schema_extra = { "linkml_meta": {'alias': 'data_access_link', 'domain_of': ['Dataset']} })
+
+    @field_validator('data_access_link')
+    def pattern_data_access_link(cls, v):
+        pattern=re.compile(r"^https?://.+")
+        if isinstance(v,list):
+            for element in v:
+                if isinstance(v, str) and not pattern.match(element):
+                    raise ValueError(f"Invalid data_access_link format: {element}")
+        elif isinstance(v,str):
+            if not pattern.match(v):
+                raise ValueError(f"Invalid data_access_link format: {v}")
+        return v
 
 
 class HardwareConfiguration(ConfiguredBaseModel):

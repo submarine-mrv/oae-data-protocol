@@ -2069,6 +2069,12 @@
                     "title": "Author List (for citation)",
                     "type": "string"
                 },
+                "data_access_link": {
+                    "description": "URL to access this dataset, if it is already archived or published elsewhere. DOIs are preferred if available (e.g., https://doi.org/10.25921/xxxx-xxx). Optional, and applicable for any accessibility type.",
+                    "pattern": "^https?://.+",
+                    "title": "Data access link",
+                    "type": "string"
+                },
                 "data_accessibility": {
                     "$ref": "#/$defs/DataAccessibility",
                     "description": "Level of access to this dataset. Open Access data are freely available without restriction. Conditional Access data are available upon request, subject to review. Scheduled Access data will become openly available after a specified date.",
@@ -3704,6 +3710,12 @@
                         "null"
                     ]
                 },
+                "data_access_link": {
+                    "description": "URL to access this dataset, if it is already archived or published elsewhere. DOIs are preferred if available (e.g., https://doi.org/10.25921/xxxx-xxx). Optional, and applicable for any accessibility type.",
+                    "pattern": "^https?://.+",
+                    "title": "Data access link",
+                    "type": "string"
+                },
                 "data_accessibility": {
                     "$ref": "#/$defs/DataAccessibility",
                     "description": "Level of access to this dataset. Open Access data are freely available without restriction. Conditional Access data are available upon request, subject to review. Scheduled Access data will become openly available after a specified date.",
@@ -5280,6 +5292,12 @@
                 "author_list_for_citation": {
                     "description": "Author list in the format of Lastname1, Firstname1 Middlename1; Lastname2, Firstname2 Middlename2; ...",
                     "title": "Author List (for citation)",
+                    "type": "string"
+                },
+                "data_access_link": {
+                    "description": "URL to access this dataset, if it is already archived or published elsewhere. DOIs are preferred if available (e.g., https://doi.org/10.25921/xxxx-xxx). Optional, and applicable for any accessibility type.",
+                    "pattern": "^https?://.+",
+                    "title": "Data access link",
                     "type": "string"
                 },
                 "data_accessibility": {

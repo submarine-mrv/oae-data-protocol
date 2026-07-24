@@ -1697,6 +1697,8 @@ Project ID + Experiment type + Optional numerical indicator to differentiate bet
     fair_use_data_request?: string,
     /** Level of access to this dataset. Open Access data are freely available without restriction. Conditional Access data are available upon request, subject to review. Scheduled Access data will become openly available after a specified date. */
     data_accessibility: string,
+    /** URL to access this dataset, if it is already archived or published elsewhere. DOIs are preferred if available (e.g., https://doi.org/10.25921/xxxx-xxx). Optional, and applicable for any accessibility type. */
+    data_access_link?: string,
 }
 
 

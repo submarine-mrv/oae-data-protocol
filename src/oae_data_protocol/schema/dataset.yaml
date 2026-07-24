@@ -98,6 +98,14 @@ classes:
           will become openly available after a specified date.
         range: DataAccessibility
         required: true
+      data_access_link:
+        title: Data access link
+        description: >-
+          URL to access this dataset, if it is already archived or published elsewhere.
+          DOIs are preferred if available (e.g., https://doi.org/10.25921/xxxx-xxx).
+          Optional, and applicable for any accessibility type.
+        range: uri
+        pattern: '^https?://.+'
 
     exact_mappings:
       - "schema:Dataset"
