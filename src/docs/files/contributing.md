@@ -38,10 +38,10 @@ To work with the schema locally:
 ```bash
 git clone https://github.com/submarine-mrv/oae-data-protocol.git
 cd oae-data-protocol
-make install        # Install dependencies via Poetry
-make gen-schemas    # Generate all schema artifacts
-make test           # Run validation tests
-make serve          # Preview documentation locally
+just install        # Install dependencies via uv
+just gen-all        # Generate all schema artifacts
+just test           # Run validation tests
+just testdoc        # Preview documentation locally
 ```
 
 See the [repository README](https://github.com/submarine-mrv/oae-data-protocol) for full development setup instructions.

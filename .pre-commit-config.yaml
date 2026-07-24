@@ -1,0 +1,57 @@
+---
+# https://pre-commit.com/
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-toml
+      - id: check-yaml
+        exclude: mkdocs.yml  # uses !!python/name tag unsupported by generic checker
+      # Never reformat machine-generated / externally-fetched files. Reformatting
+      # them makes committed output diverge from `just gen-all`, which breaks the
+      # generated-artifact drift check in CI. Covers: ontologies/ (NERC/QUDT TTL),
+      # project/ (gen-project output), and the generated datamodel.
+      - id: end-of-file-fixer
+        exclude: ^(ontologies|project|src/oae_data_protocol/datamodel)/
+      - id: trailing-whitespace
+        args: [--markdown-linebreak-ext=md]
+        exclude: ^(ontologies|project|src/oae_data_protocol/datamodel)/
+
+  - repo: https://github.com/adrienverge/yamllint.git
+    rev: v1.37.0
+    hooks:
+      - id: yamllint
+        args: [-c=.yamllint.yaml]
+        exclude: (mkdocs\.yml|dynamic_enums_expanded\.yaml|examples/)  # generated/config/samples with different conventions
+
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.4.1
+    hooks:
+      - id: codespell
+        exclude: ^ontologies/  # authoritative TTL fetched from NERC/QUDT — real place names, not typos
+        additional_dependencies:
+          - tomli
+
+  - repo: https://github.com/crate-ci/typos
+    rev: v1.31.1
+    hooks:
+      - id: typos
+        exclude: ^ontologies/  # downloaded TTL files from NERC/QUDT — not our code
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    # Ruff version.
+    rev: v0.11.3
+    hooks:
+      # Run the linter (exclude generated datamodel files).
+      - id: ruff
+        args: [--fix, --exit-non-zero-on-fix]
+        exclude: ^src/oae_data_protocol/datamodel/
+      # Run the formatter (exclude generated datamodel files).
+      - id: ruff-format
+        exclude: ^src/oae_data_protocol/datamodel/
+
+  - repo: https://github.com/astral-sh/uv-pre-commit
+    # uv version.
+    rev: 0.6.12
+    hooks:
+      - id: uv-lock

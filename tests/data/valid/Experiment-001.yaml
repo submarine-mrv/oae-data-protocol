@@ -1,0 +1,15 @@
+description: >-
+  A baseline study of carbonate chemistry along the Pacific Coast, collected
+  ahead of a planned ocean alkalinity enhancement intervention.
+experiment_id: "OAEPC001"
+project_id: "PacificCoastOAEProject"
+name: "Pacific Coast OAE Baseline"
+experiment_types: ["baseline"]
+experiment_leads:
+  - name: "Dana Researcher"
+    email: "dana.researcher@example.org"
+spatial_coverage:
+  geo:
+    box: "36.5 -123.5 38.5 -121.5"
+start_datetime: "2025-03-01T00:00:00+00:00"
+end_datetime: "2025-03-15T00:00:00+00:00"

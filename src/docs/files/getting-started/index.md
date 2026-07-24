@@ -22,7 +22,7 @@ This site is the technical reference for the protocol's machine-readable schema 
 - Browse [controlled vocabularies](../vocabularies.md) used across the protocol
 - Reference the [full schema index](../OAEDataSchema.md) for every class, slot, and enum
 
-The schema generates [JSON Schema](https://github.com/submarine-mrv/oae-data-protocol/blob/main/project/jsonschema/oae_data_protocol.validation.schema.json) for validation, [Python dataclasses](https://github.com/submarine-mrv/oae-data-protocol/blob/main/src/oae_data_protocol/datamodel/oae_data_protocol.py) for programmatic access, and a [JSON-LD context](https://github.com/submarine-mrv/oae-data-protocol/blob/main/project/jsonld/context.jsonld) for linked data compatibility.
+The schema generates [JSON Schema](https://github.com/submarine-mrv/oae-data-protocol/blob/main/project/jsonschema/oae_data_protocol.validation.schema.json) for validation, [Python dataclasses](https://github.com/submarine-mrv/oae-data-protocol/blob/main/src/oae_data_protocol/datamodel/oae_data_protocol.py) for programmatic access, and a [JSON-LD context](https://schema.oaedata.org/context.jsonld) for linked data compatibility.
 
 ## Creating Metadata
 

@@ -167,8 +167,8 @@ classes:
               required: true
 
   InterventionDetails:
-    description: >- 
-      An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are 
+    description: >-
+      An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are
       specific to an Experiment with type "Intervention"
     mixin: true
     attributes:
@@ -241,7 +241,7 @@ classes:
         required: true
   TracerDetails:
     description: >-
-      An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are 
+      An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are
       specific to an Experiment with type "Tracer"
     mixin: true
     attributes:
@@ -265,7 +265,7 @@ classes:
         # todo: update to number & unit. along with effluent density
         description: >-
           Fixed concentration or provide link/source to tracer concentration separately in the dosing file. Please
-          include whether concentration is directly measured or a derived value. If this is a variable included with 
+          include whether concentration is directly measured or a derived value. If this is a variable included with
           your data, please note so here as 'tracer concentration provided as a variable' and use
           'tracer_concentration' for your column header name.
         range: DosingConcentration
@@ -291,7 +291,7 @@ classes:
   DosingDetails:
     mixin: true
     description: >-
-      An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are 
+      An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are
       specific to an Experiment with active dosing (e.g. type "Tracer", "Intervention", or "InterventionWithDosing")
     attributes:
       dosing_delivery_type:
@@ -332,7 +332,7 @@ classes:
         description: >-
           Please be descriptive. Information about the dosing mechanism must be included (outflow from pipe,
           diffuser, doser, manual placement)
-          
+
           E.g., outflow from existing facility pipe directly to ocean, manual riverine introduction, coastal
           distribution at three separate 30 meter long sections, pier-based diffuser to intercoastal bay, distributed
           from stationary barge 10 miles offshore.

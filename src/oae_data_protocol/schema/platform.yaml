@@ -41,4 +41,3 @@ classes:
         title: Country
         description: Country to which the platform belongs.
         range: string
-

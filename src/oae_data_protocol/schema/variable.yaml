@@ -43,7 +43,7 @@ classes:
         description: >-
           The name for the variable as it is identified in the dataset data file.
           This could be the column header in a CSV or the variable name in a NetCDF file.
-          Standard common recommended column header names can be found in protocol documentation 
+          Standard common recommended column header names can be found in protocol documentation
           [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).
         range: string
         required: true
@@ -235,7 +235,7 @@ classes:
         title: Calculated Method And Parameters
         description: >-
           Information about how the variable was calculated and the parameters used in calculation, e.g.:
-          Calculation software = CO2SYSv1 (MATLAB) 
+          Calculation software = CO2SYSv1 (MATLAB)
           Input variables =  pH and DIC (column header names 'ph_t_insitu' and 'dic' in associated dataset file)
           Additional information = the dissociation constants of Lueker et al., 2000 for carbonic acid, etc.
         range: string
@@ -505,8 +505,6 @@ classes:
         description: Name and contact information for HPLC technician.
         range: string
 
-
-
   # =============================================================================
   # Physiological Variable Classes
   # =============================================================================
@@ -606,8 +604,6 @@ classes:
       uri:
         range: uriorcurie
         required: true
-
-
 
   # =============================================================================
   # Mixin Classes
@@ -785,7 +781,7 @@ slots:
     description: >-
       Describe what QC steps have been taken to improve the quality of the data
       (e.g., DOI, software and settings used, outlier removal, etc.).
-      
+
       If quality control procedures are described in a separate document uploaded with the data, provide the name
       of the document here.
     range: string
@@ -794,7 +790,7 @@ slots:
     description: >-
       It is recommended to provide uncertainty for each data point in the data file.
       Else provide a single value representative of the dataset.
-      
+
       If uncertainty is provided as a variable, please list the column header name here.
     range: string
     # TODO: Change to VariableUncertainty in Phase 3
@@ -816,13 +812,11 @@ slots:
       Climate quality is defined as measurements of quality sufficient to assess long term trends with a defined
       level of confidence. Weather quality is defined as measurements of quality sufficient to identify relative
       spatial patterns and short term variation.
-      
+
       For more details, refer to Newton J.A., Feely R. A., Jewett E. B., Williamson P. & Mathis J., 2015. Global
       Ocean Acidification Observing Network: Requirements and Governance Plan. Second Edition, GOA-ON,
       http://www.goa-on.org/docs/GOA-ON_plan_print.pdf.
     range: AppropriateUseQuality
-
-
 
 enums:
   SamplingType:
@@ -940,5 +934,3 @@ enums:
         description: Text analysis
       other:
         description: Other study type
-
-

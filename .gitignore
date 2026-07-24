@@ -1,13 +1,25 @@
+# Generated documentation: gen-doc writes flat into docs/ and is then overlaid
+# with hand-written pages from src/docs/files/. The whole docs/ tree is derived
+# and rebuilt on every `just gen-doc` — never committed.
 /docs/
-/project/docs/
-/tmp/
-# PyCharm files
-.idea/
+# linkml-run-examples output (not useful to have in git in its current form)
+/examples/output/
+
+# Derived schemas, generated from the schema.yaml
+tmp/
+project/*
+!project/README.md
+# Tracked generated artifacts: consumed by oae-form (`make schema`) and docs
+!project/jsonschema/
+!project/typescript/
+
+# macOS
+.DS_Store
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
-.DS_Store
 
 # C extensions
 *.so
@@ -134,7 +146,7 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# Claude AI instruction set
-CLAUDE.md
-
-examples/
+# pycharm
+.idea
+# Local vscode editor config
+.vscode

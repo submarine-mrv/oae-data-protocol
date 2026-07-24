@@ -1,0 +1,14 @@
+# Changes here will be overwritten by Copier
+_commit: v0.4.2
+_src_path: gh:linkml/linkml-project-copier
+add_example: true
+copyright_year: '2026'
+email: cjlevinson@gmail.com
+full_name: Cory Levinson
+gh_action_docs_preview: true
+gh_action_pypi: false
+github_org: submarine-mrv
+license: Apache-2.0
+project_description: Base ontology and data schemas for ocean alkalinity enhancement projects, experiments, and field trials.
+project_name: oae-data-protocol
+project_slug: oae_data_protocol

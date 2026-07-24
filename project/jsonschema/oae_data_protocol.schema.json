@@ -397,12 +397,12 @@
             "description": "A variable that is calculated or derived from other measured variables rather than directly measured by an instrument (e.g., carbonate system parameters computed via CO2SYS). Set genesis to \"calculated\". The variable_type should reflect the quantity being calculated (e.g., \"pH\", \"ta\", \"dic\", \"co2\", or \"other\").",
             "properties": {
                 "calculation_method_and_parameters": {
-                    "description": "Information about how the variable was calculated and the parameters used in calculation, e.g.: Calculation software = CO2SYSv1 (MATLAB)  Input variables =  pH and DIC (column header names 'ph_t_insitu' and 'dic' in associated dataset file) Additional information = the dissociation constants of Lueker et al., 2000 for carbonic acid, etc.",
+                    "description": "Information about how the variable was calculated and the parameters used in calculation, e.g.: Calculation software = CO2SYSv1 (MATLAB) Input variables =  pH and DIC (column header names 'ph_t_insitu' and 'dic' in associated dataset file) Additional information = the dissociation constants of Lueker et al., 2000 for carbonic acid, etc.",
                     "title": "Calculated Method And Parameters",
                     "type": "string"
                 },
                 "dataset_variable_name": {
-                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
+                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
                     "title": "Dataset variable name",
                     "type": "string"
                 },
@@ -757,7 +757,7 @@
                     "type": "string"
                 },
                 "dataset_variable_name": {
-                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
+                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
                     "title": "Dataset variable name",
                     "type": "string"
                 },
@@ -983,7 +983,7 @@
                     "title": "Per-volume vs per-mass based units"
                 },
                 "dataset_variable_name": {
-                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
+                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
                     "title": "Dataset variable name",
                     "type": "string"
                 },
@@ -1147,7 +1147,7 @@
                     "type": "string"
                 },
                 "dataset_variable_name": {
-                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
+                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
                     "title": "Dataset variable name",
                     "type": "string"
                 },
@@ -1314,7 +1314,7 @@
                     "type": "string"
                 },
                 "dataset_variable_name": {
-                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
+                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
                     "title": "Dataset variable name",
                     "type": "string"
                 },
@@ -1482,7 +1482,7 @@
                     "type": "string"
                 },
                 "dataset_variable_name": {
-                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
+                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
                     "title": "Dataset variable name",
                     "type": "string"
                 },
@@ -1666,7 +1666,7 @@
                     "type": "string"
                 },
                 "dataset_variable_name": {
-                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
+                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
                     "title": "Dataset variable name",
                     "type": "string"
                 },
@@ -1896,7 +1896,7 @@
                     "title": "Per-volume vs per-mass based units"
                 },
                 "dataset_variable_name": {
-                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
+                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
                     "title": "Dataset variable name",
                     "type": "string"
                 },
@@ -2240,7 +2240,7 @@
                     "title": "Weather or climate quality"
                 },
                 "dataset_variable_name": {
-                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
+                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
                     "title": "Dataset variable name",
                     "type": "string"
                 },
@@ -2445,7 +2445,7 @@
                     "title": "Per-volume vs per-mass based units"
                 },
                 "dataset_variable_name": {
-                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
+                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
                     "title": "Dataset variable name",
                     "type": "string"
                 },
@@ -2605,7 +2605,7 @@
                     "type": "string"
                 },
                 "dataset_variable_name": {
-                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
+                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
                     "title": "Dataset variable name",
                     "type": "string"
                 },
@@ -2761,7 +2761,7 @@
                     "title": "Weather or climate quality"
                 },
                 "dataset_variable_name": {
-                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
+                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
                     "title": "Dataset variable name",
                     "type": "string"
                 },
@@ -2935,7 +2935,7 @@
                     "type": "string"
                 },
                 "dataset_variable_name": {
-                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
+                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
                     "title": "Dataset variable name",
                     "type": "string"
                 },
@@ -3108,7 +3108,7 @@
                     "type": "string"
                 },
                 "dataset_variable_name": {
-                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
+                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
                     "title": "Dataset variable name",
                     "type": "string"
                 },
@@ -3304,7 +3304,7 @@
                     "type": "string"
                 },
                 "dataset_variable_name": {
-                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
+                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
                     "title": "Dataset variable name",
                     "type": "string"
                 },
@@ -3983,7 +3983,7 @@
                     "type": "string"
                 },
                 "dataset_variable_name": {
-                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
+                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
                     "title": "Dataset variable name",
                     "type": "string"
                 },
@@ -4768,7 +4768,7 @@
                 },
                 "tracer_concentration": {
                     "$ref": "#/$defs/DosingConcentration",
-                    "description": "Fixed concentration or provide link/source to tracer concentration separately in the dosing file. Please include whether concentration is directly measured or a derived value. If this is a variable included with  your data, please note so here as 'tracer concentration provided as a variable' and use 'tracer_concentration' for your column header name.",
+                    "description": "Fixed concentration or provide link/source to tracer concentration separately in the dosing file. Please include whether concentration is directly measured or a derived value. If this is a variable included with your data, please note so here as 'tracer concentration provided as a variable' and use 'tracer_concentration' for your column header name.",
                     "title": "Tracer Concentration"
                 },
                 "tracer_details": {
@@ -5485,7 +5485,7 @@
             "description": "A contextual or ancillary variable that is NOT directly measured or calculated by the project. Use for identifiers (Cruise_ID, Exp_ID), timestamps (Year_UTC, Time_UTC), coordinates (Latitude, Longitude), and any other data included in the dataset for context. Do NOT create a NonMeasuredVariable for quality control flag columns \u2014 instead, set dataset_variable_name_qc_flag on the parent measured or calculated variable that the flag relates to. variable_type must be \"non_measured\".",
             "properties": {
                 "dataset_variable_name": {
-                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
+                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
                     "title": "Dataset variable name",
                     "type": "string"
                 },
@@ -5788,7 +5788,7 @@
         },
         "Place": {
             "additionalProperties": false,
-            "description": "A geospatial area of interest, defined by a bounding box, polygon/line, or a point designated as a  pair of geo-coordinates.",
+            "description": "A geospatial area of interest, defined by a bounding box, polygon/line, or a point designated as a pair of geo-coordinates.",
             "properties": {
                 "geo": {
                     "$ref": "#/$defs/Any",
@@ -6297,7 +6297,7 @@
             "description": "Socioeconomic variable for social and economic data such as survey responses, ecosystem service valuations, or text analysis. Extends InSituVariable to inherit method_reference and measurement_researcher, but does NOT include QCFields, instrument details, or calibration.",
             "properties": {
                 "dataset_variable_name": {
-                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
+                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
                     "title": "Dataset variable name",
                     "type": "string"
                 },
@@ -6638,7 +6638,7 @@
                 },
                 "tracer_concentration": {
                     "$ref": "#/$defs/DosingConcentration",
-                    "description": "Fixed concentration or provide link/source to tracer concentration separately in the dosing file. Please include whether concentration is directly measured or a derived value. If this is a variable included with  your data, please note so here as 'tracer concentration provided as a variable' and use 'tracer_concentration' for your column header name.",
+                    "description": "Fixed concentration or provide link/source to tracer concentration separately in the dosing file. Please include whether concentration is directly measured or a derived value. If this is a variable included with your data, please note so here as 'tracer concentration provided as a variable' and use 'tracer_concentration' for your column header name.",
                     "title": "Tracer Concentration"
                 },
                 "tracer_details": {
@@ -6816,6 +6816,5 @@
     },
     "title": "OAE Data Protocol - Technical Documentation",
     "type": "object",
-    "version": "0.1.0",
-    "x-protocol-version": "0.0.0-prerelease"
+    "version": "0.1.0"
 }

@@ -545,7 +545,7 @@ export enum AnalyzingInstrumentType {
     handheld_ph_spectrophotometer = "handheld_ph_spectrophotometer",
     /** A pH electrode, sometimes referred to as a pH probe or pH sensor, is a glass device used to measure the pH of a solution. */
     ph_electrode = "ph_electrode",
-    /** A pH sensor. The sensor can be used for ocean acidification, research coral reef sensitivity analysis and environmental monitoring. The sensor measures pH with a range of 6.5 to 9.0. The sensing element is an ion  sensitive field effect transistor. The pH sensor has an initial accuracy of +/-0.05 pH, precision of 0.001 pH and stability of 0.005 pH/month. It can operate in temperatures ranging from 0 deg C to 50 deg C and up to depths of 50 m. */
+    /** A pH sensor. The sensor can be used for ocean acidification, research coral reef sensitivity analysis and environmental monitoring. The sensor measures pH with a range of 6.5 to 9.0. The sensing element is an ion sensitive field effect transistor. The pH sensor has an initial accuracy of +/-0.05 pH, precision of 0.001 pH and stability of 0.005 pH/month. It can operate in temperatures ranging from 0 deg C to 50 deg C and up to depths of 50 m. */
     sea_bird_seafet_v1 = "sea_bird_seafet_v1",
     /** A pH sensor. The sensor can be used for ocean acidification, research coral reef sensitivity analysis and environmental monitoring. The sensor measures pH with a range of 6.5 to 9.0. The sensing element is an ion sensitive field effect transistor. V2 implements improvements to the original SeaFET's reliability, data quality, ease of operation, and deployment endurance, with significant changes to how users interface with the instrument. The pH sensor has an accuracy to +/-0.05 pH, precision of 0.004 pH and stability of 0.003 pH/month. It can operate in temperatures ranging from 0 deg C to 50 deg C and up to depths of 50 m. */
     sea_bird_seafet_v2 = "sea_bird_seafet_v2",
@@ -717,7 +717,7 @@ export interface Any {
 
 
 /**
- * A geospatial area of interest, defined by a bounding box, polygon/line, or a point designated as a  pair of geo-coordinates.
+ * A geospatial area of interest, defined by a bounding box, polygon/line, or a point designated as a pair of geo-coordinates.
  */
 export interface Place {
     /** Entities that have a somewhat fixed, physical extension. (imported from schema.org) */
@@ -970,7 +970,7 @@ export interface InterventionWithTracer extends Intervention, TracerDetails {
 
 
 /**
- * An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are  specific to an Experiment with type "Intervention"
+ * An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are specific to an Experiment with type "Intervention"
  */
 export interface InterventionDetails {
     /** Method(s) used to process the alkalinity feedstock. See Controlled Vocabularies section for definitions. */
@@ -996,7 +996,7 @@ See Controlled Vocabularies section for selected examples (this list is not exha
 
 
 /**
- * An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are  specific to an Experiment with type "Tracer"
+ * An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are specific to an Experiment with type "Tracer"
  */
 export interface TracerDetails {
     /** The form of tracer upon delivery to the ocean (e.g. gas or dye-release) */
@@ -1005,7 +1005,7 @@ export interface TracerDetails {
     tracer_form_custom?: string,
     /** state the kind of tracer used (e.g. rhodamine, or a specific gas) */
     tracer_details: string,
-    /** Fixed concentration or provide link/source to tracer concentration separately in the dosing file. Please include whether concentration is directly measured or a derived value. If this is a variable included with  your data, please note so here as 'tracer concentration provided as a variable' and use 'tracer_concentration' for your column header name. */
+    /** Fixed concentration or provide link/source to tracer concentration separately in the dosing file. Please include whether concentration is directly measured or a derived value. If this is a variable included with your data, please note so here as 'tracer concentration provided as a variable' and use 'tracer_concentration' for your column header name. */
     tracer_concentration: DosingConcentration,
 }
 
@@ -1024,7 +1024,7 @@ export interface DosingConcentration {
 
 
 /**
- * An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are  specific to an Experiment with active dosing (e.g. type "Tracer", "Intervention", or "InterventionWithDosing")
+ * An abstract class (used as a mixin, not implemented directly) for detailing the required fields that are specific to an Experiment with active dosing (e.g. type "Tracer", "Intervention", or "InterventionWithDosing")
  */
 export interface DosingDetails {
     /** Type of dosing delivery method. See Controlled Vocabularies for definitions. */
@@ -1310,7 +1310,7 @@ export interface Variable {
     /** High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use. */
     variable_type: string,
     standard_identifier?: VocabularyItemReference,
-    /** The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation  [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name). */
+    /** The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name). */
     dataset_variable_name: string,
     /** Full descriptive name of the variable. */
     long_name: string,
@@ -1383,7 +1383,7 @@ export interface ContinuousMeasuredVariable extends MeasuredVariable {
  * A variable that is calculated or derived from other measured variables rather than directly measured by an instrument (e.g., carbonate system parameters computed via CO2SYS). Set genesis to "calculated". The variable_type should reflect the quantity being calculated (e.g., "pH", "ta", "dic", "co2", or "other").
  */
 export interface CalculatedVariable extends InSituVariable, QCFields {
-    /** Information about how the variable was calculated and the parameters used in calculation, e.g.: Calculation software = CO2SYSv1 (MATLAB)  Input variables =  pH and DIC (column header names 'ph_t_insitu' and 'dic' in associated dataset file) Additional information = the dissociation constants of Lueker et al., 2000 for carbonic acid, etc. */
+    /** Information about how the variable was calculated and the parameters used in calculation, e.g.: Calculation software = CO2SYSv1 (MATLAB) Input variables =  pH and DIC (column header names 'ph_t_insitu' and 'dic' in associated dataset file) Additional information = the dissociation constants of Lueker et al., 2000 for carbonic acid, etc. */
     calculation_method_and_parameters: string,
 }
 
@@ -1889,5 +1889,6 @@ export interface Container {
     /** Git commit hash of the metadata-builder UI */
     metadata_builder_git_hash?: string,
 }
+
 
 

@@ -10,6 +10,12 @@ prefixes:
   dcat: "http://www.w3.org/ns/dcat#"
   envthes: "https://w3id.org/envthes/"
   PUBCHEM: "https://pubchem.ncbi.nlm.nih.gov/compound/"
+  # Declared here (in addition to the importing modules) so gen-python emits the
+  # CurieNamespaces used by enum meanings — without them the datamodel fails to import.
+  unit: "https://qudt.org/vocab/unit/"
+  "SDN_L05": "http://vocab.nerc.ac.uk/collection/L05/current/"
+  "SDN_L22": "http://vocab.nerc.ac.uk/collection/L22/current/"
+  "SDN_B75": "http://vocab.nerc.ac.uk/collection/B75/current/"
 default_prefix: oae
 
 imports:

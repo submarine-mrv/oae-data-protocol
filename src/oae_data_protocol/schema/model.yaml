@@ -44,11 +44,11 @@ classes:
         title: Model Component Description
         description: >-
           A description of the model component characteristics.
-          
+
           For physics components, this should include the version of equations being solved
           (hydrostatic vs non-hydrostatic), tracer advection scheme, how bottom drag is represented, mixed layer
           parameterizations, sub-grid mixing parameterizations if applicable, etc.
-          
+
           For BGC components, this should include details of which parameters are modeled explicitly, derived carbonate
           system parameters, advection scheme for biological tracers, CO₂ solver protocol (e.g., CO₂SYS), links to
           data/code with biological model parameters (e.g., growth and mortality rates), etc. Equations for each
@@ -59,7 +59,7 @@ classes:
           dissolution and precipitation of calcium carbonate are considered, how exchanges between sediment and
           overlying water are represented (if applicable), and whether active feedbacks between biological processes
           and the carbonate system are represented.
-          
+
           Associated links to data, DOIs, or publications can be noted here, but should be supplemental.
     attributes:
       model_component_type:
@@ -208,7 +208,7 @@ classes:
         range: string
       processing_code:
         title: Processing code
-        description: >- 
+        description: >-
           If applicable, link to any code for processing of raw forcing and input data listed in the fields above.
         range: NamedLink
         multivalued: true

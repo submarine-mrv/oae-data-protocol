@@ -1,9 +1,17 @@
 # Built from:
 # https://docs.github.com/en/actions/guides/building-and-testing-python
 ---
-name: Build and test oae_data_protocol
+name: Build and test
 
-on: [pull_request]
+on:  # yamllint disable-line rule:truthy
+  push:
+    branches: [main]
+  pull_request:
+
+env:
+  FORCE_COLOR: "1" # Make tools pretty.
+
+permissions: {}
 
 jobs:
   test:
@@ -11,26 +19,78 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.9", "3.10"]
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
+      fail-fast: false
 
     steps:
 
+      # https://github.com/actions/checkout
       - name: Check out repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6.0.2
+        with:
+          persist-credentials: false
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      # https://github.com/astral-sh/setup-uv
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7.2.1
+        with:
+          python-version: ${{ matrix.python-version }}
+          enable-cache: true
+          cache-dependency-glob: "uv.lock"
+
+      # https://github.com/actions/setup-python
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v6.2.0
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Install Poetry
-        run: pipx install poetry
-
-      - name: Install dependencies
-        run: poetry install --no-interaction --no-root
+      - name: Install just
+        run: |
+          uv tool install rust-just
 
       - name: Install project
-        run: poetry install --no-interaction
+        run: uv sync --dev
 
       - name: Run test suite
-        run: make test
+        run: just test
+
+  # Regenerate all artifacts from the LinkML schema and fail if the committed
+  # copies are out of date. Guards against editing the schema YAML without
+  # running `just gen-all` and committing the regenerated JSON Schema, TypeScript,
+  # and Pydantic model. Generated files are excluded from the whitespace hooks
+  # (see .pre-commit-config.yaml) so committed output matches gen-all byte-for-byte.
+  check-generated:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6.0.2
+        with:
+          persist-credentials: false
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7.2.1
+        with:
+          python-version: "3.12"
+          enable-cache: true
+          cache-dependency-glob: "uv.lock"
+
+      - name: Set up Python
+        uses: actions/setup-python@v6.2.0
+        with:
+          python-version: "3.12"
+
+      - name: Install just
+        run: uv tool install rust-just
+
+      - name: Install project
+        run: uv sync --dev
+
+      - name: Regenerate artifacts
+        run: just gen-all
+
+      - name: Fail if generated artifacts are out of date
+        run: |
+          if ! git diff --exit-code -- project/ src/oae_data_protocol/datamodel/; then
+            echo "::error::Generated artifacts are out of date. Run 'just gen-all' and commit the result."
+            exit 1
+          fi

@@ -1,20 +1,34 @@
 ---
 site_name: "OAE Data Protocol: Schema Documentation"
-site_url: https://schema.oaedata.org
-repo_url: https://github.com/submarine-mrv/oae-data-protocol
-
 theme:
+  # https://www.mkdocs.org/user-guide/configuration/#theme
   name: material
   favicon: img/favicon.ico
   logo: img/cts-logo.png
+  # Light theme only. Dark mode intentionally omitted — no palette/toggle
+  # configured. Custom brand colors live in stylesheets/extra.css.
   features:
     - navigation.indexes
     - content.tabs.link
+    - header.autohide      # maximum screen space during scrolling
+    - navigation.expand    # optimize user experience
+    - navigation.instant   # optimize user experience
+    - navigation.instant.progress
+    - navigation.tracking  # update address bar
+    - search.suggest       # suggest good completions
+    - content.code.copy    # enable copy to clipboard
+
+# extra css/js see https://www.mkdocs.org/user-guide/customizing-your-theme/
+extra_css:
+  - stylesheets/extra.css
+extra_javascript:
+  - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
+  - javascripts/tablesort.js
 
 plugins:
   - search
   - mermaid2:
-      version: 10.9.0
+      version: 11.4.1
 
 markdown_extensions:
   - tables
@@ -22,10 +36,21 @@ markdown_extensions:
   - pymdownx.details
   - attr_list
   - pymdownx.superfences:
+      # https://mkdocs-mermaid2.readthedocs.io/en/latest/superfences
+      # custom code highlighting rules
       custom_fences:
         - name: mermaid
+          # disable code highlighting to display diagrams
+          format: !!python/name:pymdownx.superfences.fence_code_format
           class: mermaid
-          format: !!python/name:mermaid2.fence_mermaid_custom
+
+  # TODO rebuild docs on schema change (https://github.com/dalito/linkml-project-copier/issues/39)
+  # - gen-files:
+  #     scripts:
+  #       - gen_pages.py  # or any other name or path
+
+watch:
+  - src/oae_data_protocol/schema
 
 nav:
   - Home: index.md
@@ -48,16 +73,17 @@ nav:
     - FieldDataset: FieldDataset.md
     - ModelOutputDataset: ModelOutputDataset.md
   - Variables:
+    # Only the abstract/intermediate classes are listed here. Concrete leaf
+    # variable types (DiscretePHVariable, HPLCVariable, physiological, etc.)
+    # are reachable from their parent pages, which enumerate their subclasses.
     - Variables/index.md
+    - Variable: Variable.md
     - InSituVariable: InSituVariable.md
     - MeasuredVariable: MeasuredVariable.md
+    - DiscreteMeasuredVariable: DiscreteMeasuredVariable.md
+    - ContinuousMeasuredVariable: ContinuousMeasuredVariable.md
     - CalculatedVariable: CalculatedVariable.md
     - NonMeasuredVariable: NonMeasuredVariable.md
-    - DiscretePHVariable: DiscretePHVariable.md
-    - DiscreteTAVariable: DiscreteTAVariable.md
-    - DiscreteDICVariable: DiscreteDICVariable.md
-    - DiscreteCO2Variable: DiscreteCO2Variable.md
-    - HPLCVariable: HPLCVariable.md
   - Instruments & Calibration:
     - instruments-calibration/index.md
     - AnalyzingInstrument: AnalyzingInstrument.md
@@ -68,9 +94,15 @@ nav:
   - Controlled Vocabularies: vocabularies.md
   - Full Schema Index: OAEDataSchema.md
 
-extra_css:
-  - stylesheets/extra.css
+exclude_docs: |
+  /templates-linkml/
 
-extra_javascript:
-  - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
-  - javascripts/tablesort.js
+site_url: https://schema.oaedata.org
+repo_url: https://github.com/submarine-mrv/oae-data-protocol
+
+# Uncomment this block to enable use of Google Analytics.
+# Replace the property value with your own ID.
+# extra:
+#   analytics:
+#     provider: google
+#     property: G-XXXXXXXXXX

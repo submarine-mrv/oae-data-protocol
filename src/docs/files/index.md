@@ -32,7 +32,7 @@ column header names, see the [published protocol](https://www.carbontosea.org/oa
 ## Built with LinkML to support FAIR data practices
 
 The OAE Data Protocol schema is defined using [LinkML](https://linkml.io), a 'linked-data modeling language' that allows
-for data schemas to be authored as YAML files, integrating with external data standards and vocabularies, and output in 
+for data schemas to be authored as YAML files, integrating with external data standards and vocabularies, and output in
 a variety of machine-readable formats such as JSON Schema, Python dataclasses, and documentation.
 
 One of the primary features of LinkML is the ability to support [RDF](https://www.w3.org/RDF/) &
@@ -49,4 +49,3 @@ Visit the [GitHub repository](https://github.com/submarine-mrv/oae-data-protocol
 ---
 
 *Development of the OAE Data Protocol has been made possible with funding and steering support from [Carbon To Sea](https://carbontosea.org).*
-

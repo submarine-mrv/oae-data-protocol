@@ -389,7 +389,7 @@ enums:
         meaning: SDN_L22:TOOL1292
         description: >-
           A pH sensor. The sensor can be used for ocean acidification, research coral reef sensitivity analysis and
-          environmental monitoring. The sensor measures pH with a range of 6.5 to 9.0. The sensing element is an ion 
+          environmental monitoring. The sensor measures pH with a range of 6.5 to 9.0. The sensing element is an ion
           sensitive field effect transistor. The pH sensor has an initial accuracy of +/-0.05 pH, precision of 0.001 pH
           and stability of 0.005 pH/month. It can operate in temperatures ranging from 0 deg C to 50 deg C and up to
           depths of 50 m.

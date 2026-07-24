@@ -34,7 +34,7 @@ graph TD
     ISE --> I[Intervention]
     ISE --> T[Tracer]
     ISE --> IWT[InterventionWithTracer]
-    
+
     style E fill:#e8f4f8
     style M fill:#f0e8f8
     style I fill:#e8f8e8
@@ -49,7 +49,7 @@ graph TD
 | **Intervention** | [Intervention](../Intervention.md) | Active alkalinity addition | Feedstock, dosing, equilibration details |
 | **Tracer Study** | [Tracer](../Tracer.md) | Dye or gas tracer deployment | Tracer form, concentration, dosing |
 | **Intervention + Tracer** | [InterventionWithTracer](../InterventionWithTracer.md) | Combined intervention with tracer (same dosing mechanism) | All intervention + tracer fields |
-| **Model** | [Model](../model.md) | Computational simulation | Model components, grid, configuration |
+| **Model** | [Model](../Model.md) | Computational simulation | Model components, grid, configuration |
 | **Other** | [InSituExperiment](../InSituExperiment.md) | Experiment type not covered above | Standard in-situ fields |
 
 !!! note "When to use Intervention + Tracer"

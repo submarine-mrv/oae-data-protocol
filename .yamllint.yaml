@@ -1,0 +1,8 @@
+# Configuration for https://github.com/adrienverge/yamllint
+
+extends: default
+
+rules:
+  document-start: disable  # Don't check if document has a start marker (---).
+  line-length: disable  # Schema descriptions are naturally long.
+  new-lines: disable  # Don't check for type of new line characters.

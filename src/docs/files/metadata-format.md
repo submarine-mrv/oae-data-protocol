@@ -116,7 +116,7 @@ npx ajv-cli validate \
 
 ## JSON-LD Context
 
-A [JSON-LD context](https://github.com/submarine-mrv/oae-data-protocol/blob/main/project/jsonld/context.jsonld) is published alongside this schema at "https://schema.oaedata.org/context.jsonld".
+A [JSON-LD context](https://schema.oaedata.org/context.jsonld) is published alongside this schema at "https://schema.oaedata.org/context.jsonld".
 
 Including it in your metadata file (done automatically on export with the Metadata Builder) makes the document valid JSON-LD:
 
