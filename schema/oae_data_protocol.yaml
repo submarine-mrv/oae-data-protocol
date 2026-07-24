@@ -4144,7 +4144,7 @@ slots:
       used to calibrate the instruments used in data collection. The named files can
       be found within the relevant documents folder accompanying the submitted data
       files.
-    title: Calibration Files
+    title: Calibration Files (required if providing sensor data)
     from_schema: Dataset
     slot_uri: oae:calibration_files
     alias: calibration_files
@@ -9121,7 +9121,7 @@ classes:
           techniques used to calibrate the instruments used in data collection. The
           named files can be found within the relevant documents folder accompanying
           the submitted data files.
-        title: Calibration Files
+        title: Calibration Files (required if providing sensor data)
         range: string
         multivalued: true
       variables:
@@ -10223,7 +10223,7 @@ classes:
     class_uri: oae:ContinuousStandardGas
 metamodel_version: 1.7.0
 source_file: oae_data_protocol.yaml
-source_file_date: '2026-07-24T03:20:07'
+source_file_date: '2026-07-24T20:17:58'
 source_file_size: 1743
-generation_date: '2026-07-24T03:20:18'
+generation_date: '2026-07-24T20:18:08'
 
