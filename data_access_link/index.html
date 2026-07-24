@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://schema.oaedata.org/missing_value_indicators/">
+        <link rel="canonical" href="https://schema.oaedata.org/data_access_link/">
       
       
       
@@ -21,7 +21,7 @@
     
     
       
-        <title>Slot: Missing value indicators (missing_value_indicators) - OAE Data Protocol: Schema Documentation</title>
+        <title>Slot: Data access link (data_access_link) - OAE Data Protocol: Schema Documentation</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-missing-value-indicators-missing_value_indicators" class="md-skip">
+        <a href="#slot-data-access-link-data_access_link" class="md-skip">
           Skip to content
         </a>
       
@@ -99,7 +99,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: Missing value indicators (missing_value_indicators)
+              Slot: Data access link (data_access_link)
             
           </span>
         </div>
@@ -1487,9 +1487,9 @@
   
 
 
-<h1 id="slot-missing-value-indicators-missing_value_indicators">Slot: Missing value indicators (missing_value_indicators)</h1>
-<p><em>The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.</em></p>
-<p>URI: <a href="https://schema.oaedata.org/missing_value_indicators">oae:missing_value_indicators</a></p>
+<h1 id="slot-data-access-link-data_access_link">Slot: Data access link (data_access_link)</h1>
+<p><em>URL to access this dataset, if it is already archived or published elsewhere. DOIs are preferred if available (e.g., https://doi.org/10.25921/xxxx-xxx). Optional, and applicable for any accessibility type.</em></p>
+<p>URI: <a href="https://schema.oaedata.org/data_access_link">oae:data_access_link</a></p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -1503,100 +1503,30 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../DiscretePHVariable/">DiscretePHVariable</a></td>
-<td>pH measured variable with dye-based spectrophotometric measurement</td>
+<td><a href="../FieldDataset/">FieldDataset</a></td>
+<td>A field or observational dataset related to an OAE experiment</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../ContinuousPHVariable/">ContinuousPHVariable</a></td>
-<td>pH measured variable from continuous autonomous sensor</td>
+<td><a href="../Dataset/">Dataset</a></td>
+<td>Abstract base class for all dataset types</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../HPLCVariable/">HPLCVariable</a></td>
-<td>HPLC (High-Performance Liquid Chromatography) measured variable for pigment a...</td>
+<td><a href="../ModelOutputDataset/">ModelOutputDataset</a></td>
+<td>A model simulation output dataset</td>
 <td>no</td>
-</tr>
-<tr>
-<td><a href="../DiscreteMeasuredVariable/">DiscreteMeasuredVariable</a></td>
-<td>A variable measured in-situ from discrete water samples (e</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../CalculatedVariable/">CalculatedVariable</a></td>
-<td>A variable that is calculated or derived from other measured variables rather...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ContinuousTAVariable/">ContinuousTAVariable</a></td>
-<td>Total Alkalinity (TA) measured variable from continuous autonomous sensor</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../DiscreteTAVariable/">DiscreteTAVariable</a></td>
-<td>Total Alkalinity (TA) measured variable from discrete bottle samples</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ContinuousDICVariable/">ContinuousDICVariable</a></td>
-<td>Dissolved Inorganic Carbon (DIC) measured variable from continuous autonomous...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../DiscreteSedimentVariable/">DiscreteSedimentVariable</a></td>
-<td>Measured sediment variable collected from discrete bottle samples</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../DiscreteCO2Variable/">DiscreteCO2Variable</a></td>
-<td>CO2 discrete (bottle) measured variable (pCO2/fCO2)</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ContinuousCO2Variable/">ContinuousCO2Variable</a></td>
-<td>CO2 continuous (sensor) measured variable (xCO2/pCO2/fCO2)</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../QCFields/">QCFields</a></td>
-<td>Quality control fields applicable to measured and calculated variables</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../DiscreteDICVariable/">DiscreteDICVariable</a></td>
-<td>Dissolved Inorganic Carbon (DIC) measured variable from discrete bottle sampl...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ContinuousPhysiologicalVariable/">ContinuousPhysiologicalVariable</a></td>
-<td>Physiological response variable from continuous autonomous field sensors (e</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../DiscretePhysiologicalVariable/">DiscretePhysiologicalVariable</a></td>
-<td>Physiological response variable from discrete field samples (e</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ContinuousSedimentVariable/">ContinuousSedimentVariable</a></td>
-<td>Measured sediment variable collected from continuous autonomous sensor</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ContinuousMeasuredVariable/">ContinuousMeasuredVariable</a></td>
-<td>A variable measured in-situ by a continuous autonomous sensor (e</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../MeasuredVariable/">MeasuredVariable</a></td>
-<td>Variable that is directly measured in-situ using instruments</td>
-<td>yes</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: <a href="../String/">String</a></li>
+<li>
+<p>Range: <a href="../uri/">uri</a></p>
+</li>
+<li>
+<p>Regex pattern: <code>^https?://.+</code></p>
+</li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -1614,26 +1544,29 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>oae:missing_value_indicators</td>
+<td>oae:data_access_link</td>
 </tr>
 <tr>
 <td>native</td>
-<td>oae:missing_value_indicators</td>
+<td>oae:data_access_link</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
-<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">missing_value_indicators</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The indicator used to represent missing values in the data file, e.g.,</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">-999, NaN, etc.</span>
-<span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Missing value indicators</span>
+<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data_access_link</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">URL to access this dataset, if it is already archived or published elsewhere.</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">DOIs are preferred if available (e.g., https://doi.org/10.25921/xxxx-xxx). Optional,</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">and applicable for any accessibility type.</span>
+<span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Data access link</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.oaedata.org/OAEDataSchema</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">missing_value_indicators</span>
+<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data_access_link</span>
+<span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dataset</span>
 <span class="nt">domain_of</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QCFields</span>
-<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dataset</span>
+<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uri</span>
+<span class="nt">pattern</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">^https?://.+</span>
 </code></pre></div>
 </details>
 

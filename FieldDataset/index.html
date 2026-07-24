@@ -809,6 +809,8 @@
 
       FieldDataset : calibration_files
 
+      FieldDataset : data_access_link
+
       FieldDataset : data_accessibility
 
 
@@ -1008,6 +1010,12 @@
 <td><a href="../data_accessibility/">data_accessibility</a></td>
 <td>1 <br/> <a href="../DataAccessibility/">DataAccessibility</a></td>
 <td>Level of access to this dataset</td>
+<td><a href="../Dataset/">Dataset</a></td>
+</tr>
+<tr>
+<td><a href="../data_access_link/">data_access_link</a></td>
+<td>0..1 <br/> <a href="../uri/">uri</a></td>
+<td>URL to access this dataset, if it is already archived or published elsewhere</td>
 <td><a href="../Dataset/">Dataset</a></td>
 </tr>
 </tbody>
@@ -1404,6 +1412,20 @@
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dataset</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DataAccessibility</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">data_access_link</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data_access_link</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">URL to access this dataset, if it is already archived or published</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">elsewhere. DOIs are preferred if available (e.g., https://doi.org/10.25921/xxxx-xxx).</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">Optional, and applicable for any accessibility type.</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Data access link</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dataset</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data_access_link</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FieldDataset</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dataset</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uri</span>
+<span class="w">    </span><span class="nt">pattern</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">^https?://.+</span>
 </code></pre></div>
 </details>
 </article>
