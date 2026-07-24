@@ -115,19 +115,22 @@ The project follows LinkML conventions with semantic mappings to schema.org and 
 - Plan before schema changes, multi-file refactors, and architectural decisions
 - Proceed directly for small fixes and single-file changes
 
-### Beads Issue Tracking
+### Beads Issue Tracking (maintainer-only, optional)
 
-This project uses `bd` (beads) in **stealth mode** for issue tracking — the `.beads/` directory is local-only and not committed to git.
+The maintainer uses `bd` (beads) in **stealth mode** for issue tracking — the
+`.beads/` directory is local-only and never committed to git. It is **not** part
+of the project setup and most contributors will not have it.
 
-**When to use beads:**
+**If there is no `.beads/` directory, that is expected and fine.** Do not treat
+its absence as a problem, do not install beads, and do not run `bd` commands.
+Skip this section entirely and use a lightweight in-session task list instead.
+
+**Only when a `.beads/` directory is already present:**
 - Check `bd ready` at session start if no specific task is given
 - Update issue status when starting/completing tracked work
 - Create beads issues for discovered work that spans sessions or has dependencies
 - Prefix agent-created suggestions with "[agent suggestion]" in issue titles
-
-**When NOT to use beads:**
-- Trivial single-session tasks — use a lightweight in-session task list instead
-- Work that will be completed in the current session
+- Skip beads for trivial single-session work — use an in-session task list
 
 **Essential commands:**
 ```bash
