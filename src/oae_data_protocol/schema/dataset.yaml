@@ -136,7 +136,7 @@ classes:
         range: Platform
         required: true
       calibration_files:
-        title: Calibration Files
+        title: Calibration Files (required if providing sensor data)
         description: >-
           A list of supplementary file names containing coefficients and techniques used to
           calibrate the instruments used in data collection. The named files can be found within the relevant documents
