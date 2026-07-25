@@ -247,30 +247,6 @@ export enum SimulationType {
     other = "other",
 };
 /**
-* Variables commonly included in model simulation output datasets
-*/
-export enum ModelOutputVariable {
-    
-    /** Air-sea exchange of carbon dioxide */
-    Air_sea_CO2_flux = "air_sea_co2_flux",
-    /** Dissolved inorganic carbon (DIC) */
-    Dissolved_Inorganic_Carbon = "dissolved_inorganic_carbon",
-    /** Total alkalinity (TA) */
-    Total_Alkalinity = "total_alkalinity",
-    /** Temperature */
-    temperature = "temperature",
-    /** Salinity */
-    salinity = "salinity",
-    /** pH of seawater */
-    pH = "ph",
-    /** Phytoplankton biomass or concentration */
-    phytoplankton = "phytoplankton",
-    /** Horizontal velocity components (u, v) */
-    Horizontal_velocity = "horizontal_velocity",
-    /** Vertical velocity component (w) */
-    Vertical_velocity = "vertical_velocity",
-};
-/**
 * Level of access to a dataset.
 */
 export enum DataAccessibility {
@@ -1333,10 +1309,6 @@ export interface InSituVariable extends Variable {
     dataset_variable_name_qc_flag?: string,
     /** If applicable, the column header name used for the raw data corresponding to this variable. */
     dataset_variable_name_raw?: string,
-    /** Citation for the method used. */
-    method_reference?: string,
-    /** The name of the PI whose research team measured or derived this parameter. */
-    measurement_researcher?: Person,
     /** Any additional information about this variable. */
     other_detailed_information?: string,
 }
@@ -1345,7 +1317,7 @@ export interface InSituVariable extends Variable {
 /**
  * Variable that is directly measured in-situ using instruments. Reference: OAPMetadata XSD variables.xsd - basic_measured_observation_base
  */
-export interface MeasuredVariable extends InSituVariable, QCFields {
+export interface MeasuredVariable extends InSituVariable, QCFields, FieldMeasurementFields {
     /** Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information. */
     analyzing_instrument: AnalyzingInstrument,
     /** Method used to collect samples. */
@@ -1382,7 +1354,7 @@ export interface ContinuousMeasuredVariable extends MeasuredVariable {
 /**
  * A variable that is calculated or derived from other measured variables rather than directly measured by an instrument (e.g., carbonate system parameters computed via CO2SYS). Set genesis to "calculated". The variable_type should reflect the quantity being calculated (e.g., "pH", "ta", "dic", "co2", or "other").
  */
-export interface CalculatedVariable extends InSituVariable, QCFields {
+export interface CalculatedVariable extends InSituVariable, QCFields, FieldMeasurementFields {
     /** Information about how the variable was calculated and the parameters used in calculation, e.g.: Calculation software = CO2SYSv1 (MATLAB) Input variables =  pH and DIC (column header names 'ph_t_insitu' and 'dic' in associated dataset file) Additional information = the dissociation constants of Lueker et al., 2000 for carbonic acid, etc. */
     calculation_method_and_parameters: string,
 }
@@ -1528,9 +1500,9 @@ export interface ContinuousPhysiologicalVariable extends ContinuousMeasuredVaria
 
 
 /**
- * Socioeconomic variable for social and economic data such as survey responses, ecosystem service valuations, or text analysis. Extends InSituVariable to inherit method_reference and measurement_researcher, but does NOT include QCFields, instrument details, or calibration.
+ * Socioeconomic variable for social and economic data such as survey responses, ecosystem service valuations, or text analysis. A field variable: includes method_reference and measurement_researcher, but does NOT include QCFields, instrument details, or calibration.
  */
-export interface SocioeconomicVariable extends InSituVariable {
+export interface SocioeconomicVariable extends InSituVariable, FieldMeasurementFields {
     /** Whether this variable captures quantitative (numerical) or qualitative (categorical/textual) data. */
     quantitative_or_qualitative: string,
     /** The type of social science study this variable comes from. */
@@ -1539,6 +1511,15 @@ export interface SocioeconomicVariable extends InSituVariable {
     social_study_type_custom?: string,
     /** Time period and location description for the social study (e.g., "2023-2024, coastal communities in Maine, USA"). */
     social_study_site_characterization?: string,
+}
+
+
+/**
+ * A variable output by a model simulation (e.g., air-sea CO2 flux, dissolved inorganic carbon, total alkalinity, pH, temperature, salinity from an OAE model run). Mirrors CalculatedVariable — model outputs are derived by the model rather than measured, so genesis is fixed to "calculated" — but omits the in-situ attribution fields (method_reference, measurement_researcher) that only apply to field-collected variables.
+ */
+export interface ModelVariable extends InSituVariable, QCFields {
+    /** Information about how the variable was produced by the model (e.g., the model component, numerical scheme, or parameters). The overall simulation configuration is described on the parent ModelOutputDataset. */
+    calculation_method_and_parameters: string,
 }
 
 
@@ -1668,6 +1649,17 @@ If uncertainty is provided as a variable, please list the column header name her
 
 
 /**
+ * Method reference and measuring-researcher attribution for variables collected in the field (measured or calculated in situ).
+ */
+export interface FieldMeasurementFields {
+    /** Citation for the method used. */
+    method_reference?: string,
+    /** The name of the PI whose research team measured or derived this parameter. */
+    measurement_researcher?: Person,
+}
+
+
+/**
  * Abstract base class for all dataset types. Contains fields common to both field/observational and model simulation datasets. Generally following guidelines & best practices as outlined in [science-on-schema.org](https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md)
  */
 export interface Dataset {
@@ -1742,8 +1734,8 @@ export interface ModelOutputDataset extends Dataset {
     mcdr_forcing_description?: string,
     /** Details about the computational hardware used for the simulation. */
     hardware_configuration?: HardwareConfiguration,
-    /** Checklist of variables included in the model simulation output. */
-    model_output_variables?: string,
+    /** The variables included in the model simulation output, each with its own metadata. */
+    variables?: ModelVariable[],
 }
 
 

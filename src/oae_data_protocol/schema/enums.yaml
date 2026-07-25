@@ -275,33 +275,6 @@ enums:
       other:
         description: "Other simulation type not listed above"
 
-  ModelOutputVariable:
-    description: "Variables commonly included in model simulation output datasets"
-    permissible_values:
-      air_sea_co2_flux:
-        title: "Air-sea CO2 flux"
-        description: "Air-sea exchange of carbon dioxide"
-      dissolved_inorganic_carbon:
-        title: "Dissolved Inorganic Carbon"
-        description: "Dissolved inorganic carbon (DIC)"
-      total_alkalinity:
-        title: "Total Alkalinity"
-        description: "Total alkalinity (TA)"
-      temperature:
-        description: "Temperature"
-      salinity:
-        description: "Salinity"
-      ph:
-        title: "pH"
-        description: "pH of seawater"
-      phytoplankton:
-        description: "Phytoplankton biomass or concentration"
-      horizontal_velocity:
-        title: "Horizontal velocity"
-        description: "Horizontal velocity components (u, v)"
-      vertical_velocity:
-        title: "Vertical velocity"
-        description: "Vertical velocity component (w)"
   DataAccessibility:
     description: "Level of access to a dataset."
     permissible_values:

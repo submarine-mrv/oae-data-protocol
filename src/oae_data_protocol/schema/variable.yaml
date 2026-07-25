@@ -98,14 +98,6 @@ classes:
         description: >-
           If applicable, the column header name used for the raw data corresponding to this variable.
         range: string
-      method_reference:
-        title: Method Reference
-        description: Citation for the method used.
-        range: string
-      measurement_researcher:
-        title: Researcher who measured the variable
-        description: The name of the PI whose research team measured or derived this parameter.
-        range: Person
       other_detailed_information:
         title: Other Detailed Information
         description: Any additional information about this variable.
@@ -123,6 +115,7 @@ classes:
     is_a: InSituVariable
     mixins:
       - QCFields
+      - FieldMeasurementFields
     slots:
       - analyzing_instrument
     slot_usage:
@@ -226,6 +219,7 @@ classes:
     is_a: InSituVariable
     mixins:
       - QCFields
+      - FieldMeasurementFields
     slot_usage:
       genesis:
         range: string
@@ -540,10 +534,12 @@ classes:
   SocioeconomicVariable:
     description: >-
       Socioeconomic variable for social and economic data such as survey
-      responses, ecosystem service valuations, or text analysis. Extends
-      InSituVariable to inherit method_reference and measurement_researcher,
-      but does NOT include QCFields, instrument details, or calibration.
+      responses, ecosystem service valuations, or text analysis. A field
+      variable: includes method_reference and measurement_researcher, but
+      does NOT include QCFields, instrument details, or calibration.
     is_a: InSituVariable
+    mixins:
+      - FieldMeasurementFields
     slot_usage:
       variable_type:
         range: string
@@ -570,6 +566,34 @@ classes:
           Time period and location description for the social study
           (e.g., "2023-2024, coastal communities in Maine, USA").
         range: string
+
+  # =============================================================================
+  # Model Variable Class
+  # =============================================================================
+  ModelVariable:
+    description: >-
+      A variable output by a model simulation (e.g., air-sea CO2 flux, dissolved
+      inorganic carbon, total alkalinity, pH, temperature, salinity from an OAE
+      model run). Mirrors CalculatedVariable — model outputs are derived by the
+      model rather than measured, so genesis is fixed to "calculated" — but omits
+      the in-situ attribution fields (method_reference, measurement_researcher)
+      that only apply to field-collected variables.
+    is_a: InSituVariable
+    mixins:
+      - QCFields
+    slot_usage:
+      genesis:
+        range: string
+        equals_string: "calculated"
+    attributes:
+      calculation_method_and_parameters:
+        title: Calculation Method and Parameters
+        description: >-
+          Information about how the variable was produced by the model (e.g.,
+          the model component, numerical scheme, or parameters). The overall
+          simulation configuration is described on the parent ModelOutputDataset.
+        range: string
+        required: true
 
   # =============================================================================
   # Supporting Classes for Variables
@@ -738,6 +762,25 @@ classes:
         title: QC Researcher Institution
         description: The institution of the PI whose research team QCed this parameter.
         range: string
+
+  # Method/attribution fields that only apply to in-situ (field-collected)
+  # variables. Kept out of InSituVariable itself so ModelVariable (which also
+  # extends InSituVariable) does not inherit them — model output is produced by
+  # the simulation, not measured by a researcher with a cited method.
+  FieldMeasurementFields:
+    mixin: true
+    description: >-
+      Method reference and measuring-researcher attribution for variables
+      collected in the field (measured or calculated in situ).
+    attributes:
+      method_reference:
+        title: Method Reference
+        description: Citation for the method used.
+        range: string
+      measurement_researcher:
+        title: Researcher who measured the variable
+        description: The name of the PI whose research team measured or derived this parameter.
+        range: Person
 
 
 slots:

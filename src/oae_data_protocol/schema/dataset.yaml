@@ -198,10 +198,11 @@ classes:
         description: "Details about the computational hardware used for the simulation."
         range: HardwareConfiguration
         inlined: true
-      model_output_variables:
-        title: Key Model Output Variables
-        description: "Checklist of variables included in the model simulation output."
-        range: ModelOutputVariable
+      variables:
+        title: Model Output Variables
+        slot_uri: schema:variableMeasured
+        description: "The variables included in the model simulation output, each with its own metadata."
+        range: ModelVariable
         multivalued: true
     rules:
       - preconditions:
