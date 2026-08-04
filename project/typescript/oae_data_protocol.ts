@@ -596,7 +596,7 @@ export enum VariableType {
 */
 export enum ModelVariableType {
     
-    /** Air-sea exchange of carbon dioxide */
+    /** Air-sea CO₂ flux */
     air_sea_co2_flux = "air_sea_co2_flux",
     /** Dissolved inorganic carbon (DIC) */
     dissolved_inorganic_carbon = "dissolved_inorganic_carbon",
@@ -608,11 +608,11 @@ export enum ModelVariableType {
     salinity = "salinity",
     /** pH of seawater */
     ph = "ph",
-    /** Phytoplankton, chlorophyll, zooplankton, etc. biomass or concentration */
+    /** Biological tracers — phytoplankton, chlorophyll, zooplankton, etc. biomass or concentration */
     biological_tracers = "biological_tracers",
-    /** Horizontal velocity components (u, v) */
+    /** Horizontal velocity (u, v) */
     horizontal_velocity = "horizontal_velocity",
-    /** Vertical velocity component (w) */
+    /** Vertical velocity (w) */
     vertical_velocity = "vertical_velocity",
     /** CO₂ variables (xCO₂, pCO₂, fCO₂) */
     co2 = "co2",

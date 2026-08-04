@@ -932,7 +932,7 @@ enums:
       class, so this enum identifies the variable rather than selecting a class.
     permissible_values:
       air_sea_co2_flux:
-        description: Air-sea exchange of carbon dioxide
+        description: "Air-sea CO₂ flux"
       dissolved_inorganic_carbon:
         description: Dissolved inorganic carbon (DIC)
       total_alkalinity:
@@ -945,11 +945,12 @@ enums:
         description: pH of seawater
       biological_tracers:
         description: >-
-          Phytoplankton, chlorophyll, zooplankton, etc. biomass or concentration
+          Biological tracers — phytoplankton, chlorophyll, zooplankton, etc.
+          biomass or concentration
       horizontal_velocity:
-        description: Horizontal velocity components (u, v)
+        description: Horizontal velocity (u, v)
       vertical_velocity:
-        description: Vertical velocity component (w)
+        description: Vertical velocity (w)
       co2:
         description: "CO₂ variables (xCO₂, pCO₂, fCO₂)"
       other:

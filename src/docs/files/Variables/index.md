@@ -175,15 +175,15 @@ A `ModelVariable` therefore has only:
 
 | Value | Description |
 |-------|-------------|
-| `air_sea_co2_flux` | Air-sea exchange of carbon dioxide |
+| `air_sea_co2_flux` | Air-sea CO₂ flux |
 | `dissolved_inorganic_carbon` | Dissolved inorganic carbon (DIC) |
 | `total_alkalinity` | Total alkalinity (TA) |
 | `temperature` | Temperature |
 | `salinity` | Salinity |
 | `ph` | pH of seawater |
-| `biological_tracers` | Phytoplankton, chlorophyll, zooplankton, etc. biomass or concentration |
-| `horizontal_velocity` | Horizontal velocity components (u, v) |
-| `vertical_velocity` | Vertical velocity component (w) |
+| `biological_tracers` | Biological tracers — phytoplankton, chlorophyll, zooplankton, etc. biomass or concentration |
+| `horizontal_velocity` | Horizontal velocity (u, v) |
+| `vertical_velocity` | Vertical velocity (w) |
 | `co2` | CO₂ variables (xCO₂, pCO₂, fCO₂) |
 | `other` | Any model output variable not covered above |
 
