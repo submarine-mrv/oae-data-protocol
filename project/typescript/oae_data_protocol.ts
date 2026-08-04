@@ -591,6 +591,34 @@ export enum VariableType {
     /** Contextual or ancillary columns that are not directly measured or calculated by the project — identifiers, timestamps, coordinates and external source data. QC flag columns should NOT be listed as separate variables; instead set dataset_variable_name_qc_flag on the parent variable. Use only with NonMeasuredVariable. */
     non_measured = "non_measured",
 };
+/**
+* Classification of a variable output by a model simulation. Used in place of VariableType on ModelVariable — model output covers a different set of quantities than field measurement (velocities and fluxes rather than sampling-based observations), and there is exactly one model variable class, so this enum identifies the variable rather than selecting a class.
+*/
+export enum ModelVariableType {
+    
+    /** Air-sea exchange of carbon dioxide */
+    air_sea_co2_flux = "air_sea_co2_flux",
+    /** Dissolved inorganic carbon (DIC) */
+    dissolved_inorganic_carbon = "dissolved_inorganic_carbon",
+    /** Total alkalinity (TA) */
+    total_alkalinity = "total_alkalinity",
+    /** Temperature */
+    temperature = "temperature",
+    /** Salinity */
+    salinity = "salinity",
+    /** pH of seawater */
+    ph = "ph",
+    /** Phytoplankton, chlorophyll, zooplankton, etc. biomass or concentration */
+    biological_tracers = "biological_tracers",
+    /** Horizontal velocity components (u, v) */
+    horizontal_velocity = "horizontal_velocity",
+    /** Vertical velocity component (w) */
+    vertical_velocity = "vertical_velocity",
+    /** CO₂ variables (xCO₂, pCO₂, fCO₂) */
+    co2 = "co2",
+    /** Any model output variable that does not fall into a specific category above. */
+    other = "other",
+};
 
 export enum GenesisType {
     
@@ -1281,10 +1309,10 @@ export interface MarineAirMeasurement {
 export interface Variable {
     /** Unit of measurement for this variable. */
     units?: string,
-    /** The schema class name for this variable (e.g., "DiscretePHVariable"). Auto-populated by the metadata builder. */
-    schema_class: string,
     /** High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use. */
     variable_type: string,
+    /** The schema class name for this variable (e.g., "DiscretePHVariable"). Auto-populated by the metadata builder. */
+    schema_class: string,
     standard_identifier?: VocabularyItemReference,
     /** The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name). */
     dataset_variable_name: string,
@@ -1515,11 +1543,9 @@ export interface SocioeconomicVariable extends InSituVariable, FieldMeasurementF
 
 
 /**
- * A variable output by a model simulation (e.g., air-sea CO2 flux, dissolved inorganic carbon, total alkalinity, pH, temperature, salinity from an OAE model run). Mirrors CalculatedVariable — model outputs are derived by the model rather than measured, so genesis is fixed to "calculated" — but omits the in-situ attribution fields (method_reference, measurement_researcher) that only apply to field-collected variables.
+ * A variable output by a model simulation (e.g., air-sea CO2 flux, dissolved inorganic carbon, total alkalinity, pH, temperature, salinity from an OAE model run). Model outputs are produced by the simulation itself, so they carry none of the sampling, instrument, calibration or in-situ QC metadata that field-collected variables do — how the output was produced is described by the simulation configuration on the parent ModelOutputDataset.
  */
-export interface ModelVariable extends InSituVariable, QCFields {
-    /** Information about how the variable was produced by the model (e.g., the model component, numerical scheme, or parameters). The overall simulation configuration is described on the parent ModelOutputDataset. */
-    calculation_method_and_parameters: string,
+export interface ModelVariable extends Variable {
 }
 
 

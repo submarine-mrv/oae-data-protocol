@@ -20,6 +20,10 @@ classes:
     description: Abstract root for all variable types (including non-measured)
     slots:
       - units
+      - variable_type
+    slot_usage:
+      variable_type:
+        required: true
     attributes:
       schema_class:
         designates_type: true
@@ -28,14 +32,6 @@ classes:
         description: >-
           The schema class name for this variable (e.g., "DiscretePHVariable").
           Auto-populated by the metadata builder.
-      variable_type:
-        title: Variable Type
-        range: VariableType
-        required: true
-        description: >-
-          High-level classification of the variable. Determines which standard
-          identifiers are available and, combined with genesis and sampling,
-          which schema class to use.
       standard_identifier:
         range: VocabularyItemReference
       dataset_variable_name:
@@ -574,26 +570,21 @@ classes:
     description: >-
       A variable output by a model simulation (e.g., air-sea CO2 flux, dissolved
       inorganic carbon, total alkalinity, pH, temperature, salinity from an OAE
-      model run). Mirrors CalculatedVariable — model outputs are derived by the
-      model rather than measured, so genesis is fixed to "calculated" — but omits
-      the in-situ attribution fields (method_reference, measurement_researcher)
-      that only apply to field-collected variables.
-    is_a: InSituVariable
-    mixins:
-      - QCFields
+      model run). Model outputs are produced by the simulation itself, so they
+      carry none of the sampling, instrument, calibration or in-situ QC metadata
+      that field-collected variables do — how the output was produced is
+      described by the simulation configuration on the parent ModelOutputDataset.
+    is_a: Variable
     slot_usage:
-      genesis:
-        range: string
-        equals_string: "calculated"
-    attributes:
-      calculation_method_and_parameters:
-        title: Calculation Method and Parameters
-        description: >-
-          Information about how the variable was produced by the model (e.g.,
-          the model component, numerical scheme, or parameters). The overall
-          simulation configuration is described on the parent ModelOutputDataset.
-        range: string
+      units:
         required: true
+      variable_type:
+        title: Model Output Variable
+        description: >-
+          Which model output quantity this variable holds. There is only one
+          model variable class, so this classifies the variable rather than
+          selecting a schema class.
+        range: ModelVariableType
 
   # =============================================================================
   # Supporting Classes for Variables
@@ -792,6 +783,19 @@ slots:
     range: string
     # TODO: Upgrade this to controlled vocab with QUDT
 
+  # variable_type must be a top-level slot rather than an attribute of Variable:
+  # ~15 subclasses pin it via slot_usage, and LinkML's SchemaLoader cannot resolve
+  # a slot_usage name back to an attribute, so it would synthesise a phantom
+  # `variable_type` slot from the first usage it sees and leak that usage's
+  # equals_string into unrelated subclasses.
+  variable_type:
+    title: Variable Type
+    description: >-
+      High-level classification of the variable. Determines which standard
+      identifiers are available and, combined with genesis and sampling,
+      which schema class to use.
+    range: VariableType
+
   # MeasuredVariable slots
   analyzing_instrument:
     title: Analyzing instrument
@@ -907,6 +911,39 @@ enums:
           be listed as separate variables; instead set
           dataset_variable_name_qc_flag on the parent variable. Use only
           with NonMeasuredVariable.
+  ModelVariableType:
+    description: >-
+      Classification of a variable output by a model simulation. Used in place
+      of VariableType on ModelVariable — model output covers a different set of
+      quantities than field measurement (velocities and fluxes rather than
+      sampling-based observations), and there is exactly one model variable
+      class, so this enum identifies the variable rather than selecting a class.
+    permissible_values:
+      air_sea_co2_flux:
+        description: Air-sea exchange of carbon dioxide
+      dissolved_inorganic_carbon:
+        description: Dissolved inorganic carbon (DIC)
+      total_alkalinity:
+        description: Total alkalinity (TA)
+      temperature:
+        description: Temperature
+      salinity:
+        description: Salinity
+      ph:
+        description: pH of seawater
+      biological_tracers:
+        description: >-
+          Phytoplankton, chlorophyll, zooplankton, etc. biomass or concentration
+      horizontal_velocity:
+        description: Horizontal velocity components (u, v)
+      vertical_velocity:
+        description: Vertical velocity component (w)
+      co2:
+        description: "CO₂ variables (xCO₂, pCO₂, fCO₂)"
+      other:
+        description: >-
+          Any model output variable that does not fall into a specific category
+          above.
   GenesisType:
     permissible_values:
       measured:

@@ -37,7 +37,7 @@ For simulation output from computational models.
 |-------|---------|
 | `simulation_type` | Control run or perturbation |
 | `mcdr_forcing_description` | Description of the mCDR forcing applied |
-| `model_output_variables` | Checklist of output variables |
+| `variables` | Array of model output variable metadata (see [Variables](../variables/)) |
 | `output_frequency` | Temporal resolution (e.g., daily, monthly) |
 | `hardware_configuration` | Compute details |
 

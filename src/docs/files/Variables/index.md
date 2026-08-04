@@ -13,6 +13,7 @@ graph LR
     MV("`*MeasuredVariable*
     (abstract)`")
     NMV["NonMeasuredVariable"]
+    MOV["ModelVariable"]
     SEV["SocioeconomicVariable"]
     CV["CalculatedVariable"]
     DM["DiscreteMeasuredVariable"]
@@ -29,6 +30,7 @@ graph LR
     *…and others*`"]
 
     V --> NMV
+    V --> MOV
     V --> ISV
     ISV --> SEV
     ISV --> CV
@@ -42,7 +44,7 @@ graph LR
     classDef concrete fill:#e0e8f0,stroke:#4F656A
     classDef leaf fill:#d0e8d0,stroke:#4F656A
     class V,ISV,MV abstract
-    class NMV,SEV,CV,DPH,CPH concrete
+    class NMV,MOV,SEV,CV,DPH,CPH concrete
     class DM,CM leaf
 ```
 
@@ -52,7 +54,10 @@ their data, whether they be other ocean data repositories, and generalist reposi
 
 ## Choosing a Variable Type
 
-Every variable requires three selections that determine which schema class is used:
+Every variable in a **field dataset** requires three selections that determine which schema class is
+used. Variables in a **model output dataset** skip this entirely — they are always
+[ModelVariable](../ModelVariable.md) and are classified with the separate
+[ModelVariableType](../ModelVariableType.md) enum. See [Model Output Variables](#model-output-variables) below.
 
 ### 1. Variable Type (`variable_type`)
 
@@ -147,6 +152,36 @@ Adds instrument and sampling fields:
 Adds calculation provenance:
 
 - `calculation_method_and_parameters` — software, input variables, constants used
+
+## Model Output Variables
+
+Variables in a [ModelOutputDataset](../ModelOutputDataset.md) are described by a single class,
+[ModelVariable](../ModelVariable.md), which sits directly under `Variable` rather than under
+`InSituVariable`. Model output is produced by the simulation itself, so it carries none of the
+sampling, instrument, calibration or in-situ QC metadata that field-collected variables do — how the
+output was produced is already described by the simulation configuration on the parent dataset.
+
+A `ModelVariable` therefore has only:
+
+- `variable_type` — a [ModelVariableType](../ModelVariableType.md) value (required)
+- `long_name`, `dataset_variable_name`, `units` (all required)
+- `standard_identifier` — optional reference to a community vocabulary
+
+`ModelVariableType` classifies the model output rather than selecting a schema class:
+
+| Value | Description |
+|-------|-------------|
+| `air_sea_co2_flux` | Air-sea exchange of carbon dioxide |
+| `dissolved_inorganic_carbon` | Dissolved inorganic carbon (DIC) |
+| `total_alkalinity` | Total alkalinity (TA) |
+| `temperature` | Temperature |
+| `salinity` | Salinity |
+| `ph` | pH of seawater |
+| `biological_tracers` | Phytoplankton, chlorophyll, zooplankton, etc. biomass or concentration |
+| `horizontal_velocity` | Horizontal velocity components (u, v) |
+| `vertical_velocity` | Vertical velocity component (w) |
+| `co2` | CO₂ variables (xCO₂, pCO₂, fCO₂) |
+| `other` | Any model output variable not covered above |
 
 ### Type-Specific Fields (Traits / Mixins)
 
