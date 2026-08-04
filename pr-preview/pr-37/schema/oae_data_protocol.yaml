@@ -1397,7 +1397,7 @@ enums:
     permissible_values:
       air_sea_co2_flux:
         text: air_sea_co2_flux
-        description: Air-sea exchange of carbon dioxide
+        description: "Air-sea CO\u2082 flux"
       dissolved_inorganic_carbon:
         text: dissolved_inorganic_carbon
         description: Dissolved inorganic carbon (DIC)
@@ -1415,13 +1415,14 @@ enums:
         description: pH of seawater
       biological_tracers:
         text: biological_tracers
-        description: Phytoplankton, chlorophyll, zooplankton, etc. biomass or concentration
+        description: "Biological tracers \u2014 phytoplankton, chlorophyll, zooplankton,\
+          \ etc. biomass or concentration"
       horizontal_velocity:
         text: horizontal_velocity
-        description: Horizontal velocity components (u, v)
+        description: Horizontal velocity (u, v)
       vertical_velocity:
         text: vertical_velocity
-        description: Vertical velocity component (w)
+        description: Vertical velocity (w)
       co2:
         text: co2
         description: "CO\u2082 variables (xCO\u2082, pCO\u2082, fCO\u2082)"
@@ -10457,7 +10458,7 @@ classes:
     class_uri: oae:ContinuousStandardGas
 metamodel_version: 1.7.0
 source_file: oae_data_protocol.yaml
-source_file_date: '2026-08-04T23:39:21'
+source_file_date: '2026-08-04T23:57:49'
 source_file_size: 1743
-generation_date: '2026-08-04T23:39:34'
+generation_date: '2026-08-04T23:57:58'
 
