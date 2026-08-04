@@ -8,6 +8,8 @@ Variables describe the individual measurements, calculations, or contextual data
 graph LR
     V("`*Variable*
     (abstract)`")
+    FV("`*FieldVariable*
+    (abstract)`")
     ISV("`*InSituVariable*
     (abstract)`")
     MV("`*MeasuredVariable*
@@ -29,9 +31,10 @@ graph LR
     ContinuousPhysiologicalVariable
     *…and others*`"]
 
-    V --> NMV
+    V --> FV
     V --> MOV
-    V --> ISV
+    FV --> NMV
+    FV --> ISV
     ISV --> SEV
     ISV --> CV
     ISV --> MV
@@ -43,7 +46,7 @@ graph LR
     classDef abstract fill:#f5f5f5,stroke:#999,stroke-dasharray: 4 3,color:#555
     classDef concrete fill:#e0e8f0,stroke:#4F656A
     classDef leaf fill:#d0e8d0,stroke:#4F656A
-    class V,ISV,MV abstract
+    class V,FV,ISV,MV abstract
     class NMV,MOV,SEV,CV,DPH,CPH concrete
     class DM,CM leaf
 ```
@@ -156,8 +159,9 @@ Adds calculation provenance:
 ## Model Output Variables
 
 Variables in a [ModelOutputDataset](../ModelOutputDataset.md) are described by a single class,
-[ModelVariable](../ModelVariable.md), which sits directly under `Variable` rather than under
-`InSituVariable`. Model output is produced by the simulation itself, so it carries none of the
+[ModelVariable](../ModelVariable.md), which sits directly under `Variable` — a sibling of
+[FieldVariable](../FieldVariable.md) rather than a descendant of it, so a model variable is never
+valid inside a `FieldDataset` and vice versa. Model output is produced by the simulation itself, so it carries none of the
 sampling, instrument, calibration or in-situ QC metadata that field-collected variables do — how the
 output was produced is already described by the simulation configuration on the parent dataset.
 

@@ -1322,16 +1322,23 @@ export interface Variable {
 
 
 /**
+ * Abstract root for every variable that can appear in a FieldDataset — measured, calculated or contextual. Exists so FieldDataset.variables can range over exactly these classes: ranging over Variable would also admit ModelVariable, which belongs only to a ModelOutputDataset.
+ */
+export interface FieldVariable extends Variable {
+}
+
+
+/**
  * A contextual or ancillary variable that is NOT directly measured or calculated by the project. Use for identifiers (Cruise_ID, Exp_ID), timestamps (Year_UTC, Time_UTC), coordinates (Latitude, Longitude), and any other data included in the dataset for context. Do NOT create a NonMeasuredVariable for quality control flag columns — instead, set dataset_variable_name_qc_flag on the parent measured or calculated variable that the flag relates to. variable_type must be "non_measured".
  */
-export interface NonMeasuredVariable extends Variable {
+export interface NonMeasuredVariable extends FieldVariable {
 }
 
 
 /**
  * Base class for project-acquired variables (measured or calculated in-situ). Reference: OAPMetadata XSD variables.xsd - insitu_variable
  */
-export interface InSituVariable extends Variable {
+export interface InSituVariable extends FieldVariable {
     genesis: string,
     /** If applicable, the column header name used for the quality control flag corresponding to this variable. */
     dataset_variable_name_qc_flag?: string,
@@ -1740,7 +1747,8 @@ export interface FieldDataset extends Dataset {
     platform_info: Platform,
     /** A list of supplementary file names containing coefficients and techniques used to calibrate the instruments used in data collection. The named files can be found within the relevant documents folder accompanying the submitted data files. */
     calibration_files?: string[],
-    variables?: Variable[],
+    /** The variables in this dataset, each with its own metadata. Ranges over FieldVariable rather than Variable so that ModelVariable — which belongs to a ModelOutputDataset — is not admitted here. */
+    variables?: FieldVariable[],
 }
 
 

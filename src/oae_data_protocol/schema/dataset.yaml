@@ -154,7 +154,11 @@ classes:
       variables:
         title: Variables
         slot_uri: schema:variableMeasured
-        range: Variable
+        description: >-
+          The variables in this dataset, each with its own metadata. Ranges over
+          FieldVariable rather than Variable so that ModelVariable — which
+          belongs to a ModelOutputDataset — is not admitted here.
+        range: FieldVariable
         multivalued: true
 
   ModelOutputDataset:

@@ -1981,7 +1981,21 @@ class Variable(ConfiguredBaseModel):
     long_name: str = Field(default=..., title="Variable full name", description="""Full descriptive name of the variable.""", json_schema_extra = { "linkml_meta": {'alias': 'long_name', 'domain_of': ['Variable']} })
 
 
-class NonMeasuredVariable(Variable):
+class FieldVariable(Variable):
+    """
+    Abstract root for every variable that can appear in a FieldDataset — measured, calculated or contextual. Exists so FieldDataset.variables can range over exactly these classes: ranging over Variable would also admit ModelVariable, which belongs only to a ModelOutputDataset.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True, 'from_schema': 'Variable'})
+
+    units: Optional[str] = Field(default=None, title="Unit", description="""Unit of measurement for this variable.""", json_schema_extra = { "linkml_meta": {'alias': 'units', 'domain_of': ['Variable']} })
+    variable_type: VariableType = Field(default=..., title="Variable Type", description="""High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use.""", json_schema_extra = { "linkml_meta": {'alias': 'variable_type', 'domain_of': ['Variable']} })
+    schema_class: Literal["FieldVariable"] = Field(default="FieldVariable", description="""The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.""", json_schema_extra = { "linkml_meta": {'alias': 'schema_class', 'designates_type': True, 'domain_of': ['Variable']} })
+    standard_identifier: Optional[VocabularyItemReference] = Field(default=None, json_schema_extra = { "linkml_meta": {'alias': 'standard_identifier', 'domain_of': ['Variable']} })
+    dataset_variable_name: str = Field(default=..., title="Dataset variable name", description="""The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).""", json_schema_extra = { "linkml_meta": {'alias': 'dataset_variable_name', 'domain_of': ['Variable']} })
+    long_name: str = Field(default=..., title="Variable full name", description="""Full descriptive name of the variable.""", json_schema_extra = { "linkml_meta": {'alias': 'long_name', 'domain_of': ['Variable']} })
+
+
+class NonMeasuredVariable(FieldVariable):
     """
     A contextual or ancillary variable that is NOT directly measured or calculated by the project. Use for identifiers (Cruise_ID, Exp_ID), timestamps (Year_UTC, Time_UTC), coordinates (Latitude, Longitude), and any other data included in the dataset for context. Do NOT create a NonMeasuredVariable for quality control flag columns — instead, set dataset_variable_name_qc_flag on the parent measured or calculated variable that the flag relates to. variable_type must be \"non_measured\".
     """
@@ -2000,7 +2014,7 @@ class NonMeasuredVariable(Variable):
     long_name: str = Field(default=..., title="Variable full name", description="""Full descriptive name of the variable.""", json_schema_extra = { "linkml_meta": {'alias': 'long_name', 'domain_of': ['Variable']} })
 
 
-class InSituVariable(Variable):
+class InSituVariable(FieldVariable):
     """
     Base class for project-acquired variables (measured or calculated in-situ). Reference: OAPMetadata XSD variables.xsd - insitu_variable
     """
@@ -3297,7 +3311,7 @@ class FieldDataset(Dataset):
   9 = missing value\"""", json_schema_extra = { "linkml_meta": {'alias': 'qc_flag_scheme', 'domain_of': ['FieldDataset']} })
     platform_info: Platform = Field(default=..., title="Platform Information", json_schema_extra = { "linkml_meta": {'alias': 'platform_info', 'domain_of': ['FieldDataset']} })
     calibration_files: Optional[List[str]] = Field(default=None, title="Calibration Files (required if providing sensor data)", description="""A list of supplementary file names containing coefficients and techniques used to calibrate the instruments used in data collection. The named files can be found within the relevant documents folder accompanying the submitted data files.""", json_schema_extra = { "linkml_meta": {'alias': 'calibration_files', 'domain_of': ['FieldDataset']} })
-    variables: Optional[List[Union[Variable,NonMeasuredVariable,InSituVariable,ModelVariable,MeasuredVariable,CalculatedVariable,SocioeconomicVariable,DiscreteMeasuredVariable,ContinuousMeasuredVariable,ContinuousPHVariable,ContinuousTAVariable,ContinuousDICVariable,ContinuousSedimentVariable,ContinuousCO2Variable,ContinuousPhysiologicalVariable,DiscretePHVariable,DiscreteTAVariable,DiscreteDICVariable,DiscreteSedimentVariable,DiscreteCO2Variable,HPLCVariable,DiscretePhysiologicalVariable]]] = Field(default=None, title="Variables", json_schema_extra = { "linkml_meta": {'alias': 'variables',
+    variables: Optional[List[Union[FieldVariable,NonMeasuredVariable,InSituVariable,MeasuredVariable,CalculatedVariable,SocioeconomicVariable,DiscreteMeasuredVariable,ContinuousMeasuredVariable,ContinuousPHVariable,ContinuousTAVariable,ContinuousDICVariable,ContinuousSedimentVariable,ContinuousCO2Variable,ContinuousPhysiologicalVariable,DiscretePHVariable,DiscreteTAVariable,DiscreteDICVariable,DiscreteSedimentVariable,DiscreteCO2Variable,HPLCVariable,DiscretePhysiologicalVariable]]] = Field(default=None, title="Variables", description="""The variables in this dataset, each with its own metadata. Ranges over FieldVariable rather than Variable so that ModelVariable — which belongs to a ModelOutputDataset — is not admitted here.""", json_schema_extra = { "linkml_meta": {'alias': 'variables',
          'domain_of': ['FieldDataset', 'ModelOutputDataset'],
          'slot_uri': 'schema:variableMeasured'} })
     name: str = Field(default=..., title="Dataset Title", description="""A brief descriptive sentence that summarizes the content of a dataset. Here is one example:
@@ -3699,6 +3713,7 @@ TemperatureSensor.model_rebuild()
 PressureSensor.model_rebuild()
 MarineAirMeasurement.model_rebuild()
 Variable.model_rebuild()
+FieldVariable.model_rebuild()
 NonMeasuredVariable.model_rebuild()
 InSituVariable.model_rebuild()
 ModelVariable.model_rebuild()

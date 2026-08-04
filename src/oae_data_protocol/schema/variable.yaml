@@ -50,6 +50,18 @@ classes:
         required: true
 
   # =============================================================================
+  # Field Variable Class (abstract root of everything a FieldDataset may hold)
+  # =============================================================================
+  FieldVariable:
+    abstract: true
+    description: >-
+      Abstract root for every variable that can appear in a FieldDataset —
+      measured, calculated or contextual. Exists so FieldDataset.variables can
+      range over exactly these classes: ranging over Variable would also admit
+      ModelVariable, which belongs only to a ModelOutputDataset.
+    is_a: Variable
+
+  # =============================================================================
   # Non-Measured Variable Class
   # =============================================================================
   NonMeasuredVariable:
@@ -62,7 +74,7 @@ classes:
       instead, set dataset_variable_name_qc_flag on the parent measured or
       calculated variable that the flag relates to. variable_type must be
       "non_measured".
-    is_a: Variable
+    is_a: FieldVariable
     slot_usage:
       variable_type:
         range: string
@@ -76,7 +88,7 @@ classes:
     description: >-
       Base class for project-acquired variables (measured or calculated in-situ).
       Reference: OAPMetadata XSD variables.xsd - insitu_variable
-    is_a: Variable
+    is_a: FieldVariable
     slot_usage:
       units:
         required: true

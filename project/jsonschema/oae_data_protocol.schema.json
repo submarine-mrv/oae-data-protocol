@@ -3794,13 +3794,11 @@
                     "type": "string"
                 },
                 "variables": {
+                    "description": "The variables in this dataset, each with its own metadata. Ranges over FieldVariable rather than Variable so that ModelVariable \u2014 which belongs to a ModelOutputDataset \u2014 is not admitted here.",
                     "items": {
                         "anyOf": [
                             {
                                 "$ref": "#/$defs/NonMeasuredVariable"
-                            },
-                            {
-                                "$ref": "#/$defs/ModelVariable"
                             },
                             {
                                 "$ref": "#/$defs/CalculatedVariable"
