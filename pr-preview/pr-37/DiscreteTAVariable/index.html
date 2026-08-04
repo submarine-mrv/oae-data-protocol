@@ -845,10 +845,13 @@
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../Variable/">Variable</a><ul>
+<li><a href="../FieldVariable/">FieldVariable</a><ul>
 <li><a href="../InSituVariable/">InSituVariable</a><ul>
 <li><a href="../MeasuredVariable/">MeasuredVariable</a> [ <a href="../QCFields/">QCFields</a> <a href="../FieldMeasurementFields/">FieldMeasurementFields</a>]<ul>
 <li><a href="../DiscreteMeasuredVariable/">DiscreteMeasuredVariable</a><ul>
 <li><strong>DiscreteTAVariable</strong> [ <a href="../MeasuredTAFields/">MeasuredTAFields</a>]</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1038,15 +1041,15 @@
 <td><a href="../Variable/">Variable</a></td>
 </tr>
 <tr>
-<td><a href="../schema_class/">schema_class</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>The schema class name for this variable (e</td>
-<td><a href="../Variable/">Variable</a></td>
-</tr>
-<tr>
 <td><a href="../variable_type/">variable_type</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>High-level classification of the variable</td>
+<td><a href="../Variable/">Variable</a></td>
+</tr>
+<tr>
+<td><a href="../schema_class/">schema_class</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>The schema class name for this variable (e</td>
 <td><a href="../Variable/">Variable</a></td>
 </tr>
 <tr>
@@ -1513,6 +1516,21 @@
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">variable_type</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">variable_type</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">High-level classification of the variable. Determines which standard</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">identifiers are available and, combined with genesis and sampling, which schema</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">class to use.</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable Type</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.oaedata.org/OAEDataSchema</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">variable_type</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DiscreteTAVariable</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">equals_string</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ta</span>
 <span class="w">  </span><span class="nt">schema_class</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">schema_class</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The schema class name for this variable (e.g., "DiscretePHVariable").</span>
@@ -1526,21 +1544,6 @@
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">variable_type</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">variable_type</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">High-level classification of the variable. Determines which standard</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">identifiers are available and, combined with genesis and sampling, which schema</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">class to use.</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable Type</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">variable_type</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DiscreteTAVariable</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="nt">equals_string</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ta</span>
 <span class="w">  </span><span class="nt">standard_identifier</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">standard_identifier</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>

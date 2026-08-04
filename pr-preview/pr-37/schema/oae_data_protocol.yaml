@@ -1385,6 +1385,50 @@ enums:
           \ and external source data. QC flag columns should NOT be listed as separate\
           \ variables; instead set dataset_variable_name_qc_flag on the parent variable.\
           \ Use only with NonMeasuredVariable."
+  ModelVariableType:
+    name: ModelVariableType
+    definition_uri: https://schema.oaedata.org/ModelVariableType
+    description: "Classification of a variable output by a model simulation. Used\
+      \ in place of VariableType on ModelVariable \u2014 model output covers a different\
+      \ set of quantities than field measurement (velocities and fluxes rather than\
+      \ sampling-based observations), and there is exactly one model variable class,\
+      \ so this enum identifies the variable rather than selecting a class."
+    from_schema: Variable
+    permissible_values:
+      air_sea_co2_flux:
+        text: air_sea_co2_flux
+        description: Air-sea exchange of carbon dioxide
+      dissolved_inorganic_carbon:
+        text: dissolved_inorganic_carbon
+        description: Dissolved inorganic carbon (DIC)
+      total_alkalinity:
+        text: total_alkalinity
+        description: Total alkalinity (TA)
+      temperature:
+        text: temperature
+        description: Temperature
+      salinity:
+        text: salinity
+        description: Salinity
+      ph:
+        text: ph
+        description: pH of seawater
+      biological_tracers:
+        text: biological_tracers
+        description: Phytoplankton, chlorophyll, zooplankton, etc. biomass or concentration
+      horizontal_velocity:
+        text: horizontal_velocity
+        description: Horizontal velocity components (u, v)
+      vertical_velocity:
+        text: vertical_velocity
+        description: Vertical velocity component (w)
+      co2:
+        text: co2
+        description: "CO\u2082 variables (xCO\u2082, pCO\u2082, fCO\u2082)"
+      other:
+        text: other
+        description: Any model output variable that does not fall into a specific
+          category above.
   GenesisType:
     name: GenesisType
     definition_uri: https://schema.oaedata.org/GenesisType
@@ -1980,6 +2024,19 @@ slots:
     domain_of:
     - Variable
     range: string
+  variable_type:
+    name: variable_type
+    definition_uri: https://schema.oaedata.org/variable_type
+    description: High-level classification of the variable. Determines which standard
+      identifiers are available and, combined with genesis and sampling, which schema
+      class to use.
+    title: Variable Type
+    from_schema: Variable
+    slot_uri: oae:variable_type
+    owner: Variable
+    domain_of:
+    - Variable
+    range: VariableType
   analyzing_instrument:
     name: analyzing_instrument
     definition_uri: https://schema.oaedata.org/analyzing_instrument
@@ -3216,20 +3273,6 @@ slots:
     - Variable
     range: string
     required: true
-  variable__variable_type:
-    name: variable__variable_type
-    description: High-level classification of the variable. Determines which standard
-      identifiers are available and, combined with genesis and sampling, which schema
-      class to use.
-    title: Variable Type
-    from_schema: Variable
-    slot_uri: oae:variable_type
-    alias: variable_type
-    owner: Variable
-    domain_of:
-    - Variable
-    range: VariableType
-    required: true
   variable__standard_identifier:
     name: variable__standard_identifier
     from_schema: Variable
@@ -3714,20 +3757,6 @@ slots:
     domain_of:
     - SocioeconomicVariable
     range: string
-  modelVariable__calculation_method_and_parameters:
-    name: modelVariable__calculation_method_and_parameters
-    description: Information about how the variable was produced by the model (e.g.,
-      the model component, numerical scheme, or parameters). The overall simulation
-      configuration is described on the parent ModelOutputDataset.
-    title: Calculation Method and Parameters
-    from_schema: Variable
-    slot_uri: oae:calculation_method_and_parameters
-    alias: calculation_method_and_parameters
-    owner: ModelVariable
-    domain_of:
-    - ModelVariable
-    range: string
-    required: true
   samplePreservation__preservative:
     name: samplePreservation__preservative
     description: As described, e.g., Mercury Chloride.
@@ -4144,6 +4173,9 @@ slots:
     multivalued: true
   fieldDataset__variables:
     name: fieldDataset__variables
+    description: "The variables in this dataset, each with its own metadata. Ranges\
+      \ over FieldVariable rather than Variable so that ModelVariable \u2014 which\
+      \ belongs to a ModelOutputDataset \u2014 is not admitted here."
     title: Variables
     from_schema: Dataset
     mappings:
@@ -4153,7 +4185,7 @@ slots:
     owner: FieldDataset
     domain_of:
     - FieldDataset
-    range: Variable
+    range: FieldVariable
     multivalued: true
     inlined: true
   modelOutputDataset__simulation_type:
@@ -5344,12 +5376,6 @@ slots:
     domain_of:
     - ContinuousStandardGas
     range: string
-  variable_type:
-    name: variable_type
-    from_schema: https://schema.oaedata.org/OAEDataSchema
-    slot_uri: oae:variable_type
-    range: string
-    equals_string: pH
   SpatialCoverage_geo:
     name: SpatialCoverage_geo
     definition_uri: https://schema.oaedata.org/geo
@@ -5682,10 +5708,34 @@ slots:
     usage_slot_name: is_provided_as_a_file
     range: boolean
     required: true
+  Variable_variable_type:
+    name: Variable_variable_type
+    definition_uri: https://schema.oaedata.org/variable_type
+    description: High-level classification of the variable. Determines which standard
+      identifiers are available and, combined with genesis and sampling, which schema
+      class to use.
+    title: Variable Type
+    from_schema: Variable
+    is_a: variable_type
+    domain: Variable
+    slot_uri: oae:variable_type
+    alias: variable_type
+    owner: Variable
+    domain_of:
+    - Variable
+    is_usage_slot: true
+    usage_slot_name: variable_type
+    range: VariableType
+    required: true
   NonMeasuredVariable_variable_type:
     name: NonMeasuredVariable_variable_type
-    from_schema: https://schema.oaedata.org/OAEDataSchema
-    is_a: variable__variable_type
+    definition_uri: https://schema.oaedata.org/variable_type
+    description: High-level classification of the variable. Determines which standard
+      identifiers are available and, combined with genesis and sampling, which schema
+      class to use.
+    title: Variable Type
+    from_schema: Variable
+    is_a: Variable_variable_type
     domain: NonMeasuredVariable
     slot_uri: oae:variable_type
     alias: variable_type
@@ -5853,8 +5903,13 @@ slots:
     equals_string: calculated
   ContinuousPHVariable_variable_type:
     name: ContinuousPHVariable_variable_type
-    from_schema: https://schema.oaedata.org/OAEDataSchema
-    is_a: variable_type
+    definition_uri: https://schema.oaedata.org/variable_type
+    description: High-level classification of the variable. Determines which standard
+      identifiers are available and, combined with genesis and sampling, which schema
+      class to use.
+    title: Variable Type
+    from_schema: Variable
+    is_a: Variable_variable_type
     domain: ContinuousPHVariable
     slot_uri: oae:variable_type
     alias: variable_type
@@ -5864,11 +5919,17 @@ slots:
     is_usage_slot: true
     usage_slot_name: variable_type
     range: string
+    required: true
     equals_string: pH
   DiscretePHVariable_variable_type:
     name: DiscretePHVariable_variable_type
-    from_schema: https://schema.oaedata.org/OAEDataSchema
-    is_a: variable_type
+    definition_uri: https://schema.oaedata.org/variable_type
+    description: High-level classification of the variable. Determines which standard
+      identifiers are available and, combined with genesis and sampling, which schema
+      class to use.
+    title: Variable Type
+    from_schema: Variable
+    is_a: Variable_variable_type
     domain: DiscretePHVariable
     slot_uri: oae:variable_type
     alias: variable_type
@@ -5878,6 +5939,7 @@ slots:
     is_usage_slot: true
     usage_slot_name: variable_type
     range: string
+    required: true
     equals_string: pH
   DiscretePHVariable_analyzing_instrument:
     name: DiscretePHVariable_analyzing_instrument
@@ -5899,8 +5961,13 @@ slots:
     inlined: true
   ContinuousTAVariable_variable_type:
     name: ContinuousTAVariable_variable_type
-    from_schema: https://schema.oaedata.org/OAEDataSchema
-    is_a: variable_type
+    definition_uri: https://schema.oaedata.org/variable_type
+    description: High-level classification of the variable. Determines which standard
+      identifiers are available and, combined with genesis and sampling, which schema
+      class to use.
+    title: Variable Type
+    from_schema: Variable
+    is_a: Variable_variable_type
     domain: ContinuousTAVariable
     slot_uri: oae:variable_type
     alias: variable_type
@@ -5910,11 +5977,17 @@ slots:
     is_usage_slot: true
     usage_slot_name: variable_type
     range: string
+    required: true
     equals_string: ta
   DiscreteTAVariable_variable_type:
     name: DiscreteTAVariable_variable_type
-    from_schema: https://schema.oaedata.org/OAEDataSchema
-    is_a: variable_type
+    definition_uri: https://schema.oaedata.org/variable_type
+    description: High-level classification of the variable. Determines which standard
+      identifiers are available and, combined with genesis and sampling, which schema
+      class to use.
+    title: Variable Type
+    from_schema: Variable
+    is_a: Variable_variable_type
     domain: DiscreteTAVariable
     slot_uri: oae:variable_type
     alias: variable_type
@@ -5924,6 +5997,7 @@ slots:
     is_usage_slot: true
     usage_slot_name: variable_type
     range: string
+    required: true
     equals_string: ta
   DiscreteTAVariable_analyzing_instrument:
     name: DiscreteTAVariable_analyzing_instrument
@@ -5945,8 +6019,13 @@ slots:
     inlined: true
   ContinuousDICVariable_variable_type:
     name: ContinuousDICVariable_variable_type
-    from_schema: https://schema.oaedata.org/OAEDataSchema
-    is_a: variable_type
+    definition_uri: https://schema.oaedata.org/variable_type
+    description: High-level classification of the variable. Determines which standard
+      identifiers are available and, combined with genesis and sampling, which schema
+      class to use.
+    title: Variable Type
+    from_schema: Variable
+    is_a: Variable_variable_type
     domain: ContinuousDICVariable
     slot_uri: oae:variable_type
     alias: variable_type
@@ -5956,11 +6035,17 @@ slots:
     is_usage_slot: true
     usage_slot_name: variable_type
     range: string
+    required: true
     equals_string: dic
   DiscreteDICVariable_variable_type:
     name: DiscreteDICVariable_variable_type
-    from_schema: https://schema.oaedata.org/OAEDataSchema
-    is_a: variable_type
+    definition_uri: https://schema.oaedata.org/variable_type
+    description: High-level classification of the variable. Determines which standard
+      identifiers are available and, combined with genesis and sampling, which schema
+      class to use.
+    title: Variable Type
+    from_schema: Variable
+    is_a: Variable_variable_type
     domain: DiscreteDICVariable
     slot_uri: oae:variable_type
     alias: variable_type
@@ -5970,6 +6055,7 @@ slots:
     is_usage_slot: true
     usage_slot_name: variable_type
     range: string
+    required: true
     equals_string: dic
   DiscreteDICVariable_analyzing_instrument:
     name: DiscreteDICVariable_analyzing_instrument
@@ -5991,8 +6077,13 @@ slots:
     inlined: true
   ContinuousSedimentVariable_variable_type:
     name: ContinuousSedimentVariable_variable_type
-    from_schema: https://schema.oaedata.org/OAEDataSchema
-    is_a: variable_type
+    definition_uri: https://schema.oaedata.org/variable_type
+    description: High-level classification of the variable. Determines which standard
+      identifiers are available and, combined with genesis and sampling, which schema
+      class to use.
+    title: Variable Type
+    from_schema: Variable
+    is_a: Variable_variable_type
     domain: ContinuousSedimentVariable
     slot_uri: oae:variable_type
     alias: variable_type
@@ -6002,11 +6093,17 @@ slots:
     is_usage_slot: true
     usage_slot_name: variable_type
     range: string
+    required: true
     equals_string: sediment
   DiscreteSedimentVariable_variable_type:
     name: DiscreteSedimentVariable_variable_type
-    from_schema: https://schema.oaedata.org/OAEDataSchema
-    is_a: variable_type
+    definition_uri: https://schema.oaedata.org/variable_type
+    description: High-level classification of the variable. Determines which standard
+      identifiers are available and, combined with genesis and sampling, which schema
+      class to use.
+    title: Variable Type
+    from_schema: Variable
+    is_a: Variable_variable_type
     domain: DiscreteSedimentVariable
     slot_uri: oae:variable_type
     alias: variable_type
@@ -6016,11 +6113,17 @@ slots:
     is_usage_slot: true
     usage_slot_name: variable_type
     range: string
+    required: true
     equals_string: sediment
   DiscreteCO2Variable_variable_type:
     name: DiscreteCO2Variable_variable_type
-    from_schema: https://schema.oaedata.org/OAEDataSchema
-    is_a: variable_type
+    definition_uri: https://schema.oaedata.org/variable_type
+    description: High-level classification of the variable. Determines which standard
+      identifiers are available and, combined with genesis and sampling, which schema
+      class to use.
+    title: Variable Type
+    from_schema: Variable
+    is_a: Variable_variable_type
     domain: DiscreteCO2Variable
     slot_uri: oae:variable_type
     alias: variable_type
@@ -6030,6 +6133,7 @@ slots:
     is_usage_slot: true
     usage_slot_name: variable_type
     range: string
+    required: true
     equals_string: co2
   DiscreteCO2Variable_analyzing_instrument:
     name: DiscreteCO2Variable_analyzing_instrument
@@ -6051,8 +6155,13 @@ slots:
     inlined: true
   ContinuousCO2Variable_variable_type:
     name: ContinuousCO2Variable_variable_type
-    from_schema: https://schema.oaedata.org/OAEDataSchema
-    is_a: variable_type
+    definition_uri: https://schema.oaedata.org/variable_type
+    description: High-level classification of the variable. Determines which standard
+      identifiers are available and, combined with genesis and sampling, which schema
+      class to use.
+    title: Variable Type
+    from_schema: Variable
+    is_a: Variable_variable_type
     domain: ContinuousCO2Variable
     slot_uri: oae:variable_type
     alias: variable_type
@@ -6062,6 +6171,7 @@ slots:
     is_usage_slot: true
     usage_slot_name: variable_type
     range: string
+    required: true
     equals_string: co2
   ContinuousCO2Variable_analyzing_instrument:
     name: ContinuousCO2Variable_analyzing_instrument
@@ -6083,8 +6193,13 @@ slots:
     inlined: true
   HPLCVariable_variable_type:
     name: HPLCVariable_variable_type
-    from_schema: https://schema.oaedata.org/OAEDataSchema
-    is_a: variable_type
+    definition_uri: https://schema.oaedata.org/variable_type
+    description: High-level classification of the variable. Determines which standard
+      identifiers are available and, combined with genesis and sampling, which schema
+      class to use.
+    title: Variable Type
+    from_schema: Variable
+    is_a: Variable_variable_type
     domain: HPLCVariable
     slot_uri: oae:variable_type
     alias: variable_type
@@ -6094,11 +6209,17 @@ slots:
     is_usage_slot: true
     usage_slot_name: variable_type
     range: string
+    required: true
     equals_string: hplc
   DiscretePhysiologicalVariable_variable_type:
     name: DiscretePhysiologicalVariable_variable_type
-    from_schema: https://schema.oaedata.org/OAEDataSchema
-    is_a: variable_type
+    definition_uri: https://schema.oaedata.org/variable_type
+    description: High-level classification of the variable. Determines which standard
+      identifiers are available and, combined with genesis and sampling, which schema
+      class to use.
+    title: Variable Type
+    from_schema: Variable
+    is_a: Variable_variable_type
     domain: DiscretePhysiologicalVariable
     slot_uri: oae:variable_type
     alias: variable_type
@@ -6108,11 +6229,17 @@ slots:
     is_usage_slot: true
     usage_slot_name: variable_type
     range: string
+    required: true
     equals_string: physiological
   ContinuousPhysiologicalVariable_variable_type:
     name: ContinuousPhysiologicalVariable_variable_type
-    from_schema: https://schema.oaedata.org/OAEDataSchema
-    is_a: variable_type
+    definition_uri: https://schema.oaedata.org/variable_type
+    description: High-level classification of the variable. Determines which standard
+      identifiers are available and, combined with genesis and sampling, which schema
+      class to use.
+    title: Variable Type
+    from_schema: Variable
+    is_a: Variable_variable_type
     domain: ContinuousPhysiologicalVariable
     slot_uri: oae:variable_type
     alias: variable_type
@@ -6122,11 +6249,17 @@ slots:
     is_usage_slot: true
     usage_slot_name: variable_type
     range: string
+    required: true
     equals_string: physiological
   SocioeconomicVariable_variable_type:
     name: SocioeconomicVariable_variable_type
-    from_schema: https://schema.oaedata.org/OAEDataSchema
-    is_a: variable_type
+    definition_uri: https://schema.oaedata.org/variable_type
+    description: High-level classification of the variable. Determines which standard
+      identifiers are available and, combined with genesis and sampling, which schema
+      class to use.
+    title: Variable Type
+    from_schema: Variable
+    is_a: Variable_variable_type
     domain: SocioeconomicVariable
     slot_uri: oae:variable_type
     alias: variable_type
@@ -6136,22 +6269,44 @@ slots:
     is_usage_slot: true
     usage_slot_name: variable_type
     range: string
+    required: true
     equals_string: socioeconomic
-  ModelVariable_genesis:
-    name: ModelVariable_genesis
-    from_schema: https://schema.oaedata.org/OAEDataSchema
-    is_a: inSituVariable__genesis
+  ModelVariable_units:
+    name: ModelVariable_units
+    definition_uri: https://schema.oaedata.org/units
+    description: Unit of measurement for this variable.
+    title: Unit
+    from_schema: Variable
+    is_a: units
     domain: ModelVariable
-    slot_uri: oae:genesis
-    alias: genesis
+    slot_uri: oae:units
+    alias: units
     owner: ModelVariable
     domain_of:
     - ModelVariable
     is_usage_slot: true
-    usage_slot_name: genesis
+    usage_slot_name: units
     range: string
     required: true
-    equals_string: calculated
+  ModelVariable_variable_type:
+    name: ModelVariable_variable_type
+    definition_uri: https://schema.oaedata.org/variable_type
+    description: Which model output quantity this variable holds. There is only one
+      model variable class, so this classifies the variable rather than selecting
+      a schema class.
+    title: Model Output Variable
+    from_schema: Variable
+    is_a: Variable_variable_type
+    domain: ModelVariable
+    slot_uri: oae:variable_type
+    alias: variable_type
+    owner: ModelVariable
+    domain_of:
+    - ModelVariable
+    is_usage_slot: true
+    usage_slot_name: variable_type
+    range: ModelVariableType
+    required: true
   Dataset_name:
     name: Dataset_name
     definition_uri: https://schema.oaedata.org/name
@@ -7559,11 +7714,15 @@ classes:
     abstract: true
     slots:
     - units
+    - Variable_variable_type
     - variable__schema_class
-    - variable__variable_type
     - variable__standard_identifier
     - variable__dataset_variable_name
     - variable__long_name
+    slot_usage:
+      variable_type:
+        name: variable_type
+        required: true
     attributes:
       schema_class:
         name: schema_class
@@ -7571,14 +7730,6 @@ classes:
           Auto-populated by the metadata builder.
         designates_type: true
         range: string
-        required: true
-      variable_type:
-        name: variable_type
-        description: High-level classification of the variable. Determines which standard
-          identifiers are available and, combined with genesis and sampling, which
-          schema class to use.
-        title: Variable Type
-        range: VariableType
         required: true
       standard_identifier:
         name: standard_identifier
@@ -7599,6 +7750,24 @@ classes:
         range: string
         required: true
     class_uri: oae:Variable
+  FieldVariable:
+    name: FieldVariable
+    definition_uri: https://schema.oaedata.org/FieldVariable
+    description: "Abstract root for every variable that can appear in a FieldDataset\
+      \ \u2014 measured, calculated or contextual. Exists so FieldDataset.variables\
+      \ can range over exactly these classes: ranging over Variable would also admit\
+      \ ModelVariable, which belongs only to a ModelOutputDataset."
+    from_schema: Variable
+    is_a: Variable
+    abstract: true
+    slots:
+    - units
+    - Variable_variable_type
+    - variable__schema_class
+    - variable__standard_identifier
+    - variable__dataset_variable_name
+    - variable__long_name
+    class_uri: oae:FieldVariable
   NonMeasuredVariable:
     name: NonMeasuredVariable
     definition_uri: https://schema.oaedata.org/NonMeasuredVariable
@@ -7610,7 +7779,7 @@ classes:
       \ on the parent measured or calculated variable that the flag relates to. variable_type\
       \ must be \"non_measured\"."
     from_schema: Variable
-    is_a: Variable
+    is_a: FieldVariable
     slots:
     - units
     - variable__schema_class
@@ -7621,7 +7790,6 @@ classes:
     slot_usage:
       variable_type:
         name: variable_type
-        is_a: variable__variable_type
         range: string
         equals_string: non_measured
     class_uri: oae:NonMeasuredVariable
@@ -7631,11 +7799,11 @@ classes:
     description: 'Base class for project-acquired variables (measured or calculated
       in-situ). Reference: OAPMetadata XSD variables.xsd - insitu_variable'
     from_schema: Variable
-    is_a: Variable
+    is_a: FieldVariable
     abstract: true
     slots:
+    - Variable_variable_type
     - variable__schema_class
-    - variable__variable_type
     - variable__standard_identifier
     - variable__dataset_variable_name
     - variable__long_name
@@ -7683,8 +7851,8 @@ classes:
     - QCFields
     - FieldMeasurementFields
     slots:
+    - Variable_variable_type
     - variable__schema_class
-    - variable__variable_type
     - variable__standard_identifier
     - variable__dataset_variable_name
     - variable__long_name
@@ -7777,8 +7945,8 @@ classes:
     from_schema: Variable
     is_a: MeasuredVariable
     slots:
+    - Variable_variable_type
     - variable__schema_class
-    - variable__variable_type
     - variable__standard_identifier
     - variable__dataset_variable_name
     - variable__long_name
@@ -7822,8 +7990,8 @@ classes:
     from_schema: Variable
     is_a: MeasuredVariable
     slots:
+    - Variable_variable_type
     - variable__schema_class
-    - variable__variable_type
     - variable__standard_identifier
     - variable__dataset_variable_name
     - variable__long_name
@@ -7884,8 +8052,8 @@ classes:
     - QCFields
     - FieldMeasurementFields
     slots:
+    - Variable_variable_type
     - variable__schema_class
-    - variable__variable_type
     - variable__standard_identifier
     - variable__dataset_variable_name
     - variable__long_name
@@ -7962,8 +8130,6 @@ classes:
     slot_usage:
       variable_type:
         name: variable_type
-        from_schema: https://schema.oaedata.org/OAEDataSchema
-        slot_uri: oae:variable_type
         range: string
         equals_string: pH
     class_uri: oae:ContinuousPHVariable
@@ -8738,47 +8904,30 @@ classes:
     definition_uri: https://schema.oaedata.org/ModelVariable
     description: "A variable output by a model simulation (e.g., air-sea CO2 flux,\
       \ dissolved inorganic carbon, total alkalinity, pH, temperature, salinity from\
-      \ an OAE model run). Mirrors CalculatedVariable \u2014 model outputs are derived\
-      \ by the model rather than measured, so genesis is fixed to \"calculated\" \u2014\
-      \ but omits the in-situ attribution fields (method_reference, measurement_researcher)\
-      \ that only apply to field-collected variables."
+      \ an OAE model run). Model outputs are produced by the simulation itself, so\
+      \ they carry none of the sampling, instrument, calibration or in-situ QC metadata\
+      \ that field-collected variables do \u2014 how the output was produced is described\
+      \ by the simulation configuration on the parent ModelOutputDataset."
     from_schema: Variable
-    is_a: InSituVariable
-    mixins:
-    - QCFields
+    is_a: Variable
     slots:
     - variable__schema_class
-    - variable__variable_type
     - variable__standard_identifier
     - variable__dataset_variable_name
     - variable__long_name
-    - inSituVariable__dataset_variable_name_qc_flag
-    - inSituVariable__dataset_variable_name_raw
-    - inSituVariable__other_detailed_information
-    - InSituVariable_units
-    - modelVariable__calculation_method_and_parameters
-    - ModelVariable_genesis
-    - qc_steps_taken
-    - uncertainty
-    - uncertainty_definition
-    - missing_value_indicators
-    - qCFields__qc_researcher
-    - qCFields__qc_researcher_institution
+    - ModelVariable_units
+    - ModelVariable_variable_type
     slot_usage:
-      genesis:
-        name: genesis
-        is_a: inSituVariable__genesis
-        range: string
-        equals_string: calculated
-    attributes:
-      calculation_method_and_parameters:
-        name: calculation_method_and_parameters
-        description: Information about how the variable was produced by the model
-          (e.g., the model component, numerical scheme, or parameters). The overall
-          simulation configuration is described on the parent ModelOutputDataset.
-        title: Calculation Method and Parameters
-        range: string
+      units:
+        name: units
         required: true
+      variable_type:
+        name: variable_type
+        description: Which model output quantity this variable holds. There is only
+          one model variable class, so this classifies the variable rather than selecting
+          a schema class.
+        title: Model Output Variable
+        range: ModelVariableType
     class_uri: oae:ModelVariable
   SamplePreservation:
     name: SamplePreservation
@@ -9205,9 +9354,12 @@ classes:
         multivalued: true
       variables:
         name: variables
+        description: "The variables in this dataset, each with its own metadata. Ranges\
+          \ over FieldVariable rather than Variable so that ModelVariable \u2014 which\
+          \ belongs to a ModelOutputDataset \u2014 is not admitted here."
         title: Variables
         slot_uri: schema:variableMeasured
-        range: Variable
+        range: FieldVariable
         multivalued: true
     class_uri: oae:FieldDataset
   ModelOutputDataset:
@@ -10305,7 +10457,7 @@ classes:
     class_uri: oae:ContinuousStandardGas
 metamodel_version: 1.7.0
 source_file: oae_data_protocol.yaml
-source_file_date: '2026-07-25T01:28:35'
+source_file_date: '2026-08-04T23:39:21'
 source_file_size: 1743
-generation_date: '2026-07-25T01:28:49'
+generation_date: '2026-08-04T23:39:34'
 

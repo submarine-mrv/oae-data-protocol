@@ -713,6 +713,19 @@
     </span>
 </a>
 </li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#model-output-variables">
+<span class="md-ellipsis">
+      
+        Model Output Variables
+      
+    </span>
+</a>
+<nav aria-label="Model Output Variables" class="md-nav">
+<ul class="md-nav__list">
 <li class="md-nav__item">
 <a class="md-nav__link" href="#type-specific-fields-traits-mixins">
 <span class="md-ellipsis">
@@ -738,11 +751,14 @@
 <pre class="mermaid"><code>graph LR
     V("`*Variable*
     (abstract)`")
+    FV("`*FieldVariable*
+    (abstract)`")
     ISV("`*InSituVariable*
     (abstract)`")
     MV("`*MeasuredVariable*
     (abstract)`")
     NMV["NonMeasuredVariable"]
+    MOV["ModelVariable"]
     SEV["SocioeconomicVariable"]
     CV["CalculatedVariable"]
     DM["DiscreteMeasuredVariable"]
@@ -758,8 +774,10 @@
     ContinuousPhysiologicalVariable
     *…and others*`"]
 
-    V --&gt; NMV
-    V --&gt; ISV
+    V --&gt; FV
+    V --&gt; MOV
+    FV --&gt; NMV
+    FV --&gt; ISV
     ISV --&gt; SEV
     ISV --&gt; CV
     ISV --&gt; MV
@@ -771,14 +789,17 @@
     classDef abstract fill:#f5f5f5,stroke:#999,stroke-dasharray: 4 3,color:#555
     classDef concrete fill:#e0e8f0,stroke:#4F656A
     classDef leaf fill:#d0e8d0,stroke:#4F656A
-    class V,ISV,MV abstract
-    class NMV,SEV,CV,DPH,CPH concrete
+    class V,FV,ISV,MV abstract
+    class NMV,MOV,SEV,CV,DPH,CPH concrete
     class DM,CM leaf</code></pre>
 <p>This hierarchy aims to align with <a href="https://github.com/NOAA-PMEL/OAPMetadata">NOAA-PMEL's OAPMetadata</a> XSD schema to make
 interoperability easier between NOAA's OCADS system, and other repositories where OAE researchers may choose to host
 their data, whether they be other ocean data repositories, and generalist repositories such as Zenodo.</p>
 <h2 id="choosing-a-variable-type">Choosing a Variable Type</h2>
-<p>Every variable requires three selections that determine which schema class is used:</p>
+<p>Every variable in a <strong>field dataset</strong> requires three selections that determine which schema class is
+used. Variables in a <strong>model output dataset</strong> skip this entirely — they are always
+<a href="../ModelVariable/">ModelVariable</a> and are classified with the separate
+<a href="../ModelVariableType/">ModelVariableType</a> enum. See <a href="#model-output-variables">Model Output Variables</a> below.</p>
 <h3 id="1-variable-type-variable_type">1. Variable Type (<code>variable_type</code>)</h3>
 <p>What kind of measurement is this?</p>
 <table>
@@ -1034,6 +1055,74 @@ their data, whether they be other ocean data repositories, and generalist reposi
 <ul>
 <li><code>calculation_method_and_parameters</code> — software, input variables, constants used</li>
 </ul>
+<h2 id="model-output-variables">Model Output Variables</h2>
+<p>Variables in a <a href="../ModelOutputDataset/">ModelOutputDataset</a> are described by a single class,
+<a href="../ModelVariable/">ModelVariable</a>, which sits directly under <code>Variable</code> — a sibling of
+<a href="../FieldVariable/">FieldVariable</a> rather than a descendant of it, so a model variable is never
+valid inside a <code>FieldDataset</code> and vice versa. Model output is produced by the simulation itself, so it carries none of the
+sampling, instrument, calibration or in-situ QC metadata that field-collected variables do — how the
+output was produced is already described by the simulation configuration on the parent dataset.</p>
+<p>A <code>ModelVariable</code> therefore has only:</p>
+<ul>
+<li><code>variable_type</code> — a <a href="../ModelVariableType/">ModelVariableType</a> value (required)</li>
+<li><code>long_name</code>, <code>dataset_variable_name</code>, <code>units</code> (all required)</li>
+<li><code>standard_identifier</code> — optional reference to a community vocabulary</li>
+</ul>
+<p><code>ModelVariableType</code> classifies the model output rather than selecting a schema class:</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>air_sea_co2_flux</code></td>
+<td>Air-sea exchange of carbon dioxide</td>
+</tr>
+<tr>
+<td><code>dissolved_inorganic_carbon</code></td>
+<td>Dissolved inorganic carbon (DIC)</td>
+</tr>
+<tr>
+<td><code>total_alkalinity</code></td>
+<td>Total alkalinity (TA)</td>
+</tr>
+<tr>
+<td><code>temperature</code></td>
+<td>Temperature</td>
+</tr>
+<tr>
+<td><code>salinity</code></td>
+<td>Salinity</td>
+</tr>
+<tr>
+<td><code>ph</code></td>
+<td>pH of seawater</td>
+</tr>
+<tr>
+<td><code>biological_tracers</code></td>
+<td>Phytoplankton, chlorophyll, zooplankton, etc. biomass or concentration</td>
+</tr>
+<tr>
+<td><code>horizontal_velocity</code></td>
+<td>Horizontal velocity components (u, v)</td>
+</tr>
+<tr>
+<td><code>vertical_velocity</code></td>
+<td>Vertical velocity component (w)</td>
+</tr>
+<tr>
+<td><code>co2</code></td>
+<td>CO₂ variables (xCO₂, pCO₂, fCO₂)</td>
+</tr>
+<tr>
+<td><code>other</code></td>
+<td>Any model output variable not covered above</td>
+</tr>
+</tbody>
+</table>
 <h3 id="type-specific-fields-traits-mixins">Type-Specific Fields (Traits / Mixins)</h3>
 <p>Many measured variables (either discrete or continuous) inherit additional fields based on their <code>variable_type</code> that are
 always present whether the specific variable is discrete or continuous. In these instances, we use LinkML's <a href="https://linkml.io/linkml/schemas/inheritance.html#mixin-classes-and-slots">mixin</a>

@@ -704,44 +704,17 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="class-modelvariable">Class: ModelVariable</h1>
-<p><em>A variable output by a model simulation (e.g., air-sea CO2 flux, dissolved inorganic carbon, total alkalinity, pH, temperature, salinity from an OAE model run). Mirrors CalculatedVariable — model outputs are derived by the model rather than measured, so genesis is fixed to "calculated" — but omits the in-situ attribution fields (method_reference, measurement_researcher) that only apply to field-collected variables.</em></p>
+<p><em>A variable output by a model simulation (e.g., air-sea CO2 flux, dissolved inorganic carbon, total alkalinity, pH, temperature, salinity from an OAE model run). Model outputs are produced by the simulation itself, so they carry none of the sampling, instrument, calibration or in-situ QC metadata that field-collected variables do — how the output was produced is described by the simulation configuration on the parent ModelOutputDataset.</em></p>
 <p>URI: <a href="https://schema.oaedata.org/ModelVariable">oae:ModelVariable</a></p>
 <pre class="mermaid"><code> classDiagram
     class ModelVariable
     click ModelVariable href "../ModelVariable"
-      QCFields &lt;|-- ModelVariable
-        click QCFields href "../QCFields"
-      InSituVariable &lt;|-- ModelVariable
-        click InSituVariable href "../InSituVariable"
-
-      ModelVariable : calculation_method_and_parameters
+      Variable &lt;|-- ModelVariable
+        click Variable href "../Variable"
 
       ModelVariable : dataset_variable_name
 
-      ModelVariable : dataset_variable_name_qc_flag
-
-      ModelVariable : dataset_variable_name_raw
-
-      ModelVariable : genesis
-
       ModelVariable : long_name
-
-      ModelVariable : missing_value_indicators
-
-      ModelVariable : other_detailed_information
-
-      ModelVariable : qc_researcher
-
-
-
-
-    ModelVariable --&gt; "0..1" Person : qc_researcher
-    click Person href "../Person"
-
-
-      ModelVariable : qc_researcher_institution
-
-      ModelVariable : qc_steps_taken
 
       ModelVariable : schema_class
 
@@ -754,10 +727,6 @@
     click VocabularyItemReference href "../VocabularyItemReference"
 
 
-      ModelVariable : uncertainty
-
-      ModelVariable : uncertainty_definition
-
       ModelVariable : units
 
       ModelVariable : variable_type
@@ -765,18 +734,15 @@
 
 
 
-    ModelVariable --&gt; "1" VariableType : variable_type
-    click VariableType href "../VariableType"
+    ModelVariable --&gt; "1" ModelVariableType : variable_type
+    click ModelVariableType href "../ModelVariableType"
 
 
 </code></pre>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../Variable/">Variable</a><ul>
-<li><a href="../InSituVariable/">InSituVariable</a><ul>
-<li><strong>ModelVariable</strong> [ <a href="../QCFields/">QCFields</a>]</li>
-</ul>
-</li>
+<li><strong>ModelVariable</strong></li>
 </ul>
 </li>
 </ul>
@@ -792,87 +758,21 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../calculation_method_and_parameters/">calculation_method_and_parameters</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>Information about how the variable was produced by the model (e</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../qc_steps_taken/">qc_steps_taken</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Describe what QC steps have been taken to improve the quality of the data (e</td>
-<td><a href="../QCFields/">QCFields</a></td>
-</tr>
-<tr>
-<td><a href="../uncertainty/">uncertainty</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>It is recommended to provide uncertainty for each data point in the data file</td>
-<td><a href="../QCFields/">QCFields</a></td>
-</tr>
-<tr>
-<td><a href="../uncertainty_definition/">uncertainty_definition</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>A description of the uncertainties involved in this method</td>
-<td><a href="../QCFields/">QCFields</a></td>
-</tr>
-<tr>
-<td><a href="../missing_value_indicators/">missing_value_indicators</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>The indicator used to represent missing values in the data file, e</td>
-<td><a href="../QCFields/">QCFields</a></td>
-</tr>
-<tr>
-<td><a href="../qc_researcher/">qc_researcher</a></td>
-<td>0..1 <br/> <a href="../Person/">Person</a></td>
-<td>The name of the PI whose research team QCed this parameter</td>
-<td><a href="../QCFields/">QCFields</a></td>
-</tr>
-<tr>
-<td><a href="../qc_researcher_institution/">qc_researcher_institution</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>The institution of the PI whose research team QCed this parameter</td>
-<td><a href="../QCFields/">QCFields</a></td>
-</tr>
-<tr>
-<td><a href="../genesis/">genesis</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td></td>
-<td><a href="../InSituVariable/">InSituVariable</a></td>
-</tr>
-<tr>
-<td><a href="../dataset_variable_name_qc_flag/">dataset_variable_name_qc_flag</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>If applicable, the column header name used for the quality control flag corre...</td>
-<td><a href="../InSituVariable/">InSituVariable</a></td>
-</tr>
-<tr>
-<td><a href="../dataset_variable_name_raw/">dataset_variable_name_raw</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>If applicable, the column header name used for the raw data corresponding to ...</td>
-<td><a href="../InSituVariable/">InSituVariable</a></td>
-</tr>
-<tr>
-<td><a href="../other_detailed_information/">other_detailed_information</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Any additional information about this variable</td>
-<td><a href="../InSituVariable/">InSituVariable</a></td>
-</tr>
-<tr>
 <td><a href="../units/">units</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>Unit of measurement for this variable</td>
 <td><a href="../Variable/">Variable</a></td>
 </tr>
 <tr>
-<td><a href="../schema_class/">schema_class</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>The schema class name for this variable (e</td>
+<td><a href="../variable_type/">variable_type</a></td>
+<td>1 <br/> <a href="../ModelVariableType/">ModelVariableType</a></td>
+<td>Which model output quantity this variable holds</td>
 <td><a href="../Variable/">Variable</a></td>
 </tr>
 <tr>
-<td><a href="../variable_type/">variable_type</a></td>
-<td>1 <br/> <a href="../VariableType/">VariableType</a></td>
-<td>High-level classification of the variable</td>
+<td><a href="../schema_class/">schema_class</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>The schema class name for this variable (e</td>
 <td><a href="../Variable/">Variable</a></td>
 </tr>
 <tr>
@@ -945,32 +845,23 @@
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ModelVariable</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A variable output by a model simulation (e.g., air-sea CO2 flux, dissolved</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">inorganic carbon, total alkalinity, pH, temperature, salinity from an OAE model</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">run). Mirrors CalculatedVariable — model outputs are derived by the model rather</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">than measured, so genesis is fixed to "calculated" — but omits the in-situ attribution</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">fields (method_reference, measurement_researcher) that only apply to field-collected</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">variables.</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">run). Model outputs are produced by the simulation itself, so they carry none of</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">the sampling, instrument, calibration or in-situ QC metadata that field-collected</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">variables do — how the output was produced is described by the simulation configuration</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">on the parent ModelOutputDataset.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.oaedata.org/OAEDataSchema</span>
-<span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InSituVariable</span>
-<span class="nt">mixins</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QCFields</span>
+<span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
 <span class="nt">slot_usage</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">genesis</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">genesis</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">    </span><span class="nt">equals_string</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">calculated</span>
-<span class="nt">attributes</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">calculation_method_and_parameters</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">calculation_method_and_parameters</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Information about how the variable was produced by the model (e.g.,</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">the model component, numerical scheme, or parameters). The overall simulation</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">configuration is described on the parent ModelOutputDataset.</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Calculation Method and Parameters</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CalculatedVariable</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ModelVariable</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">  </span><span class="nt">units</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">units</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">variable_type</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">variable_type</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Which model output quantity this variable holds. There is only one</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">model variable class, so this classifies the variable rather than selecting</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">a schema class.</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Model Output Variable</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ModelVariableType</span>
 </code></pre></div>
 </details>
 <h3 id="induced">Induced</h3>
@@ -978,157 +869,24 @@
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ModelVariable</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A variable output by a model simulation (e.g., air-sea CO2 flux, dissolved</span>
 <span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">inorganic carbon, total alkalinity, pH, temperature, salinity from an OAE model</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">run). Mirrors CalculatedVariable — model outputs are derived by the model rather</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">than measured, so genesis is fixed to "calculated" — but omits the in-situ attribution</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">fields (method_reference, measurement_researcher) that only apply to field-collected</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">variables.</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">run). Model outputs are produced by the simulation itself, so they carry none of</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">the sampling, instrument, calibration or in-situ QC metadata that field-collected</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">variables do — how the output was produced is described by the simulation configuration</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">on the parent ModelOutputDataset.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.oaedata.org/OAEDataSchema</span>
-<span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InSituVariable</span>
-<span class="nt">mixins</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QCFields</span>
+<span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
 <span class="nt">slot_usage</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">genesis</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">genesis</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">    </span><span class="nt">equals_string</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">calculated</span>
+<span class="w">  </span><span class="nt">units</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">units</span>
+<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">variable_type</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">variable_type</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Which model output quantity this variable holds. There is only one</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">model variable class, so this classifies the variable rather than selecting</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">a schema class.</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Model Output Variable</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ModelVariableType</span>
 <span class="nt">attributes</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">calculation_method_and_parameters</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">calculation_method_and_parameters</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Information about how the variable was produced by the model (e.g.,</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">the model component, numerical scheme, or parameters). The overall simulation</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">configuration is described on the parent ModelOutputDataset.</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Calculation Method and Parameters</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">calculation_method_and_parameters</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ModelVariable</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CalculatedVariable</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ModelVariable</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">qc_steps_taken</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">qc_steps_taken</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Describe</span><span class="nv"> </span><span class="s">what</span><span class="nv"> </span><span class="s">QC</span><span class="nv"> </span><span class="s">steps</span><span class="nv"> </span><span class="s">have</span><span class="nv"> </span><span class="s">been</span><span class="nv"> </span><span class="s">taken</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">improve</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">quality</span><span class="nv"> </span><span class="s">of</span>
-<span class="w">      </span><span class="s">the</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">(e.g.,</span><span class="nv"> </span><span class="s">DOI,</span><span class="nv"> </span><span class="s">software</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">settings</span><span class="nv"> </span><span class="s">used,</span><span class="nv"> </span><span class="s">outlier</span><span class="nv"> </span><span class="s">removal,</span><span class="nv"> </span><span class="s">etc.).</span>
-
-<span class="w">      </span><span class="s">If</span><span class="nv"> </span><span class="s">quality</span><span class="nv"> </span><span class="s">control</span><span class="nv"> </span><span class="s">procedures</span><span class="nv"> </span><span class="s">are</span><span class="nv"> </span><span class="s">described</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">separate</span><span class="nv"> </span><span class="s">document</span><span class="nv"> </span><span class="s">uploaded</span>
-<span class="w">      </span><span class="s">with</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">data,</span><span class="nv"> </span><span class="s">provide</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">name</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">document</span><span class="nv"> </span><span class="s">here.'</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QC steps taken</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.oaedata.org/OAEDataSchema</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">qc_steps_taken</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ModelVariable</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QCFields</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">  </span><span class="nt">uncertainty</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uncertainty</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'It</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">recommended</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">provide</span><span class="nv"> </span><span class="s">uncertainty</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">each</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">point</span><span class="nv"> </span><span class="s">in</span>
-<span class="w">      </span><span class="s">the</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">file.</span><span class="nv"> </span><span class="s">Else</span><span class="nv"> </span><span class="s">provide</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">single</span><span class="nv"> </span><span class="s">value</span><span class="nv"> </span><span class="s">representative</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">dataset.</span>
-
-<span class="w">      </span><span class="s">If</span><span class="nv"> </span><span class="s">uncertainty</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">provided</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">variable,</span><span class="nv"> </span><span class="s">please</span><span class="nv"> </span><span class="s">list</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">column</span><span class="nv"> </span><span class="s">header</span><span class="nv"> </span><span class="s">name</span>
-<span class="w">      </span><span class="s">here.'</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Uncertainty</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.oaedata.org/OAEDataSchema</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uncertainty</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ModelVariable</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">StandardGas</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CO2GasDetector</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QCFields</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">  </span><span class="nt">uncertainty_definition</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uncertainty_definition</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A description of the uncertainties involved in this method.</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">How was the uncertainty defined</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.oaedata.org/OAEDataSchema</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uncertainty_definition</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ModelVariable</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QCFields</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">  </span><span class="nt">missing_value_indicators</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">missing_value_indicators</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The indicator used to represent missing values in the data file,</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">e.g., -999, NaN, etc.</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Missing value indicators</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.oaedata.org/OAEDataSchema</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">missing_value_indicators</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ModelVariable</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QCFields</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">  </span><span class="nt">qc_researcher</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">qc_researcher</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The name of the PI whose research team QCed this parameter.</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Researcher who QCed this variable</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">qc_researcher</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ModelVariable</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QCFields</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Person</span>
-<span class="w">  </span><span class="nt">qc_researcher_institution</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">qc_researcher_institution</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The institution of the PI whose research team QCed this parameter.</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QC Researcher Institution</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">qc_researcher_institution</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ModelVariable</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QCFields</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">  </span><span class="nt">genesis</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">genesis</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">genesis</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ModelVariable</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InSituVariable</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="nt">equals_string</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">calculated</span>
-<span class="w">  </span><span class="nt">dataset_variable_name_qc_flag</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dataset_variable_name_qc_flag</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">If applicable, the column header name used for the quality control</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">flag corresponding to this variable.</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dataset variable name (Quality Flag)</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dataset_variable_name_qc_flag</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ModelVariable</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InSituVariable</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">  </span><span class="nt">dataset_variable_name_raw</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dataset_variable_name_raw</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">If applicable, the column header name used for the raw data corresponding</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">to this variable.</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dataset variable name (raw)</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dataset_variable_name_raw</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ModelVariable</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InSituVariable</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">  </span><span class="nt">other_detailed_information</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">other_detailed_information</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Any additional information about this variable.</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Other Detailed Information</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">other_detailed_information</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ModelVariable</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InSituVariable</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">  </span><span class="nt">units</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">units</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Unit of measurement for this variable.</span>
@@ -1140,6 +898,20 @@
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">variable_type</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">variable_type</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Which model output quantity this variable holds. There is only one</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">model variable class, so this classifies the variable rather than selecting</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">a schema class.</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Model Output Variable</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.oaedata.org/OAEDataSchema</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">variable_type</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ModelVariable</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ModelVariableType</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">schema_class</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">schema_class</span>
@@ -1153,20 +925,6 @@
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">variable_type</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">variable_type</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">High-level classification of the variable. Determines which standard</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">identifiers are available and, combined with genesis and sampling, which schema</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">class to use.</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable Type</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">variable_type</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ModelVariable</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VariableType</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">standard_identifier</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">standard_identifier</span>

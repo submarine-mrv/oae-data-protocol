@@ -21,7 +21,7 @@
     
     
       
-        <title>Slot: calculation_method_and_parameters - OAE Data Protocol: Schema Documentation</title>
+        <title>Slot: Calculated Method And Parameters (calculation_method_and_parameters) - OAE Data Protocol: Schema Documentation</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-calculation_method_and_parameters" class="md-skip">
+        <a href="#slot-calculated-method-and-parameters-calculation_method_and_parameters" class="md-skip">
           Skip to content
         </a>
       
@@ -99,7 +99,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: calculation_method_and_parameters
+              Slot: Calculated Method And Parameters (calculation_method_and_parameters)
             
           </span>
         </div>
@@ -1426,6 +1426,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Identifier and Mapping Information">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema Source
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1470,7 +1487,8 @@
   
 
 
-<h1 id="slot-calculation_method_and_parameters">Slot: calculation_method_and_parameters</h1>
+<h1 id="slot-calculated-method-and-parameters-calculation_method_and_parameters">Slot: Calculated Method And Parameters (calculation_method_and_parameters)</h1>
+<p><em>Information about how the variable was calculated and the parameters used in calculation, e.g.: Calculation software = CO2SYSv1 (MATLAB) Input variables =  pH and DIC (column header names 'ph_t_insitu' and 'dic' in associated dataset file) Additional information = the dissociation constants of Lueker et al., 2000 for carbonic acid, etc.</em></p>
 <p>URI: <a href="https://schema.oaedata.org/calculation_method_and_parameters">oae:calculation_method_and_parameters</a></p>
 <!-- no inheritance hierarchy -->
 
@@ -1489,18 +1507,22 @@
 <td>A variable that is calculated or derived from other measured variables rather...</td>
 <td>no</td>
 </tr>
-<tr>
-<td><a href="../ModelVariable/">ModelVariable</a></td>
-<td>A variable output by a model simulation (e</td>
-<td>no</td>
-</tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: NONE</li>
+<li>
+<p>Range: <a href="../String/">String</a></p>
+</li>
+<li>
+<p>Required: True</p>
+</li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
+<h3 id="schema-source">Schema Source</h3>
+<ul>
+<li>from schema: https://schema.oaedata.org/OAEDataSchema</li>
+</ul>
 <h2 id="mappings">Mappings</h2>
 <table>
 <thead>
@@ -1523,10 +1545,20 @@
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">calculation_method_and_parameters</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Information</span><span class="nv"> </span><span class="s">about</span><span class="nv"> </span><span class="s">how</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">variable</span><span class="nv"> </span><span class="s">was</span><span class="nv"> </span><span class="s">calculated</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">parameters</span>
+<span class="w">  </span><span class="s">used</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">calculation,</span><span class="nv"> </span><span class="s">e.g.:</span><span class="nv"> </span><span class="s">Calculation</span><span class="nv"> </span><span class="s">software</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">CO2SYSv1</span><span class="nv"> </span><span class="s">(MATLAB)</span><span class="nv"> </span><span class="s">Input</span><span class="nv"> </span><span class="s">variables</span>
+<span class="w">  </span><span class="s">=</span><span class="nv">  </span><span class="s">pH</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">DIC</span><span class="nv"> </span><span class="s">(column</span><span class="nv"> </span><span class="s">header</span><span class="nv"> </span><span class="s">names</span><span class="nv"> </span><span class="se">&#39;&#39;</span><span class="s">ph_t_insitu</span><span class="se">&#39;&#39;</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="se">&#39;&#39;</span><span class="s">dic</span><span class="se">&#39;&#39;</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">associated</span><span class="nv"> </span><span class="s">dataset</span>
+<span class="w">  </span><span class="s">file)</span><span class="nv"> </span><span class="s">Additional</span><span class="nv"> </span><span class="s">information</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">dissociation</span><span class="nv"> </span><span class="s">constants</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">Lueker</span><span class="nv"> </span><span class="s">et</span><span class="nv"> </span><span class="s">al.,</span><span class="nv"> </span><span class="s">2000</span>
+<span class="w">  </span><span class="s">for</span><span class="nv"> </span><span class="s">carbonic</span><span class="nv"> </span><span class="s">acid,</span><span class="nv"> </span><span class="s">etc.&#39;</span>
+<span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Calculated Method And Parameters</span>
+<span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.oaedata.org/OAEDataSchema</span>
+<span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">calculation_method_and_parameters</span>
+<span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CalculatedVariable</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CalculatedVariable</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ModelVariable</span>
+<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 </details>
 

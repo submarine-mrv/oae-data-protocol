@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://schema.oaedata.org/alkalinity_feedstock_custom/">
+        <link rel="canonical" href="https://schema.oaedata.org/ModelVariableType/">
       
       
       
@@ -21,7 +21,7 @@
     
     
       
-        <title>Slot: Alkalinity Feedstock (Custom) (alkalinity_feedstock_custom) - OAE Data Protocol: Schema Documentation</title>
+        <title>Enum: ModelVariableType - OAE Data Protocol: Schema Documentation</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-alkalinity-feedstock-custom-alkalinity_feedstock_custom" class="md-skip">
+        <a href="#enum-modelvariabletype" class="md-skip">
           Skip to content
         </a>
       
@@ -99,7 +99,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: Alkalinity Feedstock (Custom) (alkalinity_feedstock_custom)
+              Enum: ModelVariableType
             
           </span>
         </div>
@@ -1396,10 +1396,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#applicable-classes" class="md-nav__link">
+  <a href="#permissible-values" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Applicable Classes
+        Permissible Values
       
     </span>
   </a>
@@ -1407,10 +1407,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#properties" class="md-nav__link">
+  <a href="#slots" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Properties
+        Slots
       
     </span>
   </a>
@@ -1446,17 +1446,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#mappings" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Mappings
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#linkml-source" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1487,79 +1476,141 @@
   
 
 
-<h1 id="slot-alkalinity-feedstock-custom-alkalinity_feedstock_custom">Slot: Alkalinity Feedstock (Custom) (alkalinity_feedstock_custom)</h1>
-<p><em>Custom description of alkalinity feedstock when using a feedstock type not listed in the controlled vocabulary.</em></p>
-<p>URI: <a href="https://schema.oaedata.org/alkalinity_feedstock_custom">oae:alkalinity_feedstock_custom</a></p>
-<!-- no inheritance hierarchy -->
-
-<h2 id="applicable-classes">Applicable Classes</h2>
+<h1 id="enum-modelvariabletype">Enum: ModelVariableType</h1>
+<p><em>Classification of a variable output by a model simulation. Used in place of VariableType on ModelVariable — model output covers a different set of quantities than field measurement (velocities and fluxes rather than sampling-based observations), and there is exactly one model variable class, so this enum identifies the variable rather than selecting a class.</em></p>
+<p>URI: <a href="./">ModelVariableType</a></p>
+<h2 id="permissible-values">Permissible Values</h2>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Meaning</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>air_sea_co2_flux</td>
+<td>None</td>
+<td>Air-sea exchange of carbon dioxide</td>
+</tr>
+<tr>
+<td>dissolved_inorganic_carbon</td>
+<td>None</td>
+<td>Dissolved inorganic carbon (DIC)</td>
+</tr>
+<tr>
+<td>total_alkalinity</td>
+<td>None</td>
+<td>Total alkalinity (TA)</td>
+</tr>
+<tr>
+<td>temperature</td>
+<td>None</td>
+<td>Temperature</td>
+</tr>
+<tr>
+<td>salinity</td>
+<td>None</td>
+<td>Salinity</td>
+</tr>
+<tr>
+<td>ph</td>
+<td>None</td>
+<td>pH of seawater</td>
+</tr>
+<tr>
+<td>biological_tracers</td>
+<td>None</td>
+<td>Phytoplankton, chlorophyll, zooplankton, etc</td>
+</tr>
+<tr>
+<td>horizontal_velocity</td>
+<td>None</td>
+<td>Horizontal velocity components (u, v)</td>
+</tr>
+<tr>
+<td>vertical_velocity</td>
+<td>None</td>
+<td>Vertical velocity component (w)</td>
+</tr>
+<tr>
+<td>co2</td>
+<td>None</td>
+<td>CO₂ variables (xCO₂, pCO₂, fCO₂)</td>
+</tr>
+<tr>
+<td>other</td>
+<td>None</td>
+<td>Any model output variable that does not fall into a specific category above</td>
+</tr>
+</tbody>
+</table>
+<h2 id="slots">Slots</h2>
 <table>
 <thead>
 <tr>
 <th>Name</th>
 <th>Description</th>
-<th>Modifies Slot</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="../Intervention/">Intervention</a></td>
-<td>Additional metadata that applies to experiments where an intervention, such a...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../InterventionWithTracer/">InterventionWithTracer</a></td>
-<td>Additional metadata that applies to hybrid experiments where an intervention ...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../InterventionDetails/">InterventionDetails</a></td>
-<td>An abstract class (used as a mixin, not implemented directly) for detailing t...</td>
-<td>no</td>
+<td><a href="../variable_type/">variable_type</a></td>
+<td>Which model output quantity this variable holds</td>
 </tr>
 </tbody>
 </table>
-<h2 id="properties">Properties</h2>
-<ul>
-<li>Range: <a href="../String/">String</a></li>
-</ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
 <li>from schema: https://schema.oaedata.org/OAEDataSchema</li>
 </ul>
-<h2 id="mappings">Mappings</h2>
-<table>
-<thead>
-<tr>
-<th>Mapping Type</th>
-<th>Mapped Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>self</td>
-<td>oae:alkalinity_feedstock_custom</td>
-</tr>
-<tr>
-<td>native</td>
-<td>oae:alkalinity_feedstock_custom</td>
-</tr>
-</tbody>
-</table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
-<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">alkalinity_feedstock_custom</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Custom description of alkalinity feedstock when using a feedstock type</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">not listed in the controlled vocabulary.</span>
-<span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Alkalinity Feedstock (Custom)</span>
+<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ModelVariableType</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Classification of a variable output by a model simulation. Used in place</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">of VariableType on ModelVariable — model output covers a different set of quantities</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">than field measurement (velocities and fluxes rather than sampling-based observations),</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">and there is exactly one model variable class, so this enum identifies the variable</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">rather than selecting a class.</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.oaedata.org/OAEDataSchema</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">alkalinity_feedstock_custom</span>
-<span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InterventionDetails</span>
-<span class="nt">domain_of</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InterventionDetails</span>
-<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="nt">permissible_values</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">air_sea_co2_flux</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">air_sea_co2_flux</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Air-sea exchange of carbon dioxide</span>
+<span class="w">  </span><span class="nt">dissolved_inorganic_carbon</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dissolved_inorganic_carbon</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dissolved inorganic carbon (DIC)</span>
+<span class="w">  </span><span class="nt">total_alkalinity</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">total_alkalinity</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Total alkalinity (TA)</span>
+<span class="w">  </span><span class="nt">temperature</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">temperature</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Temperature</span>
+<span class="w">  </span><span class="nt">salinity</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">salinity</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Salinity</span>
+<span class="w">  </span><span class="nt">ph</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ph</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pH of seawater</span>
+<span class="w">  </span><span class="nt">biological_tracers</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">biological_tracers</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Phytoplankton, chlorophyll, zooplankton, etc. biomass or concentration</span>
+<span class="w">  </span><span class="nt">horizontal_velocity</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">horizontal_velocity</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Horizontal velocity components (u, v)</span>
+<span class="w">  </span><span class="nt">vertical_velocity</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vertical_velocity</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Vertical velocity component (w)</span>
+<span class="w">  </span><span class="nt">co2</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">co2</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CO₂ variables (xCO₂, pCO₂, fCO₂)</span>
+<span class="w">  </span><span class="nt">other</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">other</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Any model output variable that does not fall into a specific category</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">above.</span>
 </code></pre></div>
 </details>
 
