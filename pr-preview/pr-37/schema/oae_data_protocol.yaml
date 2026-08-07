@@ -1417,9 +1417,12 @@ enums:
         text: biological_tracers
         description: "Biological tracers \u2014 phytoplankton, chlorophyll, zooplankton,\
           \ etc. biomass or concentration"
-      horizontal_velocity:
-        text: horizontal_velocity
-        description: Horizontal velocity (u, v)
+      zonal_velocity:
+        text: zonal_velocity
+        description: Zonal velocity (u)
+      meridional_velocity:
+        text: meridional_velocity
+        description: Meridional velocity (v)
       vertical_velocity:
         text: vertical_velocity
         description: Vertical velocity (w)
@@ -10458,7 +10461,7 @@ classes:
     class_uri: oae:ContinuousStandardGas
 metamodel_version: 1.7.0
 source_file: oae_data_protocol.yaml
-source_file_date: '2026-08-04T23:57:49'
+source_file_date: '2026-08-07T01:45:34'
 source_file_size: 1743
-generation_date: '2026-08-04T23:57:58'
+generation_date: '2026-08-07T01:45:45'
 
