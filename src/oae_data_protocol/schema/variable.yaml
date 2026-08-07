@@ -947,8 +947,10 @@ enums:
         description: >-
           Biological tracers — phytoplankton, chlorophyll, zooplankton, etc.
           biomass or concentration
-      horizontal_velocity:
-        description: Horizontal velocity (u, v)
+      zonal_velocity:
+        description: Zonal velocity (u)
+      meridional_velocity:
+        description: Meridional velocity (v)
       vertical_velocity:
         description: Vertical velocity (w)
       co2:

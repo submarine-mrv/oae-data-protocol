@@ -182,7 +182,8 @@ A `ModelVariable` therefore has only:
 | `salinity` | Salinity |
 | `ph` | pH of seawater |
 | `biological_tracers` | Biological tracers — phytoplankton, chlorophyll, zooplankton, etc. biomass or concentration |
-| `horizontal_velocity` | Horizontal velocity (u, v) |
+| `zonal_velocity` | Zonal velocity (u) |
+| `meridional_velocity` | Meridional velocity (v) |
 | `vertical_velocity` | Vertical velocity (w) |
 | `co2` | CO₂ variables (xCO₂, pCO₂, fCO₂) |
 | `other` | Any model output variable not covered above |

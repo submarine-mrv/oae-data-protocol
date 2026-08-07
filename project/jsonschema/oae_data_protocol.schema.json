@@ -5485,7 +5485,8 @@
                 "salinity",
                 "ph",
                 "biological_tracers",
-                "horizontal_velocity",
+                "zonal_velocity",
+                "meridional_velocity",
                 "vertical_velocity",
                 "co2",
                 "other"

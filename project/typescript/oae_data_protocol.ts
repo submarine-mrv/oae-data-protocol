@@ -610,8 +610,10 @@ export enum ModelVariableType {
     ph = "ph",
     /** Biological tracers — phytoplankton, chlorophyll, zooplankton, etc. biomass or concentration */
     biological_tracers = "biological_tracers",
-    /** Horizontal velocity (u, v) */
-    horizontal_velocity = "horizontal_velocity",
+    /** Zonal velocity (u) */
+    zonal_velocity = "zonal_velocity",
+    /** Meridional velocity (v) */
+    meridional_velocity = "meridional_velocity",
     /** Vertical velocity (w) */
     vertical_velocity = "vertical_velocity",
     /** CO₂ variables (xCO₂, pCO₂, fCO₂) */
