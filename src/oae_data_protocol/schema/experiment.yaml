@@ -35,7 +35,8 @@ classes:
           experimental plan due to unforeseen circumstances here.
         required: true
       name:
-        description: Optional common name for experiment.
+        description: Common name for experiment.
+        required: true
       spatial_coverage:
         description: >-
           Latitude/longitude bounds of observed data in experiment, expressed as a schema.org
