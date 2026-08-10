@@ -2550,12 +2550,15 @@ slots:
       Coast Ocean Acidification (WCOA) Project.
     title: Research Project
     from_schema: Project
-    slot_uri: oae:research_project
+    mappings:
+    - schema:name
+    slot_uri: schema:name
     alias: research_project
     owner: Project
     domain_of:
     - Project
     range: string
+    required: true
   project__funding:
     name: project__funding
     description: Include the name of the funder, funder country, project title, project
@@ -5632,7 +5635,7 @@ slots:
   Experiment_name:
     name: Experiment_name
     definition_uri: https://schema.oaedata.org/name
-    description: Optional common name for experiment.
+    description: Common name for experiment.
     title: Name
     from_schema: Core
     mappings:
@@ -5647,6 +5650,7 @@ slots:
     is_usage_slot: true
     usage_slot_name: name
     range: string
+    required: true
   Experiment_spatial_coverage:
     name: Experiment_spatial_coverage
     definition_uri: https://schema.oaedata.org/spatial_coverage
@@ -6800,7 +6804,9 @@ classes:
         description: Project, which the data collection is part of. For example, West
           Coast Ocean Acidification (WCOA) Project.
         title: Research Project
+        slot_uri: schema:name
         range: string
+        required: true
       funding:
         name: funding
         description: Include the name of the funder, funder country, project title,
@@ -7004,7 +7010,8 @@ classes:
         required: true
       name:
         name: name
-        description: Optional common name for experiment.
+        description: Common name for experiment.
+        required: true
       spatial_coverage:
         name: spatial_coverage
         description: Latitude/longitude bounds of observed data in experiment, expressed
@@ -10248,7 +10255,7 @@ classes:
     class_uri: oae:ContinuousStandardGas
 metamodel_version: 1.7.0
 source_file: oae_data_protocol.yaml
-source_file_date: '2026-07-24T21:05:57'
+source_file_date: '2026-08-10T15:48:22'
 source_file_size: 1743
-generation_date: '2026-07-24T21:06:08'
+generation_date: '2026-08-10T15:48:36'
 
