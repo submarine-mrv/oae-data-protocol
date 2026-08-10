@@ -831,7 +831,7 @@ Links to relevant datasets, cruise reports, etc may be provided here. */
     /** A description is required if any nearby operations exist that may influence the waters over the time period covered by this data. This might be a nearby mCDR project, a facility that discharges water with different characteristics than the inflow (e.g., a desalination plant), frequent boating operations, etc. */
     colocated_operations?: string,
     /** Project, which the data collection is part of. For example, West Coast Ocean Acidification (WCOA) Project. */
-    research_project?: string,
+    research_project: string,
     /** Include the name of the funder, funder country, project title, project ID, and the project start and end dates. If there is no funding source (e.g., in the case of commercial projects), leave this field empty. */
     funding?: MonetaryGrant[],
     /** Open text area to include additional information. These may include information for sediment processes data, biological data, or any other required information if not included in the main metadata or data files.
@@ -905,8 +905,8 @@ export interface Permit {
  * Abstract base class for all experiment types. Contains fields common to both in-situ and model experiments.
  */
 export interface Experiment {
-    /** Optional common name for experiment. */
-    name?: string,
+    /** Common name for experiment. */
+    name: string,
     /** A narrative description of the experiment. For example, what part of the project do these data represent (e.g., baseline, intervention, control) and what do they contribute to the overall project? Are all project research questions listed in Project description relevant? What were the processes to achieve these goals and answer these questions? Data submitters are encouraged to note any significant changes to the original experimental plan due to unforeseen circumstances here. */
     description: string,
     /** Latitude/longitude bounds of observed data in experiment, expressed as a schema.org GeoShape bounding box. */

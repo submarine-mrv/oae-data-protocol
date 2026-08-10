@@ -982,7 +982,9 @@ Links to relevant datasets, cruise reports, etc may be provided here.""", json_s
     mcdr_pathway: MCDRPathway = Field(default=..., title="MCDR Pathway", description="""The Marine Carbon Dioxide Removal (MCDR) pathway being studied.""", json_schema_extra = { "linkml_meta": {'alias': 'mcdr_pathway', 'domain_of': ['Project']} })
     previous_or_ongoing_colocated_research: Optional[List[ExternalProject]] = Field(default=None, title="Previous or Ongoing Co-located Research", description="""This field is required for co-located operations that potentially impact the project results. If previous or on-going mCDR field operations have occurred in the study domain by any project developer, they may be mentioned here either as a description, and/or if a reference to the study exists in the form of a data set, publication, etc, the DOI or other identifying information should be provided. Please provide direct links to data when available.""", json_schema_extra = { "linkml_meta": {'alias': 'previous_or_ongoing_colocated_research', 'domain_of': ['Project']} })
     colocated_operations: Optional[str] = Field(default=None, title="Co-located Operations", description="""A description is required if any nearby operations exist that may influence the waters over the time period covered by this data. This might be a nearby mCDR project, a facility that discharges water with different characteristics than the inflow (e.g., a desalination plant), frequent boating operations, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'colocated_operations', 'domain_of': ['Project']} })
-    research_project: Optional[str] = Field(default=None, title="Research Project", description="""Project, which the data collection is part of. For example, West Coast Ocean Acidification (WCOA) Project.""", json_schema_extra = { "linkml_meta": {'alias': 'research_project', 'domain_of': ['Project']} })
+    research_project: str = Field(default=..., title="Research Project", description="""Project, which the data collection is part of. For example, West Coast Ocean Acidification (WCOA) Project.""", json_schema_extra = { "linkml_meta": {'alias': 'research_project',
+         'domain_of': ['Project'],
+         'slot_uri': 'schema:name'} })
     funding: Optional[List[MonetaryGrant]] = Field(default=None, title="Funding Info", description="""Include the name of the funder, funder country, project title, project ID, and the project start and end dates. If there is no funding source (e.g., in the case of commercial projects), leave this field empty.""", json_schema_extra = { "linkml_meta": {'alias': 'funding', 'domain_of': ['Project'], 'slot_uri': 'schema:funding'} })
     additional_details: Optional[str] = Field(default=None, title="Additional Details", description="""Open text area to include additional information. These may include information for sediment processes data, biological data, or any other required information if not included in the main metadata or data files.
 See [General Guidelines for Your Data](https://www.carbontosea.org/oae-data-protocol/1-0-0/#general-guidelines-for-your-data) for relevant sections of your data. Additional informational files, such as digitized laboratory notebooks, blogs, etc., may be linked here.""", json_schema_extra = { "linkml_meta": {'alias': 'additional_details', 'domain_of': ['Project', 'InSituExperiment']} })
@@ -1133,8 +1135,9 @@ class Experiment(ConfiguredBaseModel):
                                         'required': True,
                                         'title': 'Experiment Description'},
                         'experiment_id': {'name': 'experiment_id', 'required': True},
-                        'name': {'description': 'Optional common name for experiment.',
-                                 'name': 'name'},
+                        'name': {'description': 'Common name for experiment.',
+                                 'name': 'name',
+                                 'required': True},
                         'project_id': {'name': 'project_id', 'required': True},
                         'spatial_coverage': {'description': 'Latitude/longitude bounds '
                                                             'of observed data in '
@@ -1144,7 +1147,7 @@ class Experiment(ConfiguredBaseModel):
                                              'name': 'spatial_coverage',
                                              'required': True}}})
 
-    name: Optional[str] = Field(default=None, title="Name", description="""Optional common name for experiment.""", json_schema_extra = { "linkml_meta": {'alias': 'name',
+    name: str = Field(default=..., title="Name", description="""Common name for experiment.""", json_schema_extra = { "linkml_meta": {'alias': 'name',
          'domain_of': ['Organization',
                        'NamedLink',
                        'ExternalProject',
@@ -1194,7 +1197,7 @@ class InSituExperiment(Experiment):
          'domain_of': ['InSituExperiment']} })
     meteorological_and_tidal_data: Optional[List[NamedLink]] = Field(default=None, title="Meteorological and Tidal Data", description="""Include links to relevant open datasets if referenced in the experiment but not provided in the submission.""", json_schema_extra = { "linkml_meta": {'alias': 'meteorological_and_tidal_data', 'domain_of': ['InSituExperiment']} })
     additional_details: Optional[str] = Field(default=None, title="Additional Details", description="""Open text area to include additional information. These may include information for sediment processes data, biological data, or any other required information if not included in the main metadata or data files; see General Guidelines for Your Data for relevant sections of your data. Additional informational files, such as digitized laboratory notebooks, blogs, etc., may be linked here.""", json_schema_extra = { "linkml_meta": {'alias': 'additional_details', 'domain_of': ['Project', 'InSituExperiment']} })
-    name: Optional[str] = Field(default=None, title="Name", description="""Optional common name for experiment.""", json_schema_extra = { "linkml_meta": {'alias': 'name',
+    name: str = Field(default=..., title="Name", description="""Common name for experiment.""", json_schema_extra = { "linkml_meta": {'alias': 'name',
          'domain_of': ['Organization',
                        'NamedLink',
                        'ExternalProject',
@@ -1345,7 +1348,7 @@ E.g., outflow from existing facility pipe directly to ocean, manual riverine int
          'domain_of': ['InSituExperiment']} })
     meteorological_and_tidal_data: Optional[List[NamedLink]] = Field(default=None, title="Meteorological and Tidal Data", description="""Include links to relevant open datasets if referenced in the experiment but not provided in the submission.""", json_schema_extra = { "linkml_meta": {'alias': 'meteorological_and_tidal_data', 'domain_of': ['InSituExperiment']} })
     additional_details: Optional[str] = Field(default=None, title="Additional Details", description="""Open text area to include additional information. These may include information for sediment processes data, biological data, or any other required information if not included in the main metadata or data files; see General Guidelines for Your Data for relevant sections of your data. Additional informational files, such as digitized laboratory notebooks, blogs, etc., may be linked here.""", json_schema_extra = { "linkml_meta": {'alias': 'additional_details', 'domain_of': ['Project', 'InSituExperiment']} })
-    name: Optional[str] = Field(default=None, title="Name", description="""Optional common name for experiment.""", json_schema_extra = { "linkml_meta": {'alias': 'name',
+    name: str = Field(default=..., title="Name", description="""Common name for experiment.""", json_schema_extra = { "linkml_meta": {'alias': 'name',
          'domain_of': ['Organization',
                        'NamedLink',
                        'ExternalProject',
@@ -1408,7 +1411,7 @@ E.g., outflow from existing facility pipe directly to ocean, manual riverine int
          'domain_of': ['InSituExperiment']} })
     meteorological_and_tidal_data: Optional[List[NamedLink]] = Field(default=None, title="Meteorological and Tidal Data", description="""Include links to relevant open datasets if referenced in the experiment but not provided in the submission.""", json_schema_extra = { "linkml_meta": {'alias': 'meteorological_and_tidal_data', 'domain_of': ['InSituExperiment']} })
     additional_details: Optional[str] = Field(default=None, title="Additional Details", description="""Open text area to include additional information. These may include information for sediment processes data, biological data, or any other required information if not included in the main metadata or data files; see General Guidelines for Your Data for relevant sections of your data. Additional informational files, such as digitized laboratory notebooks, blogs, etc., may be linked here.""", json_schema_extra = { "linkml_meta": {'alias': 'additional_details', 'domain_of': ['Project', 'InSituExperiment']} })
-    name: Optional[str] = Field(default=None, title="Name", description="""Optional common name for experiment.""", json_schema_extra = { "linkml_meta": {'alias': 'name',
+    name: str = Field(default=..., title="Name", description="""Common name for experiment.""", json_schema_extra = { "linkml_meta": {'alias': 'name',
          'domain_of': ['Organization',
                        'NamedLink',
                        'ExternalProject',
@@ -1486,7 +1489,7 @@ E.g., outflow from existing facility pipe directly to ocean, manual riverine int
          'domain_of': ['InSituExperiment']} })
     meteorological_and_tidal_data: Optional[List[NamedLink]] = Field(default=None, title="Meteorological and Tidal Data", description="""Include links to relevant open datasets if referenced in the experiment but not provided in the submission.""", json_schema_extra = { "linkml_meta": {'alias': 'meteorological_and_tidal_data', 'domain_of': ['InSituExperiment']} })
     additional_details: Optional[str] = Field(default=None, title="Additional Details", description="""Open text area to include additional information. These may include information for sediment processes data, biological data, or any other required information if not included in the main metadata or data files; see General Guidelines for Your Data for relevant sections of your data. Additional informational files, such as digitized laboratory notebooks, blogs, etc., may be linked here.""", json_schema_extra = { "linkml_meta": {'alias': 'additional_details', 'domain_of': ['Project', 'InSituExperiment']} })
-    name: Optional[str] = Field(default=None, title="Name", description="""Optional common name for experiment.""", json_schema_extra = { "linkml_meta": {'alias': 'name',
+    name: str = Field(default=..., title="Name", description="""Common name for experiment.""", json_schema_extra = { "linkml_meta": {'alias': 'name',
          'domain_of': ['Organization',
                        'NamedLink',
                        'ExternalProject',
@@ -3412,7 +3415,7 @@ class Model(Experiment):
     grid_details: Optional[List[ModelGrid]] = Field(default=None, title="Grid Details", description="""Details about the model grid(s). Use multiple entries for nested grid configurations.""", json_schema_extra = { "linkml_meta": {'alias': 'grid_details', 'domain_of': ['Model']} })
     spin_up_protocol: Optional[str] = Field(default=None, title="Spin-up Protocol", description="""Description of the model spin-up process.""", json_schema_extra = { "linkml_meta": {'alias': 'spin_up_protocol', 'domain_of': ['Model']} })
     time_stepping_scheme: Optional[str] = Field(default=None, title="Time-stepping Scheme", description="""Time-stepping method and time step used in the simulation.""", json_schema_extra = { "linkml_meta": {'alias': 'time_stepping_scheme', 'domain_of': ['Model']} })
-    name: Optional[str] = Field(default=None, title="Name", description="""Optional common name for experiment.""", json_schema_extra = { "linkml_meta": {'alias': 'name',
+    name: str = Field(default=..., title="Name", description="""Common name for experiment.""", json_schema_extra = { "linkml_meta": {'alias': 'name',
          'domain_of': ['Organization',
                        'NamedLink',
                        'ExternalProject',
