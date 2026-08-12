@@ -58,8 +58,8 @@ their data, whether they be other ocean data repositories, and generalist reposi
 ## Choosing a Variable Type
 
 Every variable in a **field dataset** requires three selections that determine which schema class is
-used. Variables in a **model output dataset** skip this entirely — they are always
-[ModelOutputVariable](../ModelOutputVariable.md) and are classified with the separate
+used. Variables in a **model output dataset** use the
+[ModelOutputVariable](../ModelOutputVariable.md) class and are classified with the separate
 [ModelVariableType](../ModelVariableType.md) enum. See [Model Output Variables](#model-output-variables) below.
 
 ### 1. Variable Type (`variable_type`)
