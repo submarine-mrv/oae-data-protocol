@@ -8,11 +8,14 @@ Variables describe the individual measurements, calculations, or contextual data
 graph LR
     V("`*Variable*
     (abstract)`")
+    FV("`*FieldVariable*
+    (abstract)`")
     ISV("`*InSituVariable*
     (abstract)`")
     MV("`*MeasuredVariable*
     (abstract)`")
     NMV["NonMeasuredVariable"]
+    MOV["ModelOutputVariable"]
     SEV["SocioeconomicVariable"]
     CV["CalculatedVariable"]
     DM["DiscreteMeasuredVariable"]
@@ -28,8 +31,10 @@ graph LR
     ContinuousPhysiologicalVariable
     *…and others*`"]
 
-    V --> NMV
-    V --> ISV
+    V --> FV
+    V --> MOV
+    FV --> NMV
+    FV --> ISV
     ISV --> SEV
     ISV --> CV
     ISV --> MV
@@ -41,8 +46,8 @@ graph LR
     classDef abstract fill:#f5f5f5,stroke:#999,stroke-dasharray: 4 3,color:#555
     classDef concrete fill:#e0e8f0,stroke:#4F656A
     classDef leaf fill:#d0e8d0,stroke:#4F656A
-    class V,ISV,MV abstract
-    class NMV,SEV,CV,DPH,CPH concrete
+    class V,FV,ISV,MV abstract
+    class NMV,MOV,SEV,CV,DPH,CPH concrete
     class DM,CM leaf
 ```
 
@@ -52,7 +57,10 @@ their data, whether they be other ocean data repositories, and generalist reposi
 
 ## Choosing a Variable Type
 
-Every variable requires three selections that determine which schema class is used:
+Every variable in a **field dataset** requires three selections that determine which schema class is
+used. Variables in a **model output dataset** use the
+[ModelOutputVariable](../ModelOutputVariable.md) class and are classified with the separate
+[ModelVariableType](../ModelVariableType.md) enum. See [Model Output Variables](#model-output-variables) below.
 
 ### 1. Variable Type (`variable_type`)
 
@@ -147,6 +155,22 @@ Adds instrument and sampling fields:
 Adds calculation provenance:
 
 - `calculation_method_and_parameters` — software, input variables, constants used
+
+## Model Output Variables
+
+Variables in a [ModelOutputDataset](../ModelOutputDataset.md) are described by a single class,
+[ModelOutputVariable](../ModelOutputVariable.md), which sits directly under `Variable` as a sibling of
+[FieldVariable](../FieldVariable.md). `ModelOutputVariable`s carry none of the
+sampling, instrument, calibration or in-situ QC metadata that field-collected variables do. How the
+output was produced is described by the simulation configuration on the parent dataset.
+
+A `ModelOutputVariable` has only:
+
+- `variable_type` — a [ModelVariableType](../ModelVariableType.md) value (required)
+- `long_name`, `dataset_variable_name`, `units` (all required)
+- `standard_identifier` — optional reference to a community vocabulary
+
+See [ModelVariableType](../ModelVariableType.md) for the current list of values and their descriptions.
 
 ### Type-Specific Fields (Traits / Mixins)
 

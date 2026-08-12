@@ -106,6 +106,39 @@ The project follows LinkML conventions with semantic mappings to schema.org and 
 
 ## Workflow Guidelines
 
+### Documentation audit on schema changes
+
+**Docs are part of the change, not a follow-up.** A change to schema YAML that alters structure,
+classes, slots, or vocabularies is incomplete until the hand-written pages in `src/docs/files/`
+are updated in the same commit. (`docs/` itself is generated and gitignored — never edit it.)
+
+| Schema change area | Doc files to audit |
+|---|---|
+| Container, top-level structure, prefixes | `index.md`, `getting-started/index.md`, `metadata-format.md`, `metadata-builder.md` |
+| Project, Experiment classes | `projects-experiments/index.md` |
+| Dataset, FieldDataset, ModelOutputDataset | `Datasets/index.md` |
+| Variable hierarchy, variable types | `Variables/index.md` |
+| Instrument, Calibration classes | `instruments-calibration/index.md` |
+| Enums, controlled vocabularies | `vocabularies.md` |
+| Interoperability, external standards | `contributing.md` |
+
+**Prefer linking over listing.** `just gen-doc` generates a page per class and per enum under
+`docs/`. A hand-written page that re-lists a class's slots or an enum's permissible values is a
+second copy that goes stale silently, so link to the generated page (`../ModelVariableType.md`)
+instead of repeating its contents. When a change tempts you to add or extend such a list, replace
+the list with a link. Keep hand-written pages for the things generation can't express — rationale,
+how to choose between classes, worked examples, diagrams.
+
+Things that rot silently — grep for these whenever the variable or dataset model changes:
+- The **mermaid class-hierarchy diagram** in `Variables/index.md`: node declarations, edges, *and*
+  the `class X,Y,Z abstract/concrete/leaf` styling lines at the bottom.
+- Any **remaining inline lists** duplicating generated content — `vocabularies.md` still lists each
+  enum's permissible values inline. Prefer trimming these to links as you touch them.
+- **Hard-coded counts** ("the 18 concrete variable classes").
+- Renamed or removed slots: `grep -rn '<old_slot_name>' src/docs/files/`.
+
+If the change affects what the metadata builder renders, audit `oae-form/docs/` too.
+
 ### Commits
 - Don't commit unless explicitly asked
 - Review the diff and run linting/tests before committing

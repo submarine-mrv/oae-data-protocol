@@ -20,6 +20,10 @@ classes:
     description: Abstract root for all variable types (including non-measured)
     slots:
       - units
+      - variable_type
+    slot_usage:
+      variable_type:
+        required: true
     attributes:
       schema_class:
         designates_type: true
@@ -28,14 +32,6 @@ classes:
         description: >-
           The schema class name for this variable (e.g., "DiscretePHVariable").
           Auto-populated by the metadata builder.
-      variable_type:
-        title: Variable Type
-        range: VariableType
-        required: true
-        description: >-
-          High-level classification of the variable. Determines which standard
-          identifiers are available and, combined with genesis and sampling,
-          which schema class to use.
       standard_identifier:
         range: VocabularyItemReference
       dataset_variable_name:
@@ -54,6 +50,22 @@ classes:
         required: true
 
   # =============================================================================
+  # Field Variable Class (abstract root of everything a FieldDataset may hold)
+  # =============================================================================
+  FieldVariable:
+    abstract: true
+    description: >-
+      Abstract root for every variable that can appear in a FieldDataset —
+      measured, calculated or contextual. Exists so FieldDataset.variables can
+      range over exactly these classes: ranging over Variable would also admit
+      ModelOutputVariable, which belongs only to a ModelOutputDataset.
+    is_a: Variable
+    slot_usage:
+      variable_type:
+        range: VariableType
+        required: true
+
+  # =============================================================================
   # Non-Measured Variable Class
   # =============================================================================
   NonMeasuredVariable:
@@ -66,7 +78,7 @@ classes:
       instead, set dataset_variable_name_qc_flag on the parent measured or
       calculated variable that the flag relates to. variable_type must be
       "non_measured".
-    is_a: Variable
+    is_a: FieldVariable
     slot_usage:
       variable_type:
         range: string
@@ -80,7 +92,7 @@ classes:
     description: >-
       Base class for project-acquired variables (measured or calculated in-situ).
       Reference: OAPMetadata XSD variables.xsd - insitu_variable
-    is_a: Variable
+    is_a: FieldVariable
     slot_usage:
       units:
         required: true
@@ -98,6 +110,10 @@ classes:
         description: >-
           If applicable, the column header name used for the raw data corresponding to this variable.
         range: string
+      other_detailed_information:
+        title: Other Detailed Information
+        description: Any additional information about this variable.
+        range: string
       method_reference:
         title: Method Reference
         description: Citation for the method used.
@@ -106,10 +122,6 @@ classes:
         title: Researcher who measured the variable
         description: The name of the PI whose research team measured or derived this parameter.
         range: Person
-      other_detailed_information:
-        title: Other Detailed Information
-        description: Any additional information about this variable.
-        range: string
 
 
   # =====================================================================================
@@ -540,9 +552,9 @@ classes:
   SocioeconomicVariable:
     description: >-
       Socioeconomic variable for social and economic data such as survey
-      responses, ecosystem service valuations, or text analysis. Extends
-      InSituVariable to inherit method_reference and measurement_researcher,
-      but does NOT include QCFields, instrument details, or calibration.
+      responses, ecosystem service valuations, or text analysis. A field
+      variable: includes method_reference and measurement_researcher, but
+      does NOT include QCFields, instrument details, or calibration.
     is_a: InSituVariable
     slot_usage:
       variable_type:
@@ -570,6 +582,30 @@ classes:
           Time period and location description for the social study
           (e.g., "2023-2024, coastal communities in Maine, USA").
         range: string
+
+  # =============================================================================
+  # Model Variable Class
+  # =============================================================================
+  ModelOutputVariable:
+    description: >-
+      A variable output by a model simulation (e.g., air-sea CO2 flux, dissolved
+      inorganic carbon, total alkalinity, pH, temperature, salinity from an OAE
+      model run). Model outputs are produced by the simulation itself, so they
+      carry none of the sampling, instrument, calibration or in-situ QC metadata
+      that field-collected variables do — how the output was produced is
+      described by the simulation configuration on the parent ModelOutputDataset.
+    is_a: Variable
+    slot_usage:
+      units:
+        required: true
+      variable_type:
+        title: Model Output Variable
+        description: >-
+          Which model output quantity this variable holds. There is only one
+          model variable class, so this classifies the variable rather than
+          selecting a schema class.
+        range: ModelVariableType
+        required: true
 
   # =============================================================================
   # Supporting Classes for Variables
@@ -749,6 +785,16 @@ slots:
     range: string
     # TODO: Upgrade this to controlled vocab with QUDT
 
+  # Top-level slot so subclasses can pin or re-range it via slot_usage. Could be
+  # upgraded to range: Any with any_of to properly support LinkML's monotonicity.
+  variable_type:
+    title: Variable Type
+    description: >-
+      High-level classification of the variable. Determines which standard
+      identifiers are available and, combined with genesis and sampling,
+      which schema class to use.
+    range: VariableType
+
   # MeasuredVariable slots
   analyzing_instrument:
     title: Analyzing instrument
@@ -864,6 +910,44 @@ enums:
           be listed as separate variables; instead set
           dataset_variable_name_qc_flag on the parent variable. Use only
           with NonMeasuredVariable.
+  ModelVariableType:
+    description: >-
+      Classification of a variable output by a model simulation. Used in place
+      of VariableType on ModelOutputVariable. Model output covers a different set of
+      quantities than field measurement (velocities and fluxes rather than
+      sampling-based observations), so this enum is different than VariableType.
+    permissible_values:
+      air_sea_co2_flux:
+        description: "Air-sea CO₂ flux"
+      dissolved_inorganic_carbon:
+        description: Dissolved inorganic carbon (DIC)
+      total_alkalinity:
+        description: Total alkalinity (TA)
+      temperature:
+        description: Temperature
+      salinity:
+        description: Salinity
+      ph:
+        description: pH of seawater
+      biological_tracers:
+        description: >-
+          Biological tracers (e.g., chlorophyll, phytoplankton, zooplankton) —
+          biomass or concentration
+      nutrients:
+        description: >-
+          Nutrients (e.g., dissolved oxygen, NO₃⁻, NH₄⁺)
+      zonal_velocity:
+        description: Zonal velocity (u)
+      meridional_velocity:
+        description: Meridional velocity (v)
+      vertical_velocity:
+        description: Vertical velocity (w)
+      co2:
+        description: "CO₂ variables (xCO₂, pCO₂, fCO₂)"
+      other:
+        description: >-
+          Any model output variable that does not fall into a specific category
+          above.
   GenesisType:
     permissible_values:
       measured:

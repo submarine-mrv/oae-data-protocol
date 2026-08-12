@@ -662,8 +662,8 @@
                 "calculation_method_and_parameters",
                 "genesis",
                 "units",
-                "schema_class",
                 "variable_type",
+                "schema_class",
                 "dataset_variable_name",
                 "long_name"
             ],
@@ -1298,8 +1298,8 @@
                 "missing_value_indicators",
                 "genesis",
                 "units",
-                "schema_class",
                 "variable_type",
+                "schema_class",
                 "dataset_variable_name",
                 "long_name"
             ],
@@ -1533,8 +1533,8 @@
                 "missing_value_indicators",
                 "genesis",
                 "units",
-                "schema_class",
                 "variable_type",
+                "schema_class",
                 "dataset_variable_name",
                 "long_name"
             ],
@@ -1756,8 +1756,8 @@
                 "missing_value_indicators",
                 "genesis",
                 "units",
-                "schema_class",
                 "variable_type",
+                "schema_class",
                 "dataset_variable_name",
                 "long_name"
             ],
@@ -1985,8 +1985,8 @@
                 "missing_value_indicators",
                 "genesis",
                 "units",
-                "schema_class",
                 "variable_type",
+                "schema_class",
                 "dataset_variable_name",
                 "long_name"
             ],
@@ -2241,8 +2241,8 @@
                 "missing_value_indicators",
                 "genesis",
                 "units",
-                "schema_class",
                 "variable_type",
+                "schema_class",
                 "dataset_variable_name",
                 "long_name"
             ],
@@ -2489,8 +2489,8 @@
                 "missing_value_indicators",
                 "genesis",
                 "units",
-                "schema_class",
                 "variable_type",
+                "schema_class",
                 "dataset_variable_name",
                 "long_name"
             ],
@@ -2772,8 +2772,8 @@
                 "missing_value_indicators",
                 "genesis",
                 "units",
-                "schema_class",
                 "variable_type",
+                "schema_class",
                 "dataset_variable_name",
                 "long_name"
             ],
@@ -3254,8 +3254,8 @@
                 "missing_value_indicators",
                 "genesis",
                 "units",
-                "schema_class",
                 "variable_type",
+                "schema_class",
                 "dataset_variable_name",
                 "long_name"
             ],
@@ -3471,8 +3471,8 @@
                 "missing_value_indicators",
                 "genesis",
                 "units",
-                "schema_class",
                 "variable_type",
+                "schema_class",
                 "dataset_variable_name",
                 "long_name"
             ],
@@ -3680,8 +3680,8 @@
                 "missing_value_indicators",
                 "genesis",
                 "units",
-                "schema_class",
                 "variable_type",
+                "schema_class",
                 "dataset_variable_name",
                 "long_name"
             ],
@@ -3899,8 +3899,8 @@
                 "missing_value_indicators",
                 "genesis",
                 "units",
-                "schema_class",
                 "variable_type",
+                "schema_class",
                 "dataset_variable_name",
                 "long_name"
             ],
@@ -4141,8 +4141,8 @@
                 "missing_value_indicators",
                 "genesis",
                 "units",
-                "schema_class",
                 "variable_type",
+                "schema_class",
                 "dataset_variable_name",
                 "long_name"
             ],
@@ -4375,8 +4375,8 @@
                 "missing_value_indicators",
                 "genesis",
                 "units",
-                "schema_class",
                 "variable_type",
+                "schema_class",
                 "dataset_variable_name",
                 "long_name"
             ],
@@ -4611,8 +4611,8 @@
                 "missing_value_indicators",
                 "genesis",
                 "units",
-                "schema_class",
                 "variable_type",
+                "schema_class",
                 "dataset_variable_name",
                 "long_name"
             ],
@@ -4983,6 +4983,7 @@
                     "type": "string"
                 },
                 "variables": {
+                    "description": "The variables in this dataset, each with its own metadata.",
                     "items": {
                         "anyOf": [
                             {
@@ -5415,8 +5416,8 @@
                 "missing_value_indicators",
                 "genesis",
                 "units",
-                "schema_class",
                 "variable_type",
+                "schema_class",
                 "dataset_variable_name",
                 "long_name"
             ],
@@ -6845,17 +6846,6 @@
                         "null"
                     ]
                 },
-                "model_output_variables": {
-                    "description": "Checklist of variables included in the model simulation output.",
-                    "items": {
-                        "$ref": "#/$defs/ModelOutputVariable"
-                    },
-                    "title": "Key Model Output Variables",
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
                 "name": {
                     "description": "A brief descriptive sentence that summarizes the content of a dataset. Here is one example:\n\"Dissolved inorganic carbon, total alkalinity, pH, temperature, salinity and other variables collected from profile and discrete sample observations using CTD, Niskin bottle, and other instruments from R/V Wecoma in the U.S. West Coast California Current System during the 2011 West Coast Ocean Acidification Cruise (WCOA2011) from 2011-08-12 to 2011-08-30\"",
                     "title": "Dataset Title",
@@ -6888,6 +6878,17 @@
                     "format": "date-time",
                     "title": "Start Date and Time",
                     "type": "string"
+                },
+                "variables": {
+                    "description": "The variables in this dataset, each with its own metadata.",
+                    "items": {
+                        "$ref": "#/$defs/ModelOutputVariable"
+                    },
+                    "title": "Variables",
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 }
             },
             "required": [
@@ -6915,7 +6916,59 @@
             "type": "object"
         },
         "ModelOutputVariable": {
-            "description": "Variables commonly included in model simulation output datasets",
+            "additionalProperties": false,
+            "description": "A variable output by a model simulation (e.g., air-sea CO2 flux, dissolved inorganic carbon, total alkalinity, pH, temperature, salinity from an OAE model run). Model outputs are produced by the simulation itself, so they carry none of the sampling, instrument, calibration or in-situ QC metadata that field-collected variables do \u2014 how the output was produced is described by the simulation configuration on the parent ModelOutputDataset.",
+            "properties": {
+                "dataset_variable_name": {
+                    "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
+                    "title": "Dataset variable name",
+                    "type": "string"
+                },
+                "long_name": {
+                    "description": "Full descriptive name of the variable.",
+                    "title": "Variable full name",
+                    "type": "string"
+                },
+                "schema_class": {
+                    "description": "The schema class name for this variable (e.g., \"DiscretePHVariable\"). Auto-populated by the metadata builder.",
+                    "enum": [
+                        "ModelOutputVariable"
+                    ],
+                    "type": "string"
+                },
+                "standard_identifier": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/VocabularyItemReference"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "units": {
+                    "description": "Unit of measurement for this variable.",
+                    "title": "Unit",
+                    "type": "string"
+                },
+                "variable_type": {
+                    "$ref": "#/$defs/ModelVariableType",
+                    "description": "Which model output quantity this variable holds. There is only one model variable class, so this classifies the variable rather than selecting a schema class.",
+                    "title": "Model Output Variable"
+                }
+            },
+            "required": [
+                "units",
+                "variable_type",
+                "schema_class",
+                "dataset_variable_name",
+                "long_name"
+            ],
+            "title": "ModelOutputVariable",
+            "type": "object"
+        },
+        "ModelVariableType": {
+            "description": "Classification of a variable output by a model simulation. Used in place of VariableType on ModelOutputVariable. Model output covers a different set of quantities than field measurement (velocities and fluxes rather than sampling-based observations), so this enum is different than VariableType.",
             "enum": [
                 "air_sea_co2_flux",
                 "dissolved_inorganic_carbon",
@@ -6923,11 +6976,15 @@
                 "temperature",
                 "salinity",
                 "ph",
-                "phytoplankton",
-                "horizontal_velocity",
-                "vertical_velocity"
+                "biological_tracers",
+                "nutrients",
+                "zonal_velocity",
+                "meridional_velocity",
+                "vertical_velocity",
+                "co2",
+                "other"
             ],
-            "title": "ModelOutputVariable",
+            "title": "ModelVariableType",
             "type": "string"
         },
         "MonetaryGrant": {
@@ -7049,8 +7106,8 @@
                 }
             },
             "required": [
-                "schema_class",
                 "variable_type",
+                "schema_class",
                 "dataset_variable_name",
                 "long_name"
             ],
@@ -7981,7 +8038,7 @@
         },
         "SocioeconomicVariable": {
             "additionalProperties": false,
-            "description": "Socioeconomic variable for social and economic data such as survey responses, ecosystem service valuations, or text analysis. Extends InSituVariable to inherit method_reference and measurement_researcher, but does NOT include QCFields, instrument details, or calibration.",
+            "description": "Socioeconomic variable for social and economic data such as survey responses, ecosystem service valuations, or text analysis. A field variable: includes method_reference and measurement_researcher, but does NOT include QCFields, instrument details, or calibration.",
             "properties": {
                 "dataset_variable_name": {
                     "description": "The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name).",
@@ -8099,8 +8156,8 @@
                 "quantitative_or_qualitative",
                 "genesis",
                 "units",
-                "schema_class",
                 "variable_type",
+                "schema_class",
                 "dataset_variable_name",
                 "long_name"
             ],

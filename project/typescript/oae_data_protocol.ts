@@ -247,30 +247,6 @@ export enum SimulationType {
     other = "other",
 };
 /**
-* Variables commonly included in model simulation output datasets
-*/
-export enum ModelOutputVariable {
-    
-    /** Air-sea exchange of carbon dioxide */
-    Air_sea_CO2_flux = "air_sea_co2_flux",
-    /** Dissolved inorganic carbon (DIC) */
-    Dissolved_Inorganic_Carbon = "dissolved_inorganic_carbon",
-    /** Total alkalinity (TA) */
-    Total_Alkalinity = "total_alkalinity",
-    /** Temperature */
-    temperature = "temperature",
-    /** Salinity */
-    salinity = "salinity",
-    /** pH of seawater */
-    pH = "ph",
-    /** Phytoplankton biomass or concentration */
-    phytoplankton = "phytoplankton",
-    /** Horizontal velocity components (u, v) */
-    Horizontal_velocity = "horizontal_velocity",
-    /** Vertical velocity component (w) */
-    Vertical_velocity = "vertical_velocity",
-};
-/**
 * Level of access to a dataset.
 */
 export enum DataAccessibility {
@@ -614,6 +590,38 @@ export enum VariableType {
     other = "other",
     /** Contextual or ancillary columns that are not directly measured or calculated by the project — identifiers, timestamps, coordinates and external source data. QC flag columns should NOT be listed as separate variables; instead set dataset_variable_name_qc_flag on the parent variable. Use only with NonMeasuredVariable. */
     non_measured = "non_measured",
+};
+/**
+* Classification of a variable output by a model simulation. Used in place of VariableType on ModelOutputVariable. Model output covers a different set of quantities than field measurement (velocities and fluxes rather than sampling-based observations), so this enum is different than VariableType.
+*/
+export enum ModelVariableType {
+    
+    /** Air-sea CO₂ flux */
+    air_sea_co2_flux = "air_sea_co2_flux",
+    /** Dissolved inorganic carbon (DIC) */
+    dissolved_inorganic_carbon = "dissolved_inorganic_carbon",
+    /** Total alkalinity (TA) */
+    total_alkalinity = "total_alkalinity",
+    /** Temperature */
+    temperature = "temperature",
+    /** Salinity */
+    salinity = "salinity",
+    /** pH of seawater */
+    ph = "ph",
+    /** Biological tracers (e.g., chlorophyll, phytoplankton, zooplankton) — biomass or concentration */
+    biological_tracers = "biological_tracers",
+    /** Nutrients (e.g., dissolved oxygen, NO₃⁻, NH₄⁺) */
+    nutrients = "nutrients",
+    /** Zonal velocity (u) */
+    zonal_velocity = "zonal_velocity",
+    /** Meridional velocity (v) */
+    meridional_velocity = "meridional_velocity",
+    /** Vertical velocity (w) */
+    vertical_velocity = "vertical_velocity",
+    /** CO₂ variables (xCO₂, pCO₂, fCO₂) */
+    co2 = "co2",
+    /** Any model output variable that does not fall into a specific category above. */
+    other = "other",
 };
 
 export enum GenesisType {
@@ -1305,10 +1313,10 @@ export interface MarineAirMeasurement {
 export interface Variable {
     /** Unit of measurement for this variable. */
     units?: string,
-    /** The schema class name for this variable (e.g., "DiscretePHVariable"). Auto-populated by the metadata builder. */
-    schema_class: string,
     /** High-level classification of the variable. Determines which standard identifiers are available and, combined with genesis and sampling, which schema class to use. */
     variable_type: string,
+    /** The schema class name for this variable (e.g., "DiscretePHVariable"). Auto-populated by the metadata builder. */
+    schema_class: string,
     standard_identifier?: VocabularyItemReference,
     /** The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name). */
     dataset_variable_name: string,
@@ -1318,27 +1326,34 @@ export interface Variable {
 
 
 /**
+ * Abstract root for every variable that can appear in a FieldDataset — measured, calculated or contextual. Exists so FieldDataset.variables can range over exactly these classes: ranging over Variable would also admit ModelOutputVariable, which belongs only to a ModelOutputDataset.
+ */
+export interface FieldVariable extends Variable {
+}
+
+
+/**
  * A contextual or ancillary variable that is NOT directly measured or calculated by the project. Use for identifiers (Cruise_ID, Exp_ID), timestamps (Year_UTC, Time_UTC), coordinates (Latitude, Longitude), and any other data included in the dataset for context. Do NOT create a NonMeasuredVariable for quality control flag columns — instead, set dataset_variable_name_qc_flag on the parent measured or calculated variable that the flag relates to. variable_type must be "non_measured".
  */
-export interface NonMeasuredVariable extends Variable {
+export interface NonMeasuredVariable extends FieldVariable {
 }
 
 
 /**
  * Base class for project-acquired variables (measured or calculated in-situ). Reference: OAPMetadata XSD variables.xsd - insitu_variable
  */
-export interface InSituVariable extends Variable {
+export interface InSituVariable extends FieldVariable {
     genesis: string,
     /** If applicable, the column header name used for the quality control flag corresponding to this variable. */
     dataset_variable_name_qc_flag?: string,
     /** If applicable, the column header name used for the raw data corresponding to this variable. */
     dataset_variable_name_raw?: string,
+    /** Any additional information about this variable. */
+    other_detailed_information?: string,
     /** Citation for the method used. */
     method_reference?: string,
     /** The name of the PI whose research team measured or derived this parameter. */
     measurement_researcher?: Person,
-    /** Any additional information about this variable. */
-    other_detailed_information?: string,
 }
 
 
@@ -1528,7 +1543,7 @@ export interface ContinuousPhysiologicalVariable extends ContinuousMeasuredVaria
 
 
 /**
- * Socioeconomic variable for social and economic data such as survey responses, ecosystem service valuations, or text analysis. Extends InSituVariable to inherit method_reference and measurement_researcher, but does NOT include QCFields, instrument details, or calibration.
+ * Socioeconomic variable for social and economic data such as survey responses, ecosystem service valuations, or text analysis. A field variable: includes method_reference and measurement_researcher, but does NOT include QCFields, instrument details, or calibration.
  */
 export interface SocioeconomicVariable extends InSituVariable {
     /** Whether this variable captures quantitative (numerical) or qualitative (categorical/textual) data. */
@@ -1539,6 +1554,13 @@ export interface SocioeconomicVariable extends InSituVariable {
     social_study_type_custom?: string,
     /** Time period and location description for the social study (e.g., "2023-2024, coastal communities in Maine, USA"). */
     social_study_site_characterization?: string,
+}
+
+
+/**
+ * A variable output by a model simulation (e.g., air-sea CO2 flux, dissolved inorganic carbon, total alkalinity, pH, temperature, salinity from an OAE model run). Model outputs are produced by the simulation itself, so they carry none of the sampling, instrument, calibration or in-situ QC metadata that field-collected variables do — how the output was produced is described by the simulation configuration on the parent ModelOutputDataset.
+ */
+export interface ModelOutputVariable extends Variable {
 }
 
 
@@ -1708,6 +1730,8 @@ Project ID + Experiment type + Optional numerical indicator to differentiate bet
 export interface FieldDataset extends Dataset {
     /** Start date and end date (if known) of the project in ISO-8601 interval format (YYYY-MM-DD/YYY-MM-DD). If the end date is not known, use open-ended format YYYY-MM-DD/.. */
     temporal_coverage: string,
+    /** The variables in this dataset, each with its own metadata. */
+    variables?: FieldVariable[],
     /** "Controlled vocabulary" One of the three choices: (a) Originally collected dataset (e.g., a dataset collected from a research cruise or laboratory experiment), (b) Data compilation product (e.g., SOCAT, GLODAP), or (c) Derived product (e.g., gridded products, or model output). */
     data_product_type: string,
     /** Describe what the quality control flags stand for, e.g.,
@@ -1722,7 +1746,6 @@ export interface FieldDataset extends Dataset {
     platform_info: Platform,
     /** A list of supplementary file names containing coefficients and techniques used to calibrate the instruments used in data collection. The named files can be found within the relevant documents folder accompanying the submitted data files. */
     calibration_files?: string[],
-    variables?: Variable[],
 }
 
 
@@ -1730,6 +1753,8 @@ export interface FieldDataset extends Dataset {
  * A model simulation output dataset. Contains fields specific to computational model output including simulation configuration, output variables, and hardware information.
  */
 export interface ModelOutputDataset extends Dataset {
+    /** The variables in this dataset, each with its own metadata. */
+    variables?: ModelOutputVariable[],
     /** The type(s) of model simulation (e.g., counterfactual, perturbation, or both). */
     simulation_type: string,
     /** Start date and time of the simulation in UTC ISO-8601. */
@@ -1742,8 +1767,6 @@ export interface ModelOutputDataset extends Dataset {
     mcdr_forcing_description?: string,
     /** Details about the computational hardware used for the simulation. */
     hardware_configuration?: HardwareConfiguration,
-    /** Checklist of variables included in the model simulation output. */
-    model_output_variables?: string,
 }
 
 

@@ -17,7 +17,7 @@ The OAE Data Protocol is a structured approach to collecting, documenting, and s
 - **Project** — OAE field trials, leads, permits, spatial/temporal coverage
 - **Experiment** — Interventions, tracer studies, model experiments, dosing details
 - **Dataset** — Field datasets, model output datasets, platform info
-- **Variables** — Measured, calculated, and contextual variables with instrument and calibration metadata
+- **Variables** — Measured, calculated, and contextual field variables with instrument and calibration metadata, plus model output variables
 
 For protocol requirements pertaining to general metadata management, excel metadata templates, dataset formatting, and
 column header names, see the [published protocol](https://www.carbontosea.org/oae-data-protocol).

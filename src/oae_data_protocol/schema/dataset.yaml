@@ -118,6 +118,10 @@ classes:
       collection such as platform information, calibration files, QC flags, and measured variables.
     slots:
       - temporal_coverage
+      - variables
+    slot_usage:
+      variables:
+        range: FieldVariable
     attributes:
       data_product_type:
         title: Data Product Type
@@ -151,20 +155,19 @@ classes:
           folder accompanying the submitted data files.
         range: string
         multivalued: true
-      variables:
-        title: Variables
-        slot_uri: schema:variableMeasured
-        range: Variable
-        multivalued: true
 
   ModelOutputDataset:
     is_a: Dataset
     description: >-
       A model simulation output dataset. Contains fields specific to computational model output including
       simulation configuration, output variables, and hardware information.
+    slots:
+      - variables
     slot_usage:
       filenames:
         title: Model Output Filenames
+      variables:
+        range: ModelOutputVariable
     attributes:
       simulation_type:
         title: Simulation Type
@@ -198,11 +201,6 @@ classes:
         description: "Details about the computational hardware used for the simulation."
         range: HardwareConfiguration
         inlined: true
-      model_output_variables:
-        title: Key Model Output Variables
-        description: "Checklist of variables included in the model simulation output."
-        range: ModelOutputVariable
-        multivalued: true
     rules:
       - preconditions:
           slot_conditions:
@@ -252,3 +250,12 @@ slots:
     multivalued: true
     # TODO: workaround since JSON Schema treats [] values as satisfying the "required" constraint
     minimum_cardinality: 1
+
+  # Each dataset class narrows the range via slot_usage: FieldDataset to
+  # FieldVariable, ModelOutputDataset to ModelOutputVariable.
+  variables:
+    title: Variables
+    slot_uri: schema:variableMeasured
+    description: The variables in this dataset, each with its own metadata.
+    range: Variable
+    multivalued: true
