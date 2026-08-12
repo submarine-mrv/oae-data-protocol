@@ -927,10 +927,9 @@ enums:
   ModelVariableType:
     description: >-
       Classification of a variable output by a model simulation. Used in place
-      of VariableType on ModelVariable — model output covers a different set of
+      of VariableType on ModelVariable. Model output covers a different set of
       quantities than field measurement (velocities and fluxes rather than
-      sampling-based observations), and there is exactly one model variable
-      class, so this enum identifies the variable rather than selecting a class.
+      sampling-based observations), so this enum is different than VariableType.
     permissible_values:
       air_sea_co2_flux:
         description: "Air-sea CO₂ flux"
