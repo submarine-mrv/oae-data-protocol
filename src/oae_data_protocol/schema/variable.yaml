@@ -58,8 +58,12 @@ classes:
       Abstract root for every variable that can appear in a FieldDataset —
       measured, calculated or contextual. Exists so FieldDataset.variables can
       range over exactly these classes: ranging over Variable would also admit
-      ModelVariable, which belongs only to a ModelOutputDataset.
+      ModelOutputVariable, which belongs only to a ModelOutputDataset.
     is_a: Variable
+    slot_usage:
+      variable_type:
+        range: VariableType
+        required: true
 
   # =============================================================================
   # Non-Measured Variable Class
@@ -110,6 +114,14 @@ classes:
         title: Other Detailed Information
         description: Any additional information about this variable.
         range: string
+      method_reference:
+        title: Method Reference
+        description: Citation for the method used.
+        range: string
+      measurement_researcher:
+        title: Researcher who measured the variable
+        description: The name of the PI whose research team measured or derived this parameter.
+        range: Person
 
 
   # =====================================================================================
@@ -123,7 +135,6 @@ classes:
     is_a: InSituVariable
     mixins:
       - QCFields
-      - FieldMeasurementFields
     slots:
       - analyzing_instrument
     slot_usage:
@@ -227,7 +238,6 @@ classes:
     is_a: InSituVariable
     mixins:
       - QCFields
-      - FieldMeasurementFields
     slot_usage:
       genesis:
         range: string
@@ -546,8 +556,6 @@ classes:
       variable: includes method_reference and measurement_researcher, but
       does NOT include QCFields, instrument details, or calibration.
     is_a: InSituVariable
-    mixins:
-      - FieldMeasurementFields
     slot_usage:
       variable_type:
         range: string
@@ -578,7 +586,7 @@ classes:
   # =============================================================================
   # Model Variable Class
   # =============================================================================
-  ModelVariable:
+  ModelOutputVariable:
     description: >-
       A variable output by a model simulation (e.g., air-sea CO2 flux, dissolved
       inorganic carbon, total alkalinity, pH, temperature, salinity from an OAE
@@ -597,6 +605,7 @@ classes:
           model variable class, so this classifies the variable rather than
           selecting a schema class.
         range: ModelVariableType
+        required: true
 
   # =============================================================================
   # Supporting Classes for Variables
@@ -766,25 +775,6 @@ classes:
         description: The institution of the PI whose research team QCed this parameter.
         range: string
 
-  # Method/attribution fields that only apply to in-situ (field-collected)
-  # variables. Kept out of InSituVariable itself so ModelVariable (which also
-  # extends InSituVariable) does not inherit them — model output is produced by
-  # the simulation, not measured by a researcher with a cited method.
-  FieldMeasurementFields:
-    mixin: true
-    description: >-
-      Method reference and measuring-researcher attribution for variables
-      collected in the field (measured or calculated in situ).
-    attributes:
-      method_reference:
-        title: Method Reference
-        description: Citation for the method used.
-        range: string
-      measurement_researcher:
-        title: Researcher who measured the variable
-        description: The name of the PI whose research team measured or derived this parameter.
-        range: Person
-
 
 slots:
   # units is common to all variable types, but not required for non-measured variables, so we designate
@@ -795,12 +785,8 @@ slots:
     range: string
     # TODO: Upgrade this to controlled vocab with QUDT
 
-  # variable_type must be a top-level slot rather than an attribute of Variable:
-  # ~15 subclasses pin it via slot_usage, and LinkML's SchemaLoader cannot resolve
-  # a slot_usage name back to an attribute, so it would synthesise a phantom
-  # `variable_type` slot from the first usage it sees and leak that usage's
-  # equals_string into unrelated subclasses.
-  # ModelVariable replaces this range with ModelVariableType, which is an override rather than a narrowing — revisit if LinkML ever enforces monotonic range intersection.
+  # Top-level slot so subclasses can pin or re-range it via slot_usage. Could be
+  # upgraded to range: Any with any_of to properly support LinkML's monotonicity.
   variable_type:
     title: Variable Type
     description: >-
@@ -927,7 +913,7 @@ enums:
   ModelVariableType:
     description: >-
       Classification of a variable output by a model simulation. Used in place
-      of VariableType on ModelVariable — model output covers a different set of
+      of VariableType on ModelOutputVariable — model output covers a different set of
       quantities than field measurement (velocities and fluxes rather than
       sampling-based observations), and there is exactly one model variable
       class, so this enum identifies the variable rather than selecting a class.

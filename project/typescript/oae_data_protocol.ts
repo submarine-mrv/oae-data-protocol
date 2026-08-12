@@ -592,7 +592,7 @@ export enum VariableType {
     non_measured = "non_measured",
 };
 /**
-* Classification of a variable output by a model simulation. Used in place of VariableType on ModelVariable — model output covers a different set of quantities than field measurement (velocities and fluxes rather than sampling-based observations), and there is exactly one model variable class, so this enum identifies the variable rather than selecting a class.
+* Classification of a variable output by a model simulation. Used in place of VariableType on ModelOutputVariable — model output covers a different set of quantities than field measurement (velocities and fluxes rather than sampling-based observations), and there is exactly one model variable class, so this enum identifies the variable rather than selecting a class.
 */
 export enum ModelVariableType {
     
@@ -1326,7 +1326,7 @@ export interface Variable {
 
 
 /**
- * Abstract root for every variable that can appear in a FieldDataset — measured, calculated or contextual. Exists so FieldDataset.variables can range over exactly these classes: ranging over Variable would also admit ModelVariable, which belongs only to a ModelOutputDataset.
+ * Abstract root for every variable that can appear in a FieldDataset — measured, calculated or contextual. Exists so FieldDataset.variables can range over exactly these classes: ranging over Variable would also admit ModelOutputVariable, which belongs only to a ModelOutputDataset.
  */
 export interface FieldVariable extends Variable {
 }
@@ -1350,13 +1350,17 @@ export interface InSituVariable extends FieldVariable {
     dataset_variable_name_raw?: string,
     /** Any additional information about this variable. */
     other_detailed_information?: string,
+    /** Citation for the method used. */
+    method_reference?: string,
+    /** The name of the PI whose research team measured or derived this parameter. */
+    measurement_researcher?: Person,
 }
 
 
 /**
  * Variable that is directly measured in-situ using instruments. Reference: OAPMetadata XSD variables.xsd - basic_measured_observation_base
  */
-export interface MeasuredVariable extends InSituVariable, QCFields, FieldMeasurementFields {
+export interface MeasuredVariable extends InSituVariable, QCFields {
     /** Instrument used to analyze the water samples or measure the water body continuously. Instrument includes calibration information. */
     analyzing_instrument: AnalyzingInstrument,
     /** Method used to collect samples. */
@@ -1393,7 +1397,7 @@ export interface ContinuousMeasuredVariable extends MeasuredVariable {
 /**
  * A variable that is calculated or derived from other measured variables rather than directly measured by an instrument (e.g., carbonate system parameters computed via CO2SYS). Set genesis to "calculated". The variable_type should reflect the quantity being calculated (e.g., "pH", "ta", "dic", "co2", or "other").
  */
-export interface CalculatedVariable extends InSituVariable, QCFields, FieldMeasurementFields {
+export interface CalculatedVariable extends InSituVariable, QCFields {
     /** Information about how the variable was calculated and the parameters used in calculation, e.g.: Calculation software = CO2SYSv1 (MATLAB) Input variables =  pH and DIC (column header names 'ph_t_insitu' and 'dic' in associated dataset file) Additional information = the dissociation constants of Lueker et al., 2000 for carbonic acid, etc. */
     calculation_method_and_parameters: string,
 }
@@ -1541,7 +1545,7 @@ export interface ContinuousPhysiologicalVariable extends ContinuousMeasuredVaria
 /**
  * Socioeconomic variable for social and economic data such as survey responses, ecosystem service valuations, or text analysis. A field variable: includes method_reference and measurement_researcher, but does NOT include QCFields, instrument details, or calibration.
  */
-export interface SocioeconomicVariable extends InSituVariable, FieldMeasurementFields {
+export interface SocioeconomicVariable extends InSituVariable {
     /** Whether this variable captures quantitative (numerical) or qualitative (categorical/textual) data. */
     quantitative_or_qualitative: string,
     /** The type of social science study this variable comes from. */
@@ -1556,7 +1560,7 @@ export interface SocioeconomicVariable extends InSituVariable, FieldMeasurementF
 /**
  * A variable output by a model simulation (e.g., air-sea CO2 flux, dissolved inorganic carbon, total alkalinity, pH, temperature, salinity from an OAE model run). Model outputs are produced by the simulation itself, so they carry none of the sampling, instrument, calibration or in-situ QC metadata that field-collected variables do — how the output was produced is described by the simulation configuration on the parent ModelOutputDataset.
  */
-export interface ModelVariable extends Variable {
+export interface ModelOutputVariable extends Variable {
 }
 
 
@@ -1686,17 +1690,6 @@ If uncertainty is provided as a variable, please list the column header name her
 
 
 /**
- * Method reference and measuring-researcher attribution for variables collected in the field (measured or calculated in situ).
- */
-export interface FieldMeasurementFields {
-    /** Citation for the method used. */
-    method_reference?: string,
-    /** The name of the PI whose research team measured or derived this parameter. */
-    measurement_researcher?: Person,
-}
-
-
-/**
  * Abstract base class for all dataset types. Contains fields common to both field/observational and model simulation datasets. Generally following guidelines & best practices as outlined in [science-on-schema.org](https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md)
  */
 export interface Dataset {
@@ -1737,6 +1730,8 @@ Project ID + Experiment type + Optional numerical indicator to differentiate bet
 export interface FieldDataset extends Dataset {
     /** Start date and end date (if known) of the project in ISO-8601 interval format (YYYY-MM-DD/YYY-MM-DD). If the end date is not known, use open-ended format YYYY-MM-DD/.. */
     temporal_coverage: string,
+    /** The variables in this dataset, each with its own metadata. */
+    variables?: FieldVariable[],
     /** "Controlled vocabulary" One of the three choices: (a) Originally collected dataset (e.g., a dataset collected from a research cruise or laboratory experiment), (b) Data compilation product (e.g., SOCAT, GLODAP), or (c) Derived product (e.g., gridded products, or model output). */
     data_product_type: string,
     /** Describe what the quality control flags stand for, e.g.,
@@ -1751,8 +1746,6 @@ export interface FieldDataset extends Dataset {
     platform_info: Platform,
     /** A list of supplementary file names containing coefficients and techniques used to calibrate the instruments used in data collection. The named files can be found within the relevant documents folder accompanying the submitted data files. */
     calibration_files?: string[],
-    /** The variables in this dataset, each with its own metadata. Ranges over FieldVariable rather than Variable so that ModelVariable — which belongs to a ModelOutputDataset — is not admitted here. */
-    variables?: FieldVariable[],
 }
 
 
@@ -1760,6 +1753,8 @@ export interface FieldDataset extends Dataset {
  * A model simulation output dataset. Contains fields specific to computational model output including simulation configuration, output variables, and hardware information.
  */
 export interface ModelOutputDataset extends Dataset {
+    /** The variables in this dataset, each with its own metadata. */
+    variables?: ModelOutputVariable[],
     /** The type(s) of model simulation (e.g., counterfactual, perturbation, or both). */
     simulation_type: string,
     /** Start date and time of the simulation in UTC ISO-8601. */
@@ -1772,8 +1767,6 @@ export interface ModelOutputDataset extends Dataset {
     mcdr_forcing_description?: string,
     /** Details about the computational hardware used for the simulation. */
     hardware_configuration?: HardwareConfiguration,
-    /** The variables included in the model simulation output, each with its own metadata. */
-    variables?: ModelVariable[],
 }
 
 
