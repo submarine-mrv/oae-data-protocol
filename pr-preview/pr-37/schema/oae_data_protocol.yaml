@@ -1388,11 +1388,10 @@ enums:
   ModelVariableType:
     name: ModelVariableType
     definition_uri: https://schema.oaedata.org/ModelVariableType
-    description: "Classification of a variable output by a model simulation. Used\
-      \ in place of VariableType on ModelVariable \u2014 model output covers a different\
-      \ set of quantities than field measurement (velocities and fluxes rather than\
-      \ sampling-based observations), and there is exactly one model variable class,\
-      \ so this enum identifies the variable rather than selecting a class."
+    description: Classification of a variable output by a model simulation. Used in
+      place of VariableType on ModelVariable. Model output covers a different set
+      of quantities than field measurement (velocities and fluxes rather than sampling-based
+      observations), so this enum is different than VariableType.
     from_schema: Variable
     permissible_values:
       air_sea_co2_flux:
@@ -10472,7 +10471,7 @@ classes:
     class_uri: oae:ContinuousStandardGas
 metamodel_version: 1.7.0
 source_file: oae_data_protocol.yaml
-source_file_date: '2026-08-12T18:04:02'
+source_file_date: '2026-08-12T18:04:54'
 source_file_size: 1743
-generation_date: '2026-08-12T18:04:19'
+generation_date: '2026-08-12T18:05:03'
 
