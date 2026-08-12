@@ -695,7 +695,7 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="class-socioeconomicvariable">Class: SocioeconomicVariable</h1>
-<p><em>Socioeconomic variable for social and economic data such as survey responses, ecosystem service valuations, or text analysis. Extends InSituVariable to inherit method_reference and measurement_researcher, but does NOT include QCFields, instrument details, or calibration.</em></p>
+<p><em>Socioeconomic variable for social and economic data such as survey responses, ecosystem service valuations, or text analysis. A field variable: includes method_reference and measurement_researcher, but does NOT include QCFields, instrument details, or calibration.</em></p>
 <p>URI: <a href="https://schema.oaedata.org/SocioeconomicVariable">oae:SocioeconomicVariable</a></p>
 <pre class="mermaid"><code> classDiagram
     class SocioeconomicVariable
@@ -774,8 +774,11 @@
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../Variable/">Variable</a><ul>
+<li><a href="../FieldVariable/">FieldVariable</a><ul>
 <li><a href="../InSituVariable/">InSituVariable</a><ul>
 <li><strong>SocioeconomicVariable</strong></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -835,6 +838,12 @@
 <td><a href="../InSituVariable/">InSituVariable</a></td>
 </tr>
 <tr>
+<td><a href="../other_detailed_information/">other_detailed_information</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Any additional information about this variable</td>
+<td><a href="../InSituVariable/">InSituVariable</a></td>
+</tr>
+<tr>
 <td><a href="../method_reference/">method_reference</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Citation for the method used</td>
@@ -847,27 +856,21 @@
 <td><a href="../InSituVariable/">InSituVariable</a></td>
 </tr>
 <tr>
-<td><a href="../other_detailed_information/">other_detailed_information</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Any additional information about this variable</td>
-<td><a href="../InSituVariable/">InSituVariable</a></td>
-</tr>
-<tr>
 <td><a href="../units/">units</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>Unit of measurement for this variable</td>
 <td><a href="../Variable/">Variable</a></td>
 </tr>
 <tr>
-<td><a href="../schema_class/">schema_class</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>The schema class name for this variable (e</td>
-<td><a href="../Variable/">Variable</a></td>
-</tr>
-<tr>
 <td><a href="../variable_type/">variable_type</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>High-level classification of the variable</td>
+<td><a href="../Variable/">Variable</a></td>
+</tr>
+<tr>
+<td><a href="../schema_class/">schema_class</a></td>
+<td>1 <br/> <a href="../String/">String</a></td>
+<td>The schema class name for this variable (e</td>
 <td><a href="../Variable/">Variable</a></td>
 </tr>
 <tr>
@@ -919,10 +922,10 @@
 <h3 id="direct">Direct</h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SocioeconomicVariable</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Socioeconomic variable for social and economic data such as survey responses,</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">ecosystem service valuations, or text analysis. Extends InSituVariable to inherit</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">method_reference and measurement_researcher, but does NOT include QCFields, instrument</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">details, or calibration.</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Socioeconomic</span><span class="nv"> </span><span class="s">variable</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">social</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">economic</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">such</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">survey</span><span class="nv"> </span><span class="s">responses,</span>
+<span class="w">  </span><span class="s">ecosystem</span><span class="nv"> </span><span class="s">service</span><span class="nv"> </span><span class="s">valuations,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">text</span><span class="nv"> </span><span class="s">analysis.</span><span class="nv"> </span><span class="s">A</span><span class="nv"> </span><span class="s">field</span><span class="nv"> </span><span class="s">variable:</span><span class="nv"> </span><span class="s">includes</span><span class="nv"> </span><span class="s">method_reference</span>
+<span class="w">  </span><span class="s">and</span><span class="nv"> </span><span class="s">measurement_researcher,</span><span class="nv"> </span><span class="s">but</span><span class="nv"> </span><span class="s">does</span><span class="nv"> </span><span class="s">NOT</span><span class="nv"> </span><span class="s">include</span><span class="nv"> </span><span class="s">QCFields,</span><span class="nv"> </span><span class="s">instrument</span><span class="nv"> </span><span class="s">details,</span><span class="nv"> </span><span class="s">or</span>
+<span class="w">  </span><span class="s">calibration.'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.oaedata.org/OAEDataSchema</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InSituVariable</span>
 <span class="nt">slot_usage</span><span class="p">:</span>
@@ -975,10 +978,10 @@
 <h3 id="induced">Induced</h3>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SocioeconomicVariable</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Socioeconomic variable for social and economic data such as survey responses,</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">ecosystem service valuations, or text analysis. Extends InSituVariable to inherit</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">method_reference and measurement_researcher, but does NOT include QCFields, instrument</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">details, or calibration.</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Socioeconomic</span><span class="nv"> </span><span class="s">variable</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">social</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">economic</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">such</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">survey</span><span class="nv"> </span><span class="s">responses,</span>
+<span class="w">  </span><span class="s">ecosystem</span><span class="nv"> </span><span class="s">service</span><span class="nv"> </span><span class="s">valuations,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">text</span><span class="nv"> </span><span class="s">analysis.</span><span class="nv"> </span><span class="s">A</span><span class="nv"> </span><span class="s">field</span><span class="nv"> </span><span class="s">variable:</span><span class="nv"> </span><span class="s">includes</span><span class="nv"> </span><span class="s">method_reference</span>
+<span class="w">  </span><span class="s">and</span><span class="nv"> </span><span class="s">measurement_researcher,</span><span class="nv"> </span><span class="s">but</span><span class="nv"> </span><span class="s">does</span><span class="nv"> </span><span class="s">NOT</span><span class="nv"> </span><span class="s">include</span><span class="nv"> </span><span class="s">QCFields,</span><span class="nv"> </span><span class="s">instrument</span><span class="nv"> </span><span class="s">details,</span><span class="nv"> </span><span class="s">or</span>
+<span class="w">  </span><span class="s">calibration.'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.oaedata.org/OAEDataSchema</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InSituVariable</span>
 <span class="nt">slot_usage</span><span class="p">:</span>
@@ -1068,6 +1071,17 @@
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InSituVariable</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">  </span><span class="nt">other_detailed_information</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">other_detailed_information</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Any additional information about this variable.</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Other Detailed Information</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">other_detailed_information</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SocioeconomicVariable</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InSituVariable</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">  </span><span class="nt">method_reference</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">method_reference</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Citation for the method used.</span>
@@ -1090,17 +1104,6 @@
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InSituVariable</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Person</span>
-<span class="w">  </span><span class="nt">other_detailed_information</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">other_detailed_information</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Any additional information about this variable.</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Other Detailed Information</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">other_detailed_information</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SocioeconomicVariable</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">InSituVariable</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">  </span><span class="nt">units</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">units</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Unit of measurement for this variable.</span>
@@ -1113,6 +1116,21 @@
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">variable_type</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">variable_type</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">High-level classification of the variable. Determines which standard</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">identifiers are available and, combined with genesis and sampling, which schema</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">class to use.</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable Type</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.oaedata.org/OAEDataSchema</span>
+<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">variable_type</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SocioeconomicVariable</span>
+<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">equals_string</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">socioeconomic</span>
 <span class="w">  </span><span class="nt">schema_class</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">schema_class</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The schema class name for this variable (e.g., "DiscretePHVariable").</span>
@@ -1126,21 +1144,6 @@
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">variable_type</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">variable_type</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">High-level classification of the variable. Determines which standard</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">identifiers are available and, combined with genesis and sampling, which schema</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">class to use.</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable Type</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">variable_type</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SocioeconomicVariable</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="nt">equals_string</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">socioeconomic</span>
 <span class="w">  </span><span class="nt">standard_identifier</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">standard_identifier</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
