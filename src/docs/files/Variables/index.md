@@ -159,8 +159,8 @@ Adds calculation provenance:
 ## Model Output Variables
 
 Variables in a [ModelOutputDataset](../ModelOutputDataset.md) are described by a single class,
-[ModelOutputVariable](../ModelOutputVariable.md), which sits directly under `Variable` — a sibling of
-[FieldVariable](../FieldVariable.md) rather than a descendant of it. `ModelOutputVariable`s carry none of the
+[ModelOutputVariable](../ModelOutputVariable.md), which sits directly under `Variable` as a sibling of
+[FieldVariable](../FieldVariable.md). `ModelOutputVariable`s carry none of the
 sampling, instrument, calibration or in-situ QC metadata that field-collected variables do. How the
 output was produced is described by the simulation configuration on the parent dataset.
 
