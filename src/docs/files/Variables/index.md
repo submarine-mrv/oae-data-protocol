@@ -170,8 +170,7 @@ A `ModelOutputVariable` has only:
 - `long_name`, `dataset_variable_name`, `units` (all required)
 - `standard_identifier` — optional reference to a community vocabulary
 
-`ModelVariableType` classifies the model output rather than selecting a schema class. See
-[ModelVariableType](../ModelVariableType.md) for the current list of values and their descriptions.
+See [ModelVariableType](../ModelVariableType.md) for the current list of values and their descriptions.
 
 ### Type-Specific Fields (Traits / Mixins)
 
