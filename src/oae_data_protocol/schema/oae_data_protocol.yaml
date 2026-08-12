@@ -3,7 +3,7 @@ name: OAEDataSchema
 title: "OAE Data Protocol - Technical Documentation"
 # todo:
 #   - "integrate with linkml-common for observation types"
-version: 0.1.1
+version: 0.2.0
 prefixes:
   oae: "https://schema.oaedata.org/"
   linkml: "https://w3id.org/linkml/"
