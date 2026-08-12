@@ -688,7 +688,7 @@ class VariableType(str, Enum):
 
 class ModelVariableType(str, Enum):
     """
-    Classification of a variable output by a model simulation. Used in place of VariableType on ModelOutputVariable — model output covers a different set of quantities than field measurement (velocities and fluxes rather than sampling-based observations), and there is exactly one model variable class, so this enum identifies the variable rather than selecting a class.
+    Classification of a variable output by a model simulation. Used in place of VariableType on ModelOutputVariable. Model output covers a different set of quantities than field measurement (velocities and fluxes rather than sampling-based observations), so this enum is different than VariableType.
     """
     # Air-sea CO₂ flux
     air_sea_co2_flux = "air_sea_co2_flux"
