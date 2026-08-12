@@ -800,6 +800,7 @@ slots:
   # a slot_usage name back to an attribute, so it would synthesise a phantom
   # `variable_type` slot from the first usage it sees and leak that usage's
   # equals_string into unrelated subclasses.
+  # ModelVariable replaces this range with ModelVariableType, which is an override rather than a narrowing — revisit if LinkML ever enforces monotonic range intersection.
   variable_type:
     title: Variable Type
     description: >-
