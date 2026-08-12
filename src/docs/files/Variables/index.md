@@ -164,7 +164,7 @@ Variables in a [ModelOutputDataset](../ModelOutputDataset.md) are described by a
 sampling, instrument, calibration or in-situ QC metadata that field-collected variables do. How the
 output was produced is described by the simulation configuration on the parent dataset.
 
-A `ModelOutputVariable` therefore has only:
+A `ModelOutputVariable` has only:
 
 - `variable_type` — a [ModelVariableType](../ModelVariableType.md) value (required)
 - `long_name`, `dataset_variable_name`, `units` (all required)
