@@ -160,10 +160,9 @@ Adds calculation provenance:
 
 Variables in a [ModelOutputDataset](../ModelOutputDataset.md) are described by a single class,
 [ModelVariable](../ModelVariable.md), which sits directly under `Variable` — a sibling of
-[FieldVariable](../FieldVariable.md) rather than a descendant of it, so a model variable is never
-valid inside a `FieldDataset` and vice versa. Model output is produced by the simulation itself, so it carries none of the
-sampling, instrument, calibration or in-situ QC metadata that field-collected variables do — how the
-output was produced is already described by the simulation configuration on the parent dataset.
+[FieldVariable](../FieldVariable.md) rather than a descendant of it. `ModelVariable`'s carry none of the
+sampling, instrument, calibration or in-situ QC metadata that field-collected variables do. How the
+output was produced is described by the simulation configuration on the parent dataset.
 
 A `ModelVariable` therefore has only:
 
