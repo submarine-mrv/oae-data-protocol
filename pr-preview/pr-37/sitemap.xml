@@ -229,10 +229,6 @@
          <lastmod>2026-08-12</lastmod>
     </url>
     <url>
-         <loc>https://schema.oaedata.org/FieldMeasurementFields/</loc>
-         <lastmod>2026-08-12</lastmod>
-    </url>
-    <url>
          <loc>https://schema.oaedata.org/FieldVariable/</loc>
          <lastmod>2026-08-12</lastmod>
     </url>
@@ -373,7 +369,7 @@
          <lastmod>2026-08-12</lastmod>
     </url>
     <url>
-         <loc>https://schema.oaedata.org/ModelVariable/</loc>
+         <loc>https://schema.oaedata.org/ModelOutputVariable/</loc>
          <lastmod>2026-08-12</lastmod>
     </url>
     <url>

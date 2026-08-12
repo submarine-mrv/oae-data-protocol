@@ -21,7 +21,7 @@
     
     
       
-        <title>Slot: variables - OAE Data Protocol: Schema Documentation</title>
+        <title>Slot: Variables (variables) - OAE Data Protocol: Schema Documentation</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-variables" class="md-skip">
+        <a href="#slot-variables-variables" class="md-skip">
           Skip to content
         </a>
       
@@ -99,7 +99,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: variables
+              Slot: Variables (variables)
             
           </span>
         </div>
@@ -1426,6 +1426,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Identifier and Mapping Information">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema Source
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1470,8 +1487,9 @@
   
 
 
-<h1 id="slot-variables">Slot: variables</h1>
-<p>URI: <a href="https://schema.oaedata.org/variables">oae:variables</a></p>
+<h1 id="slot-variables-variables">Slot: Variables (variables)</h1>
+<p><em>The variables in this dataset, each with its own metadata.</em></p>
+<p>URI: <a href="http://schema.org/variableMeasured">schema:variableMeasured</a></p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -1485,22 +1503,31 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../FieldDataset/">FieldDataset</a></td>
-<td>A field or observational dataset related to an OAE experiment</td>
-<td>no</td>
-</tr>
-<tr>
 <td><a href="../ModelOutputDataset/">ModelOutputDataset</a></td>
 <td>A model simulation output dataset</td>
-<td>no</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../FieldDataset/">FieldDataset</a></td>
+<td>A field or observational dataset related to an OAE experiment</td>
+<td>yes</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>Range: NONE</li>
+<li>
+<p>Range: <a href="../Variable/">Variable</a></p>
+</li>
+<li>
+<p>Multivalued: True</p>
+</li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
+<h3 id="schema-source">Schema Source</h3>
+<ul>
+<li>from schema: https://schema.oaedata.org/OAEDataSchema</li>
+</ul>
 <h2 id="mappings">Mappings</h2>
 <table>
 <thead>
@@ -1512,7 +1539,7 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>oae:variables</td>
+<td>schema:variableMeasured</td>
 </tr>
 <tr>
 <td>native</td>
@@ -1523,10 +1550,17 @@
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">variables</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The variables in this dataset, each with its own metadata.</span>
+<span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variables</span>
+<span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.oaedata.org/OAEDataSchema</span>
+<span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">schema:variableMeasured</span>
 <span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">variables</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FieldDataset</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ModelOutputDataset</span>
+<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
+<span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 </details>
 
