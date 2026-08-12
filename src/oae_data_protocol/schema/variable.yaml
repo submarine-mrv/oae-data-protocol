@@ -945,8 +945,11 @@ enums:
         description: pH of seawater
       biological_tracers:
         description: >-
-          Biological tracers — phytoplankton, chlorophyll, zooplankton, etc.
+          Biological tracers (e.g., chlorophyll, phytoplankton, zooplankton) —
           biomass or concentration
+      nutrients:
+        description: >-
+          Nutrients (e.g., dissolved oxygen, NO₃⁻, NH₄⁺)
       zonal_velocity:
         description: Zonal velocity (u)
       meridional_velocity:

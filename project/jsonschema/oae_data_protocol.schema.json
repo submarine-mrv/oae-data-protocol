@@ -5485,6 +5485,7 @@
                 "salinity",
                 "ph",
                 "biological_tracers",
+                "nutrients",
                 "zonal_velocity",
                 "meridional_velocity",
                 "vertical_velocity",

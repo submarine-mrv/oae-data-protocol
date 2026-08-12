@@ -24,7 +24,7 @@ These vocabularies are defined as part of the [OAE Data Protocol](https://www.ca
 | Vocabulary | Values | Used By |
 |-----------|--------|---------|
 | [VariableType](VariableType.md) | pH, ta, dic, co2, sediment, hplc, other, non_measured | Field dataset variables |
-| [ModelVariableType](ModelVariableType.md) | air_sea_co2_flux, dissolved_inorganic_carbon, total_alkalinity, temperature, salinity, ph, biological_tracers, zonal_velocity, meridional_velocity, vertical_velocity, co2, other | Model output variables |
+| [ModelVariableType](ModelVariableType.md) | air_sea_co2_flux, dissolved_inorganic_carbon, total_alkalinity, temperature, salinity, ph, biological_tracers, nutrients, zonal_velocity, meridional_velocity, vertical_velocity, co2, other | Model output variables |
 | [GenesisType](GenesisType.md) | measured, calculated | In-situ variables |
 | [SamplingType](SamplingType.md) | discrete, continuous | Measured variables |
 | [mCDR Experiment Type](ExperimentType.md) | baseline, control, intervention, tracer_study, model, other | Experiments |

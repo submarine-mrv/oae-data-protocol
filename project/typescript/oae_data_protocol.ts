@@ -608,8 +608,10 @@ export enum ModelVariableType {
     salinity = "salinity",
     /** pH of seawater */
     ph = "ph",
-    /** Biological tracers — phytoplankton, chlorophyll, zooplankton, etc. biomass or concentration */
+    /** Biological tracers (e.g., chlorophyll, phytoplankton, zooplankton) — biomass or concentration */
     biological_tracers = "biological_tracers",
+    /** Nutrients (e.g., dissolved oxygen, NO₃⁻, NH₄⁺) */
+    nutrients = "nutrients",
     /** Zonal velocity (u) */
     zonal_velocity = "zonal_velocity",
     /** Meridional velocity (v) */

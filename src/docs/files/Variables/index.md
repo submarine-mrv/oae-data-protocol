@@ -181,7 +181,8 @@ A `ModelVariable` therefore has only:
 | `temperature` | Temperature |
 | `salinity` | Salinity |
 | `ph` | pH of seawater |
-| `biological_tracers` | Biological tracers — phytoplankton, chlorophyll, zooplankton, etc. biomass or concentration |
+| `biological_tracers` | Biological tracers (e.g., chlorophyll, phytoplankton, zooplankton) — biomass or concentration |
+| `nutrients` | Nutrients (e.g., dissolved oxygen, NO₃⁻, NH₄⁺) |
 | `zonal_velocity` | Zonal velocity (u) |
 | `meridional_velocity` | Meridional velocity (v) |
 | `vertical_velocity` | Vertical velocity (w) |
