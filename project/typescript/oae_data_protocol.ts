@@ -1683,7 +1683,7 @@ If uncertainty is provided as a variable, please list the column header name her
     /** The indicator used to represent missing values in the data file, e.g., -999, NaN, etc. */
     missing_value_indicators?: string,
     /** The name of the PI whose research team QCed this parameter. */
-    qc_researcher?: Person,
+    qc_researcher?: string,
     /** The institution of the PI whose research team QCed this parameter. */
     qc_researcher_institution?: string,
 }

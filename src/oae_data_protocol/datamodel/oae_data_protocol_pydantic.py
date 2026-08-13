@@ -2226,7 +2226,7 @@ If uncertainty is provided as a variable, please list the column header name her
          'domain_of': ['StandardGas', 'CO2GasDetector', 'QCFields']} })
     uncertainty_definition: Optional[str] = Field(default=None, title="How was the uncertainty defined", description="""A description of the uncertainties involved in this method.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty_definition', 'domain_of': ['QCFields']} })
     missing_value_indicators: Optional[str] = Field(default=None, title="Missing value indicators", description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'missing_value_indicators', 'domain_of': ['QCFields']} })
-    qc_researcher: Optional[Person] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
+    qc_researcher: Optional[str] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
     qc_researcher_institution: Optional[str] = Field(default=None, title="QC Researcher Institution", description="""The institution of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher_institution', 'domain_of': ['QCFields']} })
 
 
@@ -2262,7 +2262,7 @@ If uncertainty is provided as a variable, please list the column header name her
          'domain_of': ['StandardGas', 'CO2GasDetector', 'QCFields']} })
     uncertainty_definition: str = Field(default=..., title="How was the uncertainty defined", description="""A description of the uncertainties involved in this method.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty_definition', 'domain_of': ['QCFields']} })
     missing_value_indicators: str = Field(default=..., title="Missing value indicators", description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'missing_value_indicators', 'domain_of': ['QCFields']} })
-    qc_researcher: Optional[Person] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
+    qc_researcher: Optional[str] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
     qc_researcher_institution: Optional[str] = Field(default=None, title="QC Researcher Institution", description="""The institution of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher_institution', 'domain_of': ['QCFields']} })
     genesis: Literal["measured"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'genesis',
          'domain_of': ['InSituVariable'],
@@ -2306,7 +2306,7 @@ If uncertainty is provided as a variable, please list the column header name her
          'domain_of': ['StandardGas', 'CO2GasDetector', 'QCFields']} })
     uncertainty_definition: str = Field(default=..., title="How was the uncertainty defined", description="""A description of the uncertainties involved in this method.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty_definition', 'domain_of': ['QCFields']} })
     missing_value_indicators: str = Field(default=..., title="Missing value indicators", description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'missing_value_indicators', 'domain_of': ['QCFields']} })
-    qc_researcher: Optional[Person] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
+    qc_researcher: Optional[str] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
     qc_researcher_institution: Optional[str] = Field(default=None, title="QC Researcher Institution", description="""The institution of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher_institution', 'domain_of': ['QCFields']} })
     genesis: Literal["measured"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'genesis',
          'domain_of': ['InSituVariable'],
@@ -2354,7 +2354,7 @@ If uncertainty is provided as a variable, please list the column header name her
          'domain_of': ['StandardGas', 'CO2GasDetector', 'QCFields']} })
     uncertainty_definition: str = Field(default=..., title="How was the uncertainty defined", description="""A description of the uncertainties involved in this method.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty_definition', 'domain_of': ['QCFields']} })
     missing_value_indicators: str = Field(default=..., title="Missing value indicators", description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'missing_value_indicators', 'domain_of': ['QCFields']} })
-    qc_researcher: Optional[Person] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
+    qc_researcher: Optional[str] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
     qc_researcher_institution: Optional[str] = Field(default=None, title="QC Researcher Institution", description="""The institution of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher_institution', 'domain_of': ['QCFields']} })
     genesis: Literal["measured"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'genesis',
          'domain_of': ['InSituVariable'],
@@ -2391,7 +2391,7 @@ If uncertainty is provided as a variable, please list the column header name her
          'domain_of': ['StandardGas', 'CO2GasDetector', 'QCFields']} })
     uncertainty_definition: Optional[str] = Field(default=None, title="How was the uncertainty defined", description="""A description of the uncertainties involved in this method.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty_definition', 'domain_of': ['QCFields']} })
     missing_value_indicators: Optional[str] = Field(default=None, title="Missing value indicators", description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'missing_value_indicators', 'domain_of': ['QCFields']} })
-    qc_researcher: Optional[Person] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
+    qc_researcher: Optional[str] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
     qc_researcher_institution: Optional[str] = Field(default=None, title="QC Researcher Institution", description="""The institution of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher_institution', 'domain_of': ['QCFields']} })
     genesis: Literal["calculated"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'genesis',
          'domain_of': ['InSituVariable'],
@@ -2446,7 +2446,7 @@ If uncertainty is provided as a variable, please list the column header name her
          'domain_of': ['StandardGas', 'CO2GasDetector', 'QCFields']} })
     uncertainty_definition: str = Field(default=..., title="How was the uncertainty defined", description="""A description of the uncertainties involved in this method.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty_definition', 'domain_of': ['QCFields']} })
     missing_value_indicators: str = Field(default=..., title="Missing value indicators", description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'missing_value_indicators', 'domain_of': ['QCFields']} })
-    qc_researcher: Optional[Person] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
+    qc_researcher: Optional[str] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
     qc_researcher_institution: Optional[str] = Field(default=None, title="QC Researcher Institution", description="""The institution of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher_institution', 'domain_of': ['QCFields']} })
     genesis: Literal["measured"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'genesis',
          'domain_of': ['InSituVariable'],
@@ -2508,7 +2508,7 @@ If uncertainty is provided as a variable, please list the column header name her
          'domain_of': ['StandardGas', 'CO2GasDetector', 'QCFields']} })
     uncertainty_definition: str = Field(default=..., title="How was the uncertainty defined", description="""A description of the uncertainties involved in this method.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty_definition', 'domain_of': ['QCFields']} })
     missing_value_indicators: str = Field(default=..., title="Missing value indicators", description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'missing_value_indicators', 'domain_of': ['QCFields']} })
-    qc_researcher: Optional[Person] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
+    qc_researcher: Optional[str] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
     qc_researcher_institution: Optional[str] = Field(default=None, title="QC Researcher Institution", description="""The institution of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher_institution', 'domain_of': ['QCFields']} })
     genesis: Literal["measured"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'genesis',
          'domain_of': ['InSituVariable'],
@@ -2565,7 +2565,7 @@ If uncertainty is provided as a variable, please list the column header name her
          'domain_of': ['StandardGas', 'CO2GasDetector', 'QCFields']} })
     uncertainty_definition: str = Field(default=..., title="How was the uncertainty defined", description="""A description of the uncertainties involved in this method.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty_definition', 'domain_of': ['QCFields']} })
     missing_value_indicators: str = Field(default=..., title="Missing value indicators", description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'missing_value_indicators', 'domain_of': ['QCFields']} })
-    qc_researcher: Optional[Person] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
+    qc_researcher: Optional[str] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
     qc_researcher_institution: Optional[str] = Field(default=None, title="QC Researcher Institution", description="""The institution of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher_institution', 'domain_of': ['QCFields']} })
     genesis: Literal["measured"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'genesis',
          'domain_of': ['InSituVariable'],
@@ -2630,7 +2630,7 @@ If uncertainty is provided as a variable, please list the column header name her
          'domain_of': ['StandardGas', 'CO2GasDetector', 'QCFields']} })
     uncertainty_definition: str = Field(default=..., title="How was the uncertainty defined", description="""A description of the uncertainties involved in this method.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty_definition', 'domain_of': ['QCFields']} })
     missing_value_indicators: str = Field(default=..., title="Missing value indicators", description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'missing_value_indicators', 'domain_of': ['QCFields']} })
-    qc_researcher: Optional[Person] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
+    qc_researcher: Optional[str] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
     qc_researcher_institution: Optional[str] = Field(default=None, title="QC Researcher Institution", description="""The institution of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher_institution', 'domain_of': ['QCFields']} })
     genesis: Literal["measured"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'genesis',
          'domain_of': ['InSituVariable'],
@@ -2687,7 +2687,7 @@ If uncertainty is provided as a variable, please list the column header name her
          'domain_of': ['StandardGas', 'CO2GasDetector', 'QCFields']} })
     uncertainty_definition: str = Field(default=..., title="How was the uncertainty defined", description="""A description of the uncertainties involved in this method.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty_definition', 'domain_of': ['QCFields']} })
     missing_value_indicators: str = Field(default=..., title="Missing value indicators", description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'missing_value_indicators', 'domain_of': ['QCFields']} })
-    qc_researcher: Optional[Person] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
+    qc_researcher: Optional[str] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
     qc_researcher_institution: Optional[str] = Field(default=None, title="QC Researcher Institution", description="""The institution of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher_institution', 'domain_of': ['QCFields']} })
     genesis: Literal["measured"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'genesis',
          'domain_of': ['InSituVariable'],
@@ -2749,7 +2749,7 @@ If uncertainty is provided as a variable, please list the column header name her
          'domain_of': ['StandardGas', 'CO2GasDetector', 'QCFields']} })
     uncertainty_definition: str = Field(default=..., title="How was the uncertainty defined", description="""A description of the uncertainties involved in this method.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty_definition', 'domain_of': ['QCFields']} })
     missing_value_indicators: str = Field(default=..., title="Missing value indicators", description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'missing_value_indicators', 'domain_of': ['QCFields']} })
-    qc_researcher: Optional[Person] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
+    qc_researcher: Optional[str] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
     qc_researcher_institution: Optional[str] = Field(default=None, title="QC Researcher Institution", description="""The institution of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher_institution', 'domain_of': ['QCFields']} })
     genesis: Literal["measured"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'genesis',
          'domain_of': ['InSituVariable'],
@@ -2803,7 +2803,7 @@ If uncertainty is provided as a variable, please list the column header name her
          'domain_of': ['StandardGas', 'CO2GasDetector', 'QCFields']} })
     uncertainty_definition: str = Field(default=..., title="How was the uncertainty defined", description="""A description of the uncertainties involved in this method.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty_definition', 'domain_of': ['QCFields']} })
     missing_value_indicators: str = Field(default=..., title="Missing value indicators", description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'missing_value_indicators', 'domain_of': ['QCFields']} })
-    qc_researcher: Optional[Person] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
+    qc_researcher: Optional[str] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
     qc_researcher_institution: Optional[str] = Field(default=None, title="QC Researcher Institution", description="""The institution of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher_institution', 'domain_of': ['QCFields']} })
     genesis: Literal["measured"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'genesis',
          'domain_of': ['InSituVariable'],
@@ -2855,7 +2855,7 @@ If uncertainty is provided as a variable, please list the column header name her
          'domain_of': ['StandardGas', 'CO2GasDetector', 'QCFields']} })
     uncertainty_definition: str = Field(default=..., title="How was the uncertainty defined", description="""A description of the uncertainties involved in this method.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty_definition', 'domain_of': ['QCFields']} })
     missing_value_indicators: str = Field(default=..., title="Missing value indicators", description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'missing_value_indicators', 'domain_of': ['QCFields']} })
-    qc_researcher: Optional[Person] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
+    qc_researcher: Optional[str] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
     qc_researcher_institution: Optional[str] = Field(default=None, title="QC Researcher Institution", description="""The institution of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher_institution', 'domain_of': ['QCFields']} })
     genesis: Literal["measured"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'genesis',
          'domain_of': ['InSituVariable'],
@@ -2922,7 +2922,7 @@ If uncertainty is provided as a variable, please list the column header name her
          'domain_of': ['StandardGas', 'CO2GasDetector', 'QCFields']} })
     uncertainty_definition: str = Field(default=..., title="How was the uncertainty defined", description="""A description of the uncertainties involved in this method.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty_definition', 'domain_of': ['QCFields']} })
     missing_value_indicators: str = Field(default=..., title="Missing value indicators", description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'missing_value_indicators', 'domain_of': ['QCFields']} })
-    qc_researcher: Optional[Person] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
+    qc_researcher: Optional[str] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
     qc_researcher_institution: Optional[str] = Field(default=None, title="QC Researcher Institution", description="""The institution of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher_institution', 'domain_of': ['QCFields']} })
     genesis: Literal["measured"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'genesis',
          'domain_of': ['InSituVariable'],
@@ -2999,7 +2999,7 @@ If uncertainty is provided as a variable, please list the column header name her
          'domain_of': ['StandardGas', 'CO2GasDetector', 'QCFields']} })
     uncertainty_definition: str = Field(default=..., title="How was the uncertainty defined", description="""A description of the uncertainties involved in this method.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty_definition', 'domain_of': ['QCFields']} })
     missing_value_indicators: str = Field(default=..., title="Missing value indicators", description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'missing_value_indicators', 'domain_of': ['QCFields']} })
-    qc_researcher: Optional[Person] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
+    qc_researcher: Optional[str] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
     qc_researcher_institution: Optional[str] = Field(default=None, title="QC Researcher Institution", description="""The institution of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher_institution', 'domain_of': ['QCFields']} })
     genesis: Literal["measured"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'genesis',
          'domain_of': ['InSituVariable'],
@@ -3045,7 +3045,7 @@ If uncertainty is provided as a variable, please list the column header name her
          'domain_of': ['StandardGas', 'CO2GasDetector', 'QCFields']} })
     uncertainty_definition: str = Field(default=..., title="How was the uncertainty defined", description="""A description of the uncertainties involved in this method.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty_definition', 'domain_of': ['QCFields']} })
     missing_value_indicators: str = Field(default=..., title="Missing value indicators", description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'missing_value_indicators', 'domain_of': ['QCFields']} })
-    qc_researcher: Optional[Person] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
+    qc_researcher: Optional[str] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
     qc_researcher_institution: Optional[str] = Field(default=None, title="QC Researcher Institution", description="""The institution of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher_institution', 'domain_of': ['QCFields']} })
     genesis: Literal["measured"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'genesis',
          'domain_of': ['InSituVariable'],
@@ -3096,7 +3096,7 @@ If uncertainty is provided as a variable, please list the column header name her
          'domain_of': ['StandardGas', 'CO2GasDetector', 'QCFields']} })
     uncertainty_definition: str = Field(default=..., title="How was the uncertainty defined", description="""A description of the uncertainties involved in this method.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty_definition', 'domain_of': ['QCFields']} })
     missing_value_indicators: str = Field(default=..., title="Missing value indicators", description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'missing_value_indicators', 'domain_of': ['QCFields']} })
-    qc_researcher: Optional[Person] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
+    qc_researcher: Optional[str] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
     qc_researcher_institution: Optional[str] = Field(default=None, title="QC Researcher Institution", description="""The institution of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher_institution', 'domain_of': ['QCFields']} })
     genesis: Literal["measured"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'genesis',
          'domain_of': ['InSituVariable'],
@@ -3153,7 +3153,7 @@ If uncertainty is provided as a variable, please list the column header name her
          'domain_of': ['StandardGas', 'CO2GasDetector', 'QCFields']} })
     uncertainty_definition: str = Field(default=..., title="How was the uncertainty defined", description="""A description of the uncertainties involved in this method.""", json_schema_extra = { "linkml_meta": {'alias': 'uncertainty_definition', 'domain_of': ['QCFields']} })
     missing_value_indicators: str = Field(default=..., title="Missing value indicators", description="""The indicator used to represent missing values in the data file, e.g., -999, NaN, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'missing_value_indicators', 'domain_of': ['QCFields']} })
-    qc_researcher: Optional[Person] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
+    qc_researcher: Optional[str] = Field(default=None, title="Researcher who QCed this variable", description="""The name of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher', 'domain_of': ['QCFields']} })
     qc_researcher_institution: Optional[str] = Field(default=None, title="QC Researcher Institution", description="""The institution of the PI whose research team QCed this parameter.""", json_schema_extra = { "linkml_meta": {'alias': 'qc_researcher_institution', 'domain_of': ['QCFields']} })
     genesis: Literal["measured"] = Field(default=..., json_schema_extra = { "linkml_meta": {'alias': 'genesis',
          'domain_of': ['InSituVariable'],

@@ -769,7 +769,7 @@ classes:
       qc_researcher:
         title: Researcher who QCed this variable
         description: The name of the PI whose research team QCed this parameter.
-        range: Person
+        range: string
       qc_researcher_institution:
         title: QC Researcher Institution
         description: The institution of the PI whose research team QCed this parameter.

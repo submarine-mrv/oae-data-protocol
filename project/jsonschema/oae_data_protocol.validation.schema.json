@@ -587,16 +587,12 @@
                     ]
                 },
                 "qc_researcher": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Person"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
                     "description": "The name of the PI whose research team QCed this parameter.",
-                    "title": "Researcher who QCed this variable"
+                    "title": "Researcher who QCed this variable",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "qc_researcher_institution": {
                     "description": "The institution of the PI whose research team QCed this parameter.",
@@ -1167,16 +1163,12 @@
                     "type": "string"
                 },
                 "qc_researcher": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Person"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
                     "description": "The name of the PI whose research team QCed this parameter.",
-                    "title": "Researcher who QCed this variable"
+                    "title": "Researcher who QCed this variable",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "qc_researcher_institution": {
                     "description": "The institution of the PI whose research team QCed this parameter.",
@@ -1430,16 +1422,12 @@
                     ]
                 },
                 "qc_researcher": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Person"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
                     "description": "The name of the PI whose research team QCed this parameter.",
-                    "title": "Researcher who QCed this variable"
+                    "title": "Researcher who QCed this variable",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "qc_researcher_institution": {
                     "description": "The institution of the PI whose research team QCed this parameter.",
@@ -1655,16 +1643,12 @@
                     ]
                 },
                 "qc_researcher": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Person"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
                     "description": "The name of the PI whose research team QCed this parameter.",
-                    "title": "Researcher who QCed this variable"
+                    "title": "Researcher who QCed this variable",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "qc_researcher_institution": {
                     "description": "The institution of the PI whose research team QCed this parameter.",
@@ -1883,16 +1867,12 @@
                     ]
                 },
                 "qc_researcher": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Person"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
                     "description": "The name of the PI whose research team QCed this parameter.",
-                    "title": "Researcher who QCed this variable"
+                    "title": "Researcher who QCed this variable",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "qc_researcher_institution": {
                     "description": "The institution of the PI whose research team QCed this parameter.",
@@ -2125,16 +2105,12 @@
                     ]
                 },
                 "qc_researcher": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Person"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
                     "description": "The name of the PI whose research team QCed this parameter.",
-                    "title": "Researcher who QCed this variable"
+                    "title": "Researcher who QCed this variable",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "qc_researcher_institution": {
                     "description": "The institution of the PI whose research team QCed this parameter.",
@@ -2363,16 +2339,12 @@
                     ]
                 },
                 "qc_researcher": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Person"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
                     "description": "The name of the PI whose research team QCed this parameter.",
-                    "title": "Researcher who QCed this variable"
+                    "title": "Researcher who QCed this variable",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "qc_researcher_institution": {
                     "description": "The institution of the PI whose research team QCed this parameter.",
@@ -2669,16 +2641,12 @@
                     ]
                 },
                 "qc_researcher": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Person"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
                     "description": "The name of the PI whose research team QCed this parameter.",
-                    "title": "Researcher who QCed this variable"
+                    "title": "Researcher who QCed this variable",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "qc_researcher_institution": {
                     "description": "The institution of the PI whose research team QCed this parameter.",
@@ -3126,16 +3094,12 @@
                     "type": "string"
                 },
                 "qc_researcher": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Person"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
                     "description": "The name of the PI whose research team QCed this parameter.",
-                    "title": "Researcher who QCed this variable"
+                    "title": "Researcher who QCed this variable",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "qc_researcher_institution": {
                     "description": "The institution of the PI whose research team QCed this parameter.",
@@ -3367,16 +3331,12 @@
                     ]
                 },
                 "qc_researcher": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Person"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
                     "description": "The name of the PI whose research team QCed this parameter.",
-                    "title": "Researcher who QCed this variable"
+                    "title": "Researcher who QCed this variable",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "qc_researcher_institution": {
                     "description": "The institution of the PI whose research team QCed this parameter.",
@@ -3585,16 +3545,12 @@
                     ]
                 },
                 "qc_researcher": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Person"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
                     "description": "The name of the PI whose research team QCed this parameter.",
-                    "title": "Researcher who QCed this variable"
+                    "title": "Researcher who QCed this variable",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "qc_researcher_institution": {
                     "description": "The institution of the PI whose research team QCed this parameter.",
@@ -3793,16 +3749,12 @@
                     "type": "string"
                 },
                 "qc_researcher": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Person"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
                     "description": "The name of the PI whose research team QCed this parameter.",
-                    "title": "Researcher who QCed this variable"
+                    "title": "Researcher who QCed this variable",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "qc_researcher_institution": {
                     "description": "The institution of the PI whose research team QCed this parameter.",
@@ -4031,16 +3983,12 @@
                     ]
                 },
                 "qc_researcher": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Person"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
                     "description": "The name of the PI whose research team QCed this parameter.",
-                    "title": "Researcher who QCed this variable"
+                    "title": "Researcher who QCed this variable",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "qc_researcher_institution": {
                     "description": "The institution of the PI whose research team QCed this parameter.",
@@ -4255,16 +4203,12 @@
                     ]
                 },
                 "qc_researcher": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Person"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
                     "description": "The name of the PI whose research team QCed this parameter.",
-                    "title": "Researcher who QCed this variable"
+                    "title": "Researcher who QCed this variable",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "qc_researcher_institution": {
                     "description": "The institution of the PI whose research team QCed this parameter.",
@@ -4496,16 +4440,12 @@
                     ]
                 },
                 "qc_researcher": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Person"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
                     "description": "The name of the PI whose research team QCed this parameter.",
-                    "title": "Researcher who QCed this variable"
+                    "title": "Researcher who QCed this variable",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "qc_researcher_institution": {
                     "description": "The institution of the PI whose research team QCed this parameter.",
@@ -5319,16 +5259,12 @@
                     ]
                 },
                 "qc_researcher": {
-                    "anyOf": [
-                        {
-                            "$ref": "#/$defs/Person"
-                        },
-                        {
-                            "type": "null"
-                        }
-                    ],
                     "description": "The name of the PI whose research team QCed this parameter.",
-                    "title": "Researcher who QCed this variable"
+                    "title": "Researcher who QCed this variable",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "qc_researcher_institution": {
                     "description": "The institution of the PI whose research team QCed this parameter.",
