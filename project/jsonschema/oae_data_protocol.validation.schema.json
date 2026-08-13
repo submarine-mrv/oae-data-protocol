@@ -2790,6 +2790,7 @@
                 },
                 "data_submitter": {
                     "$ref": "#/$defs/Person",
+                    "description": "Information about the individual submitting the dataset(s), including contact information",
                     "title": "Data Submitter"
                 },
                 "dataset_type": {
@@ -4828,11 +4829,12 @@
                 },
                 "data_product_type": {
                     "$ref": "#/$defs/DataProductType",
-                    "description": "\"Controlled vocabulary\" One of the three choices: (a) Originally collected dataset (e.g., a dataset collected from a research cruise or laboratory experiment), (b) Data compilation product (e.g., SOCAT, GLODAP), or (c) Derived product (e.g., gridded products, or model output).",
+                    "description": "One of the three choices: (a) Originally collected dataset (e.g., a dataset collected from a research cruise or laboratory experiment), (b) Data compilation product (e.g., SOCAT, GLODAP), or (c) Derived product (e.g., gridded products, or model output).",
                     "title": "Data Product Type"
                 },
                 "data_submitter": {
                     "$ref": "#/$defs/Person",
+                    "description": "Information about the individual submitting the dataset(s), including contact information",
                     "title": "Data Submitter"
                 },
                 "dataset_type": {
@@ -5626,7 +5628,7 @@
                     ]
                 },
                 "alkalinity_feedstock_description": {
-                    "description": "Information such as feedstock source, characteristics, impurities, dilution prior to dosing, and concentration. For feedstock other than NaOH: trace metal composition and particulate grain size. Any variable information must be provided in the dosing data file, in this case include the data file and column header names here provided as variables. See Intervention Data for details.",
+                    "description": "Information such as feedstock source, characteristics, impurities, dilution prior to dosing, and concentration. For feedstock other than NaOH: trace metal composition and particulate grain size. Any variable information must be provided in the dosing data file, in this case include the data file and column header names here provided as variables. See [Intervention Data](https://www.carbontosea.org/oae-data-protocol/1-0-0/#intervention-data) for details.",
                     "title": "Alkalinity Feedstock Description",
                     "type": "string"
                 },
@@ -5914,7 +5916,7 @@
                     ]
                 },
                 "alkalinity_feedstock_description": {
-                    "description": "Information such as feedstock source, characteristics, impurities, dilution prior to dosing, and concentration. For feedstock other than NaOH: trace metal composition and particulate grain size. Any variable information must be provided in the dosing data file, in this case include the data file and column header names here provided as variables. See Intervention Data for details.",
+                    "description": "Information such as feedstock source, characteristics, impurities, dilution prior to dosing, and concentration. For feedstock other than NaOH: trace metal composition and particulate grain size. Any variable information must be provided in the dosing data file, in this case include the data file and column header names here provided as variables. See [Intervention Data](https://www.carbontosea.org/oae-data-protocol/1-0-0/#intervention-data) for details.",
                     "title": "Alkalinity Feedstock Description",
                     "type": "string"
                 },
@@ -6695,6 +6697,7 @@
                 },
                 "data_submitter": {
                     "$ref": "#/$defs/Person",
+                    "description": "Information about the individual submitting the dataset(s), including contact information",
                     "title": "Data Submitter"
                 },
                 "dataset_type": {
@@ -7438,7 +7441,7 @@
                 },
                 "platform_type": {
                     "$ref": "#/$defs/PlatformType",
-                    "description": "Controlled vocabularies for the types of the platform: https://www.ncei.noaa.gov/access/ocean-carbon-acidification-data-system/vocabularies/platform-types.html",
+                    "description": "For Platform Type definitions, see: https://vocab.nerc.ac.uk/collection/L06/current/",
                     "title": "Platform Type"
                 }
             },

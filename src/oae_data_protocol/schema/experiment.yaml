@@ -223,7 +223,8 @@ classes:
           Information such as feedstock source, characteristics, impurities, dilution prior to dosing, and
           concentration. For feedstock other than NaOH: trace metal composition and particulate grain size. Any variable
           information must be provided in the dosing data file, in this case include the data file and column header
-          names here provided as variables. See Intervention Data for details.
+          names here provided as variables. See
+          [Intervention Data](https://www.carbontosea.org/oae-data-protocol/1-0-0/#intervention-data) for details.
         range: string
         required: true
       equilibration:

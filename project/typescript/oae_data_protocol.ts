@@ -994,7 +994,7 @@ See Controlled Vocabularies section for selected examples (this list is not exha
     alkalinity_feedstock_custom?: string,
     /** Maximum CO₂ removal potential of a feedstock material. We recommend using an adjusted version of the Steinour equation (Gunning et al., 2010), which uses bulk elemental oxide composition to estimate the maximum CO₂ removal potential of a feedstock material. The calculation output is in the form of kg of CO₂ per tonne of feedstock and represents the quantitative hypothetical potential of the material to capture CO₂ as bicarbonate or carbonate. See Isometric's CO2 removal potential module for details. */
     alkalinity_feedstock_co2_removal_potential: number,
-    /** Information such as feedstock source, characteristics, impurities, dilution prior to dosing, and concentration. For feedstock other than NaOH: trace metal composition and particulate grain size. Any variable information must be provided in the dosing data file, in this case include the data file and column header names here provided as variables. See Intervention Data for details. */
+    /** Information such as feedstock source, characteristics, impurities, dilution prior to dosing, and concentration. For feedstock other than NaOH: trace metal composition and particulate grain size. Any variable information must be provided in the dosing data file, in this case include the data file and column header names here provided as variables. See [Intervention Data](https://www.carbontosea.org/oae-data-protocol/1-0-0/#intervention-data) for details. */
     alkalinity_feedstock_description: string,
     /** Whether the feedstock was pre-equilibrated or unequilibrated */
     equilibration: string,
@@ -1708,6 +1708,7 @@ Project ID + Experiment type + Optional numerical indicator to differentiate bet
     dataset_type: string,
     /** Custom "data type" when an appropriate value is not found in the controlled vocabulary list for mCDR Data Type and the corresponding `data_type` field is set to "other". */
     dataset_type_custom?: string,
+    /** Information about the individual submitting the dataset(s), including contact information */
     data_submitter: Person,
     /** Author list in the format of Lastname1, Firstname1 Middlename1; Lastname2, Firstname2 Middlename2; ... */
     author_list_for_citation?: string,
@@ -1730,7 +1731,7 @@ export interface FieldDataset extends Dataset {
     temporal_coverage: string,
     /** The variables in this dataset, each with its own metadata. */
     variables?: FieldVariable[],
-    /** "Controlled vocabulary" One of the three choices: (a) Originally collected dataset (e.g., a dataset collected from a research cruise or laboratory experiment), (b) Data compilation product (e.g., SOCAT, GLODAP), or (c) Derived product (e.g., gridded products, or model output). */
+    /** One of the three choices: (a) Originally collected dataset (e.g., a dataset collected from a research cruise or laboratory experiment), (b) Data compilation product (e.g., SOCAT, GLODAP), or (c) Derived product (e.g., gridded products, or model output). */
     data_product_type: string,
     /** Describe what the quality control flags stand for, e.g.,
   0 = interpolated or calculated data
@@ -1791,7 +1792,7 @@ export interface HardwareConfiguration {
 export interface Platform {
     /** Name of the observing platform, e.g., RV Ronald Brown, Saildrone#0132, Mooring_First_Landing, etc. */
     name?: string,
-    /** Controlled vocabularies for the types of the platform: https://www.ncei.noaa.gov/access/ocean-carbon-acidification-data-system/vocabularies/platform-types.html */
+    /** For Platform Type definitions, see: https://vocab.nerc.ac.uk/collection/L06/current/ */
     platform_type: string,
     /** Synonymous with glider ID, cruise ID. A unique name assigned to oceanographic assets such as buoys, moorings, floats, drifters, towed vehicles like the Scanfish or StingRay. This is synonymous with the BCO-DMO “platform” parameter (https://www.bco-dmo.org/parameter/932), NERC “platform type” term (https://vocab.nerc.ac.uk/collection/W06/current/CLSS0001/), and the “platform_id” term within the Climate and Forecast (CF) metadata conventions (https://cfconventions.org/Data/cf-standard-names/current/build/cf-standard-name-table.html). e.g., ICES platform code (e.g., 33RO). */
     platform_id?: string,
