@@ -2175,7 +2175,6 @@ class MeasuredSedimentFields(ConfiguredBaseModel):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Variable', 'mixin': True})
 
     sediment_type: str = Field(default=..., title="Sediment Type", description="""e.g., mud, sand, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'sediment_type', 'domain_of': ['MeasuredSedimentFields']} })
-    sediment_sampling_method: str = Field(default=..., title="Sediment Sampling Method", description="""e.g., sediment core, grab sampling, dredging, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'sediment_sampling_method', 'domain_of': ['MeasuredSedimentFields']} })
     sediment_sampling_depth: str = Field(default=..., title="Sediment Sampling Depth", description="""Depth that sediment was collected below sediment surface. If provided as a variable (recommended), please list the column header name here.""", json_schema_extra = { "linkml_meta": {'alias': 'sediment_sampling_depth', 'domain_of': ['MeasuredSedimentFields']} })
     sediment_sampling_water_depth: str = Field(default=..., title="Sediment Sampling Water Depth", description="""Water depth where sediment was collected. If provided as a variable (recommended), please list the column header name here.""", json_schema_extra = { "linkml_meta": {'alias': 'sediment_sampling_water_depth',
          'domain_of': ['MeasuredSedimentFields']} })
@@ -2778,7 +2777,6 @@ class ContinuousSedimentVariable(ContinuousMeasuredVariable, MeasuredSedimentFie
                                           'range': 'string'}}})
 
     sediment_type: str = Field(default=..., title="Sediment Type", description="""e.g., mud, sand, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'sediment_type', 'domain_of': ['MeasuredSedimentFields']} })
-    sediment_sampling_method: str = Field(default=..., title="Sediment Sampling Method", description="""e.g., sediment core, grab sampling, dredging, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'sediment_sampling_method', 'domain_of': ['MeasuredSedimentFields']} })
     sediment_sampling_depth: str = Field(default=..., title="Sediment Sampling Depth", description="""Depth that sediment was collected below sediment surface. If provided as a variable (recommended), please list the column header name here.""", json_schema_extra = { "linkml_meta": {'alias': 'sediment_sampling_depth', 'domain_of': ['MeasuredSedimentFields']} })
     sediment_sampling_water_depth: str = Field(default=..., title="Sediment Sampling Water Depth", description="""Water depth where sediment was collected. If provided as a variable (recommended), please list the column header name here.""", json_schema_extra = { "linkml_meta": {'alias': 'sediment_sampling_water_depth',
          'domain_of': ['MeasuredSedimentFields']} })
@@ -2834,7 +2832,6 @@ class DiscreteSedimentVariable(DiscreteMeasuredVariable, MeasuredSedimentFields)
                                           'range': 'string'}}})
 
     sediment_type: str = Field(default=..., title="Sediment Type", description="""e.g., mud, sand, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'sediment_type', 'domain_of': ['MeasuredSedimentFields']} })
-    sediment_sampling_method: str = Field(default=..., title="Sediment Sampling Method", description="""e.g., sediment core, grab sampling, dredging, etc.""", json_schema_extra = { "linkml_meta": {'alias': 'sediment_sampling_method', 'domain_of': ['MeasuredSedimentFields']} })
     sediment_sampling_depth: str = Field(default=..., title="Sediment Sampling Depth", description="""Depth that sediment was collected below sediment surface. If provided as a variable (recommended), please list the column header name here.""", json_schema_extra = { "linkml_meta": {'alias': 'sediment_sampling_depth', 'domain_of': ['MeasuredSedimentFields']} })
     sediment_sampling_water_depth: str = Field(default=..., title="Sediment Sampling Water Depth", description="""Water depth where sediment was collected. If provided as a variable (recommended), please list the column header name here.""", json_schema_extra = { "linkml_meta": {'alias': 'sediment_sampling_water_depth',
          'domain_of': ['MeasuredSedimentFields']} })

@@ -675,11 +675,6 @@ classes:
         description: e.g., mud, sand, etc.
         range: string
         required: true
-      sediment_sampling_method:
-        title: Sediment Sampling Method
-        description: e.g., sediment core, grab sampling, dredging, etc.
-        range: string
-        required: true
       sediment_sampling_depth:
         # TODO: add booleean field to designate if sampling depth is provided as a variable, via provided_as_a_file flag?
         title: Sediment Sampling Depth

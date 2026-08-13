@@ -1626,8 +1626,6 @@ For more details, refer to Newton J.A., Feely R. A., Jewett E. B., Williamson P.
 export interface MeasuredSedimentFields {
     /** e.g., mud, sand, etc. */
     sediment_type: string,
-    /** e.g., sediment core, grab sampling, dredging, etc. */
-    sediment_sampling_method: string,
     /** Depth that sediment was collected below sediment surface. If provided as a variable (recommended), please list the column header name here. */
     sediment_sampling_depth: string,
     /** Water depth where sediment was collected. If provided as a variable (recommended), please list the column header name here. */

@@ -1767,11 +1767,6 @@
                     "title": "Sediment Sampling Depth",
                     "type": "string"
                 },
-                "sediment_sampling_method": {
-                    "description": "e.g., sediment core, grab sampling, dredging, etc.",
-                    "title": "Sediment Sampling Method",
-                    "type": "string"
-                },
                 "sediment_sampling_water_depth": {
                     "description": "Water depth where sediment was collected. If provided as a variable (recommended), please list the column header name here.",
                     "title": "Sediment Sampling Water Depth",
@@ -1809,7 +1804,6 @@
             },
             "required": [
                 "sediment_type",
-                "sediment_sampling_method",
                 "sediment_sampling_depth",
                 "sediment_sampling_water_depth",
                 "raw_data_calculation_method",
@@ -3210,11 +3204,6 @@
                     "title": "Sediment Sampling Depth",
                     "type": "string"
                 },
-                "sediment_sampling_method": {
-                    "description": "e.g., sediment core, grab sampling, dredging, etc.",
-                    "title": "Sediment Sampling Method",
-                    "type": "string"
-                },
                 "sediment_sampling_water_depth": {
                     "description": "Water depth where sediment was collected. If provided as a variable (recommended), please list the column header name here.",
                     "title": "Sediment Sampling Water Depth",
@@ -3252,7 +3241,6 @@
             },
             "required": [
                 "sediment_type",
-                "sediment_sampling_method",
                 "sediment_sampling_depth",
                 "sediment_sampling_water_depth",
                 "analyzing_instrument",
