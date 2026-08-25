@@ -1,7 +1,7 @@
 name: OAEDataSchema
 title: OAE Data Protocol - Technical Documentation
 id: https://schema.oaedata.org/OAEDataSchema
-version: 0.2.1
+version: 0.3.0
 imports:
 - linkml:types
 - core
@@ -10478,7 +10478,7 @@ classes:
     class_uri: oae:ContinuousStandardGas
 metamodel_version: 1.7.0
 source_file: oae_data_protocol.yaml
-source_file_date: '2026-08-25T23:13:39'
+source_file_date: '2026-08-25T23:27:26'
 source_file_size: 1743
-generation_date: '2026-08-25T23:13:51'
+generation_date: '2026-08-25T23:27:37'
 
