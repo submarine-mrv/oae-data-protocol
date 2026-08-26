@@ -68,6 +68,8 @@ classes:
         range: string
       data_submitter:
         title: Data Submitter
+        description: >-
+          Information about the individual submitting the dataset(s), including contact information
         range: Person
         required: true
       author_list_for_citation:
@@ -126,9 +128,9 @@ classes:
       data_product_type:
         title: Data Product Type
         description: >-
-          "Controlled vocabulary" One of the three choices: (a) Originally collected dataset (e.g., a dataset collected
-          from a research cruise or laboratory experiment), (b) Data compilation product (e.g., SOCAT, GLODAP), or
-          (c) Derived product (e.g., gridded products, or model output).
+          One of the three choices: (a) Originally collected dataset (e.g., a dataset collected from a research cruise
+          or laboratory experiment), (b) Data compilation product (e.g., SOCAT, GLODAP), or (c) Derived product
+          (e.g., gridded products, or model output).
         range: DataProductType
         required: true
       qc_flag_scheme:

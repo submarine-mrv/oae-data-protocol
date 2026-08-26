@@ -675,11 +675,6 @@ classes:
         description: e.g., mud, sand, etc.
         range: string
         required: true
-      sediment_sampling_method:
-        title: Sediment Sampling Method
-        description: e.g., sediment core, grab sampling, dredging, etc.
-        range: string
-        required: true
       sediment_sampling_depth:
         # TODO: add booleean field to designate if sampling depth is provided as a variable, via provided_as_a_file flag?
         title: Sediment Sampling Depth
@@ -769,7 +764,7 @@ classes:
       qc_researcher:
         title: Researcher who QCed this variable
         description: The name of the PI whose research team QCed this parameter.
-        range: Person
+        range: string
       qc_researcher_institution:
         title: QC Researcher Institution
         description: The institution of the PI whose research team QCed this parameter.

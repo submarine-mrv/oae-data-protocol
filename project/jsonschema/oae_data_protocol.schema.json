@@ -446,9 +446,9 @@
                     "type": "string"
                 },
                 "qc_researcher": {
-                    "$ref": "#/$defs/Person",
                     "description": "The name of the PI whose research team QCed this parameter.",
-                    "title": "Researcher who QCed this variable"
+                    "title": "Researcher who QCed this variable",
+                    "type": "string"
                 },
                 "qc_researcher_institution": {
                     "description": "The institution of the PI whose research team QCed this parameter.",
@@ -840,9 +840,9 @@
                     "type": "string"
                 },
                 "qc_researcher": {
-                    "$ref": "#/$defs/Person",
                     "description": "The name of the PI whose research team QCed this parameter.",
-                    "title": "Researcher who QCed this variable"
+                    "title": "Researcher who QCed this variable",
+                    "type": "string"
                 },
                 "qc_researcher_institution": {
                     "description": "The institution of the PI whose research team QCed this parameter.",
@@ -1036,9 +1036,9 @@
                     "type": "string"
                 },
                 "qc_researcher": {
-                    "$ref": "#/$defs/Person",
                     "description": "The name of the PI whose research team QCed this parameter.",
-                    "title": "Researcher who QCed this variable"
+                    "title": "Researcher who QCed this variable",
+                    "type": "string"
                 },
                 "qc_researcher_institution": {
                     "description": "The institution of the PI whose research team QCed this parameter.",
@@ -1200,9 +1200,9 @@
                     "type": "string"
                 },
                 "qc_researcher": {
-                    "$ref": "#/$defs/Person",
                     "description": "The name of the PI whose research team QCed this parameter.",
-                    "title": "Researcher who QCed this variable"
+                    "title": "Researcher who QCed this variable",
+                    "type": "string"
                 },
                 "qc_researcher_institution": {
                     "description": "The institution of the PI whose research team QCed this parameter.",
@@ -1367,9 +1367,9 @@
                     "type": "string"
                 },
                 "qc_researcher": {
-                    "$ref": "#/$defs/Person",
                     "description": "The name of the PI whose research team QCed this parameter.",
-                    "title": "Researcher who QCed this variable"
+                    "title": "Researcher who QCed this variable",
+                    "type": "string"
                 },
                 "qc_researcher_institution": {
                     "description": "The institution of the PI whose research team QCed this parameter.",
@@ -1545,9 +1545,9 @@
                     "type": "string"
                 },
                 "qc_researcher": {
-                    "$ref": "#/$defs/Person",
                     "description": "The name of the PI whose research team QCed this parameter.",
-                    "title": "Researcher who QCed this variable"
+                    "title": "Researcher who QCed this variable",
+                    "type": "string"
                 },
                 "qc_researcher_institution": {
                     "description": "The institution of the PI whose research team QCed this parameter.",
@@ -1719,9 +1719,9 @@
                     "type": "string"
                 },
                 "qc_researcher": {
-                    "$ref": "#/$defs/Person",
                     "description": "The name of the PI whose research team QCed this parameter.",
-                    "title": "Researcher who QCed this variable"
+                    "title": "Researcher who QCed this variable",
+                    "type": "string"
                 },
                 "qc_researcher_institution": {
                     "description": "The institution of the PI whose research team QCed this parameter.",
@@ -1767,11 +1767,6 @@
                     "title": "Sediment Sampling Depth",
                     "type": "string"
                 },
-                "sediment_sampling_method": {
-                    "description": "e.g., sediment core, grab sampling, dredging, etc.",
-                    "title": "Sediment Sampling Method",
-                    "type": "string"
-                },
                 "sediment_sampling_water_depth": {
                     "description": "Water depth where sediment was collected. If provided as a variable (recommended), please list the column header name here.",
                     "title": "Sediment Sampling Water Depth",
@@ -1809,7 +1804,6 @@
             },
             "required": [
                 "sediment_type",
-                "sediment_sampling_method",
                 "sediment_sampling_depth",
                 "sediment_sampling_water_depth",
                 "raw_data_calculation_method",
@@ -1949,9 +1943,9 @@
                     "type": "string"
                 },
                 "qc_researcher": {
-                    "$ref": "#/$defs/Person",
                     "description": "The name of the PI whose research team QCed this parameter.",
-                    "title": "Researcher who QCed this variable"
+                    "title": "Researcher who QCed this variable",
+                    "type": "string"
                 },
                 "qc_researcher_institution": {
                     "description": "The institution of the PI whose research team QCed this parameter.",
@@ -2082,6 +2076,7 @@
                 },
                 "data_submitter": {
                     "$ref": "#/$defs/Person",
+                    "description": "Information about the individual submitting the dataset(s), including contact information",
                     "title": "Data Submitter"
                 },
                 "dataset_type": {
@@ -2314,9 +2309,9 @@
                     "type": "string"
                 },
                 "qc_researcher": {
-                    "$ref": "#/$defs/Person",
                     "description": "The name of the PI whose research team QCed this parameter.",
-                    "title": "Researcher who QCed this variable"
+                    "title": "Researcher who QCed this variable",
+                    "type": "string"
                 },
                 "qc_researcher_institution": {
                     "description": "The institution of the PI whose research team QCed this parameter.",
@@ -2504,9 +2499,9 @@
                     "type": "string"
                 },
                 "qc_researcher": {
-                    "$ref": "#/$defs/Person",
                     "description": "The name of the PI whose research team QCed this parameter.",
-                    "title": "Researcher who QCed this variable"
+                    "title": "Researcher who QCed this variable",
+                    "type": "string"
                 },
                 "qc_researcher_institution": {
                     "description": "The institution of the PI whose research team QCed this parameter.",
@@ -2664,9 +2659,9 @@
                     "type": "string"
                 },
                 "qc_researcher": {
-                    "$ref": "#/$defs/Person",
                     "description": "The name of the PI whose research team QCed this parameter.",
-                    "title": "Researcher who QCed this variable"
+                    "title": "Researcher who QCed this variable",
+                    "type": "string"
                 },
                 "qc_researcher_institution": {
                     "description": "The institution of the PI whose research team QCed this parameter.",
@@ -2830,9 +2825,9 @@
                     "type": "string"
                 },
                 "qc_researcher": {
-                    "$ref": "#/$defs/Person",
                     "description": "The name of the PI whose research team QCed this parameter.",
-                    "title": "Researcher who QCed this variable"
+                    "title": "Researcher who QCed this variable",
+                    "type": "string"
                 },
                 "qc_researcher_institution": {
                     "description": "The institution of the PI whose research team QCed this parameter.",
@@ -3004,9 +2999,9 @@
                     "type": "string"
                 },
                 "qc_researcher": {
-                    "$ref": "#/$defs/Person",
                     "description": "The name of the PI whose research team QCed this parameter.",
-                    "title": "Researcher who QCed this variable"
+                    "title": "Researcher who QCed this variable",
+                    "type": "string"
                 },
                 "qc_researcher_institution": {
                     "description": "The institution of the PI whose research team QCed this parameter.",
@@ -3167,9 +3162,9 @@
                     "type": "string"
                 },
                 "qc_researcher": {
-                    "$ref": "#/$defs/Person",
                     "description": "The name of the PI whose research team QCed this parameter.",
-                    "title": "Researcher who QCed this variable"
+                    "title": "Researcher who QCed this variable",
+                    "type": "string"
                 },
                 "qc_researcher_institution": {
                     "description": "The institution of the PI whose research team QCed this parameter.",
@@ -3210,11 +3205,6 @@
                     "title": "Sediment Sampling Depth",
                     "type": "string"
                 },
-                "sediment_sampling_method": {
-                    "description": "e.g., sediment core, grab sampling, dredging, etc.",
-                    "title": "Sediment Sampling Method",
-                    "type": "string"
-                },
                 "sediment_sampling_water_depth": {
                     "description": "Water depth where sediment was collected. If provided as a variable (recommended), please list the column header name here.",
                     "title": "Sediment Sampling Water Depth",
@@ -3252,7 +3242,6 @@
             },
             "required": [
                 "sediment_type",
-                "sediment_sampling_method",
                 "sediment_sampling_depth",
                 "sediment_sampling_water_depth",
                 "analyzing_instrument",
@@ -3363,9 +3352,9 @@
                     "type": "string"
                 },
                 "qc_researcher": {
-                    "$ref": "#/$defs/Person",
                     "description": "The name of the PI whose research team QCed this parameter.",
-                    "title": "Researcher who QCed this variable"
+                    "title": "Researcher who QCed this variable",
+                    "type": "string"
                 },
                 "qc_researcher_institution": {
                     "description": "The institution of the PI whose research team QCed this parameter.",
@@ -3724,11 +3713,12 @@
                 },
                 "data_product_type": {
                     "$ref": "#/$defs/DataProductType",
-                    "description": "\"Controlled vocabulary\" One of the three choices: (a) Originally collected dataset (e.g., a dataset collected from a research cruise or laboratory experiment), (b) Data compilation product (e.g., SOCAT, GLODAP), or (c) Derived product (e.g., gridded products, or model output).",
+                    "description": "One of the three choices: (a) Originally collected dataset (e.g., a dataset collected from a research cruise or laboratory experiment), (b) Data compilation product (e.g., SOCAT, GLODAP), or (c) Derived product (e.g., gridded products, or model output).",
                     "title": "Data Product Type"
                 },
                 "data_submitter": {
                     "$ref": "#/$defs/Person",
+                    "description": "Information about the individual submitting the dataset(s), including contact information",
                     "title": "Data Submitter"
                 },
                 "dataset_type": {
@@ -4060,9 +4050,9 @@
                     "type": "string"
                 },
                 "qc_researcher": {
-                    "$ref": "#/$defs/Person",
                     "description": "The name of the PI whose research team QCed this parameter.",
-                    "title": "Researcher who QCed this variable"
+                    "title": "Researcher who QCed this variable",
+                    "type": "string"
                 },
                 "qc_researcher_institution": {
                     "description": "The institution of the PI whose research team QCed this parameter.",
@@ -4380,7 +4370,7 @@
                     "type": "string"
                 },
                 "alkalinity_feedstock_description": {
-                    "description": "Information such as feedstock source, characteristics, impurities, dilution prior to dosing, and concentration. For feedstock other than NaOH: trace metal composition and particulate grain size. Any variable information must be provided in the dosing data file, in this case include the data file and column header names here provided as variables. See Intervention Data for details.",
+                    "description": "Information such as feedstock source, characteristics, impurities, dilution prior to dosing, and concentration. For feedstock other than NaOH: trace metal composition and particulate grain size. Any variable information must be provided in the dosing data file, in this case include the data file and column header names here provided as variables. See [Intervention Data](https://www.carbontosea.org/oae-data-protocol/1-0-0/#intervention-data) for details.",
                     "title": "Alkalinity Feedstock Description",
                     "type": "string"
                 },
@@ -4643,7 +4633,7 @@
                     "type": "string"
                 },
                 "alkalinity_feedstock_description": {
-                    "description": "Information such as feedstock source, characteristics, impurities, dilution prior to dosing, and concentration. For feedstock other than NaOH: trace metal composition and particulate grain size. Any variable information must be provided in the dosing data file, in this case include the data file and column header names here provided as variables. See Intervention Data for details.",
+                    "description": "Information such as feedstock source, characteristics, impurities, dilution prior to dosing, and concentration. For feedstock other than NaOH: trace metal composition and particulate grain size. Any variable information must be provided in the dosing data file, in this case include the data file and column header names here provided as variables. See [Intervention Data](https://www.carbontosea.org/oae-data-protocol/1-0-0/#intervention-data) for details.",
                     "title": "Alkalinity Feedstock Description",
                     "type": "string"
                 },
@@ -5313,6 +5303,7 @@
                 },
                 "data_submitter": {
                     "$ref": "#/$defs/Person",
+                    "description": "Information about the individual submitting the dataset(s), including contact information",
                     "title": "Data Submitter"
                 },
                 "dataset_type": {
@@ -5905,7 +5896,7 @@
                 },
                 "platform_type": {
                     "$ref": "#/$defs/PlatformType",
-                    "description": "Controlled vocabularies for the types of the platform: https://www.ncei.noaa.gov/access/ocean-carbon-acidification-data-system/vocabularies/platform-types.html",
+                    "description": "For Platform Type definitions, see: https://vocab.nerc.ac.uk/collection/L06/current/",
                     "title": "Platform Type"
                 }
             },
@@ -6891,5 +6882,5 @@
     },
     "title": "OAE Data Protocol - Technical Documentation",
     "type": "object",
-    "version": "0.2.0"
+    "version": "0.3.0"
 }

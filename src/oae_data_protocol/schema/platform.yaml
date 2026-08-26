@@ -18,8 +18,7 @@ classes:
       platform_type:
         title: Platform Type
         description: >-
-          Controlled vocabularies for the types of the platform:
-          https://www.ncei.noaa.gov/access/ocean-carbon-acidification-data-system/vocabularies/platform-types.html
+          For Platform Type definitions, see: https://vocab.nerc.ac.uk/collection/L06/current/
         range: PlatformType
         required: true
       platform_id:
