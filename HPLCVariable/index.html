@@ -756,13 +756,6 @@
 
       HPLCVariable : qc_researcher
 
-
-
-
-    HPLCVariable --&gt; "0..1" Person : qc_researcher
-    click Person href "../Person"
-
-
       HPLCVariable : qc_researcher_institution
 
       HPLCVariable : qc_steps_taken
@@ -918,7 +911,7 @@
 </tr>
 <tr>
 <td><a href="../qc_researcher/">qc_researcher</a></td>
-<td>0..1 <br/> <a href="../Person/">Person</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
 <td>The name of the PI whose research team QCed this parameter</td>
 <td><a href="../QCFields/">QCFields</a></td>
 </tr>
@@ -1260,7 +1253,7 @@
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HPLCVariable</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QCFields</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Person</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">  </span><span class="nt">qc_researcher_institution</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">qc_researcher_institution</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The institution of the PI whose research team QCed this parameter.</span>

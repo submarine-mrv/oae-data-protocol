@@ -754,13 +754,6 @@
 
       DiscreteSedimentVariable : qc_researcher
 
-
-
-
-    DiscreteSedimentVariable --&gt; "0..1" Person : qc_researcher
-    click Person href "../Person"
-
-
       DiscreteSedimentVariable : qc_researcher_institution
 
       DiscreteSedimentVariable : qc_steps_taken
@@ -783,8 +776,6 @@
       DiscreteSedimentVariable : schema_class
 
       DiscreteSedimentVariable : sediment_sampling_depth
-
-      DiscreteSedimentVariable : sediment_sampling_method
 
       DiscreteSedimentVariable : sediment_sampling_water_depth
 
@@ -840,12 +831,6 @@
 <tbody>
 <tr>
 <td><a href="../sediment_type/">sediment_type</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>e</td>
-<td><a href="../MeasuredSedimentFields/">MeasuredSedimentFields</a></td>
-</tr>
-<tr>
-<td><a href="../sediment_sampling_method/">sediment_sampling_method</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>e</td>
 <td><a href="../MeasuredSedimentFields/">MeasuredSedimentFields</a></td>
@@ -936,7 +921,7 @@
 </tr>
 <tr>
 <td><a href="../qc_researcher/">qc_researcher</a></td>
-<td>0..1 <br/> <a href="../Person/">Person</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
 <td>The name of the PI whose research team QCed this parameter</td>
 <td><a href="../QCFields/">QCFields</a></td>
 </tr>
@@ -1082,18 +1067,6 @@
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sediment_type</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DiscreteSedimentVariable</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MeasuredSedimentFields</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">sediment_sampling_method</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sediment_sampling_method</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">e.g., sediment core, grab sampling, dredging, etc.</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Sediment Sampling Method</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sediment_sampling_method</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DiscreteSedimentVariable</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MeasuredSedimentFields</span>
@@ -1287,7 +1260,7 @@
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DiscreteSedimentVariable</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QCFields</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Person</span>
+<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">  </span><span class="nt">qc_researcher_institution</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">qc_researcher_institution</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The institution of the PI whose research team QCed this parameter.</span>

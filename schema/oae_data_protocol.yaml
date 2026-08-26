@@ -1,7 +1,7 @@
 name: OAEDataSchema
 title: OAE Data Protocol - Technical Documentation
 id: https://schema.oaedata.org/OAEDataSchema
-version: 0.2.0
+version: 0.3.0
 imports:
 - linkml:types
 - core
@@ -3007,8 +3007,8 @@ slots:
       dilution prior to dosing, and concentration. For feedstock other than NaOH:
       trace metal composition and particulate grain size. Any variable information
       must be provided in the dosing data file, in this case include the data file
-      and column header names here provided as variables. See Intervention Data for
-      details.'
+      and column header names here provided as variables. See [Intervention Data](https://www.carbontosea.org/oae-data-protocol/1-0-0/#intervention-data)
+      for details.'
     title: Alkalinity Feedstock Description
     from_schema: Experiment
     slot_uri: oae:alkalinity_feedstock_description
@@ -3873,18 +3873,6 @@ slots:
     - MeasuredSedimentFields
     range: string
     required: true
-  measuredSedimentFields__sediment_sampling_method:
-    name: measuredSedimentFields__sediment_sampling_method
-    description: e.g., sediment core, grab sampling, dredging, etc.
-    title: Sediment Sampling Method
-    from_schema: Variable
-    slot_uri: oae:sediment_sampling_method
-    alias: sediment_sampling_method
-    owner: MeasuredSedimentFields
-    domain_of:
-    - MeasuredSedimentFields
-    range: string
-    required: true
   measuredSedimentFields__sediment_sampling_depth:
     name: measuredSedimentFields__sediment_sampling_depth
     description: Depth that sediment was collected below sediment surface. If provided
@@ -4014,8 +4002,7 @@ slots:
     owner: QCFields
     domain_of:
     - QCFields
-    range: Person
-    inlined: true
+    range: string
   qCFields__qc_researcher_institution:
     name: qCFields__qc_researcher_institution
     description: The institution of the PI whose research team QCed this parameter.
@@ -4058,6 +4045,8 @@ slots:
     range: string
   dataset__data_submitter:
     name: dataset__data_submitter
+    description: Information about the individual submitting the dataset(s), including
+      contact information
     title: Data Submitter
     from_schema: Dataset
     slot_uri: oae:data_submitter
@@ -4143,10 +4132,10 @@ slots:
     pattern: ^https?://.+
   fieldDataset__data_product_type:
     name: fieldDataset__data_product_type
-    description: '"Controlled vocabulary" One of the three choices: (a) Originally
-      collected dataset (e.g., a dataset collected from a research cruise or laboratory
-      experiment), (b) Data compilation product (e.g., SOCAT, GLODAP), or (c) Derived
-      product (e.g., gridded products, or model output).'
+    description: 'One of the three choices: (a) Originally collected dataset (e.g.,
+      a dataset collected from a research cruise or laboratory experiment), (b) Data
+      compilation product (e.g., SOCAT, GLODAP), or (c) Derived product (e.g., gridded
+      products, or model output).'
     title: Data Product Type
     from_schema: Dataset
     slot_uri: oae:data_product_type
@@ -4339,7 +4328,7 @@ slots:
     range: string
   platform__platform_type:
     name: platform__platform_type
-    description: 'Controlled vocabularies for the types of the platform: https://www.ncei.noaa.gov/access/ocean-carbon-acidification-data-system/vocabularies/platform-types.html'
+    description: 'For Platform Type definitions, see: https://vocab.nerc.ac.uk/collection/L06/current/'
     title: Platform Type
     from_schema: Platform
     slot_uri: oae:platform_type
@@ -7550,8 +7539,9 @@ classes:
           dilution prior to dosing, and concentration. For feedstock other than NaOH:
           trace metal composition and particulate grain size. Any variable information
           must be provided in the dosing data file, in this case include the data
-          file and column header names here provided as variables. See Intervention
-          Data for details.'
+          file and column header names here provided as variables. See [Intervention
+          Data](https://www.carbontosea.org/oae-data-protocol/1-0-0/#intervention-data)
+          for details.'
         title: Alkalinity Feedstock Description
         range: string
         required: true
@@ -8524,7 +8514,6 @@ classes:
     - ContinuousMeasuredVariable_sampling
     - ContinuousSedimentVariable_variable_type
     - measuredSedimentFields__sediment_type
-    - measuredSedimentFields__sediment_sampling_method
     - measuredSedimentFields__sediment_sampling_depth
     - measuredSedimentFields__sediment_sampling_water_depth
     slot_usage:
@@ -8569,7 +8558,6 @@ classes:
     - DiscreteMeasuredVariable_sampling
     - DiscreteSedimentVariable_variable_type
     - measuredSedimentFields__sediment_type
-    - measuredSedimentFields__sediment_sampling_method
     - measuredSedimentFields__sediment_sampling_depth
     - measuredSedimentFields__sediment_sampling_water_depth
     slot_usage:
@@ -9085,7 +9073,6 @@ classes:
     mixin: true
     slots:
     - measuredSedimentFields__sediment_type
-    - measuredSedimentFields__sediment_sampling_method
     - measuredSedimentFields__sediment_sampling_depth
     - measuredSedimentFields__sediment_sampling_water_depth
     attributes:
@@ -9093,12 +9080,6 @@ classes:
         name: sediment_type
         description: e.g., mud, sand, etc.
         title: Sediment Type
-        range: string
-        required: true
-      sediment_sampling_method:
-        name: sediment_sampling_method
-        description: e.g., sediment core, grab sampling, dredging, etc.
-        title: Sediment Sampling Method
         range: string
         required: true
       sediment_sampling_depth:
@@ -9210,7 +9191,7 @@ classes:
         name: qc_researcher
         description: The name of the PI whose research team QCed this parameter.
         title: Researcher who QCed this variable
-        range: Person
+        range: string
       qc_researcher_institution:
         name: qc_researcher_institution
         description: The institution of the PI whose research team QCed this parameter.
@@ -9293,6 +9274,8 @@ classes:
         range: string
       data_submitter:
         name: data_submitter
+        description: Information about the individual submitting the dataset(s), including
+          contact information
         title: Data Submitter
         range: Person
         required: true
@@ -9375,10 +9358,10 @@ classes:
     attributes:
       data_product_type:
         name: data_product_type
-        description: '"Controlled vocabulary" One of the three choices: (a) Originally
-          collected dataset (e.g., a dataset collected from a research cruise or laboratory
-          experiment), (b) Data compilation product (e.g., SOCAT, GLODAP), or (c)
-          Derived product (e.g., gridded products, or model output).'
+        description: 'One of the three choices: (a) Originally collected dataset (e.g.,
+          a dataset collected from a research cruise or laboratory experiment), (b)
+          Data compilation product (e.g., SOCAT, GLODAP), or (c) Derived product (e.g.,
+          gridded products, or model output).'
         title: Data Product Type
         range: DataProductType
         required: true
@@ -9555,7 +9538,7 @@ classes:
     attributes:
       platform_type:
         name: platform_type
-        description: 'Controlled vocabularies for the types of the platform: https://www.ncei.noaa.gov/access/ocean-carbon-acidification-data-system/vocabularies/platform-types.html'
+        description: 'For Platform Type definitions, see: https://vocab.nerc.ac.uk/collection/L06/current/'
         title: Platform Type
         range: PlatformType
         required: true
@@ -10495,7 +10478,7 @@ classes:
     class_uri: oae:ContinuousStandardGas
 metamodel_version: 1.7.0
 source_file: oae_data_protocol.yaml
-source_file_date: '2026-08-12T18:36:57'
+source_file_date: '2026-08-26T01:08:43'
 source_file_size: 1743
-generation_date: '2026-08-12T18:37:10'
+generation_date: '2026-08-26T01:08:53'
 
