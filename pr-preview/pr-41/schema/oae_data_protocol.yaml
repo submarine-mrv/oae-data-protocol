@@ -1,7 +1,7 @@
 name: OAEDataSchema
 title: OAE Data Protocol - Technical Documentation
 id: https://schema.oaedata.org/OAEDataSchema
-version: 0.3.0
+version: 0.4.0
 imports:
 - linkml:types
 - core
@@ -1289,6 +1289,37 @@ enums:
     name: MassConcentrationUnit
     definition_uri: https://schema.oaedata.org/MassConcentrationUnit
     from_schema: DynamicEnums
+    permissible_values:
+      unit:KiloGM-PER-M3:
+        text: unit:KiloGM-PER-M3
+        meaning: unit:KiloGM-PER-M3
+      unit:MicroGM-PER-L:
+        text: unit:MicroGM-PER-L
+        meaning: unit:MicroGM-PER-L
+      unit:MicroGM-PER-L-DAY:
+        text: unit:MicroGM-PER-L-DAY
+        meaning: unit:MicroGM-PER-L-DAY
+      unit:MicroGM-PER-MilliL:
+        text: unit:MicroGM-PER-MilliL
+        meaning: unit:MicroGM-PER-MilliL
+      unit:MilliGM-PER-L:
+        text: unit:MilliGM-PER-L
+        meaning: unit:MilliGM-PER-L
+      unit:MilliGM-PER-M3:
+        text: unit:MilliGM-PER-M3
+        meaning: unit:MilliGM-PER-M3
+      unit:MilliGM-PER-MilliL:
+        text: unit:MilliGM-PER-MilliL
+        meaning: unit:MilliGM-PER-MilliL
+      unit:NanoGM-PER-L:
+        text: unit:NanoGM-PER-L
+        meaning: unit:NanoGM-PER-L
+      unit:NanoGM-PER-MilliL:
+        text: unit:NanoGM-PER-MilliL
+        meaning: unit:NanoGM-PER-MilliL
+      unit:PicoGM-PER-MilliL:
+        text: unit:PicoGM-PER-MilliL
+        meaning: unit:PicoGM-PER-MilliL
     reachable_from:
       source_ontology: qudt:unit
       source_nodes:
@@ -10591,7 +10622,7 @@ classes:
     class_uri: oae:ContinuousStandardGas
 metamodel_version: 1.7.0
 source_file: oae_data_protocol.yaml
-source_file_date: '2026-09-01T04:20:00'
+source_file_date: '2026-09-01T15:10:07'
 source_file_size: 1743
-generation_date: '2026-09-01T04:20:09'
+generation_date: '2026-09-01T15:10:15'
 
