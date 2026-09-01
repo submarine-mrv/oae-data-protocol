@@ -2764,17 +2764,61 @@
         },
         "Dataset": {
             "additionalProperties": false,
-            "description": "Abstract base class for all dataset types. Contains fields common to both field/observational and model simulation datasets. Generally following guidelines & best practices as outlined in [science-on-schema.org](https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md)",
-            "if": {
-                "properties": {
-                    "data_accessbility": {
-                        "const": "scheduled_access"
+            "allOf": [
+                {
+                    "if": {
+                        "properties": {
+                            "data_accessibility": {
+                                "const": "scheduled_access"
+                            }
+                        },
+                        "required": [
+                            "data_accessibility"
+                        ]
+                    },
+                    "then": {
+                        "properties": {
+                            "data_access_date": {}
+                        },
+                        "required": [
+                            "data_access_date"
+                        ]
                     }
                 },
-                "required": [
-                    "data_accessbility"
-                ]
-            },
+                {
+                    "if": {
+                        "properties": {
+                            "data_accessibility": {
+                                "const": "open_access"
+                            }
+                        },
+                        "required": [
+                            "data_accessibility"
+                        ]
+                    },
+                    "then": {
+                        "anyOf": [
+                            {
+                                "properties": {
+                                    "data_access_link": {}
+                                },
+                                "required": [
+                                    "data_access_link"
+                                ]
+                            },
+                            {
+                                "properties": {
+                                    "data_access_date": {}
+                                },
+                                "required": [
+                                    "data_access_date"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ],
+            "description": "Abstract base class for all dataset types. Contains fields common to both field/observational and model simulation datasets. Generally following guidelines & best practices as outlined in [science-on-schema.org](https://github.com/ESIPFed/science-on-schema.org/blob/main/guides/Dataset.md)",
             "properties": {
                 "author_list_for_citation": {
                     "description": "Author list in the format of Lastname1, Firstname1 Middlename1; Lastname2, Firstname2 Middlename2; ...",
@@ -2880,14 +2924,6 @@
                 "data_submitter",
                 "data_accessibility"
             ],
-            "then": {
-                "properties": {
-                    "data_access_date": {}
-                },
-                "required": [
-                    "data_access_date"
-                ]
-            },
             "title": "Dataset",
             "type": "object"
         },
@@ -4819,17 +4855,61 @@
         },
         "FieldDataset": {
             "additionalProperties": false,
-            "description": "A field or observational dataset related to an OAE experiment. Contains fields specific to in-situ data collection such as platform information, calibration files, QC flags, and measured variables.",
-            "if": {
-                "properties": {
-                    "data_accessbility": {
-                        "const": "scheduled_access"
+            "allOf": [
+                {
+                    "if": {
+                        "properties": {
+                            "data_accessibility": {
+                                "const": "scheduled_access"
+                            }
+                        },
+                        "required": [
+                            "data_accessibility"
+                        ]
+                    },
+                    "then": {
+                        "properties": {
+                            "data_access_date": {}
+                        },
+                        "required": [
+                            "data_access_date"
+                        ]
                     }
                 },
-                "required": [
-                    "data_accessbility"
-                ]
-            },
+                {
+                    "if": {
+                        "properties": {
+                            "data_accessibility": {
+                                "const": "open_access"
+                            }
+                        },
+                        "required": [
+                            "data_accessibility"
+                        ]
+                    },
+                    "then": {
+                        "anyOf": [
+                            {
+                                "properties": {
+                                    "data_access_link": {}
+                                },
+                                "required": [
+                                    "data_access_link"
+                                ]
+                            },
+                            {
+                                "properties": {
+                                    "data_access_date": {}
+                                },
+                                "required": [
+                                    "data_access_date"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            ],
+            "description": "A field or observational dataset related to an OAE experiment. Contains fields specific to in-situ data collection such as platform information, calibration files, QC flags, and measured variables.",
             "properties": {
                 "author_list_for_citation": {
                     "description": "Author list in the format of Lastname1, Firstname1 Middlename1; Lastname2, Firstname2 Middlename2; ...",
@@ -5038,14 +5118,6 @@
                 "data_submitter",
                 "data_accessibility"
             ],
-            "then": {
-                "properties": {
-                    "data_access_date": {}
-                },
-                "required": [
-                    "data_access_date"
-                ]
-            },
             "title": "FieldDataset",
             "type": "object"
         },
@@ -6727,12 +6799,12 @@
                 {
                     "if": {
                         "properties": {
-                            "data_accessbility": {
+                            "data_accessibility": {
                                 "const": "scheduled_access"
                             }
                         },
                         "required": [
-                            "data_accessbility"
+                            "data_accessibility"
                         ]
                     },
                     "then": {
@@ -6741,6 +6813,38 @@
                         },
                         "required": [
                             "data_access_date"
+                        ]
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "data_accessibility": {
+                                "const": "open_access"
+                            }
+                        },
+                        "required": [
+                            "data_accessibility"
+                        ]
+                    },
+                    "then": {
+                        "anyOf": [
+                            {
+                                "properties": {
+                                    "data_access_link": {}
+                                },
+                                "required": [
+                                    "data_access_link"
+                                ]
+                            },
+                            {
+                                "properties": {
+                                    "data_access_date": {}
+                                },
+                                "required": [
+                                    "data_access_date"
+                                ]
+                            }
                         ]
                     }
                 }

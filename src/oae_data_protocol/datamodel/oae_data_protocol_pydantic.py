@@ -3176,8 +3176,16 @@ class Dataset(ConfiguredBaseModel):
                                    'data_access_date.',
                     'postconditions': {'slot_conditions': {'data_access_date': {'name': 'data_access_date',
                                                                                 'required': True}}},
-                    'preconditions': {'slot_conditions': {'data_accessbility': {'equals_string': 'scheduled_access',
-                                                                                'name': 'data_accessbility'}}}}],
+                    'preconditions': {'slot_conditions': {'data_accessibility': {'equals_string': 'scheduled_access',
+                                                                                 'name': 'data_accessibility'}}}},
+                   {'description': 'Open access datasets must provide a data access '
+                                   'link or a data access date.',
+                    'postconditions': {'any_of': [{'slot_conditions': {'data_access_link': {'name': 'data_access_link',
+                                                                                            'required': True}}},
+                                                  {'slot_conditions': {'data_access_date': {'name': 'data_access_date',
+                                                                                            'required': True}}}]},
+                    'preconditions': {'slot_conditions': {'data_accessibility': {'equals_string': 'open_access',
+                                                                                 'name': 'data_accessibility'}}}}],
          'slot_usage': {'description': {'description': 'The abstract of a dataset is a '
                                                        'brief summary that provides an '
                                                        "overview of the dataset's "
