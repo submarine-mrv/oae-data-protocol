@@ -851,7 +851,7 @@ class DosingLocation(Place):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Core'})
 
-    dosing_location_file: Optional[str] = Field(default=None, description="""Exact path and filename for the location file (relative to root path of project), attached separately. Format should be one of GeoJSON or Shapefile.""", json_schema_extra = { "linkml_meta": {'alias': 'dosing_location_file', 'domain_of': ['DosingLocation']} })
+    dosing_location_file: Optional[str] = Field(default=None, description="""Exact filename, URL and/or DOI to access the location file. Format should be one of GeoJSON or Shapefile.""", json_schema_extra = { "linkml_meta": {'alias': 'dosing_location_file', 'domain_of': ['DosingLocation']} })
     geo: Optional[Union[GeoCoordinates, GeoShape]] = Field(default=None, description="""Entities that have a somewhat fixed, physical extension. (imported from schema.org)""", json_schema_extra = { "linkml_meta": {'alias': 'geo',
          'any_of': [{'range': 'GeoShape'}, {'range': 'GeoCoordinates'}],
          'domain_of': ['Place']} })
@@ -972,6 +972,7 @@ If there are relevant regulatory parameters and/or limits to dosing trials at th
          'domain_of': ['Project',
                        'ExternalProject',
                        'Experiment',
+                       'PublicComment',
                        'VocabularyItemReference',
                        'Dataset',
                        'ModelComponent'],
@@ -1038,7 +1039,7 @@ class NamedLink(ConfiguredBaseModel):
                        'Dataset',
                        'Platform',
                        'ModelComponent']} })
-    url: str = Field(default=..., title="URL", description="""The URL of the linked resource.""", json_schema_extra = { "linkml_meta": {'alias': 'url', 'domain_of': ['NamedLink']} })
+    url: str = Field(default=..., title="URL", description="""The URL of the linked resource.""", json_schema_extra = { "linkml_meta": {'alias': 'url', 'domain_of': ['NamedLink', 'PublicComment']} })
 
 
 class ExternalProject(ConfiguredBaseModel):
@@ -1067,6 +1068,7 @@ class ExternalProject(ConfiguredBaseModel):
          'domain_of': ['Project',
                        'ExternalProject',
                        'Experiment',
+                       'PublicComment',
                        'VocabularyItemReference',
                        'Dataset',
                        'ModelComponent']} })
@@ -1125,7 +1127,7 @@ class Permit(ConfiguredBaseModel):
     changes_to_evolution_of_permit_criteria: Optional[str] = Field(default=None, title="Changes to evolution of permit criteria", description="""e.g., changes of discharge pH and basis for changes""", json_schema_extra = { "linkml_meta": {'alias': 'changes_to_evolution_of_permit_criteria', 'domain_of': ['Permit']} })
     permit_type: Optional[str] = Field(default=None, title="Permit Type", description="""The category of permit (E.g., experimental permit, commercial permit)""", json_schema_extra = { "linkml_meta": {'alias': 'permit_type', 'domain_of': ['Permit']} })
     time_period: Optional[str] = Field(default=None, title="Permit Time Period", description="""The time period during which the permit will be applicable, or expected duration of the permit.""", json_schema_extra = { "linkml_meta": {'alias': 'time_period', 'domain_of': ['Permit']} })
-    approval_document: str = Field(default=..., title="Permit Document", description="""Filename(s) of permitting documents included, separated by commas""", json_schema_extra = { "linkml_meta": {'alias': 'approval_document', 'domain_of': ['Permit']} })
+    approval_document: str = Field(default=..., title="Permit Document", description="""Filename(s), links and/or DOIs to access files of permitting documents, separated by commas""", json_schema_extra = { "linkml_meta": {'alias': 'approval_document', 'domain_of': ['Permit']} })
 
 
 class Experiment(ConfiguredBaseModel):
@@ -1182,6 +1184,7 @@ class Experiment(ConfiguredBaseModel):
          'domain_of': ['Project',
                        'ExternalProject',
                        'Experiment',
+                       'PublicComment',
                        'VocabularyItemReference',
                        'Dataset',
                        'ModelComponent'],
@@ -1233,6 +1236,7 @@ class InSituExperiment(Experiment):
          'domain_of': ['Project',
                        'ExternalProject',
                        'Experiment',
+                       'PublicComment',
                        'VocabularyItemReference',
                        'Dataset',
                        'ModelComponent'],
@@ -1257,9 +1261,22 @@ class PublicComment(ConfiguredBaseModel):
     """
     A public comment document associated with a consultation for this experiment.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Experiment'})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Experiment',
+         'slot_usage': {'description': {'description': 'A narrative description of '
+                                                       'what this public comment '
+                                                       'contains.',
+                                        'name': 'description'}}})
 
-    filename: str = Field(default=..., title="Filename", description="""Filename of the public comment document included with your data submission.""", json_schema_extra = { "linkml_meta": {'alias': 'filename', 'domain_of': ['PublicComment']} })
+    description: Optional[str] = Field(default=None, title="Description", description="""A narrative description of what this public comment contains.""", json_schema_extra = { "linkml_meta": {'alias': 'description',
+         'domain_of': ['Project',
+                       'ExternalProject',
+                       'Experiment',
+                       'PublicComment',
+                       'VocabularyItemReference',
+                       'Dataset',
+                       'ModelComponent'],
+         'slot_uri': 'schema:description'} })
+    url: str = Field(default=..., title="URL", description="""Link or DOI to access the public comment document.""", json_schema_extra = { "linkml_meta": {'alias': 'url', 'domain_of': ['NamedLink', 'PublicComment']} })
     comment_type: PublicCommentType = Field(default=..., title="Public Comment Type", description="""The kind of consultation these comments came from.""", json_schema_extra = { "linkml_meta": {'alias': 'comment_type', 'domain_of': ['PublicComment']} })
 
 
@@ -1395,6 +1412,7 @@ E.g., outflow from existing facility pipe directly to ocean, manual riverine int
          'domain_of': ['Project',
                        'ExternalProject',
                        'Experiment',
+                       'PublicComment',
                        'VocabularyItemReference',
                        'Dataset',
                        'ModelComponent'],
@@ -1459,6 +1477,7 @@ E.g., outflow from existing facility pipe directly to ocean, manual riverine int
          'domain_of': ['Project',
                        'ExternalProject',
                        'Experiment',
+                       'PublicComment',
                        'VocabularyItemReference',
                        'Dataset',
                        'ModelComponent'],
@@ -1538,6 +1557,7 @@ E.g., outflow from existing facility pipe directly to ocean, manual riverine int
          'domain_of': ['Project',
                        'ExternalProject',
                        'Experiment',
+                       'PublicComment',
                        'VocabularyItemReference',
                        'Dataset',
                        'ModelComponent'],
@@ -2141,6 +2161,7 @@ class VocabularyItemReference(ConfiguredBaseModel):
          'domain_of': ['Project',
                        'ExternalProject',
                        'Experiment',
+                       'PublicComment',
                        'VocabularyItemReference',
                        'Dataset',
                        'ModelComponent'],
@@ -3275,6 +3296,7 @@ class Dataset(ConfiguredBaseModel):
          'domain_of': ['Project',
                        'ExternalProject',
                        'Experiment',
+                       'PublicComment',
                        'VocabularyItemReference',
                        'Dataset',
                        'ModelComponent'],
@@ -3348,6 +3370,7 @@ class FieldDataset(Dataset):
          'domain_of': ['Project',
                        'ExternalProject',
                        'Experiment',
+                       'PublicComment',
                        'VocabularyItemReference',
                        'Dataset',
                        'ModelComponent'],
@@ -3432,6 +3455,7 @@ class ModelOutputDataset(Dataset):
          'domain_of': ['Project',
                        'ExternalProject',
                        'Experiment',
+                       'PublicComment',
                        'VocabularyItemReference',
                        'Dataset',
                        'ModelComponent'],
@@ -3529,6 +3553,7 @@ class Model(Experiment):
          'domain_of': ['Project',
                        'ExternalProject',
                        'Experiment',
+                       'PublicComment',
                        'VocabularyItemReference',
                        'Dataset',
                        'ModelComponent'],
@@ -3621,6 +3646,7 @@ Associated links to data, DOIs, or publications can be noted here, but should be
          'domain_of': ['Project',
                        'ExternalProject',
                        'Experiment',
+                       'PublicComment',
                        'VocabularyItemReference',
                        'Dataset',
                        'ModelComponent'],

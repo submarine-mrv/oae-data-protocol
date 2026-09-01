@@ -170,12 +170,16 @@ classes:
               required: true
   PublicComment:
     description: "A public comment document associated with a consultation for this experiment."
+    slots:
+      - description
+    slot_usage:
+      description:
+        description: "A narrative description of what this public comment contains."
     attributes:
-      filename:
-        title: Filename
-        description: >-
-          Filename of the public comment document included with your data submission.
-        range: string
+      url:
+        title: URL
+        description: "Link or DOI to access the public comment document."
+        range: uri
         required: true
       comment_type:
         title: Public Comment Type

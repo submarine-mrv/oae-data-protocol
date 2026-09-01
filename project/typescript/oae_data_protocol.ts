@@ -757,7 +757,7 @@ export interface SpatialCoverage extends Place {
  * A specific location of dosing for an OAE intervention and/or tracer study. Can be a point, line, or bounding box
  */
 export interface DosingLocation extends Place {
-    /** Exact path and filename for the location file (relative to root path of project), attached separately. Format should be one of GeoJSON or Shapefile. */
+    /** Exact filename, URL and/or DOI to access the location file. Format should be one of GeoJSON or Shapefile. */
     dosing_location_file?: string,
 }
 
@@ -917,7 +917,7 @@ export interface Permit {
     permit_type?: string,
     /** The time period during which the permit will be applicable, or expected duration of the permit. */
     time_period?: string,
-    /** Filename(s) of permitting documents included, separated by commas */
+    /** Filename(s), links and/or DOIs to access files of permitting documents, separated by commas */
     approval_document: string,
 }
 
@@ -995,8 +995,10 @@ export interface InterventionWithTracer extends Intervention, TracerDetails {
  * A public comment document associated with a consultation for this experiment.
  */
 export interface PublicComment {
-    /** Filename of the public comment document included with your data submission. */
-    filename: string,
+    /** A narrative description of what this public comment contains. */
+    description?: string,
+    /** Link or DOI to access the public comment document. */
+    url: string,
     /** The kind of consultation these comments came from. */
     comment_type: string,
 }

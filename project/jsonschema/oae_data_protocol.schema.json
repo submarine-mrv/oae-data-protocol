@@ -3557,7 +3557,7 @@
             "description": "A specific location of dosing for an OAE intervention and/or tracer study. Can be a point, line, or bounding box",
             "properties": {
                 "dosing_location_file": {
-                    "description": "Exact path and filename for the location file (relative to root path of project), attached separately. Format should be one of GeoJSON or Shapefile.",
+                    "description": "Exact filename, URL and/or DOI to access the location file. Format should be one of GeoJSON or Shapefile.",
                     "type": "string"
                 },
                 "geo": {
@@ -5975,7 +5975,7 @@
                     "type": "string"
                 },
                 "approval_document": {
-                    "description": "Filename(s) of permitting documents included, separated by commas",
+                    "description": "Filename(s), links and/or DOIs to access files of permitting documents, separated by commas",
                     "title": "Permit Document",
                     "type": "string"
                 },
@@ -6356,14 +6356,19 @@
                     "description": "The kind of consultation these comments came from.",
                     "title": "Public Comment Type"
                 },
-                "filename": {
-                    "description": "Filename of the public comment document included with your data submission.",
-                    "title": "Filename",
+                "description": {
+                    "description": "A narrative description of what this public comment contains.",
+                    "title": "Description",
+                    "type": "string"
+                },
+                "url": {
+                    "description": "Link or DOI to access the public comment document.",
+                    "title": "URL",
                     "type": "string"
                 }
             },
             "required": [
-                "filename",
+                "url",
                 "comment_type"
             ],
             "title": "PublicComment",
