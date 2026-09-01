@@ -440,6 +440,16 @@ export enum PlatformType {
 
 export enum MassConcentrationUnit {
     
+    unitCOLONKiloGM_PER_M3 = "unit:KiloGM-PER-M3",
+    unitCOLONMicroGM_PER_L = "unit:MicroGM-PER-L",
+    unitCOLONMicroGM_PER_L_DAY = "unit:MicroGM-PER-L-DAY",
+    unitCOLONMicroGM_PER_MilliL = "unit:MicroGM-PER-MilliL",
+    unitCOLONMilliGM_PER_L = "unit:MilliGM-PER-L",
+    unitCOLONMilliGM_PER_M3 = "unit:MilliGM-PER-M3",
+    unitCOLONMilliGM_PER_MilliL = "unit:MilliGM-PER-MilliL",
+    unitCOLONNanoGM_PER_L = "unit:NanoGM-PER-L",
+    unitCOLONNanoGM_PER_MilliL = "unit:NanoGM-PER-MilliL",
+    unitCOLONPicoGM_PER_MilliL = "unit:PicoGM-PER-MilliL",
 };
 
 export enum PublicCommentType {

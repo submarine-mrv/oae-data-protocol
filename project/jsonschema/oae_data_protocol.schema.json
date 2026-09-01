@@ -5030,6 +5030,18 @@
         },
         "MassConcentrationUnit": {
             "description": "",
+            "enum": [
+                "unit:KiloGM-PER-M3",
+                "unit:MicroGM-PER-L",
+                "unit:MicroGM-PER-L-DAY",
+                "unit:MicroGM-PER-MilliL",
+                "unit:MilliGM-PER-L",
+                "unit:MilliGM-PER-M3",
+                "unit:MilliGM-PER-MilliL",
+                "unit:NanoGM-PER-L",
+                "unit:NanoGM-PER-MilliL",
+                "unit:PicoGM-PER-MilliL"
+            ],
             "title": "MassConcentrationUnit",
             "type": "string"
         },
@@ -7126,5 +7138,5 @@
     },
     "title": "OAE Data Protocol - Technical Documentation",
     "type": "object",
-    "version": "0.3.0"
+    "version": "0.4.0"
 }

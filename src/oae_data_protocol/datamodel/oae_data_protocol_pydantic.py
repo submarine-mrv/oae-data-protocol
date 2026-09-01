@@ -29,7 +29,7 @@ from pydantic import (
 
 
 metamodel_version = "None"
-version = "0.3.0"
+version = "0.4.0"
 
 
 class ConfiguredBaseModel(BaseModel):
@@ -537,8 +537,17 @@ class PlatformType(str, Enum):
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS67SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/67/"
 
 
-class MassConcentrationUnit(str):
-    pass
+class MassConcentrationUnit(str, Enum):
+    unitCOLONKiloGM_PER_M3 = "unit:KiloGM-PER-M3"
+    unitCOLONMicroGM_PER_L = "unit:MicroGM-PER-L"
+    unitCOLONMicroGM_PER_L_DAY = "unit:MicroGM-PER-L-DAY"
+    unitCOLONMicroGM_PER_MilliL = "unit:MicroGM-PER-MilliL"
+    unitCOLONMilliGM_PER_L = "unit:MilliGM-PER-L"
+    unitCOLONMilliGM_PER_M3 = "unit:MilliGM-PER-M3"
+    unitCOLONMilliGM_PER_MilliL = "unit:MilliGM-PER-MilliL"
+    unitCOLONNanoGM_PER_L = "unit:NanoGM-PER-L"
+    unitCOLONNanoGM_PER_MilliL = "unit:NanoGM-PER-MilliL"
+    unitCOLONPicoGM_PER_MilliL = "unit:PicoGM-PER-MilliL"
 
 
 class PublicCommentType(str, Enum):
