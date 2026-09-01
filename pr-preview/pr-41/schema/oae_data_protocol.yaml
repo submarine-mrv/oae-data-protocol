@@ -1878,6 +1878,7 @@ slots:
     domain_of:
     - Project
     - Experiment
+    - PublicComment
     - VocabularyItemReference
     - Dataset
     - ModelComponent
@@ -2347,8 +2348,8 @@ slots:
     required: false
   dosingLocation__dosing_location_file:
     name: dosingLocation__dosing_location_file
-    description: Exact path and filename for the location file (relative to root path
-      of project), attached separately. Format should be one of GeoJSON or Shapefile.
+    description: Exact filename, URL and/or DOI to access the location file. Format
+      should be one of GeoJSON or Shapefile.
     from_schema: Core
     slot_uri: oae:dosing_location_file
     alias: dosing_location_file
@@ -2827,7 +2828,8 @@ slots:
     range: string
   permit__approval_document:
     name: permit__approval_document
-    description: Filename(s) of permitting documents included, separated by commas
+    description: Filename(s), links and/or DOIs to access files of permitting documents,
+      separated by commas
     title: Permit Document
     from_schema: Permit
     slot_uri: oae:approval_document
@@ -2954,17 +2956,17 @@ slots:
     domain_of:
     - InSituExperiment
     range: string
-  publicComment__filename:
-    name: publicComment__filename
-    description: Filename of the public comment document included with your data submission.
-    title: Filename
+  publicComment__url:
+    name: publicComment__url
+    description: Link or DOI to access the public comment document.
+    title: URL
     from_schema: Experiment
-    slot_uri: oae:filename
-    alias: filename
+    slot_uri: oae:url
+    alias: url
     owner: PublicComment
     domain_of:
     - PublicComment
-    range: string
+    range: uri
     required: true
   publicComment__comment_type:
     name: publicComment__comment_type
@@ -5748,6 +5750,24 @@ slots:
     usage_slot_name: vertical_coverage
     range: VerticalExtent
     inlined: true
+  PublicComment_description:
+    name: PublicComment_description
+    definition_uri: https://schema.oaedata.org/description
+    description: A narrative description of what this public comment contains.
+    title: Description
+    from_schema: Core
+    mappings:
+    - schema:description
+    is_a: description
+    domain: PublicComment
+    slot_uri: schema:description
+    alias: description
+    owner: PublicComment
+    domain_of:
+    - PublicComment
+    is_usage_slot: true
+    usage_slot_name: description
+    range: string
   DosingConcentration_is_provided_as_a_file:
     name: DosingConcentration_is_provided_as_a_file
     definition_uri: https://schema.oaedata.org/is_provided_as_a_file
@@ -6795,9 +6815,8 @@ classes:
     attributes:
       dosing_location_file:
         name: dosing_location_file
-        description: Exact path and filename for the location file (relative to root
-          path of project), attached separately. Format should be one of GeoJSON or
-          Shapefile.
+        description: Exact filename, URL and/or DOI to access the location file. Format
+          should be one of GeoJSON or Shapefile.
         range: string
     class_uri: oae:DosingLocation
   GeoShape:
@@ -7230,7 +7249,8 @@ classes:
         range: string
       approval_document:
         name: approval_document
-        description: Filename(s) of permitting documents included, separated by commas
+        description: Filename(s), links and/or DOIs to access files of permitting
+          documents, separated by commas
         title: Permit Document
         range: string
         required: true
@@ -7553,15 +7573,19 @@ classes:
       experiment.
     from_schema: Experiment
     slots:
-    - publicComment__filename
+    - PublicComment_description
+    - publicComment__url
     - publicComment__comment_type
+    slot_usage:
+      description:
+        name: description
+        description: A narrative description of what this public comment contains.
     attributes:
-      filename:
-        name: filename
-        description: Filename of the public comment document included with your data
-          submission.
-        title: Filename
-        range: string
+      url:
+        name: url
+        description: Link or DOI to access the public comment document.
+        title: URL
+        range: uri
         required: true
       comment_type:
         name: comment_type
@@ -10622,7 +10646,7 @@ classes:
     class_uri: oae:ContinuousStandardGas
 metamodel_version: 1.7.0
 source_file: oae_data_protocol.yaml
-source_file_date: '2026-09-01T15:10:07'
+source_file_date: '2026-09-01T21:00:05'
 source_file_size: 1743
-generation_date: '2026-09-01T15:10:15'
+generation_date: '2026-09-01T21:00:13'
 
