@@ -4739,10 +4739,13 @@
                     "type": "string"
                 },
                 "public_comments": {
-                    "description": "File name(s) of public comment related documents. If possible, please provide public comments concatenated into a single pdf",
+                    "description": "File name(s) of public comment related documents.\nPlease group/concatenate all public comments associated with a specific consultation (e.g., for permitting, non-mandated consultations on a specific topic, or informal public input such as unsolicited comments and media attention) into a single pdf if possible, and include these documents with your data submission.",
+                    "items": {
+                        "$ref": "#/$defs/PublicComment"
+                    },
                     "title": "Public Comments",
                     "type": [
-                        "string",
+                        "array",
                         "null"
                     ]
                 },
@@ -5632,10 +5635,13 @@
                     "type": "string"
                 },
                 "public_comments": {
-                    "description": "File name(s) of public comment related documents. If possible, please provide public comments concatenated into a single pdf",
+                    "description": "File name(s) of public comment related documents.\nPlease group/concatenate all public comments associated with a specific consultation (e.g., for permitting, non-mandated consultations on a specific topic, or informal public input such as unsolicited comments and media attention) into a single pdf if possible, and include these documents with your data submission.",
+                    "items": {
+                        "$ref": "#/$defs/PublicComment"
+                    },
                     "title": "Public Comments",
                     "type": [
-                        "string",
+                        "array",
                         "null"
                     ]
                 },
@@ -5887,10 +5893,13 @@
                     "type": "string"
                 },
                 "public_comments": {
-                    "description": "File name(s) of public comment related documents. If possible, please provide public comments concatenated into a single pdf",
+                    "description": "File name(s) of public comment related documents.\nPlease group/concatenate all public comments associated with a specific consultation (e.g., for permitting, non-mandated consultations on a specific topic, or informal public input such as unsolicited comments and media attention) into a single pdf if possible, and include these documents with your data submission.",
+                    "items": {
+                        "$ref": "#/$defs/PublicComment"
+                    },
                     "title": "Public Comments",
                     "type": [
-                        "string",
+                        "array",
                         "null"
                     ]
                 },
@@ -6175,10 +6184,13 @@
                     "type": "string"
                 },
                 "public_comments": {
-                    "description": "File name(s) of public comment related documents. If possible, please provide public comments concatenated into a single pdf",
+                    "description": "File name(s) of public comment related documents.\nPlease group/concatenate all public comments associated with a specific consultation (e.g., for permitting, non-mandated consultations on a specific topic, or informal public input such as unsolicited comments and media attention) into a single pdf if possible, and include these documents with your data submission.",
+                    "items": {
+                        "$ref": "#/$defs/PublicComment"
+                    },
                     "title": "Public Comments",
                     "type": [
-                        "string",
+                        "array",
                         "null"
                     ]
                 },
@@ -6412,10 +6424,13 @@
                     "type": "string"
                 },
                 "public_comments": {
-                    "description": "File name(s) of public comment related documents. If possible, please provide public comments concatenated into a single pdf",
+                    "description": "File name(s) of public comment related documents.\nPlease group/concatenate all public comments associated with a specific consultation (e.g., for permitting, non-mandated consultations on a specific topic, or informal public input such as unsolicited comments and media attention) into a single pdf if possible, and include these documents with your data submission.",
+                    "items": {
+                        "$ref": "#/$defs/PublicComment"
+                    },
                     "title": "Public Comments",
                     "type": [
-                        "string",
+                        "array",
                         "null"
                     ]
                 },
@@ -7917,6 +7932,39 @@
             "title": "PropertyValue",
             "type": "object"
         },
+        "PublicComment": {
+            "additionalProperties": false,
+            "description": "A public comment document associated with a consultation for this experiment.",
+            "properties": {
+                "comment_type": {
+                    "$ref": "#/$defs/PublicCommentType",
+                    "description": "The kind of consultation these comments came from.",
+                    "title": "Public Comment Type"
+                },
+                "filename": {
+                    "description": "Filename of the public comment document included with your data submission.",
+                    "title": "Filename",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "filename",
+                "comment_type"
+            ],
+            "title": "PublicComment",
+            "type": "object"
+        },
+        "PublicCommentType": {
+            "description": "",
+            "enum": [
+                "permitting",
+                "non_mandated_consultation",
+                "informal_public_input",
+                "other"
+            ],
+            "title": "PublicCommentType",
+            "type": "string"
+        },
         "QuantitativeQualitative": {
             "description": "Whether the socioeconomic data is quantitative or qualitative.",
             "enum": [
@@ -8550,10 +8598,13 @@
                     "type": "string"
                 },
                 "public_comments": {
-                    "description": "File name(s) of public comment related documents. If possible, please provide public comments concatenated into a single pdf",
+                    "description": "File name(s) of public comment related documents.\nPlease group/concatenate all public comments associated with a specific consultation (e.g., for permitting, non-mandated consultations on a specific topic, or informal public input such as unsolicited comments and media attention) into a single pdf if possible, and include these documents with your data submission.",
+                    "items": {
+                        "$ref": "#/$defs/PublicComment"
+                    },
                     "title": "Public Comments",
                     "type": [
-                        "string",
+                        "array",
                         "null"
                     ]
                 },

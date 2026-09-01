@@ -541,6 +541,13 @@ class MassConcentrationUnit(str):
     pass
 
 
+class PublicCommentType(str, Enum):
+    Permitting = "permitting"
+    Non_mandated_consultation = "non_mandated_consultation"
+    Informal_public_input = "informal_public_input"
+    Other = "other"
+
+
 class ResearcherIDType(str, Enum):
     orcid = "orcid"
     researcher_id = "researcher_id"
@@ -1179,7 +1186,8 @@ Any method that creates a unique ID that will link all project data is acceptabl
     experiment_id: str = Field(default=..., title="Experiment ID", description="""The experiment to which the data belong. Any naming convention that produces a unique ID is usable. The recommended naming convention is:
 Project ID + Experiment type + Optional numerical indicator to differentiate between various experiments of the same type for a project. A two digit consecutive number beginning with 01""", json_schema_extra = { "linkml_meta": {'alias': 'experiment_id', 'domain_of': ['Experiment', 'Dataset']} })
     experiment_types: List[ExperimentType] = Field(default=..., title="mCDR Experiment Type(s)", description="""The type(s) of mCDR experiment conducted. See Controlled Vocabularies section for definitions.""", json_schema_extra = { "linkml_meta": {'alias': 'experiment_types', 'domain_of': ['Experiment']} })
-    public_comments: Optional[str] = Field(default=None, title="Public Comments", description="""File name(s) of public comment related documents. If possible, please provide public comments concatenated into a single pdf""", json_schema_extra = { "linkml_meta": {'alias': 'public_comments', 'domain_of': ['Experiment'], 'recommended': True} })
+    public_comments: Optional[List[PublicComment]] = Field(default=None, title="Public Comments", description="""File name(s) of public comment related documents.
+Please group/concatenate all public comments associated with a specific consultation (e.g., for permitting, non-mandated consultations on a specific topic, or informal public input such as unsolicited comments and media attention) into a single pdf if possible, and include these documents with your data submission.""", json_schema_extra = { "linkml_meta": {'alias': 'public_comments', 'domain_of': ['Experiment'], 'recommended': True} })
     experiment_leads: List[Person] = Field(default=..., title="Experiment Lead(s)", description="""Provide details for each experiment lead / principal investigator (PI) including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.""", json_schema_extra = { "linkml_meta": {'alias': 'experiment_leads', 'domain_of': ['Experiment']} })
     start_datetime: datetime  = Field(default=..., title="Start Date and Time (UTC)", description="""Start date and time of experiment in UTC ISO-8601""", json_schema_extra = { "linkml_meta": {'alias': 'start_datetime', 'domain_of': ['Experiment', 'ModelOutputDataset']} })
     end_datetime: Optional[datetime ] = Field(default=None, title="End Date and Time (UTC)", description="""End date and time of experiment in UTC ISO-8601""", json_schema_extra = { "linkml_meta": {'alias': 'end_datetime', 'domain_of': ['Experiment', 'ModelOutputDataset']} })
@@ -1229,10 +1237,21 @@ Any method that creates a unique ID that will link all project data is acceptabl
     experiment_id: str = Field(default=..., title="Experiment ID", description="""The experiment to which the data belong. Any naming convention that produces a unique ID is usable. The recommended naming convention is:
 Project ID + Experiment type + Optional numerical indicator to differentiate between various experiments of the same type for a project. A two digit consecutive number beginning with 01""", json_schema_extra = { "linkml_meta": {'alias': 'experiment_id', 'domain_of': ['Experiment', 'Dataset']} })
     experiment_types: List[ExperimentType] = Field(default=..., title="mCDR Experiment Type(s)", description="""The type(s) of mCDR experiment conducted. See Controlled Vocabularies section for definitions.""", json_schema_extra = { "linkml_meta": {'alias': 'experiment_types', 'domain_of': ['Experiment']} })
-    public_comments: Optional[str] = Field(default=None, title="Public Comments", description="""File name(s) of public comment related documents. If possible, please provide public comments concatenated into a single pdf""", json_schema_extra = { "linkml_meta": {'alias': 'public_comments', 'domain_of': ['Experiment'], 'recommended': True} })
+    public_comments: Optional[List[PublicComment]] = Field(default=None, title="Public Comments", description="""File name(s) of public comment related documents.
+Please group/concatenate all public comments associated with a specific consultation (e.g., for permitting, non-mandated consultations on a specific topic, or informal public input such as unsolicited comments and media attention) into a single pdf if possible, and include these documents with your data submission.""", json_schema_extra = { "linkml_meta": {'alias': 'public_comments', 'domain_of': ['Experiment'], 'recommended': True} })
     experiment_leads: List[Person] = Field(default=..., title="Experiment Lead(s)", description="""Provide details for each experiment lead / principal investigator (PI) including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.""", json_schema_extra = { "linkml_meta": {'alias': 'experiment_leads', 'domain_of': ['Experiment']} })
     start_datetime: datetime  = Field(default=..., title="Start Date and Time (UTC)", description="""Start date and time of experiment in UTC ISO-8601""", json_schema_extra = { "linkml_meta": {'alias': 'start_datetime', 'domain_of': ['Experiment', 'ModelOutputDataset']} })
     end_datetime: Optional[datetime ] = Field(default=None, title="End Date and Time (UTC)", description="""End date and time of experiment in UTC ISO-8601""", json_schema_extra = { "linkml_meta": {'alias': 'end_datetime', 'domain_of': ['Experiment', 'ModelOutputDataset']} })
+
+
+class PublicComment(ConfiguredBaseModel):
+    """
+    A public comment document associated with a consultation for this experiment.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Experiment'})
+
+    filename: str = Field(default=..., title="Filename", description="""Filename of the public comment document included with your data submission.""", json_schema_extra = { "linkml_meta": {'alias': 'filename', 'domain_of': ['PublicComment']} })
+    comment_type: PublicCommentType = Field(default=..., title="Public Comment Type", description="""The kind of consultation these comments came from.""", json_schema_extra = { "linkml_meta": {'alias': 'comment_type', 'domain_of': ['PublicComment']} })
 
 
 class InterventionDetails(ConfiguredBaseModel):
@@ -1380,7 +1399,8 @@ Any method that creates a unique ID that will link all project data is acceptabl
     experiment_id: str = Field(default=..., title="Experiment ID", description="""The experiment to which the data belong. Any naming convention that produces a unique ID is usable. The recommended naming convention is:
 Project ID + Experiment type + Optional numerical indicator to differentiate between various experiments of the same type for a project. A two digit consecutive number beginning with 01""", json_schema_extra = { "linkml_meta": {'alias': 'experiment_id', 'domain_of': ['Experiment', 'Dataset']} })
     experiment_types: List[ExperimentType] = Field(default=..., title="mCDR Experiment Type(s)", description="""The type(s) of mCDR experiment conducted. See Controlled Vocabularies section for definitions.""", json_schema_extra = { "linkml_meta": {'alias': 'experiment_types', 'domain_of': ['Experiment']} })
-    public_comments: Optional[str] = Field(default=None, title="Public Comments", description="""File name(s) of public comment related documents. If possible, please provide public comments concatenated into a single pdf""", json_schema_extra = { "linkml_meta": {'alias': 'public_comments', 'domain_of': ['Experiment'], 'recommended': True} })
+    public_comments: Optional[List[PublicComment]] = Field(default=None, title="Public Comments", description="""File name(s) of public comment related documents.
+Please group/concatenate all public comments associated with a specific consultation (e.g., for permitting, non-mandated consultations on a specific topic, or informal public input such as unsolicited comments and media attention) into a single pdf if possible, and include these documents with your data submission.""", json_schema_extra = { "linkml_meta": {'alias': 'public_comments', 'domain_of': ['Experiment'], 'recommended': True} })
     experiment_leads: List[Person] = Field(default=..., title="Experiment Lead(s)", description="""Provide details for each experiment lead / principal investigator (PI) including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.""", json_schema_extra = { "linkml_meta": {'alias': 'experiment_leads', 'domain_of': ['Experiment']} })
     start_datetime: datetime  = Field(default=..., title="Start Date and Time (UTC)", description="""Start date and time of experiment in UTC ISO-8601""", json_schema_extra = { "linkml_meta": {'alias': 'start_datetime', 'domain_of': ['Experiment', 'ModelOutputDataset']} })
     end_datetime: Optional[datetime ] = Field(default=None, title="End Date and Time (UTC)", description="""End date and time of experiment in UTC ISO-8601""", json_schema_extra = { "linkml_meta": {'alias': 'end_datetime', 'domain_of': ['Experiment', 'ModelOutputDataset']} })
@@ -1443,7 +1463,8 @@ Any method that creates a unique ID that will link all project data is acceptabl
     experiment_id: str = Field(default=..., title="Experiment ID", description="""The experiment to which the data belong. Any naming convention that produces a unique ID is usable. The recommended naming convention is:
 Project ID + Experiment type + Optional numerical indicator to differentiate between various experiments of the same type for a project. A two digit consecutive number beginning with 01""", json_schema_extra = { "linkml_meta": {'alias': 'experiment_id', 'domain_of': ['Experiment', 'Dataset']} })
     experiment_types: List[ExperimentType] = Field(default=..., title="mCDR Experiment Type(s)", description="""The type(s) of mCDR experiment conducted. See Controlled Vocabularies section for definitions.""", json_schema_extra = { "linkml_meta": {'alias': 'experiment_types', 'domain_of': ['Experiment']} })
-    public_comments: Optional[str] = Field(default=None, title="Public Comments", description="""File name(s) of public comment related documents. If possible, please provide public comments concatenated into a single pdf""", json_schema_extra = { "linkml_meta": {'alias': 'public_comments', 'domain_of': ['Experiment'], 'recommended': True} })
+    public_comments: Optional[List[PublicComment]] = Field(default=None, title="Public Comments", description="""File name(s) of public comment related documents.
+Please group/concatenate all public comments associated with a specific consultation (e.g., for permitting, non-mandated consultations on a specific topic, or informal public input such as unsolicited comments and media attention) into a single pdf if possible, and include these documents with your data submission.""", json_schema_extra = { "linkml_meta": {'alias': 'public_comments', 'domain_of': ['Experiment'], 'recommended': True} })
     experiment_leads: List[Person] = Field(default=..., title="Experiment Lead(s)", description="""Provide details for each experiment lead / principal investigator (PI) including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.""", json_schema_extra = { "linkml_meta": {'alias': 'experiment_leads', 'domain_of': ['Experiment']} })
     start_datetime: datetime  = Field(default=..., title="Start Date and Time (UTC)", description="""Start date and time of experiment in UTC ISO-8601""", json_schema_extra = { "linkml_meta": {'alias': 'start_datetime', 'domain_of': ['Experiment', 'ModelOutputDataset']} })
     end_datetime: Optional[datetime ] = Field(default=None, title="End Date and Time (UTC)", description="""End date and time of experiment in UTC ISO-8601""", json_schema_extra = { "linkml_meta": {'alias': 'end_datetime', 'domain_of': ['Experiment', 'ModelOutputDataset']} })
@@ -1521,7 +1542,8 @@ Any method that creates a unique ID that will link all project data is acceptabl
     experiment_id: str = Field(default=..., title="Experiment ID", description="""The experiment to which the data belong. Any naming convention that produces a unique ID is usable. The recommended naming convention is:
 Project ID + Experiment type + Optional numerical indicator to differentiate between various experiments of the same type for a project. A two digit consecutive number beginning with 01""", json_schema_extra = { "linkml_meta": {'alias': 'experiment_id', 'domain_of': ['Experiment', 'Dataset']} })
     experiment_types: List[ExperimentType] = Field(default=..., title="mCDR Experiment Type(s)", description="""The type(s) of mCDR experiment conducted. See Controlled Vocabularies section for definitions.""", json_schema_extra = { "linkml_meta": {'alias': 'experiment_types', 'domain_of': ['Experiment']} })
-    public_comments: Optional[str] = Field(default=None, title="Public Comments", description="""File name(s) of public comment related documents. If possible, please provide public comments concatenated into a single pdf""", json_schema_extra = { "linkml_meta": {'alias': 'public_comments', 'domain_of': ['Experiment'], 'recommended': True} })
+    public_comments: Optional[List[PublicComment]] = Field(default=None, title="Public Comments", description="""File name(s) of public comment related documents.
+Please group/concatenate all public comments associated with a specific consultation (e.g., for permitting, non-mandated consultations on a specific topic, or informal public input such as unsolicited comments and media attention) into a single pdf if possible, and include these documents with your data submission.""", json_schema_extra = { "linkml_meta": {'alias': 'public_comments', 'domain_of': ['Experiment'], 'recommended': True} })
     experiment_leads: List[Person] = Field(default=..., title="Experiment Lead(s)", description="""Provide details for each experiment lead / principal investigator (PI) including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.""", json_schema_extra = { "linkml_meta": {'alias': 'experiment_leads', 'domain_of': ['Experiment']} })
     start_datetime: datetime  = Field(default=..., title="Start Date and Time (UTC)", description="""Start date and time of experiment in UTC ISO-8601""", json_schema_extra = { "linkml_meta": {'alias': 'start_datetime', 'domain_of': ['Experiment', 'ModelOutputDataset']} })
     end_datetime: Optional[datetime ] = Field(default=None, title="End Date and Time (UTC)", description="""End date and time of experiment in UTC ISO-8601""", json_schema_extra = { "linkml_meta": {'alias': 'end_datetime', 'domain_of': ['Experiment', 'ModelOutputDataset']} })
@@ -3511,7 +3533,8 @@ Any method that creates a unique ID that will link all project data is acceptabl
     experiment_id: str = Field(default=..., title="Experiment ID", description="""The experiment to which the data belong. Any naming convention that produces a unique ID is usable. The recommended naming convention is:
 Project ID + Experiment type + Optional numerical indicator to differentiate between various experiments of the same type for a project. A two digit consecutive number beginning with 01""", json_schema_extra = { "linkml_meta": {'alias': 'experiment_id', 'domain_of': ['Experiment', 'Dataset']} })
     experiment_types: List[ExperimentType] = Field(default=..., title="mCDR Experiment Type(s)", description="""The type(s) of mCDR experiment conducted. See Controlled Vocabularies section for definitions.""", json_schema_extra = { "linkml_meta": {'alias': 'experiment_types', 'domain_of': ['Experiment']} })
-    public_comments: Optional[str] = Field(default=None, title="Public Comments", description="""File name(s) of public comment related documents. If possible, please provide public comments concatenated into a single pdf""", json_schema_extra = { "linkml_meta": {'alias': 'public_comments', 'domain_of': ['Experiment'], 'recommended': True} })
+    public_comments: Optional[List[PublicComment]] = Field(default=None, title="Public Comments", description="""File name(s) of public comment related documents.
+Please group/concatenate all public comments associated with a specific consultation (e.g., for permitting, non-mandated consultations on a specific topic, or informal public input such as unsolicited comments and media attention) into a single pdf if possible, and include these documents with your data submission.""", json_schema_extra = { "linkml_meta": {'alias': 'public_comments', 'domain_of': ['Experiment'], 'recommended': True} })
     experiment_leads: List[Person] = Field(default=..., title="Experiment Lead(s)", description="""Provide details for each experiment lead / principal investigator (PI) including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.""", json_schema_extra = { "linkml_meta": {'alias': 'experiment_leads', 'domain_of': ['Experiment']} })
     start_datetime: datetime  = Field(default=..., title="Start Date and Time (UTC)", description="""Start date and time of experiment in UTC ISO-8601""", json_schema_extra = { "linkml_meta": {'alias': 'start_datetime', 'domain_of': ['Experiment', 'ModelOutputDataset']} })
     end_datetime: Optional[datetime ] = Field(default=None, title="End Date and Time (UTC)", description="""End date and time of experiment in UTC ISO-8601""", json_schema_extra = { "linkml_meta": {'alias': 'end_datetime', 'domain_of': ['Experiment', 'ModelOutputDataset']} })
@@ -3677,6 +3700,7 @@ MonetaryGrant.model_rebuild()
 Permit.model_rebuild()
 Experiment.model_rebuild()
 InSituExperiment.model_rebuild()
+PublicComment.model_rebuild()
 InterventionDetails.model_rebuild()
 TracerDetails.model_rebuild()
 DosingConcentration.model_rebuild()

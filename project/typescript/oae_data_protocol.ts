@@ -442,6 +442,14 @@ export enum MassConcentrationUnit {
     
 };
 
+export enum PublicCommentType {
+    
+    Permitting = "permitting",
+    Non_mandated_consultation = "non_mandated_consultation",
+    Informal_public_input = "informal_public_input",
+    Other = "other",
+};
+
 export enum ResearcherIDType {
     
     orcid = "orcid",
@@ -923,8 +931,9 @@ Project ID + Experiment type + Optional numerical indicator to differentiate bet
     experiment_id: string,
     /** The type(s) of mCDR experiment conducted. See Controlled Vocabularies section for definitions. */
     experiment_types: string,
-    /** File name(s) of public comment related documents. If possible, please provide public comments concatenated into a single pdf */
-    public_comments?: string,
+    /** File name(s) of public comment related documents.
+Please group/concatenate all public comments associated with a specific consultation (e.g., for permitting, non-mandated consultations on a specific topic, or informal public input such as unsolicited comments and media attention) into a single pdf if possible, and include these documents with your data submission. */
+    public_comments?: PublicComment[],
     /** Provide details for each experiment lead / principal investigator (PI) including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role. */
     experiment_leads: Person[],
     /** Start date and time of experiment in UTC ISO-8601 */
@@ -969,6 +978,17 @@ export interface Tracer extends InSituExperiment, TracerDetails, DosingDetails {
  * Additional metadata that applies to hybrid experiments where an intervention was conducted simultaneously alongside a tracer study, using the same instrumentation.
  */
 export interface InterventionWithTracer extends Intervention, TracerDetails {
+}
+
+
+/**
+ * A public comment document associated with a consultation for this experiment.
+ */
+export interface PublicComment {
+    /** Filename of the public comment document included with your data submission. */
+    filename: string,
+    /** The kind of consultation these comments came from. */
+    comment_type: string,
 }
 
 
