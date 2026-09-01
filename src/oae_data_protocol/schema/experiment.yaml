@@ -59,6 +59,7 @@ classes:
           media attention) into a single pdf if possible, and include these documents with your data submission.
         range: PublicComment
         multivalued: true
+        inlined_as_list: true
         recommended: true
       experiment_leads:
         title: Experiment Lead(s)
