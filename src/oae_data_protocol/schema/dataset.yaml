@@ -108,6 +108,24 @@ classes:
           Optional, and applicable for any accessibility type.
         range: uri
         pattern: '^https?://.+'
+      data_access_date:
+        title: Data Access Date
+        description: >-
+          The date by when this dataset will be openly available on a public repository
+          if it is not currently.
+        range: date
+    rules:
+      - preconditions:
+          slot_conditions:
+            data_accessbility:
+              equals_string: "scheduled_access"
+        postconditions:
+          slot_conditions:
+            data_access_date:
+              required: true
+        description: Datasets with scheduled access must provide a data_access_date.
+
+
 
     exact_mappings:
       - "schema:Dataset"

@@ -396,6 +396,7 @@ export enum PlatformType {
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS6DSOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/6D/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS3CSOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/3C/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS36SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/36/",
+    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS38SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/38/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS18SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/18/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS30SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/30/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS61SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/61/",
@@ -404,13 +405,16 @@ export enum PlatformType {
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS3ASOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/3A/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS41SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/41/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS72SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/72/",
+    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS37SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/37/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS43SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/43/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS15SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/15/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS13SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/13/",
+    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS22SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/22/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS6ASOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/6A/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS44SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/44/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS68SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/68/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS33SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/33/",
+    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS34SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/34/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS19SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/19/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS11SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/11/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS12SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/12/",
@@ -420,6 +424,7 @@ export enum PlatformType {
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS45SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/45/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS42SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/42/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS47SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/47/",
+    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS10SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/10/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS14SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/14/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS71SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/71/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS46SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/46/",
@@ -435,16 +440,6 @@ export enum PlatformType {
 
 export enum MassConcentrationUnit {
     
-    unitCOLONKiloGM_PER_M3 = "unit:KiloGM-PER-M3",
-    unitCOLONMicroGM_PER_L = "unit:MicroGM-PER-L",
-    unitCOLONMicroGM_PER_L_DAY = "unit:MicroGM-PER-L-DAY",
-    unitCOLONMicroGM_PER_MilliL = "unit:MicroGM-PER-MilliL",
-    unitCOLONMilliGM_PER_L = "unit:MilliGM-PER-L",
-    unitCOLONMilliGM_PER_M3 = "unit:MilliGM-PER-M3",
-    unitCOLONMilliGM_PER_MilliL = "unit:MilliGM-PER-MilliL",
-    unitCOLONNanoGM_PER_L = "unit:NanoGM-PER-L",
-    unitCOLONNanoGM_PER_MilliL = "unit:NanoGM-PER-MilliL",
-    unitCOLONPicoGM_PER_MilliL = "unit:PicoGM-PER-MilliL",
 };
 
 export enum ResearcherIDType {
@@ -1720,6 +1715,8 @@ Project ID + Experiment type + Optional numerical indicator to differentiate bet
     data_accessibility: string,
     /** URL to access this dataset, if it is already archived or published elsewhere. DOIs are preferred if available (e.g., https://doi.org/10.25921/xxxx-xxx). Optional, and applicable for any accessibility type. */
     data_access_link?: string,
+    /** The date by when this dataset will be openly available on a public repository if it is not currently. */
+    data_access_date?: date,
 }
 
 
