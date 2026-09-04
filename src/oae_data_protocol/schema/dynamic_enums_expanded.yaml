@@ -543,8 +543,6 @@ enums:
         meaning: unit:KiloGM-PER-M3
       unit:MicroGM-PER-L:
         meaning: unit:MicroGM-PER-L
-      unit:MicroGM-PER-L-DAY:
-        meaning: unit:MicroGM-PER-L-DAY
       unit:MicroGM-PER-MilliL:
         meaning: unit:MicroGM-PER-MilliL
       unit:MilliGM-PER-L:

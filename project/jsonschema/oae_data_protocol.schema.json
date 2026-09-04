@@ -3632,7 +3632,7 @@
                     "type": "string"
                 },
                 "public_comments": {
-                    "description": "File name(s) of public comment related documents.\nPlease group/concatenate all public comments associated with a specific consultation (e.g., for permitting, non-mandated consultations on a specific topic, or informal public input such as unsolicited comments and media attention) into a single pdf if possible, and include these documents with your data submission.",
+                    "description": "Public comment documents, each with a link or DOI and an optional description.\nPlease group/concatenate all public comments associated with a specific consultation (e.g., for permitting, non-mandated consultations on a specific topic, or informal public input such as unsolicited comments and media attention) into a single document if possible, and link to it here.",
                     "items": {
                         "$ref": "#/$defs/PublicComment"
                     },
@@ -4390,7 +4390,7 @@
                     "type": "string"
                 },
                 "public_comments": {
-                    "description": "File name(s) of public comment related documents.\nPlease group/concatenate all public comments associated with a specific consultation (e.g., for permitting, non-mandated consultations on a specific topic, or informal public input such as unsolicited comments and media attention) into a single pdf if possible, and include these documents with your data submission.",
+                    "description": "Public comment documents, each with a link or DOI and an optional description.\nPlease group/concatenate all public comments associated with a specific consultation (e.g., for permitting, non-mandated consultations on a specific topic, or informal public input such as unsolicited comments and media attention) into a single document if possible, and link to it here.",
                     "items": {
                         "$ref": "#/$defs/PublicComment"
                     },
@@ -4626,7 +4626,7 @@
                     "type": "string"
                 },
                 "public_comments": {
-                    "description": "File name(s) of public comment related documents.\nPlease group/concatenate all public comments associated with a specific consultation (e.g., for permitting, non-mandated consultations on a specific topic, or informal public input such as unsolicited comments and media attention) into a single pdf if possible, and include these documents with your data submission.",
+                    "description": "Public comment documents, each with a link or DOI and an optional description.\nPlease group/concatenate all public comments associated with a specific consultation (e.g., for permitting, non-mandated consultations on a specific topic, or informal public input such as unsolicited comments and media attention) into a single document if possible, and link to it here.",
                     "items": {
                         "$ref": "#/$defs/PublicComment"
                     },
@@ -4895,7 +4895,7 @@
                     "type": "string"
                 },
                 "public_comments": {
-                    "description": "File name(s) of public comment related documents.\nPlease group/concatenate all public comments associated with a specific consultation (e.g., for permitting, non-mandated consultations on a specific topic, or informal public input such as unsolicited comments and media attention) into a single pdf if possible, and include these documents with your data submission.",
+                    "description": "Public comment documents, each with a link or DOI and an optional description.\nPlease group/concatenate all public comments associated with a specific consultation (e.g., for permitting, non-mandated consultations on a specific topic, or informal public input such as unsolicited comments and media attention) into a single document if possible, and link to it here.",
                     "items": {
                         "$ref": "#/$defs/PublicComment"
                     },
@@ -5033,7 +5033,6 @@
             "enum": [
                 "unit:KiloGM-PER-M3",
                 "unit:MicroGM-PER-L",
-                "unit:MicroGM-PER-L-DAY",
                 "unit:MicroGM-PER-MilliL",
                 "unit:MilliGM-PER-L",
                 "unit:MilliGM-PER-M3",
@@ -5125,7 +5124,7 @@
                     "type": "string"
                 },
                 "public_comments": {
-                    "description": "File name(s) of public comment related documents.\nPlease group/concatenate all public comments associated with a specific consultation (e.g., for permitting, non-mandated consultations on a specific topic, or informal public input such as unsolicited comments and media attention) into a single pdf if possible, and include these documents with your data submission.",
+                    "description": "Public comment documents, each with a link or DOI and an optional description.\nPlease group/concatenate all public comments associated with a specific consultation (e.g., for permitting, non-mandated consultations on a specific topic, or informal public input such as unsolicited comments and media attention) into a single document if possible, and link to it here.",
                     "items": {
                         "$ref": "#/$defs/PublicComment"
                     },
@@ -6941,7 +6940,7 @@
                     "type": "string"
                 },
                 "public_comments": {
-                    "description": "File name(s) of public comment related documents.\nPlease group/concatenate all public comments associated with a specific consultation (e.g., for permitting, non-mandated consultations on a specific topic, or informal public input such as unsolicited comments and media attention) into a single pdf if possible, and include these documents with your data submission.",
+                    "description": "Public comment documents, each with a link or DOI and an optional description.\nPlease group/concatenate all public comments associated with a specific consultation (e.g., for permitting, non-mandated consultations on a specific topic, or informal public input such as unsolicited comments and media attention) into a single document if possible, and link to it here.",
                     "items": {
                         "$ref": "#/$defs/PublicComment"
                     },

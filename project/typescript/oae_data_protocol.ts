@@ -442,7 +442,6 @@ export enum MassConcentrationUnit {
     
     unitCOLONKiloGM_PER_M3 = "unit:KiloGM-PER-M3",
     unitCOLONMicroGM_PER_L = "unit:MicroGM-PER-L",
-    unitCOLONMicroGM_PER_L_DAY = "unit:MicroGM-PER-L-DAY",
     unitCOLONMicroGM_PER_MilliL = "unit:MicroGM-PER-MilliL",
     unitCOLONMilliGM_PER_L = "unit:MilliGM-PER-L",
     unitCOLONMilliGM_PER_M3 = "unit:MilliGM-PER-M3",
@@ -941,8 +940,8 @@ Project ID + Experiment type + Optional numerical indicator to differentiate bet
     experiment_id: string,
     /** The type(s) of mCDR experiment conducted. See Controlled Vocabularies section for definitions. */
     experiment_types: string,
-    /** File name(s) of public comment related documents.
-Please group/concatenate all public comments associated with a specific consultation (e.g., for permitting, non-mandated consultations on a specific topic, or informal public input such as unsolicited comments and media attention) into a single pdf if possible, and include these documents with your data submission. */
+    /** Public comment documents, each with a link or DOI and an optional description.
+Please group/concatenate all public comments associated with a specific consultation (e.g., for permitting, non-mandated consultations on a specific topic, or informal public input such as unsolicited comments and media attention) into a single document if possible, and link to it here. */
     public_comments?: PublicComment[],
     /** Provide details for each experiment lead / principal investigator (PI) including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role. */
     experiment_leads: Person[],
