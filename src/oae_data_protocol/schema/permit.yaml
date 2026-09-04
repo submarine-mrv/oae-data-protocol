@@ -38,6 +38,6 @@ classes:
         range: string
       approval_document:
         title: Permit Document
-        description: "Filename(s) of permitting documents included, separated by commas"
+        description: "Filename(s), links and/or DOIs to access files of permitting documents, separated by commas"
         range: string
         required: true

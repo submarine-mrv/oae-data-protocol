@@ -105,7 +105,7 @@ classes:
       dosing_location_file:
         # TODO: Add rules so that dosing_location_file is required IFF dosing_location is a bounding box
         description: >-
-          Exact path and filename for the location file (relative to root path of project), attached separately.
+          Exact filename, URL and/or DOI to access the location file.
           Format should be one of GeoJSON or Shapefile.
         range: string
 

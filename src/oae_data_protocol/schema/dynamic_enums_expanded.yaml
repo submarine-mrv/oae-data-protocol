@@ -2,7 +2,7 @@ id: DynamicEnums
 name: DynamicEnums
 
 prefixes:
-  oae: "https://schema.oaedata.org/"
+  oae: https://schema.oaedata.org/
   unit: https://qudt.org/vocab/unit/
 
 default_prefix: oae
@@ -396,8 +396,8 @@ enums:
   PlatformType:
     matches:
       source_ontology: SDN:L06
-      identifier_pattern:
-        http://vocab.nerc.ac.uk/collection/L06/current/(62|3B|25|13|17|72|44|46|42|36|11|45|47|6A|67|71|14|15|26|3A|19|99|41|48|16|61|31|18|68|12|33|30|27|20|43|3C|3Z|23|6D|)/
+      identifier_pattern: 
+        http://vocab.nerc.ac.uk/collection/L06/current/(62|3B|25|13|17|72|44|46|42|36|11|45|47|6A|67|71|10|14|15|26|38|3A|19|99|41|48|16|22|61|31|18|68|12|37|33|30|27|20|43|3C|3Z|23|6D|34)/
     permissible_values:
       http://vocab.nerc.ac.uk/collection/L06/current/99/:
         text: http://vocab.nerc.ac.uk/collection/L06/current/99/
@@ -411,6 +411,9 @@ enums:
       http://vocab.nerc.ac.uk/collection/L06/current/36/:
         text: http://vocab.nerc.ac.uk/collection/L06/current/36/
         meaning: http://vocab.nerc.ac.uk/collection/L06/current/36/
+      http://vocab.nerc.ac.uk/collection/L06/current/38/:
+        text: http://vocab.nerc.ac.uk/collection/L06/current/38/
+        meaning: http://vocab.nerc.ac.uk/collection/L06/current/38/
       http://vocab.nerc.ac.uk/collection/L06/current/18/:
         text: http://vocab.nerc.ac.uk/collection/L06/current/18/
         meaning: http://vocab.nerc.ac.uk/collection/L06/current/18/
@@ -435,6 +438,9 @@ enums:
       http://vocab.nerc.ac.uk/collection/L06/current/72/:
         text: http://vocab.nerc.ac.uk/collection/L06/current/72/
         meaning: http://vocab.nerc.ac.uk/collection/L06/current/72/
+      http://vocab.nerc.ac.uk/collection/L06/current/37/:
+        text: http://vocab.nerc.ac.uk/collection/L06/current/37/
+        meaning: http://vocab.nerc.ac.uk/collection/L06/current/37/
       http://vocab.nerc.ac.uk/collection/L06/current/43/:
         text: http://vocab.nerc.ac.uk/collection/L06/current/43/
         meaning: http://vocab.nerc.ac.uk/collection/L06/current/43/
@@ -444,6 +450,9 @@ enums:
       http://vocab.nerc.ac.uk/collection/L06/current/13/:
         text: http://vocab.nerc.ac.uk/collection/L06/current/13/
         meaning: http://vocab.nerc.ac.uk/collection/L06/current/13/
+      http://vocab.nerc.ac.uk/collection/L06/current/22/:
+        text: http://vocab.nerc.ac.uk/collection/L06/current/22/
+        meaning: http://vocab.nerc.ac.uk/collection/L06/current/22/
       http://vocab.nerc.ac.uk/collection/L06/current/6A/:
         text: http://vocab.nerc.ac.uk/collection/L06/current/6A/
         meaning: http://vocab.nerc.ac.uk/collection/L06/current/6A/
@@ -456,6 +465,9 @@ enums:
       http://vocab.nerc.ac.uk/collection/L06/current/33/:
         text: http://vocab.nerc.ac.uk/collection/L06/current/33/
         meaning: http://vocab.nerc.ac.uk/collection/L06/current/33/
+      http://vocab.nerc.ac.uk/collection/L06/current/34/:
+        text: http://vocab.nerc.ac.uk/collection/L06/current/34/
+        meaning: http://vocab.nerc.ac.uk/collection/L06/current/34/
       http://vocab.nerc.ac.uk/collection/L06/current/19/:
         text: http://vocab.nerc.ac.uk/collection/L06/current/19/
         meaning: http://vocab.nerc.ac.uk/collection/L06/current/19/
@@ -483,6 +495,9 @@ enums:
       http://vocab.nerc.ac.uk/collection/L06/current/47/:
         text: http://vocab.nerc.ac.uk/collection/L06/current/47/
         meaning: http://vocab.nerc.ac.uk/collection/L06/current/47/
+      http://vocab.nerc.ac.uk/collection/L06/current/10/:
+        text: http://vocab.nerc.ac.uk/collection/L06/current/10/
+        meaning: http://vocab.nerc.ac.uk/collection/L06/current/10/
       http://vocab.nerc.ac.uk/collection/L06/current/14/:
         text: http://vocab.nerc.ac.uk/collection/L06/current/14/
         meaning: http://vocab.nerc.ac.uk/collection/L06/current/14/
@@ -528,8 +543,6 @@ enums:
         meaning: unit:KiloGM-PER-M3
       unit:MicroGM-PER-L:
         meaning: unit:MicroGM-PER-L
-      unit:MicroGM-PER-L-DAY:
-        meaning: unit:MicroGM-PER-L-DAY
       unit:MicroGM-PER-MilliL:
         meaning: unit:MicroGM-PER-MilliL
       unit:MilliGM-PER-L:
