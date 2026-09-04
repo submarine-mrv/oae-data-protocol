@@ -1488,8 +1488,8 @@
 
 
 <h1 id="slot-public-comments-public_comments">Slot: Public Comments (public_comments)</h1>
-<p><em>File name(s) of public comment related documents.</em></p>
-<p><em>Please group/concatenate all public comments associated with a specific consultation (e.g., for permitting, non-mandated consultations on a specific topic, or informal public input such as unsolicited comments and media attention) into a single pdf if possible, and include these documents with your data submission.</em></p>
+<p><em>Public comment documents, each with a link or DOI and an optional description.</em></p>
+<p><em>Please group/concatenate all public comments associated with a specific consultation (e.g., for permitting, non-mandated consultations on a specific topic, or informal public input such as unsolicited comments and media attention) into a single document if possible, and link to it here.</em></p>
 <p>URI: <a href="https://schema.oaedata.org/public_comments">oae:public_comments</a></p>
 <!-- no inheritance hierarchy -->
 
@@ -1504,16 +1504,6 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Experiment/">Experiment</a></td>
-<td>Abstract base class for all experiment types</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Model/">Model</a></td>
-<td>A computational model experiment related to OAE</td>
-<td>no</td>
-</tr>
-<tr>
 <td><a href="../Intervention/">Intervention</a></td>
 <td>Additional metadata that applies to experiments where an intervention, such a...</td>
 <td>no</td>
@@ -1524,13 +1514,23 @@
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../InSituExperiment/">InSituExperiment</a></td>
-<td>Experiment metadata for in-situ studies (interventions, tracer studies, etc</td>
+<td><a href="../Experiment/">Experiment</a></td>
+<td>Abstract base class for all experiment types</td>
 <td>no</td>
 </tr>
 <tr>
 <td><a href="../InterventionWithTracer/">InterventionWithTracer</a></td>
 <td>Additional metadata that applies to hybrid experiments where an intervention ...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../InSituExperiment/">InSituExperiment</a></td>
+<td>Experiment metadata for in-situ studies (interventions, tracer studies, etc</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Model/">Model</a></td>
+<td>A computational model experiment related to OAE</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -1574,12 +1574,12 @@
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">public_comments</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;File</span><span class="nv"> </span><span class="s">name(s)</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">public</span><span class="nv"> </span><span class="s">comment</span><span class="nv"> </span><span class="s">related</span><span class="nv"> </span><span class="s">documents.</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Public</span><span class="nv"> </span><span class="s">comment</span><span class="nv"> </span><span class="s">documents,</span><span class="nv"> </span><span class="s">each</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">link</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">DOI</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">optional</span><span class="nv"> </span><span class="s">description.</span>
 
 <span class="w">  </span><span class="s">Please</span><span class="nv"> </span><span class="s">group/concatenate</span><span class="nv"> </span><span class="s">all</span><span class="nv"> </span><span class="s">public</span><span class="nv"> </span><span class="s">comments</span><span class="nv"> </span><span class="s">associated</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">specific</span><span class="nv"> </span><span class="s">consultation</span>
 <span class="w">  </span><span class="s">(e.g.,</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">permitting,</span><span class="nv"> </span><span class="s">non-mandated</span><span class="nv"> </span><span class="s">consultations</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">specific</span><span class="nv"> </span><span class="s">topic,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">informal</span>
-<span class="w">  </span><span class="s">public</span><span class="nv"> </span><span class="s">input</span><span class="nv"> </span><span class="s">such</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">unsolicited</span><span class="nv"> </span><span class="s">comments</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">media</span><span class="nv"> </span><span class="s">attention)</span><span class="nv"> </span><span class="s">into</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">single</span><span class="nv"> </span><span class="s">pdf</span>
-<span class="w">  </span><span class="s">if</span><span class="nv"> </span><span class="s">possible,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">include</span><span class="nv"> </span><span class="s">these</span><span class="nv"> </span><span class="s">documents</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">your</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">submission.&#39;</span>
+<span class="w">  </span><span class="s">public</span><span class="nv"> </span><span class="s">input</span><span class="nv"> </span><span class="s">such</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">unsolicited</span><span class="nv"> </span><span class="s">comments</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">media</span><span class="nv"> </span><span class="s">attention)</span><span class="nv"> </span><span class="s">into</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">single</span><span class="nv"> </span><span class="s">document</span>
+<span class="w">  </span><span class="s">if</span><span class="nv"> </span><span class="s">possible,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">link</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">here.&#39;</span>
 <span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Public Comments</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.oaedata.org/OAEDataSchema</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>

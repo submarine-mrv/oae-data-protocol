@@ -1296,9 +1296,6 @@ enums:
       unit:MicroGM-PER-L:
         text: unit:MicroGM-PER-L
         meaning: unit:MicroGM-PER-L
-      unit:MicroGM-PER-L-DAY:
-        text: unit:MicroGM-PER-L-DAY
-        meaning: unit:MicroGM-PER-L-DAY
       unit:MicroGM-PER-MilliL:
         text: unit:MicroGM-PER-MilliL
         meaning: unit:MicroGM-PER-MilliL
@@ -2855,12 +2852,13 @@ slots:
     multivalued: true
   experiment__public_comments:
     name: experiment__public_comments
-    description: 'File name(s) of public comment related documents.
+    description: 'Public comment documents, each with a link or DOI and an optional
+      description.
 
       Please group/concatenate all public comments associated with a specific consultation
       (e.g., for permitting, non-mandated consultations on a specific topic, or informal
       public input such as unsolicited comments and media attention) into a single
-      pdf if possible, and include these documents with your data submission.'
+      document if possible, and link to it here.'
     title: Public Comments
     from_schema: Experiment
     slot_uri: oae:public_comments
@@ -7310,13 +7308,13 @@ classes:
         multivalued: true
       public_comments:
         name: public_comments
-        description: 'File name(s) of public comment related documents.
+        description: 'Public comment documents, each with a link or DOI and an optional
+          description.
 
           Please group/concatenate all public comments associated with a specific
           consultation (e.g., for permitting, non-mandated consultations on a specific
           topic, or informal public input such as unsolicited comments and media attention)
-          into a single pdf if possible, and include these documents with your data
-          submission.'
+          into a single document if possible, and link to it here.'
         title: Public Comments
         range: PublicComment
         recommended: true
@@ -10646,7 +10644,7 @@ classes:
     class_uri: oae:ContinuousStandardGas
 metamodel_version: 1.7.0
 source_file: oae_data_protocol.yaml
-source_file_date: '2026-09-01T21:00:05'
+source_file_date: '2026-09-04T21:41:39'
 source_file_size: 1743
-generation_date: '2026-09-01T21:00:13'
+generation_date: '2026-09-04T21:41:48'
 
