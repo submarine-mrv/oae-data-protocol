@@ -7,15 +7,17 @@
 # ---------- Custom validation JSON Schema ----------
 # Generates a second JSON Schema alongside the standard gen-project output.
 # Uses LinkML's JsonSchemaGenerator from Python (not the CLI) so we can pass
-# include_range_class_descendants=True and not_closed=True — required for
-# runtime validation of user-authored metadata that uses class polymorphism.
+# include_range_class_descendants=True, required for runtime validation of
+# user-authored metadata that uses class polymorphism. include_null=False and
+# not_closed=False match config.yaml, so both artifacts agree on nullability and
+# on rejecting unknown keys at the root (classes are always closed).
 # Referenced from docs (metadata-format.md, getting-started) and README.
 gen-validation-schema:
     @mkdir -p project/jsonschema
     uv run python -c "from linkml.generators.jsonschemagen import JsonSchemaGenerator; \
         gen = JsonSchemaGenerator('src/oae_data_protocol/schema/oae_data_protocol.yaml', \
             top_class='Container', include_range_class_descendants=True, \
-            not_closed=True, title_from='title'); \
+            not_closed=False, include_null=False, title_from='title'); \
         print(gen.serialize())" \
         > project/jsonschema/oae_data_protocol.validation.schema.json
     @echo "✓ Generated validation schema (with range class descendants)"

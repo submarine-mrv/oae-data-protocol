@@ -396,6 +396,7 @@ export enum PlatformType {
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS6DSOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/6D/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS3CSOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/3C/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS36SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/36/",
+    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS38SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/38/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS18SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/18/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS30SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/30/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS61SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/61/",
@@ -404,13 +405,16 @@ export enum PlatformType {
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS3ASOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/3A/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS41SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/41/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS72SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/72/",
+    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS37SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/37/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS43SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/43/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS15SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/15/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS13SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/13/",
+    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS22SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/22/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS6ASOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/6A/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS44SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/44/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS68SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/68/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS33SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/33/",
+    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS34SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/34/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS19SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/19/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS11SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/11/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS12SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/12/",
@@ -420,6 +424,7 @@ export enum PlatformType {
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS45SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/45/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS42SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/42/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS47SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/47/",
+    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS10SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/10/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS14SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/14/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS71SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/71/",
     httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS46SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/46/",
@@ -437,7 +442,6 @@ export enum MassConcentrationUnit {
     
     unitCOLONKiloGM_PER_M3 = "unit:KiloGM-PER-M3",
     unitCOLONMicroGM_PER_L = "unit:MicroGM-PER-L",
-    unitCOLONMicroGM_PER_L_DAY = "unit:MicroGM-PER-L-DAY",
     unitCOLONMicroGM_PER_MilliL = "unit:MicroGM-PER-MilliL",
     unitCOLONMilliGM_PER_L = "unit:MilliGM-PER-L",
     unitCOLONMilliGM_PER_M3 = "unit:MilliGM-PER-M3",
@@ -445,6 +449,14 @@ export enum MassConcentrationUnit {
     unitCOLONNanoGM_PER_L = "unit:NanoGM-PER-L",
     unitCOLONNanoGM_PER_MilliL = "unit:NanoGM-PER-MilliL",
     unitCOLONPicoGM_PER_MilliL = "unit:PicoGM-PER-MilliL",
+};
+
+export enum PublicCommentType {
+    
+    Permitting = "permitting",
+    Non_mandated_consultation = "non_mandated_consultation",
+    Informal_public_input = "informal_public_input",
+    Other = "other",
 };
 
 export enum ResearcherIDType {
@@ -744,7 +756,7 @@ export interface SpatialCoverage extends Place {
  * A specific location of dosing for an OAE intervention and/or tracer study. Can be a point, line, or bounding box
  */
 export interface DosingLocation extends Place {
-    /** Exact path and filename for the location file (relative to root path of project), attached separately. Format should be one of GeoJSON or Shapefile. */
+    /** Exact filename, URL and/or DOI to access the location file. Format should be one of GeoJSON or Shapefile. */
     dosing_location_file?: string,
 }
 
@@ -904,7 +916,7 @@ export interface Permit {
     permit_type?: string,
     /** The time period during which the permit will be applicable, or expected duration of the permit. */
     time_period?: string,
-    /** Filename(s) of permitting documents included, separated by commas */
+    /** Filename(s), links and/or DOIs to access files of permitting documents, separated by commas */
     approval_document: string,
 }
 
@@ -928,8 +940,9 @@ Project ID + Experiment type + Optional numerical indicator to differentiate bet
     experiment_id: string,
     /** The type(s) of mCDR experiment conducted. See Controlled Vocabularies section for definitions. */
     experiment_types: string,
-    /** File name(s) of public comment related documents. If possible, please provide public comments concatenated into a single pdf */
-    public_comments?: string,
+    /** Public comment documents, each with a link or DOI and an optional description.
+Please group/concatenate all public comments associated with a specific consultation (e.g., for permitting, non-mandated consultations on a specific topic, or informal public input such as unsolicited comments and media attention) into a single document if possible, and link to it here. */
+    public_comments?: PublicComment[],
     /** Provide details for each experiment lead / principal investigator (PI) including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role. */
     experiment_leads: Person[],
     /** Start date and time of experiment in UTC ISO-8601 */
@@ -974,6 +987,19 @@ export interface Tracer extends InSituExperiment, TracerDetails, DosingDetails {
  * Additional metadata that applies to hybrid experiments where an intervention was conducted simultaneously alongside a tracer study, using the same instrumentation.
  */
 export interface InterventionWithTracer extends Intervention, TracerDetails {
+}
+
+
+/**
+ * A public comment document associated with a consultation for this experiment.
+ */
+export interface PublicComment {
+    /** A narrative description of what this public comment contains. */
+    description?: string,
+    /** Link or DOI to access the public comment document. */
+    url: string,
+    /** The kind of consultation these comments came from. */
+    comment_type: string,
 }
 
 
@@ -1720,6 +1746,8 @@ Project ID + Experiment type + Optional numerical indicator to differentiate bet
     data_accessibility: string,
     /** URL to access this dataset, if it is already archived or published elsewhere. DOIs are preferred if available (e.g., https://doi.org/10.25921/xxxx-xxx). Optional, and applicable for any accessibility type. */
     data_access_link?: string,
+    /** The date by when this dataset will be openly available on a public repository if it is not currently. */
+    data_access_date?: date,
 }
 
 
