@@ -27,7 +27,7 @@ For data collected during in-situ experiments — CTD casts, bottle samples, sen
 
 **Data access rules** (both dataset types): `scheduled_access` requires `data_access_date`, the date
 the data will be openly available. `open_access` requires either `data_access_link` or
-`data_access_date`. A file that violates these fails validation.
+`data_access_date`. 
 
 → [Full FieldDataset schema reference](../FieldDataset.md)
 
