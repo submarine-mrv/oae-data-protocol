@@ -73,7 +73,6 @@ All experiments share:
 | `spatial_coverage` | Geographic bounds of this experiment |
 | `start_datetime` / `end_datetime` | UTC time range |
 | `experiment_leads` | PIs for this experiment |
-| `public_comments` | Public comment documents, each with a `url` (link or DOI, required), a `comment_type`, and an optional `description` |
 
 Intervention experiments add feedstock details, dosing information, and equilibration status. Tracer experiments add tracer form, concentration, and delivery details. Both share dosing location and delivery fields.
 
