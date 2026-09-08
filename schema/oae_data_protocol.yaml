@@ -1,7 +1,7 @@
 name: OAEDataSchema
 title: OAE Data Protocol - Technical Documentation
 id: https://schema.oaedata.org/OAEDataSchema
-version: 0.3.0
+version: 0.4.0
 imports:
 - linkml:types
 - core
@@ -1162,6 +1162,9 @@ enums:
       http://vocab.nerc.ac.uk/collection/L06/current/36/:
         text: http://vocab.nerc.ac.uk/collection/L06/current/36/
         meaning: http://vocab.nerc.ac.uk/collection/L06/current/36/
+      http://vocab.nerc.ac.uk/collection/L06/current/38/:
+        text: http://vocab.nerc.ac.uk/collection/L06/current/38/
+        meaning: http://vocab.nerc.ac.uk/collection/L06/current/38/
       http://vocab.nerc.ac.uk/collection/L06/current/18/:
         text: http://vocab.nerc.ac.uk/collection/L06/current/18/
         meaning: http://vocab.nerc.ac.uk/collection/L06/current/18/
@@ -1186,6 +1189,9 @@ enums:
       http://vocab.nerc.ac.uk/collection/L06/current/72/:
         text: http://vocab.nerc.ac.uk/collection/L06/current/72/
         meaning: http://vocab.nerc.ac.uk/collection/L06/current/72/
+      http://vocab.nerc.ac.uk/collection/L06/current/37/:
+        text: http://vocab.nerc.ac.uk/collection/L06/current/37/
+        meaning: http://vocab.nerc.ac.uk/collection/L06/current/37/
       http://vocab.nerc.ac.uk/collection/L06/current/43/:
         text: http://vocab.nerc.ac.uk/collection/L06/current/43/
         meaning: http://vocab.nerc.ac.uk/collection/L06/current/43/
@@ -1195,6 +1201,9 @@ enums:
       http://vocab.nerc.ac.uk/collection/L06/current/13/:
         text: http://vocab.nerc.ac.uk/collection/L06/current/13/
         meaning: http://vocab.nerc.ac.uk/collection/L06/current/13/
+      http://vocab.nerc.ac.uk/collection/L06/current/22/:
+        text: http://vocab.nerc.ac.uk/collection/L06/current/22/
+        meaning: http://vocab.nerc.ac.uk/collection/L06/current/22/
       http://vocab.nerc.ac.uk/collection/L06/current/6A/:
         text: http://vocab.nerc.ac.uk/collection/L06/current/6A/
         meaning: http://vocab.nerc.ac.uk/collection/L06/current/6A/
@@ -1207,6 +1216,9 @@ enums:
       http://vocab.nerc.ac.uk/collection/L06/current/33/:
         text: http://vocab.nerc.ac.uk/collection/L06/current/33/
         meaning: http://vocab.nerc.ac.uk/collection/L06/current/33/
+      http://vocab.nerc.ac.uk/collection/L06/current/34/:
+        text: http://vocab.nerc.ac.uk/collection/L06/current/34/
+        meaning: http://vocab.nerc.ac.uk/collection/L06/current/34/
       http://vocab.nerc.ac.uk/collection/L06/current/19/:
         text: http://vocab.nerc.ac.uk/collection/L06/current/19/
         meaning: http://vocab.nerc.ac.uk/collection/L06/current/19/
@@ -1234,6 +1246,9 @@ enums:
       http://vocab.nerc.ac.uk/collection/L06/current/47/:
         text: http://vocab.nerc.ac.uk/collection/L06/current/47/
         meaning: http://vocab.nerc.ac.uk/collection/L06/current/47/
+      http://vocab.nerc.ac.uk/collection/L06/current/10/:
+        text: http://vocab.nerc.ac.uk/collection/L06/current/10/
+        meaning: http://vocab.nerc.ac.uk/collection/L06/current/10/
       http://vocab.nerc.ac.uk/collection/L06/current/14/:
         text: http://vocab.nerc.ac.uk/collection/L06/current/14/
         meaning: http://vocab.nerc.ac.uk/collection/L06/current/14/
@@ -1268,7 +1283,7 @@ enums:
         text: http://vocab.nerc.ac.uk/collection/L06/current/67/
         meaning: http://vocab.nerc.ac.uk/collection/L06/current/67/
     matches:
-      identifier_pattern: http://vocab.nerc.ac.uk/collection/L06/current/(62|3B|25|13|17|72|44|46|42|36|11|45|47|6A|67|71|14|15|26|3A|19|99|41|48|16|61|31|18|68|12|33|30|27|20|43|3C|3Z|23|6D|)/
+      identifier_pattern: http://vocab.nerc.ac.uk/collection/L06/current/(62|3B|25|13|17|72|44|46|42|36|11|45|47|6A|67|71|10|14|15|26|38|3A|19|99|41|48|16|22|61|31|18|68|12|37|33|30|27|20|43|3C|3Z|23|6D|34)/
       source_ontology: SDN:L06
   MassConcentrationUnit:
     name: MassConcentrationUnit
@@ -1281,9 +1296,6 @@ enums:
       unit:MicroGM-PER-L:
         text: unit:MicroGM-PER-L
         meaning: unit:MicroGM-PER-L
-      unit:MicroGM-PER-L-DAY:
-        text: unit:MicroGM-PER-L-DAY
-        meaning: unit:MicroGM-PER-L-DAY
       unit:MicroGM-PER-MilliL:
         text: unit:MicroGM-PER-MilliL
         meaning: unit:MicroGM-PER-MilliL
@@ -1311,6 +1323,23 @@ enums:
       - quantitykind:MassConcentration
       relationship_types:
       - qudt:hasQuantityKind
+  PublicCommentType:
+    name: PublicCommentType
+    definition_uri: https://schema.oaedata.org/PublicCommentType
+    from_schema: Experiment
+    permissible_values:
+      permitting:
+        text: permitting
+        title: Permitting
+      non_mandated_consultation:
+        text: non_mandated_consultation
+        title: Non-mandated consultation
+      informal_public_input:
+        text: informal_public_input
+        title: Informal public input
+      other:
+        text: other
+        title: Other
   ResearcherIDType:
     name: ResearcherIDType
     definition_uri: https://schema.oaedata.org/ResearcherIDType
@@ -1846,6 +1875,7 @@ slots:
     domain_of:
     - Project
     - Experiment
+    - PublicComment
     - VocabularyItemReference
     - Dataset
     - ModelComponent
@@ -2315,8 +2345,8 @@ slots:
     required: false
   dosingLocation__dosing_location_file:
     name: dosingLocation__dosing_location_file
-    description: Exact path and filename for the location file (relative to root path
-      of project), attached separately. Format should be one of GeoJSON or Shapefile.
+    description: Exact filename, URL and/or DOI to access the location file. Format
+      should be one of GeoJSON or Shapefile.
     from_schema: Core
     slot_uri: oae:dosing_location_file
     alias: dosing_location_file
@@ -2795,7 +2825,8 @@ slots:
     range: string
   permit__approval_document:
     name: permit__approval_document
-    description: Filename(s) of permitting documents included, separated by commas
+    description: Filename(s), links and/or DOIs to access files of permitting documents,
+      separated by commas
     title: Permit Document
     from_schema: Permit
     slot_uri: oae:approval_document
@@ -2821,8 +2852,13 @@ slots:
     multivalued: true
   experiment__public_comments:
     name: experiment__public_comments
-    description: File name(s) of public comment related documents. If possible, please
-      provide public comments concatenated into a single pdf
+    description: 'Public comment documents, each with a link or DOI and an optional
+      description.
+
+      Please group/concatenate all public comments associated with a specific consultation
+      (e.g., for permitting, non-mandated consultations on a specific topic, or informal
+      public input such as unsolicited comments and media attention) into a single
+      document if possible, and link to it here.'
     title: Public Comments
     from_schema: Experiment
     slot_uri: oae:public_comments
@@ -2830,8 +2866,11 @@ slots:
     owner: Experiment
     domain_of:
     - Experiment
-    range: string
+    range: PublicComment
     recommended: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
   experiment__experiment_leads:
     name: experiment__experiment_leads
     description: 'Provide details for each experiment lead / principal investigator
@@ -2915,6 +2954,30 @@ slots:
     domain_of:
     - InSituExperiment
     range: string
+  publicComment__url:
+    name: publicComment__url
+    description: Link or DOI to access the public comment document.
+    title: URL
+    from_schema: Experiment
+    slot_uri: oae:url
+    alias: url
+    owner: PublicComment
+    domain_of:
+    - PublicComment
+    range: uri
+    required: true
+  publicComment__comment_type:
+    name: publicComment__comment_type
+    description: The kind of consultation these comments came from.
+    title: Public Comment Type
+    from_schema: Experiment
+    slot_uri: oae:comment_type
+    alias: comment_type
+    owner: PublicComment
+    domain_of:
+    - PublicComment
+    range: PublicCommentType
+    required: true
   interventionDetails__alkalinity_feedstock_processing:
     name: interventionDetails__alkalinity_feedstock_processing
     description: Method(s) used to process the alkalinity feedstock. See Controlled
@@ -4130,6 +4193,18 @@ slots:
     - Dataset
     range: uri
     pattern: ^https?://.+
+  dataset__data_access_date:
+    name: dataset__data_access_date
+    description: The date by when this dataset will be openly available on a public
+      repository if it is not currently.
+    title: Data Access Date
+    from_schema: Dataset
+    slot_uri: oae:data_access_date
+    alias: data_access_date
+    owner: Dataset
+    domain_of:
+    - Dataset
+    range: date
   fieldDataset__data_product_type:
     name: fieldDataset__data_product_type
     description: 'One of the three choices: (a) Originally collected dataset (e.g.,
@@ -5673,6 +5748,24 @@ slots:
     usage_slot_name: vertical_coverage
     range: VerticalExtent
     inlined: true
+  PublicComment_description:
+    name: PublicComment_description
+    definition_uri: https://schema.oaedata.org/description
+    description: A narrative description of what this public comment contains.
+    title: Description
+    from_schema: Core
+    mappings:
+    - schema:description
+    is_a: description
+    domain: PublicComment
+    slot_uri: schema:description
+    alias: description
+    owner: PublicComment
+    domain_of:
+    - PublicComment
+    is_usage_slot: true
+    usage_slot_name: description
+    range: string
   DosingConcentration_is_provided_as_a_file:
     name: DosingConcentration_is_provided_as_a_file
     definition_uri: https://schema.oaedata.org/is_provided_as_a_file
@@ -6720,9 +6813,8 @@ classes:
     attributes:
       dosing_location_file:
         name: dosing_location_file
-        description: Exact path and filename for the location file (relative to root
-          path of project), attached separately. Format should be one of GeoJSON or
-          Shapefile.
+        description: Exact filename, URL and/or DOI to access the location file. Format
+          should be one of GeoJSON or Shapefile.
         range: string
     class_uri: oae:DosingLocation
   GeoShape:
@@ -7155,7 +7247,8 @@ classes:
         range: string
       approval_document:
         name: approval_document
-        description: Filename(s) of permitting documents included, separated by commas
+        description: Filename(s), links and/or DOIs to access files of permitting
+          documents, separated by commas
         title: Permit Document
         range: string
         required: true
@@ -7215,11 +7308,18 @@ classes:
         multivalued: true
       public_comments:
         name: public_comments
-        description: File name(s) of public comment related documents. If possible,
-          please provide public comments concatenated into a single pdf
+        description: 'Public comment documents, each with a link or DOI and an optional
+          description.
+
+          Please group/concatenate all public comments associated with a specific
+          consultation (e.g., for permitting, non-mandated consultations on a specific
+          topic, or informal public input such as unsolicited comments and media attention)
+          into a single document if possible, and link to it here.'
         title: Public Comments
-        range: string
+        range: PublicComment
         recommended: true
+        multivalued: true
+        inlined_as_list: true
       experiment_leads:
         name: experiment_leads
         description: 'Provide details for each experiment lead / principal investigator
@@ -7464,6 +7564,34 @@ classes:
           tracer_form_custom:
             name: tracer_form_custom
             required: true
+  PublicComment:
+    name: PublicComment
+    definition_uri: https://schema.oaedata.org/PublicComment
+    description: A public comment document associated with a consultation for this
+      experiment.
+    from_schema: Experiment
+    slots:
+    - PublicComment_description
+    - publicComment__url
+    - publicComment__comment_type
+    slot_usage:
+      description:
+        name: description
+        description: A narrative description of what this public comment contains.
+    attributes:
+      url:
+        name: url
+        description: Link or DOI to access the public comment document.
+        title: URL
+        range: uri
+        required: true
+      comment_type:
+        name: comment_type
+        description: The kind of consultation these comments came from.
+        title: Public Comment Type
+        range: PublicCommentType
+        required: true
+    class_uri: oae:PublicComment
   InterventionDetails:
     name: InterventionDetails
     definition_uri: https://schema.oaedata.org/InterventionDetails
@@ -9222,6 +9350,7 @@ classes:
     - dataset__fair_use_data_request
     - dataset__data_accessibility
     - dataset__data_access_link
+    - dataset__data_access_date
     slot_usage:
       name:
         name: name
@@ -9322,7 +9451,42 @@ classes:
         title: Data access link
         range: uri
         pattern: ^https?://.+
+      data_access_date:
+        name: data_access_date
+        description: The date by when this dataset will be openly available on a public
+          repository if it is not currently.
+        title: Data Access Date
+        range: date
     class_uri: oae:Dataset
+    rules:
+    - preconditions:
+        slot_conditions:
+          data_accessibility:
+            name: data_accessibility
+            equals_string: scheduled_access
+      postconditions:
+        slot_conditions:
+          data_access_date:
+            name: data_access_date
+            required: true
+      description: Datasets with scheduled access must provide a data_access_date.
+    - preconditions:
+        slot_conditions:
+          data_accessibility:
+            name: data_accessibility
+            equals_string: open_access
+      postconditions:
+        any_of:
+        - slot_conditions:
+            data_access_link:
+              name: data_access_link
+              required: true
+        - slot_conditions:
+            data_access_date:
+              name: data_access_date
+              required: true
+      description: Open access datasets must provide a data access link or a data
+        access date.
   FieldDataset:
     name: FieldDataset
     definition_uri: https://schema.oaedata.org/FieldDataset
@@ -9345,6 +9509,7 @@ classes:
     - dataset__fair_use_data_request
     - dataset__data_accessibility
     - dataset__data_access_link
+    - dataset__data_access_date
     - temporal_coverage
     - FieldDataset_variables
     - fieldDataset__data_product_type
@@ -9409,6 +9574,7 @@ classes:
     - dataset__fair_use_data_request
     - dataset__data_accessibility
     - dataset__data_access_link
+    - dataset__data_access_date
     - ModelOutputDataset_variables
     - modelOutputDataset__simulation_type
     - modelOutputDataset__start_datetime
@@ -10478,7 +10644,7 @@ classes:
     class_uri: oae:ContinuousStandardGas
 metamodel_version: 1.7.0
 source_file: oae_data_protocol.yaml
-source_file_date: '2026-09-08T17:14:05'
+source_file_date: '2026-09-08T18:30:41'
 source_file_size: 1743
-generation_date: '2026-09-08T17:14:16'
+generation_date: '2026-09-08T18:30:51'
 

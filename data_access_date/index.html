@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://schema.oaedata.org/instrument_type/">
+        <link rel="canonical" href="https://schema.oaedata.org/data_access_date/">
       
       
       
@@ -21,7 +21,7 @@
     
     
       
-        <title>Slot: Instrument type (instrument_type) - OAE Data Protocol: Schema Documentation</title>
+        <title>Slot: Data Access Date (data_access_date) - OAE Data Protocol: Schema Documentation</title>
       
     
     
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#slot-instrument-type-instrument_type" class="md-skip">
+        <a href="#slot-data-access-date-data_access_date" class="md-skip">
           Skip to content
         </a>
       
@@ -99,7 +99,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: Instrument type (instrument_type)
+              Slot: Data Access Date (data_access_date)
             
           </span>
         </div>
@@ -1487,9 +1487,9 @@
   
 
 
-<h1 id="slot-instrument-type-instrument_type">Slot: Instrument type (instrument_type)</h1>
-<p><em>Type of instrument used to analyze samples or measure continuously.</em></p>
-<p>URI: <a href="https://schema.oaedata.org/instrument_type">oae:instrument_type</a></p>
+<h1 id="slot-data-access-date-data_access_date">Slot: Data Access Date (data_access_date)</h1>
+<p><em>The date by when this dataset will be openly available on a public repository if it is not currently.</em></p>
+<p>URI: <a href="https://schema.oaedata.org/data_access_date">oae:data_access_date</a></p>
 <!-- no inheritance hierarchy -->
 
 <h2 id="applicable-classes">Applicable Classes</h2>
@@ -1503,40 +1503,25 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../CO2GasDetector/">CO2GasDetector</a></td>
-<td>CO2 gas detector with standard gas calibration</td>
-<td>yes</td>
-</tr>
-<tr>
-<td><a href="../PHInstrument/">PHInstrument</a></td>
-<td>pH measurement instrument with dye-based calibration</td>
+<td><a href="../Dataset/">Dataset</a></td>
+<td>Abstract base class for all dataset types</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../CRMInstrument/">CRMInstrument</a></td>
-<td>Instrument calibrated with Certified Reference Materials, used for DIC and TA...</td>
+<td><a href="../ModelOutputDataset/">ModelOutputDataset</a></td>
+<td>A model simulation output dataset</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../AnalyzingInstrument/">AnalyzingInstrument</a></td>
-<td>Base class for scientific instruments used in analyzing samples for measureme...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../ContinuousCO2GasDetector/">ContinuousCO2GasDetector</a></td>
-<td>CO2 gas detector for continuous measurements, with measurement frequency</td>
+<td><a href="../FieldDataset/">FieldDataset</a></td>
+<td>A field or observational dataset related to an OAE experiment</td>
 <td>no</td>
 </tr>
 </tbody>
 </table>
 <h2 id="properties">Properties</h2>
 <ul>
-<li>
-<p>Range: <a href="../AnalyzingInstrumentType/">AnalyzingInstrumentType</a></p>
-</li>
-<li>
-<p>Required: True</p>
-</li>
+<li>Range: <a href="../Date/">Date</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -1554,27 +1539,27 @@
 <tbody>
 <tr>
 <td>self</td>
-<td>oae:instrument_type</td>
+<td>oae:data_access_date</td>
 </tr>
 <tr>
 <td>native</td>
-<td>oae:instrument_type</td>
+<td>oae:data_access_date</td>
 </tr>
 </tbody>
 </table>
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
-<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">instrument_type</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Type of instrument used to analyze samples or measure continuously.</span>
-<span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Instrument type</span>
+<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data_access_date</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The date by when this dataset will be openly available on a public repository</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">if it is not currently.</span>
+<span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Data Access Date</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.oaedata.org/OAEDataSchema</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">instrument_type</span>
-<span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AnalyzingInstrument</span>
+<span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data_access_date</span>
+<span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dataset</span>
 <span class="nt">domain_of</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AnalyzingInstrument</span>
-<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AnalyzingInstrumentType</span>
-<span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dataset</span>
+<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">date</span>
 </code></pre></div>
 </details>
 

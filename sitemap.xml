@@ -453,6 +453,14 @@
          <lastmod>2026-09-08</lastmod>
     </url>
     <url>
+         <loc>https://schema.oaedata.org/PublicComment/</loc>
+         <lastmod>2026-09-08</lastmod>
+    </url>
+    <url>
+         <loc>https://schema.oaedata.org/PublicCommentType/</loc>
+         <lastmod>2026-09-08</lastmod>
+    </url>
+    <url>
          <loc>https://schema.oaedata.org/QCFields/</loc>
          <lastmod>2026-09-08</lastmod>
     </url>
@@ -705,6 +713,10 @@
          <lastmod>2026-09-08</lastmod>
     </url>
     <url>
+         <loc>https://schema.oaedata.org/comment_type/</loc>
+         <lastmod>2026-09-08</lastmod>
+    </url>
+    <url>
          <loc>https://schema.oaedata.org/comments/</loc>
          <lastmod>2026-09-08</lastmod>
     </url>
@@ -746,6 +758,10 @@
     </url>
     <url>
          <loc>https://schema.oaedata.org/curve_fitting_method/</loc>
+         <lastmod>2026-09-08</lastmod>
+    </url>
+    <url>
+         <loc>https://schema.oaedata.org/data_access_date/</loc>
          <lastmod>2026-09-08</lastmod>
     </url>
     <url>
