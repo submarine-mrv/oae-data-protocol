@@ -8,6 +8,7 @@ generator_args:
   jsonschema:
     mergeimports: true
     include_null: false
+    not_closed: false
     title_from: title
     include_range_class_descendants: false
 
