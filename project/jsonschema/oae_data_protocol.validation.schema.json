@@ -2265,7 +2265,7 @@
                 "data_access_link": {
                     "description": "URL to access this dataset, if it is already archived or published elsewhere. DOIs are preferred if available (e.g., https://doi.org/10.25921/xxxx-xxx). Required for open access, optional otherwise.",
                     "pattern": "^https?://.+",
-                    "title": "Data access link",
+                    "title": "Data Access Link",
                     "type": "string"
                 },
                 "data_accessibility": {
@@ -4018,7 +4018,7 @@
                 "data_access_link": {
                     "description": "URL to access this dataset, if it is already archived or published elsewhere. DOIs are preferred if available (e.g., https://doi.org/10.25921/xxxx-xxx). Required for open access, optional otherwise.",
                     "pattern": "^https?://.+",
-                    "title": "Data access link",
+                    "title": "Data Access Link",
                     "type": "string"
                 },
                 "data_accessibility": {
@@ -5705,7 +5705,7 @@
                 "data_access_link": {
                     "description": "URL to access this dataset, if it is already archived or published elsewhere. DOIs are preferred if available (e.g., https://doi.org/10.25921/xxxx-xxx). Required for open access, optional otherwise.",
                     "pattern": "^https?://.+",
-                    "title": "Data access link",
+                    "title": "Data Access Link",
                     "type": "string"
                 },
                 "data_accessibility": {
