@@ -2089,23 +2089,11 @@
                         ]
                     },
                     "then": {
-                        "anyOf": [
-                            {
-                                "properties": {
-                                    "data_access_link": {}
-                                },
-                                "required": [
-                                    "data_access_link"
-                                ]
-                            },
-                            {
-                                "properties": {
-                                    "data_access_date": {}
-                                },
-                                "required": [
-                                    "data_access_date"
-                                ]
-                            }
+                        "properties": {
+                            "data_access_link": {}
+                        },
+                        "required": [
+                            "data_access_link"
                         ]
                     }
                 }
@@ -2118,20 +2106,20 @@
                     "type": "string"
                 },
                 "data_access_date": {
-                    "description": "The date by when this dataset will be openly available on a public repository if it is not currently.",
+                    "description": "The date by when this dataset will be openly available on a public repository. Only used when data_accessibility is scheduled_access; leave empty otherwise.",
                     "format": "date",
                     "title": "Data Access Date",
                     "type": "string"
                 },
                 "data_access_link": {
-                    "description": "URL to access this dataset, if it is already archived or published elsewhere. DOIs are preferred if available (e.g., https://doi.org/10.25921/xxxx-xxx). Optional, and applicable for any accessibility type.",
+                    "description": "URL to access this dataset, if it is already archived or published elsewhere. DOIs are preferred if available (e.g., https://doi.org/10.25921/xxxx-xxx). Required for open access, optional otherwise.",
                     "pattern": "^https?://.+",
                     "title": "Data access link",
                     "type": "string"
                 },
                 "data_accessibility": {
                     "$ref": "#/$defs/DataAccessibility",
-                    "description": "Level of access to this dataset. Open Access data are freely available without restriction. Conditional Access data are available upon request, subject to review. Scheduled Access data will become openly available after a specified date.",
+                    "description": "Level of access to this dataset. Open Access data are freely available now, without restriction. Conditional Access data are available upon request, subject to review. Scheduled Access data will become openly available after a specified date; choose it for any data that are not openly available yet.",
                     "title": "Data Accessibility"
                 },
                 "data_submitter": {
@@ -3781,23 +3769,11 @@
                         ]
                     },
                     "then": {
-                        "anyOf": [
-                            {
-                                "properties": {
-                                    "data_access_link": {}
-                                },
-                                "required": [
-                                    "data_access_link"
-                                ]
-                            },
-                            {
-                                "properties": {
-                                    "data_access_date": {}
-                                },
-                                "required": [
-                                    "data_access_date"
-                                ]
-                            }
+                        "properties": {
+                            "data_access_link": {}
+                        },
+                        "required": [
+                            "data_access_link"
                         ]
                     }
                 }
@@ -3821,20 +3797,20 @@
                     ]
                 },
                 "data_access_date": {
-                    "description": "The date by when this dataset will be openly available on a public repository if it is not currently.",
+                    "description": "The date by when this dataset will be openly available on a public repository. Only used when data_accessibility is scheduled_access; leave empty otherwise.",
                     "format": "date",
                     "title": "Data Access Date",
                     "type": "string"
                 },
                 "data_access_link": {
-                    "description": "URL to access this dataset, if it is already archived or published elsewhere. DOIs are preferred if available (e.g., https://doi.org/10.25921/xxxx-xxx). Optional, and applicable for any accessibility type.",
+                    "description": "URL to access this dataset, if it is already archived or published elsewhere. DOIs are preferred if available (e.g., https://doi.org/10.25921/xxxx-xxx). Required for open access, optional otherwise.",
                     "pattern": "^https?://.+",
                     "title": "Data access link",
                     "type": "string"
                 },
                 "data_accessibility": {
                     "$ref": "#/$defs/DataAccessibility",
-                    "description": "Level of access to this dataset. Open Access data are freely available without restriction. Conditional Access data are available upon request, subject to review. Scheduled Access data will become openly available after a specified date.",
+                    "description": "Level of access to this dataset. Open Access data are freely available now, without restriction. Conditional Access data are available upon request, subject to review. Scheduled Access data will become openly available after a specified date; choose it for any data that are not openly available yet.",
                     "title": "Data Accessibility"
                 },
                 "data_product_type": {
@@ -5475,23 +5451,11 @@
                         ]
                     },
                     "then": {
-                        "anyOf": [
-                            {
-                                "properties": {
-                                    "data_access_link": {}
-                                },
-                                "required": [
-                                    "data_access_link"
-                                ]
-                            },
-                            {
-                                "properties": {
-                                    "data_access_date": {}
-                                },
-                                "required": [
-                                    "data_access_date"
-                                ]
-                            }
+                        "properties": {
+                            "data_access_link": {}
+                        },
+                        "required": [
+                            "data_access_link"
                         ]
                     }
                 }
@@ -5504,20 +5468,20 @@
                     "type": "string"
                 },
                 "data_access_date": {
-                    "description": "The date by when this dataset will be openly available on a public repository if it is not currently.",
+                    "description": "The date by when this dataset will be openly available on a public repository. Only used when data_accessibility is scheduled_access; leave empty otherwise.",
                     "format": "date",
                     "title": "Data Access Date",
                     "type": "string"
                 },
                 "data_access_link": {
-                    "description": "URL to access this dataset, if it is already archived or published elsewhere. DOIs are preferred if available (e.g., https://doi.org/10.25921/xxxx-xxx). Optional, and applicable for any accessibility type.",
+                    "description": "URL to access this dataset, if it is already archived or published elsewhere. DOIs are preferred if available (e.g., https://doi.org/10.25921/xxxx-xxx). Required for open access, optional otherwise.",
                     "pattern": "^https?://.+",
                     "title": "Data access link",
                     "type": "string"
                 },
                 "data_accessibility": {
                     "$ref": "#/$defs/DataAccessibility",
-                    "description": "Level of access to this dataset. Open Access data are freely available without restriction. Conditional Access data are available upon request, subject to review. Scheduled Access data will become openly available after a specified date.",
+                    "description": "Level of access to this dataset. Open Access data are freely available now, without restriction. Conditional Access data are available upon request, subject to review. Scheduled Access data will become openly available after a specified date; choose it for any data that are not openly available yet.",
                     "title": "Data Accessibility"
                 },
                 "data_submitter": {

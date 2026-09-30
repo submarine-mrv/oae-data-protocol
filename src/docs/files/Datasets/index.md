@@ -25,9 +25,10 @@ For data collected during in-situ experiments — CTD casts, bottle samples, sen
 | `variables` | Array of variable metadata (see [Variables](../variables/)) |
 | `data_submitter` | Person responsible for this submission |
 
-**Data access rules** (both dataset types): `scheduled_access` requires `data_access_date`, the date
-the data will be openly available. `open_access` requires either `data_access_link` or
-`data_access_date`. 
+**Data access rules** (both dataset types): `open_access` is for data you can reach today and
+requires `data_access_link`. Use `scheduled_access` for anything not openly available yet; it
+requires `data_access_date`, the date the data will open. `data_access_link` is optional for
+scheduled and conditional access.
 
 → [Full FieldDataset schema reference](../FieldDataset.md)
 
