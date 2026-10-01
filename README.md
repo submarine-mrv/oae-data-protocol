@@ -1,105 +1,77 @@
 # OAE Data Protocol Schemas
 
-> ⚠️ **Alpha Software**: These schemas are under active development and may change
-> without notice. We do not currently guarantee backwards compatibility between
-> versions. Once the schemas stabilize, we will establish a formal release process
-> with semantic versioning to support clients and integrators who need stability
-> guarantees.
+Machine-readable schemas for the [OAE Data Management Protocol](https://www.carbontosea.org/oae-data-protocol/1-0-0/),
+which sets out how to produce consistent data and metadata for Ocean Alkalinity Enhancement (OAE)
+research. The schemas cover OAE projects, experiments, datasets and the variables inside them,
+including instrument, analysis and calibration metadata.
 
-The [OAE Data Management Protocol](http://carbontosea.org/oae-data-protocol/1-0-0/) outlines recommendations
-for producing consistent data and metadata for Ocean Alkalinity Enhancement (OAE) research projects.
+📖 **Documentation: [schema.oaedata.org](https://schema.oaedata.org)**
 
-This repository provides machine-readable schemas and data standards for the protocol. It focuses on formal specifications for metadata about OAE projects, experiments, datasets, and individual data variables within datasets themselves (including instrument, analysis, and calibration metadata).
+To write a metadata file, use the [OAE Metadata Builder](https://metadata.oaedata.org). It walks
+through each section and exports JSON that validates against these schemas. The Excel templates
+from the protocol's v1.0 launch (August 25, 2025) are in [`templates/excel`](./templates/excel).
 
-**Creating Metadata**: The easiest way to produce a valid metadata file is the [OAE Metadata Builder](https://metadata.oaedata.org) — a web app that walks you through each section and exports a JSON file validated against these schemas. Excel templates from the [v1.0 protocol launch](http://carbontosea.org/oae-data-protocol/1-0-0/) (August 25, 2025) remain available in [`templates/excel`](./templates/excel) and on the protocol website.
+## Status and versioning
 
-**Beta Testing**: Organizations and researchers interested in testing the software tooling under development should contact [data@carbontosea.org](mailto:data@carbontosea.org).
+The schemas are pre-1.0 and still changing. Each release is tagged (`v0.5.0`) with notes on
+[GitHub Releases](https://github.com/submarine-mrv/oae-data-protocol/releases). Until 1.0, a minor
+version bump means a breaking change: metadata valid under the previous version may not validate.
+The version is the `version` field of `oae_data_protocol.yaml` and of the generated JSON Schema.
 
-## What's Inside
+## Generated artifacts
 
-This repository contains [LinkML](https://linkml.io) schema definitions that can generate:
+The schemas are written in [LinkML](https://linkml.io). Generated files are committed:
 
-- **JSON Schema** for data validation and form generation
-- **Python dataclasses** for programmatic data handling
-- **TypeScript definitions** for web tooling
-- **Documentation** (what you're reading now!)
-- Support for multiple serialization formats (JSON, YAML, RDF, etc.)
+- `project/jsonschema/oae_data_protocol.schema.json`: JSON Schema, used by the Metadata Builder
+- `project/jsonschema/oae_data_protocol.validation.schema.json`: JSON Schema for validating
+  documents, which accepts every variable subclass where a variable is expected
+- `project/typescript/`: TypeScript types
+- `src/oae_data_protocol/datamodel/`: Pydantic models
 
-## Documentation
-
-📖 **[schema.oaedata.org](https://schema.oaedata.org)**
-
-## Using the Schemas
-
-The generated schemas are available in:
-
-- `project/jsonschema/` - JSON Schema definitions (including `*.validation.schema.json` for runtime validation)
-- `project/typescript/` - TypeScript definitions
-- `src/oae_data_protocol/datamodel/` - Python dataclasses (dataclass + Pydantic)
-
-## Repository Structure
+## Repository layout
 
 ```
-├── src/
-│   └── oae_data_protocol/
-│       ├── schema/          # LinkML schema definitions (edit these!)
-│       └── datamodel/       # Generated Python dataclasses
-├── project/                 # Generated project files (don't edit)
-├── examples/                # Example data files
-├── tests/                   # Python tests
-└── docs/                    # Generated documentation
+src/oae_data_protocol/schema/   LinkML schemas, the source of truth
+src/oae_data_protocol/datamodel/ generated Pydantic models
+src/docs/files/                 hand-written documentation pages
+project/                        generated JSON Schema and TypeScript
+templates/excel/                v1.0 protocol Excel templates
+ontologies/                     vocabulary files for dynamic enums (NERC, QUDT)
+tests/                          tests
 ```
+
+`docs/` is built by `just gen-doc` and is not committed.
 
 ## Development
-
-### Installation
 
 Requires [uv](https://docs.astral.sh/uv/) and [just](https://just.systems/).
 
 ```bash
-# Clone the repository
 git clone https://github.com/submarine-mrv/oae-data-protocol.git
 cd oae-data-protocol
-
-# Install dependencies
 just install
-
-# Generate schema artifacts
 just gen-all
 ```
 
-### Common Commands
+| Command | What it does |
+|---|---|
+| `just gen-all` | Regenerate JSON Schema (both), TypeScript and Pydantic models |
+| `just test` | Validate the schema and run the tests |
+| `just lint` | LinkML lint |
+| `just enums` | Expand dynamic enums from the NERC and QUDT vocabularies |
+| `just testdoc` | Build the docs and serve them locally |
+| `just` | List every command |
 
-```bash
-just                   # Show all available commands
-just gen-project       # Regenerate Python dataclasses, JSON Schema, TypeScript
-just gen-all           # Full build: gen-project + validation schema + version injection
-just test              # Run tests
-just lint              # Lint LinkML schemas
-just testdoc           # Build and serve documentation locally
-```
+Edit the YAML in `src/oae_data_protocol/schema/`, run `just gen-all`, and commit the schema and
+generated files together. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
-### Working with Schemas
+## Credits
 
-The schema files in `src/oae_data_protocol/schema/` are the source of truth. Edit these files and run `just gen-all` to regenerate all derived artifacts.
-
-## Project Status
-
-**Current Status**: Alpha development
-
-We're actively developing and refining these schemas based on real-world usage and community feedback.
-Breaking changes may occur as we work toward a stable v1.0 release of these schemas which will have parity
-with v1.0.0 of the protocol.
-
-## Credits & Acknowledgments
-
-This project is built with:
-- [LinkML](https://linkml.io) for schema definitions
-- [linkml-project-copier](https://github.com/linkml/linkml-project-copier) for project structure
-
-Development of the OAE Data Protocol and its corresponding technical tooling has been made possible with
-funding and steering support from [Carbon To Sea](https://carbontosea.org).
+Built with [LinkML](https://linkml.io) and
+[linkml-project-copier](https://github.com/linkml/linkml-project-copier). Developed by
+[Submarine Scientific](https://www.submarine.earth), with funding and steering from
+[Carbon to Sea](https://www.carbontosea.org). Questions: [data@carbontosea.org](mailto:data@carbontosea.org).
 
 ## License
 
-See [LICENSE](./LICENSE) for details.
+[Apache 2.0](LICENSE)
