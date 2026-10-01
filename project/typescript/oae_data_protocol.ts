@@ -251,7 +251,7 @@ export enum SimulationType {
 */
 export enum DataAccessibility {
     
-    /** Data are freely available without restriction. */
+    /** Data are freely available now, without restriction. */
     Open_Access = "open_access",
     /** Data are available upon request, subject to review. */
     Conditional_Access = "conditional_access",
@@ -1742,11 +1742,11 @@ Project ID + Experiment type + Optional numerical indicator to differentiate bet
     license?: string,
     /** A statement from the data producer regarding how this dataset should be used. */
     fair_use_data_request?: string,
-    /** Level of access to this dataset. Open Access data are freely available without restriction. Conditional Access data are available upon request, subject to review. Scheduled Access data will become openly available after a specified date. */
+    /** Level of access to this dataset. Open Access data are freely available now, without restriction. Conditional Access data are available upon request, subject to review. Scheduled Access data will become openly available after a specified date; choose it for any data that are not openly available yet. */
     data_accessibility: string,
-    /** URL to access this dataset, if it is already archived or published elsewhere. DOIs are preferred if available (e.g., https://doi.org/10.25921/xxxx-xxx). Optional, and applicable for any accessibility type. */
+    /** URL to access this dataset, if it is already archived or published elsewhere. DOIs are preferred if available (e.g., https://doi.org/10.25921/xxxx-xxx). Required for open access, optional otherwise. */
     data_access_link?: string,
-    /** The date by when this dataset will be openly available on a public repository if it is not currently. */
+    /** The date by when this dataset will be openly available on a public repository. Only used when data_accessibility is scheduled_access; leave empty otherwise. */
     data_access_date?: date,
 }
 
