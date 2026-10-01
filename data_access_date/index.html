@@ -1488,7 +1488,7 @@
 
 
 <h1 id="slot-data-access-date-data_access_date">Slot: Data Access Date (data_access_date)</h1>
-<p><em>The date by when this dataset will be openly available on a public repository if it is not currently.</em></p>
+<p><em>The date by when this dataset will be openly available on a public repository. Only used when data_accessibility is scheduled_access; leave empty otherwise.</em></p>
 <p>URI: <a href="https://schema.oaedata.org/data_access_date">oae:data_access_date</a></p>
 <!-- no inheritance hierarchy -->
 
@@ -1508,13 +1508,13 @@
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../Dataset/">Dataset</a></td>
-<td>Abstract base class for all dataset types</td>
+<td><a href="../FieldDataset/">FieldDataset</a></td>
+<td>A field or observational dataset related to an OAE experiment</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../FieldDataset/">FieldDataset</a></td>
-<td>A field or observational dataset related to an OAE experiment</td>
+<td><a href="../Dataset/">Dataset</a></td>
+<td>Abstract base class for all dataset types</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -1550,8 +1550,8 @@
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data_access_date</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The date by when this dataset will be openly available on a public repository</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">if it is not currently.</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The date by when this dataset will be openly available on a public repository.</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">Only used when data_accessibility is scheduled_access; leave empty otherwise.</span>
 <span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Data Access Date</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.oaedata.org/OAEDataSchema</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>

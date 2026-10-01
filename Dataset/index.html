@@ -864,7 +864,7 @@
 <tr>
 <td><a href="../data_access_date/">data_access_date</a></td>
 <td>0..1 <br/> <a href="../Date/">Date</a></td>
-<td>The date by when this dataset will be openly available on a public repository...</td>
+<td>The date by when this dataset will be openly available on a public repository</td>
 <td>direct</td>
 </tr>
 </tbody>
@@ -1042,9 +1042,9 @@
 <span class="w">  </span><span class="nt">data_accessibility</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data_accessibility</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Level of access to this dataset. Open Access data are freely available</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">without restriction. Conditional Access data are available upon request, subject</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">to review. Scheduled Access data will become openly available after a specified</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">date.</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">now, without restriction. Conditional Access data are available upon request,</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">subject to review. Scheduled Access data will become openly available after</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">a specified date; choose it for any data that are not openly available yet.</span>
 <span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Data Accessibility</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dataset</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
@@ -1056,8 +1056,8 @@
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data_access_link</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">URL to access this dataset, if it is already archived or published</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">elsewhere. DOIs are preferred if available (e.g., https://doi.org/10.25921/xxxx-xxx).</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">Optional, and applicable for any accessibility type.</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Data access link</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">Required for open access, optional otherwise.</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Data Access Link</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dataset</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
@@ -1067,7 +1067,8 @@
 <span class="w">  </span><span class="nt">data_access_date</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data_access_date</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The date by when this dataset will be openly available on a public</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">repository if it is not currently.</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">repository. Only used when data_accessibility is scheduled_access; leave empty</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">otherwise.</span>
 <span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Data Access Date</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dataset</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
@@ -1092,17 +1093,11 @@
 <span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data_accessibility</span>
 <span class="w">        </span><span class="nt">equals_string</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">open_access</span>
 <span class="w">  </span><span class="nt">postconditions</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">any_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">slot_conditions</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">data_access_link</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data_access_link</span>
-<span class="w">          </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">slot_conditions</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">data_access_date</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data_access_date</span>
-<span class="w">          </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Open access datasets must provide a data access link or a data access</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">date.</span>
+<span class="w">    </span><span class="nt">slot_conditions</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">data_access_link</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data_access_link</span>
+<span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Datasets with open access must provide a data_access_link.</span>
 </code></pre></div>
 </details>
 <h3 id="induced">Induced</h3>
@@ -1235,9 +1230,9 @@
 <span class="w">  </span><span class="nt">data_accessibility</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data_accessibility</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Level of access to this dataset. Open Access data are freely available</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">without restriction. Conditional Access data are available upon request, subject</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">to review. Scheduled Access data will become openly available after a specified</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">date.</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">now, without restriction. Conditional Access data are available upon request,</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">subject to review. Scheduled Access data will become openly available after</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">a specified date; choose it for any data that are not openly available yet.</span>
 <span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Data Accessibility</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dataset</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
@@ -1251,8 +1246,8 @@
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data_access_link</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">URL to access this dataset, if it is already archived or published</span>
 <span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">elsewhere. DOIs are preferred if available (e.g., https://doi.org/10.25921/xxxx-xxx).</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">Optional, and applicable for any accessibility type.</span>
-<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Data access link</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">Required for open access, optional otherwise.</span>
+<span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Data Access Link</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dataset</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data_access_link</span>
@@ -1264,7 +1259,8 @@
 <span class="w">  </span><span class="nt">data_access_date</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data_access_date</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The date by when this dataset will be openly available on a public</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">repository if it is not currently.</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">repository. Only used when data_accessibility is scheduled_access; leave empty</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">otherwise.</span>
 <span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Data Access Date</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Dataset</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
@@ -1396,17 +1392,11 @@
 <span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data_accessibility</span>
 <span class="w">        </span><span class="nt">equals_string</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">open_access</span>
 <span class="w">  </span><span class="nt">postconditions</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">any_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">slot_conditions</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">data_access_link</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data_access_link</span>
-<span class="w">          </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">slot_conditions</span><span class="p">:</span>
-<span class="w">        </span><span class="nt">data_access_date</span><span class="p">:</span>
-<span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data_access_date</span>
-<span class="w">          </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Open access datasets must provide a data access link or a data access</span>
-<span class="w">    </span><span class="l l-Scalar l-Scalar-Plain">date.</span>
+<span class="w">    </span><span class="nt">slot_conditions</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">data_access_link</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data_access_link</span>
+<span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Datasets with open access must provide a data_access_link.</span>
 </code></pre></div>
 </details>
 </article>

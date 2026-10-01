@@ -21,7 +21,7 @@
     
     
       
-        <title>Slot: Data access link (data_access_link) - OAE Data Protocol: Schema Documentation</title>
+        <title>Slot: Data Access Link (data_access_link) - OAE Data Protocol: Schema Documentation</title>
       
     
     
@@ -99,7 +99,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Slot: Data access link (data_access_link)
+              Slot: Data Access Link (data_access_link)
             
           </span>
         </div>
@@ -1487,8 +1487,8 @@
   
 
 
-<h1 id="slot-data-access-link-data_access_link">Slot: Data access link (data_access_link)</h1>
-<p><em>URL to access this dataset, if it is already archived or published elsewhere. DOIs are preferred if available (e.g., https://doi.org/10.25921/xxxx-xxx). Optional, and applicable for any accessibility type.</em></p>
+<h1 id="slot-data-access-link-data_access_link">Slot: Data Access Link (data_access_link)</h1>
+<p><em>URL to access this dataset, if it is already archived or published elsewhere. DOIs are preferred if available (e.g., https://doi.org/10.25921/xxxx-xxx). Required for open access, optional otherwise.</em></p>
 <p>URI: <a href="https://schema.oaedata.org/data_access_link">oae:data_access_link</a></p>
 <!-- no inheritance hierarchy -->
 
@@ -1508,13 +1508,13 @@
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../Dataset/">Dataset</a></td>
-<td>Abstract base class for all dataset types</td>
+<td><a href="../FieldDataset/">FieldDataset</a></td>
+<td>A field or observational dataset related to an OAE experiment</td>
 <td>no</td>
 </tr>
 <tr>
-<td><a href="../FieldDataset/">FieldDataset</a></td>
-<td>A field or observational dataset related to an OAE experiment</td>
+<td><a href="../Dataset/">Dataset</a></td>
+<td>Abstract base class for all dataset types</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -1556,9 +1556,9 @@
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data_access_link</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">URL to access this dataset, if it is already archived or published elsewhere.</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">DOIs are preferred if available (e.g., https://doi.org/10.25921/xxxx-xxx). Optional,</span>
-<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">and applicable for any accessibility type.</span>
-<span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Data access link</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">DOIs are preferred if available (e.g., https://doi.org/10.25921/xxxx-xxx). Required</span>
+<span class="w">  </span><span class="l l-Scalar l-Scalar-Plain">for open access, optional otherwise.</span>
+<span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Data Access Link</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.oaedata.org/OAEDataSchema</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data_access_link</span>

@@ -746,7 +746,7 @@ enums:
     permissible_values:
       open_access:
         text: open_access
-        description: Data are freely available without restriction.
+        description: Data are freely available now, without restriction.
         title: Open Access
       conditional_access:
         text: conditional_access
@@ -4167,9 +4167,9 @@ slots:
   dataset__data_accessibility:
     name: dataset__data_accessibility
     description: Level of access to this dataset. Open Access data are freely available
-      without restriction. Conditional Access data are available upon request, subject
-      to review. Scheduled Access data will become openly available after a specified
-      date.
+      now, without restriction. Conditional Access data are available upon request,
+      subject to review. Scheduled Access data will become openly available after
+      a specified date; choose it for any data that are not openly available yet.
     title: Data Accessibility
     from_schema: Dataset
     slot_uri: oae:data_accessibility
@@ -4183,8 +4183,8 @@ slots:
     name: dataset__data_access_link
     description: URL to access this dataset, if it is already archived or published
       elsewhere. DOIs are preferred if available (e.g., https://doi.org/10.25921/xxxx-xxx).
-      Optional, and applicable for any accessibility type.
-    title: Data access link
+      Required for open access, optional otherwise.
+    title: Data Access Link
     from_schema: Dataset
     slot_uri: oae:data_access_link
     alias: data_access_link
@@ -4196,7 +4196,8 @@ slots:
   dataset__data_access_date:
     name: dataset__data_access_date
     description: The date by when this dataset will be openly available on a public
-      repository if it is not currently.
+      repository. Only used when data_accessibility is scheduled_access; leave empty
+      otherwise.
     title: Data Access Date
     from_schema: Dataset
     slot_uri: oae:data_access_date
@@ -9437,9 +9438,10 @@ classes:
       data_accessibility:
         name: data_accessibility
         description: Level of access to this dataset. Open Access data are freely
-          available without restriction. Conditional Access data are available upon
-          request, subject to review. Scheduled Access data will become openly available
-          after a specified date.
+          available now, without restriction. Conditional Access data are available
+          upon request, subject to review. Scheduled Access data will become openly
+          available after a specified date; choose it for any data that are not openly
+          available yet.
         title: Data Accessibility
         range: DataAccessibility
         required: true
@@ -9447,14 +9449,15 @@ classes:
         name: data_access_link
         description: URL to access this dataset, if it is already archived or published
           elsewhere. DOIs are preferred if available (e.g., https://doi.org/10.25921/xxxx-xxx).
-          Optional, and applicable for any accessibility type.
-        title: Data access link
+          Required for open access, optional otherwise.
+        title: Data Access Link
         range: uri
         pattern: ^https?://.+
       data_access_date:
         name: data_access_date
         description: The date by when this dataset will be openly available on a public
-          repository if it is not currently.
+          repository. Only used when data_accessibility is scheduled_access; leave
+          empty otherwise.
         title: Data Access Date
         range: date
     class_uri: oae:Dataset
@@ -9476,17 +9479,11 @@ classes:
             name: data_accessibility
             equals_string: open_access
       postconditions:
-        any_of:
-        - slot_conditions:
-            data_access_link:
-              name: data_access_link
-              required: true
-        - slot_conditions:
-            data_access_date:
-              name: data_access_date
-              required: true
-      description: Open access datasets must provide a data access link or a data
-        access date.
+        slot_conditions:
+          data_access_link:
+            name: data_access_link
+            required: true
+      description: Datasets with open access must provide a data_access_link.
   FieldDataset:
     name: FieldDataset
     definition_uri: https://schema.oaedata.org/FieldDataset
@@ -10644,7 +10641,7 @@ classes:
     class_uri: oae:ContinuousStandardGas
 metamodel_version: 1.7.0
 source_file: oae_data_protocol.yaml
-source_file_date: '2026-10-01T20:06:00'
+source_file_date: '2026-10-01T20:06:49'
 source_file_size: 1743
-generation_date: '2026-10-01T20:06:12'
+generation_date: '2026-10-01T20:07:01'
 
