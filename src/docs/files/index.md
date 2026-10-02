@@ -5,9 +5,6 @@ producing consistent data and metadata across Ocean Alkalinity Enhancement proje
 
 This site serves as the technical documentation for the machine-readable schemas that turn those recommendations into something software systems can validate and exchange.
 
-!!! warning "Alpha Software"
-    These schemas are under active development. We do not currently guarantee backwards compatibility between versions.
-
 ## What is this?
 
 The OAE Data Protocol is a structured approach to collecting, documenting, and sharing data from ocean alkalinity enhancement field trials and related experiments. This site provides the technical schema documentation — browse the class hierarchy, controlled vocabularies, and field definitions that make up the protocol's metadata model.
