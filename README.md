@@ -11,12 +11,11 @@ To write a metadata file, use the [OAE Metadata Builder](https://metadata.oaedat
 through each section and exports JSON that validates against these schemas. The Excel templates
 from the protocol's v1.0 launch (August 25, 2025) are in [`templates/excel`](./templates/excel).
 
-## Status and versioning
+## Versioning
 
-The schemas are pre-1.0 and still changing. Each release is tagged (`v0.5.0`) with notes on
-[GitHub Releases](https://github.com/submarine-mrv/oae-data-protocol/releases). Until 1.0, a minor
-version bump means a breaking change: metadata valid under the previous version may not validate.
-The version is the `version` field of `oae_data_protocol.yaml` and of the generated JSON Schema.
+Each release is tagged (`v0.5.0`) with notes on
+[GitHub Releases](https://github.com/submarine-mrv/oae-data-protocol/releases). The version is the
+`version` field of `oae_data_protocol.yaml` and of the generated JSON Schema.
 
 ## Generated artifacts
 
