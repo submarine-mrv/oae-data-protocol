@@ -9,7 +9,7 @@
 tmp/
 project/*
 !project/README.md
-# Tracked generated artifacts: consumed by oae-form (`make schema`) and docs
+# Tracked generated artifacts: consumed by oae-metadata-builder (`make schema`) and docs
 !project/jsonschema/
 !project/typescript/
 

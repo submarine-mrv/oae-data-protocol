@@ -68,7 +68,7 @@ The project uses LinkML (Linked Data Modeling Language) with a modular schema ar
 
 - `src/oae_data_protocol/datamodel/` - Generated Pydantic model from LinkML schemas
 - `project/` - Generated project files (JSON Schema, TypeScript)
-- `project/jsonschema/oae_data_protocol.schema.json` - Main JSON Schema (consumed by oae-form)
+- `project/jsonschema/oae_data_protocol.schema.json` - Main JSON Schema (consumed by oae-metadata-builder)
 - `project/jsonschema/oae_data_protocol.validation.schema.json` - Validation schema with polymorphism support
 - `docs/` - Generated documentation site (gitignored; rebuilt by `just gen-doc`)
 
@@ -89,7 +89,7 @@ The project uses LinkML (Linked Data Modeling Language) with a modular schema ar
 
 Versioning: the schema's semantic version is declared as `version:` in
 `oae_data_protocol.yaml` and flows into the JSON Schema as the root `version`
-field (consumed by oae-form). The Python package version is separate and derived
+field (consumed by oae-metadata-builder). The Python package version is separate and derived
 from git tags via uv-dynamic-versioning. There is no committed VERSION file and
 no version-injection step; bump `version:` in the schema and tag the release.
 
@@ -137,7 +137,7 @@ Things that rot silently — grep for these whenever the variable or dataset mod
 - **Hard-coded counts** ("the 18 concrete variable classes").
 - Renamed or removed slots: `grep -rn '<old_slot_name>' src/docs/files/`.
 
-If the change affects what the metadata builder renders, audit `oae-form/docs/` too.
+If the change affects what the metadata builder renders, audit oae-metadata-builder's `docs/` too.
 
 ### Commits
 - Don't commit unless explicitly asked
