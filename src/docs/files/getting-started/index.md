@@ -1,40 +1,21 @@
 # Getting Started
 
-## The OAE Data Protocol
+## New to the protocol?
 
-The [OAE Data Management Protocol](https://www.carbontosea.org/oae-data-protocol) is a set of guidelines for
-collecting, documenting, and sharing data from ocean alkalinity enhancement research. It covers:
+Start with the [protocol website](https://www.carbontosea.org/oae-data-protocol) on Carbon To Sea.
+It covers the guidelines behind this schema, including
+[controlled vocabularies](https://www.carbontosea.org/oae-data-protocol#controlled-vocabularies) and
+[recommended column header names](https://www.carbontosea.org/oae-data-protocol#column-header-names).
 
-- What metadata to include with your data submissions
-- Recommended column header names for data files
-- Controlled vocabularies for consistent terminology
-- Guidelines for quality control documentation
+## Creating a metadata file
 
-!!! info "New to the OAE Data Protocol?"
-    If you're new to the protocol and want to learn about its guidelines and recommendations before diving into the technical schema, start with the [protocol website](https://www.carbontosea.org/oae-data-protocol) on Carbon To Sea. It includes the full guidelines, [controlled vocabularies](https://www.carbontosea.org/oae-data-protocol#controlled-vocabularies), and [recommended column header names](https://www.carbontosea.org/oae-data-protocol#column-header-names).
+Use the **[OAE Metadata Builder](https://metadata.oaedata.org)**. It has a form for each part of the
+schema and exports a JSON file that validates against it. See [Metadata Builder](../metadata-builder.md).
 
-## The OAE Data Schema
+## Working with metadata files
 
-This site is the technical reference for the protocol's machine-readable schema — the formal data model that defines how OAE metadata is structured, validated, and exchanged. Use it to:
-
-- Understand the [variable class hierarchy](../Variables/) and how to describe different measurement types
-- Look up required fields for [experiments](../projects-experiments/), [datasets](../Datasets/), and [instruments](../instruments-calibration/)
-- Browse [controlled vocabularies](../vocabularies.md) used across the protocol
-- Reference the [full schema index](../OAEDataSchema.md) for every class, slot, and enum
-
-The schema generates [JSON Schema](https://github.com/submarine-mrv/oae-data-protocol/blob/main/project/jsonschema/oae_data_protocol.validation.schema.json) for validation, [Python dataclasses](https://github.com/submarine-mrv/oae-data-protocol/blob/main/src/oae_data_protocol/datamodel/oae_data_protocol.py) for programmatic access, and a [JSON-LD context](https://schema.oaedata.org/context.jsonld) for linked data compatibility.
-
-## Creating Metadata
-
-The easiest way to create metadata is with the **[OAE Metadata Builder](https://metadata.oaedata.org)** — a web app that walks you through each section and exports a valid JSON file. See the [Metadata Builder](../metadata-builder.md) page for details.
-
-## Working with Metadata Files
-
-Metadata files are JSON documents that follow the [Container format](../metadata-format.md). You can:
-
-- **Create** them using the Metadata Builder or programmatically
-- **Validate** them against the [JSON Schema](https://github.com/submarine-mrv/oae-data-protocol/blob/main/project/jsonschema/oae_data_protocol.validation.schema.json)
-- **Import** them back into the Metadata Builder for editing
-- **Submit** them alongside your data files
-
-See [Metadata File Format](../metadata-format.md) for the full specification.
+A metadata file is a JSON document with one project, its experiments and its datasets. The
+[Metadata File Format](../metadata-format.md) page covers its structure, a complete example and how to
+validate a file. To work with files in code, use the
+[JSON Schema](https://github.com/submarine-mrv/oae-data-protocol/blob/main/project/jsonschema/oae_data_protocol.validation.schema.json)
+or the [Pydantic models](https://github.com/submarine-mrv/oae-data-protocol/blob/main/src/oae_data_protocol/datamodel/oae_data_protocol_pydantic.py).
