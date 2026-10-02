@@ -62,7 +62,7 @@ classes:
         required: true
 
   # pH Calibration with dye information
-  pHCalibration:
+  PHCalibration:
     description: >-
       pH instrument calibration with dye information.
     is_a: Calibration

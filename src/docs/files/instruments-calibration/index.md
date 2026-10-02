@@ -1,6 +1,9 @@
 # Instruments & Calibration
 
-Measured variables require metadata about the instruments used for analysis and their calibration history. The protocol uses a type-safe hierarchy: each chemistry-specific variable class is paired with an instrument type that enforces the correct calibration schema.
+Measured variables describe the instrument that analyzed them, in `analyzing_instrument`, and how that
+instrument was calibrated. Some variable classes require a specific instrument type, and each
+instrument type requires its own calibration type, so the right calibration fields come with the
+variable.
 
 ## Instrument Hierarchy
 
@@ -10,78 +13,50 @@ graph TD
     AI --> PHI["PHInstrument"]
     AI --> CRMI["CRMInstrument"]
     AI --> CO2D["CO2GasDetector"]
+    CO2D --> CCO2D["ContinuousCO2GasDetector"]
 
-    PHI -->|calibration| PHC["pHCalibration"]
+    AI -->|calibration| C["Calibration"]
+    PHI -->|calibration| PHC["PHCalibration"]
     CRMI -->|calibration| CRMC["CRMCalibration"]
-    CO2D -->|calibration| CO2C["CO2Calibration"]
+    CO2D -->|calibration| DCO2C["DiscreteCO2Calibration"]
+    CCO2D -->|calibration| CCO2C["ContinuousCO2Calibration"]
 
     style AI fill:#e0e8f0
     style PHI fill:#d0d8e0
     style CRMI fill:#d0d8e0
     style CO2D fill:#d0d8e0
+    style CCO2D fill:#d0d8e0
+    style C fill:#f0e8d0
     style PHC fill:#f0e8d0
     style CRMC fill:#f0e8d0
-    style CO2C fill:#f0e8d0
+    style DCO2C fill:#f0e8d0
+    style CCO2C fill:#f0e8d0
 ```
 
-| Instrument | Used By | Calibration Type |
-|-----------|---------|-----------------|
-| `AnalyzingInstrument` | Generic measured variables | Base `Calibration` |
-| `PHInstrument` | pH variables | `pHCalibration` (dye info) |
-| `CRMInstrument` | TA and DIC variables | `CRMCalibration` (CRM batch info) |
-| `CO2GasDetector` | CO₂ variables | `CO2Calibration` (standard gas info) |
+## Which Instrument Each Variable Uses
 
-## Calibration Fields
+| Variable class | Instrument | Calibration |
+|----------------|------------|-------------|
+| [DiscretePHVariable](../DiscretePHVariable.md) | [PHInstrument](../PHInstrument.md) | [PHCalibration](../PHCalibration.md): indicator dye |
+| [DiscreteTAVariable](../DiscreteTAVariable.md), [DiscreteDICVariable](../DiscreteDICVariable.md) | [CRMInstrument](../CRMInstrument.md) | [CRMCalibration](../CRMCalibration.md): certified reference material |
+| [DiscreteCO2Variable](../DiscreteCO2Variable.md) | [CO2GasDetector](../CO2GasDetector.md) | [DiscreteCO2Calibration](../DiscreteCO2Calibration.md): standard gases |
+| [ContinuousCO2Variable](../ContinuousCO2Variable.md) | [ContinuousCO2GasDetector](../ContinuousCO2GasDetector.md) | [ContinuousCO2Calibration](../ContinuousCO2Calibration.md): standard gases |
+| All other measured variables, including continuous pH, TA and DIC | [AnalyzingInstrument](../AnalyzingInstrument.md) | [Calibration](../Calibration.md) |
 
-All calibrations share a common set of fields:
+## Example
 
-| Field | Description |
-|-------|-------------|
-| `technique_description` | How the instrument was calibrated |
-| `calibration_location` | Factory, lab, or field |
-| `frequency` | How often calibration is performed |
-| `last_calibration_date` | Most recent calibration |
-| `method_reference` | Citation for the calibration method |
+A discrete pH variable's `analyzing_instrument`:
 
-### pH Calibration
-
-Adds dye-specific fields for spectrophotometric pH measurement:
-
-- Dye type and manufacturer
-- Whether the dye was purified
-- Correction method for unpurified dye
-- pH of calibration standards
-
-### CRM Calibration
-
-Adds Certified Reference Material fields for TA and DIC:
-
-- CRM manufacturer (e.g., Dickson lab)
-- CRM batch number
-
-### CO₂ Calibration
-
-Adds standard gas fields for CO₂ gas detectors:
-
-- Standard gas manufacturer, concentration, and uncertainty
-
-## How Variables Link to Instruments
-
-The `analyzing_instrument` field on measured variables is automatically constrained to the correct instrument type based on the variable class:
-
+<!-- validate: PHInstrument -->
 ```json
 {
-  "schema_class": "DiscretePHVariable",
-  "analyzing_instrument": {
-    "instrument_type": "spectrophotometer",
-    "manufacturer": "Agilent",
-    "calibration": {
-      "technique_description": "Tris buffer in synthetic seawater",
-      "calibration_location": "lab",
-      "dye_type_and_manufacturer": "Purified m-cresol purple, MCR Inc."
-    }
+  "instrument_type": "spectrophotometer",
+  "manufacturer": "Agilent",
+  "accuracy": "0.001 pH units",
+  "calibration": {
+    "technique_description": "Tris buffer in synthetic seawater",
+    "calibration_location": "lab",
+    "dye_type_and_manufacturer": "Purified m-cresol purple, MCR Inc."
   }
 }
 ```
-### Full Schemas
-→ [AnalyzingInstrument](../AnalyzingInstrument.md) · [Calibration](../Calibration.md) · [PHInstrument](../PHInstrument.md) · [CRMInstrument](../CRMInstrument.md) · [CO2GasDetector](../CO2GasDetector.md)
