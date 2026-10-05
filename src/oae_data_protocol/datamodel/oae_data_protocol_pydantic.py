@@ -1663,12 +1663,12 @@ class PHCalibration(Calibration):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Calibration'})
 
     calibration_temperature: Optional[str] = Field(default=None, title="Calibration temperature", description="""Temperature at which calibration was performed.""", json_schema_extra = { "linkml_meta": {'alias': 'calibration_temperature',
-         'domain_of': ['pHCalibration', 'DiscreteCO2Calibration']} })
-    dye_type_and_manufacturer: Optional[str] = Field(default=None, title="Type of dye and manufacturer information", description="""Type of indicator dye and any detailed information about it, e.g., its manufacturer.""", json_schema_extra = { "linkml_meta": {'alias': 'dye_type_and_manufacturer', 'domain_of': ['pHCalibration']} })
-    dye_purified: Optional[bool] = Field(default=None, title="Dye purified", description="""Whether the dye has been purified.""", json_schema_extra = { "linkml_meta": {'alias': 'dye_purified', 'domain_of': ['pHCalibration']} })
-    correction_for_unpurified_dye: Optional[str] = Field(default=None, title="Correction for unpurified dye", description="""Correction method applied if dye was not purified.""", json_schema_extra = { "linkml_meta": {'alias': 'correction_for_unpurified_dye', 'domain_of': ['pHCalibration']} })
-    dye_correction_method: Optional[str] = Field(default=None, title="Dye correction method", description="""Method used to correct for dye effects.""", json_schema_extra = { "linkml_meta": {'alias': 'dye_correction_method', 'domain_of': ['pHCalibration']} })
-    ph_of_standards: Optional[str] = Field(default=None, title="pH of standards", description="""pH values of the calibration standards used.""", json_schema_extra = { "linkml_meta": {'alias': 'ph_of_standards', 'domain_of': ['pHCalibration']} })
+         'domain_of': ['PHCalibration', 'DiscreteCO2Calibration']} })
+    dye_type_and_manufacturer: Optional[str] = Field(default=None, title="Type of dye and manufacturer information", description="""Type of indicator dye and any detailed information about it, e.g., its manufacturer.""", json_schema_extra = { "linkml_meta": {'alias': 'dye_type_and_manufacturer', 'domain_of': ['PHCalibration']} })
+    dye_purified: Optional[bool] = Field(default=None, title="Dye purified", description="""Whether the dye has been purified.""", json_schema_extra = { "linkml_meta": {'alias': 'dye_purified', 'domain_of': ['PHCalibration']} })
+    correction_for_unpurified_dye: Optional[str] = Field(default=None, title="Correction for unpurified dye", description="""Correction method applied if dye was not purified.""", json_schema_extra = { "linkml_meta": {'alias': 'correction_for_unpurified_dye', 'domain_of': ['PHCalibration']} })
+    dye_correction_method: Optional[str] = Field(default=None, title="Dye correction method", description="""Method used to correct for dye effects.""", json_schema_extra = { "linkml_meta": {'alias': 'dye_correction_method', 'domain_of': ['PHCalibration']} })
+    ph_of_standards: Optional[str] = Field(default=None, title="pH of standards", description="""pH values of the calibration standards used.""", json_schema_extra = { "linkml_meta": {'alias': 'ph_of_standards', 'domain_of': ['PHCalibration']} })
     calibration_location: Optional[CalibrationLocation] = Field(default=None, title="Calibration location", description="""Factory calibration, lab calibration, or field calibration.""", json_schema_extra = { "linkml_meta": {'alias': 'calibration_location', 'domain_of': ['Calibration']} })
     technique_description: str = Field(default=..., title="Calibration technique description", description="""Details of the calibration technique used.""", json_schema_extra = { "linkml_meta": {'alias': 'technique_description', 'domain_of': ['Calibration']} })
     method_reference: Optional[str] = Field(default=None, title="Calibration method reference", description="""Citation or reference for the calibration method.""", json_schema_extra = { "linkml_meta": {'alias': 'method_reference', 'domain_of': ['Calibration', 'InSituVariable']} })
@@ -1700,7 +1700,7 @@ class DiscreteCO2Calibration(CO2Calibration):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Calibration'})
 
     calibration_temperature: Optional[str] = Field(default=None, title="Calibration temperature", description="""Temperature at which calibration was performed.""", json_schema_extra = { "linkml_meta": {'alias': 'calibration_temperature',
-         'domain_of': ['pHCalibration', 'DiscreteCO2Calibration']} })
+         'domain_of': ['PHCalibration', 'DiscreteCO2Calibration']} })
     standard_gas_info: Optional[StandardGas] = Field(default=None, title="Standard gas information", description="""Standard gases used for calibration.""", json_schema_extra = { "linkml_meta": {'alias': 'standard_gas_info',
          'domain_of': ['CO2Calibration', 'ContinuousCO2Calibration']} })
     calibration_location: Optional[CalibrationLocation] = Field(default=None, title="Calibration location", description="""Factory calibration, lab calibration, or field calibration.""", json_schema_extra = { "linkml_meta": {'alias': 'calibration_location', 'domain_of': ['Calibration']} })

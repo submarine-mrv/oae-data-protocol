@@ -4,7 +4,7 @@ The OAE Data Schema is open source and developed collaboratively. We welcome con
 
 ## How the Schema is Built
 
-The schema is written in [LinkML](https://linkml.io) (Linked Data Modeling Language), a framework designed for scientific data standards. LinkML lets us maintain a single source of truth that generates JSON Schema, Python dataclasses, documentation, and linked data artifacts — all from the same set of YAML definitions.
+The schema is written in [LinkML](https://linkml.io) (Linked Data Modeling Language), a framework designed for scientific data standards. LinkML lets us keep one set of YAML definitions and generate JSON Schema, Python models, these docs and linked data artifacts from it.
 
 The source code is on GitHub: **[submarine-mrv/oae-data-protocol](https://github.com/submarine-mrv/oae-data-protocol)**
 
@@ -25,7 +25,7 @@ The scientific data standards landscape is large and complex. No single schema c
 Some projects and data standards initiatives that we actively seek alignment with are:
 
 - **[NOAA OCADS / OAPMetadata](https://github.com/NOAA-PMEL/OAPMetadata)** — Our variable and instrument class hierarchy is modeled after NOAA-PMEL's OAPMetadata XSD schema, ensuring compatibility with the [Ocean Carbon and Acidification Data System](https://www.ncei.noaa.gov/products/ocean-carbon-acidification-data-system) at NCEI.
-- **[NERC Vocabulary Server](https://vocab.nerc.ac.uk/)** — We use NERC SKOS vocabularies for sea names (C16), platform types (L06), instrument types (L05/L22), and standard variable identifiers (P01).
+- **[NERC Vocabulary Server](https://vocab.nerc.ac.uk/)** — We use NERC SKOS vocabularies for sea names (C16), platform types (L06), instrument types (L05, L22, B75), and standard variable identifiers such as P01 and the P07 CF standard names.
 - **[CF Conventions](https://cfconventions.org/)** — For netCDF datasets, we encourage alignment with CF Standard Names and related conventions.
 - **[science-on-schema.org](https://science-on-schema.org/)** — Many general purpose fields in our schema (Person, Place, Organization) map to Schema.org terms to support dataset discoverability through standardized web metadata.
 
@@ -33,18 +33,8 @@ If you work with a data standard, vocabulary, or ontology that you think the pro
 
 ## Development
 
-To work with the schema locally:
-
-```bash
-git clone https://github.com/submarine-mrv/oae-data-protocol.git
-cd oae-data-protocol
-just install        # Install dependencies via uv
-just gen-all        # Generate all schema artifacts
-just test           # Run validation tests
-just testdoc        # Preview documentation locally
-```
-
-See the [repository README](https://github.com/submarine-mrv/oae-data-protocol) for full development setup instructions.
+To work on the schema locally, follow the setup in the
+[repository README](https://github.com/submarine-mrv/oae-data-protocol#development).
 
 ---
 

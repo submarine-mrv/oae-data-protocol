@@ -47,8 +47,8 @@ graph LR
     classDef concrete fill:#e0e8f0,stroke:#4F656A
     classDef leaf fill:#d0e8d0,stroke:#4F656A
     class V,FV,ISV,MV abstract
-    class NMV,MOV,SEV,CV,DPH,CPH concrete
-    class DM,CM leaf
+    class DM,CM concrete
+    class NMV,MOV,SEV,CV,DPH,CPH leaf
 ```
 
 This hierarchy aims to align with [NOAA-PMEL's OAPMetadata](https://github.com/NOAA-PMEL/OAPMetadata) XSD schema to make
@@ -57,45 +57,17 @@ their data, whether they be other ocean data repositories, and generalist reposi
 
 ## Choosing a Variable Type
 
-Every variable in a **field dataset** requires three selections that determine which schema class is
-used. Variables in a **model output dataset** use the
+In a **field dataset**, three fields decide each variable's class. Variables in a **model output
+dataset** use the
 [ModelOutputVariable](../ModelOutputVariable.md) class and are classified with the separate
 [ModelVariableType](../ModelVariableType.md) enum. See [Model Output Variables](#model-output-variables) below.
 
-### 1. Variable Type (`variable_type`)
-
-What kind of measurement is this?
-
-| Value | Description                | Examples |
-|-------|----------------------------|---------|
-| `pH` | pH measurement             | pH on total scale, NBS scale |
-| `ta` | Total alkalinity           | TA from titration |
-| `dic` | Dissolved inorganic carbon | DIC from coulometry |
-| `co2` | CO₂ measurement variables  | pCO₂, fCO₂, xCO₂ |
-| `sediment` | Sediment variable          | Sediment core measurements |
-| `hplc` | HPLC pigments              | Chlorophyll, carotenoids |
-| `physiological` | Physiological response | Organism growth rates, calcification |
-| `socioeconomic` | Social/economic data   | Survey responses, ecosystem valuations |
-| `other` | Generic variable           | Temperature, salinity, nutrients |
-| `non_measured` | Contextual data            | Station ID, timestamps, coordinates |
-
-### 2. Genesis (`genesis`)
-
-How was this variable produced? (Not applicable for `non_measured`)
-
-| Value | Description |
-|-------|-------------|
-| `measured` | Directly measured by an instrument |
-| `calculated` | Derived from other variables (e.g., CO₂ from pH + DIC) |
-
-### 3. Sampling (`sampling`)
-
-How were measurements collected? (Only for `measured` genesis)
-
-| Value | Description |
-|-------|-------------|
-| `discrete` | Bottle samples, grab samples |
-| `continuous` | Autonomous sensors, underway systems |
+- **`variable_type`**: what kind of measurement it is. See [VariableType](../VariableType.md) for the
+  values.
+- **`genesis`**: whether it was `measured` by an instrument or `calculated` from other variables. Not
+  used for `non_measured` variables.
+- **`sampling`**: for measured variables, `discrete` (bottle or grab samples) or `continuous`
+  (sensors, underway systems).
 
 ### Selection → Schema Class Mapping
 
@@ -122,39 +94,16 @@ How were measurements collected? (Only for `measured` genesis)
 
 ## What Each Level Adds
 
-### All Variables
+Each class adds fields to the one above it. The class pages list them in full.
 
-Every variable has these basic fields:
-
-- `schema_class` — identifies which class this variable is (auto-set)
-- `variable_type` — the high-level classification
-- `dataset_variable_name` — column header name in the data file
-- `long_name` — full descriptive name
-- `standard_identifier` — reference to a community vocabulary (e.g., NERC P01)
-
-### InSituVariable (measured or calculated)
-
-Adds project-acquired data fields:
-
-- `units` (required)
-- `genesis` — measured or calculated
-- `method_reference` — citation for the method used
-- `measurement_researcher` — the individual who measured/derived this parameter
-
-### MeasuredVariable
-
-Adds instrument and sampling fields:
-
-- `sampling_method`, `analyzing_method` — how samples were collected and analyzed
-- `sampling`, `observation_type` — discrete/continuous, profile/underway/etc.
-- `analyzing_instrument` — instrument details with calibration
-- QC fields: `uncertainty`, `qc_steps_taken`, `missing_value_indicators`
-
-### CalculatedVariable
-
-Adds calculation provenance:
-
-- `calculation_method_and_parameters` — software, input variables, constants used
+- **[Variable](../Variable.md)**: what every variable has, such as its column name in the data file,
+  a descriptive name and an optional reference to a community vocabulary.
+- **[InSituVariable](../InSituVariable.md)**: data the project collected or derived: units, how it was
+  produced and who produced it.
+- **[MeasuredVariable](../MeasuredVariable.md)**: how samples were taken and analyzed, the analyzing
+  instrument with its [calibration](../instruments-calibration/index.md), and quality control.
+- **[CalculatedVariable](../CalculatedVariable.md)**: how the value was calculated, including software,
+  inputs and constants.
 
 ## Model Output Variables
 
@@ -164,15 +113,7 @@ Variables in a [ModelOutputDataset](../ModelOutputDataset.md) are described by a
 sampling, instrument, calibration or in-situ QC metadata that field-collected variables do. How the
 output was produced is described by the simulation configuration on the parent dataset.
 
-A `ModelOutputVariable` has only:
-
-- `variable_type` — a [ModelVariableType](../ModelVariableType.md) value (required)
-- `long_name`, `dataset_variable_name`, `units` (all required)
-- `standard_identifier` — optional reference to a community vocabulary
-
-See [ModelVariableType](../ModelVariableType.md) for the current list of values and their descriptions.
-
-### Type-Specific Fields (Traits / Mixins)
+## Type-Specific Fields (Mixins)
 
 Many measured variables (either discrete or continuous) inherit additional fields based on their `variable_type` that are
 always present whether the specific variable is discrete or continuous. In these instances, we use LinkML's [mixin](https://linkml.io/linkml/schemas/inheritance.html#mixin-classes-and-slots)
