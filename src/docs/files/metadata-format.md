@@ -10,13 +10,30 @@ to get vocabulary values and field formats right by hand.
 
 ## The Container
 
-| Field | Contains |
-|-------|----------|
-| `project` | One [Project](Project.md) |
-| `experiments` | The project's [experiments](projects-experiments/index.md#experiments) |
-| `datasets` | The datasets those experiments produced, either [FieldDataset](FieldDataset.md) or [ModelOutputDataset](ModelOutputDataset.md) |
-| `version` | The schema version the file follows |
-| `protocol_git_hash`, `metadata_builder_git_hash` | Optional. The schema and Metadata Builder commits the file was made with |
+A Container is the top-level object in every metadata file. It wraps project metadata, experiment metadata, and dataset metadata into a single document:
+
+```json
+{
+  "@context": "https://schema.oaedata.org/context.jsonld",
+  "version": "0.5.0",
+  "protocol_git_hash": "abc123...",
+  "project": { ... },
+  "experiments": [ ... ],
+  "datasets": [ ... ]
+}
+```
+
+| Field | Description |
+|-------|-------------|
+| `@context` | JSON-LD context URL — makes the file interpretable as linked data |
+| `version` | Protocol schema version |
+| `protocol_git_hash` | Git hash of the schema used to generate this file |
+| `project` | A single [Project](Project.md) object |
+| `experiments` | Array of [Experiment](Experiment.md) objects |
+| `datasets` | Array of [Dataset](FieldDataset.md) objects |
+
+!!! tip "Linked Data"
+    The `@context` field is optional but recommended. It makes OAE metadata files valid [JSON-LD](https://json-ld.org/) documents, meaning they can be interpreted by linked data tools and semantic web infrastructure without any conversion. Standard JSON tools ignore the `@context` field, so it doesn't affect non JSON-LD workflows.
 
 ## How the Pieces Relate
 
@@ -34,7 +51,9 @@ A minimal file that validates against the schema:
 <!-- validate: Container -->
 ```json
 {
+  "@context": "https://schema.oaedata.org/context.jsonld",
   "version": "0.5.0",
+  "protocol_git_hash": "50d3904c...",
   "project": {
     "project_id": "EXAMPLE-001",
     "research_project": "North Atlantic OAE pilot",
