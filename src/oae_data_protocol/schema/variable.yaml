@@ -34,6 +34,9 @@ classes:
           Auto-populated by the metadata builder.
       standard_identifier:
         range: VocabularyItemReference
+        description: >-
+          A term from a community vocabulary that identifies this variable. CF standard names
+          (NERC P07) are recommended.
       dataset_variable_name:
         title: Dataset variable name
         description: >-

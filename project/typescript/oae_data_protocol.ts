@@ -1343,6 +1343,7 @@ export interface Variable {
     variable_type: string,
     /** The schema class name for this variable (e.g., "DiscretePHVariable"). Auto-populated by the metadata builder. */
     schema_class: string,
+    /** A term from a community vocabulary that identifies this variable. CF standard names (NERC P07) are recommended. */
     standard_identifier?: VocabularyItemReference,
     /** The name for the variable as it is identified in the dataset data file. This could be the column header in a CSV or the variable name in a NetCDF file. Standard common recommended column header names can be found in protocol documentation [here](https://www.carbontosea.org/oae-data-protocol/1-0-0/#column-header-name). */
     dataset_variable_name: string,
