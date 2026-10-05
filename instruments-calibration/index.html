@@ -619,66 +619,22 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#calibration-fields">
+<a class="md-nav__link" href="#which-instrument-each-variable-uses">
 <span class="md-ellipsis">
       
-        Calibration Fields
-      
-    </span>
-</a>
-<nav aria-label="Calibration Fields" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#ph-calibration">
-<span class="md-ellipsis">
-      
-        pH Calibration
+        Which Instrument Each Variable Uses
       
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#crm-calibration">
+<a class="md-nav__link" href="#example">
 <span class="md-ellipsis">
       
-        CRM Calibration
+        Example
       
     </span>
 </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#co2-calibration">
-<span class="md-ellipsis">
-      
-        CO₂ Calibration
-      
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#how-variables-link-to-instruments">
-<span class="md-ellipsis">
-      
-        How Variables Link to Instruments
-      
-    </span>
-</a>
-<nav aria-label="How Variables Link to Instruments" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#full-schemas">
-<span class="md-ellipsis">
-      
-        Full Schemas
-      
-    </span>
-</a>
-</li>
-</ul>
-</nav>
 </li>
 </ul>
 </nav>
@@ -688,124 +644,85 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="instruments-calibration">Instruments &amp; Calibration</h1>
-<p>Measured variables require metadata about the instruments used for analysis and their calibration history. The protocol uses a type-safe hierarchy: each chemistry-specific variable class is paired with an instrument type that enforces the correct calibration schema.</p>
+<p>Measured variables describe the instrument that analyzed them, in <code>analyzing_instrument</code>, and how that
+instrument was calibrated. Some variable classes require a specific instrument type, and each
+instrument type requires its own calibration type, so the right calibration fields come with the
+variable.</p>
 <h2 id="instrument-hierarchy">Instrument Hierarchy</h2>
 <pre class="mermaid"><code>graph TD
     AI["AnalyzingInstrument"]
     AI --&gt; PHI["PHInstrument"]
     AI --&gt; CRMI["CRMInstrument"]
     AI --&gt; CO2D["CO2GasDetector"]
+    CO2D --&gt; CCO2D["ContinuousCO2GasDetector"]
 
-    PHI --&gt;|calibration| PHC["pHCalibration"]
+    AI --&gt;|calibration| C["Calibration"]
+    PHI --&gt;|calibration| PHC["PHCalibration"]
     CRMI --&gt;|calibration| CRMC["CRMCalibration"]
-    CO2D --&gt;|calibration| CO2C["CO2Calibration"]
+    CO2D --&gt;|calibration| DCO2C["DiscreteCO2Calibration"]
+    CCO2D --&gt;|calibration| CCO2C["ContinuousCO2Calibration"]
 
     style AI fill:#e0e8f0
     style PHI fill:#d0d8e0
     style CRMI fill:#d0d8e0
     style CO2D fill:#d0d8e0
+    style CCO2D fill:#d0d8e0
+    style C fill:#f0e8d0
     style PHC fill:#f0e8d0
     style CRMC fill:#f0e8d0
-    style CO2C fill:#f0e8d0</code></pre>
+    style DCO2C fill:#f0e8d0
+    style CCO2C fill:#f0e8d0</code></pre>
+<h2 id="which-instrument-each-variable-uses">Which Instrument Each Variable Uses</h2>
 <table>
 <thead>
 <tr>
+<th>Variable class</th>
 <th>Instrument</th>
-<th>Used By</th>
-<th>Calibration Type</th>
+<th>Calibration</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>AnalyzingInstrument</code></td>
-<td>Generic measured variables</td>
-<td>Base <code>Calibration</code></td>
+<td><a href="../DiscretePHVariable/">DiscretePHVariable</a></td>
+<td><a href="../PHInstrument/">PHInstrument</a></td>
+<td><a href="../PHCalibration/">PHCalibration</a>: indicator dye</td>
 </tr>
 <tr>
-<td><code>PHInstrument</code></td>
-<td>pH variables</td>
-<td><code>pHCalibration</code> (dye info)</td>
+<td><a href="../DiscreteTAVariable/">DiscreteTAVariable</a>, <a href="../DiscreteDICVariable/">DiscreteDICVariable</a></td>
+<td><a href="../CRMInstrument/">CRMInstrument</a></td>
+<td><a href="../CRMCalibration/">CRMCalibration</a>: certified reference material</td>
 </tr>
 <tr>
-<td><code>CRMInstrument</code></td>
-<td>TA and DIC variables</td>
-<td><code>CRMCalibration</code> (CRM batch info)</td>
+<td><a href="../DiscreteCO2Variable/">DiscreteCO2Variable</a></td>
+<td><a href="../CO2GasDetector/">CO2GasDetector</a></td>
+<td><a href="../DiscreteCO2Calibration/">DiscreteCO2Calibration</a>: standard gases</td>
 </tr>
 <tr>
-<td><code>CO2GasDetector</code></td>
-<td>CO₂ variables</td>
-<td><code>CO2Calibration</code> (standard gas info)</td>
+<td><a href="../ContinuousCO2Variable/">ContinuousCO2Variable</a></td>
+<td><a href="../ContinuousCO2GasDetector/">ContinuousCO2GasDetector</a></td>
+<td><a href="../ContinuousCO2Calibration/">ContinuousCO2Calibration</a>: standard gases</td>
+</tr>
+<tr>
+<td>All other measured variables, including continuous pH, TA and DIC</td>
+<td><a href="../AnalyzingInstrument/">AnalyzingInstrument</a></td>
+<td><a href="../Calibration/">Calibration</a></td>
 </tr>
 </tbody>
 </table>
-<h2 id="calibration-fields">Calibration Fields</h2>
-<p>All calibrations share a common set of fields:</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>technique_description</code></td>
-<td>How the instrument was calibrated</td>
-</tr>
-<tr>
-<td><code>calibration_location</code></td>
-<td>Factory, lab, or field</td>
-</tr>
-<tr>
-<td><code>frequency</code></td>
-<td>How often calibration is performed</td>
-</tr>
-<tr>
-<td><code>last_calibration_date</code></td>
-<td>Most recent calibration</td>
-</tr>
-<tr>
-<td><code>method_reference</code></td>
-<td>Citation for the calibration method</td>
-</tr>
-</tbody>
-</table>
-<h3 id="ph-calibration">pH Calibration</h3>
-<p>Adds dye-specific fields for spectrophotometric pH measurement:</p>
-<ul>
-<li>Dye type and manufacturer</li>
-<li>Whether the dye was purified</li>
-<li>Correction method for unpurified dye</li>
-<li>pH of calibration standards</li>
-</ul>
-<h3 id="crm-calibration">CRM Calibration</h3>
-<p>Adds Certified Reference Material fields for TA and DIC:</p>
-<ul>
-<li>CRM manufacturer (e.g., Dickson lab)</li>
-<li>CRM batch number</li>
-</ul>
-<h3 id="co2-calibration">CO₂ Calibration</h3>
-<p>Adds standard gas fields for CO₂ gas detectors:</p>
-<ul>
-<li>Standard gas manufacturer, concentration, and uncertainty</li>
-</ul>
-<h2 id="how-variables-link-to-instruments">How Variables Link to Instruments</h2>
-<p>The <code>analyzing_instrument</code> field on measured variables is automatically constrained to the correct instrument type based on the variable class:</p>
+<h2 id="example">Example</h2>
+<p>A discrete pH variable's <code>analyzing_instrument</code>:</p>
+<!-- validate: PHInstrument -->
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">"schema_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DiscretePHVariable"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"analyzing_instrument"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"instrument_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spectrophotometer"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"manufacturer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Agilent"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"calibration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">"technique_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tris buffer in synthetic seawater"</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"calibration_location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lab"</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">"dye_type_and_manufacturer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Purified m-cresol purple, MCR Inc."</span>
-<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="nt">"instrument_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"spectrophotometer"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"manufacturer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Agilent"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"accuracy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001 pH units"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"calibration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"technique_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tris buffer in synthetic seawater"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"calibration_location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lab"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"dye_type_and_manufacturer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Purified m-cresol purple, MCR Inc."</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<h3 id="full-schemas">Full Schemas</h3>
-<p>→ <a href="../AnalyzingInstrument/">AnalyzingInstrument</a> · <a href="../Calibration/">Calibration</a> · <a href="../PHInstrument/">PHInstrument</a> · <a href="../CRMInstrument/">CRMInstrument</a> · <a href="../CO2GasDetector/">CO2GasDetector</a></p>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>

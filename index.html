@@ -282,17 +282,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-is-this" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What is this?
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#schema-scope" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1506,17 +1495,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-is-this" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What is this?
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#schema-scope" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1589,34 +1567,38 @@
 <h1 id="schema-documentation">Schema Documentation</h1>
 <p>The <a href="https://www.carbontosea.org/oae-data-protocol">OAE Data Management Protocol</a> outlines recommendations for
 producing consistent data and metadata across Ocean Alkalinity Enhancement projects, developed by <a href="https://carbontosea.org">Carbon To Sea</a> and <a href="https://submarine.earth">Submarine Scientific</a> in collaboration with NOAA and the broader OAE community.</p>
-<p>This site serves as the technical documentation for the machine-readable schemas that turn those recommendations into something software systems can validate and exchange.</p>
-<h2 id="what-is-this">What is this?</h2>
-<p>The OAE Data Protocol is a structured approach to collecting, documenting, and sharing data from ocean alkalinity enhancement field trials and related experiments. This site provides the technical schema documentation — browse the class hierarchy, controlled vocabularies, and field definitions that make up the protocol's metadata model.</p>
+<p>This site documents the machine-readable schema that turns those recommendations into metadata
+software can validate and exchange: the classes, fields and controlled vocabularies for OAE field
+trials, experiments and the data they produce.</p>
 <h2 id="schema-scope">Schema Scope</h2>
 <ul>
-<li><strong>Project</strong> — OAE field trials, leads, permits, spatial/temporal coverage</li>
-<li><strong>Experiment</strong> — Interventions, tracer studies, model experiments, dosing details</li>
-<li><strong>Dataset</strong> — Field datasets, model output datasets, platform info</li>
-<li><strong>Variables</strong> — Measured, calculated, and contextual field variables with instrument and calibration metadata, plus model output variables</li>
+<li><strong><a href="projects-experiments/">Project</a></strong>: the overall field trial or modeling effort, with its
+  leads, funding, site and coverage.</li>
+<li><strong><a href="projects-experiments/#experiments">Experiments</a></strong>: baseline, intervention, tracer and
+  model experiments, including dosing details.</li>
+<li><strong><a href="Datasets/">Datasets</a></strong>: field datasets and model output datasets.</li>
+<li><strong><a href="Variables/">Variables</a></strong>: each column in a dataset, with
+  <a href="instruments-calibration/">instrument and calibration</a> details for measured variables.</li>
 </ul>
-<p>For protocol requirements pertaining to general metadata management, excel metadata templates, dataset formatting, and
+<p>For protocol requirements on general metadata management, Excel templates, dataset formatting and
 column header names, see the <a href="https://www.carbontosea.org/oae-data-protocol">published protocol</a>.</p>
 <h3 id="published-artifacts-resources">Published Artifacts &amp; Resources</h3>
 <ul>
-<li><a href="https://metadata.oaedata.org">OAE Metadata Builder</a> — Web app for creating and managing JSON metadata files</li>
-<li><a href="https://github.com/submarine-mrv/oae-data-protocol/blob/main/project/jsonschema/oae_data_protocol.schema.json">JSON Schema</a> — Machine readable schemas used for validation</li>
-<li><a href="https://github.com/submarine-mrv/oae-data-protocol/tree/main/src/oae_data_protocol/schema">LinkML Source Schema</a> — The source of truth for generating all schema artifacts and documentation (contributors should only edit these files)</li>
-<li><a href="https://github.com/submarine-mrv/oae-data-protocol/blob/main/src/oae_data_protocol/datamodel/oae_data_protocol.py">Python Dataclasses</a> — For managing metadata directly in Python workflows (WIP)</li>
+<li><a href="https://metadata.oaedata.org">OAE Metadata Builder</a>: web app for creating and managing JSON metadata files</li>
+<li><a href="https://github.com/submarine-mrv/oae-data-protocol/blob/main/project/jsonschema/oae_data_protocol.validation.schema.json">JSON Schema</a>: for validating metadata files</li>
+<li><a href="https://github.com/submarine-mrv/oae-data-protocol/tree/main/src/oae_data_protocol/schema">LinkML source schema</a>: the source every other artifact and these docs are generated from</li>
+<li><a href="https://github.com/submarine-mrv/oae-data-protocol/blob/main/src/oae_data_protocol/datamodel/oae_data_protocol_pydantic.py">Pydantic models</a>: for working with metadata in Python</li>
+<li><a href="https://schema.oaedata.org/context.jsonld">JSON-LD context</a>: for reading metadata files as linked data</li>
 </ul>
 <h2 id="built-with-linkml-to-support-fair-data-practices">Built with LinkML to support FAIR data practices</h2>
 <p>The OAE Data Protocol schema is defined using <a href="https://linkml.io">LinkML</a>, a 'linked-data modeling language' that allows
 for data schemas to be authored as YAML files, integrating with external data standards and vocabularies, and output in
-a variety of machine-readable formats such as JSON Schema, Python dataclasses, and documentation.</p>
+a variety of machine-readable formats such as JSON Schema, Python models and documentation.</p>
 <p>One of the primary features of LinkML is the ability to support <a href="https://www.w3.org/RDF/">RDF</a> &amp;
 <a href="https://json-ld.org">JSON-LD</a> mappings and serialization for improved interoperability with existing data standards.
 Where applicable, this project strives to align with existing scientific data standards (such as <a href="https://science-on-schema.org">science-on-schema.org</a>, or controlled vocabularies hosted on <a href="http://vocab.nerc.ac.uk">NERC Vocabulary Server</a>).</p>
 <p>As the OAE Data Protocol has been developed in close collaboration with NOAA and the OCADS team, several parts of this
-schema (the Variable class and subclasses in particular) aim to align closely with with <a href="https://github.com/NOAA-PMEL/OAPMetadata">NOAA-PMEL's OAPMetadata</a> XSD schemas.</p>
+schema (the Variable class and subclasses in particular) aim to align closely with <a href="https://github.com/NOAA-PMEL/OAPMetadata">NOAA-PMEL's OAPMetadata</a> XSD schemas.</p>
 <h2 id="questions-or-feedback">Questions or Feedback?</h2>
 <p>Visit the <a href="https://github.com/submarine-mrv/oae-data-protocol">GitHub repository</a> or contact <a href="mailto:data@carbontosea.org">data@carbontosea.org</a>.</p>
 <hr />

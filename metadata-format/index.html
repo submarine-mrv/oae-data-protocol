@@ -403,10 +403,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#example-minimal-metadata-file" class="md-nav__link">
+  <a href="#example" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example: Minimal Metadata File
+        Example
       
     </span>
   </a>
@@ -414,10 +414,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#creating-metadata" class="md-nav__link">
+  <a href="#validating-a-file" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Creating Metadata
+        Validating a File
       
     </span>
   </a>
@@ -425,21 +425,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validating-metadata" class="md-nav__link">
+  <a href="#json-ld" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validating Metadata
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#json-ld-context" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        JSON-LD Context
+        JSON-LD
       
     </span>
   </a>
@@ -1535,10 +1524,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#example-minimal-metadata-file" class="md-nav__link">
+  <a href="#example" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example: Minimal Metadata File
+        Example
       
     </span>
   </a>
@@ -1546,10 +1535,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#creating-metadata" class="md-nav__link">
+  <a href="#validating-a-file" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Creating Metadata
+        Validating a File
       
     </span>
   </a>
@@ -1557,21 +1546,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#validating-metadata" class="md-nav__link">
+  <a href="#json-ld" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Validating Metadata
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#json-ld-context" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        JSON-LD Context
+        JSON-LD
       
     </span>
   </a>
@@ -1599,137 +1577,126 @@
 
 
 <h1 id="metadata-file-format">Metadata File Format</h1>
-<p>The OAE Data Protocol uses <strong>JSON</strong> as its preferred metadata file format.</p>
-<p>Each metadata file is a self-contained document called a <strong>Container</strong> that holds all the metadata for a project, its experiments, and its datasets.</p>
-<p>The recommended way to create metadata is with the <strong><a href="https://metadata.oaedata.org">OAE Metadata Builder</a></strong>, which validates inputs against the schema in real time and exports well-formed JSON files. While <a href="https://www.carbontosea.org/oae-data-protocol#metadata-and-templates">Excel templates</a> are still available on the protocol website, they do not validate against the schema and require manual attention to ensure controlled vocabularies and field formats are correct. We encourage all researchers to use the Metadata Builder as the primary tool for creating and managing project metadata.</p>
+<p>OAE metadata is stored as <strong>JSON</strong>. Each metadata file is one <strong><a href="../Container/">Container</a></strong>: a project,
+its experiments and its datasets in a single document.</p>
+<p>To create a file, use the <strong><a href="https://metadata.oaedata.org">OAE Metadata Builder</a></strong>. It exports files
+that validate against the schema. The <a href="https://www.carbontosea.org/oae-data-protocol#metadata-and-templates">Excel templates</a>
+on the protocol website are still available, but they aren't checked against the schema, so you have
+to get vocabulary values and field formats right by hand.</p>
 <h2 id="the-container">The Container</h2>
-<p>A Container is the top-level object in every metadata file. It wraps project metadata, experiment metadata, and dataset metadata into a single document:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;@context&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://schema.oaedata.org/context.jsonld&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.5.0&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;protocol_git_hash&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abc123...&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">&quot;experiments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;datasets&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">]</span>
-<span class="p">}</span>
-</code></pre></div>
 <table>
 <thead>
 <tr>
 <th>Field</th>
-<th>Description</th>
+<th>Contains</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>@context</code></td>
-<td>JSON-LD context URL — makes the file interpretable as linked data</td>
-</tr>
-<tr>
-<td><code>version</code></td>
-<td>Protocol schema version</td>
-</tr>
-<tr>
-<td><code>protocol_git_hash</code></td>
-<td>Git hash of the schema used to generate this file</td>
-</tr>
-<tr>
 <td><code>project</code></td>
-<td>A single <a href="../Project/">Project</a> object</td>
+<td>One <a href="../Project/">Project</a></td>
 </tr>
 <tr>
 <td><code>experiments</code></td>
-<td>Array of <a href="../Experiment/">Experiment</a> objects</td>
+<td>The project's <a href="../projects-experiments/#experiments">experiments</a></td>
 </tr>
 <tr>
 <td><code>datasets</code></td>
-<td>Array of <a href="../FieldDataset/">Dataset</a> objects</td>
+<td>The datasets those experiments produced, either <a href="../FieldDataset/">FieldDataset</a> or <a href="../ModelOutputDataset/">ModelOutputDataset</a></td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td>The schema version the file follows</td>
+</tr>
+<tr>
+<td><code>protocol_git_hash</code>, <code>metadata_builder_git_hash</code></td>
+<td>Optional. The schema and Metadata Builder commits the file was made with</td>
 </tr>
 </tbody>
 </table>
-<div class="admonition tip">
-<p class="admonition-title">Linked Data</p>
-<p>The <code>@context</code> field is optional but recommended. It makes OAE metadata files valid <a href="https://json-ld.org/">JSON-LD</a> documents, meaning they can be interpreted by linked data tools and semantic web infrastructure without any conversion. Standard JSON tools ignore the <code>@context</code> field, so it doesn't affect non JSON-LD workflows.</p>
-</div>
 <h2 id="how-the-pieces-relate">How the Pieces Relate</h2>
-<p>A Container holds one <strong>Project</strong>, one or more <strong>Experiments</strong>, and one or more <strong>Datasets</strong>:</p>
 <ul>
-<li>A <strong>Project</strong> describes the overall OAE field trial or modeling effort — who, where, when, and why.</li>
-<li><strong>Experiments</strong> are specific activities within the project (baseline monitoring, alkalinity intervention, tracer study, model simulation).</li>
-<li><strong>Datasets</strong> describe the data files produced by an experiment. Each dataset references its parent experiment via <code>experiment_id</code>.</li>
-<li>Each dataset contains an array of <strong>Variables</strong> — detailed metadata about each column or measurement in the data files.</li>
+<li>The <strong>project</strong> describes the overall field trial or modeling effort: who, where, when and why.</li>
+<li>Each <strong>experiment</strong> is one activity within the project, such as baseline monitoring, an alkalinity
+  intervention, a tracer study or a model simulation. It carries the project's <code>project_id</code>.</li>
+<li>Each <strong>dataset</strong> describes data files produced by one experiment, and names it with <code>experiment_id</code>.</li>
+<li>Each dataset lists its <strong><a href="../Variables/">variables</a></strong>: metadata for each column or measurement
+  in its files.</li>
 </ul>
-<h2 id="example-minimal-metadata-file">Example: Minimal Metadata File</h2>
+<h2 id="example">Example</h2>
+<p>A minimal file that validates against the schema:</p>
+<!-- validate: Container -->
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;@context&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://schema.oaedata.org/context.jsonld&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.5.0&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;protocol_git_hash&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;50d3904c...&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;project_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EXAMPLE-001&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;research_project&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;North Atlantic OAE pilot&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;A pilot OAE field trial in the North Atlantic&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;mcdr_pathway&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ocean_alkalinity_enhancement&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;sea_names&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;http://vocab.nerc.ac.uk/collection/C16/current/23/&quot;</span><span class="p">],</span>
-<span class="w">    </span><span class="nt">&quot;spatial_coverage&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;geo&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;box&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;40.0 -70.0 45.0 -65.0&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">    </span><span class="nt">&quot;temporal_coverage&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-01-01/2025-12-31&quot;</span>
+<span class="w">    </span><span class="nt">&quot;spatial_coverage&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;geo&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;box&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;40.0 -70.0 45.0 -65.0&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;temporal_coverage&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-01-01/2025-12-31&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;project_leads&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Ada Lovelace&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ada@example.org&quot;</span><span class="w"> </span><span class="p">}]</span>
 <span class="w">  </span><span class="p">},</span>
 <span class="w">  </span><span class="nt">&quot;experiments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;project_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EXAMPLE-001&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;experiment_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EXAMPLE-001-BASELINE&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Baseline monitoring&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;experiment_types&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;baseline&quot;</span><span class="p">],</span>
-<span class="w">      </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Baseline water chemistry prior to intervention&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;spatial_coverage&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nt">&quot;geo&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;box&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;40.0 -70.0 45.0 -65.0&quot;</span><span class="w"> </span><span class="p">}</span>
-<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Baseline water chemistry before the intervention&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;spatial_coverage&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;geo&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;box&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;40.0 -70.0 45.0 -65.0&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
 <span class="w">      </span><span class="nt">&quot;start_datetime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-01-01T00:00:00Z&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;end_datetime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-06-30T23:59:59Z&quot;</span>
+<span class="w">      </span><span class="nt">&quot;end_datetime&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-06-30T23:59:59Z&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;experiment_leads&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Ada Lovelace&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ada@example.org&quot;</span><span class="w"> </span><span class="p">}]</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">],</span>
 <span class="w">  </span><span class="nt">&quot;datasets&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">    </span><span class="p">{</span>
-<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Baseline CTD profiles&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;project_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EXAMPLE-001&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;experiment_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EXAMPLE-001-BASELINE&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CTD cast data from baseline monitoring&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Baseline CTD profiles&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CTD casts from baseline monitoring&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;dataset_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cast&quot;</span><span class="p">,</span>
-<span class="w">      </span><span class="nt">&quot;data_product_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;raw_sensor_data&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;data_product_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;originally_collected_dataset&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;temporal_coverage&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-01-15/2025-06-15&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;filenames&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;baseline_ctd_profiles.csv&quot;</span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;platform_info&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;platform_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://vocab.nerc.ac.uk/collection/L06/current/31/&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;data_submitter&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Ada Lovelace&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ada@example.org&quot;</span><span class="w"> </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;data_accessibility&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;open_access&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;data_access_link&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://doi.org/10.25921/example&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="nt">&quot;variables&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">        </span><span class="p">{</span>
-<span class="w">          </span><span class="nt">&quot;schema_class&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ContinuousMeasuredVariable&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;variable_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;other&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;dataset_variable_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;temperature&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;long_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Sea water temperature&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;units&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;degrees Celsius&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;genesis&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;measured&quot;</span><span class="p">,</span>
-<span class="w">          </span><span class="nt">&quot;sampling&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;continuous&quot;</span>
+<span class="w">          </span><span class="nt">&quot;schema_class&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;NonMeasuredVariable&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;variable_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;non_measured&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;dataset_variable_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;station&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;long_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Station ID&quot;</span>
 <span class="w">        </span><span class="p">}</span>
 <span class="w">      </span><span class="p">]</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
-<h2 id="creating-metadata">Creating Metadata</h2>
-<p>The easiest way to create a metadata file is with the <strong><a href="https://metadata.oaedata.org">OAE Metadata Builder</a></strong> — a web application that walks you through each section with form-based input and exports a valid Container JSON file.</p>
-<p>You can also create metadata files programmatically using the <a href="https://github.com/submarine-mrv/oae-data-protocol/blob/main/project/jsonschema/oae_data_protocol.validation.schema.json">JSON Schema</a> for validation.</p>
-<h2 id="validating-metadata">Validating Metadata</h2>
-<p>To validate a metadata file against the protocol schema:</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Using ajv-cli (Node.js)</span>
-npx<span class="w"> </span>ajv-cli<span class="w"> </span>validate<span class="w"> </span><span class="se">\</span>
+<h2 id="validating-a-file">Validating a File</h2>
+<p>Validate against the <a href="https://github.com/submarine-mrv/oae-data-protocol/blob/main/project/jsonschema/oae_data_protocol.validation.schema.json">validation JSON Schema</a>,
+for example with <code>ajv-cli</code>:</p>
+<div class="highlight"><pre><span></span><code>npx<span class="w"> </span>ajv-cli<span class="w"> </span>validate<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-s<span class="w"> </span>oae_data_protocol.validation.schema.json<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-d<span class="w"> </span>your-metadata.json<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--spec<span class="o">=</span>draft2019<span class="w"> </span>--strict<span class="o">=</span><span class="nb">false</span>
 </code></pre></div>
-<h2 id="json-ld-context">JSON-LD Context</h2>
-<p>A <a href="https://schema.oaedata.org/context.jsonld">JSON-LD context</a> is published alongside this schema at "https://schema.oaedata.org/context.jsonld".</p>
-<p>Including it in your metadata file (done automatically on export with the Metadata Builder) makes the document valid JSON-LD:</p>
+<h2 id="json-ld">JSON-LD</h2>
+<p>The schema publishes a <a href="https://schema.oaedata.org/context.jsonld">JSON-LD context</a>. Adding it to a
+metadata file lets linked data tools read the file as JSON-LD: field names resolve to URIs in the
+<code>https://schema.oaedata.org/</code> namespace, and vocabulary references (NERC, QUDT) resolve to their
+canonical URIs.</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">&quot;@context&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://schema.oaedata.org/context.jsonld&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="err">...</span>
+<span class="w">  </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>This enables linked data tools to interpret OAE metadata without conversion — field names resolve to URIs in the <code>https://schema.oaedata.org/</code> namespace, and community vocabulary references (NERC, QUDT) resolve to their canonical URIs.</p>
+<p>The JSON Schema describes the plain JSON form and doesn't allow <code>@context</code>, so remove it before
+validating.</p>
 
 
 

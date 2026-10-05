@@ -1397,52 +1397,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#oae-data-protocol-vocabularies" class="md-nav__link">
+  <a href="#protocol-vocabularies" class="md-nav__link">
     <span class="md-ellipsis">
       
-        OAE Data Protocol Vocabularies
+        Protocol Vocabularies
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="OAE Data Protocol Vocabularies">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#classification" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Classification
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#experiment-intervention" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Experiment &amp; Intervention
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#variable-instrument" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Variable &amp; Instrument
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1519,52 +1480,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#oae-data-protocol-vocabularies" class="md-nav__link">
+  <a href="#protocol-vocabularies" class="md-nav__link">
     <span class="md-ellipsis">
       
-        OAE Data Protocol Vocabularies
+        Protocol Vocabularies
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="OAE Data Protocol Vocabularies">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#classification" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Classification
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#experiment-intervention" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Experiment &amp; Intervention
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#variable-instrument" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Variable &amp; Instrument
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1589,166 +1511,96 @@
 
 
 <h1 id="controlled-vocabularies">Controlled Vocabularies</h1>
-<p>The OAE Data Protocol uses controlled vocabularies to standardize categorical values across metadata submissions. Some are defined as part of the protocol, while others reference established community standards.</p>
-<p>For detailed definitions of each vocabulary, see the <a href="https://www.carbontosea.org/oae-data-protocol#controlled-vocabularies">Controlled Vocabularies</a> section of the OAE Data Protocol website.</p>
+<p>The schema uses controlled vocabularies to standardize categorical values. Some come from established
+community standards; the rest are defined by the protocol. Each vocabulary page lists its values. For
+background on each one, see the
+<a href="https://www.carbontosea.org/oae-data-protocol#controlled-vocabularies">Controlled Vocabularies</a>
+section of the protocol website.</p>
 <h2 id="community-standard-vocabularies">Community Standard Vocabularies</h2>
-<p>The following vocabularies are sourced from established oceanographic &amp; scientific community standards:</p>
 <table>
 <thead>
 <tr>
 <th>Vocabulary</th>
 <th>Source</th>
-<th>Used For</th>
+<th>Used for</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>Sea Names</strong></td>
-<td>NERC <a href="https://vocab.nerc.ac.uk/collection/C16/current/">SDN:C16</a></td>
-<td>Project geographic classification</td>
+<td><a href="../SeaNames/">Sea Names</a></td>
+<td>NERC <a href="https://vocab.nerc.ac.uk/collection/C16/current/">C16</a></td>
+<td>Project sea areas</td>
 </tr>
 <tr>
-<td><strong><a href="https://www.carbontosea.org/oae-data-protocol#platform-type">Platform Type</a></strong></td>
-<td>NERC <a href="https://vocab.nerc.ac.uk/collection/L06/current/">SDN:L06</a></td>
-<td>Dataset platform classification</td>
+<td><a href="../PlatformType/">Platform Type</a></td>
+<td>NERC <a href="https://vocab.nerc.ac.uk/collection/L06/current/">L06</a></td>
+<td>Dataset platforms</td>
 </tr>
 <tr>
-<td><strong><a href="https://www.carbontosea.org/oae-data-protocol#instrument-type">Instrument Type</a></strong></td>
-<td>NERC <a href="https://vocab.nerc.ac.uk/collection/L05/current/">SDN:L05</a>, <a href="https://vocab.nerc.ac.uk/collection/L22/current/">SDN:L22</a>, <a href="https://vocab.nerc.ac.uk/collection/B75/current/">SDN:B75</a></td>
-<td>Sampling and analyzing instruments</td>
+<td><a href="../AnalyzingInstrumentType/">Analyzing</a> and <a href="../SamplingInstrumentType/">Sampling</a> Instrument Type</td>
+<td>NERC <a href="https://vocab.nerc.ac.uk/collection/L05/current/">L05</a>, <a href="https://vocab.nerc.ac.uk/collection/L22/current/">L22</a>, <a href="https://vocab.nerc.ac.uk/collection/B75/current/">B75</a></td>
+<td>Measured variables</td>
 </tr>
 <tr>
-<td><strong>Units</strong></td>
+<td><a href="../MassConcentrationUnit/">Mass Concentration Unit</a></td>
 <td><a href="https://qudt.org/vocab/unit/">QUDT</a></td>
-<td>Dosing concentration units</td>
+<td>Dosing amounts</td>
+</tr>
+<tr>
+<td>CF Standard Names</td>
+<td>NERC <a href="https://vocab.nerc.ac.uk/collection/P07/current/">P07</a></td>
+<td>Variable <code>standard_identifier</code> (recommended)</td>
 </tr>
 </tbody>
 </table>
-<h2 id="oae-data-protocol-vocabularies">OAE Data Protocol Vocabularies</h2>
-<p>These vocabularies are defined as part of the <a href="https://www.carbontosea.org/oae-data-protocol#controlled-vocabularies">OAE Data Protocol</a> and maintained in this schema.</p>
-<h3 id="classification">Classification</h3>
+<h2 id="protocol-vocabularies">Protocol Vocabularies</h2>
 <table>
 <thead>
 <tr>
-<th>Vocabulary</th>
-<th>Values</th>
-<th>Used By</th>
+<th>Area</th>
+<th>Vocabularies</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="../VariableType/">VariableType</a></td>
-<td>pH, ta, dic, co2, sediment, hplc, other, non_measured</td>
-<td>Field dataset variables</td>
-</tr>
-<tr>
-<td><a href="../ModelVariableType/">ModelVariableType</a></td>
-<td>air_sea_co2_flux, dissolved_inorganic_carbon, total_alkalinity, temperature, salinity, ph, biological_tracers, nutrients, zonal_velocity, meridional_velocity, vertical_velocity, co2, other</td>
-<td>Model output variables</td>
-</tr>
-<tr>
-<td><a href="../GenesisType/">GenesisType</a></td>
-<td>measured, calculated</td>
-<td>In-situ variables</td>
-</tr>
-<tr>
-<td><a href="../SamplingType/">SamplingType</a></td>
-<td>discrete, continuous</td>
-<td>Measured variables</td>
-</tr>
-<tr>
-<td><a href="../ExperimentType/">mCDR Experiment Type</a></td>
-<td>baseline, control, intervention, tracer_study, model, other</td>
-<td>Experiments</td>
-</tr>
-<tr>
-<td><a href="../DatasetType/">mCDR Data Type</a></td>
-<td>cast, bottle, flow_thru, underway, mooring, drifter, ...</td>
-<td>Field datasets</td>
-</tr>
-<tr>
-<td><a href="../MCDRPathway/">mCDR Pathways</a></td>
-<td>ocean_alkalinity_enhancement, biomass_sinking, ...</td>
 <td>Projects</td>
+<td><a href="../MCDRPathway/">mCDR Pathway</a></td>
 </tr>
 <tr>
-<td><a href="../DataAccessibility/">Data Accessibility</a></td>
-<td>open_access, conditional_access, scheduled_access</td>
-<td>All datasets</td>
-</tr>
-</tbody>
-</table>
-<h3 id="experiment-intervention">Experiment &amp; Intervention</h3>
-<table>
-<thead>
-<tr>
-<th>Vocabulary</th>
-<th>Values</th>
-<th>Used By</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="../FeedstockType/">Alkalinity Feedstock</a></td>
-<td>lime, olivine, magnesium_hydroxide, ...</td>
-<td>Intervention experiments</td>
+<td>Experiments</td>
+<td><a href="../ExperimentType/">Experiment Type</a>, <a href="../PublicCommentType/">Public Comment Type</a></td>
 </tr>
 <tr>
-<td><a href="../AlkalinityFeedstockProcessing/">Alkalinity Feedstock Processing</a></td>
-<td>electrochemistry, mineral_mining, ...</td>
-<td>Intervention experiments</td>
+<td>Interventions and tracers</td>
+<td><a href="../FeedstockType/">Feedstock Type</a>, <a href="../AlkalinityFeedstockProcessing/">Alkalinity Feedstock Processing</a>, <a href="../AlkalinityFeedstockForm/">Alkalinity Feedstock Form</a>, <a href="../EquilibrationStatus/">Equilibration Status</a>, <a href="../TracerForm/">Tracer Form</a>, <a href="../DosingDeliveryType/">Dosing Delivery Type</a>, <a href="../HydrologicLocation/">Hydrologic Location</a></td>
 </tr>
 <tr>
-<td><a href="../AlkalinityFeedstockForm/">Alkalinity Feedstock Form</a></td>
-<td>powder,ite, solution, ...</td>
-<td>Intervention experiments</td>
+<td>Model experiments</td>
+<td><a href="../ModelComponentType/">Model Component Type</a>, <a href="../GridType/">Grid Type</a></td>
 </tr>
 <tr>
-<td><a href="../EquilibrationStatus/">Equilibration Status</a></td>
-<td>pre_equilibrated, not_equilibrated, ...</td>
-<td>Intervention experiments</td>
+<td>Datasets</td>
+<td><a href="../DatasetType/">Dataset Type</a>, <a href="../DataProductType/">Data Product Type</a>, <a href="../DataAccessibility/">Data Accessibility</a>, <a href="../SimulationType/">Simulation Type</a> (model output)</td>
 </tr>
 <tr>
-<td><a href="../TracerForm/">Tracer Form</a></td>
-<td>gas, dye, other</td>
-<td>Tracer experiments</td>
+<td>Field variables</td>
+<td><a href="../VariableType/">Variable Type</a>, <a href="../GenesisType/">Genesis</a>, <a href="../SamplingType/">Sampling</a>, <a href="../ObservationType/">Observation Type</a>, <a href="../AppropriateUseQuality/">Appropriate Use Quality</a>, <a href="../ConcentrationBasis/">Concentration Basis</a>, <a href="../TitrationCellType/">Titration Cell Type</a></td>
 </tr>
 <tr>
-<td><a href="../DosingDeliveryType/">Dosing Delivery Type</a></td>
-<td>static_distributed, dynamic_ship_based, ...</td>
-<td>Dosing details</td>
+<td>Physiological and socioeconomic variables</td>
+<td><a href="../TaxonomicCodeSystem/">Taxonomic Code System</a>, <a href="../LifeStage/">Life Stage</a>, <a href="../QuantitativeQualitative/">Quantitative or Qualitative</a>, <a href="../SocialStudyType/">Social Study Type</a></td>
 </tr>
 <tr>
-<td><a href="../HydrologicLocation/">Hydrologic Location</a></td>
-<td>ocean, river, estuary, ...</td>
-<td>Dosing details</td>
-</tr>
-</tbody>
-</table>
-<h3 id="variable-instrument">Variable &amp; Instrument</h3>
-<table>
-<thead>
-<tr>
-<th>Vocabulary</th>
-<th>Values</th>
-<th>Used By</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="../ObservationType/">Observation Type</a></td>
-<td>profile, surface_underway, time_series, ...</td>
-<td>Measured variables</td>
+<td>Model output variables</td>
+<td><a href="../ModelVariableType/">Model Variable Type</a></td>
 </tr>
 <tr>
-<td><a href="../AppropriateUseQuality/">Appropriate Use Quality</a></td>
-<td>climate, weather, other</td>
-<td>Specific measured types</td>
-</tr>
-<tr>
+<td>Instruments</td>
 <td><a href="../CalibrationLocation/">Calibration Location</a></td>
-<td>factory, lab, field</td>
-<td>Calibration records</td>
+</tr>
+<tr>
+<td>People</td>
+<td><a href="../ResearcherIDType/">Researcher ID Type</a></td>
 </tr>
 </tbody>
 </table>

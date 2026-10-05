@@ -1408,41 +1408,13 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Dataset Types">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#field-dataset" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Field Dataset
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#model-output-dataset" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Model Output Dataset
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
-  <a href="#platform-information" class="md-nav__link">
+  <a href="#rules" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Platform Information
+        Rules
       
     </span>
   </a>
@@ -1492,117 +1464,38 @@
 
 
 <h1 id="datasets">Datasets</h1>
-<p>A <strong>Dataset</strong> describes one or more related data files submitted as part of an experiment. Each dataset is linked to exactly one experiment via <code>experiment_id</code> and contains metadata about the data files, the platform used to collect the data, and detailed variable-level metadata.</p>
+<p>A <strong>Dataset</strong> describes one or more related data files produced by an experiment, and the variables in them.</p>
 <div class="admonition note">
 <p class="admonition-title">What is a dataset?</p>
 <p>A dataset typically corresponds to a single data file (e.g., one CSV of CTD profiles), but it may include multiple files when they share the same platform, instruments, and data submitter. The key organizing principle is that a dataset represents data collected on a <strong>single platform</strong> using a <strong>consistent set of instruments</strong>, managed by a <strong>single data submitter</strong>. If data come from different platforms or instrument configurations, they should be separate datasets.</p>
 </div>
 <h2 id="dataset-types">Dataset Types</h2>
-<p>There are two kinds of datasets:</p>
-<h3 id="field-dataset">Field Dataset</h3>
-<p>For data collected during in-situ experiments — CTD casts, bottle samples, sensor deployments, etc.</p>
-<p><strong>Key fields:</strong></p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>dataset_type</code></td>
-<td>Classification (cast, bottle, flow-through, underway, mooring, etc.)</td>
-</tr>
-<tr>
-<td><code>data_product_type</code></td>
-<td>Raw sensor data, data compilation, etc.</td>
-</tr>
-<tr>
-<td><code>data_accessibility</code></td>
-<td>Access level: <code>open_access</code>, <code>conditional_access</code>, or <code>scheduled_access</code></td>
-</tr>
-<tr>
-<td><code>platform_info</code></td>
-<td>Ship, buoy, or vehicle that collected the data</td>
-</tr>
-<tr>
-<td><code>filenames</code></td>
-<td>Names of the data file(s) in this dataset</td>
-</tr>
-<tr>
-<td><code>variables</code></td>
-<td>Array of variable metadata (see <a href="../variables/">Variables</a>)</td>
-</tr>
-<tr>
-<td><code>data_submitter</code></td>
-<td>Person responsible for this submission</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Data access rules</strong> (both dataset types): <code>open_access</code> is for data you can reach today and
-requires <code>data_access_link</code>. Use <code>scheduled_access</code> for anything not openly available yet; it
-requires <code>data_access_date</code>, the date the data will open. <code>data_access_link</code> is optional for
-scheduled and conditional access.</p>
-<p>→ <a href="../FieldDataset/">Full FieldDataset schema reference</a></p>
-<h3 id="model-output-dataset">Model Output Dataset</h3>
-<p>For simulation output from computational models.</p>
-<p><strong>Key fields:</strong></p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>simulation_type</code></td>
-<td>Control run or perturbation</td>
-</tr>
-<tr>
-<td><code>mcdr_forcing_description</code></td>
-<td>Description of the mCDR forcing applied</td>
-</tr>
-<tr>
-<td><code>variables</code></td>
-<td>Array of model output variable metadata (see <a href="../variables/">Variables</a>)</td>
-</tr>
-<tr>
-<td><code>output_frequency</code></td>
-<td>Temporal resolution (e.g., daily, monthly)</td>
-</tr>
-<tr>
-<td><code>hardware_configuration</code></td>
-<td>Compute details</td>
-</tr>
-</tbody>
-</table>
-<p>→ <a href="../ModelOutputDataset/">Full ModelOutputDataset schema reference</a></p>
-<h2 id="platform-information">Platform Information</h2>
-<p>Every field dataset includes platform metadata — the ship, buoy, autonomous vehicle, or other platform used for data collection.</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;platform_info&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;R/V Wecoma&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;platform_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://vocab.nerc.ac.uk/collection/L06/current/31/&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;platform_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SHIP-001&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;owner&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Oregon State University&quot;</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">&quot;country&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;US&quot;</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-<p>Platform types use the <a href="https://vocab.nerc.ac.uk/collection/L06/current/">NERC L06 vocabulary</a> for standardized classification.</p>
+<ul>
+<li><strong><a href="../FieldDataset/">FieldDataset</a></strong>: data collected during in-situ experiments, such as CTD casts,
+  bottle samples and sensor deployments. It records the platform that collected the data, using the
+  <a href="https://vocab.nerc.ac.uk/collection/L06/current/">NERC L06</a> platform types (see
+  <a href="../Platform/">Platform</a>).</li>
+<li><strong><a href="../ModelOutputDataset/">ModelOutputDataset</a></strong>: output from a model experiment. How the output
+  was produced is described here, through the simulation type, period, output frequency and hardware.</li>
+</ul>
+<h2 id="rules">Rules</h2>
+<p>These apply on top of each field's own requirements:</p>
+<ul>
+<li><strong>Data access</strong> (both dataset types): <code>open_access</code> is for data you can reach today and requires
+  <code>data_access_link</code>. Use <code>scheduled_access</code> for anything not openly available yet; it requires
+  <code>data_access_date</code>, the date the data will open. <code>data_access_link</code> is optional for scheduled and
+  conditional access.</li>
+<li><strong>Perturbation runs</strong> (model output): <code>simulation_type</code> can list several values. If it includes
+  <code>perturbation</code>, describe the forcing in <code>mcdr_forcing_description</code>.</li>
+</ul>
 <h2 id="linking-datasets-to-experiments">Linking Datasets to Experiments</h2>
-<p>Every dataset has an <code>experiment_id</code> field that links it to the experiment it belongs to. This allows multiple datasets (e.g., CTD profiles, bottle samples, sensor time series) to be associated with the same experiment.</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;experiment_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EXAMPLE-001-BASELINE&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Baseline CTD profiles&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;filenames&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;baseline_ctd_casts.csv&quot;</span><span class="p">]</span>
-<span class="p">}</span>
-</code></pre></div>
+<p>Each dataset names the experiment it belongs to with <code>experiment_id</code>, so one experiment can have several
+datasets, such as CTD profiles, bottle samples and sensor time series.</p>
 <h2 id="variables">Variables</h2>
-<p>Each dataset contains an array of <code>variables</code> — detailed metadata describing each measurement or data column across the dataset's files. Variables are the most richly typed part of the schema, with specific subclasses for pH, total alkalinity, DIC, CO₂, and other common oceanographic measurements.</p>
-<p>See <a href="../variables/">Variables</a> for the complete variable hierarchy and type selection guide.</p>
+<p>Each dataset lists its <code>variables</code>, metadata for each measurement or column in its files. Field
+datasets use the field variable classes, with specific classes for pH, total alkalinity, DIC, CO₂ and
+other common measurements. Model output datasets use <a href="../ModelOutputVariable/">ModelOutputVariable</a>.
+See <a href="../Variables/">Variables</a> for how to choose a class.</p>
 
 
 

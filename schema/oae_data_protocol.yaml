@@ -2275,7 +2275,7 @@ slots:
     slot_uri: oae:calibration_temperature
     owner: DiscreteCO2Calibration
     domain_of:
-    - pHCalibration
+    - PHCalibration
     - DiscreteCO2Calibration
     range: string
   container__project:
@@ -4940,7 +4940,7 @@ slots:
     owner: PHInstrument
     domain_of:
     - PHInstrument
-    range: pHCalibration
+    range: PHCalibration
     required: true
     inlined: true
   cRMInstrument__calibration:
@@ -5308,9 +5308,9 @@ slots:
     from_schema: Calibration
     slot_uri: oae:dye_type_and_manufacturer
     alias: dye_type_and_manufacturer
-    owner: pHCalibration
+    owner: PHCalibration
     domain_of:
-    - pHCalibration
+    - PHCalibration
     range: string
   pHCalibration__dye_purified:
     name: pHCalibration__dye_purified
@@ -5319,9 +5319,9 @@ slots:
     from_schema: Calibration
     slot_uri: oae:dye_purified
     alias: dye_purified
-    owner: pHCalibration
+    owner: PHCalibration
     domain_of:
-    - pHCalibration
+    - PHCalibration
     range: boolean
   pHCalibration__correction_for_unpurified_dye:
     name: pHCalibration__correction_for_unpurified_dye
@@ -5330,9 +5330,9 @@ slots:
     from_schema: Calibration
     slot_uri: oae:correction_for_unpurified_dye
     alias: correction_for_unpurified_dye
-    owner: pHCalibration
+    owner: PHCalibration
     domain_of:
-    - pHCalibration
+    - PHCalibration
     range: string
   pHCalibration__dye_correction_method:
     name: pHCalibration__dye_correction_method
@@ -5341,9 +5341,9 @@ slots:
     from_schema: Calibration
     slot_uri: oae:dye_correction_method
     alias: dye_correction_method
-    owner: pHCalibration
+    owner: PHCalibration
     domain_of:
-    - pHCalibration
+    - PHCalibration
     range: string
   pHCalibration__ph_of_standards:
     name: pHCalibration__ph_of_standards
@@ -5352,9 +5352,9 @@ slots:
     from_schema: Calibration
     slot_uri: oae:ph_of_standards
     alias: ph_of_standards
-    owner: pHCalibration
+    owner: PHCalibration
     domain_of:
-    - pHCalibration
+    - PHCalibration
     range: string
   cO2Calibration__standard_gas_info:
     name: cO2Calibration__standard_gas_info
@@ -10111,7 +10111,7 @@ classes:
         name: calibration
         description: pH calibration information for this instrument.
         title: Calibration
-        range: pHCalibration
+        range: PHCalibration
         required: true
     class_uri: oae:PHInstrument
   CRMInstrument:
@@ -10485,8 +10485,8 @@ classes:
         range: string
         required: true
     class_uri: oae:CRMCalibration
-  pHCalibration:
-    name: pHCalibration
+  PHCalibration:
+    name: PHCalibration
     definition_uri: https://schema.oaedata.org/PHCalibration
     description: pH instrument calibration with dye information.
     from_schema: Calibration
@@ -10645,7 +10645,7 @@ classes:
     class_uri: oae:ContinuousStandardGas
 metamodel_version: 1.7.0
 source_file: oae_data_protocol.yaml
-source_file_date: '2026-10-05T12:24:22'
+source_file_date: '2026-10-05T12:25:52'
 source_file_size: 1743
-generation_date: '2026-10-05T12:24:33'
+generation_date: '2026-10-05T12:26:02'
 

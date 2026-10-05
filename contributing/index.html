@@ -1557,7 +1557,7 @@
 <h1 id="contributing">Contributing</h1>
 <p>The OAE Data Schema is open source and developed collaboratively. We welcome contributions from researchers, data managers, and organizations across the OAE community.</p>
 <h2 id="how-the-schema-is-built">How the Schema is Built</h2>
-<p>The schema is written in <a href="https://linkml.io">LinkML</a> (Linked Data Modeling Language), a framework designed for scientific data standards. LinkML lets us maintain a single source of truth that generates JSON Schema, Python dataclasses, documentation, and linked data artifacts — all from the same set of YAML definitions.</p>
+<p>The schema is written in <a href="https://linkml.io">LinkML</a> (Linked Data Modeling Language), a framework designed for scientific data standards. LinkML lets us keep one set of YAML definitions and generate JSON Schema, Python models, these docs and linked data artifacts from it.</p>
 <p>The source code is on GitHub: <strong><a href="https://github.com/submarine-mrv/oae-data-protocol">submarine-mrv/oae-data-protocol</a></strong></p>
 <h2 id="getting-involved">Getting Involved</h2>
 <p>There are several ways to contribute:</p>
@@ -1569,21 +1569,14 @@
 <p>Some projects and data standards initiatives that we actively seek alignment with are:</p>
 <ul>
 <li><strong><a href="https://github.com/NOAA-PMEL/OAPMetadata">NOAA OCADS / OAPMetadata</a></strong> — Our variable and instrument class hierarchy is modeled after NOAA-PMEL's OAPMetadata XSD schema, ensuring compatibility with the <a href="https://www.ncei.noaa.gov/products/ocean-carbon-acidification-data-system">Ocean Carbon and Acidification Data System</a> at NCEI.</li>
-<li><strong><a href="https://vocab.nerc.ac.uk/">NERC Vocabulary Server</a></strong> — We use NERC SKOS vocabularies for sea names (C16), platform types (L06), instrument types (L05/L22), and standard variable identifiers (P01).</li>
+<li><strong><a href="https://vocab.nerc.ac.uk/">NERC Vocabulary Server</a></strong> — We use NERC SKOS vocabularies for sea names (C16), platform types (L06), instrument types (L05, L22, B75), and standard variable identifiers such as P01 and the P07 CF standard names.</li>
 <li><strong><a href="https://cfconventions.org/">CF Conventions</a></strong> — For netCDF datasets, we encourage alignment with CF Standard Names and related conventions.</li>
 <li><strong><a href="https://science-on-schema.org/">science-on-schema.org</a></strong> — Many general purpose fields in our schema (Person, Place, Organization) map to Schema.org terms to support dataset discoverability through standardized web metadata.</li>
 </ul>
 <p>If you work with a data standard, vocabulary, or ontology that you think the protocol should map to, we'd love to hear about it. Please <a href="https://github.com/submarine-mrv/oae-data-protocol/issues">open an issue</a> describing the standard, how your community uses it, and where you see alignment opportunities — or reach out to <a href="mailto:data@carbontosea.org">data@carbontosea.org</a>.</p>
 <h2 id="development">Development</h2>
-<p>To work with the schema locally:</p>
-<div class="highlight"><pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/submarine-mrv/oae-data-protocol.git
-<span class="nb">cd</span><span class="w"> </span>oae-data-protocol
-just<span class="w"> </span>install<span class="w">        </span><span class="c1"># Install dependencies via uv</span>
-just<span class="w"> </span>gen-all<span class="w">        </span><span class="c1"># Generate all schema artifacts</span>
-just<span class="w"> </span><span class="nb">test</span><span class="w">           </span><span class="c1"># Run validation tests</span>
-just<span class="w"> </span>testdoc<span class="w">        </span><span class="c1"># Preview documentation locally</span>
-</code></pre></div>
-<p>See the <a href="https://github.com/submarine-mrv/oae-data-protocol">repository README</a> for full development setup instructions.</p>
+<p>To work on the schema locally, follow the setup in the
+<a href="https://github.com/submarine-mrv/oae-data-protocol#development">repository README</a>.</p>
 <hr />
 <p><em>Development of the OAE Data Protocol and its corresponding technical tooling has been made possible with funding and steering support from <a href="https://carbontosea.org">Carbon To Sea</a>.</em></p>
 

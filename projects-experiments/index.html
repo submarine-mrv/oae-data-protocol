@@ -638,19 +638,10 @@
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#schema-selection-rules">
+<a class="md-nav__link" href="#combining-types">
 <span class="md-ellipsis">
       
-        Schema Selection Rules
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#key-experiment-fields">
-<span class="md-ellipsis">
-      
-        Key Experiment Fields
+        Combining Types
       
     </span>
 </a>
@@ -667,48 +658,13 @@
 <article class="md-content__inner md-typeset">
 <h1 id="projects-experiments">Projects &amp; Experiments</h1>
 <h2 id="projects">Projects</h2>
-<p>A <strong>Project</strong> represents an OAE field trial, modeling effort, or research initiative. It captures the high-level context: who is conducting the work, where, and when.</p>
-<p>Every metadata file has exactly one Project. All experiments and datasets within the file belong to this project.</p>
-<p><strong>Key fields:</strong></p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>project_id</code></td>
-<td>Unique identifier linking all project data</td>
-</tr>
-<tr>
-<td><code>mcdr_pathway</code></td>
-<td>The mCDR pathway (e.g., ocean alkalinity enhancement)</td>
-</tr>
-<tr>
-<td><code>sea_names</code></td>
-<td>NERC C16 sea name vocabulary references</td>
-</tr>
-<tr>
-<td><code>spatial_coverage</code></td>
-<td>Geographic bounding box</td>
-</tr>
-<tr>
-<td><code>temporal_coverage</code></td>
-<td>ISO 8601 time interval</td>
-</tr>
-<tr>
-<td><code>project_leads</code></td>
-<td>Principal investigators with ORCID identifiers</td>
-</tr>
-</tbody>
-</table>
-<p>→ <a href="../Project/">Full Project schema reference</a></p>
+<p>A <strong><a href="../Project/">Project</a></strong> is an OAE field trial, modeling effort or research initiative: who is
+doing the work, where and when. A metadata file has exactly one project, and every experiment and
+dataset in it carries that project's <code>project_id</code>.</p>
 <h2 id="experiments">Experiments</h2>
-<p>An <strong>Experiment</strong> is a specific activity within a project. OAE projects typically involve multiple experiments — for example, a baseline monitoring phase followed by an intervention.</p>
+<p>An <strong><a href="../Experiment/">Experiment</a></strong> is one activity within a project, such as a baseline monitoring
+phase followed by an intervention. Each dataset names the experiment it came from with <code>experiment_id</code>.</p>
 <h3 id="experiment-types">Experiment Types</h3>
-<p>The <code>experiment_types</code> field is multi-select. An experiment can have multiple types (e.g., both "intervention" and "tracer_study" for a combined deployment).</p>
 <pre class="mermaid"><code>graph TD
     E[Experiment] --&gt; ISE[InSituExperiment]
     E --&gt; M[Model]
@@ -727,7 +683,6 @@
 <th>Type</th>
 <th>Schema Class</th>
 <th>When to Use</th>
-<th>Additional Fields</th>
 </tr>
 </thead>
 <tbody>
@@ -735,43 +690,36 @@
 <td><strong>Baseline</strong></td>
 <td><a href="../InSituExperiment/">InSituExperiment</a></td>
 <td>Pre-intervention monitoring</td>
-<td>Standard in-situ fields</td>
 </tr>
 <tr>
 <td><strong>Control</strong></td>
 <td><a href="../InSituExperiment/">InSituExperiment</a></td>
 <td>Reference measurements without intervention</td>
-<td>Standard in-situ fields</td>
 </tr>
 <tr>
 <td><strong>Intervention</strong></td>
 <td><a href="../Intervention/">Intervention</a></td>
 <td>Active alkalinity addition</td>
-<td>Feedstock, dosing, equilibration details</td>
 </tr>
 <tr>
 <td><strong>Tracer Study</strong></td>
 <td><a href="../Tracer/">Tracer</a></td>
 <td>Dye or gas tracer deployment</td>
-<td>Tracer form, concentration, dosing</td>
 </tr>
 <tr>
 <td><strong>Intervention + Tracer</strong></td>
 <td><a href="../InterventionWithTracer/">InterventionWithTracer</a></td>
 <td>Combined intervention with tracer (same dosing mechanism)</td>
-<td>All intervention + tracer fields</td>
 </tr>
 <tr>
 <td><strong>Model</strong></td>
 <td><a href="../Model/">Model</a></td>
 <td>Computational simulation</td>
-<td>Model components, grid, configuration</td>
 </tr>
 <tr>
 <td><strong>Other</strong></td>
 <td><a href="../InSituExperiment/">InSituExperiment</a></td>
 <td>Experiment type not covered above</td>
-<td>Standard in-situ fields</td>
 </tr>
 </tbody>
 </table>
@@ -779,46 +727,17 @@
 <p class="admonition-title">When to use Intervention + Tracer</p>
 <p>Only use the combined type when the alkalinity dosing and tracer dosing share the same underlying dosing mechanism or regimen. If they use separate delivery systems or schedules, create two separate experiments — one Intervention and one Tracer Study.</p>
 </div>
-<h3 id="schema-selection-rules">Schema Selection Rules</h3>
-<p>When multiple experiment types are selected, the form renders the most inclusive schema:</p>
+<h3 id="combining-types">Combining Types</h3>
+<p><code>experiment_types</code> can hold several values, and the combination decides which class describes the
+experiment:</p>
 <ul>
-<li><strong>Intervention + Tracer Study</strong> → uses the combined <code>InterventionWithTracer</code> schema (all fields from both)</li>
-<li><strong>Model</strong> is exclusive — cannot combine with other types. Create separate experiments for field work and modeling.</li>
+<li><strong>Intervention</strong> and <strong>Tracer Study</strong> together use
+  <a href="../InterventionWithTracer/">InterventionWithTracer</a>, which has the fields of both. See the note
+  above on when to combine them.</li>
+<li><strong>Model</strong> experiments use <a href="../Model/">Model</a>, which has none of the in-situ fields. Describe field
+  work and modeling as separate experiments.</li>
+<li><strong>Baseline</strong>, <strong>Control</strong> and <strong>Other</strong> on their own use <a href="../InSituExperiment/">InSituExperiment</a>.</li>
 </ul>
-<h3 id="key-experiment-fields">Key Experiment Fields</h3>
-<p>All experiments share:</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>experiment_id</code></td>
-<td>Links datasets to this experiment</td>
-</tr>
-<tr>
-<td><code>experiment_types</code></td>
-<td>Multi-select classification</td>
-</tr>
-<tr>
-<td><code>spatial_coverage</code></td>
-<td>Geographic bounds of this experiment</td>
-</tr>
-<tr>
-<td><code>start_datetime</code> / <code>end_datetime</code></td>
-<td>UTC time range</td>
-</tr>
-<tr>
-<td><code>experiment_leads</code></td>
-<td>PIs for this experiment</td>
-</tr>
-</tbody>
-</table>
-<p>Intervention experiments add feedstock details, dosing information, and equilibration status. Tracer experiments add tracer form, concentration, and delivery details. Both share dosing location and delivery fields.</p>
-<p>→ <a href="../Experiment/">Full Experiment schema reference</a></p>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>

@@ -629,33 +629,6 @@
 <nav aria-label="Choosing a Variable Type" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#1-variable-type-variable_type">
-<span class="md-ellipsis">
-      
-        1. Variable Type (variable_type)
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#2-genesis-genesis">
-<span class="md-ellipsis">
-      
-        2. Genesis (genesis)
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#3-sampling-sampling">
-<span class="md-ellipsis">
-      
-        3. Sampling (sampling)
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
 <a class="md-nav__link" href="#selection-schema-class-mapping">
 <span class="md-ellipsis">
       
@@ -675,46 +648,6 @@
       
     </span>
 </a>
-<nav aria-label="What Each Level Adds" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#all-variables">
-<span class="md-ellipsis">
-      
-        All Variables
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#insituvariable-measured-or-calculated">
-<span class="md-ellipsis">
-      
-        InSituVariable (measured or calculated)
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#measuredvariable">
-<span class="md-ellipsis">
-      
-        MeasuredVariable
-      
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#calculatedvariable">
-<span class="md-ellipsis">
-      
-        CalculatedVariable
-      
-    </span>
-</a>
-</li>
-</ul>
-</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#model-output-variables">
@@ -724,19 +657,15 @@
       
     </span>
 </a>
-<nav aria-label="Model Output Variables" class="md-nav">
-<ul class="md-nav__list">
+</li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#type-specific-fields-traits-mixins">
+<a class="md-nav__link" href="#type-specific-fields-mixins">
 <span class="md-ellipsis">
       
-        Type-Specific Fields (Traits / Mixins)
+        Type-Specific Fields (Mixins)
       
     </span>
 </a>
-</li>
-</ul>
-</nav>
 </li>
 </ul>
 </nav>
@@ -790,119 +719,24 @@
     classDef concrete fill:#e0e8f0,stroke:#4F656A
     classDef leaf fill:#d0e8d0,stroke:#4F656A
     class V,FV,ISV,MV abstract
-    class NMV,MOV,SEV,CV,DPH,CPH concrete
-    class DM,CM leaf</code></pre>
+    class DM,CM concrete
+    class NMV,MOV,SEV,CV,DPH,CPH leaf</code></pre>
 <p>This hierarchy aims to align with <a href="https://github.com/NOAA-PMEL/OAPMetadata">NOAA-PMEL's OAPMetadata</a> XSD schema to make
 interoperability easier between NOAA's OCADS system, and other repositories where OAE researchers may choose to host
 their data, whether they be other ocean data repositories, and generalist repositories such as Zenodo.</p>
 <h2 id="choosing-a-variable-type">Choosing a Variable Type</h2>
-<p>Every variable in a <strong>field dataset</strong> requires three selections that determine which schema class is
-used. Variables in a <strong>model output dataset</strong> use the
+<p>In a <strong>field dataset</strong>, three fields decide each variable's class. Variables in a <strong>model output
+dataset</strong> use the
 <a href="../ModelOutputVariable/">ModelOutputVariable</a> class and are classified with the separate
 <a href="../ModelVariableType/">ModelVariableType</a> enum. See <a href="#model-output-variables">Model Output Variables</a> below.</p>
-<h3 id="1-variable-type-variable_type">1. Variable Type (<code>variable_type</code>)</h3>
-<p>What kind of measurement is this?</p>
-<table>
-<thead>
-<tr>
-<th>Value</th>
-<th>Description</th>
-<th>Examples</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>pH</code></td>
-<td>pH measurement</td>
-<td>pH on total scale, NBS scale</td>
-</tr>
-<tr>
-<td><code>ta</code></td>
-<td>Total alkalinity</td>
-<td>TA from titration</td>
-</tr>
-<tr>
-<td><code>dic</code></td>
-<td>Dissolved inorganic carbon</td>
-<td>DIC from coulometry</td>
-</tr>
-<tr>
-<td><code>co2</code></td>
-<td>CO₂ measurement variables</td>
-<td>pCO₂, fCO₂, xCO₂</td>
-</tr>
-<tr>
-<td><code>sediment</code></td>
-<td>Sediment variable</td>
-<td>Sediment core measurements</td>
-</tr>
-<tr>
-<td><code>hplc</code></td>
-<td>HPLC pigments</td>
-<td>Chlorophyll, carotenoids</td>
-</tr>
-<tr>
-<td><code>physiological</code></td>
-<td>Physiological response</td>
-<td>Organism growth rates, calcification</td>
-</tr>
-<tr>
-<td><code>socioeconomic</code></td>
-<td>Social/economic data</td>
-<td>Survey responses, ecosystem valuations</td>
-</tr>
-<tr>
-<td><code>other</code></td>
-<td>Generic variable</td>
-<td>Temperature, salinity, nutrients</td>
-</tr>
-<tr>
-<td><code>non_measured</code></td>
-<td>Contextual data</td>
-<td>Station ID, timestamps, coordinates</td>
-</tr>
-</tbody>
-</table>
-<h3 id="2-genesis-genesis">2. Genesis (<code>genesis</code>)</h3>
-<p>How was this variable produced? (Not applicable for <code>non_measured</code>)</p>
-<table>
-<thead>
-<tr>
-<th>Value</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>measured</code></td>
-<td>Directly measured by an instrument</td>
-</tr>
-<tr>
-<td><code>calculated</code></td>
-<td>Derived from other variables (e.g., CO₂ from pH + DIC)</td>
-</tr>
-</tbody>
-</table>
-<h3 id="3-sampling-sampling">3. Sampling (<code>sampling</code>)</h3>
-<p>How were measurements collected? (Only for <code>measured</code> genesis)</p>
-<table>
-<thead>
-<tr>
-<th>Value</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>discrete</code></td>
-<td>Bottle samples, grab samples</td>
-</tr>
-<tr>
-<td><code>continuous</code></td>
-<td>Autonomous sensors, underway systems</td>
-</tr>
-</tbody>
-</table>
+<ul>
+<li><strong><code>variable_type</code></strong>: what kind of measurement it is. See <a href="../VariableType/">VariableType</a> for the
+  values.</li>
+<li><strong><code>genesis</code></strong>: whether it was <code>measured</code> by an instrument or <code>calculated</code> from other variables. Not
+  used for <code>non_measured</code> variables.</li>
+<li><strong><code>sampling</code></strong>: for measured variables, <code>discrete</code> (bottle or grab samples) or <code>continuous</code>
+  (sensors, underway systems).</li>
+</ul>
 <h3 id="selection-schema-class-mapping">Selection → Schema Class Mapping</h3>
 <table>
 <thead>
@@ -1025,35 +859,16 @@ used. Variables in a <strong>model output dataset</strong> use the
 </tbody>
 </table>
 <h2 id="what-each-level-adds">What Each Level Adds</h2>
-<h3 id="all-variables">All Variables</h3>
-<p>Every variable has these basic fields:</p>
+<p>Each class adds fields to the one above it. The class pages list them in full.</p>
 <ul>
-<li><code>schema_class</code> — identifies which class this variable is (auto-set)</li>
-<li><code>variable_type</code> — the high-level classification</li>
-<li><code>dataset_variable_name</code> — column header name in the data file</li>
-<li><code>long_name</code> — full descriptive name</li>
-<li><code>standard_identifier</code> — reference to a community vocabulary (e.g., NERC P01)</li>
-</ul>
-<h3 id="insituvariable-measured-or-calculated">InSituVariable (measured or calculated)</h3>
-<p>Adds project-acquired data fields:</p>
-<ul>
-<li><code>units</code> (required)</li>
-<li><code>genesis</code> — measured or calculated</li>
-<li><code>method_reference</code> — citation for the method used</li>
-<li><code>measurement_researcher</code> — the individual who measured/derived this parameter</li>
-</ul>
-<h3 id="measuredvariable">MeasuredVariable</h3>
-<p>Adds instrument and sampling fields:</p>
-<ul>
-<li><code>sampling_method</code>, <code>analyzing_method</code> — how samples were collected and analyzed</li>
-<li><code>sampling</code>, <code>observation_type</code> — discrete/continuous, profile/underway/etc.</li>
-<li><code>analyzing_instrument</code> — instrument details with calibration</li>
-<li>QC fields: <code>uncertainty</code>, <code>qc_steps_taken</code>, <code>missing_value_indicators</code></li>
-</ul>
-<h3 id="calculatedvariable">CalculatedVariable</h3>
-<p>Adds calculation provenance:</p>
-<ul>
-<li><code>calculation_method_and_parameters</code> — software, input variables, constants used</li>
+<li><strong><a href="../Variable/">Variable</a></strong>: what every variable has, such as its column name in the data file,
+  a descriptive name and an optional reference to a community vocabulary.</li>
+<li><strong><a href="../InSituVariable/">InSituVariable</a></strong>: data the project collected or derived: units, how it was
+  produced and who produced it.</li>
+<li><strong><a href="../MeasuredVariable/">MeasuredVariable</a></strong>: how samples were taken and analyzed, the analyzing
+  instrument with its <a href="../instruments-calibration/">calibration</a>, and quality control.</li>
+<li><strong><a href="../CalculatedVariable/">CalculatedVariable</a></strong>: how the value was calculated, including software,
+  inputs and constants.</li>
 </ul>
 <h2 id="model-output-variables">Model Output Variables</h2>
 <p>Variables in a <a href="../ModelOutputDataset/">ModelOutputDataset</a> are described by a single class,
@@ -1061,14 +876,7 @@ used. Variables in a <strong>model output dataset</strong> use the
 <a href="../FieldVariable/">FieldVariable</a>. <code>ModelOutputVariable</code>s carry none of the
 sampling, instrument, calibration or in-situ QC metadata that field-collected variables do. How the
 output was produced is described by the simulation configuration on the parent dataset.</p>
-<p>A <code>ModelOutputVariable</code> has only:</p>
-<ul>
-<li><code>variable_type</code> — a <a href="../ModelVariableType/">ModelVariableType</a> value (required)</li>
-<li><code>long_name</code>, <code>dataset_variable_name</code>, <code>units</code> (all required)</li>
-<li><code>standard_identifier</code> — optional reference to a community vocabulary</li>
-</ul>
-<p>See <a href="../ModelVariableType/">ModelVariableType</a> for the current list of values and their descriptions.</p>
-<h3 id="type-specific-fields-traits-mixins">Type-Specific Fields (Traits / Mixins)</h3>
+<h2 id="type-specific-fields-mixins">Type-Specific Fields (Mixins)</h2>
 <p>Many measured variables (either discrete or continuous) inherit additional fields based on their <code>variable_type</code> that are
 always present whether the specific variable is discrete or continuous. In these instances, we use LinkML's <a href="https://linkml.io/linkml/schemas/inheritance.html#mixin-classes-and-slots">mixin</a>
 feature to allow for trait-like composability of these fields into both the corresponding DiscreteVariable and

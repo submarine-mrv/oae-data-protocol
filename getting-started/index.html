@@ -1400,10 +1400,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#the-oae-data-protocol" class="md-nav__link">
+  <a href="#new-to-the-protocol" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The OAE Data Protocol
+        New to the protocol?
       
     </span>
   </a>
@@ -1411,21 +1411,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-oae-data-schema" class="md-nav__link">
+  <a href="#creating-a-metadata-file" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The OAE Data Schema
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#creating-metadata" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Creating Metadata
+        Creating a metadata file
       
     </span>
   </a>
@@ -1436,7 +1425,7 @@
   <a href="#working-with-metadata-files" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Working with Metadata Files
+        Working with metadata files
       
     </span>
   </a>
@@ -1464,39 +1453,20 @@
 
 
 <h1 id="getting-started">Getting Started</h1>
-<h2 id="the-oae-data-protocol">The OAE Data Protocol</h2>
-<p>The <a href="https://www.carbontosea.org/oae-data-protocol">OAE Data Management Protocol</a> is a set of guidelines for
-collecting, documenting, and sharing data from ocean alkalinity enhancement research. It covers:</p>
-<ul>
-<li>What metadata to include with your data submissions</li>
-<li>Recommended column header names for data files</li>
-<li>Controlled vocabularies for consistent terminology</li>
-<li>Guidelines for quality control documentation</li>
-</ul>
-<div class="admonition info">
-<p class="admonition-title">New to the OAE Data Protocol?</p>
-<p>If you're new to the protocol and want to learn about its guidelines and recommendations before diving into the technical schema, start with the <a href="https://www.carbontosea.org/oae-data-protocol">protocol website</a> on Carbon To Sea. It includes the full guidelines, <a href="https://www.carbontosea.org/oae-data-protocol#controlled-vocabularies">controlled vocabularies</a>, and <a href="https://www.carbontosea.org/oae-data-protocol#column-header-names">recommended column header names</a>.</p>
-</div>
-<h2 id="the-oae-data-schema">The OAE Data Schema</h2>
-<p>This site is the technical reference for the protocol's machine-readable schema — the formal data model that defines how OAE metadata is structured, validated, and exchanged. Use it to:</p>
-<ul>
-<li>Understand the <a href="../Variables/">variable class hierarchy</a> and how to describe different measurement types</li>
-<li>Look up required fields for <a href="../projects-experiments/">experiments</a>, <a href="../Datasets/">datasets</a>, and <a href="../instruments-calibration/">instruments</a></li>
-<li>Browse <a href="../vocabularies/">controlled vocabularies</a> used across the protocol</li>
-<li>Reference the <a href="../OAEDataSchema/">full schema index</a> for every class, slot, and enum</li>
-</ul>
-<p>The schema generates <a href="https://github.com/submarine-mrv/oae-data-protocol/blob/main/project/jsonschema/oae_data_protocol.validation.schema.json">JSON Schema</a> for validation, <a href="https://github.com/submarine-mrv/oae-data-protocol/blob/main/src/oae_data_protocol/datamodel/oae_data_protocol.py">Python dataclasses</a> for programmatic access, and a <a href="https://schema.oaedata.org/context.jsonld">JSON-LD context</a> for linked data compatibility.</p>
-<h2 id="creating-metadata">Creating Metadata</h2>
-<p>The easiest way to create metadata is with the <strong><a href="https://metadata.oaedata.org">OAE Metadata Builder</a></strong> — a web app that walks you through each section and exports a valid JSON file. See the <a href="../metadata-builder/">Metadata Builder</a> page for details.</p>
-<h2 id="working-with-metadata-files">Working with Metadata Files</h2>
-<p>Metadata files are JSON documents that follow the <a href="../metadata-format/">Container format</a>. You can:</p>
-<ul>
-<li><strong>Create</strong> them using the Metadata Builder or programmatically</li>
-<li><strong>Validate</strong> them against the <a href="https://github.com/submarine-mrv/oae-data-protocol/blob/main/project/jsonschema/oae_data_protocol.validation.schema.json">JSON Schema</a></li>
-<li><strong>Import</strong> them back into the Metadata Builder for editing</li>
-<li><strong>Submit</strong> them alongside your data files</li>
-</ul>
-<p>See <a href="../metadata-format/">Metadata File Format</a> for the full specification.</p>
+<h2 id="new-to-the-protocol">New to the protocol?</h2>
+<p>Start with the <a href="https://www.carbontosea.org/oae-data-protocol">protocol website</a> on Carbon To Sea.
+It covers the guidelines behind this schema, including
+<a href="https://www.carbontosea.org/oae-data-protocol#controlled-vocabularies">controlled vocabularies</a> and
+<a href="https://www.carbontosea.org/oae-data-protocol#column-header-names">recommended column header names</a>.</p>
+<h2 id="creating-a-metadata-file">Creating a metadata file</h2>
+<p>Use the <strong><a href="https://metadata.oaedata.org">OAE Metadata Builder</a></strong>. It has a form for each part of the
+schema and exports a JSON file that validates against it. See <a href="../metadata-builder/">Metadata Builder</a>.</p>
+<h2 id="working-with-metadata-files">Working with metadata files</h2>
+<p>A metadata file is a JSON document with one project, its experiments and its datasets. The
+<a href="../metadata-format/">Metadata File Format</a> page covers its structure, a complete example and how to
+validate a file. To work with files in code, use the
+<a href="https://github.com/submarine-mrv/oae-data-protocol/blob/main/project/jsonschema/oae_data_protocol.validation.schema.json">JSON Schema</a>
+or the <a href="https://github.com/submarine-mrv/oae-data-protocol/blob/main/src/oae_data_protocol/datamodel/oae_data_protocol_pydantic.py">Pydantic models</a>.</p>
 
 
 

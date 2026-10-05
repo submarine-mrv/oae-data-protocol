@@ -358,24 +358,6 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Metadata Builder
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -392,58 +374,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#project-metadata" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Project Metadata
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#variable-metadata" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Variable Metadata
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#exporting-importing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Exporting &amp; Importing
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -1473,47 +1403,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#project-metadata" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Project Metadata
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#variable-metadata" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Variable Metadata
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#exporting-importing" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Exporting &amp; Importing
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1533,24 +1422,14 @@
 
 
 <h1 id="oae-metadata-builder">OAE Metadata Builder</h1>
-<p>The <strong><a href="https://metadata.oaedata.org">OAE Metadata Builder</a></strong> is a web application that guides you through creating protocol-compliant metadata. It renders form-based input for each section of the protocol and exports a valid JSON metadata file.</p>
-<p><img alt="OAE Metadata Builder overview page" src="../img/metadata-builder-overview.png" /></p>
-<p>The builder walks you through:</p>
-<ol>
-<li><strong>Project</strong> — describe your OAE field trial, select your mCDR pathway, define spatial and temporal coverage</li>
-<li><strong>Experiments</strong> — create baseline, intervention, tracer, or model experiments with type-specific fields</li>
-<li><strong>Datasets</strong> — link data files to experiments, define platform information, and describe each variable in detail</li>
-<li><strong>Export</strong> — download a JSON metadata file ready for submission</li>
-</ol>
-<h3 id="project-metadata">Project Metadata</h3>
-<p>The project form captures high-level information about your OAE field trial — project ID, description, geographic coverage with an interactive map, and principal investigator details.</p>
-<p><img alt="Project metadata form with sample data" src="../img/metadata-builder-project.png" /></p>
-<h3 id="variable-metadata">Variable Metadata</h3>
-<p>Each variable in a dataset is described through an accordion-style form. After selecting the variable type (e.g., pH), genesis (measured vs. calculated), and sampling method (discrete vs. continuous), the form expands to show type-specific fields for basic information, sampling details, analysis methods, instrument calibration, and quality control.</p>
-<p><img alt="Variable modal showing pH variable with accordion sections" src="../img/metadata-builder-variable.png" /></p>
-<h3 id="exporting-importing">Exporting &amp; Importing</h3>
-<p>Click <strong>Export</strong> to download your metadata as a JSON file following the <a href="../metadata-format/">Container format</a>. You can export the full project or individual experiments and datasets.</p>
-<p>Click <strong>Import</strong> to load a previously exported JSON file. The builder restores all project, experiment, dataset, and variable data, including the variable type selections and instrument configurations. The app also allows selective importing, where you can select individual experiments or datasets to import if you do not want to import the entirety of a metadata file into your session.</p>
+<p>The <strong><a href="https://metadata.oaedata.org">OAE Metadata Builder</a></strong> is a web app for writing metadata that
+follows this schema. Its forms are generated from the schema's JSON Schema: one each for project,
+experiment and dataset metadata, and a variable editor for each column in a dataset.</p>
+<p><img alt="OAE Metadata Builder project overview" src="../img/metadata-builder-overview.png" /></p>
+<p>Projects are saved in your browser as you work. <strong>Export</strong> writes a <a href="../metadata-format/">metadata file</a>
+for the whole project or selected parts. <strong>Import</strong> reads a file back in, as a new project or merged
+into the current one.</p>
+<p>For a walkthrough, see the builder's <a href="https://metadata.oaedata.org/how-to">how-to guide</a>.</p>
 
 
 
