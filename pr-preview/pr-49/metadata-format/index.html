@@ -1584,54 +1584,36 @@ that validate against the schema. The <a href="https://www.carbontosea.org/oae-d
 on the protocol website are still available, but they aren't checked against the schema, so you have
 to get vocabulary values and field formats right by hand.</p>
 <h2 id="the-container">The Container</h2>
-<p>A Container is the top-level object in every metadata file. It wraps project metadata, experiment metadata, and dataset metadata into a single document:</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;@context&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://schema.oaedata.org/context.jsonld&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.5.0&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;protocol_git_hash&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;abc123...&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">},</span>
-<span class="w">  </span><span class="nt">&quot;experiments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">],</span>
-<span class="w">  </span><span class="nt">&quot;datasets&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">]</span>
-<span class="p">}</span>
-</code></pre></div>
 <table>
 <thead>
 <tr>
 <th>Field</th>
-<th>Description</th>
+<th>Contains</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>@context</code></td>
-<td>JSON-LD context URL — makes the file interpretable as linked data</td>
-</tr>
-<tr>
-<td><code>version</code></td>
-<td>Protocol schema version</td>
-</tr>
-<tr>
-<td><code>protocol_git_hash</code></td>
-<td>Git hash of the schema used to generate this file</td>
-</tr>
-<tr>
 <td><code>project</code></td>
-<td>A single <a href="../Project/">Project</a> object</td>
+<td>One <a href="../Project/">Project</a></td>
 </tr>
 <tr>
 <td><code>experiments</code></td>
-<td>Array of <a href="../Experiment/">Experiment</a> objects</td>
+<td>The project's <a href="../projects-experiments/#experiments">experiments</a></td>
 </tr>
 <tr>
 <td><code>datasets</code></td>
-<td>Array of <a href="../FieldDataset/">Dataset</a> objects</td>
+<td>The datasets those experiments produced, either <a href="../FieldDataset/">FieldDataset</a> or <a href="../ModelOutputDataset/">ModelOutputDataset</a></td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td>The schema version the file follows</td>
+</tr>
+<tr>
+<td><code>protocol_git_hash</code>, <code>metadata_builder_git_hash</code></td>
+<td>Optional. The schema and Metadata Builder commits the file was made with</td>
 </tr>
 </tbody>
 </table>
-<div class="admonition tip">
-<p class="admonition-title">Linked Data</p>
-<p>The <code>@context</code> field is optional but recommended. It makes OAE metadata files valid <a href="https://json-ld.org/">JSON-LD</a> documents, meaning they can be interpreted by linked data tools and semantic web infrastructure without any conversion. Standard JSON tools ignore the <code>@context</code> field, so it doesn't affect non JSON-LD workflows.</p>
-</div>
 <h2 id="how-the-pieces-relate">How the Pieces Relate</h2>
 <ul>
 <li>The <strong>project</strong> describes the overall field trial or modeling effort: who, where, when and why.</li>
@@ -1645,9 +1627,7 @@ to get vocabulary values and field formats right by hand.</p>
 <p>A minimal file that validates against the schema:</p>
 <!-- validate: Container -->
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">&quot;@context&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://schema.oaedata.org/context.jsonld&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;0.5.0&quot;</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">&quot;protocol_git_hash&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;50d3904c...&quot;</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="nt">&quot;project_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;EXAMPLE-001&quot;</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">&quot;research_project&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;North Atlantic OAE pilot&quot;</span><span class="p">,</span>
