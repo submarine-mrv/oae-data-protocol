@@ -3364,6 +3364,8 @@ slots:
     required: true
   variable__standard_identifier:
     name: variable__standard_identifier
+    description: A term from a community vocabulary that identifies this variable.
+      CF standard names (NERC P07) are recommended.
     from_schema: Variable
     slot_uri: oae:standard_identifier
     alias: standard_identifier
@@ -7908,6 +7910,8 @@ classes:
         required: true
       standard_identifier:
         name: standard_identifier
+        description: A term from a community vocabulary that identifies this variable.
+          CF standard names (NERC P07) are recommended.
         range: VocabularyItemReference
       dataset_variable_name:
         name: dataset_variable_name
@@ -10641,7 +10645,7 @@ classes:
     class_uri: oae:ContinuousStandardGas
 metamodel_version: 1.7.0
 source_file: oae_data_protocol.yaml
-source_file_date: '2026-10-05T09:12:55'
+source_file_date: '2026-10-05T12:24:22'
 source_file_size: 1743
-generation_date: '2026-10-05T09:13:06'
+generation_date: '2026-10-05T12:24:33'
 
