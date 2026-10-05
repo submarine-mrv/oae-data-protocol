@@ -494,7 +494,8 @@
                     "type": "string"
                 },
                 "standard_identifier": {
-                    "$ref": "#/$defs/VocabularyItemReference"
+                    "$ref": "#/$defs/VocabularyItemReference",
+                    "description": "A term from a community vocabulary that identifies this variable. CF standard names (NERC P07) are recommended."
                 },
                 "uncertainty": {
                     "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.\nIf uncertainty is provided as a variable, please list the column header name here.",
@@ -949,7 +950,8 @@
                     "type": "string"
                 },
                 "standard_identifier": {
-                    "$ref": "#/$defs/VocabularyItemReference"
+                    "$ref": "#/$defs/VocabularyItemReference",
+                    "description": "A term from a community vocabulary that identifies this variable. CF standard names (NERC P07) are recommended."
                 },
                 "temperature_correction_method": {
                     "description": "How the temperature effect was corrected.",
@@ -1151,7 +1153,8 @@
                     "type": "string"
                 },
                 "standard_identifier": {
-                    "$ref": "#/$defs/VocabularyItemReference"
+                    "$ref": "#/$defs/VocabularyItemReference",
+                    "description": "A term from a community vocabulary that identifies this variable. CF standard names (NERC P07) are recommended."
                 },
                 "uncertainty": {
                     "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.\nIf uncertainty is provided as a variable, please list the column header name here.",
@@ -1331,7 +1334,8 @@
                     "type": "string"
                 },
                 "standard_identifier": {
-                    "$ref": "#/$defs/VocabularyItemReference"
+                    "$ref": "#/$defs/VocabularyItemReference",
+                    "description": "A term from a community vocabulary that identifies this variable. CF standard names (NERC P07) are recommended."
                 },
                 "uncertainty": {
                     "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.\nIf uncertainty is provided as a variable, please list the column header name here.",
@@ -1514,7 +1518,8 @@
                     "type": "string"
                 },
                 "standard_identifier": {
-                    "$ref": "#/$defs/VocabularyItemReference"
+                    "$ref": "#/$defs/VocabularyItemReference",
+                    "description": "A term from a community vocabulary that identifies this variable. CF standard names (NERC P07) are recommended."
                 },
                 "uncertainty": {
                     "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.\nIf uncertainty is provided as a variable, please list the column header name here.",
@@ -1713,7 +1718,8 @@
                     "type": "string"
                 },
                 "standard_identifier": {
-                    "$ref": "#/$defs/VocabularyItemReference"
+                    "$ref": "#/$defs/VocabularyItemReference",
+                    "description": "A term from a community vocabulary that identifies this variable. CF standard names (NERC P07) are recommended."
                 },
                 "taxonomic_code_system": {
                     "$ref": "#/$defs/TaxonomicCodeSystem",
@@ -1913,7 +1919,8 @@
                     "type": "string"
                 },
                 "standard_identifier": {
-                    "$ref": "#/$defs/VocabularyItemReference"
+                    "$ref": "#/$defs/VocabularyItemReference",
+                    "description": "A term from a community vocabulary that identifies this variable. CF standard names (NERC P07) are recommended."
                 },
                 "uncertainty": {
                     "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.\nIf uncertainty is provided as a variable, please list the column header name here.",
@@ -2138,7 +2145,8 @@
                     "type": "string"
                 },
                 "standard_identifier": {
-                    "$ref": "#/$defs/VocabularyItemReference"
+                    "$ref": "#/$defs/VocabularyItemReference",
+                    "description": "A term from a community vocabulary that identifies this variable. CF standard names (NERC P07) are recommended."
                 },
                 "uncertainty": {
                     "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.\nIf uncertainty is provided as a variable, please list the column header name here.",
@@ -2566,7 +2574,8 @@
                     "type": "number"
                 },
                 "standard_identifier": {
-                    "$ref": "#/$defs/VocabularyItemReference"
+                    "$ref": "#/$defs/VocabularyItemReference",
+                    "description": "A term from a community vocabulary that identifies this variable. CF standard names (NERC P07) are recommended."
                 },
                 "storage_method": {
                     "description": "How the samples were stored before the measurement.",
@@ -2756,7 +2765,8 @@
                     "type": "string"
                 },
                 "standard_identifier": {
-                    "$ref": "#/$defs/VocabularyItemReference"
+                    "$ref": "#/$defs/VocabularyItemReference",
+                    "description": "A term from a community vocabulary that identifies this variable. CF standard names (NERC P07) are recommended."
                 },
                 "uncertainty": {
                     "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.\nIf uncertainty is provided as a variable, please list the column header name here.",
@@ -2927,7 +2937,8 @@
                     "type": "string"
                 },
                 "standard_identifier": {
-                    "$ref": "#/$defs/VocabularyItemReference"
+                    "$ref": "#/$defs/VocabularyItemReference",
+                    "description": "A term from a community vocabulary that identifies this variable. CF standard names (NERC P07) are recommended."
                 },
                 "uncertainty": {
                     "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.\nIf uncertainty is provided as a variable, please list the column header name here.",
@@ -3093,7 +3104,8 @@
                     "type": "string"
                 },
                 "standard_identifier": {
-                    "$ref": "#/$defs/VocabularyItemReference"
+                    "$ref": "#/$defs/VocabularyItemReference",
+                    "description": "A term from a community vocabulary that identifies this variable. CF standard names (NERC P07) are recommended."
                 },
                 "temperature_correction_method": {
                     "description": "Method used to correct pH for temperature.",
@@ -3288,7 +3300,8 @@
                     "type": "string"
                 },
                 "standard_identifier": {
-                    "$ref": "#/$defs/VocabularyItemReference"
+                    "$ref": "#/$defs/VocabularyItemReference",
+                    "description": "A term from a community vocabulary that identifies this variable. CF standard names (NERC P07) are recommended."
                 },
                 "taxonomic_code_system": {
                     "$ref": "#/$defs/TaxonomicCodeSystem",
@@ -3477,7 +3490,8 @@
                     "type": "string"
                 },
                 "standard_identifier": {
-                    "$ref": "#/$defs/VocabularyItemReference"
+                    "$ref": "#/$defs/VocabularyItemReference",
+                    "description": "A term from a community vocabulary that identifies this variable. CF standard names (NERC P07) are recommended."
                 },
                 "uncertainty": {
                     "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.\nIf uncertainty is provided as a variable, please list the column header name here.",
@@ -3657,7 +3671,8 @@
                     "type": "string"
                 },
                 "standard_identifier": {
-                    "$ref": "#/$defs/VocabularyItemReference"
+                    "$ref": "#/$defs/VocabularyItemReference",
+                    "description": "A term from a community vocabulary that identifies this variable. CF standard names (NERC P07) are recommended."
                 },
                 "titration_cell_type": {
                     "$ref": "#/$defs/TitrationCellType",
@@ -4420,7 +4435,8 @@
                     "type": "string"
                 },
                 "standard_identifier": {
-                    "$ref": "#/$defs/VocabularyItemReference"
+                    "$ref": "#/$defs/VocabularyItemReference",
+                    "description": "A term from a community vocabulary that identifies this variable. CF standard names (NERC P07) are recommended."
                 },
                 "uncertainty": {
                     "description": "It is recommended to provide uncertainty for each data point in the data file. Else provide a single value representative of the dataset.\nIf uncertainty is provided as a variable, please list the column header name here.",
@@ -5852,7 +5868,8 @@
                     "type": "string"
                 },
                 "standard_identifier": {
-                    "$ref": "#/$defs/VocabularyItemReference"
+                    "$ref": "#/$defs/VocabularyItemReference",
+                    "description": "A term from a community vocabulary that identifies this variable. CF standard names (NERC P07) are recommended."
                 },
                 "units": {
                     "description": "Unit of measurement for this variable.",
@@ -5970,7 +5987,8 @@
                     "type": "string"
                 },
                 "standard_identifier": {
-                    "$ref": "#/$defs/VocabularyItemReference"
+                    "$ref": "#/$defs/VocabularyItemReference",
+                    "description": "A term from a community vocabulary that identifies this variable. CF standard names (NERC P07) are recommended."
                 },
                 "units": {
                     "description": "Unit of measurement for this variable.",
@@ -6893,7 +6911,8 @@
                     "type": "string"
                 },
                 "standard_identifier": {
-                    "$ref": "#/$defs/VocabularyItemReference"
+                    "$ref": "#/$defs/VocabularyItemReference",
+                    "description": "A term from a community vocabulary that identifies this variable. CF standard names (NERC P07) are recommended."
                 },
                 "units": {
                     "description": "Unit of measurement for this variable.",
