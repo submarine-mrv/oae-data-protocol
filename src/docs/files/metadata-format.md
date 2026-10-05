@@ -13,7 +13,7 @@ A Container is the top-level object in every metadata file. It wraps project met
 ```json
 {
   "@context": "https://schema.oaedata.org/context.jsonld",
-  "version": "0.0.0-prerelease",
+  "version": "0.5.0",
   "protocol_git_hash": "abc123...",
   "project": { ... },
   "experiments": [ ... ],
@@ -47,7 +47,7 @@ A Container holds one **Project**, one or more **Experiments**, and one or more 
 ```json
 {
   "@context": "https://schema.oaedata.org/context.jsonld",
-  "version": "0.0.0-prerelease",
+  "version": "0.5.0",
   "protocol_git_hash": "50d3904c...",
   "project": {
     "project_id": "EXAMPLE-001",
