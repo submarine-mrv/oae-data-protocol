@@ -64,7 +64,9 @@ classes:
       calibration:
         title: Calibration
         description: pH calibration information for this instrument.
-        range: PHCalibration
+        any_of:
+          - range: DyeCalibration
+          - range: PHCalibration
         required: true
 
   # CRM Instrument for DIC and TA measurements

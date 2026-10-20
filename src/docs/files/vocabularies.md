@@ -28,5 +28,5 @@ section of the protocol website.
 | Field variables | [Variable Type](VariableType.md), [Genesis](GenesisType.md), [Sampling](SamplingType.md), [Observation Type](ObservationType.md), [Appropriate Use Quality](AppropriateUseQuality.md), [Concentration Basis](ConcentrationBasis.md), [Titration Cell Type](TitrationCellType.md) |
 | Physiological and socioeconomic variables | [Taxonomic Code System](TaxonomicCodeSystem.md), [Life Stage](LifeStage.md), [Quantitative or Qualitative](QuantitativeQualitative.md), [Social Study Type](SocialStudyType.md) |
 | Model output variables | [Model Variable Type](ModelVariableType.md) |
-| Instruments | [Calibration Location](CalibrationLocation.md) |
+| Instruments | [Calibration Location](CalibrationLocation.md), [pH Calibration Standard](PHCalibrationStandard.md) |
 | People | [Researcher ID Type](ResearcherIDType.md) |

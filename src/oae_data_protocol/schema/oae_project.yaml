@@ -11,11 +11,17 @@ classes:
   Project:
     description: "A project conducting OAE field trials or modeling."
     slots:
+      - name
       - project_id
       - description
       - temporal_coverage
       - spatial_coverage
     slot_usage:
+      - name:
+          title: Project Name
+          description: >-
+            Name of the project the data collection is part of. For example, West Coast Ocean Acidification (WCOA) Project.
+          required: true
       - temporal_coverage:
           required: true
           description: "The start and end date (optional) of the project"
@@ -92,13 +98,6 @@ classes:
         description: >-
           A description is required if any nearby operations exist that may influence the waters over the time period covered by this data. This might be a nearby mCDR project, a facility that discharges water with different characteristics than the inflow (e.g., a desalination plant), frequent boating operations, etc.
         range: string
-      research_project:
-        slot_uri: schema:name
-        title: Research Project
-        description: >-
-          Project, which the data collection is part of. For example, West Coast Ocean Acidification (WCOA) Project.
-        range: string
-        required: true
       funding:
         title: Funding Info
         description: >-

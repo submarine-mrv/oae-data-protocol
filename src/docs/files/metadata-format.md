@@ -37,7 +37,7 @@ A minimal file that validates against the schema:
   "version": "0.5.0",
   "project": {
     "project_id": "EXAMPLE-001",
-    "research_project": "North Atlantic OAE pilot",
+    "name": "North Atlantic OAE pilot",
     "description": "A pilot OAE field trial in the North Atlantic",
     "mcdr_pathway": "ocean_alkalinity_enhancement",
     "sea_names": ["http://vocab.nerc.ac.uk/collection/C16/current/23/"],

@@ -61,18 +61,56 @@ classes:
         range: string
         required: true
 
-  # pH Calibration with dye information
+  # pH calibration. Dye standards use the DyeCalibration subclass.
   PHCalibration:
     description: >-
-      pH instrument calibration with dye information.
+      pH instrument calibration with a TRIS or other standard. Use DyeCalibration
+      when standard_used is dye.
     is_a: Calibration
     slots:
       - calibration_temperature
-    attributes:
-      dye_type_and_manufacturer:
-        title: Type of dye and manufacturer information
-        description: Type of indicator dye and any detailed information about it, e.g., its manufacturer.
+      - standard_used
+    slot_usage:
+      standard_used:
+        required: true
         range: string
+        equals_string_in:
+          - tris
+          - other
+    rules:
+      - preconditions:
+          slot_conditions:
+            standard_used:
+              equals_string: "other"
+        postconditions:
+          slot_conditions:
+            standard_used_custom:
+              required: true
+    attributes:
+      standard_used_custom:
+        title: Standard Used (Custom)
+        description: Name of the standard used, when it is not in the list.
+        range: string
+      standard_type_and_production:
+        title: Standard type and production
+        description: Details on the standard (e.g., type of dye used) and how or where it was produced.
+        range: string
+      ph_of_standards:
+        title: pH of standards
+        description: pH values of the calibration standards used.
+        range: string
+
+  DyeCalibration:
+    description: >-
+      pH instrument calibration with an indicator dye standard.
+    is_a: PHCalibration
+    slot_usage:
+      standard_used:
+        # Replaces the parent's [tris, other] list rather than inheriting it.
+        range: string
+        equals_string_in:
+          - dye
+    attributes:
       dye_purified:
         title: Dye purified
         description: Whether the dye has been purified.
@@ -84,10 +122,6 @@ classes:
       dye_correction_method:
         title: Dye correction method
         description: Method used to correct for dye effects.
-        range: string
-      ph_of_standards:
-        title: pH of standards
-        description: pH values of the calibration standards used.
         range: string
 
   # CO2 Calibration base (shared by discrete and continuous)
@@ -158,6 +192,10 @@ classes:
         range: string
 
 slots:
+  standard_used:
+    title: Standard used
+    description: Type of standard used to calibrate the pH measurement.
+    range: PHCalibrationStandard
   calibration_location:
     title: Calibration location
     description: Factory calibration, lab calibration, or field calibration.
@@ -178,3 +216,15 @@ enums:
         description: Laboratory calibration.
       field:
         description: Field calibration performed during deployment.
+  PHCalibrationStandard:
+    description: Standard used to calibrate a pH measurement.
+    permissible_values:
+      dye:
+        title: Dye
+        description: Indicator dye, e.g., m-cresol purple.
+      tris:
+        title: TRIS
+        description: TRIS buffer in synthetic seawater.
+      other:
+        title: Other
+        description: A standard not listed here. Name it in the custom field.
