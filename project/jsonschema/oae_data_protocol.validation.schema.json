@@ -6268,6 +6268,7 @@
                     "type": "string"
                 },
                 "calibration": {
+                    "$ref": "#/$defs/Any",
                     "anyOf": [
                         {
                             "$ref": "#/$defs/DyeCalibration"

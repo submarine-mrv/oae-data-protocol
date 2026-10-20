@@ -1248,7 +1248,7 @@ export interface AnalyzingInstrument {
  */
 export interface PHInstrument extends AnalyzingInstrument {
     /** pH calibration information for this instrument. */
-    calibration: string,
+    calibration: Any,
 }
 
 
