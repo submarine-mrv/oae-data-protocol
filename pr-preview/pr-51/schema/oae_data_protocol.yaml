@@ -2281,9 +2281,9 @@ slots:
     title: Standard used
     from_schema: Calibration
     slot_uri: oae:standard_used
-    owner: PHCalibration
+    owner: PHCalibrationFields
     domain_of:
-    - PHCalibration
+    - PHCalibrationFields
     range: PHCalibrationStandard
   calibration_location:
     name: calibration_location
@@ -2305,7 +2305,7 @@ slots:
     slot_uri: oae:calibration_temperature
     owner: DiscreteCO2Calibration
     domain_of:
-    - PHCalibration
+    - PHCalibrationFields
     - DiscreteCO2Calibration
     range: string
   container__project:
@@ -5318,36 +5318,36 @@ slots:
     - CRMCalibration
     range: string
     required: true
-  pHCalibration__standard_used_custom:
-    name: pHCalibration__standard_used_custom
-    description: Name of the standard used, when it is not in the list.
-    title: Standard Used (Custom)
-    from_schema: Calibration
-    slot_uri: oae:standard_used_custom
-    alias: standard_used_custom
-    owner: PHCalibration
-    domain_of:
-    - PHCalibration
-    range: string
-  pHCalibration__standard_type_and_production:
-    name: pHCalibration__standard_type_and_production
+  pHCalibrationFields__standard_type_and_production:
+    name: pHCalibrationFields__standard_type_and_production
     description: Details on the standard (e.g., type of dye used) and how or where
       it was produced.
     title: Standard type and production
     from_schema: Calibration
     slot_uri: oae:standard_type_and_production
     alias: standard_type_and_production
-    owner: PHCalibration
+    owner: PHCalibrationFields
     domain_of:
-    - PHCalibration
+    - PHCalibrationFields
     range: string
-  pHCalibration__ph_of_standards:
-    name: pHCalibration__ph_of_standards
+  pHCalibrationFields__ph_of_standards:
+    name: pHCalibrationFields__ph_of_standards
     description: pH values of the calibration standards used.
     title: pH of standards
     from_schema: Calibration
     slot_uri: oae:ph_of_standards
     alias: ph_of_standards
+    owner: PHCalibrationFields
+    domain_of:
+    - PHCalibrationFields
+    range: string
+  pHCalibration__standard_used_custom:
+    name: pHCalibration__standard_used_custom
+    description: Name of the standard used, when it is not in the list.
+    title: Standard used (custom)
+    from_schema: Calibration
+    slot_uri: oae:standard_used_custom
+    alias: standard_used_custom
     owner: PHCalibration
     domain_of:
     - PHCalibration
@@ -6772,13 +6772,30 @@ slots:
     is_usage_slot: true
     usage_slot_name: precision
     range: float
+  PHCalibrationFields_standard_used:
+    name: PHCalibrationFields_standard_used
+    definition_uri: https://schema.oaedata.org/standard_used
+    description: Type of standard used to calibrate the pH measurement.
+    title: Standard used
+    from_schema: Calibration
+    is_a: standard_used
+    domain: PHCalibrationFields
+    slot_uri: oae:standard_used
+    alias: standard_used
+    owner: PHCalibrationFields
+    domain_of:
+    - PHCalibrationFields
+    is_usage_slot: true
+    usage_slot_name: standard_used
+    range: PHCalibrationStandard
+    required: true
   PHCalibration_standard_used:
     name: PHCalibration_standard_used
     definition_uri: https://schema.oaedata.org/standard_used
     description: Type of standard used to calibrate the pH measurement.
     title: Standard used
     from_schema: Calibration
-    is_a: standard_used
+    is_a: PHCalibrationFields_standard_used
     domain: PHCalibration
     slot_uri: oae:standard_used
     alias: standard_used
@@ -6798,7 +6815,7 @@ slots:
     description: Type of standard used to calibrate the pH measurement.
     title: Standard used
     from_schema: Calibration
-    is_a: PHCalibration_standard_used
+    is_a: PHCalibrationFields_standard_used
     domain: DyeCalibration
     slot_uri: oae:standard_used
     alias: standard_used
@@ -10574,6 +10591,35 @@ classes:
         range: string
         required: true
     class_uri: oae:CRMCalibration
+  PHCalibrationFields:
+    name: PHCalibrationFields
+    definition_uri: https://schema.oaedata.org/PHCalibrationFields
+    description: Fields shared by PHCalibration and DyeCalibration (used as a mixin,
+      not implemented directly).
+    from_schema: Calibration
+    mixin: true
+    slots:
+    - calibration_temperature
+    - PHCalibrationFields_standard_used
+    - pHCalibrationFields__standard_type_and_production
+    - pHCalibrationFields__ph_of_standards
+    slot_usage:
+      standard_used:
+        name: standard_used
+        required: true
+    attributes:
+      standard_type_and_production:
+        name: standard_type_and_production
+        description: Details on the standard (e.g., type of dye used) and how or where
+          it was produced.
+        title: Standard type and production
+        range: string
+      ph_of_standards:
+        name: ph_of_standards
+        description: pH values of the calibration standards used.
+        title: pH of standards
+        range: string
+    class_uri: oae:PHCalibrationFields
   PHCalibration:
     name: PHCalibration
     definition_uri: https://schema.oaedata.org/PHCalibration
@@ -10581,6 +10627,8 @@ classes:
       when standard_used is dye.
     from_schema: Calibration
     is_a: Calibration
+    mixins:
+    - PHCalibrationFields
     slots:
     - calibration_location
     - calibration__technique_description
@@ -10588,11 +10636,11 @@ classes:
     - calibration__frequency
     - calibration__last_calibration_date
     - calibration__calibration_certificates
-    - calibration_temperature
-    - PHCalibration_standard_used
     - pHCalibration__standard_used_custom
-    - pHCalibration__standard_type_and_production
-    - pHCalibration__ph_of_standards
+    - PHCalibration_standard_used
+    - calibration_temperature
+    - pHCalibrationFields__standard_type_and_production
+    - pHCalibrationFields__ph_of_standards
     slot_usage:
       standard_used:
         name: standard_used
@@ -10605,18 +10653,7 @@ classes:
       standard_used_custom:
         name: standard_used_custom
         description: Name of the standard used, when it is not in the list.
-        title: Standard Used (Custom)
-        range: string
-      standard_type_and_production:
-        name: standard_type_and_production
-        description: Details on the standard (e.g., type of dye used) and how or where
-          it was produced.
-        title: Standard type and production
-        range: string
-      ph_of_standards:
-        name: ph_of_standards
-        description: pH values of the calibration standards used.
-        title: pH of standards
+        title: Standard used (custom)
         range: string
     class_uri: oae:PHCalibration
     rules:
@@ -10635,7 +10672,9 @@ classes:
     definition_uri: https://schema.oaedata.org/DyeCalibration
     description: pH instrument calibration with an indicator dye standard.
     from_schema: Calibration
-    is_a: PHCalibration
+    is_a: Calibration
+    mixins:
+    - PHCalibrationFields
     slots:
     - calibration_location
     - calibration__technique_description
@@ -10643,18 +10682,18 @@ classes:
     - calibration__frequency
     - calibration__last_calibration_date
     - calibration__calibration_certificates
-    - calibration_temperature
-    - pHCalibration__standard_used_custom
-    - pHCalibration__standard_type_and_production
-    - pHCalibration__ph_of_standards
     - dyeCalibration__dye_purified
     - dyeCalibration__correction_for_unpurified_dye
     - dyeCalibration__dye_correction_method
     - DyeCalibration_standard_used
+    - calibration_temperature
+    - pHCalibrationFields__standard_type_and_production
+    - pHCalibrationFields__ph_of_standards
     slot_usage:
       standard_used:
         name: standard_used
         range: string
+        required: true
         equals_string_in:
         - dye
     attributes:
@@ -10787,7 +10826,7 @@ classes:
     class_uri: oae:ContinuousStandardGas
 metamodel_version: 1.7.0
 source_file: oae_data_protocol.yaml
-source_file_date: '2026-10-20T05:08:27'
+source_file_date: '2026-10-21T03:37:58'
 source_file_size: 1743
-generation_date: '2026-10-20T05:08:33'
+generation_date: '2026-10-21T03:38:06'
 
