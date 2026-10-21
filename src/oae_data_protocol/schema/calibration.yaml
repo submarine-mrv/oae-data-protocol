@@ -61,41 +61,18 @@ classes:
         range: string
         required: true
 
-  # Fields shared by the two pH calibration classes.
-  PHCalibrationFields:
+  # pH calibration. Dye standards use the DyeCalibration subclass.
+  PHCalibration:
     description: >-
-      Fields shared by PHCalibration and DyeCalibration (used as a mixin, not implemented directly).
-    mixin: true
+      pH instrument calibration. Use this class directly for TRIS or other standards,
+      and DyeCalibration when standard_used is dye.
+    is_a: Calibration
     slots:
       - calibration_temperature
       - standard_used
     slot_usage:
       standard_used:
         required: true
-    attributes:
-      standard_type_and_production:
-        title: Standard type and production
-        description: Details on the standard (e.g., type of dye used) and how or where it was produced.
-        range: string
-      ph_of_standards:
-        title: pH of standards
-        description: pH values of the calibration standards used.
-        range: string
-
-  PHCalibration:
-    description: >-
-      pH instrument calibration with a TRIS or other standard. Use DyeCalibration
-      when standard_used is dye.
-    is_a: Calibration
-    mixins:
-      - PHCalibrationFields
-    slot_usage:
-      standard_used:
-        required: true
-        range: string
-        equals_string_in:
-          - tris
-          - other
     rules:
       - preconditions:
           slot_conditions:
@@ -110,16 +87,21 @@ classes:
         title: Standard used (custom)
         description: Name of the standard used, when it is not in the list.
         range: string
+      standard_type_and_production:
+        title: Standard type and production
+        description: Details on the standard (e.g., type of dye used) and how or where it was produced.
+        range: string
+      ph_of_standards:
+        title: pH of standards
+        description: pH values of the calibration standards used.
+        range: string
 
   DyeCalibration:
     description: >-
       pH instrument calibration with an indicator dye standard.
-    is_a: Calibration
-    mixins:
-      - PHCalibrationFields
+    is_a: PHCalibration
     slot_usage:
       standard_used:
-        required: true
         range: string
         equals_string_in:
           - dye

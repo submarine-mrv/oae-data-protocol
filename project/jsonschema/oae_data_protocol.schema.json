@@ -3582,6 +3582,16 @@
         "DyeCalibration": {
             "additionalProperties": false,
             "description": "pH instrument calibration with an indicator dye standard.",
+            "if": {
+                "properties": {
+                    "standard_used": {
+                        "const": "other"
+                    }
+                },
+                "required": [
+                    "standard_used"
+                ]
+            },
             "properties": {
                 "calibration_certificates": {
                     "description": "Information about calibration certificates. Ideally, the certificate should be made available in a PDF file with filename listed here.",
@@ -3647,6 +3657,11 @@
                     "title": "Standard used",
                     "type": "string"
                 },
+                "standard_used_custom": {
+                    "description": "Name of the standard used, when it is not in the list.",
+                    "title": "Standard used (custom)",
+                    "type": "string"
+                },
                 "technique_description": {
                     "description": "Details of the calibration technique used.",
                     "title": "Calibration technique description",
@@ -3657,6 +3672,14 @@
                 "standard_used",
                 "technique_description"
             ],
+            "then": {
+                "properties": {
+                    "standard_used_custom": {}
+                },
+                "required": [
+                    "standard_used_custom"
+                ]
+            },
             "title": "DyeCalibration",
             "type": "object"
         },
@@ -5905,7 +5928,7 @@
         },
         "PHCalibration": {
             "additionalProperties": false,
-            "description": "pH instrument calibration with a TRIS or other standard. Use DyeCalibration when standard_used is dye.",
+            "description": "pH instrument calibration. Use this class directly for TRIS or other standards, and DyeCalibration when standard_used is dye.",
             "if": {
                 "properties": {
                     "standard_used": {
@@ -5959,13 +5982,9 @@
                     "type": "string"
                 },
                 "standard_used": {
+                    "$ref": "#/$defs/PHCalibrationStandard",
                     "description": "Type of standard used to calibrate the pH measurement.",
-                    "enum": [
-                        "tris",
-                        "other"
-                    ],
-                    "title": "Standard used",
-                    "type": "string"
+                    "title": "Standard used"
                 },
                 "standard_used_custom": {
                     "description": "Name of the standard used, when it is not in the list.",

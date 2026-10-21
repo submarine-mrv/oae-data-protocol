@@ -17,7 +17,7 @@ graph TD
 
     AI -->|calibration| C["Calibration"]
     PHI -->|calibration| PHC["PHCalibration"]
-    PHI -->|calibration| DYEC["DyeCalibration"]
+    PHC --> DYEC["DyeCalibration"]
     CRMI -->|calibration| CRMC["CRMCalibration"]
     CO2D -->|calibration| DCO2C["DiscreteCO2Calibration"]
     CCO2D -->|calibration| CCO2C["ContinuousCO2Calibration"]
