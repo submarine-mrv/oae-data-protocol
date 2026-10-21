@@ -43,6 +43,9 @@
                             "$ref": "#/$defs/PHCalibration"
                         },
                         {
+                            "$ref": "#/$defs/DyeCalibration"
+                        },
+                        {
                             "$ref": "#/$defs/CO2Calibration"
                         },
                         {
@@ -50,9 +53,6 @@
                         },
                         {
                             "$ref": "#/$defs/ContinuousCO2Calibration"
-                        },
-                        {
-                            "$ref": "#/$defs/DyeCalibration"
                         }
                     ],
                     "description": "Calibration information for this instrument.",
@@ -3798,16 +3798,6 @@
         "DyeCalibration": {
             "additionalProperties": false,
             "description": "pH instrument calibration with an indicator dye standard.",
-            "if": {
-                "properties": {
-                    "standard_used": {
-                        "const": "other"
-                    }
-                },
-                "required": [
-                    "standard_used"
-                ]
-            },
             "properties": {
                 "calibration_certificates": {
                     "description": "Information about calibration certificates. Ideally, the certificate should be made available in a PDF file with filename listed here.",
@@ -3873,11 +3863,6 @@
                     "title": "Standard used",
                     "type": "string"
                 },
-                "standard_used_custom": {
-                    "description": "Name of the standard used, when it is not in the list.",
-                    "title": "Standard Used (Custom)",
-                    "type": "string"
-                },
                 "technique_description": {
                     "description": "Details of the calibration technique used.",
                     "title": "Calibration technique description",
@@ -3888,14 +3873,6 @@
                 "standard_used",
                 "technique_description"
             ],
-            "then": {
-                "properties": {
-                    "standard_used_custom": {}
-                },
-                "required": [
-                    "standard_used_custom"
-                ]
-            },
             "title": "DyeCalibration",
             "type": "object"
         },
@@ -6224,7 +6201,7 @@
                 },
                 "standard_used_custom": {
                     "description": "Name of the standard used, when it is not in the list.",
-                    "title": "Standard Used (Custom)",
+                    "title": "Standard used (custom)",
                     "type": "string"
                 },
                 "technique_description": {
@@ -6274,14 +6251,7 @@
                             "$ref": "#/$defs/DyeCalibration"
                         },
                         {
-                            "anyOf": [
-                                {
-                                    "$ref": "#/$defs/PHCalibration"
-                                },
-                                {
-                                    "$ref": "#/$defs/DyeCalibration"
-                                }
-                            ]
+                            "$ref": "#/$defs/PHCalibration"
                         }
                     ],
                     "description": "pH calibration information for this instrument.",

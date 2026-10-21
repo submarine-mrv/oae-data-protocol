@@ -1141,15 +1141,13 @@ export interface CRMCalibration extends Calibration {
 
 
 /**
- * pH instrument calibration with a TRIS or other standard. Use DyeCalibration when standard_used is dye.
+ * Fields shared by PHCalibration and DyeCalibration (used as a mixin, not implemented directly).
  */
-export interface PHCalibration extends Calibration {
+export interface PHCalibrationFields {
     /** Temperature at which calibration was performed. */
     calibration_temperature?: string,
     /** Type of standard used to calibrate the pH measurement. */
     standard_used: string,
-    /** Name of the standard used, when it is not in the list. */
-    standard_used_custom?: string,
     /** Details on the standard (e.g., type of dye used) and how or where it was produced. */
     standard_type_and_production?: string,
     /** pH values of the calibration standards used. */
@@ -1158,9 +1156,18 @@ export interface PHCalibration extends Calibration {
 
 
 /**
+ * pH instrument calibration with a TRIS or other standard. Use DyeCalibration when standard_used is dye.
+ */
+export interface PHCalibration extends Calibration, PHCalibrationFields {
+    /** Name of the standard used, when it is not in the list. */
+    standard_used_custom?: string,
+}
+
+
+/**
  * pH instrument calibration with an indicator dye standard.
  */
-export interface DyeCalibration extends PHCalibration {
+export interface DyeCalibration extends Calibration, PHCalibrationFields {
     /** Whether the dye has been purified. */
     dye_purified?: boolean,
     /** Correction method applied if dye was not purified. */
