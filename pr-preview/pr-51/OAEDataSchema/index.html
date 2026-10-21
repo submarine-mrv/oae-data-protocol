@@ -1631,12 +1631,12 @@
 <td>Calibration using Certified Reference Materials, used for DIC and TA instruments.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../DyeCalibration/">DyeCalibration</a></td>
-<td>pH instrument calibration with an indicator dye standard.</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../PHCalibration/">PHCalibration</a></td>
+<td>pH instrument calibration. Use this class directly for TRIS or other standards, and DyeCalibration when standard_used is dye.</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../PHCalibration/">PHCalibration</a></td>
-<td>pH instrument calibration with a TRIS or other standard. Use DyeCalibration when standard_used is dye.</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../DyeCalibration/">DyeCalibration</a></td>
+<td>pH instrument calibration with an indicator dye standard.</td>
 </tr>
 <tr>
 <td><a href="../CO2Equilibrator/">CO2Equilibrator</a></td>
@@ -1781,10 +1781,6 @@
 <tr>
 <td><a href="../Person/">Person</a></td>
 <td>Information about a researcher or investigator involved in the experiment.</td>
-</tr>
-<tr>
-<td><a href="../PHCalibrationFields/">PHCalibrationFields</a></td>
-<td>Fields shared by PHCalibration and DyeCalibration (used as a mixin, not implemented directly).</td>
 </tr>
 <tr>
 <td><a href="../Place/">Place</a></td>
