@@ -12,7 +12,7 @@ section of the protocol website.
 |-----------|--------|----------|
 | [Sea Names](SeaNames.md) | NERC [C16](https://vocab.nerc.ac.uk/collection/C16/current/) | Project sea areas |
 | [Platform Type](PlatformType.md) | NERC [L06](https://vocab.nerc.ac.uk/collection/L06/current/) | Dataset platforms |
-| [Analyzing](AnalyzingInstrumentType.md) and [Sampling](SamplingInstrumentType.md) Instrument Type | NERC [L05](https://vocab.nerc.ac.uk/collection/L05/current/), [L22](https://vocab.nerc.ac.uk/collection/L22/current/), [B75](https://vocab.nerc.ac.uk/collection/B75/current/) | Measured variables |
+| [Analyzing](AnalyzingInstrumentType.md) and [Sampling](SamplingInstrumentType.md) Instrument Type | NERC [L05](https://vocab.nerc.ac.uk/collection/L05/current/), [L22](https://vocab.nerc.ac.uk/collection/L22/current/), [B75](https://vocab.nerc.ac.uk/collection/B75/current/), plus protocol-defined values | Measured variables |
 | [Mass Concentration Unit](MassConcentrationUnit.md) | [QUDT](https://qudt.org/vocab/unit/) | Dosing amounts |
 | CF Standard Names | NERC [P07](https://vocab.nerc.ac.uk/collection/P07/current/) | Variable `standard_identifier` (recommended) |
 
@@ -28,5 +28,5 @@ section of the protocol website.
 | Field variables | [Variable Type](VariableType.md), [Genesis](GenesisType.md), [Sampling](SamplingType.md), [Observation Type](ObservationType.md), [Appropriate Use Quality](AppropriateUseQuality.md), [Concentration Basis](ConcentrationBasis.md), [Titration Cell Type](TitrationCellType.md) |
 | Physiological and socioeconomic variables | [Taxonomic Code System](TaxonomicCodeSystem.md), [Life Stage](LifeStage.md), [Quantitative or Qualitative](QuantitativeQualitative.md), [Social Study Type](SocialStudyType.md) |
 | Model output variables | [Model Variable Type](ModelVariableType.md) |
-| Instruments | [Calibration Location](CalibrationLocation.md) |
+| Instruments | [Calibration Location](CalibrationLocation.md), [pH Calibration Standard](PHCalibrationStandard.md) |
 | People | [Researcher ID Type](ResearcherIDType.md) |

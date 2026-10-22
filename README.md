@@ -23,7 +23,8 @@ The schemas are written in [LinkML](https://linkml.io). Generated files are comm
 
 - `project/jsonschema/oae_data_protocol.schema.json`: JSON Schema, used by the Metadata Builder
 - `project/jsonschema/oae_data_protocol.validation.schema.json`: JSON Schema for validating
-  documents, which accepts every variable subclass where a variable is expected
+  whole metadata files, which accepts every experiment and dataset subclass where the main
+  schema accepts only the base class
 - `project/typescript/`: TypeScript types
 - `src/oae_data_protocol/datamodel/`: Pydantic models
 
