@@ -1702,8 +1702,7 @@ class PHCalibration(Calibration):
          'rules': [{'postconditions': {'slot_conditions': {'standard_used_custom': {'name': 'standard_used_custom',
                                                                                     'required': True}}},
                     'preconditions': {'slot_conditions': {'standard_used': {'equals_string': 'other',
-                                                                            'name': 'standard_used'}}}}],
-         'slot_usage': {'standard_used': {'name': 'standard_used', 'required': True}}})
+                                                                            'name': 'standard_used'}}}}]})
 
     calibration_temperature: Optional[str] = Field(default=None, title="Calibration temperature", description="""Temperature at which calibration was performed.""", json_schema_extra = { "linkml_meta": {'alias': 'calibration_temperature',
          'domain_of': ['PHCalibration', 'DiscreteCO2Calibration']} })

@@ -70,9 +70,6 @@ classes:
     slots:
       - calibration_temperature
       - standard_used
-    slot_usage:
-      standard_used:
-        required: true
     rules:
       - preconditions:
           slot_conditions:
@@ -191,6 +188,7 @@ slots:
     title: Standard used
     description: Type of standard used to calibrate the pH measurement.
     range: PHCalibrationStandard
+    required: true
   calibration_location:
     title: Calibration location
     description: Factory calibration, lab calibration, or field calibration.
