@@ -2285,6 +2285,7 @@ slots:
     domain_of:
     - PHCalibration
     range: PHCalibrationStandard
+    required: true
   calibration_location:
     name: calibration_location
     definition_uri: https://schema.oaedata.org/calibration_location
@@ -6772,30 +6773,13 @@ slots:
     is_usage_slot: true
     usage_slot_name: precision
     range: float
-  PHCalibration_standard_used:
-    name: PHCalibration_standard_used
-    definition_uri: https://schema.oaedata.org/standard_used
-    description: Type of standard used to calibrate the pH measurement.
-    title: Standard used
-    from_schema: Calibration
-    is_a: standard_used
-    domain: PHCalibration
-    slot_uri: oae:standard_used
-    alias: standard_used
-    owner: PHCalibration
-    domain_of:
-    - PHCalibration
-    is_usage_slot: true
-    usage_slot_name: standard_used
-    range: PHCalibrationStandard
-    required: true
   DyeCalibration_standard_used:
     name: DyeCalibration_standard_used
     definition_uri: https://schema.oaedata.org/standard_used
     description: Type of standard used to calibrate the pH measurement.
     title: Standard used
     from_schema: Calibration
-    is_a: PHCalibration_standard_used
+    is_a: standard_used
     domain: DyeCalibration
     slot_uri: oae:standard_used
     alias: standard_used
@@ -10586,14 +10570,10 @@ classes:
     - calibration__last_calibration_date
     - calibration__calibration_certificates
     - calibration_temperature
-    - PHCalibration_standard_used
+    - standard_used
     - pHCalibration__standard_used_custom
     - pHCalibration__standard_type_and_production
     - pHCalibration__ph_of_standards
-    slot_usage:
-      standard_used:
-        name: standard_used
-        required: true
     attributes:
       standard_used_custom:
         name: standard_used_custom
@@ -10780,7 +10760,7 @@ classes:
     class_uri: oae:ContinuousStandardGas
 metamodel_version: 1.7.0
 source_file: oae_data_protocol.yaml
-source_file_date: '2026-10-21T23:04:47'
+source_file_date: '2026-10-22T00:23:02'
 source_file_size: 1743
-generation_date: '2026-10-21T23:04:58'
+generation_date: '2026-10-22T00:23:13'
 
