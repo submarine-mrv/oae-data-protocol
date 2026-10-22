@@ -1861,6 +1861,24 @@ enums:
       field:
         text: field
         description: Field calibration performed during deployment.
+  PHCalibrationStandard:
+    name: PHCalibrationStandard
+    definition_uri: https://schema.oaedata.org/PHCalibrationStandard
+    description: Standard used to calibrate a pH measurement.
+    from_schema: Calibration
+    permissible_values:
+      dye:
+        text: dye
+        description: Indicator dye, e.g., m-cresol purple.
+        title: Dye
+      tris:
+        text: tris
+        description: TRIS buffer in synthetic seawater.
+        title: TRIS
+      other:
+        text: other
+        description: A standard not listed here. Name it in the custom field.
+        title: Other
 slots:
   description:
     name: description
@@ -1892,6 +1910,7 @@ slots:
     owner: Platform
     domain_of:
     - Organization
+    - Project
     - MonetaryGrant
     - Experiment
     - Dataset
@@ -2255,6 +2274,18 @@ slots:
     domain_of:
     - AnalyzingInstrument
     range: string
+  standard_used:
+    name: standard_used
+    definition_uri: https://schema.oaedata.org/standard_used
+    description: Type of standard used to calibrate the pH measurement.
+    title: Standard used
+    from_schema: Calibration
+    slot_uri: oae:standard_used
+    owner: PHCalibration
+    domain_of:
+    - PHCalibration
+    range: PHCalibrationStandard
+    required: true
   calibration_location:
     name: calibration_location
     definition_uri: https://schema.oaedata.org/calibration_location
@@ -2615,21 +2646,6 @@ slots:
     domain_of:
     - Project
     range: string
-  project__research_project:
-    name: project__research_project
-    description: Project, which the data collection is part of. For example, West
-      Coast Ocean Acidification (WCOA) Project.
-    title: Research Project
-    from_schema: Project
-    mappings:
-    - schema:name
-    slot_uri: schema:name
-    alias: research_project
-    owner: Project
-    domain_of:
-    - Project
-    range: string
-    required: true
   project__funding:
     name: project__funding
     description: Include the name of the funder, funder country, project title, project
@@ -4940,9 +4956,12 @@ slots:
     owner: PHInstrument
     domain_of:
     - PHInstrument
-    range: PHCalibration
+    range: Any
     required: true
     inlined: true
+    any_of:
+    - range: DyeCalibration
+    - range: PHCalibration
   cRMInstrument__calibration:
     name: cRMInstrument__calibration
     description: CRM calibration information for this instrument.
@@ -5300,47 +5319,25 @@ slots:
     - CRMCalibration
     range: string
     required: true
-  pHCalibration__dye_type_and_manufacturer:
-    name: pHCalibration__dye_type_and_manufacturer
-    description: Type of indicator dye and any detailed information about it, e.g.,
-      its manufacturer.
-    title: Type of dye and manufacturer information
+  pHCalibration__standard_used_custom:
+    name: pHCalibration__standard_used_custom
+    description: Name of the standard used, when it is not in the list.
+    title: Standard used (custom)
     from_schema: Calibration
-    slot_uri: oae:dye_type_and_manufacturer
-    alias: dye_type_and_manufacturer
+    slot_uri: oae:standard_used_custom
+    alias: standard_used_custom
     owner: PHCalibration
     domain_of:
     - PHCalibration
     range: string
-  pHCalibration__dye_purified:
-    name: pHCalibration__dye_purified
-    description: Whether the dye has been purified.
-    title: Dye purified
+  pHCalibration__standard_type_and_production:
+    name: pHCalibration__standard_type_and_production
+    description: Details on the standard (e.g., type of dye used) and how or where
+      it was produced.
+    title: Standard type and production
     from_schema: Calibration
-    slot_uri: oae:dye_purified
-    alias: dye_purified
-    owner: PHCalibration
-    domain_of:
-    - PHCalibration
-    range: boolean
-  pHCalibration__correction_for_unpurified_dye:
-    name: pHCalibration__correction_for_unpurified_dye
-    description: Correction method applied if dye was not purified.
-    title: Correction for unpurified dye
-    from_schema: Calibration
-    slot_uri: oae:correction_for_unpurified_dye
-    alias: correction_for_unpurified_dye
-    owner: PHCalibration
-    domain_of:
-    - PHCalibration
-    range: string
-  pHCalibration__dye_correction_method:
-    name: pHCalibration__dye_correction_method
-    description: Method used to correct for dye effects.
-    title: Dye correction method
-    from_schema: Calibration
-    slot_uri: oae:dye_correction_method
-    alias: dye_correction_method
+    slot_uri: oae:standard_type_and_production
+    alias: standard_type_and_production
     owner: PHCalibration
     domain_of:
     - PHCalibration
@@ -5355,6 +5352,39 @@ slots:
     owner: PHCalibration
     domain_of:
     - PHCalibration
+    range: string
+  dyeCalibration__dye_purified:
+    name: dyeCalibration__dye_purified
+    description: Whether the dye has been purified.
+    title: Dye purified
+    from_schema: Calibration
+    slot_uri: oae:dye_purified
+    alias: dye_purified
+    owner: DyeCalibration
+    domain_of:
+    - DyeCalibration
+    range: boolean
+  dyeCalibration__correction_for_unpurified_dye:
+    name: dyeCalibration__correction_for_unpurified_dye
+    description: Correction method applied if dye was not purified.
+    title: Correction for unpurified dye
+    from_schema: Calibration
+    slot_uri: oae:correction_for_unpurified_dye
+    alias: correction_for_unpurified_dye
+    owner: DyeCalibration
+    domain_of:
+    - DyeCalibration
+    range: string
+  dyeCalibration__dye_correction_method:
+    name: dyeCalibration__dye_correction_method
+    description: Method used to correct for dye effects.
+    title: Dye correction method
+    from_schema: Calibration
+    slot_uri: oae:dye_correction_method
+    alias: dye_correction_method
+    owner: DyeCalibration
+    domain_of:
+    - DyeCalibration
     range: string
   cO2Calibration__standard_gas_info:
     name: cO2Calibration__standard_gas_info
@@ -5491,6 +5521,26 @@ slots:
     owner: Organization
     domain_of:
     - Organization
+    is_usage_slot: true
+    usage_slot_name: name
+    range: string
+    required: true
+  Project_name:
+    name: Project_name
+    definition_uri: https://schema.oaedata.org/name
+    description: Name of the project the data collection is part of. For example,
+      West Coast Ocean Acidification (WCOA) Project.
+    title: Project Name
+    from_schema: Core
+    mappings:
+    - schema:name
+    is_a: name
+    domain: Project
+    slot_uri: schema:name
+    alias: name
+    owner: Project
+    domain_of:
+    - Project
     is_usage_slot: true
     usage_slot_name: name
     range: string
@@ -6723,6 +6773,25 @@ slots:
     is_usage_slot: true
     usage_slot_name: precision
     range: float
+  DyeCalibration_standard_used:
+    name: DyeCalibration_standard_used
+    definition_uri: https://schema.oaedata.org/standard_used
+    description: Type of standard used to calibrate the pH measurement.
+    title: Standard used
+    from_schema: Calibration
+    is_a: standard_used
+    domain: DyeCalibration
+    slot_uri: oae:standard_used
+    alias: standard_used
+    owner: DyeCalibration
+    domain_of:
+    - DyeCalibration
+    is_usage_slot: true
+    usage_slot_name: standard_used
+    range: string
+    required: true
+    equals_string_in:
+    - dye
 classes:
   Container:
     name: Container
@@ -6955,6 +7024,7 @@ classes:
     broad_mappings:
     - schema:ResearchProject
     slots:
+    - Project_name
     - Project_project_id
     - Project_description
     - Project_temporal_coverage
@@ -6968,10 +7038,15 @@ classes:
     - project__mcdr_pathway
     - project__previous_or_ongoing_colocated_research
     - project__colocated_operations
-    - project__research_project
     - project__funding
     - project__additional_details
     slot_usage:
+      name:
+        name: name
+        description: Name of the project the data collection is part of. For example,
+          West Coast Ocean Acidification (WCOA) Project.
+        title: Project Name
+        required: true
       temporal_coverage:
         name: temporal_coverage
         description: The start and end date (optional) of the project
@@ -7081,14 +7156,6 @@ classes:
           operations, etc.
         title: Co-located Operations
         range: string
-      research_project:
-        name: research_project
-        description: Project, which the data collection is part of. For example, West
-          Coast Ocean Acidification (WCOA) Project.
-        title: Research Project
-        slot_uri: schema:name
-        range: string
-        required: true
       funding:
         name: funding
         description: Include the name of the funder, funder country, project title,
@@ -10111,8 +10178,11 @@ classes:
         name: calibration
         description: pH calibration information for this instrument.
         title: Calibration
-        range: PHCalibration
+        range: Any
         required: true
+        any_of:
+        - range: DyeCalibration
+        - range: PHCalibration
     class_uri: oae:PHInstrument
   CRMInstrument:
     name: CRMInstrument
@@ -10488,7 +10558,8 @@ classes:
   PHCalibration:
     name: PHCalibration
     definition_uri: https://schema.oaedata.org/PHCalibration
-    description: pH instrument calibration with dye information.
+    description: pH instrument calibration. Use this class directly for TRIS or other
+      standards, and DyeCalibration when standard_used is dye.
     from_schema: Calibration
     is_a: Calibration
     slots:
@@ -10499,18 +10570,67 @@ classes:
     - calibration__last_calibration_date
     - calibration__calibration_certificates
     - calibration_temperature
-    - pHCalibration__dye_type_and_manufacturer
-    - pHCalibration__dye_purified
-    - pHCalibration__correction_for_unpurified_dye
-    - pHCalibration__dye_correction_method
+    - standard_used
+    - pHCalibration__standard_used_custom
+    - pHCalibration__standard_type_and_production
     - pHCalibration__ph_of_standards
     attributes:
-      dye_type_and_manufacturer:
-        name: dye_type_and_manufacturer
-        description: Type of indicator dye and any detailed information about it,
-          e.g., its manufacturer.
-        title: Type of dye and manufacturer information
+      standard_used_custom:
+        name: standard_used_custom
+        description: Name of the standard used, when it is not in the list.
+        title: Standard used (custom)
         range: string
+      standard_type_and_production:
+        name: standard_type_and_production
+        description: Details on the standard (e.g., type of dye used) and how or where
+          it was produced.
+        title: Standard type and production
+        range: string
+      ph_of_standards:
+        name: ph_of_standards
+        description: pH values of the calibration standards used.
+        title: pH of standards
+        range: string
+    class_uri: oae:PHCalibration
+    rules:
+    - preconditions:
+        slot_conditions:
+          standard_used:
+            name: standard_used
+            equals_string: other
+      postconditions:
+        slot_conditions:
+          standard_used_custom:
+            name: standard_used_custom
+            required: true
+  DyeCalibration:
+    name: DyeCalibration
+    definition_uri: https://schema.oaedata.org/DyeCalibration
+    description: pH instrument calibration with an indicator dye standard.
+    from_schema: Calibration
+    is_a: PHCalibration
+    slots:
+    - calibration_location
+    - calibration__technique_description
+    - calibration__method_reference
+    - calibration__frequency
+    - calibration__last_calibration_date
+    - calibration__calibration_certificates
+    - calibration_temperature
+    - pHCalibration__standard_used_custom
+    - pHCalibration__standard_type_and_production
+    - pHCalibration__ph_of_standards
+    - dyeCalibration__dye_purified
+    - dyeCalibration__correction_for_unpurified_dye
+    - dyeCalibration__dye_correction_method
+    - DyeCalibration_standard_used
+    slot_usage:
+      standard_used:
+        name: standard_used
+        range: string
+        equals_string_in:
+        - dye
+    attributes:
       dye_purified:
         name: dye_purified
         description: Whether the dye has been purified.
@@ -10526,12 +10646,7 @@ classes:
         description: Method used to correct for dye effects.
         title: Dye correction method
         range: string
-      ph_of_standards:
-        name: ph_of_standards
-        description: pH values of the calibration standards used.
-        title: pH of standards
-        range: string
-    class_uri: oae:PHCalibration
+    class_uri: oae:DyeCalibration
   CO2Calibration:
     name: CO2Calibration
     definition_uri: https://schema.oaedata.org/CO2Calibration
@@ -10645,7 +10760,7 @@ classes:
     class_uri: oae:ContinuousStandardGas
 metamodel_version: 1.7.0
 source_file: oae_data_protocol.yaml
-source_file_date: '2026-10-05T12:25:52'
+source_file_date: '2026-10-22T00:27:22'
 source_file_size: 1743
-generation_date: '2026-10-05T12:26:02'
+generation_date: '2026-10-22T00:27:29'
 

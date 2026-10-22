@@ -658,6 +658,7 @@ variable.</p>
 
     AI --&gt;|calibration| C["Calibration"]
     PHI --&gt;|calibration| PHC["PHCalibration"]
+    PHC --&gt; DYEC["DyeCalibration"]
     CRMI --&gt;|calibration| CRMC["CRMCalibration"]
     CO2D --&gt;|calibration| DCO2C["DiscreteCO2Calibration"]
     CCO2D --&gt;|calibration| CCO2C["ContinuousCO2Calibration"]
@@ -669,6 +670,7 @@ variable.</p>
     style CCO2D fill:#d0d8e0
     style C fill:#f0e8d0
     style PHC fill:#f0e8d0
+    style DYEC fill:#f0e8d0
     style CRMC fill:#f0e8d0
     style DCO2C fill:#f0e8d0
     style CCO2C fill:#f0e8d0</code></pre>
@@ -685,7 +687,7 @@ variable.</p>
 <tr>
 <td><a href="../DiscretePHVariable/">DiscretePHVariable</a></td>
 <td><a href="../PHInstrument/">PHInstrument</a></td>
-<td><a href="../PHCalibration/">PHCalibration</a>: indicator dye</td>
+<td><a href="../DyeCalibration/">DyeCalibration</a> when <code>standard_used</code> is dye, otherwise <a href="../PHCalibration/">PHCalibration</a> for TRIS or other standards</td>
 </tr>
 <tr>
 <td><a href="../DiscreteTAVariable/">DiscreteTAVariable</a>, <a href="../DiscreteDICVariable/">DiscreteDICVariable</a></td>
@@ -717,9 +719,11 @@ variable.</p>
 <span class="w">  </span><span class="nt">"manufacturer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Agilent"</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"accuracy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.001 pH units"</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"calibration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nt">"technique_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tris buffer in synthetic seawater"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"technique_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Spectrophotometric pH with purified m-cresol purple"</span><span class="p">,</span>
 <span class="w">    </span><span class="nt">"calibration_location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lab"</span><span class="p">,</span>
-<span class="w">    </span><span class="nt">"dye_type_and_manufacturer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Purified m-cresol purple, MCR Inc."</span>
+<span class="w">    </span><span class="nt">"standard_used"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dye"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"standard_type_and_production"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Purified m-cresol purple, MCR Inc."</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"dye_purified"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>

@@ -1632,7 +1632,11 @@
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../PHCalibration/">PHCalibration</a></td>
-<td>pH instrument calibration with dye information.</td>
+<td>pH instrument calibration. Use this class directly for TRIS or other standards, and DyeCalibration when standard_used is dye.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../DyeCalibration/">DyeCalibration</a></td>
+<td>pH instrument calibration with an indicator dye standard.</td>
 </tr>
 <tr>
 <td><a href="../CO2Equilibrator/">CO2Equilibrator</a></td>
@@ -2222,10 +2226,6 @@
 <td>Whether the dye has been purified</td>
 </tr>
 <tr>
-<td><a href="../dye_type_and_manufacturer/">dye_type_and_manufacturer</a></td>
-<td>Type of indicator dye and any detailed information about it, e</td>
-</tr>
-<tr>
 <td><a href="../email/">email</a></td>
 <td>Contact email address</td>
 </tr>
@@ -2686,10 +2686,6 @@
 <td>Links to websites or documents related to the external research project</td>
 </tr>
 <tr>
-<td><a href="../research_project/">research_project</a></td>
-<td>Project, which the data collection is part of</td>
-</tr>
-<tr>
 <td><a href="../resolution/">resolution</a></td>
 <td>Resolution of the CO2 sensor</td>
 </tr>
@@ -2800,6 +2796,18 @@
 <tr>
 <td><a href="../standard_identifier/">standard_identifier</a></td>
 <td>A term from a community vocabulary that identifies this variable</td>
+</tr>
+<tr>
+<td><a href="../standard_type_and_production/">standard_type_and_production</a></td>
+<td>Details on the standard (e</td>
+</tr>
+<tr>
+<td><a href="../standard_used/">standard_used</a></td>
+<td>Type of standard used to calibrate the pH measurement</td>
+</tr>
+<tr>
+<td><a href="../standard_used_custom/">standard_used_custom</a></td>
+<td>Name of the standard used, when it is not in the list</td>
 </tr>
 <tr>
 <td><a href="../start_date/">start_date</a></td>
@@ -3039,6 +3047,10 @@
 <tr>
 <td><a href="../ObservationType/">ObservationType</a></td>
 <td></td>
+</tr>
+<tr>
+<td><a href="../PHCalibrationStandard/">PHCalibrationStandard</a></td>
+<td>Standard used to calibrate a pH measurement</td>
 </tr>
 <tr>
 <td><a href="../PlatformType/">PlatformType</a></td>
