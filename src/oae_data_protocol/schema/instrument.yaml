@@ -6,9 +6,6 @@ description: >-
 
 prefixes:
   oae: "https://schema.oaedata.org/"
-  "SDN_L05": "http://vocab.nerc.ac.uk/collection/L05/current/"
-  "SDN_L22": "http://vocab.nerc.ac.uk/collection/L22/current/"
-  "SDN_B75": "http://vocab.nerc.ac.uk/collection/B75/current/"
 
 default_prefix: oae
 
@@ -272,12 +269,13 @@ enums:
           A CTD rosette consists of a metal frame that houses a collection of sensors and water sampling bottles
           (e.g., Niskin)
       niskin_bottle:
-        meaning: SDN_L05:30
+        broad_mappings:
+          - NVS_L05:30/
         description: >-
           A device that collects an in-situ discrete water sample from any depth and returns it to the surface without
           contamination by the waters through which it passes, such as a water bottle.
       flow_through_system:
-        meaning: SDN_L05:31
+        meaning: NVS_L05:31/
         description: >-
           A device that continuously supplies a flow of water either to an analytical instrument, over a sensor or from
           which samples may be drawn.
@@ -288,16 +286,18 @@ enums:
           and transferred to the flask without exposing them to the air. The flask is then sealed
           with a stopper and transported to the laboratory for analysis.
       biological_trawl:
-        meaning: SDN_L05:23
+        meaning: NVS_L05:23/
         description: >-
           A net towed through the water column designed to sample free-swimming nekton or fish
       phytoplankton_net:
-        meaning: SDN_L05:22
+        broad_mappings:
+          - NVS_L05:22/
         description: >-
           Phytoplankton net is used to collect and identify phytoplankton, which are microscopic
           plants that form the base of the marine food web.
       zooplankton_net:
-        meaning: SDN_L05:22
+        broad_mappings:
+          - NVS_L05:22/
         description: >-
           Zooplankton net is used to collect and identify zooplankton, which are microscopic animals
           that feed on phytoplankton and are important prey for many marine organisms.
@@ -312,22 +312,22 @@ enums:
   AnalyzingInstrumentType:
     permissible_values:
       ctd_sensor:
-        meaning: SDN_L05:130
+        meaning: NVS_L05:130/
         description: >-
           A reusable instrument that always simultaneously measures conductivity and temperature (for salinity) and
           pressure (for depth).
       flow_through_system:
-        meaning: SDN_L05:31
+        meaning: NVS_L05:31/
         description: >-
           A device that continuously supplies a flow of water either to an analytical instrument, over a sensor or from
           which samples may be drawn.
       thermosalinograph:
-        meaning: SDN_L05:133
+        meaning: NVS_L05:133/
         description: >-
           Temperature and conductivity sensors mounted on a sea-surface platform continuously measuring a surface water
           supply.
       salinometer_for_discrete_salinity_measurement:
-        meaning: SDN_L05:LAB30
+        meaning: NVS_L05:LAB30/
         description: >-
           Instruments that measure the salinity of a collected water sample based on its electrical conductivity or
           optical properties.
@@ -343,13 +343,15 @@ enums:
           (e.g., Licor LI-850), Cavity Enhanced Absorption Spectroscopy (e.g., Licor's LI-7815), and
           Cavity Ring-Down Spectroscopy (CRDS) (e.g., Picarro G2131i) detectors.
       autonomous_dic_sensor:
-        meaning: SDN_L05:86
+        broad_mappings:
+          - NVS_L05:86/
         description: >-
           Autonomous dissolved inorganic carbon (DIC) sensors are devices that can measure the
           concentration of DIC in seawater or other natural waters in situ, without the need for
           manual sampling and laboratory analysis.
       alkalinity_titrator:
-        meaning: SDN_L05:LAB12
+        broad_mappings:
+          - NVS_L05:LAB12/
         description: >-
           An alkalinity titrator is a device used to measure the total alkalinity of a seawater by
           titration.
@@ -359,23 +361,26 @@ enums:
           TA in seawater or other natural waters in situ, without the need for manual sampling and
           laboratory analysis.
       showerhead_equilibrator:
-        meaning: SDN_L05:EQUIL
+        broad_mappings:
+          - NVS_L05:EQUIL/
         description: >-
           This type of equilibrator works by spraying seawater into a gas chamber, allowing the CO2
           in the water to equilibrate with a gas mixture in the chamber.
       floating_air_water_equilibrator:
-        meaning: SDN_L05:EQUIL
+        broad_mappings:
+          - NVS_L05:EQUIL/
         description: >-
           An "h"-shaped bubble equilibrator assembly commonly used in MAPCO2 systems on moorings.
           For more information, refer to Friederich et al. (1995).
       membrane_equilibrator:
-        meaning: SDN_L05:EQUIL
+        broad_mappings:
+          - NVS_L05:EQUIL/
         description: >-
           While seawater is passed through a membrane, CO2 in the water diffuses across the membrane
           and equilibrates with the gas mixture, which is then analyzed to determine the CO2
           concentration.
       spectrophotometer:
-        meaning: SDN_L05:LAB20
+        meaning: NVS_L05:LAB20/
         description: >-
           Instruments measuring the relative absorption of electromagnetic radiation of different wavelengths in the
           near infra-red, visible and ultraviolet wavebands by samples.
@@ -384,12 +389,13 @@ enums:
           One example of a handheld pH spectrophotometer is the "pHyter". Refer to Pardis et al.
           (2022) for more details.
       ph_electrode:
-        meaning: SDN_L05:355
+        broad_mappings:
+          - NVS_L05:355/
         description: >-
           A pH electrode, sometimes referred to as a pH probe or pH sensor, is a glass device used to
           measure the pH of a solution.
       sea_bird_seafet_v1:
-        meaning: SDN_L22:TOOL1292
+        meaning: NVS_L22:TOOL1292/
         description: >-
           A pH sensor. The sensor can be used for ocean acidification, research coral reef sensitivity analysis and
           environmental monitoring. The sensor measures pH with a range of 6.5 to 9.0. The sensing element is an ion
@@ -397,7 +403,7 @@ enums:
           and stability of 0.005 pH/month. It can operate in temperatures ranging from 0 deg C to 50 deg C and up to
           depths of 50 m.
       sea_bird_seafet_v2:
-        meaning: SDN_L22:TOOL1293
+        meaning: NVS_L22:TOOL1293/
         description: >-
           A pH sensor. The sensor can be used for ocean acidification, research coral reef sensitivity analysis and
           environmental monitoring. The sensor measures pH with a range of 6.5 to 9.0. The sensing element is an ion
@@ -406,74 +412,80 @@ enums:
           instrument. The pH sensor has an accuracy to +/-0.05 pH, precision of 0.004 pH and stability of 0.003
           pH/month. It can operate in temperatures ranging from 0 deg C to 50 deg C and up to depths of 50 m.
       oxygen_titrator:
-        meaning: SDN_L05:LAB12
+        broad_mappings:
+          - NVS_L05:LAB12/
         description: >-
           An oxygen titrator is a device used to measure the concentration of dissolved oxygen in a
           water sample, as required for the Winkler method.
       oxygen_sensor:
-        meaning: SDN_L05:351
+        broad_mappings:
+          - NVS_L05:351/
         description: >-
-          An oxygen sensor or probe or sond, is an electronic device that measures the concentration
+          An oxygen sensor or probe or sonde, is an electronic device that measures the concentration
           of dissolved oxygen in the ocean.
       sea_bird_seaphox:
-        meaning: SDN_L22:TOOL1895
+        meaning: NVS_L22:TOOL1895/
         description: >-
           Sea-Bird SeapHOx is a type of oceanographic instrument that measures both the pH and
           dissolved oxygen concentration of seawater in real-time.
       ysi:
-        meaning: SDN_B75:ORG00475
+        related_mappings:
+          - NVS_B75:ORG00475/
         description: >-
           YSI (Yellow Springs Instruments) is a company that produces a variety of water quality
           monitoring instruments. The YSI sensors are designed to measure a wide range of parameters,
           including temperature, salinity, and dissolved oxygen.
       nutrient_analyzer:
-        meaning: SDN_L05:181
+        meaning: NVS_L05:181/
         description: >-
           Instrument that makes in-situ measurements of one or more of nitrate, nitrite, ammonium, urea, phosphate or
           silicate dissolved in the water column.
       fluorometers:
-        meaning: SDN_L05:113
+        meaning: NVS_L05:113/
         description: >-
           Instrument that measures the amount of stimulated electromagnetic radiation produced by pulses of
           electromagnetic radiation emitted into the water column.
       high_performance_liquid_chromatography:
-        meaning: SDN_L05:LAB11
+        meaning: NVS_L05:LAB11/
         description: >-
           Instruments that separate and analyse mixtures of substances by high pressure pumping the sample through a
           column packed with microspheres coated with the stationary phase.
       acoustic_doppler_current_profiler:
-        meaning: SDN_L05:115
+        broad_mappings:
+          - NVS_L05:115/
         description: >-
           Acoustic Doppler Current Profiler (ADCP), is a type of instrument used to measure water
           currents in oceans, rivers, and other bodies of water.
       mass_spectrometers:
-        meaning: SDN_L05:LAB16
+        meaning: NVS_L05:LAB16/
         description: >-
           Instruments used to measure the mass-to-charge ratio of ions most generally used to find the composition of a
           sample by generating a mass spectrum representing the masses of sample components.
       isotope_ratio_mass_spectrometers:
-        meaning: SDN_L05:LAB48
+        meaning: NVS_L05:LAB48/
         description: >-
           Instruments that measure isotopic ratios using an electron ionisation source. Atoms in purified samples are
           ionised using a beam of electrons under vacuum. Subsequently, ions are focused into a beam by an electromagnet
           and then separated into individual beams based on their mass/charge ratio
       barometric_pressure_sensor:
-        meaning: SDN_L05:102
+        broad_mappings:
+          - NVS_L05:102/
         description: >-
           Instrument that makes routine meteorological measurements on the atmosphere, typically air pressure,
           temperature and humidity
       microscopes:
-        meaning: SDN_L05:LAB05
+        meaning: NVS_L05:LAB05/
         description: >-
           Instruments that generate enlarged images of samples using the phenomena of reflection and absorption of
           visible light. Includes conventional and inverted instruments
       scanning_electron_microscopes:
-        meaning: SDN_L05:LAB07
+        broad_mappings:
+          - NVS_L05:LAB07/
         description: >-
           A scanning electron microscope (SEM) is a type of microscope that uses a focused beam of
           electrons to create high-resolution images of the surface of a specimen.
       flow_cytometers:
-        meaning: SDN_L05:LAB37
+        meaning: NVS_L05:LAB37/
         description: >-
           Instruments that suspend cells in a stream of fluid past detection sensors whilst illuminating them with laser
           light. Used for cell counting, sorting, biomarker detection and protein engineering.

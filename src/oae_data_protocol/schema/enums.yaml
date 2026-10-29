@@ -191,7 +191,7 @@ enums:
         meaning: PUBCHEM:14778
         description: "Lime (CaO) used as an alkalinity source."
       portlandite:
-        meaning: PUBCHEM:Portlandite
+        meaning: PUBCHEM:6093208
         description: "Portlandite (Ca(OH)₂) used as an alkalinity source."
       calcium_carbonate:
         meaning: PUBCHEM:10112

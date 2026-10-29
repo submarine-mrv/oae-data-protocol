@@ -3,7 +3,7 @@ name: OAEDataSchema
 title: "OAE Data Protocol - Technical Documentation"
 # todo:
 #   - "integrate with linkml-common for observation types"
-version: 0.6.0
+version: 0.7.0
 prefixes:
   oae: "https://schema.oaedata.org/"
   linkml: "https://w3id.org/linkml/"
@@ -13,9 +13,11 @@ prefixes:
   # Declared here (in addition to the importing modules) so gen-python emits the
   # CurieNamespaces used by enum meanings — without them the datamodel fails to import.
   unit: "https://qudt.org/vocab/unit/"
-  "SDN_L05": "http://vocab.nerc.ac.uk/collection/L05/current/"
-  "SDN_L22": "http://vocab.nerc.ac.uk/collection/L22/current/"
-  "SDN_B75": "http://vocab.nerc.ac.uk/collection/B75/current/"
+  NVS_B75: "http://vocab.nerc.ac.uk/collection/B75/current/"
+  NVS_C16: "http://vocab.nerc.ac.uk/collection/C16/current/"
+  NVS_L05: "http://vocab.nerc.ac.uk/collection/L05/current/"
+  NVS_L06: "http://vocab.nerc.ac.uk/collection/L06/current/"
+  NVS_L22: "http://vocab.nerc.ac.uk/collection/L22/current/"
 default_prefix: oae
 
 imports:
@@ -23,6 +25,7 @@ imports:
   - core
   - enums
   - dynamic_enums_expanded
+  - nvs_enums
   - oae_project
   - external_project
   - monetary_grant

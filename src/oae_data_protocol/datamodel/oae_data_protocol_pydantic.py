@@ -29,7 +29,7 @@ from pydantic import (
 
 
 metamodel_version = "None"
-version = "0.6.0"
+version = "0.7.0"
 
 
 class ConfiguredBaseModel(BaseModel):
@@ -69,6 +69,7 @@ linkml_meta = LinkMLMeta({'default_prefix': 'oae',
                  'core',
                  'enums',
                  'dynamic_enums_expanded',
+                 'nvs_enums',
                  'oae_project',
                  'external_project',
                  'monetary_grant',
@@ -80,14 +81,18 @@ linkml_meta = LinkMLMeta({'default_prefix': 'oae',
                  'platform',
                  'model'],
      'name': 'OAEDataSchema',
-     'prefixes': {'PUBCHEM': {'prefix_prefix': 'PUBCHEM',
-                              'prefix_reference': 'https://pubchem.ncbi.nlm.nih.gov/compound/'},
-                  'SDN_B75': {'prefix_prefix': 'SDN_B75',
+     'prefixes': {'NVS_B75': {'prefix_prefix': 'NVS_B75',
                               'prefix_reference': 'http://vocab.nerc.ac.uk/collection/B75/current/'},
-                  'SDN_L05': {'prefix_prefix': 'SDN_L05',
+                  'NVS_C16': {'prefix_prefix': 'NVS_C16',
+                              'prefix_reference': 'http://vocab.nerc.ac.uk/collection/C16/current/'},
+                  'NVS_L05': {'prefix_prefix': 'NVS_L05',
                               'prefix_reference': 'http://vocab.nerc.ac.uk/collection/L05/current/'},
-                  'SDN_L22': {'prefix_prefix': 'SDN_L22',
+                  'NVS_L06': {'prefix_prefix': 'NVS_L06',
+                              'prefix_reference': 'http://vocab.nerc.ac.uk/collection/L06/current/'},
+                  'NVS_L22': {'prefix_prefix': 'NVS_L22',
                               'prefix_reference': 'http://vocab.nerc.ac.uk/collection/L22/current/'},
+                  'PUBCHEM': {'prefix_prefix': 'PUBCHEM',
+                              'prefix_reference': 'https://pubchem.ncbi.nlm.nih.gov/compound/'},
                   'dcat': {'prefix_prefix': 'dcat',
                            'prefix_reference': 'http://www.w3.org/ns/dcat#'},
                   'envthes': {'prefix_prefix': 'envthes',
@@ -360,183 +365,6 @@ class DataAccessibility(str, Enum):
     Scheduled_Access = "scheduled_access"
 
 
-class SeaNames(str, Enum):
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUSZZSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/ZZ/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUSIJMSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/IJM/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUSMKMSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/MKM/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUSIRMSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/IRM/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS10SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/10/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS62aSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/62a/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS04SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/04/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS01cSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/01c/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS25SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/25/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUSSOCSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/SOC/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS33SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/33/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS16aSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/16a/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS28AbSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/28Ab/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS48SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/48/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS48oSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/48o/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUSESCSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/ESC/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS39SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/39/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS57bSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/57b/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUSICSSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/ICS/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS53SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/53/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS35SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/35/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS200SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/200/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS61bSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/61b/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS22SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/22/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS28BfSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/28Bf/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS11SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/11/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS63SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/63/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS03SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/03/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS12SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/12/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS28BSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/28B/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS48eSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/48e/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS47SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/47/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS28AaSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/28Aa/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS45SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/45/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUSWSCSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/WSC/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS62SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/62/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS40SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/40/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS23bSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/23b/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS06SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/06/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS42SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/42/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS51SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/51/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS45aSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/45a/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS32bSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/32b/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS21SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/21/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS28CSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/28C/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS48mSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/48m/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS01bSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/01b/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS26SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/26/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS13SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/13/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS28ASOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/28A/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS32SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/32/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS48jSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/48j/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS48hSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/48h/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS31SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/31/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS57aSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/57a/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS05SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/05/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS50SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/50/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUSARASOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/ARA/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS61aSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/61a/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS21aSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/21a/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS28BgSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/28Bg/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS48nSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/48n/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS01aSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/01a/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS27SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/27/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS14SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/14/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS60SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/60/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS48fSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/48f/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS49SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/49/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS48aSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/48a/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS48lSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/48l/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS48iSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/48i/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS41SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/41/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS30SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/30/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS23aSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/23a/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS08SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/08/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS32aSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/32a/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS20SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/20/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS17aSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/17a/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS28AeSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/28Ae/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS17SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/17/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS59SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/59/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS64SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/64/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS48kSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/48k/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS48bSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/48b/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS01SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/01/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS44SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/44/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS55SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/55/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS38SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/38/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS29SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/29/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS07SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/07/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS56SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/56/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS19SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/19/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS15aSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/15a/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS46bSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/46b/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS14aSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/14a/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS28AdSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/28Ad/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS61SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/61/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS58SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/58/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS65SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/65/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS48gSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/48g/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS48dSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/48d/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS23SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/23/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS43SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/43/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS54SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/54/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS37SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/37/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUSCASSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/CAS/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS28SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/28/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS09SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/09/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS18SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/18/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS02SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/02/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS24SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/24/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS46SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/46/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS46aSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/46a/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS16SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/16/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS28AcSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/28Ac/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS57SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/57/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS66SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/66/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUSWASSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/WAS/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS48cSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/48c/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUSFRMSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/FRM/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS500SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/500/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS15SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/15/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS52SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/52/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS36SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/36/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUSGLOSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/GLO/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS34SOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/34/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSC16SOLIDUScurrentSOLIDUS28BhSOLIDUS = "http://vocab.nerc.ac.uk/collection/C16/current/28Bh/"
-
-
-class PlatformType(str, Enum):
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS99SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/99/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS6DSOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/6D/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS3CSOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/3C/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS36SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/36/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS38SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/38/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS18SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/18/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS30SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/30/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS61SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/61/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS26SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/26/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS16SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/16/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS3ASOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/3A/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS41SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/41/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS72SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/72/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS37SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/37/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS43SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/43/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS15SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/15/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS13SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/13/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS22SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/22/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS6ASOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/6A/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS44SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/44/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS68SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/68/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS33SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/33/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS34SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/34/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS19SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/19/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS11SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/11/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS12SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/12/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS23SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/23/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS17SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/17/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS3BSOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/3B/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS45SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/45/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS42SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/42/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS47SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/47/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS10SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/10/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS14SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/14/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS71SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/71/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS46SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/46/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS20SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/20/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS27SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/27/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS25SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/25/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS3ZSOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/3Z/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS48SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/48/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS31SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/31/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS62SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/62/"
-    httpCOLONSOLIDUSSOLIDUSvocabFULL_STOPnercFULL_STOPacFULL_STOPukSOLIDUScollectionSOLIDUSL06SOLIDUScurrentSOLIDUS67SOLIDUS = "http://vocab.nerc.ac.uk/collection/L06/current/67/"
-
-
 class MassConcentrationUnit(str, Enum):
     unitCOLONKiloGM_PER_M3 = "unit:KiloGM-PER-M3"
     unitCOLONMicroGM_PER_L = "unit:MicroGM-PER-L"
@@ -547,6 +375,258 @@ class MassConcentrationUnit(str, Enum):
     unitCOLONNanoGM_PER_L = "unit:NanoGM-PER-L"
     unitCOLONNanoGM_PER_MilliL = "unit:NanoGM-PER-MilliL"
     unitCOLONPicoGM_PER_MilliL = "unit:PicoGM-PER-MilliL"
+
+
+class SeaNames(str, Enum):
+    """
+    Sea areas from the SeaDataNet C16 vocabulary.
+    """
+    Adriatic_Sea_LEFT_PARENTHESISMediterranean_SeaRIGHT_PARENTHESIS = "adriatic_sea_mediterranean_sea"
+    Aegean_Sea_LEFT_PARENTHESISThe_ArchipelagoRIGHT_PARENTHESIS_LEFT_PARENTHESISMediterranean_SeaRIGHT_PARENTHESIS = "aegean_sea_the_archipelago_mediterranean_sea"
+    Alboran_Sea_LEFT_PARENTHESISMediterranean_SeaRIGHT_PARENTHESIS = "alboran_sea_mediterranean_sea"
+    Andaman_or_Burma_Sea = "andaman_or_burma_sea"
+    Arabian_Sea = "arabian_sea"
+    Arafura_Sea_LEFT_PARENTHESISEast_Indian_ArchipelagoRIGHT_PARENTHESIS = "arafura_sea_east_indian_archipelago"
+    # Large inland water body comprising three lakes (North Aral Sea, eastern and western basins of the South Aral Sea) having coastlines in Kazakhstan and Uzbekistan.
+    Aral_Sea = "aral_sea"
+    Arctic_Ocean = "arctic_ocean"
+    Arctic_Ocean___Lincoln_Sea = "arctic_ocean_lincoln_sea"
+    # Aggregation of North and South Atlantic Ocean areas
+    Atlantic_Ocean = "atlantic_ocean"
+    Balearic_LEFT_PARENTHESISIberianRIGHT_PARENTHESIS_Sea_LEFT_PARENTHESISMediterranean_SeaRIGHT_PARENTHESIS = "balearic_iberian_sea_mediterranean_sea"
+    Bali_Sea_LEFT_PARENTHESISEast_Indian_ArchipelagoRIGHT_PARENTHESIS = "bali_sea_east_indian_archipelago"
+    Baltic_Sea = "baltic_sea"
+    Banda_Sea_LEFT_PARENTHESISEast_Indian_ArchipelagoRIGHT_PARENTHESIS = "banda_sea_east_indian_archipelago"
+    Barents_Sea = "barents_sea"
+    Bass_Strait_LEFT_PARENTHESISGreat_Australian_BightRIGHT_PARENTHESIS = "bass_strait_great_australian_bight"
+    Bay_of_Bengal = "bay_of_bengal"
+    Bay_of_Biscay = "bay_of_biscay"
+    Bay_of_Fundy = "bay_of_fundy"
+    Beaufort_Sea = "beaufort_sea"
+    Bering_Sea = "bering_sea"
+    Bismarck_Sea = "bismarck_sea"
+    Black_Sea = "black_sea"
+    Bristol_Channel = "bristol_channel"
+    Caribbean_Sea = "caribbean_sea"
+    # Large brackish inland water body having coastlines in Azerbaijan, Iran, Kazakhstan, Russia, and Turkmenistan.
+    Caspian_Sea = "caspian_sea"
+    Celebes_Sea_LEFT_PARENTHESISEast_Indian_ArchipelagoRIGHT_PARENTHESIS = "celebes_sea_east_indian_archipelago"
+    # Formally accepted and defined by IHO as an S23(1953) extension.
+    Celtic_Sea = "celtic_sea"
+    Ceram_Sea_LEFT_PARENTHESISEast_Indian_ArchipelagoRIGHT_PARENTHESIS = "ceram_sea_east_indian_archipelago"
+    Chukchi_Sea = "chukchi_sea"
+    Coastal_Waters_of_SE_Alaska_and_British_Columbia = "coastal_waters_of_se_alaska_and_british_columbia"
+    Coral_Sea = "coral_sea"
+    Davis_Strait = "davis_strait"
+    East_Indian_Archipelago_LEFT_PARENTHESISIndonesiaRIGHT_PARENTHESIS = "east_indian_archipelago_indonesia"
+    East_Siberian_Sea = "east_siberian_sea"
+    Eastern_China_Sea_LEFT_PARENTHESISTung_HaiRIGHT_PARENTHESIS = "eastern_china_sea_tung_hai"
+    # The more northerly branch of the Scheldt Estuary.  Northern boundary is a man-made dam
+    Eastern_Scheldt = "eastern_scheldt"
+    English_Channel = "english_channel"
+    Flores_Sea_LEFT_PARENTHESISEast_Indian_ArchipelagoRIGHT_PARENTHESIS = "flores_sea_east_indian_archipelago"
+    # Body of water between Greenland and Svalbard
+    Fram_Strait = "fram_strait"
+    Great_Australian_Bight = "great_australian_bight"
+    Greenland_Sea = "greenland_sea"
+    Gulf_of_Aden = "gulf_of_aden"
+    Gulf_of_Alaska = "gulf_of_alaska"
+    Gulf_of_Aqaba = "gulf_of_aqaba"
+    Gulf_of_Boni_LEFT_PARENTHESISEast_Indian_ArchipelagoRIGHT_PARENTHESIS = "gulf_of_boni_east_indian_archipelago"
+    Gulf_of_Bothnia_LEFT_PARENTHESISBaltic_SeaRIGHT_PARENTHESIS = "gulf_of_bothnia_baltic_sea"
+    Gulf_of_California = "gulf_of_california"
+    Gulf_of_Finland_LEFT_PARENTHESISBaltic_SeaRIGHT_PARENTHESIS = "gulf_of_finland_baltic_sea"
+    Gulf_of_Guinea = "gulf_of_guinea"
+    Gulf_of_Iran_LEFT_PARENTHESISPersian_GulfRIGHT_PARENTHESIS = "gulf_of_iran_persian_gulf"
+    Gulf_of_Mexico = "gulf_of_mexico"
+    Gulf_of_Oman = "gulf_of_oman"
+    Gulf_of_Riga_LEFT_PARENTHESISBaltic_SeaRIGHT_PARENTHESIS = "gulf_of_riga_baltic_sea"
+    Gulf_of_StFULL_STOP_Lawrence = "gulf_of_st_lawrence"
+    Gulf_of_Suez = "gulf_of_suez"
+    Gulf_of_Thailand_LEFT_PARENTHESISSiamRIGHT_PARENTHESIS = "gulf_of_thailand_siam"
+    Gulf_of_Tomini_LEFT_PARENTHESISEast_Indian_ArchipelagoRIGHT_PARENTHESIS = "gulf_of_tomini_east_indian_archipelago"
+    Halmahera_Sea_LEFT_PARENTHESISEast_Indian_ArchipelagoRIGHT_PARENTHESIS = "halmahera_sea_east_indian_archipelago"
+    Hudson_Bay = "hudson_bay"
+    Hudson_Strait = "hudson_strait"
+    # Part of the Arctic Ocean to the North of Iceland between Greenland and the Norwegian Sea
+    Iceland_Sea = "iceland_sea"
+    # Dutch freshwater lake with artificial dam boundaries between it and the Wadden Sea to the North and Markermeer to the South.
+    IJsselmeer = "ijsselmeer"
+    Indian_Ocean = "indian_ocean"
+    Inner_Seas_off_the_West_Coast_of_Scotland = "inner_seas_off_the_west_coast_of_scotland"
+    Ionian_Sea_LEFT_PARENTHESISMediterranean_SeaRIGHT_PARENTHESIS = "ionian_sea_mediterranean_sea"
+    Irish_Sea_and_StFULL_STOP_GeorgeAPOSTROPHEs_Channel = "irish_sea_and_st_george_s_channel"
+    # The sea area confined between Greenland and Iceland south of the Denmark Strait (the ridge) and bounded to the south by a line from Cape Farewell to the southern tip of the 2000m isobath on the Reykjanes Ridge and a line following the top of the ridge to Iceland.
+    Irminger_Sea = "irminger_sea"
+    Japan_Sea = "japan_sea"
+    Java_Sea_LEFT_PARENTHESISEast_Indian_ArchipelagoRIGHT_PARENTHESIS = "java_sea_east_indian_archipelago"
+    Kara_Sea = "kara_sea"
+    Kattegat_Sound_and_Belts = "kattegat_sound_and_belts"
+    Labrador_Sea_LEFT_PARENTHESISDavis_StraitRIGHT_PARENTHESIS = "labrador_sea_davis_strait"
+    Laccadive_Sea = "laccadive_sea"
+    Laptev_Sea_LEFT_PARENTHESISor_Nordenskjold_SeaRIGHT_PARENTHESIS = "laptev_sea_or_nordenskjold_sea"
+    Ligurian_Sea_LEFT_PARENTHESISMediterranean_SeaRIGHT_PARENTHESIS = "ligurian_sea_mediterranean_sea"
+    Makassar_Strait_LEFT_PARENTHESISEast_Indian_ArchipelagoRIGHT_PARENTHESIS = "makassar_strait_east_indian_archipelago"
+    Malacca_and_Singapore_Straits = "malacca_and_singapore_straits"
+    Malacca_Strait = "malacca_strait"
+    # Dutch freshwater lake with an artificial dam boundaries between it and IJsselmeer.
+    Markermeer = "markermeer"
+    Mediterranean_Sea = "mediterranean_sea"
+    Mediterranean_Sea___Eastern_basin = "mediterranean_sea_eastern_basin"
+    Mediterranean_Sea___Western_basin = "mediterranean_sea_western_basin"
+    Molukka_Sea_LEFT_PARENTHESISEast_Indian_ArchipelagoRIGHT_PARENTHESIS = "molukka_sea_east_indian_archipelago"
+    Mozambique_Channel_LEFT_PARENTHESISIndian_OceanRIGHT_PARENTHESIS = "mozambique_channel_indian_ocean"
+    North_Atlantic_Ocean = "north_atlantic_ocean"
+    # Not a valid IHB Code - created for ROSCOP compatibility
+    North_East_Atlantic_Ocean_LEFT_PARENTHESISlimit_40WRIGHT_PARENTHESIS = "north_east_atlantic_ocean_limit_40w"
+    # Not a valid IHB Code - created for ROSCOP compatibility
+    North_East_Pacific_Ocean_LEFT_PARENTHESISlimit_180WRIGHT_PARENTHESIS = "north_east_pacific_ocean_limit_180w"
+    North_Pacific_Ocean = "north_pacific_ocean"
+    North_Sea = "north_sea"
+    # Not a valid IHB Code - created for ROSCOP compatibility
+    North_West_Atlantic_Ocean_LEFT_PARENTHESISlimit_40WRIGHT_PARENTHESIS = "north_west_atlantic_ocean_limit_40w"
+    # Not a valid IHB Code - created for ROSCOP compatibility
+    North_West_Pacific_Ocean_LEFT_PARENTHESISlimit_180WRIGHT_PARENTHESIS = "north_west_pacific_ocean_limit_180w"
+    Norwegian_Sea = "norwegian_sea"
+    # Aggregation of North and South Pacific Ocean areas
+    Pacific_Ocean = "pacific_ocean"
+    Philippine_Sea = "philippine_sea"
+    Red_Sea = "red_sea"
+    Rio_de_La_Plata = "rio_de_la_plata"
+    Savu_Sea_LEFT_PARENTHESISEast_Indian_ArchipelagoRIGHT_PARENTHESIS = "savu_sea_east_indian_archipelago"
+    Sea_of_Azov = "sea_of_azov"
+    Sea_of_Marmara = "sea_of_marmara"
+    Sea_of_Okhotsk = "sea_of_okhotsk"
+    Seto_Naikai_or_Inland_Sea = "seto_naikai_or_inland_sea"
+    Singapore_Strait = "singapore_strait"
+    Skagerrak = "skagerrak"
+    Solomon_Sea = "solomon_sea"
+    South_Atlantic_Ocean = "south_atlantic_ocean"
+    South_China_Sea_LEFT_PARENTHESISNan_HaiRIGHT_PARENTHESIS = "south_china_sea_nan_hai"
+    # Not a valid IHB Code - created for ROSCOP compatibility
+    South_East_Atlantic_Ocean_LEFT_PARENTHESISlimit_20WRIGHT_PARENTHESIS = "south_east_atlantic_ocean_limit_20w"
+    # Not a valid IHB Code - created for ROSCOP compatibility
+    South_East_Pacific_Ocean_LEFT_PARENTHESISlimit_140WRIGHT_PARENTHESIS = "south_east_pacific_ocean_limit_140w"
+    South_Pacific_Ocean = "south_pacific_ocean"
+    # Not a valid IHB Code - created for ROSCOP compatibility
+    South_West_Atlantic_Ocean_LEFT_PARENTHESISlimit_20WRIGHT_PARENTHESIS = "south_west_atlantic_ocean_limit_20w"
+    # Not a valid IHB Code - created for ROSCOP compatibility
+    South_West_Pacific_Ocean_LEFT_PARENTHESISlimit_140WRIGHT_PARENTHESIS = "south_west_pacific_ocean_limit_140w"
+    # Waters south of 60S
+    Southern_Ocean = "southern_ocean"
+    Strait_of_Gibraltar_LEFT_PARENTHESISMediterranean_SeaRIGHT_PARENTHESIS = "strait_of_gibraltar_mediterranean_sea"
+    # The region of the Mediterranean Sea between Sicily and Tunisia
+    Strait_of_Sicily = "strait_of_sicily"
+    Sulu_Sea_LEFT_PARENTHESISEast_Indian_ArchipelagoRIGHT_PARENTHESIS = "sulu_sea_east_indian_archipelago"
+    Tasman_Sea = "tasman_sea"
+    The_Northwestern_Passages = "the_northwestern_passages"
+    The_Northwestern_Passages___Baffin_Bay = "the_northwestern_passages_baffin_bay"
+    Timor_Sea_LEFT_PARENTHESISEast_Indian_ArchipelagoRIGHT_PARENTHESIS = "timor_sea_east_indian_archipelago"
+    Tyrrhenian_Sea_LEFT_PARENTHESISMediterranean_SeaRIGHT_PARENTHESIS = "tyrrhenian_sea_mediterranean_sea"
+    # The correct value is not known to and not computable by the creator of this information. However a correct value probably exists.
+    Unknown = "unknown"
+    # Part of the North Sea between the Dutch, German and Danish coasts and the Frisian islands.
+    Wadden_Sea = "wadden_sea"
+    # The more southerly branch of the Scheldt Estuary.
+    Western_Scheldt = "western_scheldt"
+    White_Sea = "white_sea"
+    # Global coverage from 90S to 90N and 180E to 180W
+    Worldwide = "worldwide"
+    Yellow_Sea_LEFT_PARENTHESISHwang_HaiRIGHT_PARENTHESIS = "yellow_sea_hwang_hai"
+
+
+class PlatformType(str, Enum):
+    """
+    Platform categories from the SeaVoX L06 vocabulary.
+    """
+    # A fixed-wing self-propelled aircraft.
+    aeroplane = "aeroplane"
+    # A programmed or remotely controlled self-propelled vessel operating on the surface of water bodies with no human occupants; includes saildrones.
+    autonomous_surface_water_vehicle = "autonomous_surface_water_vehicle"
+    # A free-roving platform operating in the water column with propulsion but no human operator on board (e.g. Autosub, Gavia).
+    autonomous_underwater_vehicle = "autonomous_underwater_vehicle"
+    # A structure to which instrumentation may be attached that is either in air or under water depending on the state of the tide and weather conditions.
+    beachSOLIDUSintertidal_zone_structure = "beach_intertidal_zone_structure"
+    # A fixed man-made structure permanently linked to land with access to water at all states of the tide to which instrumentation may be attached (e.g. pier).
+    coastal_structure = "coastal_structure"
+    # A human being with self-contained equipment or surface-connected suit enabling operation within the water column.
+    diver = "diver"
+    # An unmanned instrumented platform drifting freely in the water column at a depth governed by its density (e.g. Swallow float).
+    drifting_subsurface_float = "drifting_subsurface_float"
+    # An unmanned instrumented platform drifting freely in the water column that periodically makes vertical traverses through the water column (e.g. Argo float).
+    drifting_subsurface_profiling_float = "drifting_subsurface_profiling_float"
+    # An unmanned instrumented platform operating on the surface of the water column often attached to a drogue to track currents rather than winds (e.g. Argos buoy).
+    drifting_surface_float = "drifting_surface_float"
+    # A platform operating on the surface of the water column whose primary purpose is the commercial harvesting of fish or shellfish but may be engaged in scientific activities such as fish stock surveys or mooring deployments and recoveries.
+    fishing_vessel = "fishing_vessel"
+    # A collection of oceanographic instruments mounted at a fixed position on the seabed (e.g. POL Monitoring Platform, seabed ADCP).
+    fixed_benthic_node = "fixed_benthic_node"
+    # A platform that periodically makes an automated vertical traverse of the water column at a predetermined fixed location. (e.g. YSI vertical profiler, HOMER CTD).
+    fixed_subsurface_vertical_profiler = "fixed_subsurface_vertical_profiler"
+    # A free-floating platform either on the surface of the water column or at a predetermined depth within the water column.
+    float = "float"
+    # A fixed-wing aircraft with no propulsion.
+    glider = "glider"
+    # An aircraft without wings that obtains its lift from the rotation of overhead blades.
+    helicopter = "helicopter"
+    # A human being without specialised equipment operating on land or the surface of the water column.
+    human = "human"
+    # A platform located on the solid surface of the Earth either above or below sea level.
+    land_or_seafloor = "land_or_seafloor"
+    # A fixed man-made structure on land to which instrumentation may be attached (e.g. meteorological tower).
+    landSOLIDUSonshore_structure = "land_onshore_structure"
+    # An instrumented vehicle or sample collector that operates on the solid surface of the Earth (e.g. mobile meteorological station, land crawler, snowmobile).
+    landSOLIDUSonshore_vehicle = "land_onshore_vehicle"
+    # An unmanned platform lowered and raised vertically by a cable from the mothership.  Includes any type of profiling sensor mounting such as CTD frames, profiling radiometers and instrumented nets.
+    lowered_unmanned_submersible = "lowered_unmanned_submersible"
+    # A platform operating on the surface of the water column that is manually propelled and may not be easily removed from the water (e.g. trireme).
+    man_powered_boat = "man_powered_boat"
+    # A platform operating on the surface of the water column that is manually propelled and may be easily removed from the water (e.g. rowing boat, canoe).
+    man_powered_small_boat = "man_powered_small_boat"
+    # A large polythene bag containing a water sample suspended in the natural environment so that it shares ambient physical conditions such as temperature and light levels, but is chemically isolated to allow experiments such as fertilisation.
+    mesocosm_bag = "mesocosm_bag"
+    # An indoor or outdoor tank containing water, used to house an experimental system. Instruments attached to the tank are used to measure and control conditions to help evaluate how organisms or communities react to controlled environmental changes.
+    mesocosm_tank = "mesocosm_tank"
+    # An unmanned instrumented platform operating on the surface of the water column loosely tethered to the seafloor to maintain a fixed position (e.g. ODAS buoy).
+    moored_surface_buoy = "moored_surface_buoy"
+    # A tethered collection of oceanographic instruments at a fixed location that may include seafloor, mid-water and surface components.
+    mooring = "mooring"
+    # A fixed (for the duration of the measurements) man-made structure away from the coast to which instrumentation may be attached (e.g. oil rig, gas rig or jack-up barge).
+    offshore_structure = "offshore_structure"
+    # A platform operating in the water column attached to a mothership by an umbilical with limited propulsion and no human operator on board (e.g. ROV).
+    propelled_unmanned_submersible = "propelled_unmanned_submersible"
+    # A fixed-wing self-propelled aircraft that is equipped, manned and operated for atmospheric, meteorological or oceanographic research, sometimes also called 'instrumented platform'.
+    research_aeroplane = "research_aeroplane"
+    # A platform of any size operating on the surface of the water column in unpredictable locations that is specifically equipped, manned and operated for scientific, usually oceanographic, research.
+    research_vessel = "research_vessel"
+    # An instrumented structure in a river upstream of its tidal limit.
+    river_station = "river_station"
+    # A vehicle operating beyond the Earth's atmosphere without human occupants that orbits the Earth.
+    satellite = "satellite"
+    # An instrumented platform that is propelled on wheels or tracks on the seabed (e.g benthic crawler).
+    sea_bed_vehicle = "sea_bed_vehicle"
+    # A small self-propelled platform operating on the surface of the water column in unpredictable locations that is smaller than a ship, but too large to easily remove from the water.
+    self_propelled_boat = "self_propelled_boat"
+    # A small self-propelled platform operating on the surface of the water column that may be easily removed from the water (e.g. shore-based RIBs, ships' boats).
+    self_propelled_small_boat = "self_propelled_small_boat"
+    # A large platform operating on the surface of the water column. Objective definitions for guidelines: >50m length (EU), >100 foot length (USA), >300 GRT weight (SOLAS). Subjective definition: a ship is a vessel big enough to carry a boat.
+    ship = "ship"
+    # Platforms with buoyancy-based propulsion that are capable of operations at variable depths which are not constrained to be near the sea surface.
+    sub_surface_gliders = "sub_surface_gliders"
+    # A platform operating within a water body.
+    submersible = "submersible"
+    # A collection of oceanographic instruments attached to wires suspended between anchors on the seabed and buoyant spheres in the water column.
+    subsurface_mooring = "subsurface_mooring"
+    # Platforms operating at a single depth near the sea surface, using a combination of solar energy and wave motion as means of propulsion.
+    surface_gliders = "surface_gliders"
+    # A mobile platform with propulsion operating on and restricted to the surface of a water body.
+    surface_vessel = "surface_vessel"
+    # A vehicle towed by rigid cable through the water column at fixed or varying depth with no propulsion and no human operator (e.g. Towfish, Scanfish, UOR, SeaSoar).
+    towed_unmanned_submersible = "towed_unmanned_submersible"
+    # Any untethered heavier-than-air aircraft that is not occupied by people: may be a remotely piloted aircraft or an autonomous aircraft. Also referred to as a drone.
+    unmanned_aerial_vehicle = "unmanned_aerial_vehicle"
+    # A platform of any size occupying a fixed location on the surface of the water column for prolonged periods collecting scientific (oceanographic and meteorological) data as a primary or secondary mission.  Includes light vessels and weather ships.
+    vessel_at_fixed_position = "vessel_at_fixed_position"
 
 
 class PublicCommentType(str, Enum):
@@ -645,7 +725,7 @@ class AnalyzingInstrumentType(str, Enum):
     sea_bird_seafet_v2 = "sea_bird_seafet_v2"
     # An oxygen titrator is a device used to measure the concentration of dissolved oxygen in a water sample, as required for the Winkler method.
     oxygen_titrator = "oxygen_titrator"
-    # An oxygen sensor or probe or sond, is an electronic device that measures the concentration of dissolved oxygen in the ocean.
+    # An oxygen sensor or probe or sonde, is an electronic device that measures the concentration of dissolved oxygen in the ocean.
     oxygen_sensor = "oxygen_sensor"
     # Sea-Bird SeapHOx is a type of oceanographic instrument that measures both the pH and dissolved oxygen concentration of seawater in real-time.
     sea_bird_seaphox = "sea_bird_seaphox"

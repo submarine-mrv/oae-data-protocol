@@ -40,7 +40,7 @@ A minimal file that validates against the schema:
     "name": "North Atlantic OAE pilot",
     "description": "A pilot OAE field trial in the North Atlantic",
     "mcdr_pathway": "ocean_alkalinity_enhancement",
-    "sea_names": ["http://vocab.nerc.ac.uk/collection/C16/current/23/"],
+    "sea_names": ["north_atlantic_ocean"],
     "spatial_coverage": { "geo": { "box": "40.0 -70.0 45.0 -65.0" } },
     "temporal_coverage": "2025-01-01/2025-12-31",
     "project_leads": [{ "name": "Ada Lovelace", "email": "ada@example.org" }]
@@ -68,7 +68,7 @@ A minimal file that validates against the schema:
       "data_product_type": "originally_collected_dataset",
       "temporal_coverage": "2025-01-15/2025-06-15",
       "filenames": ["baseline_ctd_profiles.csv"],
-      "platform_info": { "platform_type": "http://vocab.nerc.ac.uk/collection/L06/current/31/" },
+      "platform_info": { "platform_type": "research_vessel" },
       "data_submitter": { "name": "Ada Lovelace", "email": "ada@example.org" },
       "data_accessibility": "open_access",
       "data_access_link": "https://doi.org/10.25921/example",

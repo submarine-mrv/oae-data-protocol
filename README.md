@@ -36,7 +36,7 @@ src/oae_data_protocol/datamodel/ generated Pydantic models
 src/docs/files/                 hand-written documentation pages
 project/                        generated JSON Schema and TypeScript
 templates/excel/                v1.0 protocol Excel templates
-ontologies/                     vocabulary files for dynamic enums (NERC, QUDT)
+ontologies/                     NERC snapshots and the QUDT unit vocabulary
 tests/                          tests
 ```
 
@@ -58,7 +58,9 @@ just gen-all
 | `just gen-all` | Regenerate JSON Schema (both), TypeScript and Pydantic models |
 | `just test` | Validate the schema and run the tests |
 | `just lint` | LinkML lint |
-| `just enums` | Expand dynamic enums from the NERC and QUDT vocabularies |
+| `just vocab-sync` | Regenerate the NERC-backed enums from `nvs-vocabs.yaml` and the snapshots |
+| `just vocab-fetch` | Refresh the NERC snapshots in `ontologies/nvs/` |
+| `just enums` | Expand the QUDT unit enum |
 | `just testdoc` | Build the docs and serve them locally |
 | `just` | List every command |
 

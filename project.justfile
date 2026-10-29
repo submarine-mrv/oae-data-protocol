@@ -32,17 +32,21 @@ gen-validation-schema:
 gen-all: gen-project gen-validation-schema
     @echo "✓ Full gen-all completed"
 
-# ---------- Dynamic enum pipeline (NERC + QUDT) ----------
+# ---------- NERC Vocabulary Server (NVS) terms ----------
 
-fetch-sea-names:
-    @mkdir -p ontologies
-    rm -f ontologies/sea_names.ttl
-    curl 'https://vocab.nerc.ac.uk/collection/C16/current/' -H "Accept: text/turtle" > ontologies/sea_names.ttl
+# Snapshot the NVS concepts the schema uses into ontologies/nvs/ (needs network)
+vocab-fetch:
+    uv run python scripts/nvs.py fetch
 
-fetch-platform-types:
-    @mkdir -p ontologies
-    rm -f ontologies/platform_types.ttl
-    curl 'https://vocab.nerc.ac.uk/collection/L06/current/' -H "Accept: text/turtle" > ontologies/platform_types.ttl
+# Regenerate nvs_enums.yaml from nvs-vocabs.yaml and the snapshots
+vocab-sync:
+    uv run python scripts/nvs.py sync
+
+# Check every NVS meaning and mapping against the snapshots (offline)
+vocab-check:
+    uv run python scripts/nvs.py check
+
+# ---------- QUDT dynamic enum pipeline ----------
 
 # QUDT's unit.ttl omits an rdf:type declaration for qudt:hasQuantityKind, so
 # vskit/oaklib can't resolve it as an ObjectProperty when expanding the unit
@@ -53,7 +57,7 @@ fetch-qudt-units:
     curl 'https://qudt.org/3.1.7/vocab/unit' -H "Accept: text/turtle" > ontologies/unit.ttl
     echo 'qudt:hasQuantityKind rdf:type owl:ObjectProperty .' >> ontologies/unit.ttl
 
-fetch-vocabularies: fetch-sea-names fetch-platform-types fetch-qudt-units
+fetch-vocabularies: vocab-fetch fetch-qudt-units
 
 # Expand dynamic enums from external vocabularies via vskit (installed by oaklib).
 enums:

@@ -1,0 +1,23 @@
+[
+ {
+  "code": "TOOL1292",
+  "uri": "http://vocab.nerc.ac.uk/collection/L22/current/TOOL1292/",
+  "label": "Satlantic {Sea-Bird} SeaFET V1 pH sensor",
+  "definition": "A pH sensor. The sensor can be used for ocean acidification, research coral reef sensitivity analysis and environmental monitoring. The sensor measures pH with a range of 6.5 to 9.0. The sensing element is an ion sensitive field effect transistor. The pH sensor has an initial accuracy of +/-0.05 pH, precision of 0.001 pH and stability of 0.005 pH/month. It can operate in temperatures ranging from 0 deg C to 50 deg C and up to depths of 50 m.",
+  "deprecated": false
+ },
+ {
+  "code": "TOOL1293",
+  "uri": "http://vocab.nerc.ac.uk/collection/L22/current/TOOL1293/",
+  "label": "Satlantic {Sea-Bird} SeaFET V2 (shallow) pH sensor",
+  "definition": "A pH sensor. The sensor can be used for ocean acidification, research coral reef sensitivity analysis and environmental monitoring. The sensor measures pH with a range of 6.5 to 9.0. The sensing element is an ion sensitive field effect transistor. V2 implements improvements to the original SeaFET's reliability, data quality, ease of operation, and deployment endurance, with significant changes to how users interface with the instrument. The pH sensor has an accuracy to +/-0.05 pH, precision of 0.004 pH and stability of 0.003 pH/month. It can operate in temperatures ranging from 0 deg C to 50 deg C and up to depths of 50 m.",
+  "deprecated": false
+ },
+ {
+  "code": "TOOL1895",
+  "uri": "http://vocab.nerc.ac.uk/collection/L22/current/TOOL1895/",
+  "label": "Sea-Bird SBE SeapHOx V2 conductivity, temperature, pH, and dissolved oxygen system",
+  "definition": "The Sea-Bird SeapHOX V2 combines the SeaFET V2 ISFET pH sensor and the SBE 37-SMP-CT-ODO MicroCAT conductivity, temperature, and dissolved oxygen sensor (pressure sensor is optional). This system is designed to be used on moorings to collect oceanographic data. Outputs include conductivity, temperature, pressure, dissolved oxygen, and pH. This integrated system supplies the pH sensor with the same water sample that is pumped by the SBE 37, which allows for all data to be correlated. The system comes with expendable anti-foulant devices and an optional strain-gauge pressure sensor with temperature compensation. The optical dissolved oxygen sensor (an SBE 63) can be individually calibrated. The conductivity ranges from 0 to 7 S/m with an accuracy of 0.0003 S/m, and resolution of 0.00001 S/m. Temperature ranges from -5 to 45 &deg;C, with an accuracy of at least 0.01 &deg;C, and resolution 0.0001 &deg;C. Pressure ranges to 20 or 100 m, accuracy 0.1 % of full range, and resolution 0.002 % of full range. DO ranges to 120 % of surface saturation, accuracy 3 &micro;mol/kg or 2 %, and resolution 0.2 &micro;mol/kg. pH ranges from 6.5 to 9, accuracy 0.05, and resolution 0.004. Depth rating is 50 m.",
+  "deprecated": false
+ }
+]
