@@ -1,0 +1,22 @@
+# NERC Vocabulary Server (NVS) collections used by the schema. Read by scripts/nvs.py.
+#
+# - `collections`: every collection a schema meaning or mapping may point to. Each needs an
+#   `NVS_<code>` prefix in oae_data_protocol.yaml. `just vocab-fetch` snapshots the concepts we
+#   use into ontologies/nvs/.
+# - `enums`: enums generated from a collection into nvs_enums.yaml by `just vocab-sync`.
+#   `include: all` takes every non-deprecated concept; otherwise list the NVS codes.
+
+collections: [C16, L05, L06, L22, B75]
+
+enums:
+  SeaNames:
+    collection: C16
+    description: Sea areas from the SeaDataNet C16 vocabulary.
+    include: all
+  PlatformType:
+    collection: L06
+    description: Platform categories from the SeaVoX L06 vocabulary.
+    include: ["10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "22", "23", "25",
+              "26", "27", "30", "31", "33", "34", "36", "37", "38", "3A", "3B", "3C", "3Z", "41",
+              "42", "43", "44", "45", "46", "47", "48", "61", "62", "67", "68", "6A", "6D", "71",
+              "72", "99"]

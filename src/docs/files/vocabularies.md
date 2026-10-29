@@ -16,6 +16,11 @@ section of the protocol website.
 | [Mass Concentration Unit](MassConcentrationUnit.md) | [QUDT](https://qudt.org/vocab/unit/) | Dosing amounts |
 | CF Standard Names | NERC [P07](https://vocab.nerc.ac.uk/collection/P07/current/) | Variable `standard_identifier` (recommended) |
 
+Metadata stores a short key such as `research_vessel`, not the NERC URI. Each value's page gives
+its title and links the NERC concept it stands for (`meaning`), or a broader NERC concept
+(`broad_mappings`) when the protocol value is more specific than any NERC term. CF standard names
+are an open vocabulary, so a variable records the name and its P07 URI directly.
+
 ## Protocol Vocabularies
 
 | Area | Vocabularies |

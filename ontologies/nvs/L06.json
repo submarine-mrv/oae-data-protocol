@@ -1,0 +1,310 @@
+[
+ {
+  "code": "10",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/10/",
+  "label": "land or seafloor",
+  "definition": "A platform located on the solid surface of the Earth either above or below sea level.",
+  "deprecated": false
+ },
+ {
+  "code": "11",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/11/",
+  "label": "fixed benthic node",
+  "definition": "A collection of oceanographic instruments mounted at a fixed position on the seabed (e.g. POL Monitoring Platform, seabed ADCP).",
+  "deprecated": false
+ },
+ {
+  "code": "12",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/12/",
+  "label": "sea bed vehicle",
+  "definition": "An instrumented platform that is propelled on wheels or tracks on the seabed (e.g benthic crawler).",
+  "deprecated": false
+ },
+ {
+  "code": "13",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/13/",
+  "label": "beach/intertidal zone structure",
+  "definition": "A structure to which instrumentation may be attached that is either in air or under water depending on the state of the tide and weather conditions.",
+  "deprecated": false
+ },
+ {
+  "code": "14",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/14/",
+  "label": "land/onshore structure",
+  "definition": "A fixed man-made structure on land to which instrumentation may be attached (e.g. meteorological tower).",
+  "deprecated": false
+ },
+ {
+  "code": "15",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/15/",
+  "label": "land/onshore vehicle",
+  "definition": "An instrumented vehicle or sample collector that operates on the solid surface of the Earth (e.g. mobile meteorological station, land crawler, snowmobile).",
+  "deprecated": false
+ },
+ {
+  "code": "16",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/16/",
+  "label": "offshore structure",
+  "definition": "A fixed (for the duration of the measurements) man-made structure away from the coast to which instrumentation may be attached (e.g. oil rig, gas rig or jack-up barge).",
+  "deprecated": false
+ },
+ {
+  "code": "17",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/17/",
+  "label": "coastal structure",
+  "definition": "A fixed man-made structure permanently linked to land with access to water at all states of the tide to which instrumentation may be attached (e.g. pier).",
+  "deprecated": false
+ },
+ {
+  "code": "18",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/18/",
+  "label": "river station",
+  "definition": "An instrumented structure in a river upstream of its tidal limit.",
+  "deprecated": false
+ },
+ {
+  "code": "19",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/19/",
+  "label": "mesocosm bag",
+  "definition": "A large polythene bag containing a water sample suspended in the natural environment so that it shares ambient physical conditions such as temperature and light levels, but is chemically isolated to allow experiments such as fertilisation.",
+  "deprecated": false
+ },
+ {
+  "code": "20",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/20/",
+  "label": "submersible",
+  "definition": "A platform operating within a water body.",
+  "deprecated": false
+ },
+ {
+  "code": "22",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/22/",
+  "label": "propelled unmanned submersible",
+  "definition": "A platform operating in the water column attached to a mothership by an umbilical with limited propulsion and no human operator on board (e.g. ROV).",
+  "deprecated": false
+ },
+ {
+  "code": "23",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/23/",
+  "label": "towed unmanned submersible",
+  "definition": "A vehicle towed by rigid cable through the water column at fixed or varying depth with no propulsion and no human operator (e.g. Towfish, Scanfish, UOR, SeaSoar).",
+  "deprecated": false
+ },
+ {
+  "code": "25",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/25/",
+  "label": "autonomous underwater vehicle",
+  "definition": "A free-roving platform operating in the water column with propulsion but no human operator on board (e.g. Autosub, Gavia).",
+  "deprecated": false
+ },
+ {
+  "code": "26",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/26/",
+  "label": "lowered unmanned submersible",
+  "definition": "An unmanned platform lowered and raised vertically by a cable from the mothership.  Includes any type of profiling sensor mounting such as CTD frames, profiling radiometers and instrumented nets.",
+  "deprecated": false
+ },
+ {
+  "code": "27",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/27/",
+  "label": "sub-surface gliders",
+  "definition": "Platforms with buoyancy-based propulsion that are capable of operations at variable depths which are not constrained to be near the sea surface.",
+  "deprecated": false
+ },
+ {
+  "code": "30",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/30/",
+  "label": "ship",
+  "definition": "A large platform operating on the surface of the water column. Objective definitions for guidelines: >50m length (EU), >100 foot length (USA), >300 GRT weight (SOLAS). Subjective definition: a ship is a vessel big enough to carry a boat.",
+  "deprecated": false
+ },
+ {
+  "code": "31",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/31/",
+  "label": "research vessel",
+  "definition": "A platform of any size operating on the surface of the water column in unpredictable locations that is specifically equipped, manned and operated for scientific, usually oceanographic, research.",
+  "deprecated": false
+ },
+ {
+  "code": "33",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/33/",
+  "label": "self-propelled small boat",
+  "definition": "A small self-propelled platform operating on the surface of the water column that may be easily removed from the water (e.g. shore-based RIBs, ships' boats).",
+  "deprecated": false
+ },
+ {
+  "code": "34",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/34/",
+  "label": "vessel at fixed position",
+  "definition": "A platform of any size occupying a fixed location on the surface of the water column for prolonged periods collecting scientific (oceanographic and meteorological) data as a primary or secondary mission.  Includes light vessels and weather ships.",
+  "deprecated": false
+ },
+ {
+  "code": "36",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/36/",
+  "label": "fishing vessel",
+  "definition": "A platform operating on the surface of the water column whose primary purpose is the commercial harvesting of fish or shellfish but may be engaged in scientific activities such as fish stock surveys or mooring deployments and recoveries.",
+  "deprecated": false
+ },
+ {
+  "code": "37",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/37/",
+  "label": "self-propelled boat",
+  "definition": "A small self-propelled platform operating on the surface of the water column in unpredictable locations that is smaller than a ship, but too large to easily remove from the water.",
+  "deprecated": false
+ },
+ {
+  "code": "38",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/38/",
+  "label": "man-powered boat",
+  "definition": "A platform operating on the surface of the water column that is manually propelled and may not be easily removed from the water (e.g. trireme).",
+  "deprecated": false
+ },
+ {
+  "code": "3A",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/3A/",
+  "label": "man-powered small boat",
+  "definition": "A platform operating on the surface of the water column that is manually propelled and may be easily removed from the water (e.g. rowing boat, canoe).",
+  "deprecated": false
+ },
+ {
+  "code": "3B",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/3B/",
+  "label": "autonomous surface water vehicle",
+  "definition": "A programmed or remotely controlled self-propelled vessel operating on the surface of water bodies with no human occupants; includes saildrones.",
+  "deprecated": false
+ },
+ {
+  "code": "3C",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/3C/",
+  "label": "surface gliders",
+  "definition": "Platforms operating at a single depth near the sea surface, using a combination of solar energy and wave motion as means of propulsion.",
+  "deprecated": false
+ },
+ {
+  "code": "3Z",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/3Z/",
+  "label": "surface vessel",
+  "definition": "A mobile platform with propulsion operating on and restricted to the surface of a water body.",
+  "deprecated": false
+ },
+ {
+  "code": "41",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/41/",
+  "label": "moored surface buoy",
+  "definition": "An unmanned instrumented platform operating on the surface of the water column loosely tethered to the seafloor to maintain a fixed position (e.g. ODAS buoy).",
+  "deprecated": false
+ },
+ {
+  "code": "42",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/42/",
+  "label": "drifting surface float",
+  "definition": "An unmanned instrumented platform operating on the surface of the water column often attached to a drogue to track currents rather than winds (e.g. Argos buoy).",
+  "deprecated": false
+ },
+ {
+  "code": "43",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/43/",
+  "label": "subsurface mooring",
+  "definition": "A collection of oceanographic instruments attached to wires suspended between anchors on the seabed and buoyant spheres in the water column.",
+  "deprecated": false
+ },
+ {
+  "code": "44",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/44/",
+  "label": "drifting subsurface float",
+  "definition": "An unmanned instrumented platform drifting freely in the water column at a depth governed by its density (e.g. Swallow float).",
+  "deprecated": false
+ },
+ {
+  "code": "45",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/45/",
+  "label": "fixed subsurface vertical profiler",
+  "definition": "A platform that periodically makes an automated vertical traverse of the water column at a predetermined fixed location. (e.g. YSI vertical profiler, HOMER CTD).",
+  "deprecated": false
+ },
+ {
+  "code": "46",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/46/",
+  "label": "drifting subsurface profiling float",
+  "definition": "An unmanned instrumented platform drifting freely in the water column that periodically makes vertical traverses through the water column (e.g. Argo float).",
+  "deprecated": false
+ },
+ {
+  "code": "47",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/47/",
+  "label": "float",
+  "definition": "A free-floating platform either on the surface of the water column or at a predetermined depth within the water column.",
+  "deprecated": false
+ },
+ {
+  "code": "48",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/48/",
+  "label": "mooring",
+  "definition": "A tethered collection of oceanographic instruments at a fixed location that may include seafloor, mid-water and surface components.",
+  "deprecated": false
+ },
+ {
+  "code": "61",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/61/",
+  "label": "research aeroplane",
+  "definition": "A fixed-wing self-propelled aircraft that is equipped, manned and operated for atmospheric, meteorological or oceanographic research, sometimes also called 'instrumented platform'.",
+  "deprecated": false
+ },
+ {
+  "code": "62",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/62/",
+  "label": "aeroplane",
+  "definition": "A fixed-wing self-propelled aircraft.",
+  "deprecated": false
+ },
+ {
+  "code": "67",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/67/",
+  "label": "helicopter",
+  "definition": "An aircraft without wings that obtains its lift from the rotation of overhead blades.",
+  "deprecated": false
+ },
+ {
+  "code": "68",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/68/",
+  "label": "satellite",
+  "definition": "A vehicle operating beyond the Earth's atmosphere without human occupants that orbits the Earth.",
+  "deprecated": false
+ },
+ {
+  "code": "6A",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/6A/",
+  "label": "glider",
+  "definition": "A fixed-wing aircraft with no propulsion.",
+  "deprecated": false
+ },
+ {
+  "code": "6D",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/6D/",
+  "label": "unmanned aerial vehicle",
+  "definition": "Any untethered heavier-than-air aircraft that is not occupied by people: may be a remotely piloted aircraft or an autonomous aircraft. Also referred to as a drone.",
+  "deprecated": false
+ },
+ {
+  "code": "71",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/71/",
+  "label": "human",
+  "definition": "A human being without specialised equipment operating on land or the surface of the water column.",
+  "deprecated": false
+ },
+ {
+  "code": "72",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/72/",
+  "label": "diver",
+  "definition": "A human being with self-contained equipment or surface-connected suit enabling operation within the water column.",
+  "deprecated": false
+ },
+ {
+  "code": "99",
+  "uri": "http://vocab.nerc.ac.uk/collection/L06/current/99/",
+  "label": "mesocosm tank",
+  "definition": "An indoor or outdoor tank containing water, used to house an experimental system. Instruments attached to the tank are used to measure and control conditions to help evaluate how organisms or communities react to controlled environmental changes.",
+  "deprecated": false
+ }
+]

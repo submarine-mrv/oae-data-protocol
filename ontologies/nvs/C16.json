@@ -1,0 +1,891 @@
+[
+ {
+  "code": "01",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/01/",
+  "label": "Baltic Sea",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "01a",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/01a/",
+  "label": "Gulf of Bothnia (Baltic Sea)",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "01b",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/01b/",
+  "label": "Gulf of Finland (Baltic Sea)",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "01c",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/01c/",
+  "label": "Gulf of Riga (Baltic Sea)",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "02",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/02/",
+  "label": "Kattegat, Sound and Belts",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "03",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/03/",
+  "label": "Skagerrak",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "04",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/04/",
+  "label": "North Sea",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "05",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/05/",
+  "label": "Greenland Sea",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "06",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/06/",
+  "label": "Norwegian Sea",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "07",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/07/",
+  "label": "Barents Sea",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "08",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/08/",
+  "label": "White Sea",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "09",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/09/",
+  "label": "Kara Sea",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "10",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/10/",
+  "label": "Laptev Sea (or Nordenskjold Sea)",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "11",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/11/",
+  "label": "East Siberian Sea",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "12",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/12/",
+  "label": "Chukchi Sea",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "13",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/13/",
+  "label": "Beaufort Sea",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "14",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/14/",
+  "label": "The Northwestern Passages",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "14a",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/14a/",
+  "label": "The Northwestern Passages - Baffin Bay",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "15",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/15/",
+  "label": "Davis Strait",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "15a",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/15a/",
+  "label": "Labrador Sea (Davis Strait)",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "16",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/16/",
+  "label": "Hudson Bay",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "16a",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/16a/",
+  "label": "Hudson Strait",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "17",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/17/",
+  "label": "Arctic Ocean",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "17a",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/17a/",
+  "label": "Arctic Ocean - Lincoln Sea",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "18",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/18/",
+  "label": "Inner Seas off the West Coast of Scotland",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "19",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/19/",
+  "label": "Irish Sea and St. George's Channel",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "20",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/20/",
+  "label": "Bristol Channel",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "200",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/200/",
+  "label": "Atlantic Ocean",
+  "definition": "Aggregation of North and South Atlantic Ocean areas",
+  "deprecated": false
+ },
+ {
+  "code": "21",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/21/",
+  "label": "English Channel",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "21a",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/21a/",
+  "label": "Celtic Sea",
+  "definition": "Formally accepted and defined by IHO as an S23(1953) extension.",
+  "deprecated": false
+ },
+ {
+  "code": "22",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/22/",
+  "label": "Bay of Biscay",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "23",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/23/",
+  "label": "North Atlantic Ocean",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "23a",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/23a/",
+  "label": "North East Atlantic Ocean (limit 40W)",
+  "definition": "Not a valid IHB Code - created for ROSCOP compatibility",
+  "deprecated": false
+ },
+ {
+  "code": "23b",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/23b/",
+  "label": "North West Atlantic Ocean (limit 40W)",
+  "definition": "Not a valid IHB Code - created for ROSCOP compatibility",
+  "deprecated": false
+ },
+ {
+  "code": "24",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/24/",
+  "label": "Gulf of St. Lawrence",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "25",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/25/",
+  "label": "Bay of Fundy",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "26",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/26/",
+  "label": "Gulf of Mexico",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "27",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/27/",
+  "label": "Caribbean Sea",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "28",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/28/",
+  "label": "Mediterranean Sea",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "28A",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/28A/",
+  "label": "Mediterranean Sea - Western basin",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "28Aa",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/28Aa/",
+  "label": "Strait of Gibraltar (Mediterranean Sea)",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "28Ab",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/28Ab/",
+  "label": "Alboran Sea (Mediterranean Sea)",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "28Ac",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/28Ac/",
+  "label": "Balearic (Iberian) Sea (Mediterranean Sea)",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "28Ad",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/28Ad/",
+  "label": "Ligurian Sea (Mediterranean Sea)",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "28Ae",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/28Ae/",
+  "label": "Tyrrhenian Sea (Mediterranean Sea)",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "28B",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/28B/",
+  "label": "Mediterranean Sea - Eastern basin",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "28Bf",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/28Bf/",
+  "label": "Ionian Sea (Mediterranean Sea)",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "28Bg",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/28Bg/",
+  "label": "Adriatic Sea (Mediterranean Sea)",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "28Bh",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/28Bh/",
+  "label": "Aegean Sea (The Archipelago) (Mediterranean Sea)",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "28C",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/28C/",
+  "label": "Strait of Sicily",
+  "definition": "The region of the Mediterranean Sea between Sicily and Tunisia",
+  "deprecated": false
+ },
+ {
+  "code": "29",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/29/",
+  "label": "Sea of Marmara",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "30",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/30/",
+  "label": "Black Sea",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "31",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/31/",
+  "label": "Sea of Azov",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "32",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/32/",
+  "label": "South Atlantic Ocean",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "32a",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/32a/",
+  "label": "South East Atlantic Ocean (limit 20W)",
+  "definition": "Not a valid IHB Code - created for ROSCOP compatibility",
+  "deprecated": false
+ },
+ {
+  "code": "32b",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/32b/",
+  "label": "South West Atlantic Ocean (limit 20W)",
+  "definition": "Not a valid IHB Code - created for ROSCOP compatibility",
+  "deprecated": false
+ },
+ {
+  "code": "33",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/33/",
+  "label": "Rio de La Plata",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "34",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/34/",
+  "label": "Gulf of Guinea",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "35",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/35/",
+  "label": "Gulf of Suez",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "36",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/36/",
+  "label": "Gulf of Aqaba",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "37",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/37/",
+  "label": "Red Sea",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "38",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/38/",
+  "label": "Gulf of Aden",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "39",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/39/",
+  "label": "Arabian Sea",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "40",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/40/",
+  "label": "Gulf of Oman",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "41",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/41/",
+  "label": "Gulf of Iran (Persian Gulf)",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "42",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/42/",
+  "label": "Laccadive Sea",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "43",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/43/",
+  "label": "Bay of Bengal",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "44",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/44/",
+  "label": "Andaman or Burma Sea",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "45",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/45/",
+  "label": "Indian Ocean",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "45a",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/45a/",
+  "label": "Mozambique Channel (Indian Ocean)",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "46",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/46/",
+  "label": "Malacca and Singapore Straits",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "46a",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/46a/",
+  "label": "Malacca Strait",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "46b",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/46b/",
+  "label": "Singapore Strait",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "47",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/47/",
+  "label": "Gulf of Thailand (Siam)",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "48",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/48/",
+  "label": "East Indian Archipelago (Indonesia)",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "48a",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/48a/",
+  "label": "Sulu Sea (East Indian Archipelago)",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "48b",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/48b/",
+  "label": "Celebes Sea (East Indian Archipelago)",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "48c",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/48c/",
+  "label": "Molukka Sea (East Indian Archipelago)",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "48d",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/48d/",
+  "label": "Gulf of Tomini (East Indian Archipelago)",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "48e",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/48e/",
+  "label": "Halmahera Sea (East Indian Archipelago)",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "48f",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/48f/",
+  "label": "Ceram Sea (East Indian Archipelago)",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "48g",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/48g/",
+  "label": "Banda Sea (East Indian Archipelago)",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "48h",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/48h/",
+  "label": "Arafura Sea (East Indian Archipelago)",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "48i",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/48i/",
+  "label": "Timor Sea (East Indian Archipelago)",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "48j",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/48j/",
+  "label": "Flores Sea (East Indian Archipelago)",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "48k",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/48k/",
+  "label": "Gulf of Boni (East Indian Archipelago)",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "48l",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/48l/",
+  "label": "Bali Sea (East Indian Archipelago)",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "48m",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/48m/",
+  "label": "Makassar Strait (East Indian Archipelago)",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "48n",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/48n/",
+  "label": "Java Sea (East Indian Archipelago)",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "48o",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/48o/",
+  "label": "Savu Sea (East Indian Archipelago)",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "49",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/49/",
+  "label": "South China Sea (Nan Hai)",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "50",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/50/",
+  "label": "Eastern China Sea (Tung Hai)",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "500",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/500/",
+  "label": "Pacific Ocean",
+  "definition": "Aggregation of North and South Pacific Ocean areas",
+  "deprecated": false
+ },
+ {
+  "code": "51",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/51/",
+  "label": "Yellow Sea (Hwang Hai)",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "52",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/52/",
+  "label": "Japan Sea",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "53",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/53/",
+  "label": "Seto Naikai or Inland Sea",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "54",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/54/",
+  "label": "Sea of Okhotsk",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "55",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/55/",
+  "label": "Bering Sea",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "56",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/56/",
+  "label": "Philippine Sea",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "57",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/57/",
+  "label": "North Pacific Ocean",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "57a",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/57a/",
+  "label": "North East Pacific Ocean (limit 180W)",
+  "definition": "Not a valid IHB Code - created for ROSCOP compatibility",
+  "deprecated": false
+ },
+ {
+  "code": "57b",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/57b/",
+  "label": "North West Pacific Ocean (limit 180W)",
+  "definition": "Not a valid IHB Code - created for ROSCOP compatibility",
+  "deprecated": false
+ },
+ {
+  "code": "58",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/58/",
+  "label": "Gulf of Alaska",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "59",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/59/",
+  "label": "Coastal Waters of SE Alaska and British Columbia",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "60",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/60/",
+  "label": "Gulf of California",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "61",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/61/",
+  "label": "South Pacific Ocean",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "61a",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/61a/",
+  "label": "South East Pacific Ocean (limit 140W)",
+  "definition": "Not a valid IHB Code - created for ROSCOP compatibility",
+  "deprecated": false
+ },
+ {
+  "code": "61b",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/61b/",
+  "label": "South West Pacific Ocean (limit 140W)",
+  "definition": "Not a valid IHB Code - created for ROSCOP compatibility",
+  "deprecated": false
+ },
+ {
+  "code": "62",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/62/",
+  "label": "Great Australian Bight",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "62a",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/62a/",
+  "label": "Bass Strait (Great Australian Bight)",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "63",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/63/",
+  "label": "Tasman Sea",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "64",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/64/",
+  "label": "Coral Sea",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "65",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/65/",
+  "label": "Solomon Sea",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "66",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/66/",
+  "label": "Bismarck Sea",
+  "definition": "",
+  "deprecated": false
+ },
+ {
+  "code": "ARA",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/ARA/",
+  "label": "Aral Sea",
+  "definition": "Large inland water body comprising three lakes (North Aral Sea, eastern and western basins of the South Aral Sea) having coastlines in Kazakhstan and Uzbekistan.",
+  "deprecated": false
+ },
+ {
+  "code": "CAS",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/CAS/",
+  "label": "Caspian Sea",
+  "definition": "Large brackish inland water body having coastlines in Azerbaijan, Iran, Kazakhstan, Russia, and Turkmenistan.",
+  "deprecated": false
+ },
+ {
+  "code": "ESC",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/ESC/",
+  "label": "Eastern Scheldt",
+  "definition": "The more northerly branch of the Scheldt Estuary.  Northern boundary is a man-made dam",
+  "deprecated": false
+ },
+ {
+  "code": "FRM",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/FRM/",
+  "label": "Fram Strait",
+  "definition": "Body of water between Greenland and Svalbard",
+  "deprecated": false
+ },
+ {
+  "code": "GLO",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/GLO/",
+  "label": "Worldwide",
+  "definition": "Global coverage from 90S to 90N and 180E to 180W",
+  "deprecated": false
+ },
+ {
+  "code": "ICS",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/ICS/",
+  "label": "Iceland Sea",
+  "definition": "Part of the Arctic Ocean to the North of Iceland between Greenland and the Norwegian Sea",
+  "deprecated": false
+ },
+ {
+  "code": "IJM",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/IJM/",
+  "label": "IJsselmeer",
+  "definition": "Dutch freshwater lake with artificial dam boundaries between it and the Wadden Sea to the North and Markermeer to the South.",
+  "deprecated": false
+ },
+ {
+  "code": "IRM",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/IRM/",
+  "label": "Irminger Sea",
+  "definition": "The sea area confined between Greenland and Iceland south of the Denmark Strait (the ridge) and bounded to the south by a line from Cape Farewell to the southern tip of the 2000m isobath on the Reykjanes Ridge and a line following the top of the ridge to Iceland.",
+  "deprecated": false
+ },
+ {
+  "code": "MKM",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/MKM/",
+  "label": "Markermeer",
+  "definition": "Dutch freshwater lake with an artificial dam boundaries between it and IJsselmeer.",
+  "deprecated": false
+ },
+ {
+  "code": "SOC",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/SOC/",
+  "label": "Southern Ocean",
+  "definition": "Waters south of 60S",
+  "deprecated": false
+ },
+ {
+  "code": "WAS",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/WAS/",
+  "label": "Wadden Sea",
+  "definition": "Part of the North Sea between the Dutch, German and Danish coasts and the Frisian islands.",
+  "deprecated": false
+ },
+ {
+  "code": "WSC",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/WSC/",
+  "label": "Western Scheldt",
+  "definition": "The more southerly branch of the Scheldt Estuary.",
+  "deprecated": false
+ },
+ {
+  "code": "ZZ",
+  "uri": "http://vocab.nerc.ac.uk/collection/C16/current/ZZ/",
+  "label": "Unknown",
+  "definition": "The correct value is not known to and not computable by the creator of this information. However a correct value probably exists.",
+  "deprecated": false
+ }
+]

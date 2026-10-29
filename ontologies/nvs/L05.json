@@ -1,0 +1,163 @@
+[
+ {
+  "code": "102",
+  "uri": "http://vocab.nerc.ac.uk/collection/L05/current/102/",
+  "label": "meteorological packages",
+  "definition": "Instrument that makes routine meteorological measurements on the atmosphere, typically air pressure, temperature and humidity.",
+  "deprecated": false
+ },
+ {
+  "code": "113",
+  "uri": "http://vocab.nerc.ac.uk/collection/L05/current/113/",
+  "label": "fluorometers",
+  "definition": "Instrument that measures the amount of stimulated electromagnetic radiation produced by pulses of electromagnetic radiation emitted into the water column.",
+  "deprecated": false
+ },
+ {
+  "code": "115",
+  "uri": "http://vocab.nerc.ac.uk/collection/L05/current/115/",
+  "label": "current profilers",
+  "definition": "Instrument that measures current speed and direction at multiple predetermined depths simultaneously.",
+  "deprecated": false
+ },
+ {
+  "code": "130",
+  "uri": "http://vocab.nerc.ac.uk/collection/L05/current/130/",
+  "label": "CTD",
+  "definition": "A reusable instrument that always simultaneously measures conductivity and temperature (for salinity) and pressure (for depth).",
+  "deprecated": false
+ },
+ {
+  "code": "133",
+  "uri": "http://vocab.nerc.ac.uk/collection/L05/current/133/",
+  "label": "thermosalinographs",
+  "definition": "Temperature and conductivity sensors mounted on a sea-surface platform continuously measuring a surface water supply.",
+  "deprecated": false
+ },
+ {
+  "code": "181",
+  "uri": "http://vocab.nerc.ac.uk/collection/L05/current/181/",
+  "label": "nutrient analysers",
+  "definition": "Instrument that makes in-situ measurements of one or more of nitrate, nitrite, ammonium, urea, phosphate or silicate dissolved in the water column.",
+  "deprecated": false
+ },
+ {
+  "code": "22",
+  "uri": "http://vocab.nerc.ac.uk/collection/L05/current/22/",
+  "label": "plankton nets",
+  "definition": "A fine-meshed net designed to collect small size organisms, aggregates, or litter in the water column including for example microzooplankton, mesozooplankton, nekton, microplastic or other litter.",
+  "deprecated": false
+ },
+ {
+  "code": "23",
+  "uri": "http://vocab.nerc.ac.uk/collection/L05/current/23/",
+  "label": "pelagic trawl nets",
+  "definition": "A net towed through the water column designed to sample free-swimming nekton or fish.",
+  "deprecated": false
+ },
+ {
+  "code": "30",
+  "uri": "http://vocab.nerc.ac.uk/collection/L05/current/30/",
+  "label": "discrete water samplers",
+  "definition": "A device that collects an in-situ discrete water sample from any depth and returns it to the surface without contamination by the waters through which it passes, such as a water bottle.",
+  "deprecated": false
+ },
+ {
+  "code": "31",
+  "uri": "http://vocab.nerc.ac.uk/collection/L05/current/31/",
+  "label": "continuous water samplers",
+  "definition": "A device that continuously supplies a flow of water either to an analytical instrument, over a sensor or from which samples may be drawn.",
+  "deprecated": false
+ },
+ {
+  "code": "351",
+  "uri": "http://vocab.nerc.ac.uk/collection/L05/current/351/",
+  "label": "dissolved gas sensors",
+  "definition": "Instrument that measures the concentration of gases, generally oxygen, dissolved in the water column.",
+  "deprecated": false
+ },
+ {
+  "code": "355",
+  "uri": "http://vocab.nerc.ac.uk/collection/L05/current/355/",
+  "label": "pH sensors",
+  "definition": "Instruments that measure the hydrogen ion concentration in the water column.",
+  "deprecated": false
+ },
+ {
+  "code": "86",
+  "uri": "http://vocab.nerc.ac.uk/collection/L05/current/86/",
+  "label": "inorganic carbon analysers",
+  "definition": "Instruments measuring carbonate in sediments and inorganic carbon in the water column.",
+  "deprecated": false
+ },
+ {
+  "code": "EQUIL",
+  "uri": "http://vocab.nerc.ac.uk/collection/L05/current/EQUIL/",
+  "label": "equilibrators",
+  "definition": "Devices in which samples and carriers are brought into chemical equilibrium prior to analysis. For example, a shower head or tower full of marbles used to equilibrate water samples with air that is subsequently analysed for carbon dioxide to give pCO2 in the water sample.",
+  "deprecated": false
+ },
+ {
+  "code": "LAB05",
+  "uri": "http://vocab.nerc.ac.uk/collection/L05/current/LAB05/",
+  "label": "optical microscopes",
+  "definition": "Instruments that generate enlarged images of samples using the phenomena of reflection and absorption of visible light. Includes conventional and inverted instruments.",
+  "deprecated": false
+ },
+ {
+  "code": "LAB07",
+  "uri": "http://vocab.nerc.ac.uk/collection/L05/current/LAB07/",
+  "label": "electron microscopes",
+  "definition": "Instruments that generate enlarged images of samples using the phenomena of reflection and absorption of electrons behaving as waves.",
+  "deprecated": false
+ },
+ {
+  "code": "LAB11",
+  "uri": "http://vocab.nerc.ac.uk/collection/L05/current/LAB11/",
+  "label": "high performance liquid chromatographs",
+  "definition": "Instruments that separate and analyse mixtures of substances by high pressure pumping the sample through a column packed with microspheres coated with the stationary phase.",
+  "deprecated": false
+ },
+ {
+  "code": "LAB12",
+  "uri": "http://vocab.nerc.ac.uk/collection/L05/current/LAB12/",
+  "label": "titrators",
+  "definition": "Instruments that incrementally add quantified aliquites of a reagent to a sample until the end-point of a chemical reaction is reached.",
+  "deprecated": false
+ },
+ {
+  "code": "LAB16",
+  "uri": "http://vocab.nerc.ac.uk/collection/L05/current/LAB16/",
+  "label": "mass spectrometers",
+  "definition": "Instruments used to measure the mass-to-charge ratio of ions most generally used to find the composition of a sample by generating a mass spectrum representing the masses of sample components.",
+  "deprecated": false
+ },
+ {
+  "code": "LAB20",
+  "uri": "http://vocab.nerc.ac.uk/collection/L05/current/LAB20/",
+  "label": "spectrophotometers",
+  "definition": "Instruments measuring the relative absorption of electromagnetic radiation of different wavelengths in the near infra-red, visible and ultraviolet wavebands by samples.",
+  "deprecated": false
+ },
+ {
+  "code": "LAB30",
+  "uri": "http://vocab.nerc.ac.uk/collection/L05/current/LAB30/",
+  "label": "salinometers",
+  "definition": "Instruments that measure the salinity of a collected water sample based on its electrical conductivity or optical properties.",
+  "deprecated": false
+ },
+ {
+  "code": "LAB37",
+  "uri": "http://vocab.nerc.ac.uk/collection/L05/current/LAB37/",
+  "label": "flow cytometers",
+  "definition": "Instruments that suspend cells in a stream of fluid past detection sensors whilst illuminating them with laser light. Used for cell counting, sorting, biomarker detection and protein engineering.",
+  "deprecated": false
+ },
+ {
+  "code": "LAB48",
+  "uri": "http://vocab.nerc.ac.uk/collection/L05/current/LAB48/",
+  "label": "isotope ratio mass spectrometers",
+  "definition": "Instruments that measure isotopic ratios using an electron ionisation source. Atoms in purified samples are ionised using a beam of electrons under vacuum. Subsequently, ions are focused into a beam by an electromagnet and then separated into individual beams based on their mass/charge ratio.",
+  "deprecated": false
+ }
+]
