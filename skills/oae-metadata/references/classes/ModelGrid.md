@@ -18,3 +18,13 @@ Details about a model grid. Use multiple ModelGrid entries to describe nested or
 | horizontal_resolution_range | no | no | string | Description of horizontal resolution (e.g., '3.3 km', '1/12 degree'). |
 | vertical_resolution_range | no | no | string | Description of vertical resolution (e.g., 'Max. 4 m near surface, stretching to 500 m at depth'). |
 | input_details | no | no | [ModelInputDetails](ModelInputDetails.md) | Details about input data sources used to drive the model on this grid. |
+
+## Vocabularies
+
+What each value means, for the fields above.
+
+### grid_type
+
+- `inner_grid`: Inner (nested, higher-resolution) grid
+- `outer_grid`: Outer (coarser-resolution) grid
+- `single_grid`: Single grid (no nesting)

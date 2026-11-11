@@ -15,3 +15,15 @@ A component of a model (e.g., physics, biogeochemistry/ecosystem).
 ## Rules
 
 - When `model_component_type` is `other`, `model_component_type_custom` is required.
+
+## Vocabularies
+
+What each value means, for the fields above.
+
+### model_component_type
+
+- `physics`: Physical model component (e.g., ocean circulation)
+- `bgc_ecosystem`: Biogeochemical or ecosystem model component
+- `sea_ice`: Sea Ice model component
+- `atmosphere`: Atmosphere model component
+- `other`: Other model component (e.g., sea ice, sediment, atmosphere)

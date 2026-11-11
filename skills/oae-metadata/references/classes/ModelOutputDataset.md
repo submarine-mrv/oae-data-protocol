@@ -33,3 +33,43 @@ Parent: Dataset
 - When `data_accessibility` is `scheduled_access`, `data_access_date` is required.
 - When `data_accessibility` is `open_access`, `data_access_link` is required.
 - When `simulation_type` contains `perturbation`, `mcdr_forcing_description` is required.
+
+## Vocabularies
+
+What each value means, for the fields above.
+
+### simulation_type
+
+- `counterfactual`: Control/baseline simulation without alkalinity perturbation
+- `perturbation`: Simulation with alkalinity perturbation applied
+- `other`: Other simulation type not listed above
+
+### dataset_type
+
+- `dosing`: Variables such as dosing_onoff, dosing_rate, and flow_rate should be included here.
+- `cast`: Vertical profiles (e.g., optical packages, CTD)
+- `bottle`: Any other types of measurements from water samples collected at discrete depths (e.g., nutrients)
+- `flow_thru`: Continuous data (e.g., shipboard, underway flow through system)
+- `pigment`: For laboratory measured pigment data (e.g. fluorometry, spectrophotometry, HPLC)
+- `marine_snow_catcher`: For various types of marine snow catcher data
+- `mooring`: Moored and buoy data
+- `drifter`: Drifter and drogue data
+- `airborne`: Measurements made via an aircraft
+- `diver`: For measurements made by a diver
+- `auv`: Measurements made by an autonomous underwater vehicle
+- `asv`: Measurements made by an autonomous surface vehicle
+- `experimental`: Measurements that have a non-geospatial aspect (e.g., incubations or other laboratory measurements, etc.)
+- `sediment_trap`: Measurements from a sediment trap platform
+- `taxonomy`: Data whose purpose is the classification or annotation of phytoplankton, zooplankton, or other marine groups.
+- `sediment`: Measurements from sediment samples (e.g., core samples, grab samples)
+- `model_output`: Data output from model experiments
+- `socioeconomic`: Information (quantitative or qualitative) from socioeconomic studies
+- `net_tow`: For measurements captured via net (e.g., zooplankton via MOCNESS)
+- `underway`: Data collected continuously from a moving platform (e.g., ship underway system sampling surface seawater during transit).
+- `other`: For data types not included in the controlled vocabulary. Please fill in a the `dataset_type_custom` field with a more specific name for the custom mCDR data type.
+
+### data_accessibility
+
+- `open_access`: Data are freely available now, without restriction.
+- `conditional_access`: Data are available upon request, subject to review.
+- `scheduled_access`: Data will become openly available after a specified date.

@@ -24,3 +24,13 @@ Parent: PHCalibration
 ## Rules
 
 - When `standard_used` is `other`, `standard_used_custom` is required.
+
+## Vocabularies
+
+What each value means, for the fields above.
+
+### calibration_location
+
+- `factory`: Factory calibration performed by manufacturer.
+- `lab`: Laboratory calibration.
+- `field`: Field calibration performed during deployment.

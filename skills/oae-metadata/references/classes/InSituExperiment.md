@@ -21,3 +21,16 @@ Parent: Experiment
 | additional_details | no | no | string | Open text area to include additional information. These may include information for sediment processes data, biological data, or any other required information if not included in the main metadata or data files; see General Guidelines for Your Data for relevant sections of your data. Additional informational files, such as digitized laboratory notebooks, blogs, etc., may be linked here. |
 | public_comments | no | yes | [PublicComment](PublicComment.md) | Public comment documents, each with a link or DOI and an optional description. Please group/concatenate all public comments associated with a specific consultation (e.g., for permitting, non-mandated consultations on a specific topic, or informal public input such as unsolicited comments and media attention) into a single document if possible, and link to it here. |
 | end_datetime | no | no | datetime | End date and time of experiment in UTC ISO-8601 |
+
+## Vocabularies
+
+What each value means, for the fields above.
+
+### experiment_types
+
+- `baseline`: Baseline measurements taken before any intervention
+- `control`: Control experiment without intervention for comparison
+- `intervention`: Experiment with active OAE intervention
+- `tracer_study`: Tracer study experiment (eg- dye or gas tracer study)
+- `model`: Model-based experiment or simulation
+- `other`: Other experiment type not covered by standard categories

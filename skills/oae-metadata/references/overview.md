@@ -16,7 +16,13 @@ Read `class-index.md` beside this file for the full list. This page holds only t
 
 Use InterventionWithTracer only when the alkalinity and the tracer were dosed through the same mechanism and schedule. Otherwise draft two experiments.
 
-One experiment is one deployment or run with its own dates and dosing. A project that dosed in three separate periods has three experiments. Laboratory studies, permit applications and monitoring programmes are not experiments.
+An experiment is a campaign the project itself treats as one unit: a named trial, deployment, crediting period, cruise or model study. Use the project's own names and boundaries.
+
+- Keep a named campaign as one experiment even when the feedstock lot, dose rate or schedule changed inside it. Describe the phases in its fields.
+- Separate campaigns (different names, or separated in time with their own reporting) are separate experiments.
+- A model the sources configure in some detail (code, grid, forcing) is a Model experiment, even when the sources give no dates for a specific run. List the missing run details as gaps.
+- A planned or earlier campaign that the sources describe in detail is an experiment too. Say in its description that it is planned or historical.
+- Laboratory studies, permit applications and monitoring programmes are not experiments.
 
 ## Datasets
 

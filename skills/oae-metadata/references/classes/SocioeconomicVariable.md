@@ -22,3 +22,14 @@ Parent: InSituVariable
 | method_reference | no | no | string | Citation for the method used. |
 | measurement_researcher | no | no | [Person](Person.md) | The name of the PI whose research team measured or derived this parameter. |
 | standard_identifier | no | no | [VocabularyItemReference](VocabularyItemReference.md) | A term from a community vocabulary that identifies this variable. CF standard names (NERC P07) are recommended. |
+
+## Vocabularies
+
+What each value means, for the fields above.
+
+### social_study_type
+
+- `public_perception_survey`: Public perception survey
+- `ecosystem_service_valuation_survey`: Ecosystem service valuation survey
+- `text_analysis`: Text analysis
+- `other`: Other study type

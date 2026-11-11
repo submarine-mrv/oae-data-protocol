@@ -145,7 +145,26 @@ class References:
         rules = self.rules(name)
         if rules:
             lines += ["", "## Rules", ""] + rules
+        vocabularies = self.vocabularies(slots)
+        if vocabularies:
+            lines += ["", "## Vocabularies", "", "What each value means, for the fields above."] + vocabularies
         return "\n".join(lines) + "\n"
+
+    def vocabularies(self, slots):
+        """Value meanings for the inlined enums these slots use, where the schema gives any."""
+        lines, seen = [], set()
+        for slot in slots:
+            enum = self.enums.get(slot.range)
+            if enum is None or slot.equals_string is not None or slot.range in seen:
+                continue
+            values = enum.permissible_values
+            if len(values) > INLINE_ENUM_MAX or not any(pv.description for pv in values.values()):
+                continue
+            seen.add(slot.range)
+            fields = ", ".join(s.name for s in slots if s.range == slot.range)
+            lines += ["", f"### {fields}", ""]
+            lines += [f"- `{value}`: {one_line(pv.description)}" if pv.description else f"- `{value}`" for value, pv in values.items()]
+        return lines
 
     def enum_page(self, name):
         enum = self.enums[name]

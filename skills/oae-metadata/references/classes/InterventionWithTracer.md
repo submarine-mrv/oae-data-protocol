@@ -46,3 +46,73 @@ Parent: Intervention
 - When `alkalinity_feedstock` is `other`, `alkalinity_feedstock_custom` is required.
 - When `alkalinity_feedstock_processing` is `other`, `alkalinity_feedstock_processing_custom` is required.
 - When `tracer_form` is `other`, `tracer_form_custom` is required.
+
+## Vocabularies
+
+What each value means, for the fields above.
+
+### tracer_form
+
+- `gas`: Gas tracer
+- `dye`: Dye tracer (eg- rhodamine)
+- `other`: Other tracer form not covered by standard categories
+
+### alkalinity_feedstock_processing
+
+- `electrochemistry`: Alkalinity generated via electrochemical processes (e.g., seawater electrolysis).
+- `synthetically_derived`: Intentionally industrially manufactured chemical compounds (e.g., Ca(OH)2 via lime kilns).
+- `mineral_mining`: Mined geological material, including purified mineral or natural rock.
+- `blended`: A mix of multiple sources.
+- `other`: Unclassified or novel; include a description in Experiment Description.
+
+### alkalinity_feedstock_form
+
+- `solid`: Involves adding alkaline minerals or particulate slurry (such as MgOH2, MgO, or CaO) to seawater or river systems either directly, through coastal outfalls (such as wastewater), or at breaking shorelines to increase its alkalinity.
+- `aqueous`: Aqueous alkalinity addition may use electrochemistry or fully dissolved mineral feedstock to increase seawater alkalinity.
+- `slurry`: Slurry alkalinity additions include a mix of solid and aqueous alkalinity forms, where the solid alkaline particulates are suspended in a solution.
+
+### alkalinity_feedstock
+
+- `lime`: Lime (CaO) used as an alkalinity source.
+- `portlandite`: Portlandite (Ca(OH)₂) used as an alkalinity source.
+- `calcium_carbonate`: Calcium carbonate (CaCO₃) used as an alkalinity source.
+- `anorthite`: Anorthite (CaAl₂Si₂O₈) used as an alkalinity source.
+- `dolomite`: Dolomite (CaMg(CO₃)₂) used as an alkalinity source.
+- `periclase`: Periclase (MgO) used as an alkalinity source.
+- `brucite`: Brucite (Mg(OH)₂) used as an alkalinity source.
+- `magnesite`: Magnesite (MgCO₃) used as an alkalinity source.
+- `forsterite`: Forsterite (Mg₂SiO₄) used as an alkalinity source.
+- `mg_rich_olivine`: Magnesium-rich olivine used as an alkalinity source.
+- `sodium_hydroxide`: NaOH used as an alkalinity source.
+- `natrite`: Natrite (Na₂CO₃) used as an alkalinity source.
+- `nahcolite`: Nahcolite (NaHCO₃) used as an alkalinity source.
+- `other`: Enter a custom value in the field provided
+
+### equilibration
+
+- `pre_equilibrated`: Pre-equilibrated with atmosphere before dosing
+- `unequilibrated`: Not pre-equilibrated before dosing
+
+### dosing_delivery_type
+
+- `static_point_source`: A single dosing location such as an outflow from a static platform with a pipe
+- `variable_point_source`: A mobile dosing regimen described by a single location at each time step, such as an outflow from a mobile platform such as a ship or surface vessel.
+- `static_distributed`: A set location or locations of dosing that is not a point source, such as a distributed area over the seafloor or a diffusor.
+- `variable_distributed`: A distributed dosing area that varies in time, such as manually placed alkaline material over different areas at different times.
+
+### dosing_dispersal_hydrologic_location
+
+- `coastal_surface`: Surface waters in coastal areas
+- `offshore_surface`: Surface waters in offshore areas
+- `river`: River systems
+- `wetland`: Wetland areas
+- `seafloor`: Seafloor or benthic zone
+
+### experiment_types
+
+- `baseline`: Baseline measurements taken before any intervention
+- `control`: Control experiment without intervention for comparison
+- `intervention`: Experiment with active OAE intervention
+- `tracer_study`: Tracer study experiment (eg- dye or gas tracer study)
+- `model`: Model-based experiment or simulation
+- `other`: Other experiment type not covered by standard categories

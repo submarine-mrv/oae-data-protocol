@@ -21,3 +21,19 @@ Parent: Calibration
 ## Rules
 
 - When `standard_used` is `other`, `standard_used_custom` is required.
+
+## Vocabularies
+
+What each value means, for the fields above.
+
+### standard_used
+
+- `dye`: Indicator dye, e.g., m-cresol purple.
+- `tris`: TRIS buffer in synthetic seawater.
+- `other`: A standard not listed here. Name it in the custom field.
+
+### calibration_location
+
+- `factory`: Factory calibration performed by manufacturer.
+- `lab`: Laboratory calibration.
+- `field`: Field calibration performed during deployment.

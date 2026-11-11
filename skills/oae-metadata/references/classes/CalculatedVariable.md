@@ -25,3 +25,20 @@ Parent: InSituVariable
 | method_reference | no | no | string | Citation for the method used. |
 | measurement_researcher | no | no | [Person](Person.md) | The name of the PI whose research team measured or derived this parameter. |
 | standard_identifier | no | no | [VocabularyItemReference](VocabularyItemReference.md) | A term from a community vocabulary that identifies this variable. CF standard names (NERC P07) are recommended. |
+
+## Vocabularies
+
+What each value means, for the fields above.
+
+### variable_type
+
+- `pH`: pH measurement — use with Discrete/ContinuousPHVariable or CalculatedVariable
+- `ta`: Total alkalinity — use with Discrete/ContinuousTAVariable or CalculatedVariable
+- `dic`: Dissolved inorganic carbon — use with Discrete/ContinuousDICVariable or CalculatedVariable
+- `co2`: CO₂ variables (xCO₂, pCO₂, fCO₂) — use with DiscreteCO2Variable or CalculatedVariable
+- `sediment`: Sediment variable — use with Discrete/ContinuousSedimentVariable or CalculatedVariable
+- `hplc`: HPLC pigment analysis — use with HPLCVariable (always discrete, always measured)
+- `physiological`: Physiological response variable — organism response data from field experiments. Use with Discrete/ContinuousPhysiologicalVariable or CalculatedVariable.
+- `socioeconomic`: Socioeconomic variable — social and economic data. Use only with SocioeconomicVariable. Does not include QC fields.
+- `other`: Any directly measured or calculated variable that does not fall into a specific category above (e.g., temperature, salinity, conductivity, pressure, fluorescence). Use with DiscreteMeasuredVariable, ContinuousMeasuredVariable, or CalculatedVariable.
+- `non_measured`: Contextual or ancillary columns that are not directly measured or calculated by the project — identifiers, timestamps, coordinates and external source data. QC flag columns should NOT be listed as separate variables; instead set dataset_variable_name_qc_flag on the parent variable. Use only with NonMeasuredVariable.

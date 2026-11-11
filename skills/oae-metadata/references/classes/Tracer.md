@@ -35,3 +35,37 @@ Parent: InSituExperiment
 ## Rules
 
 - When `tracer_form` is `other`, `tracer_form_custom` is required.
+
+## Vocabularies
+
+What each value means, for the fields above.
+
+### tracer_form
+
+- `gas`: Gas tracer
+- `dye`: Dye tracer (eg- rhodamine)
+- `other`: Other tracer form not covered by standard categories
+
+### dosing_delivery_type
+
+- `static_point_source`: A single dosing location such as an outflow from a static platform with a pipe
+- `variable_point_source`: A mobile dosing regimen described by a single location at each time step, such as an outflow from a mobile platform such as a ship or surface vessel.
+- `static_distributed`: A set location or locations of dosing that is not a point source, such as a distributed area over the seafloor or a diffusor.
+- `variable_distributed`: A distributed dosing area that varies in time, such as manually placed alkaline material over different areas at different times.
+
+### dosing_dispersal_hydrologic_location
+
+- `coastal_surface`: Surface waters in coastal areas
+- `offshore_surface`: Surface waters in offshore areas
+- `river`: River systems
+- `wetland`: Wetland areas
+- `seafloor`: Seafloor or benthic zone
+
+### experiment_types
+
+- `baseline`: Baseline measurements taken before any intervention
+- `control`: Control experiment without intervention for comparison
+- `intervention`: Experiment with active OAE intervention
+- `tracer_study`: Tracer study experiment (eg- dye or gas tracer study)
+- `model`: Model-based experiment or simulation
+- `other`: Other experiment type not covered by standard categories

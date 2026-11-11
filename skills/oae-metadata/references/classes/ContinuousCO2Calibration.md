@@ -13,3 +13,13 @@ Parent: CO2Calibration
 | frequency | no | no | string | How often the instrument was calibrated. |
 | last_calibration_date | no | no | datetime | Date and time of most recent calibration in UTC. |
 | calibration_certificates | no | no | string | Information about calibration certificates. Ideally, the certificate should be made available in a PDF file with filename listed here. |
+
+## Vocabularies
+
+What each value means, for the fields above.
+
+### calibration_location
+
+- `factory`: Factory calibration performed by manufacturer.
+- `lab`: Laboratory calibration.
+- `field`: Field calibration performed during deployment.

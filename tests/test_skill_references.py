@@ -80,6 +80,17 @@ def test_pinned_values_are_shown(out):
     assert re.search(r"^\| instrument_type \|.*always `gas_analyzer`", page(out, "CO2GasDetector"), re.M)
 
 
+def test_enum_value_meanings_are_in_the_class_file(out):
+    text = page(out, "Intervention")
+    meaning = REFS.enums["DosingDeliveryType"].permissible_values["static_point_source"].description
+    assert "## Vocabularies" in text
+    assert f"- `static_point_source`: {' '.join(meaning.split())}" in text
+
+
+def test_enums_without_meanings_get_no_vocabulary_entry(out):
+    assert "### observation_type" not in page(out, "DiscretePHVariable")
+
+
 def test_every_link_resolves(out):
     refs = out / "references"
     for path in [*refs.glob("classes/*.md"), refs / "class-index.md"]:

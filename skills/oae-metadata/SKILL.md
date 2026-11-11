@@ -46,7 +46,9 @@ For each item:
 - Set `schema_class` on every variable to its class name.
 - Fill a field only when a source states the value, or states enough that a specialist would call the inference safe. Record every inference in the report.
 - Leave a field out when the sources don't give it. No `null`, no empty string, no "unknown", no placeholder.
-- Draft only the experiments the sources describe. One that is merely mentioned gets a line in the report, not an entry.
+- Draft every experiment the sources describe in detail, as `references/overview.md` defines one. An experiment that is only mentioned in passing gets a line in the report, not an entry.
+- Go through the class file field by field. For each field you have not filled, search the sources once more for it before leaving it out. Permits, funding, co-located operations and nearby research are easy to miss because documents discuss them far from the methods.
+- Where an enum's values have meanings listed under "Vocabularies" in the class file, choose by the meaning, not the name.
 
 For a dataset built from a table:
 

@@ -32,3 +32,33 @@ Parent: MeasuredVariable
 | method_reference | no | no | string | Citation for the method used. |
 | measurement_researcher | no | no | [Person](Person.md) | The name of the PI whose research team measured or derived this parameter. |
 | standard_identifier | no | no | [VocabularyItemReference](VocabularyItemReference.md) | A term from a community vocabulary that identifies this variable. CF standard names (NERC P07) are recommended. |
+
+## Vocabularies
+
+What each value means, for the fields above.
+
+### sampling_instrument_type
+
+- `ctd_rosette`: A CTD rosette consists of a metal frame that houses a collection of sensors and water sampling bottles (e.g., Niskin)
+- `niskin_bottle`: A device that collects an in-situ discrete water sample from any depth and returns it to the surface without contamination by the waters through which it passes, such as a water bottle.
+- `flow_through_system`: A device that continuously supplies a flow of water either to an analytical instrument, over a sensor or from which samples may be drawn.
+- `flask_for_discrete_co2_measurement`: Such flasks are typically made of glass and have a capacity of around one liter. Seawater samples are collected from a specific depth using a Niskin bottle or other sampling device and transferred to the flask without exposing them to the air. The flask is then sealed with a stopper and transported to the laboratory for analysis.
+- `biological_trawl`: A net towed through the water column designed to sample free-swimming nekton or fish
+- `phytoplankton_net`: Phytoplankton net is used to collect and identify phytoplankton, which are microscopic plants that form the base of the marine food web.
+- `zooplankton_net`: Zooplankton net is used to collect and identify zooplankton, which are microscopic animals that feed on phytoplankton and are important prey for many marine organisms.
+- `edna_sampler`: Environmental DNA (eDNA) samplers: used to collect and analyze genetic material shed by marine organisms, which can provide information about their distribution, abundance, and diversity.
+- `autonomous_sensor`: A device used in the measurement of a variety of oceanographic variables that functions autonomously
+- `other`
+
+### variable_type
+
+- `pH`: pH measurement — use with Discrete/ContinuousPHVariable or CalculatedVariable
+- `ta`: Total alkalinity — use with Discrete/ContinuousTAVariable or CalculatedVariable
+- `dic`: Dissolved inorganic carbon — use with Discrete/ContinuousDICVariable or CalculatedVariable
+- `co2`: CO₂ variables (xCO₂, pCO₂, fCO₂) — use with DiscreteCO2Variable or CalculatedVariable
+- `sediment`: Sediment variable — use with Discrete/ContinuousSedimentVariable or CalculatedVariable
+- `hplc`: HPLC pigment analysis — use with HPLCVariable (always discrete, always measured)
+- `physiological`: Physiological response variable — organism response data from field experiments. Use with Discrete/ContinuousPhysiologicalVariable or CalculatedVariable.
+- `socioeconomic`: Socioeconomic variable — social and economic data. Use only with SocioeconomicVariable. Does not include QC fields.
+- `other`: Any directly measured or calculated variable that does not fall into a specific category above (e.g., temperature, salinity, conductivity, pressure, fluorescence). Use with DiscreteMeasuredVariable, ContinuousMeasuredVariable, or CalculatedVariable.
+- `non_measured`: Contextual or ancillary columns that are not directly measured or calculated by the project — identifiers, timestamps, coordinates and external source data. QC flag columns should NOT be listed as separate variables; instead set dataset_variable_name_qc_flag on the parent variable. Use only with NonMeasuredVariable.

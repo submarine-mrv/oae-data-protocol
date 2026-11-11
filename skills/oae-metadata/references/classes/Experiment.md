@@ -14,3 +14,16 @@ Abstract base class for all experiment types. Contains fields common to both in-
 | start_datetime | yes | no | datetime | Start date and time of experiment in UTC ISO-8601 |
 | public_comments | no | yes | [PublicComment](PublicComment.md) | Public comment documents, each with a link or DOI and an optional description. Please group/concatenate all public comments associated with a specific consultation (e.g., for permitting, non-mandated consultations on a specific topic, or informal public input such as unsolicited comments and media attention) into a single document if possible, and link to it here. |
 | end_datetime | no | no | datetime | End date and time of experiment in UTC ISO-8601 |
+
+## Vocabularies
+
+What each value means, for the fields above.
+
+### experiment_types
+
+- `baseline`: Baseline measurements taken before any intervention
+- `control`: Control experiment without intervention for comparison
+- `intervention`: Experiment with active OAE intervention
+- `tracer_study`: Tracer study experiment (eg- dye or gas tracer study)
+- `model`: Model-based experiment or simulation
+- `other`: Other experiment type not covered by standard categories
