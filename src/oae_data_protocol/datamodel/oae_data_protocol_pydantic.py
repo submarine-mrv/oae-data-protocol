@@ -29,7 +29,7 @@ from pydantic import (
 
 
 metamodel_version = "None"
-version = "0.6.0"
+version = "0.6.1"
 
 
 class ConfiguredBaseModel(BaseModel):
@@ -1014,7 +1014,13 @@ If there are relevant regulatory parameters and/or limits to dosing trials at th
     spatial_coverage: SpatialCoverage = Field(default=..., title="Spatial Coverage", description="""Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities), expressed as a schema.org GeoShape bounding box.""", json_schema_extra = { "linkml_meta": {'alias': 'spatial_coverage',
          'domain_of': ['Project', 'ExternalProject', 'Experiment', 'ModelGrid'],
          'slot_uri': 'schema:spatialCoverage'} })
-    experiments: Optional[List[Experiment]] = Field(default=None, title="Related Experiments", json_schema_extra = { "linkml_meta": {'alias': 'experiments',
+    experiments: Optional[List[Union[Experiment, InSituExperiment, Intervention, InterventionWithTracer, Model, Tracer]]] = Field(default=None, title="Related Experiments", json_schema_extra = { "linkml_meta": {'alias': 'experiments',
+         'any_of': [{'range': 'Experiment'},
+                    {'range': 'InSituExperiment'},
+                    {'range': 'Model'},
+                    {'range': 'Intervention'},
+                    {'range': 'Tracer'},
+                    {'range': 'InterventionWithTracer'}],
          'domain_of': ['Project', 'Container'],
          'recommended': True} })
     project_leads: List[Person] = Field(default=..., title="Project Lead(s)", description="""Provide details for each project lead / principal investigator (PI) including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.""", json_schema_extra = { "linkml_meta": {'alias': 'project_leads', 'domain_of': ['Project']} })
@@ -3784,8 +3790,19 @@ class Container(ConfiguredBaseModel):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://schema.oaedata.org/OAEDataSchema', 'tree_root': True})
 
     project: Optional[Project] = Field(default=None, json_schema_extra = { "linkml_meta": {'alias': 'project', 'domain_of': ['Container']} })
-    experiments: Optional[List[Experiment]] = Field(default=None, json_schema_extra = { "linkml_meta": {'alias': 'experiments', 'domain_of': ['Project', 'Container']} })
-    datasets: Optional[List[Dataset]] = Field(default=None, json_schema_extra = { "linkml_meta": {'alias': 'datasets', 'domain_of': ['Container']} })
+    experiments: Optional[List[Union[Experiment, InSituExperiment, Intervention, InterventionWithTracer, Model, Tracer]]] = Field(default=None, json_schema_extra = { "linkml_meta": {'alias': 'experiments',
+         'any_of': [{'range': 'Experiment'},
+                    {'range': 'InSituExperiment'},
+                    {'range': 'Model'},
+                    {'range': 'Intervention'},
+                    {'range': 'Tracer'},
+                    {'range': 'InterventionWithTracer'}],
+         'domain_of': ['Project', 'Container']} })
+    datasets: Optional[List[Union[Dataset, FieldDataset, ModelOutputDataset]]] = Field(default=None, json_schema_extra = { "linkml_meta": {'alias': 'datasets',
+         'any_of': [{'range': 'Dataset'},
+                    {'range': 'FieldDataset'},
+                    {'range': 'ModelOutputDataset'}],
+         'domain_of': ['Container']} })
     version: Optional[str] = Field(default=None, description="""Version of the oae-data-protocol""", json_schema_extra = { "linkml_meta": {'alias': 'version', 'domain_of': ['ModelComponent', 'Container']} })
     protocol_git_hash: Optional[str] = Field(default=None, description="""Git commit hash of the oae-data-protocol""", json_schema_extra = { "linkml_meta": {'alias': 'protocol_git_hash', 'domain_of': ['Container']} })
     metadata_builder_git_hash: Optional[str] = Field(default=None, description="""Git commit hash of the metadata-builder UI""", json_schema_extra = { "linkml_meta": {'alias': 'metadata_builder_git_hash', 'domain_of': ['Container']} })

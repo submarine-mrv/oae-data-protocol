@@ -3,7 +3,7 @@ name: OAEDataSchema
 title: "OAE Data Protocol - Technical Documentation"
 # todo:
 #   - "integrate with linkml-common for observation types"
-version: 0.6.0
+version: 0.6.1
 prefixes:
   oae: "https://schema.oaedata.org/"
   linkml: "https://w3id.org/linkml/"
@@ -42,10 +42,23 @@ classes:
         range: Project
       # TODO: Decide if version & git hashes should be required
       experiments:
-        range: Experiment
+        range: Any
+        # Listed by hand; tests/test_top_level_unions.py checks the list against the class tree.
+        any_of:
+          - range: Experiment
+          - range: InSituExperiment
+          - range: Model
+          - range: Intervention
+          - range: Tracer
+          - range: InterventionWithTracer
         multivalued: true
       datasets:
-        range: Dataset
+        range: Any
+        # Listed by hand; tests/test_top_level_unions.py checks the list against the class tree.
+        any_of:
+          - range: Dataset
+          - range: FieldDataset
+          - range: ModelOutputDataset
         multivalued: true
       version:
         range: string

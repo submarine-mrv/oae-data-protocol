@@ -39,7 +39,15 @@ classes:
     attributes:
       experiments:
         title: Related Experiments
-        range: Experiment
+        range: Any
+        # Listed by hand; tests/test_top_level_unions.py checks the list against the class tree.
+        any_of:
+          - range: Experiment
+          - range: InSituExperiment
+          - range: Model
+          - range: Intervention
+          - range: Tracer
+          - range: InterventionWithTracer
         multivalued: true
         recommended: true
       project_leads:

@@ -4,32 +4,8 @@
 ## name in this file is not possible until a known issue in just is fixed,
 ## https://github.com/casey/just/issues/2540
 
-# ---------- Custom validation JSON Schema ----------
-# Generates a second JSON Schema alongside the standard gen-project output.
-# Uses LinkML's JsonSchemaGenerator from Python (not the CLI) so we can pass
-# include_range_class_descendants=True, required for runtime validation of
-# user-authored metadata that uses class polymorphism. include_null=False and
-# not_closed=False match config.yaml, so both artifacts agree on nullability and
-# on rejecting unknown keys at the root (classes are always closed).
-# Referenced from docs (metadata-format.md, getting-started) and README.
-gen-validation-schema:
-    @mkdir -p project/jsonschema
-    uv run python -c "from linkml.generators.jsonschemagen import JsonSchemaGenerator; \
-        gen = JsonSchemaGenerator('src/oae_data_protocol/schema/oae_data_protocol.yaml', \
-            top_class='Container', include_range_class_descendants=True, \
-            not_closed=False, include_null=False, title_from='title'); \
-        print(gen.serialize())" \
-        > project/jsonschema/oae_data_protocol.validation.schema.json
-    @echo "✓ Generated validation schema (with range class descendants)"
-
-# Convenience wrapper: run the upstream gen-project, then our custom steps.
-# Call this instead of bare `just gen-project` when you want the full OAE build.
-#
-# Note: the schema's semantic version comes from `version:` in the LinkML schema
-# (oae_data_protocol.yaml) and flows into the JSON Schema as the root `version`
-# field — no separate injection step. The Python package version is independent
-# and derived from git tags via uv-dynamic-versioning.
-gen-all: gen-project gen-validation-schema
+# Full OAE build. Kept as the documented entry point; CI's drift check calls it.
+gen-all: gen-project
     @echo "✓ Full gen-all completed"
 
 # ---------- Dynamic enum pipeline (NERC + QUDT) ----------
