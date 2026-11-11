@@ -10,7 +10,7 @@ Help researchers independently turn project documents and field datasets into a 
 |-----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Starting examples     | 3-5 datasets with metadata curated by Jacki through ad hoc Claude web sessions using the JSON Schema and project documentation.                                                                           |
 | Expected scale of use | 5-10 projects over the next year; a project may contain multiple datasets.                                                                                                                                |
-| Initial scope         | Field projects, experiments, datasets, and variables; <br/> model-specific workflows are not the focus for MVP                                                                                            |
+| Initial scope         | Metadata corresponding to field projects, experiments, models, datasets, and variables;   some support for model metadata may be limited due to challenges with reading large model output files |
 | Data outputs          | Researchers will take JSON outputs from an AI and upload it into Metadata Builder for further refinement, review, and auditing of content.                                                                |
 | Publication           | After reviewing and finalizing the metadata, researchers can publish their JSON metadata alongside their archived dataset on Zenodo or other data repository, and update their project in the OAE Data Commons. |
 
