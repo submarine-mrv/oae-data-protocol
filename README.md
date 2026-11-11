@@ -21,10 +21,8 @@ Each release is tagged (`v0.5.0`) with notes on
 
 The schemas are written in [LinkML](https://linkml.io). Generated files are committed:
 
-- `project/jsonschema/oae_data_protocol.schema.json`: JSON Schema, used by the Metadata Builder
-- `project/jsonschema/oae_data_protocol.validation.schema.json`: JSON Schema for validating
-  whole metadata files, which accepts every experiment and dataset subclass where the main
-  schema accepts only the base class
+- `project/jsonschema/oae_data_protocol.schema.json`: JSON Schema, for validating metadata files
+  and used by the Metadata Builder
 - `project/typescript/`: TypeScript types
 - `src/oae_data_protocol/datamodel/`: Pydantic models
 
@@ -55,7 +53,7 @@ just gen-all
 
 | Command | What it does |
 |---|---|
-| `just gen-all` | Regenerate JSON Schema (both), TypeScript and Pydantic models |
+| `just gen-all` | Regenerate JSON Schema, TypeScript and Pydantic models |
 | `just test` | Validate the schema and run the tests |
 | `just lint` | LinkML lint |
 | `just enums` | Expand dynamic enums from the NERC and QUDT vocabularies |

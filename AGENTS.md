@@ -21,8 +21,7 @@ The project uses `uv` for dependency management and `just` as the task runner:
 
 ### Schema Generation
 - `just gen-project` - Generate Pydantic model + JSON Schema + TypeScript from LinkML schema
-- `just gen-all` - gen-project + gen-validation-schema (full OAE build)
-- `just gen-validation-schema` - Generate validation JSON Schema with include_range_class_descendants
+- `just gen-all` - gen-project (full OAE build)
 
 ### Documentation
 - `just gen-doc` - Generate documentation (gen-doc + overlay hand-written pages from src/docs/files/)
@@ -57,21 +56,22 @@ The project uses LinkML (Linked Data Modeling Language) with a modular schema ar
 - `variable.yaml`, `instrument.yaml`, `calibration.yaml` - Variable hierarchy and its instruments and calibrations
 - `measurement.yaml`, `platform.yaml`, `person.yaml`, `permit.yaml`, `external_project.yaml`, `monetary_grant.yaml` - Supporting classes
 
+`Container.experiments`, `Container.datasets` and `Project.experiments` list their classes by hand in `any_of`. Add a new `Experiment` or `Dataset` subclass to those lists; `tests/test_top_level_unions.py` fails until you do.
+
 ### Key Configuration
 
 - `config.public.mk` - Environment variables (schema name, paths) loaded by justfile
 - `config.yaml` - LinkML generator configuration (includes: jsonschema)
 - `pyproject.toml` - Python package configuration using hatchling + uv
 - `vskit-config.yaml` - Configuration for vocabulary expansion
-- `project.justfile` - Custom justfile recipes (gen-validation-schema, enums)
+- `project.justfile` - Custom justfile recipes (gen-all, enums)
 - `.copier-answers.yml` - Template answers for copier update
 
 ### Generated Artifacts
 
 - `src/oae_data_protocol/datamodel/` - Generated Pydantic model from LinkML schemas
 - `project/` - Generated project files (JSON Schema, TypeScript)
-- `project/jsonschema/oae_data_protocol.schema.json` - Main JSON Schema (consumed by oae-metadata-builder)
-- `project/jsonschema/oae_data_protocol.validation.schema.json` - Validation schema with polymorphism support
+- `project/jsonschema/oae_data_protocol.schema.json` - JSON Schema (validates whole files; consumed by oae-metadata-builder)
 - `docs/` - Generated documentation site (gitignored; rebuilt by `just gen-doc`)
 
 ### Documentation Layout
@@ -84,10 +84,9 @@ The project uses LinkML (Linked Data Modeling Language) with a modular schema ar
 
 1. LinkML schemas define the data model structure
 2. `just gen-project` generates the Pydantic model + JSON Schema + TypeScript
-3. `just gen-validation-schema` generates validation schema with `include_range_class_descendants=True`
-4. External vocabularies are fetched and expanded into dynamic enums
-5. Examples validate against the schema
-6. Documentation is generated from schema annotations + hand-written pages
+3. External vocabularies are fetched and expanded into dynamic enums
+4. Examples validate against the schema
+5. Documentation is generated from schema annotations + hand-written pages
 
 Versioning: the schema's semantic version is declared as `version:` in
 `oae_data_protocol.yaml` and flows into the JSON Schema as the root `version`
