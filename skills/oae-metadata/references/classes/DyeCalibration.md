@@ -6,7 +6,7 @@ Parent: PHCalibration
 
 | Field | Required | Many | Type | Description |
 |---|---|---|---|---|
-| standard_used | yes | no | string | Type of standard used to calibrate the pH measurement. |
+| standard_used | yes | no | always `dye` | Type of standard used to calibrate the pH measurement. |
 | technique_description | yes | no | string | Details of the calibration technique used. |
 | dye_purified | no | no | boolean | Whether the dye has been purified. |
 | correction_for_unpurified_dye | no | no | string | Correction method applied if dye was not purified. |

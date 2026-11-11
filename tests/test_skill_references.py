@@ -78,6 +78,7 @@ def test_small_enum_is_inlined(out):
 def test_pinned_values_are_shown(out):
     assert re.search(r"^\| schema_class \| yes \| no \| always `DiscretePHVariable` \|", page(out, "DiscretePHVariable"), re.M)
     assert re.search(r"^\| instrument_type \|.*always `gas_analyzer`", page(out, "CO2GasDetector"), re.M)
+    assert re.search(r"^\| standard_used \|.*always `dye`", page(out, "DyeCalibration"), re.M)
 
 
 def test_enum_value_meanings_are_in_the_class_file(out):
