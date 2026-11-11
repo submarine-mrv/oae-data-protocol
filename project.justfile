@@ -5,8 +5,12 @@
 ## https://github.com/casey/just/issues/2540
 
 # Full OAE build. Kept as the documented entry point; CI's drift check calls it.
-gen-all: gen-project
+gen-all: gen-project gen-skill
     @echo "✓ Full gen-all completed"
+
+# Reference files and schema copy for the oae-metadata skill, generated from the LinkML schema.
+gen-skill:
+    uv run python scripts/gen_skill_references.py
 
 # ---------- Dynamic enum pipeline (NERC + QUDT) ----------
 
