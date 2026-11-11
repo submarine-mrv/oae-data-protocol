@@ -1014,15 +1014,6 @@ If there are relevant regulatory parameters and/or limits to dosing trials at th
     spatial_coverage: SpatialCoverage = Field(default=..., title="Spatial Coverage", description="""Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities), expressed as a schema.org GeoShape bounding box.""", json_schema_extra = { "linkml_meta": {'alias': 'spatial_coverage',
          'domain_of': ['Project', 'ExternalProject', 'Experiment', 'ModelGrid'],
          'slot_uri': 'schema:spatialCoverage'} })
-    experiments: Optional[List[Union[Experiment, InSituExperiment, Intervention, InterventionWithTracer, Model, Tracer]]] = Field(default=None, title="Related Experiments", json_schema_extra = { "linkml_meta": {'alias': 'experiments',
-         'any_of': [{'range': 'Experiment'},
-                    {'range': 'InSituExperiment'},
-                    {'range': 'Model'},
-                    {'range': 'Intervention'},
-                    {'range': 'Tracer'},
-                    {'range': 'InterventionWithTracer'}],
-         'domain_of': ['Project', 'Container'],
-         'recommended': True} })
     project_leads: List[Person] = Field(default=..., title="Project Lead(s)", description="""Provide details for each project lead / principal investigator (PI) including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role.""", json_schema_extra = { "linkml_meta": {'alias': 'project_leads', 'domain_of': ['Project']} })
     sea_names: Optional[List[SeaNames]] = Field(default=None, title="Sea Names", description="""Names of the seas where the data collection takes place, See Controlled Vocabularies section for definitions.""", json_schema_extra = { "linkml_meta": {'alias': 'sea_names', 'domain_of': ['Project'], 'recommended': True} })
     physical_site_description: Optional[str] = Field(default=None, title="Physical Site Description", description="""Provide information to help characterize the field site and provide context when interpreting the data. For example, descriptions of tidal patterns, climatological conditions, notable geological characteristics, the geographical and marine setting (coastal, intertidal, island region, sheltered environment), and characteristic meteorological events. If possible based on the file type of this submission, please include useful maps or figures here.
@@ -3797,7 +3788,7 @@ class Container(ConfiguredBaseModel):
                     {'range': 'Intervention'},
                     {'range': 'Tracer'},
                     {'range': 'InterventionWithTracer'}],
-         'domain_of': ['Project', 'Container']} })
+         'domain_of': ['Container']} })
     datasets: Optional[List[Union[Dataset, FieldDataset, ModelOutputDataset]]] = Field(default=None, json_schema_extra = { "linkml_meta": {'alias': 'datasets',
          'any_of': [{'range': 'Dataset'},
                     {'range': 'FieldDataset'},

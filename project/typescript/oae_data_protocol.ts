@@ -838,7 +838,6 @@ If there are relevant regulatory parameters and/or limits to dosing trials at th
     temporal_coverage: string,
     /** Latitude/longitude bounds of project site (e.g., boundary domain of observations or relevant activities), expressed as a schema.org GeoShape bounding box. */
     spatial_coverage: SpatialCoverage,
-    experiments?: Any[],
     /** Provide details for each project lead / principal investigator (PI) including: Name, institutional information (name, address), phone, email, ID type (e.g., ORCID, etc), researcher ID, and role. */
     project_leads: Person[],
     /** Names of the seas where the data collection takes place, See Controlled Vocabularies section for definitions. */

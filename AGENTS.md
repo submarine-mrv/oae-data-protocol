@@ -56,7 +56,7 @@ The project uses LinkML (Linked Data Modeling Language) with a modular schema ar
 - `variable.yaml`, `instrument.yaml`, `calibration.yaml` - Variable hierarchy and its instruments and calibrations
 - `measurement.yaml`, `platform.yaml`, `person.yaml`, `permit.yaml`, `external_project.yaml`, `monetary_grant.yaml` - Supporting classes
 
-`Container.experiments`, `Container.datasets` and `Project.experiments` list their classes by hand in `any_of`. Add a new `Experiment` or `Dataset` subclass to those lists; `tests/test_top_level_unions.py` fails until you do.
+`Container.experiments` and `Container.datasets` list their classes by hand in `any_of`. Add a new `Experiment` or `Dataset` subclass to those lists; `tests/test_top_level_unions.py` fails until you do.
 
 ### Key Configuration
 

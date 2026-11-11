@@ -15,7 +15,6 @@ SCHEMA = json.loads((ROOT / "project" / "jsonschema" / "oae_data_protocol.schema
 UNION_SLOTS = [
     ("Container", "experiments", "Experiment"),
     ("Container", "datasets", "Dataset"),
-    ("Project", "experiments", "Experiment"),
 ]
 
 
@@ -53,6 +52,11 @@ def test_nested_slots_stay_strict():
     prop = SCHEMA["$defs"]["DiscreteMeasuredVariable"]["properties"]["analyzing_instrument"]
     assert prop["$ref"] == "#/$defs/AnalyzingInstrument"
     assert "anyOf" not in prop
+
+
+def test_project_does_not_nest_experiments():
+    """Experiments live in the container and point back with project_id."""
+    assert "experiments" not in SCHEMA["$defs"]["Project"]["properties"]
 
 
 def test_no_validation_schema_file():

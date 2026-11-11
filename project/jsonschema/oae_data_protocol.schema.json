@@ -6378,33 +6378,6 @@
                     "title": "Project Description",
                     "type": "string"
                 },
-                "experiments": {
-                    "items": {
-                        "$ref": "#/$defs/Any",
-                        "anyOf": [
-                            {
-                                "$ref": "#/$defs/Experiment"
-                            },
-                            {
-                                "$ref": "#/$defs/InSituExperiment"
-                            },
-                            {
-                                "$ref": "#/$defs/Model"
-                            },
-                            {
-                                "$ref": "#/$defs/Intervention"
-                            },
-                            {
-                                "$ref": "#/$defs/Tracer"
-                            },
-                            {
-                                "$ref": "#/$defs/InterventionWithTracer"
-                            }
-                        ]
-                    },
-                    "title": "Related Experiments",
-                    "type": "array"
-                },
                 "funding": {
                     "description": "Include the name of the funder, funder country, project title, project ID, and the project start and end dates. If there is no funding source (e.g., in the case of commercial projects), leave this field empty.",
                     "items": {
