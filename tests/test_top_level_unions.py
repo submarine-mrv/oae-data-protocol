@@ -42,6 +42,12 @@ def test_empty_project_file_validates(doc):
     assert not list(Draft201909Validator(SCHEMA).iter_errors(doc))
 
 
+@pytest.mark.parametrize("slot", ["experiments", "datasets"])
+def test_null_collection_is_rejected(slot):
+    """An empty project omits the key or uses []."""
+    assert list(Draft201909Validator(SCHEMA).iter_errors({slot: None}))
+
+
 def test_nested_slots_stay_strict():
     """A generic variable's instrument is the base class, not a union of subclasses."""
     prop = SCHEMA["$defs"]["DiscreteMeasuredVariable"]["properties"]["analyzing_instrument"]
