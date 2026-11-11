@@ -12,10 +12,10 @@ repos:
       # generated-artifact drift check in CI. Covers: ontologies/ (NERC/QUDT TTL),
       # project/ (gen-project output), and the generated datamodel.
       - id: end-of-file-fixer
-        exclude: ^(ontologies|project|src/oae_data_protocol/datamodel|skills/oae-metadata/assets)/
+        exclude: ^(ontologies|project|src/oae_data_protocol/datamodel)/
       - id: trailing-whitespace
         args: [--markdown-linebreak-ext=md]
-        exclude: ^(ontologies|project|src/oae_data_protocol/datamodel|skills/oae-metadata/assets)/
+        exclude: ^(ontologies|project|src/oae_data_protocol/datamodel)/
 
   - repo: https://github.com/adrienverge/yamllint.git
     rev: v1.37.0

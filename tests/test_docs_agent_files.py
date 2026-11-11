@@ -41,6 +41,8 @@ def test_skill_folder_is_published_as_plain_files(tmp_path):
     assert (skill / "SKILL.md").read_text() == (ROOT / "skills" / "oae-metadata" / "SKILL.md").read_text()
     assert (skill / "scripts" / "validate.py").exists()
     assert (skill / "assets" / "oae_data_protocol.schema.json").exists()
+    assert (skill / "references" / "docs" / "variables.md").exists()
+    assert (site / "oae-metadata.zip").exists()
 
 
 def test_llms_txt_lists_the_skill_and_the_nav_pages(tmp_path):

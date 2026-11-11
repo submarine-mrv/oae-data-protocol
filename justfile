@@ -99,6 +99,8 @@ gen-doc: _gen-yaml && _add-artifacts
   uv run gen-doc {{gen_doc_args}} -d {{docdir}} {{source_schema_path}}
   @# Rename gen-doc's class overview so it doesn't collide with the hand-written home
   mv {{docdir}}/index.md {{docdir}}/OAEDataSchema.md
+  @# What each vocabulary value means, with names for the NERC URIs (gen-doc truncates or omits them).
+  uv run python scripts/build_skill.py --vocabulary-page {{docdir}}/vocabulary-values.md
   @# Overlay hand-written explainer pages from src/docs/files/ (custom index pages,
   @# stylesheets, images, CNAME for GitHub Pages custom domain).
   cp -rf src/docs/files/* {{docdir}}/

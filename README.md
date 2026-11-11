@@ -53,7 +53,7 @@ just gen-all
 
 | Command | What it does |
 |---|---|
-| `just gen-all` | Regenerate JSON Schema, TypeScript, Pydantic models and the skill reference files |
+| `just gen-all` | Regenerate JSON Schema, TypeScript and Pydantic models |
 | `just test` | Validate the schema and run the tests |
 | `just lint` | LinkML lint |
 | `just enums` | Expand dynamic enums from the NERC and QUDT vocabularies |

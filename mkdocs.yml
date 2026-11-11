@@ -92,7 +92,9 @@ nav:
     - CRMInstrument: CRMInstrument.md
     - CO2GasDetector: CO2GasDetector.md
     - Calibration: Calibration.md
-  - Controlled Vocabularies: vocabularies.md
+  - Controlled Vocabularies:
+    - vocabularies.md
+    - Vocabulary Values: vocabulary-values.md
   - Full Schema Index: OAEDataSchema.md
 
 exclude_docs: |

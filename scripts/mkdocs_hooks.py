@@ -3,14 +3,17 @@
 After the HTML build it adds, to the built site:
 
 - every page's source markdown at the same path (`/FieldDataset.md` beside `/FieldDataset/`)
-- the oae-metadata skill as plain files under `/skill/`
+- the assembled oae-metadata skill as plain files under `/skill/`, and `/oae-metadata.zip`
 - `/llms.txt`, an index of both
 """
 
+import importlib.util
 import shutil
 from pathlib import Path
 
-SKILL = Path(__file__).resolve().parent.parent / "skills" / "oae-metadata"
+_spec = importlib.util.spec_from_file_location("build_skill", Path(__file__).resolve().parent / "build_skill.py")
+build_skill = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(build_skill)
 
 INTRO = """\
 > Schema and documentation for Ocean Alkalinity Enhancement (OAE) metadata: projects, experiments,
@@ -22,6 +25,7 @@ INTRO = """\
   file from project documents and data files. Its reference files and validator are in the same folder.
 - [JSON Schema]({base}skill/assets/oae_data_protocol.schema.json): the schema a metadata file must follow.
 - [Validator]({base}skill/scripts/validate.py): `python3 validate.py file.json`, standard library only.
+- [The skill as a zip]({base}oae-metadata.zip)
 """
 
 
@@ -53,7 +57,7 @@ def on_post_build(config, **kwargs):
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(source, target)
 
-    shutil.copytree(SKILL, site / "skill", dirs_exist_ok=True)
+    build_skill.build(site / "skill")
 
     lines = [f"# {config['site_name']}", "", INTRO.format(base=base).rstrip()]
     lines += ["", "## Documentation", ""] + nav_lines(config.get("nav") or [], base)

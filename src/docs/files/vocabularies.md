@@ -1,7 +1,8 @@
 # Controlled Vocabularies
 
 The schema uses controlled vocabularies to standardize categorical values. Some come from established
-community standards; the rest are defined by the protocol. Each vocabulary page lists its values. For
+community standards; the rest are defined by the protocol. Each vocabulary page lists its values, and
+[Vocabulary Values](vocabulary-values.md) says what each value means. For
 background on each one, see the
 [Controlled Vocabularies](https://www.carbontosea.org/oae-data-protocol#controlled-vocabularies)
 section of the protocol website.

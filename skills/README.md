@@ -18,26 +18,34 @@ left for later.
 
 ## Layout
 
+The repo holds only what is specific to drafting:
+
 ```
 oae-metadata/
-  SKILL.md                    workflow                                   hand-written
+  SKILL.md                    workflow
   references/
-    overview.md               choosing classes and ids                   hand-written
-    builder-handoff.md        import modes, what the Builder drops       hand-written
-    report-format.md          report template                            hand-written
-    oap-xml-mapping.md        OAPMetadata (OCADS) XML to OAE fields      hand-written
-    class-index.md            every concrete class                       generated
-    vocabularies.md           what each enum value means, URI labels     generated
-  scripts/validate.py         validator, Python standard library only    hand-written
-  assets/oae_data_protocol.schema.json                                   generated copy
+    builder-handoff.md        import modes, what the Builder drops
+    report-format.md          report template
+    oap-xml-mapping.md        OAPMetadata (OCADS) XML to OAE fields
+  scripts/validate.py         validator, Python standard library only
 ```
 
-`just gen-all` regenerates the generated files (`scripts/gen_skill_references.py`), and CI fails if
-the committed copies are stale. The skill reads field definitions straight from the bundled JSON
-Schema. A version with one generated markdown file per class did no better in evals, so only what
-the JSON Schema lacks is generated: a one-line index of classes, and the meanings of enum values. Change `builder-handoff.md` when the Metadata Builder's import or
-parsing rules change; it was written from `applyImport.ts`, `parseEntity.ts` and
-`conditionalFields.ts` in `oae-metadata-builder`.
+`just build-skill` (`scripts/build_skill.py`) assembles the skill people install. It adds what the
+assistant should read from the same sources people do, so none of it is written twice:
+
+```
+  assets/oae_data_protocol.schema.json    the published JSON Schema
+  references/docs/                        hand-written docs pages from src/docs/files/, links made absolute:
+    metadata-format.md, projects-experiments.md, datasets.md, variables.md, instruments-calibration.md
+    vocabulary-values.md                  what each enum value means, generated from the schema
+```
+
+The assistant reads class definitions straight from the JSON Schema. A version with a generated
+markdown file per class did no better in evals. Guidance on choosing classes lives in the docs pages
+above; improve it there and the skill picks it up.
+
+Change `builder-handoff.md` when the Metadata Builder's import or parsing rules change; it was
+written from `applyImport.ts`, `parseEntity.ts` and `conditionalFields.ts` in `oae-metadata-builder`.
 
 ## The validator
 
@@ -56,13 +64,15 @@ using a keyword it doesn't implement.
 
 ## Publishing
 
-The docs build (`scripts/mkdocs_hooks.py`) publishes the skill folder as plain files at
-`https://schema.oaedata.org/skill/`, each docs page as markdown beside its HTML, and an index at
-`https://schema.oaedata.org/llms.txt`. An assistant that can read web pages needs only the URL of
-`SKILL.md`. Claude Code users can copy the folder into `~/.claude/skills/`.
+The docs build (`scripts/mkdocs_hooks.py`) assembles the skill and publishes it as plain files at
+`https://schema.oaedata.org/skill/` and as `https://schema.oaedata.org/oae-metadata.zip`, beside each
+docs page as markdown and an index at `https://schema.oaedata.org/llms.txt`. An assistant that can
+read web pages needs only the URL of `SKILL.md`. The zip installs into `~/.claude/skills/` or uploads
+to the Claude apps.
 
-`.claude-plugin/plugin.json` makes the repo loadable as a Claude Code plugin. A marketplace listing,
-OpenAI packaging and a ZIP download are not set up.
+Not set up: a plugin marketplace. The built skill is on the `gh-pages` branch under `skill/`, so a
+`.claude-plugin/marketplace.json` entry with a `git-subdir` source pointing there should be all it
+takes; that is untested. OpenAI packaging is not set up either.
 
 ## Evaluation
 

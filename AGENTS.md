@@ -21,8 +21,8 @@ The project uses `uv` for dependency management and `just` as the task runner:
 
 ### Schema Generation
 - `just gen-project` - Generate Pydantic model + JSON Schema + TypeScript from LinkML schema
-- `just gen-all` - gen-project + gen-skill (full OAE build)
-- `just gen-skill` - Regenerate the oae-metadata skill's reference files and schema copy
+- `just gen-all` - gen-project (full OAE build)
+- `just build-skill` - Assemble the distributable oae-metadata skill into `dist/` (see `skills/README.md`)
 
 ### Documentation
 - `just gen-doc` - Generate documentation (gen-doc + overlay hand-written pages from src/docs/files/)
@@ -74,7 +74,6 @@ The project uses LinkML (Linked Data Modeling Language) with a modular schema ar
 - `project/` - Generated project files (JSON Schema, TypeScript)
 - `project/jsonschema/oae_data_protocol.schema.json` - JSON Schema (validates whole files; consumed by oae-metadata-builder)
 - `docs/` - Generated documentation site (gitignored; rebuilt by `just gen-doc`)
-- `skills/oae-metadata/references/class-index.md`, `references/vocabularies.md`, `assets/` - Generated skill references (see `skills/README.md`)
 
 ### Documentation Layout
 
