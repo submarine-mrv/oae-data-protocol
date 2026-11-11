@@ -848,7 +848,12 @@ class SpatialCoverage(Place):
     """
     A bounding box defined by latitude and longitude coordinates.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'Core',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'comments': ['Always a bounding box: `geo` is a GeoShape with `box` set. A '
+                      'single point (GeoCoordinates) is not accepted here, so that '
+                      'every spatial coverage can be edited in the Metadata Builder. '
+                      'This is narrower than science-on-schema.org, which also allows '
+                      'a point. Use DosingLocation for a point.'],
+         'from_schema': 'Core',
          'slot_usage': {'geo': {'name': 'geo', 'range': 'GeoShape', 'required': True}}})
 
     geo: Union[GeoCoordinates, GeoShape] = Field(default=..., description="""Entities that have a somewhat fixed, physical extension. (imported from schema.org)""", json_schema_extra = { "linkml_meta": {'alias': 'geo',

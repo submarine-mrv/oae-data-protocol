@@ -27,14 +27,15 @@ oae-metadata/
     report-format.md          report template                            hand-written
     oap-xml-mapping.md        OAPMetadata (OCADS) XML to OAE fields      hand-written
     class-index.md            every concrete class                       generated
-    classes/<Class>.md        fields, types, rules, value meanings       generated
-    enums/<Enum>.md           large vocabularies with labels             generated
+    vocabularies.md           what each enum value means, URI labels     generated
   scripts/validate.py         validator, Python standard library only    hand-written
   assets/oae_data_protocol.schema.json                                   generated copy
 ```
 
 `just gen-all` regenerates the generated files (`scripts/gen_skill_references.py`), and CI fails if
-the committed copies are stale. Change `builder-handoff.md` when the Metadata Builder's import or
+the committed copies are stale. The skill reads field definitions straight from the bundled JSON
+Schema. A version with one generated markdown file per class did no better in evals, so only what
+the JSON Schema lacks is generated: a one-line index of classes, and the meanings of enum values. Change `builder-handoff.md` when the Metadata Builder's import or
 parsing rules change; it was written from `applyImport.ts`, `parseEntity.ts` and
 `conditionalFields.ts` in `oae-metadata-builder`.
 

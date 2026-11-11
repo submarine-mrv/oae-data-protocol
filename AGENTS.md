@@ -74,7 +74,7 @@ The project uses LinkML (Linked Data Modeling Language) with a modular schema ar
 - `project/` - Generated project files (JSON Schema, TypeScript)
 - `project/jsonschema/oae_data_protocol.schema.json` - JSON Schema (validates whole files; consumed by oae-metadata-builder)
 - `docs/` - Generated documentation site (gitignored; rebuilt by `just gen-doc`)
-- `skills/oae-metadata/references/classes`, `references/enums`, `references/class-index.md`, `assets/` - Generated skill references (see `skills/README.md`)
+- `skills/oae-metadata/references/class-index.md`, `references/vocabularies.md`, `assets/` - Generated skill references (see `skills/README.md`)
 
 ### Documentation Layout
 

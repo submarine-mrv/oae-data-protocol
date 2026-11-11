@@ -4,7 +4,7 @@ OAPMetadata XML is what researchers submit to NOAA OCADS. Its root is `<oads_met
 
 One XML file usually describes a whole data package: several data files, with a `<variable>` for every column in any of them. Match variables to the file in scope by `datasetVarName` against that file's column headers. A name can appear more than once with a different `observationType`; pick the one that fits the file. Ignore variables with no matching column.
 
-The mapping below was checked against XML schema version a0.2.2. Field names on the right are OAE fields; check each against the class file before using it.
+The mapping below was checked against XML schema version a0.2.2. Field names on the right are OAE fields; check each against the class's definition before using it.
 
 ## Package level
 
@@ -44,4 +44,4 @@ The mapping below was checked against XML schema version a0.2.2. Field names on 
 | `titrationType`, `cellType`, `curveFitting` | the TA class's matching fields | |
 | `gasDetector`, `equilibrator`, `waterVaporCorrection`, `co2ReportTemperature`, `depthSeawaterIntake` | the CO2 class's matching fields | |
 
-An XML element with no row here: look for a field with the same meaning in the class file. If there is none, list it in the report under "Not used".
+An XML element with no row here: look for a field with the same meaning in the class's definition. If there is none, list it in the report under "Not used".

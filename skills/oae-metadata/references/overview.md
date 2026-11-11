@@ -1,6 +1,6 @@
 # Choosing classes and ids
 
-Read `class-index.md` beside this file for the full list. This page holds only the choices the class files can't make for you.
+Read `class-index.md` beside this file for the full list. This page holds only the choices the schema can't make for you.
 
 ## Experiments
 
@@ -41,7 +41,7 @@ Three facts choose a field variable's class: how the value came to be (`genesis`
 | Survey or economic data | SocioeconomicVariable |
 | Output of a model, in a ModelOutputDataset | ModelOutputVariable |
 
-The typed classes exist because they carry type-specific instrument and calibration fields. Use the generic class only when no typed class fits. A typed variable's `analyzing_instrument` must be the class its file names; a generic variable takes the base AnalyzingInstrument.
+The typed classes exist because they carry type-specific instrument and calibration fields. Use the generic class only when no typed class fits. A typed variable's `analyzing_instrument` must be the class its definition references; a generic variable takes the base AnalyzingInstrument.
 
 ## Ids
 
