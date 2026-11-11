@@ -15,6 +15,8 @@ from linkml_runtime.utils.schemaview import SchemaView
 ROOT = Path(__file__).resolve().parent.parent
 SCHEMA_YAML = ROOT / "src" / "oae_data_protocol" / "schema" / "oae_data_protocol.yaml"
 JSON_SCHEMA = ROOT / "project" / "jsonschema" / "oae_data_protocol.schema.json"
+# Vocabulary enums hold bare URIs; their labels come from the fetched vocabularies.
+VOCABULARIES = [ROOT / "ontologies" / "sea_names.ttl", ROOT / "ontologies" / "platform_types.ttl"]
 
 # Enums longer than this get their own file; shorter ones are listed in the class file.
 INLINE_ENUM_MAX = 30
@@ -40,11 +42,26 @@ def first_sentence(text):
     return text if end < 0 else text[: end + 1]
 
 
+def vocabulary_labels():
+    """URI -> English skos:prefLabel, from the vocabulary files in ontologies/."""
+    from rdflib import Graph
+    from rdflib.namespace import SKOS
+
+    labels = {}
+    for path in VOCABULARIES:
+        graph = Graph().parse(path, format="turtle")
+        for subject, _, label in graph.triples((None, SKOS.prefLabel, None)):
+            if getattr(label, "language", None) in (None, "en"):
+                labels[str(subject)] = str(label)
+    return labels
+
+
 class References:
     def __init__(self, schema_yaml=SCHEMA_YAML):
         self.sv = SchemaView(str(schema_yaml))
         self.classes = self.sv.all_classes()
         self.enums = self.sv.all_enums()
+        self.labels = vocabulary_labels()
 
     def is_concrete(self, name):
         cls = self.classes[name]
@@ -135,9 +152,10 @@ class References:
         lines = [f"# {name}", ""]
         if enum.description:
             lines += [one_line(enum.description), ""]
-        lines += ["| Value | Title |", "|---|---|"]
-        for value, pv in enum.permissible_values.items():
-            lines.append(f"| `{value}` | {one_line(pv.title or pv.description)} |")
+        lines += ["| Value | Label |", "|---|---|"]
+        rows = [(one_line(pv.title or pv.description or self.labels.get(value)), value) for value, pv in enum.permissible_values.items()]
+        for label, value in sorted(rows):
+            lines.append(f"| `{value}` | {label} |")
         return "\n".join(lines) + "\n"
 
     def group_of(self, name):

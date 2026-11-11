@@ -64,6 +64,12 @@ def test_large_enum_gets_its_own_file(out):
     assert len(rows) == len(REFS.enums["SeaNames"].permissible_values)
 
 
+def test_vocabulary_enum_rows_have_labels(out):
+    for name in ("SeaNames", "PlatformType"):
+        text = (out / "references" / "enums" / f"{name}.md").read_text()
+        assert not re.search(r"^\| `[^`]+` \|\s*\|$", text, re.M), f"{name} has a value with no label"
+
+
 def test_small_enum_is_inlined(out):
     row = re.search(r"^\| experiment_types \|.*$", page(out, "InSituExperiment"), re.M).group(0)
     assert "`baseline`" in row
