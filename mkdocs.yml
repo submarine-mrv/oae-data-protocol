@@ -58,6 +58,7 @@ nav:
     - getting-started/index.md
     - Metadata File Format: metadata-format.md
     - Metadata Builder: metadata-builder.md
+    - Drafting with an AI Assistant: ai-skill.md
     - Contributing: contributing.md
   - Projects & Experiments:
     - projects-experiments/index.md

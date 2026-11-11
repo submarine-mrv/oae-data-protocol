@@ -11,3 +11,6 @@ for the whole project or selected parts. **Import** reads a file back in, as a n
 into the current one.
 
 For a walkthrough, see the builder's [how-to guide](https://metadata.oaedata.org/how-to).
+
+To start from existing documents and data files, an AI assistant can
+[draft a metadata file](ai-skill.md) for you to import.
