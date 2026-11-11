@@ -2518,26 +2518,6 @@ slots:
     domain_of:
     - Organization
     range: string
-  project__experiments:
-    name: project__experiments
-    title: Related Experiments
-    from_schema: Project
-    slot_uri: oae:experiments
-    alias: experiments
-    owner: Project
-    domain_of:
-    - Project
-    range: Any
-    recommended: true
-    multivalued: true
-    inlined: true
-    any_of:
-    - range: Experiment
-    - range: InSituExperiment
-    - range: Model
-    - range: Intervention
-    - range: Tracer
-    - range: InterventionWithTracer
   project__project_leads:
     name: project__project_leads
     description: 'Provide details for each project lead / principal investigator (PI)
@@ -7058,7 +7038,6 @@ classes:
     - Project_description
     - Project_temporal_coverage
     - Project_spatial_coverage
-    - project__experiments
     - project__project_leads
     - project__sea_names
     - project__physical_site_description
@@ -7099,19 +7078,6 @@ classes:
         title: Project Description
         required: true
     attributes:
-      experiments:
-        name: experiments
-        title: Related Experiments
-        range: Any
-        recommended: true
-        multivalued: true
-        any_of:
-        - range: Experiment
-        - range: InSituExperiment
-        - range: Model
-        - range: Intervention
-        - range: Tracer
-        - range: InterventionWithTracer
       project_leads:
         name: project_leads
         description: 'Provide details for each project lead / principal investigator
@@ -10796,7 +10762,7 @@ classes:
     class_uri: oae:ContinuousStandardGas
 metamodel_version: 1.7.0
 source_file: oae_data_protocol.yaml
-source_file_date: '2026-11-11T06:08:14'
+source_file_date: '2026-11-11T06:23:39'
 source_file_size: 2246
-generation_date: '2026-11-11T06:08:29'
+generation_date: '2026-11-11T06:23:47'
 
