@@ -28,21 +28,26 @@ give its project ID and, for each dataset, the ID of the experiment it belongs t
 
 Attach your files and ask:
 
-> Follow the instructions at
-> https://raw.githubusercontent.com/submarine-mrv/oae-data-protocol/main/skills/oae-metadata/SKILL.md
-> to draft OAE metadata from these files. The other files it mentions are in the same folder.
+> Follow the instructions at https://schema.oaedata.org/skill/SKILL.md to draft OAE metadata from
+> these files. The other files it mentions are in the same folder.
 
 ### Claude Code
 
 Copy the [`skills/oae-metadata`](https://github.com/submarine-mrv/oae-data-protocol/tree/main/skills/oae-metadata)
 folder into `~/.claude/skills/`, then ask Claude to draft OAE metadata from your files.
 
+Every page of this site is also published as markdown for assistants: add `.md` to a page's address
+(for example [`/FieldDataset.md`](https://schema.oaedata.org/FieldDataset.md)), or start from
+[`/llms.txt`](https://schema.oaedata.org/llms.txt).
+
 ## Checking the draft
 
 The skill includes a validator that needs only Python 3:
 
 ```bash
-python3 skills/oae-metadata/scripts/validate.py your-metadata.json
+curl -O https://schema.oaedata.org/skill/scripts/validate.py
+curl -O https://schema.oaedata.org/skill/assets/oae_data_protocol.schema.json
+python3 validate.py your-metadata.json --schema oae_data_protocol.schema.json
 ```
 
 It reports structural errors (an unknown field, a value outside its vocabulary) separately from

@@ -98,6 +98,10 @@ nav:
 exclude_docs: |
   /templates-linkml/
 
+# Publishes each page's markdown, the oae-metadata skill and llms.txt for AI agents.
+hooks:
+  - scripts/mkdocs_hooks.py
+
 site_url: https://schema.oaedata.org
 repo_url: https://github.com/submarine-mrv/oae-data-protocol
 
