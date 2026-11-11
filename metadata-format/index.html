@@ -1678,10 +1678,10 @@ to get vocabulary values and field formats right by hand.</p>
 <span class="p">}</span>
 </code></pre></div>
 <h2 id="validating-a-file">Validating a File</h2>
-<p>Validate against the <a href="https://github.com/submarine-mrv/oae-data-protocol/blob/main/project/jsonschema/oae_data_protocol.validation.schema.json">validation JSON Schema</a>,
+<p>Validate against the <a href="https://github.com/submarine-mrv/oae-data-protocol/blob/main/project/jsonschema/oae_data_protocol.schema.json">JSON Schema</a>,
 for example with <code>ajv-cli</code>:</p>
 <div class="highlight"><pre><span></span><code>npx<span class="w"> </span>ajv-cli<span class="w"> </span>validate<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-s<span class="w"> </span>oae_data_protocol.validation.schema.json<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-s<span class="w"> </span>oae_data_protocol.schema.json<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-d<span class="w"> </span>your-metadata.json<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--spec<span class="o">=</span>draft2019<span class="w"> </span>--strict<span class="o">=</span><span class="nb">false</span>
 </code></pre></div>
