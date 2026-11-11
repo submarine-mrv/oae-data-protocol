@@ -346,3 +346,29 @@ def test_swapped_box_is_readable_in_the_notes(container):
     """Longitudes within ±90 can't be told from latitudes, so the note spells out how the box was read."""
     _, notes = box_findings(container, "-63.678757 44.588164 -63.484064 44.729404")
     assert any("63.678757°S to 63.484064°S" in n and "44.588164°E to 44.729404°E" in n for n in notes)
+
+
+# --- malformed input ---
+
+
+@pytest.mark.parametrize("selector", [["DiscretePHVariable"], {"a": 1}, 7])
+def test_non_string_schema_class_is_one_finding(container, selector):
+    container["datasets"][0]["variables"][0]["schema_class"] = selector
+    result = v.validate(container, SCHEMA)
+    assert len(result.structural) == 1
+    assert "schema_class" in result.structural[0].message
+
+
+def test_partial_point_is_a_gap_not_an_unknown_field():
+    """A dosing location is a point or a shape. A point missing its longitude is incomplete, not a bad shape."""
+    found = v.errors({"geo": {"latitude": 40}}, {"$ref": "#/$defs/DosingLocation"}, SCHEMA["$defs"], "", v.route_union)
+    assert [e.kind for e in found] == ["required"]
+    assert "longitude" in found[0].message
+
+
+@pytest.mark.parametrize("constant", ["NaN", "Infinity", "-Infinity"])
+def test_cli_rejects_non_standard_numbers(tmp_path, constant):
+    done = run_cli(tmp_path, '{"project": {"name": "x"}, "datasets": [{"n": %s}]}' % constant)
+    assert done.returncode == 2
+    assert "Traceback" not in done.stderr
+    assert constant.lstrip("-") in done.stderr

@@ -85,7 +85,8 @@ class References:
             return f"always `{class_name}`"
         if slot.equals_string is not None:
             return f"always `{slot.equals_string}`"
-        if slot.any_of:
+        narrowed = slot.range in self.classes and self.classes[slot.range].class_uri != "linkml:Any"
+        if slot.any_of and not narrowed:
             links = [link for expr in slot.any_of if expr.range in self.classes for link in self.class_links(expr.range)]
             return "one of " + ", ".join(links)
         if slot.range in self.classes:

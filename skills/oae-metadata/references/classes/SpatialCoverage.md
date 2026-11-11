@@ -6,4 +6,4 @@ Parent: Place
 
 | Field | Required | Many | Type | Description |
 |---|---|---|---|---|
-| geo | yes | no | one of [GeoShape](GeoShape.md), [GeoCoordinates](GeoCoordinates.md) | Entities that have a somewhat fixed, physical extension. (imported from schema.org) |
+| geo | yes | no | [GeoShape](GeoShape.md) | Entities that have a somewhat fixed, physical extension. (imported from schema.org) |

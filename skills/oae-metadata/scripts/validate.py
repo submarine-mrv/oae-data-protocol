@@ -152,6 +152,10 @@ def _any_of(instance, branches, defs, path, route):
     results = [errors(instance, branch, defs, path, route) for branch in branches]
     if any(not result for result in results):
         return []
+    # A branch that only lacks required fields is the one the draft meant; report its gaps alone.
+    incomplete = [r for r in results if all(e.kind == "required" for e in r)]
+    if incomplete:
+        return min(incomplete, key=len)
     names = [_ref_name(b) or "an inline form" for b in branches]
     best = min(range(len(branches)), key=lambda i: len(results[i]))
     out = [Error(path, "anyOf", f"matches none of the allowed forms ({', '.join(names)}); closest is {names[best]}")]
@@ -196,7 +200,7 @@ def route_union(instance, branches, defs):
         value = instance.get("schema_class")
         if value is None:
             raise UnknownBranch("missing 'schema_class', which says what kind of variable this is")
-        if value not in by_name:
+        if not isinstance(value, str) or value not in by_name:
             raise UnknownBranch(f"schema_class {json.dumps(value)} is not one of: {', '.join(sorted(names))}")
         return by_name[value]
 
@@ -363,6 +367,10 @@ def render(result):
     return "\n".join(lines)
 
 
+def _reject_constant(name):
+    raise ValueError(f"{name} is not a JSON number")
+
+
 def fail(message):
     print(message, file=sys.stderr)
     return 2
@@ -376,7 +384,7 @@ def main(argv=None):
     args = parser.parse_args(argv)
 
     try:
-        doc = json.loads(Path(args.file).read_text(encoding="utf-8"))
+        doc = json.loads(Path(args.file).read_text(encoding="utf-8"), parse_constant=_reject_constant)
     except OSError as problem:
         return fail(f"Cannot read {args.file}: {problem.strerror or problem}")
     except ValueError as problem:

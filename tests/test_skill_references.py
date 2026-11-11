@@ -91,6 +91,14 @@ def test_enums_without_meanings_get_no_vocabulary_entry(out):
     assert "### observation_type" not in page(out, "DiscretePHVariable")
 
 
+def test_a_range_narrower_than_its_any_of_wins(out):
+    """SpatialCoverage narrows geo to a shape; the inherited any_of still lists a point, which can't validate."""
+    row = re.search(r"^\| geo \|.*$", page(out, "SpatialCoverage"), re.M).group(0)
+    assert "GeoShape.md" in row and "GeoCoordinates" not in row
+    row = re.search(r"^\| geo \|.*$", page(out, "DosingLocation"), re.M).group(0)
+    assert "GeoShape.md" in row and "GeoCoordinates.md" in row
+
+
 def test_every_link_resolves(out):
     refs = out / "references"
     for path in [*refs.glob("classes/*.md"), refs / "class-index.md"]:
