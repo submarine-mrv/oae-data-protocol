@@ -47,13 +47,15 @@ The project uses LinkML (Linked Data Modeling Language) with a modular schema ar
 **Core Schema Files** (src/oae_data_protocol/schema/):
 - `oae_data_protocol.yaml` - Main schema file that imports all modules
 - `core.yaml` - Fundamental slots and base classes (Any, PropertyValue)
-- `oae_project.yaml` - Main OAEProject class with project metadata
+- `oae_project.yaml` - `Project`, the root of a project's metadata
 - `enums.yaml` - Static enumerations for experiment types, MCDR pathways, etc.
 - `dynamic_enums.yaml` / `dynamic_enums_expanded.yaml` - Dynamically generated enums from external vocabularies
 
 **Additional Schema Modules**:
-- `experiment.yaml`, `intervention.yaml`, `measurement.yaml` - Domain-specific classes
-- `dataset.yaml`, `model_simulation.yaml` - Data and modeling components
+- `experiment.yaml` - `Experiment` and its subclasses (in-situ, intervention, tracer); `model.yaml` - `Model` experiments and model components
+- `dataset.yaml` - `Dataset`, `FieldDataset`, `ModelOutputDataset`
+- `variable.yaml`, `instrument.yaml`, `calibration.yaml` - Variable hierarchy and its instruments and calibrations
+- `measurement.yaml`, `platform.yaml`, `person.yaml`, `permit.yaml`, `external_project.yaml`, `monetary_grant.yaml` - Supporting classes
 
 ### Key Configuration
 
