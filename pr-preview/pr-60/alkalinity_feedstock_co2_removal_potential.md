@@ -24,8 +24,8 @@ URI: [oae:alkalinity_feedstock_co2_removal_potential](https://schema.oaedata.org
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
 | [InterventionDetails](InterventionDetails.md) | An abstract class (used as a mixin, not implemented directly) for detailing t... |  no  |
-| [InterventionWithTracer](InterventionWithTracer.md) | Additional metadata that applies to hybrid experiments where an intervention ... |  no  |
 | [Intervention](Intervention.md) | Additional metadata that applies to experiments where an intervention, such a... |  no  |
+| [InterventionWithTracer](InterventionWithTracer.md) | Additional metadata that applies to hybrid experiments where an intervention ... |  no  |
 
 
 

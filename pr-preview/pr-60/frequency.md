@@ -23,13 +23,13 @@ URI: [oae:frequency](https://schema.oaedata.org/frequency)
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
+| [DyeCalibration](DyeCalibration.md) | pH instrument calibration with an indicator dye standard |  no  |
 | [CO2Calibration](CO2Calibration.md) | Base CO2 gas detector calibration with standard gas information |  no  |
-| [PHCalibration](PHCalibration.md) | pH instrument calibration |  no  |
 | [CRMCalibration](CRMCalibration.md) | Calibration using Certified Reference Materials, used for DIC and TA instrume... |  no  |
 | [Calibration](Calibration.md) | Base calibration information for instruments |  no  |
-| [DiscreteCO2Calibration](DiscreteCO2Calibration.md) | CO2 calibration for discrete measurements, with calibration temperature |  no  |
-| [DyeCalibration](DyeCalibration.md) | pH instrument calibration with an indicator dye standard |  no  |
+| [PHCalibration](PHCalibration.md) | pH instrument calibration |  no  |
 | [ContinuousCO2Calibration](ContinuousCO2Calibration.md) | CO2 calibration for continuous measurements, with extended standard gas detai... |  no  |
+| [DiscreteCO2Calibration](DiscreteCO2Calibration.md) | CO2 calibration for discrete measurements, with calibration temperature |  no  |
 
 
 

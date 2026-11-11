@@ -23,9 +23,9 @@ URI: [oae:calibration_temperature](https://schema.oaedata.org/calibration_temper
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
-| [PHCalibration](PHCalibration.md) | pH instrument calibration |  no  |
-| [DiscreteCO2Calibration](DiscreteCO2Calibration.md) | CO2 calibration for discrete measurements, with calibration temperature |  no  |
 | [DyeCalibration](DyeCalibration.md) | pH instrument calibration with an indicator dye standard |  no  |
+| [DiscreteCO2Calibration](DiscreteCO2Calibration.md) | CO2 calibration for discrete measurements, with calibration temperature |  no  |
+| [PHCalibration](PHCalibration.md) | pH instrument calibration |  no  |
 
 
 

@@ -74,6 +74,10 @@ URI: [oae:SpatialCoverage](https://schema.oaedata.org/SpatialCoverage)
 
 
 
+## Comments
+
+* Always a bounding box: `geo` is a GeoShape with `box` set. A single point (GeoCoordinates) is not accepted here, so that every spatial coverage can be edited in the Metadata Builder. This is narrower than science-on-schema.org, which also allows a point. Use DosingLocation for a point.
+
 ## Identifier and Mapping Information
 
 
@@ -113,6 +117,11 @@ URI: [oae:SpatialCoverage](https://schema.oaedata.org/SpatialCoverage)
 ```yaml
 name: SpatialCoverage
 description: A bounding box defined by latitude and longitude coordinates.
+comments:
+- 'Always a bounding box: `geo` is a GeoShape with `box` set. A single point (GeoCoordinates)
+  is not accepted here, so that every spatial coverage can be edited in the Metadata
+  Builder. This is narrower than science-on-schema.org, which also allows a point.
+  Use DosingLocation for a point.'
 from_schema: https://schema.oaedata.org/OAEDataSchema
 is_a: Place
 slot_usage:
@@ -130,6 +139,11 @@ slot_usage:
 ```yaml
 name: SpatialCoverage
 description: A bounding box defined by latitude and longitude coordinates.
+comments:
+- 'Always a bounding box: `geo` is a GeoShape with `box` set. A single point (GeoCoordinates)
+  is not accepted here, so that every spatial coverage can be edited in the Metadata
+  Builder. This is narrower than science-on-schema.org, which also allows a point.
+  Use DosingLocation for a point.'
 from_schema: https://schema.oaedata.org/OAEDataSchema
 is_a: Place
 slot_usage:

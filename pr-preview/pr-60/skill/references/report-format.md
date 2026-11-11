@@ -35,6 +35,7 @@ Source content that fits no field, and columns with no variable.
 ## Sources
 | File | Used for |
 |---|---|
+(for an OAPMetadata XML file, add its version, e.g. `a0.2.2`)
 
 ## Next steps
 <the import steps from builder-handoff.md, adapted to new or existing project>

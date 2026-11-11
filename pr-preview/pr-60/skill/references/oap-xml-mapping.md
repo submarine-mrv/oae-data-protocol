@@ -4,7 +4,17 @@ OAPMetadata XML is what researchers submit to NOAA OCADS. Its root is `<oads_met
 
 One XML file usually describes a whole data package: several data files, with a `<variable>` for every column in any of them. Match variables to the file in scope by `datasetVarName` against that file's column headers. A name can appear more than once with a different `observationType`; pick the one that fits the file. Ignore variables with no matching column.
 
-The mapping below was checked against XML schema version a0.2.2. Field names on the right are OAE fields; check each against the class file before using it.
+## Which version is this file?
+
+OAPMetadata has changed shape between versions, and a researcher's file may be older than the current schema on GitHub. Check the root element before mapping anything, and say which version you found in the report's Sources section.
+
+| Root element | Namespace and version attribute | Element names | What to do |
+|---|---|---|---|
+| `<oads_metadata>` | `xmlns="http://ncei.noaa.gov/oads/v_a0_2_2"`, `version="a0.2.2"` | camelCase (`datasetVarName`) | Use the tables below. They were checked against a0.2.2 files archived at NCEI in 2023 and 2026. |
+| `<dataset_metadata>` | `xmlns="https://ncei.noaa.gov/ocads/v4.x"`, `metadata_version="v4.x"` | snake_case (`dataset_title`) | The tables below do not apply. Many element names match OAE field names; map each element by meaning against the class's definition, and list every element you could not place under "Not used". Say in the report that this version has no checked mapping. |
+| Anything else | | | Map by meaning as above, and say in the report that the version was not recognised. |
+
+Field names on the right of the tables are OAE fields; check each against the class's definition before using it.
 
 ## Package level
 
@@ -44,4 +54,4 @@ The mapping below was checked against XML schema version a0.2.2. Field names on 
 | `titrationType`, `cellType`, `curveFitting` | the TA class's matching fields | |
 | `gasDetector`, `equilibrator`, `waterVaporCorrection`, `co2ReportTemperature`, `depthSeawaterIntake` | the CO2 class's matching fields | |
 
-An XML element with no row here: look for a field with the same meaning in the class file. If there is none, list it in the report under "Not used".
+An XML element with no row here: look for a field with the same meaning in the class's definition. If there is none, list it in the report under "Not used".

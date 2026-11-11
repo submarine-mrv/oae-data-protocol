@@ -23,10 +23,10 @@ URI: [oae:dosing_location](https://schema.oaedata.org/dosing_location)
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
-| [Tracer](Tracer.md) | Additional metadata that applies to experiments where a tracer study was cond... |  no  |
+| [Intervention](Intervention.md) | Additional metadata that applies to experiments where an intervention, such a... |  no  |
 | [DosingDetails](DosingDetails.md) | An abstract class (used as a mixin, not implemented directly) for detailing t... |  no  |
 | [InterventionWithTracer](InterventionWithTracer.md) | Additional metadata that applies to hybrid experiments where an intervention ... |  no  |
-| [Intervention](Intervention.md) | Additional metadata that applies to experiments where an intervention, such a... |  no  |
+| [Tracer](Tracer.md) | Additional metadata that applies to experiments where a tracer study was cond... |  no  |
 
 
 

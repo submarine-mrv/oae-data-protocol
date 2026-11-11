@@ -33,8 +33,12 @@ Attach your files and ask:
 
 ### Claude Code
 
-Copy the [`skills/oae-metadata`](https://github.com/submarine-mrv/oae-data-protocol/tree/main/skills/oae-metadata)
-folder into `~/.claude/skills/`, then ask Claude to draft OAE metadata from your files.
+Download [oae-metadata.zip](https://schema.oaedata.org/oae-metadata.zip) and unzip it into
+`~/.claude/skills/`, then ask Claude to draft OAE metadata from your files.
+
+### Claude in the browser or desktop app
+
+Upload the same zip under Customize → Skills.
 
 Every page of this site is also published as markdown for assistants: add `.md` to a page's address
 (for example [`/FieldDataset.md`](https://schema.oaedata.org/FieldDataset.md)), or start from

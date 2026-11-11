@@ -9,6 +9,7 @@
   file from project documents and data files. Its reference files and validator are in the same folder.
 - [JSON Schema](https://schema.oaedata.org/skill/assets/oae_data_protocol.schema.json): the schema a metadata file must follow.
 - [Validator](https://schema.oaedata.org/skill/scripts/validate.py): `python3 validate.py file.json`, standard library only.
+- [The skill as a zip](https://schema.oaedata.org/oae-metadata.zip)
 
 ## Documentation
 
@@ -58,5 +59,9 @@
 - [CRMInstrument](https://schema.oaedata.org/CRMInstrument.md)
 - [CO2GasDetector](https://schema.oaedata.org/CO2GasDetector.md)
 - [Calibration](https://schema.oaedata.org/Calibration.md)
+
+## Controlled Vocabularies
+
 - [Controlled Vocabularies](https://schema.oaedata.org/vocabularies.md)
+- [Vocabulary Values](https://schema.oaedata.org/vocabulary-values.md)
 - [Full Schema Index](https://schema.oaedata.org/OAEDataSchema.md)

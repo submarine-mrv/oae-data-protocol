@@ -23,12 +23,12 @@ URI: [oae:experiment_types](https://schema.oaedata.org/experiment_types)
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
-| [InterventionWithTracer](InterventionWithTracer.md) | Additional metadata that applies to hybrid experiments where an intervention ... |  no  |
 | [Intervention](Intervention.md) | Additional metadata that applies to experiments where an intervention, such a... |  no  |
+| [Model](Model.md) | A computational model experiment related to OAE |  no  |
+| [Experiment](Experiment.md) | Abstract base class for all experiment types |  no  |
+| [InterventionWithTracer](InterventionWithTracer.md) | Additional metadata that applies to hybrid experiments where an intervention ... |  no  |
 | [Tracer](Tracer.md) | Additional metadata that applies to experiments where a tracer study was cond... |  no  |
 | [InSituExperiment](InSituExperiment.md) | Experiment metadata for in-situ studies (interventions, tracer studies, etc |  no  |
-| [Experiment](Experiment.md) | Abstract base class for all experiment types |  no  |
-| [Model](Model.md) | A computational model experiment related to OAE |  no  |
 
 
 

@@ -23,8 +23,8 @@ URI: [oae:tracer_concentration](https://schema.oaedata.org/tracer_concentration)
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
-| [Tracer](Tracer.md) | Additional metadata that applies to experiments where a tracer study was cond... |  no  |
 | [TracerDetails](TracerDetails.md) | An abstract class (used as a mixin, not implemented directly) for detailing t... |  no  |
+| [Tracer](Tracer.md) | Additional metadata that applies to experiments where a tracer study was cond... |  no  |
 | [InterventionWithTracer](InterventionWithTracer.md) | Additional metadata that applies to hybrid experiments where an intervention ... |  no  |
 
 

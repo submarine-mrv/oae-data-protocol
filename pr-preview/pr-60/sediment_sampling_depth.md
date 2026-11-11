@@ -23,8 +23,8 @@ URI: [oae:sediment_sampling_depth](https://schema.oaedata.org/sediment_sampling_
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
-| [DiscreteSedimentVariable](DiscreteSedimentVariable.md) | Measured sediment variable collected from discrete bottle samples |  no  |
 | [ContinuousSedimentVariable](ContinuousSedimentVariable.md) | Measured sediment variable collected from continuous autonomous sensor |  no  |
+| [DiscreteSedimentVariable](DiscreteSedimentVariable.md) | Measured sediment variable collected from discrete bottle samples |  no  |
 | [MeasuredSedimentFields](MeasuredSedimentFields.md) | Fields applied to all measured sediment variable types (discrete and continuo... |  no  |
 
 

@@ -18,8 +18,8 @@ URI: [oae:drying_method](https://schema.oaedata.org/drying_method)
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
-| [MarineAirMeasurement](MarineAirMeasurement.md) | Information about CO2 measurements in marine air |  no  |
 | [ContinuousCO2Variable](ContinuousCO2Variable.md) | CO2 continuous (sensor) measured variable (xCO2/pCO2/fCO2) |  no  |
+| [MarineAirMeasurement](MarineAirMeasurement.md) | Information about CO2 measurements in marine air |  no  |
 
 
 

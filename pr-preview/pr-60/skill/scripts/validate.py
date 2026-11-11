@@ -18,7 +18,13 @@ import sys
 from collections import namedtuple
 from pathlib import Path
 
-DEFAULT_SCHEMA = Path(__file__).resolve().parent.parent / "assets" / "oae_data_protocol.schema.json"
+_HERE = Path(__file__).resolve().parent
+# The built skill bundles the schema in assets/; in the protocol repo it lives in project/jsonschema/.
+_SCHEMA_PATHS = [
+    _HERE.parent / "assets" / "oae_data_protocol.schema.json",
+    _HERE.parent.parent.parent / "project" / "jsonschema" / "oae_data_protocol.schema.json",
+]
+DEFAULT_SCHEMA = next((path for path in _SCHEMA_PATHS if path.exists()), _SCHEMA_PATHS[0])
 
 SUPPORTED_KEYWORDS = {
     "$ref", "$defs", "type", "properties", "required", "additionalProperties", "const", "enum",
