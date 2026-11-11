@@ -12,7 +12,7 @@ Help researchers independently turn project documents and field datasets into a 
 | Expected scale of use | 5-10 projects over the next year; a project may contain multiple datasets.                                                                                                                                |
 | Initial scope         | Field projects, experiments, datasets, and variables; <br/> model-specific workflows are not the focus for MVP                                                                                            |
 | Data outputs          | Researchers will take JSON outputs from an AI and upload it into Metadata Builder for further refinement, review, and auditing of content.                                                                |
-| Publication           | After reviewing and finalizing the metadata, researchers can publish JSON metadata alongside a dataset on Zenodo or other data repository. Inclusion in the OAE Data Commons will require admin approval. |
+| Publication           | After reviewing and finalizing the metadata, researchers can publish their JSON metadata alongside their archived dataset on Zenodo or other data repository, and update their project in the OAE Data Commons. |
 
 ## 2. Architectural overview
 
