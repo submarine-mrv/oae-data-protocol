@@ -37,11 +37,6 @@ classes:
             If there are relevant regulatory parameters and/or limits to dosing trials at this location, these may be described here.
           required: true
     attributes:
-      experiments:
-        title: Related Experiments
-        range: Experiment
-        multivalued: true
-        recommended: true
       project_leads:
         title: Project Lead(s)
         description: >-

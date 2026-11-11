@@ -1,4 +1,4 @@
-"""Validate the JSON examples in the hand-written docs against the validation schema.
+"""Validate the JSON examples in the hand-written docs against the JSON Schema.
 
 Mark an example by putting `<!-- validate: ClassName -->` on the line before its ```json fence.
 `Container` validates a whole metadata file; any other name validates against that class.
@@ -14,7 +14,7 @@ from jsonschema import Draft201909Validator
 ROOT = Path(__file__).parent.parent
 DOCS = ROOT / "src" / "docs" / "files"
 SCHEMA = json.loads(
-    (ROOT / "project" / "jsonschema" / "oae_data_protocol.validation.schema.json").read_text()
+    (ROOT / "project" / "jsonschema" / "oae_data_protocol.schema.json").read_text()
 )
 
 MARKED = re.compile(r"<!-- validate: (\w+) -->\s*```json\n(.*?)```", re.S)

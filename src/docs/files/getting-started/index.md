@@ -17,5 +17,5 @@ schema and exports a JSON file that validates against it. See [Metadata Builder]
 A metadata file is a JSON document with one project, its experiments and its datasets. The
 [Metadata File Format](../metadata-format.md) page covers its structure, a complete example and how to
 validate a file. To work with files in code, use the
-[JSON Schema](https://github.com/submarine-mrv/oae-data-protocol/blob/main/project/jsonschema/oae_data_protocol.validation.schema.json)
+[JSON Schema](https://github.com/submarine-mrv/oae-data-protocol/blob/main/project/jsonschema/oae_data_protocol.schema.json)
 or the [Pydantic models](https://github.com/submarine-mrv/oae-data-protocol/blob/main/src/oae_data_protocol/datamodel/oae_data_protocol_pydantic.py).

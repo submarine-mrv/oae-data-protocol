@@ -87,12 +87,12 @@ A minimal file that validates against the schema:
 
 ## Validating a File
 
-Validate against the [validation JSON Schema](https://github.com/submarine-mrv/oae-data-protocol/blob/main/project/jsonschema/oae_data_protocol.validation.schema.json),
+Validate against the [JSON Schema](https://github.com/submarine-mrv/oae-data-protocol/blob/main/project/jsonschema/oae_data_protocol.schema.json),
 for example with `ajv-cli`:
 
 ```bash
 npx ajv-cli validate \
-  -s oae_data_protocol.validation.schema.json \
+  -s oae_data_protocol.schema.json \
   -d your-metadata.json \
   --spec=draft2019 --strict=false
 ```

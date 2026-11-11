@@ -571,21 +571,46 @@
             "properties": {
                 "datasets": {
                     "items": {
-                        "$ref": "#/$defs/Dataset"
+                        "$ref": "#/$defs/Any",
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/Dataset"
+                            },
+                            {
+                                "$ref": "#/$defs/FieldDataset"
+                            },
+                            {
+                                "$ref": "#/$defs/ModelOutputDataset"
+                            }
+                        ]
                     },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    "type": "array"
                 },
                 "experiments": {
                     "items": {
-                        "$ref": "#/$defs/Experiment"
+                        "$ref": "#/$defs/Any",
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/Experiment"
+                            },
+                            {
+                                "$ref": "#/$defs/InSituExperiment"
+                            },
+                            {
+                                "$ref": "#/$defs/Model"
+                            },
+                            {
+                                "$ref": "#/$defs/Intervention"
+                            },
+                            {
+                                "$ref": "#/$defs/Tracer"
+                            },
+                            {
+                                "$ref": "#/$defs/InterventionWithTracer"
+                            }
+                        ]
                     },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    "type": "array"
                 },
                 "metadata_builder_git_hash": {
                     "description": "Git commit hash of the metadata-builder UI",
@@ -6353,16 +6378,6 @@
                     "title": "Project Description",
                     "type": "string"
                 },
-                "experiments": {
-                    "items": {
-                        "$ref": "#/$defs/Experiment"
-                    },
-                    "title": "Related Experiments",
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
                 "funding": {
                     "description": "Include the name of the funder, funder country, project title, project ID, and the project start and end dates. If there is no funding source (e.g., in the case of commercial projects), leave this field empty.",
                     "items": {
@@ -7227,21 +7242,46 @@
     "properties": {
         "datasets": {
             "items": {
-                "$ref": "#/$defs/Dataset"
+                "$ref": "#/$defs/Any",
+                "anyOf": [
+                    {
+                        "$ref": "#/$defs/Dataset"
+                    },
+                    {
+                        "$ref": "#/$defs/FieldDataset"
+                    },
+                    {
+                        "$ref": "#/$defs/ModelOutputDataset"
+                    }
+                ]
             },
-            "type": [
-                "array",
-                "null"
-            ]
+            "type": "array"
         },
         "experiments": {
             "items": {
-                "$ref": "#/$defs/Experiment"
+                "$ref": "#/$defs/Any",
+                "anyOf": [
+                    {
+                        "$ref": "#/$defs/Experiment"
+                    },
+                    {
+                        "$ref": "#/$defs/InSituExperiment"
+                    },
+                    {
+                        "$ref": "#/$defs/Model"
+                    },
+                    {
+                        "$ref": "#/$defs/Intervention"
+                    },
+                    {
+                        "$ref": "#/$defs/Tracer"
+                    },
+                    {
+                        "$ref": "#/$defs/InterventionWithTracer"
+                    }
+                ]
             },
-            "type": [
-                "array",
-                "null"
-            ]
+            "type": "array"
         },
         "metadata_builder_git_hash": {
             "description": "Git commit hash of the metadata-builder UI",
@@ -7261,5 +7301,5 @@
     },
     "title": "OAE Data Protocol - Technical Documentation",
     "type": "object",
-    "version": "0.6.0"
+    "version": "0.6.1"
 }
