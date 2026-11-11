@@ -22,7 +22,7 @@ _HERE = Path(__file__).resolve().parent
 # The built skill bundles the schema in assets/; in the protocol repo it lives in project/jsonschema/.
 _SCHEMA_PATHS = [
     _HERE.parent / "assets" / "oae_data_protocol.schema.json",
-    _HERE.parents[2] / "project" / "jsonschema" / "oae_data_protocol.schema.json",
+    _HERE.parent.parent.parent / "project" / "jsonschema" / "oae_data_protocol.schema.json",
 ]
 DEFAULT_SCHEMA = next((path for path in _SCHEMA_PATHS if path.exists()), _SCHEMA_PATHS[0])
 
