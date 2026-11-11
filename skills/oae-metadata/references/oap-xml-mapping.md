@@ -12,7 +12,7 @@ The mapping below was checked against XML schema version a0.2.2. Field names on 
 |---|---|---|
 | `title`, `abstract` | dataset `name`, `description` | They describe the package. Narrow them to the file in scope |
 | `temporalExtents` | dataset `temporal_coverage` | Check against the data file's own time range; they can differ |
-| `spatialExtents` | no dataset field | Use for a project's or experiment's `spatial_coverage` if those are in scope |
+| `spatialExtents` | no dataset field | Use for a project's or experiment's `spatial_coverage` if those are in scope. The XML gives west, east, north and south as separate elements; a `box` is `"south west north east"` |
 | `dataSubmitter` | dataset `data_submitter` | |
 | `investigators`, `authors` | `author_list_for_citation`; project or experiment leads if in scope | |
 | `platforms` | dataset `platform_info` | |

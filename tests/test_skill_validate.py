@@ -302,3 +302,47 @@ def test_script_imports_only_the_standard_library():
     source = SCRIPT.read_text()
     imported = set(re.findall(r"^(?:import|from) (\w+)", source, re.M))
     assert imported <= {"argparse", "json", "re", "sys", "pathlib", "collections", "copy"}
+
+
+# --- bounding boxes (the schema sees a box as a plain string) ---
+
+
+def box_findings(container, box):
+    container["project"]["spatial_coverage"] = {"geo": {"box": box}}
+    result = v.validate(container, SCHEMA)
+    return [f for f in result.structural if f.path.endswith("box")], result.notes
+
+
+def test_box_in_south_west_north_east_order_is_accepted(container):
+    findings, notes = box_findings(container, "44.588164 -63.678757 44.729404 -63.484064")
+    assert findings == []
+    assert any("44.588164°N to 44.729404°N" in n and "63.678757°W to 63.484064°W" in n for n in notes)
+
+
+def test_box_crossing_the_antimeridian_is_accepted(container):
+    findings, notes = box_findings(container, "-19 176 -15 -178")
+    assert findings == []
+    assert any("crosses the antimeridian" in n for n in notes)
+
+
+@pytest.mark.parametrize(
+    "box,expected",
+    [
+        ("120.1633 39.3280 123.7878 40.445", "latitude"),  # longitude first
+        ("44.73 -63.68 44.59 -63.48", "north"),  # north and south swapped
+        ("44.59 -63.68 44.73", "four"),
+        ("44.59,-63.68,44.73,-63.48", "four"),
+        ("44.59 -63.68 44.73 east", "number"),
+        ("44.59 -190 44.73 -63.48", "longitude"),
+    ],
+)
+def test_malformed_box_is_structural(container, box, expected):
+    findings, _ = box_findings(container, box)
+    assert len(findings) == 1
+    assert expected in findings[0].message.lower()
+
+
+def test_swapped_box_is_readable_in_the_notes(container):
+    """Longitudes within ±90 can't be told from latitudes, so the note spells out how the box was read."""
+    _, notes = box_findings(container, "-63.678757 44.588164 -63.484064 44.729404")
+    assert any("63.678757°S to 63.484064°S" in n and "44.588164°E to 44.729404°E" in n for n in notes)

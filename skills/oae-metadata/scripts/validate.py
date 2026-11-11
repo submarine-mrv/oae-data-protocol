@@ -218,6 +218,48 @@ def patched(schema):
     return schema
 
 
+# ---------- bounding boxes ----------
+# JSON Schema sees a box as a plain string. These are the Metadata Builder's rules (validateSpatialBounds).
+
+
+def check_box(box):
+    """(error or None, plain-words reading or None) for a "south west north east" box string."""
+    parts = box.split()
+    if len(parts) != 4:
+        return "a box needs four numbers separated by spaces: south west north east (minLat minLon maxLat maxLon)", None
+    try:
+        south, west, north, east = (float(p) for p in parts)
+    except ValueError:
+        return "every box value must be a number: south west north east", None
+    if not all(-90 <= lat <= 90 for lat in (south, north)):
+        return "the 1st and 3rd box values are latitudes and must be between -90 and 90; the order is south west north east", None
+    if not all(-180 <= lon <= 180 for lon in (west, east)):
+        return "the 2nd and 4th box values are longitudes and must be between -180 and 180", None
+    if north <= south:
+        return "north must be greater than south; the order is south west north east", None
+    south_s, west_s, north_s, east_s = parts
+    reading = (
+        f"{south_s.lstrip('-')}°{'S' if south < 0 else 'N'} to {north_s.lstrip('-')}°{'S' if north < 0 else 'N'}, "
+        f"{west_s.lstrip('-')}°{'W' if west < 0 else 'E'} to {east_s.lstrip('-')}°{'W' if east < 0 else 'E'}"
+    )
+    if west > east:
+        reading += " (crosses the antimeridian)"
+    return None, reading
+
+
+def boxes(node, path=""):
+    """Every (path, box string) in the document."""
+    if isinstance(node, dict):
+        for key, value in node.items():
+            if key == "box" and isinstance(value, str):
+                yield _join(path, key), value
+            else:
+                yield from boxes(value, _join(path, key))
+    elif isinstance(node, list):
+        for i, item in enumerate(node):
+            yield from boxes(item, _join(path, i))
+
+
 # ---------- findings ----------
 
 
@@ -276,6 +318,13 @@ def validate(doc, schema):
     for key in ("version", "protocol_git_hash", "metadata_builder_git_hash"):
         if key in doc and not isinstance(doc[key], str):
             structural.append(Finding("file", key, f"expected string, got {_type_name(doc[key])}"))
+
+    for path, box in boxes(doc):
+        problem, reading = check_box(box)
+        if problem:
+            structural.append(Finding("file", path, problem))
+        else:
+            notes.append(f'{path} "{box}" reads as {reading}. Check this against the source.')
 
     if isinstance(doc.get("version"), str) and schema.get("version") and doc["version"] != schema["version"]:
         notes.append(f"The file says version {doc['version']}; this schema is {schema['version']}.")
