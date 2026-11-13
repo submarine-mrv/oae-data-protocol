@@ -6871,6 +6871,11 @@ classes:
     name: SpatialCoverage
     definition_uri: https://schema.oaedata.org/SpatialCoverage
     description: A bounding box defined by latitude and longitude coordinates.
+    comments:
+    - 'Always a bounding box: `geo` is a GeoShape with `box` set. A single point (GeoCoordinates)
+      is not accepted here, so that every spatial coverage can be edited in the Metadata
+      Builder. This is narrower than science-on-schema.org, which also allows a point.
+      Use DosingLocation for a point.'
     from_schema: Core
     is_a: Place
     slots:
@@ -10762,7 +10767,7 @@ classes:
     class_uri: oae:ContinuousStandardGas
 metamodel_version: 1.7.0
 source_file: oae_data_protocol.yaml
-source_file_date: '2026-11-11T06:30:30'
+source_file_date: '2026-11-13T06:13:26'
 source_file_size: 2246
-generation_date: '2026-11-11T06:30:38'
+generation_date: '2026-11-13T06:13:35'
 

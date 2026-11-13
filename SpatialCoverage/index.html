@@ -183,6 +183,18 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="../ai-skill/">
+<span class="md-ellipsis">
+    
+  
+    Drafting with an AI Assistant
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="../contributing/">
 <span class="md-ellipsis">
     
@@ -569,6 +581,29 @@
 </ul>
 </nav>
 </li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_7" type="checkbox"/>
+<label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Controlled Vocabularies
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_7_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_7">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Controlled Vocabularies
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
 <a class="md-nav__link" href="../vocabularies/">
 <span class="md-ellipsis">
@@ -580,6 +615,21 @@
     
   </span>
 </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../vocabulary-values/">
+<span class="md-ellipsis">
+    
+  
+    Vocabulary Values
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../OAEDataSchema/">
@@ -630,6 +680,15 @@
 <span class="md-ellipsis">
       
         Usages
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#comments">
+<span class="md-ellipsis">
+      
+        Comments
       
     </span>
 </a>
@@ -815,6 +874,10 @@
 </tr>
 </tbody>
 </table>
+<h2 id="comments">Comments</h2>
+<ul>
+<li>Always a bounding box: <code>geo</code> is a GeoShape with <code>box</code> set. A single point (GeoCoordinates) is not accepted here, so that every spatial coverage can be edited in the Metadata Builder. This is narrower than science-on-schema.org, which also allows a point. Use DosingLocation for a point.</li>
+</ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
@@ -845,6 +908,11 @@
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SpatialCoverage</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A bounding box defined by latitude and longitude coordinates.</span>
+<span class="nt">comments</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="s">'Always</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">bounding</span><span class="nv"> </span><span class="s">box:</span><span class="nv"> </span><span class="s">`geo`</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">GeoShape</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">`box`</span><span class="nv"> </span><span class="s">set.</span><span class="nv"> </span><span class="s">A</span><span class="nv"> </span><span class="s">single</span><span class="nv"> </span><span class="s">point</span><span class="nv"> </span><span class="s">(GeoCoordinates)</span>
+<span class="w">  </span><span class="s">is</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">accepted</span><span class="nv"> </span><span class="s">here,</span><span class="nv"> </span><span class="s">so</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">every</span><span class="nv"> </span><span class="s">spatial</span><span class="nv"> </span><span class="s">coverage</span><span class="nv"> </span><span class="s">can</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">edited</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">Metadata</span>
+<span class="w">  </span><span class="s">Builder.</span><span class="nv"> </span><span class="s">This</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">narrower</span><span class="nv"> </span><span class="s">than</span><span class="nv"> </span><span class="s">science-on-schema.org,</span><span class="nv"> </span><span class="s">which</span><span class="nv"> </span><span class="s">also</span><span class="nv"> </span><span class="s">allows</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">point.</span>
+<span class="w">  </span><span class="s">Use</span><span class="nv"> </span><span class="s">DosingLocation</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">point.'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.oaedata.org/OAEDataSchema</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Place</span>
 <span class="nt">slot_usage</span><span class="p">:</span>
@@ -858,6 +926,11 @@
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SpatialCoverage</span>
 <span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A bounding box defined by latitude and longitude coordinates.</span>
+<span class="nt">comments</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="s">'Always</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">bounding</span><span class="nv"> </span><span class="s">box:</span><span class="nv"> </span><span class="s">`geo`</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">GeoShape</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">`box`</span><span class="nv"> </span><span class="s">set.</span><span class="nv"> </span><span class="s">A</span><span class="nv"> </span><span class="s">single</span><span class="nv"> </span><span class="s">point</span><span class="nv"> </span><span class="s">(GeoCoordinates)</span>
+<span class="w">  </span><span class="s">is</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">accepted</span><span class="nv"> </span><span class="s">here,</span><span class="nv"> </span><span class="s">so</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">every</span><span class="nv"> </span><span class="s">spatial</span><span class="nv"> </span><span class="s">coverage</span><span class="nv"> </span><span class="s">can</span><span class="nv"> </span><span class="s">be</span><span class="nv"> </span><span class="s">edited</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">Metadata</span>
+<span class="w">  </span><span class="s">Builder.</span><span class="nv"> </span><span class="s">This</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">narrower</span><span class="nv"> </span><span class="s">than</span><span class="nv"> </span><span class="s">science-on-schema.org,</span><span class="nv"> </span><span class="s">which</span><span class="nv"> </span><span class="s">also</span><span class="nv"> </span><span class="s">allows</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">point.</span>
+<span class="w">  </span><span class="s">Use</span><span class="nv"> </span><span class="s">DosingLocation</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">point.'</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.oaedata.org/OAEDataSchema</span>
 <span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Place</span>
 <span class="nt">slot_usage</span><span class="p">:</span>

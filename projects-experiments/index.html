@@ -185,6 +185,18 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="../ai-skill/">
+<span class="md-ellipsis">
+    
+  
+    Drafting with an AI Assistant
+  
+
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="../contributing/">
 <span class="md-ellipsis">
     
@@ -571,6 +583,29 @@
 </ul>
 </nav>
 </li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_7" type="checkbox"/>
+<label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+<span class="md-ellipsis">
+    
+  
+    Controlled Vocabularies
+  
+
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="false" aria-labelledby="__nav_7_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_7">
+<span class="md-nav__icon md-icon"></span>
+            
+  
+    Controlled Vocabularies
+  
+
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
 <a class="md-nav__link" href="../vocabularies/">
 <span class="md-ellipsis">
@@ -582,6 +617,21 @@
     
   </span>
 </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../vocabulary-values/">
+<span class="md-ellipsis">
+    
+  
+    Vocabulary Values
+  
+
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../OAEDataSchema/">
@@ -629,6 +679,15 @@
 <nav aria-label="Experiments" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
+<a class="md-nav__link" href="#what-counts-as-one-experiment">
+<span class="md-ellipsis">
+      
+        What Counts as One Experiment
+      
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#experiment-types">
 <span class="md-ellipsis">
       
@@ -664,6 +723,18 @@ dataset in it carries that project's <code>project_id</code>.</p>
 <h2 id="experiments">Experiments</h2>
 <p>An <strong><a href="../Experiment/">Experiment</a></strong> is one activity within a project, such as a baseline monitoring
 phase followed by an intervention. Each dataset names the experiment it came from with <code>experiment_id</code>.</p>
+<h3 id="what-counts-as-one-experiment">What Counts as One Experiment</h3>
+<p>An experiment is a campaign the project treats as one unit: a named trial, deployment, crediting
+period, cruise or model study. Use the project's own names and boundaries.</p>
+<ul>
+<li>Keep a named campaign as one experiment even if the feedstock lot, dose rate or schedule changed
+  during it. Describe the phases in its fields.</li>
+<li>Campaigns with different names, or separated in time with their own reporting, are separate
+  experiments.</li>
+<li>A model that is configured in some detail (code, grid, forcing) is a Model experiment, even before
+  the dates of a specific run are known.</li>
+<li>Laboratory studies, permit applications and monitoring programmes are not experiments.</li>
+</ul>
 <h3 id="experiment-types">Experiment Types</h3>
 <pre class="mermaid"><code>graph TD
     E[Experiment] --&gt; ISE[InSituExperiment]
