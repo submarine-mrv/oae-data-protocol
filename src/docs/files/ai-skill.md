@@ -24,21 +24,56 @@ give its project ID and, for each dataset, the ID of the experiment it belongs t
 
 ## Using it
 
-### Any assistant that can read web pages
+There are three ways to give an assistant the skill.
 
-Attach your files and ask:
+| | Works with | Stays up to date | Runs the validator |
+|---|---|---|---|
+| [Link in a prompt](#link-in-a-prompt) | Any assistant that can read web pages | Yes, it reads the current files each time | Only if the assistant can download and run code |
+| [Zip file](#zip-file) | Claude apps, Claude Code | No, download it again for a new version | Yes |
+| [Plugin](#plugin) | Claude Code | Yes, when the plugin updates | Yes |
+
+### Link in a prompt
+
+Nothing to install. Attach your files and ask:
 
 > Follow the instructions at https://schema.oaedata.org/skill/SKILL.md to draft OAE metadata from
 > these files. The other files it mentions are in the same folder.
 
-### Claude Code
+!!! warning "Limits of the link"
+    - Many assistants cannot download and run the [validator](#checking-the-draft). The report says
+      when it was not run, and structural errors then show up only after you import into the Builder.
+    - The assistant has to fetch each reference file itself, and some fetch fewer than the skill
+      asks for.
+    - If your assistant offers to save the instructions as a skill, the saved copy is like the zip:
+      it does not update.
 
-Download [oae-metadata.zip](https://schema.oaedata.org/oae-metadata.zip) and unzip it into
-`~/.claude/skills/`, then ask Claude to draft OAE metadata from your files.
+### Zip file
 
-### Claude in the browser or desktop app
+Download [oae-metadata.zip](https://schema.oaedata.org/oae-metadata.zip).
 
-Upload the same zip under Customize → Skills.
+- **Claude in the browser or desktop app:** upload it under Customize → Skills.
+- **Claude Code:** unzip it into `~/.claude/skills/`.
+
+Then ask Claude to draft OAE metadata from your files. The zip holds the protocol version that was
+current when you downloaded it.
+
+### Plugin
+
+In Claude Code:
+
+```
+/plugin marketplace add submarine-mrv/oae-data-protocol
+/plugin install oae-metadata@oae-data
+```
+
+To get new versions without asking, open `/plugin`, choose Marketplaces, then `oae-data`, then
+Enable auto-update. Or run `claude plugin update oae-metadata@oae-data` when you want one.
+
+### When a new protocol version comes out
+
+An installed copy (zip or plugin) checks this site when it starts. If a newer protocol version is
+published, the assistant tells you and still drafts with the copy it has. The check is skipped where
+the assistant has no network access, which includes most browser sandboxes.
 
 Every page of this site is also published as markdown for assistants: add `.md` to a page's address
 (for example [`/FieldDataset.md`](https://schema.oaedata.org/FieldDataset.md)), or start from

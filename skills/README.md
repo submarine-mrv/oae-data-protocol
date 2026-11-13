@@ -70,9 +70,16 @@ docs page as markdown and an index at `https://schema.oaedata.org/llms.txt`. An 
 read web pages needs only the URL of `SKILL.md`. The zip installs into `~/.claude/skills/` or uploads
 to the Claude apps.
 
-Not set up: a plugin marketplace. The built skill is on the `gh-pages` branch under `skill/`, so a
-`.claude-plugin/marketplace.json` entry with a `git-subdir` source pointing there should be all it
-takes; that is untested. OpenAI packaging is not set up either.
+`.claude-plugin/marketplace.json` makes this repo a Claude Code plugin marketplace named `oae-data`.
+Its one plugin is the `skill/` folder on the `gh-pages` branch, with no version set, so each docs
+deploy is a new plugin version. Auto-update is off for third-party marketplaces until the user turns
+it on.
+
+The build writes the schema version to `version.txt` in the skill. `validate.py --check-update`
+compares an installed copy's schema version with `https://schema.oaedata.org/skill/version.txt`, and
+`SKILL.md` asks the assistant to run it first. It prints nothing alarming when there is no network.
+
+OpenAI packaging is not set up.
 
 ## Evaluation
 
