@@ -14,6 +14,8 @@ The draft is worth having only if two things hold:
 
 Paths below are relative to this skill's folder. Read each reference at the step that names it.
 
+Before you start, run `python3 scripts/validate.py --check-update`. If it says a newer protocol version is published, pass that on to the researcher in your first message and at the top of the report, then carry on with this copy. If you cannot run it, skip the check.
+
 ## 1. Agree the scope
 
 A metadata file has up to three levels:

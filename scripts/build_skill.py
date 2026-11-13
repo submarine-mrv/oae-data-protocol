@@ -9,6 +9,7 @@ on choosing classes, and a page of enum value meanings generated from the schema
 """
 
 import argparse
+import json
 import re
 import shutil
 import zipfile
@@ -113,6 +114,8 @@ def build(out):
     shutil.copytree(SKILL, out, ignore=shutil.ignore_patterns("__pycache__"))
     (out / "assets").mkdir()
     shutil.copyfile(JSON_SCHEMA, out / "assets" / JSON_SCHEMA.name)
+    # The validator's --check-update compares an installed copy with this file on the docs site.
+    (out / "version.txt").write_text(json.loads(JSON_SCHEMA.read_text())["version"] + "\n")
     docs = out / "references" / "docs"
     docs.mkdir(parents=True)
     for source, name in DOC_PAGES.items():

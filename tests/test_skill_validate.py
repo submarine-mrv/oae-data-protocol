@@ -301,7 +301,7 @@ def test_cli_json_output(tmp_path, container):
 def test_script_imports_only_the_standard_library():
     source = SCRIPT.read_text()
     imported = set(re.findall(r"^(?:import|from) (\w+)", source, re.M))
-    assert imported <= {"argparse", "json", "re", "sys", "pathlib", "collections", "copy"}
+    assert imported <= {"argparse", "json", "re", "sys", "pathlib", "collections", "copy", "urllib"}
 
 
 # --- bounding boxes (the schema sees a box as a plain string) ---
@@ -372,3 +372,38 @@ def test_cli_rejects_non_standard_numbers(tmp_path, constant):
     assert done.returncode == 2
     assert "Traceback" not in done.stderr
     assert constant.lstrip("-") in done.stderr
+
+
+# --- update check ---
+
+
+def published(tmp_path, text):
+    path = tmp_path / "version.txt"
+    path.write_text(text)
+    return path.as_uri()
+
+
+def test_update_notice_names_both_versions_when_a_newer_one_is_published(tmp_path):
+    notice = v.update_notice("0.9.0", published(tmp_path, "0.10.0\n"))
+    assert "0.10.0" in notice and "0.9.0" in notice
+    assert v.UPDATE_PAGE in notice
+
+
+@pytest.mark.parametrize("latest", ["0.6.1", "0.6.0", "not a version", ""])
+def test_no_update_notice_without_a_newer_version(tmp_path, latest):
+    assert v.update_notice("0.6.1", published(tmp_path, latest)) is None
+
+
+def test_no_update_notice_when_the_published_version_is_unreachable(tmp_path):
+    assert v.update_notice("0.6.1", (tmp_path / "missing.txt").as_uri()) is None
+
+
+def test_cli_check_update_needs_no_draft_and_exits_zero(tmp_path):
+    url = published(tmp_path, "99.0.0")
+    done = subprocess.run(
+        [sys.executable, str(SCRIPT), "--check-update", "--schema", str(SCHEMA_PATH), "--latest-url", url],
+        capture_output=True,
+        text=True,
+    )
+    assert done.returncode == 0
+    assert "99.0.0" in done.stdout and SCHEMA["version"] in done.stdout

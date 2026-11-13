@@ -88,3 +88,8 @@ def test_zip_holds_the_skill_folder(skill):
         names = archive.namelist()
     assert "oae-metadata/SKILL.md" in names
     assert "oae-metadata/assets/oae_data_protocol.schema.json" in names
+
+
+def test_version_file_holds_the_schema_version(skill):
+    schema = json.loads((skill / "assets" / bs.JSON_SCHEMA.name).read_text())
+    assert (skill / "version.txt").read_text().strip() == schema["version"]
