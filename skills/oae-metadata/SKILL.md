@@ -14,6 +14,8 @@ The draft is worth having only if two things hold:
 
 Paths below are relative to this skill's folder. Read each reference at the step that names it.
 
+Before you start, run `python3 scripts/validate.py --check-update`. If it says a newer protocol version is published, pass that on to the researcher in your first message and at the top of the report, then carry on with this copy. If you cannot run it, skip the check.
+
 ## 1. Agree the scope
 
 A metadata file has up to three levels:
@@ -60,10 +62,12 @@ For each item:
 
 - Use only the properties in its definition, spelled as shown. A fact with no field goes in the report under "Not used".
 - For an enum field, use one of the values the schema lists, chosen by its meaning in `references/docs/vocabulary-values.md`, not by its name.
+- For `sea_names`, the list holds seas and ocean regions, not every bay or strait. When the water body the sources name is not listed, use the listed sea or ocean region that contains it and record that in the report as an inference.
 - Set `schema_class` on every variable to its class name.
 - `project_id` and `experiment_id` are free text. If the sources give none, coin one from names in the sources and list it in the report as coined. A dataset's `experiment_id` must equal its experiment's, character for character.
 - Fill a field only when a source states the value, or states enough that a specialist would call the inference safe. Record every inference in the report.
 - Leave a field out when the sources don't give it. No `null`, no empty string, no "unknown", no placeholder.
+- A person or organisation the sources name goes in with what the sources give, even when a required detail such as the email is missing. The missing detail is a gap.
 - Draft every experiment the sources describe in detail, as `references/docs/projects-experiments.md` defines one. A planned or earlier campaign described in detail counts; say in its description that it is planned or historical. An experiment that is only mentioned in passing gets a line in the report, not an entry.
 - Go through the class's properties one by one. For each one you have not filled, search the sources once more for it before leaving it out. Permits, funding, co-located operations and nearby research are easy to miss because documents discuss them far from the methods.
 

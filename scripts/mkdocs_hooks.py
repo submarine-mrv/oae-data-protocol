@@ -3,7 +3,7 @@
 After the HTML build it adds, to the built site:
 
 - every page's source markdown at the same path (`/FieldDataset.md` beside `/FieldDataset/`)
-- the assembled oae-metadata skill as plain files under `/skill/`, and `/oae-metadata.zip`
+- the assembled oae-metadata skill as plain files under `/skill/` with an index page, and `/oae-metadata.zip`
 - `/llms.txt`, an index of both
 """
 
@@ -58,7 +58,15 @@ def on_post_build(config, **kwargs):
         shutil.copyfile(source, target)
 
     build_skill.build(site / "skill")
+    files = sorted(p.relative_to(site / "skill").as_posix() for p in (site / "skill").rglob("*") if p.is_file())
+    # A folder URL would otherwise be a 404 for an agent looking for the files SKILL.md names.
+    links = "\n".join(f'<li><a href="{f}">{f}</a></li>' for f in files)
+    (site / "skill" / "index.html").write_text(
+        f"<!doctype html><title>oae-metadata skill</title><h1>oae-metadata skill</h1>"
+        f"<p>Start with SKILL.md. Paths in it are relative to this folder.</p><ul>\n{links}\n</ul>\n"
+    )
 
     lines = [f"# {config['site_name']}", "", INTRO.format(base=base).rstrip()]
+    lines += ["", "Every file in the skill folder:", ""] + [f"- {base}skill/{f}" for f in files]
     lines += ["", "## Documentation", ""] + nav_lines(config.get("nav") or [], base)
     (site / "llms.txt").write_text("\n".join(lines) + "\n")

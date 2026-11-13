@@ -6,6 +6,7 @@ Write the report as markdown beside the JSON. A researcher reads it with the Bui
 # Metadata draft report: <project or dataset name>
 
 Drafted <date> against OAE Data Protocol <version>.
+<the update notice, if `--check-update` printed one>
 
 ## What was drafted
 - Project: yes | no (existing project <project_id>)
