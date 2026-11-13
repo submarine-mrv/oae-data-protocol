@@ -19,8 +19,8 @@ URI: [oae:standard_gas_info](https://schema.oaedata.org/standard_gas_info)
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
 | [DiscreteCO2Calibration](DiscreteCO2Calibration.md) | CO2 calibration for discrete measurements, with calibration temperature |  no  |
-| [CO2Calibration](CO2Calibration.md) | Base CO2 gas detector calibration with standard gas information |  no  |
 | [ContinuousCO2Calibration](ContinuousCO2Calibration.md) | CO2 calibration for continuous measurements, with extended standard gas detai... |  no  |
+| [CO2Calibration](CO2Calibration.md) | Base CO2 gas detector calibration with standard gas information |  no  |
 
 
 

@@ -18,11 +18,11 @@ URI: [oae:additional_details](https://schema.oaedata.org/additional_details)
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
-| [Project](Project.md) | A project conducting OAE field trials or modeling |  no  |
-| [Tracer](Tracer.md) | Additional metadata that applies to experiments where a tracer study was cond... |  no  |
 | [Intervention](Intervention.md) | Additional metadata that applies to experiments where an intervention, such a... |  no  |
-| [InterventionWithTracer](InterventionWithTracer.md) | Additional metadata that applies to hybrid experiments where an intervention ... |  no  |
+| [Tracer](Tracer.md) | Additional metadata that applies to experiments where a tracer study was cond... |  no  |
 | [InSituExperiment](InSituExperiment.md) | Experiment metadata for in-situ studies (interventions, tracer studies, etc |  no  |
+| [InterventionWithTracer](InterventionWithTracer.md) | Additional metadata that applies to hybrid experiments where an intervention ... |  no  |
+| [Project](Project.md) | A project conducting OAE field trials or modeling |  no  |
 
 
 

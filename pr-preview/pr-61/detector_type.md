@@ -23,8 +23,8 @@ URI: [oae:detector_type](https://schema.oaedata.org/detector_type)
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
-| [ContinuousCO2GasDetector](ContinuousCO2GasDetector.md) | CO2 gas detector for continuous measurements, with measurement frequency |  no  |
 | [CO2GasDetector](CO2GasDetector.md) | CO2 gas detector with standard gas calibration |  no  |
+| [ContinuousCO2GasDetector](ContinuousCO2GasDetector.md) | CO2 gas detector for continuous measurements, with measurement frequency |  no  |
 
 
 

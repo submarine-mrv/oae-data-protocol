@@ -18,8 +18,8 @@ URI: [oae:version](https://schema.oaedata.org/version)
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
-| [ModelComponent](ModelComponent.md) | A component of a model (e |  no  |
 | [Container](Container.md) |  |  no  |
+| [ModelComponent](ModelComponent.md) | A component of a model (e |  no  |
 
 
 

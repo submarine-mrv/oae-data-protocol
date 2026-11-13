@@ -24,10 +24,10 @@ URI: [oae:instrument_type](https://schema.oaedata.org/instrument_type)
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
 | [ContinuousCO2GasDetector](ContinuousCO2GasDetector.md) | CO2 gas detector for continuous measurements, with measurement frequency |  no  |
+| [CRMInstrument](CRMInstrument.md) | Instrument calibrated with Certified Reference Materials, used for DIC and TA... |  no  |
 | [CO2GasDetector](CO2GasDetector.md) | CO2 gas detector with standard gas calibration |  yes  |
 | [AnalyzingInstrument](AnalyzingInstrument.md) | Base class for scientific instruments used in analyzing samples for measureme... |  no  |
 | [PHInstrument](PHInstrument.md) | pH measurement instrument with dye-based calibration |  no  |
-| [CRMInstrument](CRMInstrument.md) | Instrument calibrated with Certified Reference Materials, used for DIC and TA... |  no  |
 
 
 

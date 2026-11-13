@@ -23,8 +23,8 @@ URI: [oae:standard_used](https://schema.oaedata.org/standard_used)
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
-| [PHCalibration](PHCalibration.md) | pH instrument calibration |  no  |
 | [DyeCalibration](DyeCalibration.md) | pH instrument calibration with an indicator dye standard |  yes  |
+| [PHCalibration](PHCalibration.md) | pH instrument calibration |  no  |
 
 
 

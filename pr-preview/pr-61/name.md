@@ -23,23 +23,23 @@ URI: [schema:name](http://schema.org/name)
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
-| [Project](Project.md) | A project conducting OAE field trials or modeling |  yes  |
-| [NamedLink](NamedLink.md) | A link to a resource with a name and URL |  no  |
-| [ModelOutputDataset](ModelOutputDataset.md) | A model simulation output dataset |  no  |
-| [Tracer](Tracer.md) | Additional metadata that applies to experiments where a tracer study was cond... |  no  |
-| [Platform](Platform.md) |  |  yes  |
-| [ExternalProject](ExternalProject.md) | A research project that is not directly managed by the OAE project, but whose... |  no  |
 | [Person](Person.md) | Information about a researcher or investigator involved in the experiment |  no  |
-| [Model](Model.md) | A computational model experiment related to OAE |  no  |
-| [MonetaryGrant](MonetaryGrant.md) |  |  yes  |
 | [Intervention](Intervention.md) | Additional metadata that applies to experiments where an intervention, such a... |  no  |
-| [InterventionWithTracer](InterventionWithTracer.md) | Additional metadata that applies to hybrid experiments where an intervention ... |  no  |
-| [InSituExperiment](InSituExperiment.md) | Experiment metadata for in-situ studies (interventions, tracer studies, etc |  no  |
+| [ModelOutputDataset](ModelOutputDataset.md) | A model simulation output dataset |  no  |
+| [ExternalProject](ExternalProject.md) | A research project that is not directly managed by the OAE project, but whose... |  no  |
 | [FieldDataset](FieldDataset.md) | A field or observational dataset related to an OAE experiment |  no  |
 | [ModelComponent](ModelComponent.md) | A component of a model (e |  no  |
-| [Dataset](Dataset.md) | Abstract base class for all dataset types |  yes  |
+| [MonetaryGrant](MonetaryGrant.md) |  |  yes  |
+| [NamedLink](NamedLink.md) | A link to a resource with a name and URL |  no  |
 | [Organization](Organization.md) |  |  yes  |
+| [Platform](Platform.md) |  |  yes  |
 | [Experiment](Experiment.md) | Abstract base class for all experiment types |  yes  |
+| [Tracer](Tracer.md) | Additional metadata that applies to experiments where a tracer study was cond... |  no  |
+| [InSituExperiment](InSituExperiment.md) | Experiment metadata for in-situ studies (interventions, tracer studies, etc |  no  |
+| [Dataset](Dataset.md) | Abstract base class for all dataset types |  yes  |
+| [Model](Model.md) | A computational model experiment related to OAE |  no  |
+| [InterventionWithTracer](InterventionWithTracer.md) | Additional metadata that applies to hybrid experiments where an intervention ... |  no  |
+| [Project](Project.md) | A project conducting OAE field trials or modeling |  yes  |
 
 
 

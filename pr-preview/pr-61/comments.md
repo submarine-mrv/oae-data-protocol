@@ -24,8 +24,8 @@ URI: [oae:comments](https://schema.oaedata.org/comments)
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
 | [PressureSensor](PressureSensor.md) | Pressure sensor used in continuous CO2 measurements |  no  |
-| [GenericSensor](GenericSensor.md) | Generic sensor base class used in continuous CO2 measurements |  no  |
 | [TemperatureSensor](TemperatureSensor.md) | Temperature sensor used in continuous CO2 measurements |  no  |
+| [GenericSensor](GenericSensor.md) | Generic sensor base class used in continuous CO2 measurements |  no  |
 
 
 
