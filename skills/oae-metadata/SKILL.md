@@ -65,6 +65,7 @@ For each item:
 - `project_id` and `experiment_id` are free text. If the sources give none, coin one from names in the sources and list it in the report as coined. A dataset's `experiment_id` must equal its experiment's, character for character.
 - Fill a field only when a source states the value, or states enough that a specialist would call the inference safe. Record every inference in the report.
 - Leave a field out when the sources don't give it. No `null`, no empty string, no "unknown", no placeholder.
+- A person or organisation the sources name goes in with what the sources give, even when a required detail such as the email is missing. The missing detail is a gap.
 - Draft every experiment the sources describe in detail, as `references/docs/projects-experiments.md` defines one. A planned or earlier campaign described in detail counts; say in its description that it is planned or historical. An experiment that is only mentioned in passing gets a line in the report, not an entry.
 - Go through the class's properties one by one. For each one you have not filled, search the sources once more for it before leaving it out. Permits, funding, co-located operations and nearby research are easy to miss because documents discuss them far from the methods.
 
