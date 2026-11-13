@@ -1,0 +1,83 @@
+# OAE Data Protocol: Schema Documentation
+
+> Schema and documentation for Ocean Alkalinity Enhancement (OAE) metadata: projects, experiments,
+> datasets and variables. Every page listed here is plain markdown.
+
+## Drafting metadata
+
+- [oae-metadata skill](https://schema.oaedata.org/skill/SKILL.md): step-by-step instructions for drafting an OAE metadata
+  file from project documents and data files. Its reference files and validator are in the same folder.
+- [JSON Schema](https://schema.oaedata.org/skill/assets/oae_data_protocol.schema.json): the schema a metadata file must follow.
+- [Validator](https://schema.oaedata.org/skill/scripts/validate.py): `python3 validate.py file.json`, standard library only.
+- [The skill as a zip](https://schema.oaedata.org/oae-metadata.zip)
+
+Every file in the skill folder:
+
+- https://schema.oaedata.org/skill/SKILL.md
+- https://schema.oaedata.org/skill/assets/oae_data_protocol.schema.json
+- https://schema.oaedata.org/skill/references/builder-handoff.md
+- https://schema.oaedata.org/skill/references/docs/datasets.md
+- https://schema.oaedata.org/skill/references/docs/instruments-calibration.md
+- https://schema.oaedata.org/skill/references/docs/metadata-format.md
+- https://schema.oaedata.org/skill/references/docs/projects-experiments.md
+- https://schema.oaedata.org/skill/references/docs/variables.md
+- https://schema.oaedata.org/skill/references/docs/vocabulary-values.md
+- https://schema.oaedata.org/skill/references/oap-xml-mapping.md
+- https://schema.oaedata.org/skill/references/report-format.md
+- https://schema.oaedata.org/skill/scripts/validate.py
+- https://schema.oaedata.org/skill/version.txt
+
+## Documentation
+
+- [Home](https://schema.oaedata.org/index.md)
+
+## Getting Started
+
+- [Getting Started](https://schema.oaedata.org/getting-started/index.md)
+- [Metadata File Format](https://schema.oaedata.org/metadata-format.md)
+- [Metadata Builder](https://schema.oaedata.org/metadata-builder.md)
+- [Drafting with an AI Assistant](https://schema.oaedata.org/ai-skill.md)
+- [Contributing](https://schema.oaedata.org/contributing.md)
+
+## Projects & Experiments
+
+- [Projects & Experiments](https://schema.oaedata.org/projects-experiments/index.md)
+- [Project](https://schema.oaedata.org/Project.md)
+- [Experiment](https://schema.oaedata.org/Experiment.md)
+- [InSituExperiment](https://schema.oaedata.org/InSituExperiment.md)
+- [Intervention](https://schema.oaedata.org/Intervention.md)
+- [Tracer](https://schema.oaedata.org/Tracer.md)
+- [InterventionWithTracer](https://schema.oaedata.org/InterventionWithTracer.md)
+- [Model](https://schema.oaedata.org/Model.md)
+
+## Datasets
+
+- [Datasets](https://schema.oaedata.org/Datasets/index.md)
+- [FieldDataset](https://schema.oaedata.org/FieldDataset.md)
+- [ModelOutputDataset](https://schema.oaedata.org/ModelOutputDataset.md)
+
+## Variables
+
+- [Variables](https://schema.oaedata.org/Variables/index.md)
+- [Variable](https://schema.oaedata.org/Variable.md)
+- [InSituVariable](https://schema.oaedata.org/InSituVariable.md)
+- [MeasuredVariable](https://schema.oaedata.org/MeasuredVariable.md)
+- [DiscreteMeasuredVariable](https://schema.oaedata.org/DiscreteMeasuredVariable.md)
+- [ContinuousMeasuredVariable](https://schema.oaedata.org/ContinuousMeasuredVariable.md)
+- [CalculatedVariable](https://schema.oaedata.org/CalculatedVariable.md)
+- [NonMeasuredVariable](https://schema.oaedata.org/NonMeasuredVariable.md)
+
+## Instruments & Calibration
+
+- [Instruments & Calibration](https://schema.oaedata.org/instruments-calibration/index.md)
+- [AnalyzingInstrument](https://schema.oaedata.org/AnalyzingInstrument.md)
+- [PHInstrument](https://schema.oaedata.org/PHInstrument.md)
+- [CRMInstrument](https://schema.oaedata.org/CRMInstrument.md)
+- [CO2GasDetector](https://schema.oaedata.org/CO2GasDetector.md)
+- [Calibration](https://schema.oaedata.org/Calibration.md)
+
+## Controlled Vocabularies
+
+- [Controlled Vocabularies](https://schema.oaedata.org/vocabularies.md)
+- [Vocabulary Values](https://schema.oaedata.org/vocabulary-values.md)
+- [Full Schema Index](https://schema.oaedata.org/OAEDataSchema.md)
