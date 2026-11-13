@@ -11,6 +11,19 @@ dataset in it carries that project's `project_id`.
 An **[Experiment](../Experiment.md)** is one activity within a project, such as a baseline monitoring
 phase followed by an intervention. Each dataset names the experiment it came from with `experiment_id`.
 
+### What Counts as One Experiment
+
+An experiment is a campaign the project treats as one unit: a named trial, deployment, crediting
+period, cruise or model study. Use the project's own names and boundaries.
+
+- Keep a named campaign as one experiment even if the feedstock lot, dose rate or schedule changed
+  during it. Describe the phases in its fields.
+- Campaigns with different names, or separated in time with their own reporting, are separate
+  experiments.
+- A model that is configured in some detail (code, grid, forcing) is a Model experiment, even before
+  the dates of a specific run are known.
+- Laboratory studies, permit applications and monitoring programmes are not experiments.
+
 ### Experiment Types
 
 ```mermaid

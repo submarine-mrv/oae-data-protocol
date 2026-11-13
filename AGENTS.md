@@ -22,6 +22,7 @@ The project uses `uv` for dependency management and `just` as the task runner:
 ### Schema Generation
 - `just gen-project` - Generate Pydantic model + JSON Schema + TypeScript from LinkML schema
 - `just gen-all` - gen-project (full OAE build)
+- `just build-skill` - Assemble the distributable oae-metadata skill into `dist/` (see `skills/README.md`)
 
 ### Documentation
 - `just gen-doc` - Generate documentation (gen-doc + overlay hand-written pages from src/docs/files/)

@@ -8,6 +8,10 @@
 gen-all: gen-project
     @echo "✓ Full gen-all completed"
 
+# Assemble the distributable oae-metadata skill (and a zip) from skills/, the docs and the schema.
+build-skill out="dist/oae-metadata":
+    uv run python scripts/build_skill.py --out {{out}}
+
 # ---------- Dynamic enum pipeline (NERC + QUDT) ----------
 
 fetch-sea-names:
