@@ -1,17 +1,27 @@
 # Drafting Metadata with an AI Assistant
 
-The `oae-metadata` skill lets an AI assistant draft a [metadata file](metadata-format.md) from your
-project documents and data files. You then import the draft into the
-[Metadata Builder](metadata-builder.md), check it, fill what is missing and export the final file.
+Most of what a metadata file asks for is already written down in your project plan, your reports and
+your data files. An AI assistant such as Claude or ChatGPT can read those files and write a first
+draft of your [metadata file](metadata-format.md). You import the draft into the
+[Metadata Builder](metadata-builder.md), check it, fill in what is missing and export the final file.
 
-The assistant produces two files:
+An assistant does this well only when it knows how the OAE Data Protocol is organised, which values
+each field accepts, and when to leave a field empty. We publish that as a
+[folder of instructions and reference files](https://github.com/submarine-mrv/oae-data-protocol/tree/main/skills/oae-metadata)
+written for assistants to follow. Claude calls a folder like this a
+[skill](https://support.claude.com/en/articles/12512180-using-skills-in-claude), and this page uses
+the same word.
 
-- a metadata JSON holding whichever of project, experiments and datasets your files support
+## What you get
+
+The assistant writes two files:
+
+- a metadata file (JSON) holding whichever of project, experiments and datasets your files describe
 - a short report listing required fields it could not find, values it was unsure of, and places
   where your sources disagree
 
-It does not fill a required field it cannot find. Those are listed in the report for you to complete
-in the Builder.
+It does not guess. A required field it cannot find stays empty and goes in the report, for you to
+complete in the Builder.
 
 ## What to give it
 
@@ -22,66 +32,72 @@ in the Builder.
 Say whether the project is new or already exists in the Metadata Builder. For an existing project,
 give its project ID and, for each dataset, the ID of the experiment it belongs to.
 
-## Using it
+## How to use it
 
-There are three ways to give an assistant the skill.
+There are three ways. If you are unsure, start with the first.
 
-| | Works with | Stays up to date | Runs the validator |
+| | You need | Follows the latest protocol | Checks its own draft |
 |---|---|---|---|
-| [Link in a prompt](#link-in-a-prompt) | Any assistant that can read web pages | Yes, it reads the current files each time | Only if the assistant can download and run code |
-| [Zip file](#zip-file) | Claude apps, Claude Code | No, download it again for a new version | Yes |
-| [Plugin](#plugin) | Claude Code | Yes, when the plugin updates | Yes |
+| [1. Paste a link into a chat](#1-paste-a-link-into-a-chat) | Any assistant that can open web pages | Yes | Sometimes |
+| [2. Add the skill to Claude](#2-add-the-skill-to-claude) | A Claude account | Until a new version comes out; then download it again | Yes |
+| [3. Install it in Claude Code](#3-install-it-in-claude-code) | Claude Code | Yes, when you update it | Yes |
 
-### Link in a prompt
+"Checks its own draft" means the assistant runs the [checker](#checking-the-draft-yourself) that
+comes with the skill and fixes what it finds before handing you the files.
 
-Nothing to install. Attach your files and ask:
+### 1. Paste a link into a chat
+
+Nothing to install. Start a chat, attach your files and paste:
 
 > Follow the instructions at https://schema.oaedata.org/skill/SKILL.md to draft OAE metadata from
 > these files. The other files it mentions are in the same folder.
 
-!!! warning "Limits of the link"
-    - Many assistants cannot download and run the [validator](#checking-the-draft). The report says
-      when it was not run, and structural errors then show up only after you import into the Builder.
-    - The assistant has to fetch each reference file itself, and some fetch fewer than the skill
-      asks for.
-    - If your assistant offers to save the instructions as a skill, the saved copy is like the zip:
-      it does not update.
+!!! warning "What this way cannot promise"
+    - Many chat assistants cannot download and run the checker. The report says when it was not run.
+      Errors then show up when you import the draft into the Builder.
+    - The assistant has to open each reference file itself, and some open fewer than the
+      instructions ask for.
+    - If your assistant offers to save the instructions as a skill, the saved copy no longer follows
+      new protocol versions. It behaves like the zip file below.
 
-### Zip file
+### 2. Add the skill to Claude
 
-Download [oae-metadata.zip](https://schema.oaedata.org/oae-metadata.zip).
+Download [oae-metadata.zip](https://schema.oaedata.org/oae-metadata.zip). In Claude, in the browser
+or the desktop app, open Customize, then Skills, and upload the zip. After that, attach your files to
+any chat and ask Claude to draft OAE metadata from them.
 
-- **Claude in the browser or desktop app:** upload it under Customize → Skills.
-- **Claude Code:** unzip it into `~/.claude/skills/`.
+The zip holds the protocol version that was current when you downloaded it. Download and upload it
+again after a new version comes out.
 
-Then ask Claude to draft OAE metadata from your files. The zip holds the protocol version that was
-current when you downloaded it.
+### 3. Install it in Claude Code
 
-### Plugin
-
-In Claude Code:
+[Claude Code](https://code.claude.com/docs) is Anthropic's tool for working with Claude on the files
+in a folder on your computer. If you use it, type these two commands in a session:
 
 ```
 /plugin marketplace add submarine-mrv/oae-data-protocol
 /plugin install oae-metadata@oae-data
 ```
 
-To get new versions without asking, open `/plugin`, choose Marketplaces, then `oae-data`, then
-Enable auto-update. Or run `claude plugin update oae-metadata@oae-data` when you want one.
+To receive new versions without asking, type `/plugin`, choose Marketplaces, then `oae-data`, then
+Enable auto-update. To update by hand, run `claude plugin update oae-metadata@oae-data` in a terminal.
 
 ### When a new protocol version comes out
 
-An installed copy (zip or plugin) checks this site when it starts. If a newer protocol version is
-published, the assistant tells you and still drafts with the copy it has. The check is skipped where
-the assistant has no network access, which includes most browser sandboxes.
+A copy you added or installed (ways 2 and 3) checks this site when it starts. If a newer protocol
+version is published, the assistant tells you and still drafts with the copy it has. Claude in the
+browser usually cannot reach this site from where it runs code, so there the check is skipped.
 
-Every page of this site is also published as markdown for assistants: add `.md` to a page's address
-(for example [`/FieldDataset.md`](https://schema.oaedata.org/FieldDataset.md)), or start from
-[`/llms.txt`](https://schema.oaedata.org/llms.txt).
+## Checking the draft yourself
 
-## Checking the draft
+The skill comes with a checker, a small Python script. It reads a metadata file and lists:
 
-The skill includes a validator that needs only Python 3:
+- errors, such as a field the protocol does not have or a value outside its vocabulary
+- gaps, meaning required fields that are still empty
+- each bounding box in words, so a swapped latitude and longitude is easy to spot
+
+An assistant that can run code runs it for you. To run it yourself you need Python 3 and nothing
+else:
 
 ```bash
 curl -O https://schema.oaedata.org/skill/scripts/validate.py
@@ -89,10 +105,7 @@ curl -O https://schema.oaedata.org/skill/assets/oae_data_protocol.schema.json
 python3 validate.py your-metadata.json --schema oae_data_protocol.schema.json
 ```
 
-It reports structural errors (an unknown field, a value outside its vocabulary) separately from
-gaps (a required field that is absent), and prints each bounding box in words so a swapped latitude
-and longitude is easy to spot. An assistant that can run code will run it for you. One that cannot
-will say so in the report, and the Builder will show the same errors after import.
+The Metadata Builder shows the same errors after you import a draft, so this step is optional.
 
 ## Limits
 
@@ -100,3 +113,10 @@ will say so in the report, and the Builder will show the same errors after impor
 - Maps and figures are not read. Locations shown only on a map are reported as missing.
 - Importing a dataset twice creates two datasets. Delete the old one in the Builder first.
 - NetCDF files are not supported yet.
+
+## For developers
+
+Every page of this site is also published as markdown for assistants: add `.md` to a page's address
+(for example [`/FieldDataset.md`](https://schema.oaedata.org/FieldDataset.md)), or start from
+[`/llms.txt`](https://schema.oaedata.org/llms.txt). The skill's source is in the
+[protocol repository](https://github.com/submarine-mrv/oae-data-protocol/tree/main/skills).
