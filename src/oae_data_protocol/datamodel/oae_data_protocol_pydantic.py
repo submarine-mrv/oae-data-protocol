@@ -3738,7 +3738,7 @@ Associated links to data, DOIs, or publications can be noted here, but should be
                        'Dataset',
                        'Platform',
                        'ModelComponent']} })
-    version: Optional[str] = Field(default=None, title="Version", description="""Release version of the model component.""", json_schema_extra = { "linkml_meta": {'alias': 'version', 'domain_of': ['ModelComponent', 'Container']} })
+    version: Optional[str] = Field(default=None, title="Version", description="""Release version of the model component.""", json_schema_extra = { "linkml_meta": {'alias': 'version', 'domain_of': ['ModelComponent']} })
     codebase: Optional[str] = Field(default=None, title="Codebase", description="""Link to model code repository.""", json_schema_extra = { "linkml_meta": {'alias': 'codebase', 'domain_of': ['ModelComponent']} })
     references: Optional[List[str]] = Field(default=None, title="References", description="""Links or DOIs to any reference(s) relevant to the model components/development, specific model configuration, model validation etc.""", json_schema_extra = { "linkml_meta": {'alias': 'references', 'domain_of': ['ModelComponent']} })
 
@@ -3799,7 +3799,11 @@ class Container(ConfiguredBaseModel):
                     {'range': 'FieldDataset'},
                     {'range': 'ModelOutputDataset'}],
          'domain_of': ['Container']} })
-    version: Optional[str] = Field(default=None, description="""Version of the oae-data-protocol the file follows, such as 0.7.0. A file built from an unreleased commit reads 0.6.1+dev.3c014f7: the last release, then the commit.""", json_schema_extra = { "linkml_meta": {'alias': 'version', 'domain_of': ['ModelComponent', 'Container']} })
+    protocol_version: Optional[Literal["1.0.0"]] = Field(default=None, description="""Version of the OAE Data Management Protocol the schema implements: 1.0.0, https://doi.org/10.5281/zenodo.17154989.""", json_schema_extra = { "linkml_meta": {'alias': 'protocol_version',
+         'domain_of': ['Container'],
+         'equals_string': '1.0.0',
+         'see_also': ['https://doi.org/10.5281/zenodo.17154989']} })
+    schema_version: Optional[str] = Field(default=None, description="""Version of this schema the file follows, such as 0.7.0. A file built from an unreleased commit reads 0.6.1+dev.3c014f7: the last release, then the commit.""", json_schema_extra = { "linkml_meta": {'alias': 'schema_version', 'domain_of': ['Container']} })
     metadata_builder_version: Optional[str] = Field(default=None, description="""Version of the Metadata Builder that wrote the file, in the same form as version.""", json_schema_extra = { "linkml_meta": {'alias': 'metadata_builder_version', 'domain_of': ['Container']} })
 
 

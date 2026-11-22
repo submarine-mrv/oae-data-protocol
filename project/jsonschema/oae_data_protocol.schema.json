@@ -619,8 +619,13 @@
                 "project": {
                     "$ref": "#/$defs/Project"
                 },
-                "version": {
-                    "description": "Version of the oae-data-protocol the file follows, such as 0.7.0. A file built from an unreleased commit reads 0.6.1+dev.3c014f7: the last release, then the commit.",
+                "protocol_version": {
+                    "const": "1.0.0",
+                    "description": "Version of the OAE Data Management Protocol the schema implements: 1.0.0, https://doi.org/10.5281/zenodo.17154989.",
+                    "type": "string"
+                },
+                "schema_version": {
+                    "description": "Version of this schema the file follows, such as 0.7.0. A file built from an unreleased commit reads 0.6.1+dev.3c014f7: the last release, then the commit.",
                     "type": "string"
                 }
             },
@@ -7286,8 +7291,13 @@
         "project": {
             "$ref": "#/$defs/Project"
         },
-        "version": {
-            "description": "Version of the oae-data-protocol the file follows, such as 0.7.0. A file built from an unreleased commit reads 0.6.1+dev.3c014f7: the last release, then the commit.",
+        "protocol_version": {
+            "const": "1.0.0",
+            "description": "Version of the OAE Data Management Protocol the schema implements: 1.0.0, https://doi.org/10.5281/zenodo.17154989.",
+            "type": "string"
+        },
+        "schema_version": {
+            "description": "Version of this schema the file follows, such as 0.7.0. A file built from an unreleased commit reads 0.6.1+dev.3c014f7: the last release, then the commit.",
             "type": "string"
         }
     },

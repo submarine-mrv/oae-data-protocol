@@ -59,11 +59,20 @@ classes:
           - range: FieldDataset
           - range: ModelOutputDataset
         multivalued: true
-      version:
+      protocol_version:
+        range: string
+        equals_string: "1.0.0"
+        description: >-
+          Version of the OAE Data Management Protocol the schema implements: 1.0.0,
+          https://doi.org/10.5281/zenodo.17154989.
+        see_also:
+          - https://doi.org/10.5281/zenodo.17154989
+        required: false
+      schema_version:
         range: string
         description: >-
-          Version of the oae-data-protocol the file follows, such as 0.7.0. A file built from an
-          unreleased commit reads 0.6.1+dev.3c014f7: the last release, then the commit.
+          Version of this schema the file follows, such as 0.7.0. A file built from an unreleased
+          commit reads 0.6.1+dev.3c014f7: the last release, then the commit.
         required: false
       metadata_builder_version:
         range: string

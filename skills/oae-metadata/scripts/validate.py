@@ -325,7 +325,7 @@ def validate(doc, schema):
             class_name = pick(item)
             add(item, class_name, _label(collection, index, item, class_name))
 
-    for key in ("version", "metadata_builder_version"):
+    for key in ("protocol_version", "schema_version", "metadata_builder_version"):
         if key in doc and not isinstance(doc[key], str):
             structural.append(Finding("file", key, f"expected string, got {_type_name(doc[key])}"))
 
@@ -336,8 +336,8 @@ def validate(doc, schema):
         else:
             notes.append(f'{path} "{box}" reads as {reading}. Check this against the source.')
 
-    if isinstance(doc.get("version"), str) and schema.get("version") and doc["version"] != schema["version"]:
-        notes.append(f"The file says version {doc['version']}; this schema is {schema['version']}.")
+    if isinstance(doc.get("schema_version"), str) and schema.get("version") and doc["schema_version"] != schema["version"]:
+        notes.append(f"The file says schema_version {doc['schema_version']}; this schema is {schema['version']}.")
 
     return Result(structural, gaps, notes)
 
