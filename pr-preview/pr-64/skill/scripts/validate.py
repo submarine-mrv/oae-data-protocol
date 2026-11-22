@@ -327,7 +327,7 @@ def validate(doc, schema):
 
     for key in ("protocol_version", "schema_version", "metadata_builder_version"):
         if key in doc:
-            for error in errors(doc[key], schema["properties"][key], schema.get("$defs", {})):
+            for error in errors(doc[key], schema["properties"].get(key), schema.get("$defs", {})):
                 structural.append(Finding("file", key, error.message))
 
     for path, box in boxes(doc):

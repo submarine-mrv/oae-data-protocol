@@ -23,12 +23,12 @@ URI: [oae:technique_description](https://schema.oaedata.org/technique_descriptio
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
-| [CRMCalibration](CRMCalibration.md) | Calibration using Certified Reference Materials, used for DIC and TA instrume... |  no  |
-| [DiscreteCO2Calibration](DiscreteCO2Calibration.md) | CO2 calibration for discrete measurements, with calibration temperature |  no  |
 | [CO2Calibration](CO2Calibration.md) | Base CO2 gas detector calibration with standard gas information |  no  |
-| [PHCalibration](PHCalibration.md) | pH instrument calibration |  no  |
+| [CRMCalibration](CRMCalibration.md) | Calibration using Certified Reference Materials, used for DIC and TA instrume... |  no  |
 | [DyeCalibration](DyeCalibration.md) | pH instrument calibration with an indicator dye standard |  no  |
 | [ContinuousCO2Calibration](ContinuousCO2Calibration.md) | CO2 calibration for continuous measurements, with extended standard gas detai... |  no  |
+| [DiscreteCO2Calibration](DiscreteCO2Calibration.md) | CO2 calibration for discrete measurements, with calibration temperature |  no  |
+| [PHCalibration](PHCalibration.md) | pH instrument calibration |  no  |
 | [Calibration](Calibration.md) | Base calibration information for instruments |  no  |
 
 
