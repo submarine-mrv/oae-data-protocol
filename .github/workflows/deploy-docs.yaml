@@ -1,8 +1,9 @@
 ---
 name: Deploy docs
+# The site follows releases, not main. A manual run redeploys the latest tag.
 on:  # yamllint disable-line rule:truthy
-  push:
-    branches: [main]
+  release:
+    types: [published]
   workflow_dispatch:
 
 permissions: {}
@@ -27,6 +28,9 @@ jobs:
         uses: actions/checkout@v7.0.1
         with:
           fetch-depth: 0  # otherwise, you will fail to push refs to dest repo
+
+      - name: Check out the latest release
+        run: git checkout "$(git describe --tags --abbrev=0)"
 
       - name: Configure git for the bot
         # Gives the bot that commits to gh-pages a name & email address

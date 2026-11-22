@@ -13,9 +13,14 @@ from the protocol's v1.0 launch (August 25, 2025) are in [`templates/excel`](./t
 
 ## Versioning
 
-Each release is tagged (`v0.5.0`) with notes on
-[GitHub Releases](https://github.com/submarine-mrv/oae-data-protocol/releases). The version is the
-`version` field of `oae_data_protocol.yaml` and of the generated JSON Schema.
+`main` holds work in progress. A release is a tag (`v0.7.0`) with notes on
+[GitHub Releases](https://github.com/submarine-mrv/oae-data-protocol/releases), and publishing one
+deploys [schema.oaedata.org](https://schema.oaedata.org), the AI skill included. The docs site
+always matches the latest release, which is what the public Metadata Builder uses.
+
+The version is the `version` field of `oae_data_protocol.yaml` and of the generated JSON Schema. It
+names the latest release and changes only in a release. A metadata file built from an unreleased
+commit says so in its `version`: `0.6.1+dev.3c014f7`. See [RELEASE_PROCESS.md](RELEASE_PROCESS.md).
 
 ## Generated artifacts
 
