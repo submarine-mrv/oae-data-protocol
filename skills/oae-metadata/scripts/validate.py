@@ -326,8 +326,9 @@ def validate(doc, schema):
             add(item, class_name, _label(collection, index, item, class_name))
 
     for key in ("protocol_version", "schema_version", "metadata_builder_version"):
-        if key in doc and not isinstance(doc[key], str):
-            structural.append(Finding("file", key, f"expected string, got {_type_name(doc[key])}"))
+        if key in doc:
+            for error in errors(doc[key], schema["properties"][key], schema.get("$defs", {})):
+                structural.append(Finding("file", key, error.message))
 
     for path, box in boxes(doc):
         problem, reading = check_box(box)

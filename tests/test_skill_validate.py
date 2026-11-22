@@ -72,6 +72,12 @@ def test_partial_file_validates(container, keep):
     assert messages(result.gaps) == []
 
 
+def test_unsupported_protocol_version_is_structural(container):
+    container["protocol_version"] = "2.0.0"
+    result = v.validate(container, SCHEMA)
+    assert any('must be "1.0.0"' in m for m in messages(result.structural))
+
+
 def test_unknown_top_level_key_is_structural(container):
     container["notes"] = "x"
     result = v.validate(container, SCHEMA)
