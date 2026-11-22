@@ -9,7 +9,7 @@ A metadata file is one JSON object. Every key is optional:
 - `project`: one project object
 - `experiments`: a list of experiments
 - `datasets`: a list of datasets, each with its `variables`
-- `protocol_version`: `1.0.0`, the OAE Data Management Protocol version the schema implements
+- `protocol_version`: `1.0.0`, the OAE Data Management Protocol version the schema is based on
 - `schema_version`: the schema version you drafted against (the `version` at the top of `assets/oae_data_protocol.schema.json`)
 
 Use `[]` or leave a key out when there is nothing for it. Never write `null`.

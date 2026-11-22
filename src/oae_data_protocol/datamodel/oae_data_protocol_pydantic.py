@@ -3799,7 +3799,7 @@ class Container(ConfiguredBaseModel):
                     {'range': 'FieldDataset'},
                     {'range': 'ModelOutputDataset'}],
          'domain_of': ['Container']} })
-    protocol_version: Optional[Literal["1.0.0"]] = Field(default=None, description="""Version of the OAE Data Management Protocol the schema implements: 1.0.0, https://doi.org/10.5281/zenodo.17154989.""", json_schema_extra = { "linkml_meta": {'alias': 'protocol_version',
+    protocol_version: Optional[Literal["1.0.0"]] = Field(default=None, description="""Version of the OAE Data Management Protocol the schema is based on: 1.0.0, https://doi.org/10.5281/zenodo.17154989.""", json_schema_extra = { "linkml_meta": {'alias': 'protocol_version',
          'domain_of': ['Container'],
          'equals_string': '1.0.0',
          'see_also': ['https://doi.org/10.5281/zenodo.17154989']} })
