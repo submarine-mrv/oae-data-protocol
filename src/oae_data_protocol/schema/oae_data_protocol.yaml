@@ -77,5 +77,5 @@ classes:
       metadata_builder_version:
         range: string
         description: >-
-          Version of the Metadata Builder that wrote the file, in the same form as version.
+          Version of the Metadata Builder that wrote the file, in the same form as schema_version.
         required: false

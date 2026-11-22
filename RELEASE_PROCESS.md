@@ -1,6 +1,6 @@
 # Release Process
 
-`main` holds work in progress, and PRs merge into it without changing `version`. A release
+`main` holds work in progress, and PRs merge into it without changing the schema's `version:`. A release
 publishes the docs site and the AI skill at [schema.oaedata.org](https://schema.oaedata.org).
 Release when the Metadata Builder needs a schema change, just before its own release.
 
@@ -22,5 +22,6 @@ Release when the Metadata Builder needs a schema change, just before its own rel
 Version numbers follow semver. Before 1.0, a change that makes existing files invalid bumps the
 minor version, and anything else bumps the patch.
 
-The Metadata Builder's `make schema` records an untagged commit as `<last release>+dev.<short hash>`,
-so files exported from a development build name the exact commit they follow.
+Metadata files record this version as `schema_version`. The Metadata Builder's `make schema`
+records an untagged commit as `<last release>+dev.<short hash>`, so files exported from a
+development build name the exact commit they follow.

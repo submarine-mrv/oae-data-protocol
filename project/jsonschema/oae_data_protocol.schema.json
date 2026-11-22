@@ -613,7 +613,7 @@
                     "type": "array"
                 },
                 "metadata_builder_version": {
-                    "description": "Version of the Metadata Builder that wrote the file, in the same form as version.",
+                    "description": "Version of the Metadata Builder that wrote the file, in the same form as schema_version.",
                     "type": "string"
                 },
                 "project": {
@@ -7285,7 +7285,7 @@
             "type": "array"
         },
         "metadata_builder_version": {
-            "description": "Version of the Metadata Builder that wrote the file, in the same form as version.",
+            "description": "Version of the Metadata Builder that wrote the file, in the same form as schema_version.",
             "type": "string"
         },
         "project": {
