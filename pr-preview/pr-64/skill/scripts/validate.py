@@ -325,9 +325,10 @@ def validate(doc, schema):
             class_name = pick(item)
             add(item, class_name, _label(collection, index, item, class_name))
 
-    for key in ("protocol_version", "schema_version", "metadata_builder_version"):
-        if key in doc:
-            for error in errors(doc[key], schema["properties"].get(key), schema.get("$defs", {})):
+    # Top-level fields other than the three collections, such as the version fields.
+    for key in sorted(doc.keys() - {"project", "experiments", "datasets"}):
+        if key in schema["properties"]:
+            for error in errors(doc[key], schema["properties"][key], schema.get("$defs", {})):
                 structural.append(Finding("file", key, error.message))
 
     for path, box in boxes(doc):

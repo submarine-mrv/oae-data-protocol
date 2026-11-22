@@ -10781,7 +10781,7 @@ classes:
     class_uri: oae:ContinuousStandardGas
 metamodel_version: 1.7.0
 source_file: oae_data_protocol.yaml
-source_file_date: '2026-11-22T22:49:02'
+source_file_date: '2026-11-22T22:50:10'
 source_file_size: 2577
-generation_date: '2026-11-22T22:49:09'
+generation_date: '2026-11-22T22:50:21'
 

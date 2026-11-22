@@ -19,8 +19,8 @@ URI: [oae:instrument_type_custom](https://schema.oaedata.org/instrument_type_cus
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
 | [CO2GasDetector](CO2GasDetector.md) | CO2 gas detector with standard gas calibration |  no  |
-| [PHInstrument](PHInstrument.md) | pH measurement instrument with dye-based calibration |  no  |
 | [ContinuousCO2GasDetector](ContinuousCO2GasDetector.md) | CO2 gas detector for continuous measurements, with measurement frequency |  no  |
+| [PHInstrument](PHInstrument.md) | pH measurement instrument with dye-based calibration |  no  |
 | [AnalyzingInstrument](AnalyzingInstrument.md) | Base class for scientific instruments used in analyzing samples for measureme... |  no  |
 | [CRMInstrument](CRMInstrument.md) | Instrument calibrated with Certified Reference Materials, used for DIC and TA... |  no  |
 
