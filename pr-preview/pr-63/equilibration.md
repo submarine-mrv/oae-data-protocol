@@ -1,0 +1,89 @@
+
+
+# Slot: Equilibration (equilibration)
+
+
+_Whether the feedstock was pre-equilibrated or unequilibrated_
+
+
+
+
+
+URI: [oae:equilibration](https://schema.oaedata.org/equilibration)
+
+
+
+<!-- no inheritance hierarchy -->
+
+
+
+
+
+## Applicable Classes
+
+| Name | Description | Modifies Slot |
+| --- | --- | --- |
+| [Intervention](Intervention.md) | Additional metadata that applies to experiments where an intervention, such a... |  no  |
+| [InterventionWithTracer](InterventionWithTracer.md) | Additional metadata that applies to hybrid experiments where an intervention ... |  no  |
+| [InterventionDetails](InterventionDetails.md) | An abstract class (used as a mixin, not implemented directly) for detailing t... |  no  |
+
+
+
+
+
+
+
+## Properties
+
+* Range: [EquilibrationStatus](EquilibrationStatus.md)
+
+* Required: True
+
+
+
+
+
+## Identifier and Mapping Information
+
+
+
+
+
+
+
+### Schema Source
+
+
+* from schema: https://schema.oaedata.org/OAEDataSchema
+
+
+
+
+## Mappings
+
+| Mapping Type | Mapped Value |
+| ---  | ---  |
+| self | oae:equilibration |
+| native | oae:equilibration |
+
+
+
+
+## LinkML Source
+
+<details>
+```yaml
+name: equilibration
+description: Whether the feedstock was pre-equilibrated or unequilibrated
+title: Equilibration
+from_schema: https://schema.oaedata.org/OAEDataSchema
+rank: 1000
+alias: equilibration
+owner: InterventionDetails
+domain_of:
+- InterventionDetails
+range: EquilibrationStatus
+required: true
+
+```
+</details>
