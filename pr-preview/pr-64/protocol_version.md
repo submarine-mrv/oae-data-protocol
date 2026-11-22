@@ -3,7 +3,7 @@
 # Slot: protocol_version
 
 
-_Version of the OAE Data Management Protocol the schema implements: 1.0.0, https://doi.org/10.5281/zenodo.17154989._
+_Version of the OAE Data Management Protocol the schema is based on: 1.0.0, https://doi.org/10.5281/zenodo.17154989._
 
 
 
@@ -74,8 +74,8 @@ URI: [oae:protocol_version](https://schema.oaedata.org/protocol_version)
 <details>
 ```yaml
 name: protocol_version
-description: 'Version of the OAE Data Management Protocol the schema implements: 1.0.0,
-  https://doi.org/10.5281/zenodo.17154989.'
+description: 'Version of the OAE Data Management Protocol the schema is based on:
+  1.0.0, https://doi.org/10.5281/zenodo.17154989.'
 from_schema: https://schema.oaedata.org/OAEDataSchema
 see_also:
 - https://doi.org/10.5281/zenodo.17154989

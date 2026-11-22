@@ -2354,8 +2354,8 @@ slots:
     - range: ModelOutputDataset
   container__protocol_version:
     name: container__protocol_version
-    description: 'Version of the OAE Data Management Protocol the schema implements:
-      1.0.0, https://doi.org/10.5281/zenodo.17154989.'
+    description: 'Version of the OAE Data Management Protocol the schema is based
+      on: 1.0.0, https://doi.org/10.5281/zenodo.17154989.'
     from_schema: https://schema.oaedata.org/OAEDataSchema
     see_also:
     - https://doi.org/10.5281/zenodo.17154989
@@ -6834,8 +6834,8 @@ classes:
         - range: ModelOutputDataset
       protocol_version:
         name: protocol_version
-        description: 'Version of the OAE Data Management Protocol the schema implements:
-          1.0.0, https://doi.org/10.5281/zenodo.17154989.'
+        description: 'Version of the OAE Data Management Protocol the schema is based
+          on: 1.0.0, https://doi.org/10.5281/zenodo.17154989.'
         see_also:
         - https://doi.org/10.5281/zenodo.17154989
         range: string
@@ -10781,7 +10781,7 @@ classes:
     class_uri: oae:ContinuousStandardGas
 metamodel_version: 1.7.0
 source_file: oae_data_protocol.yaml
-source_file_date: '2026-11-22T22:24:30'
-source_file_size: 2576
-generation_date: '2026-11-22T22:24:37'
+source_file_date: '2026-11-22T22:29:42'
+source_file_size: 2577
+generation_date: '2026-11-22T22:29:51'
 

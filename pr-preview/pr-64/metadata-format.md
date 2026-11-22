@@ -15,7 +15,7 @@ to get vocabulary values and field formats right by hand.
 | `project` | One [Project](Project.md) |
 | `experiments` | The project's [experiments](projects-experiments/index.md#experiments) |
 | `datasets` | The datasets those experiments produced, either [FieldDataset](FieldDataset.md) or [ModelOutputDataset](ModelOutputDataset.md) |
-| `protocol_version` | The [OAE Data Management Protocol](https://doi.org/10.5281/zenodo.17154989) version the schema implements: `1.0.0` |
+| `protocol_version` | The [OAE Data Management Protocol](https://doi.org/10.5281/zenodo.17154989) version the schema is based on: `1.0.0` |
 | `schema_version` | The schema version the file follows |
 | `metadata_builder_version` | Optional. The Metadata Builder version that wrote the file |
 

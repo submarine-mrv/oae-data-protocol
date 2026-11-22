@@ -15,7 +15,7 @@ to get vocabulary values and field formats right by hand.
 | `project` | One [Project](https://schema.oaedata.org/Project.md) |
 | `experiments` | The project's [experiments](https://schema.oaedata.org/projects-experiments/index.md#experiments) |
 | `datasets` | The datasets those experiments produced, either [FieldDataset](https://schema.oaedata.org/FieldDataset.md) or [ModelOutputDataset](https://schema.oaedata.org/ModelOutputDataset.md) |
-| `protocol_version` | The [OAE Data Management Protocol](https://doi.org/10.5281/zenodo.17154989) version the schema implements: `1.0.0` |
+| `protocol_version` | The [OAE Data Management Protocol](https://doi.org/10.5281/zenodo.17154989) version the schema is based on: `1.0.0` |
 | `schema_version` | The schema version the file follows |
 | `metadata_builder_version` | Optional. The Metadata Builder version that wrote the file |
 
