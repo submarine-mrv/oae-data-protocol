@@ -2383,7 +2383,7 @@ slots:
   container__metadata_builder_version:
     name: container__metadata_builder_version
     description: Version of the Metadata Builder that wrote the file, in the same
-      form as version.
+      form as schema_version.
     from_schema: https://schema.oaedata.org/OAEDataSchema
     slot_uri: oae:metadata_builder_version
     alias: metadata_builder_version
@@ -6851,7 +6851,7 @@ classes:
       metadata_builder_version:
         name: metadata_builder_version
         description: Version of the Metadata Builder that wrote the file, in the same
-          form as version.
+          form as schema_version.
         range: string
         required: false
     class_uri: oae:Container
@@ -10781,7 +10781,7 @@ classes:
     class_uri: oae:ContinuousStandardGas
 metamodel_version: 1.7.0
 source_file: oae_data_protocol.yaml
-source_file_date: '2026-11-22T22:50:10'
-source_file_size: 2577
-generation_date: '2026-11-22T22:50:21'
+source_file_date: '2026-11-22T22:53:44'
+source_file_size: 2584
+generation_date: '2026-11-22T22:53:52'
 

@@ -25,18 +25,18 @@ URI: [oae:appropriate_use_quality](https://schema.oaedata.org/appropriate_use_qu
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
-| [MeasuredTAFields](MeasuredTAFields.md) | Fields applied to all measured TA variable types (discrete and continuous) |  no  |
-| [ContinuousTAVariable](ContinuousTAVariable.md) | Total Alkalinity (TA) measured variable from continuous autonomous sensor |  no  |
-| [ContinuousDICVariable](ContinuousDICVariable.md) | Dissolved Inorganic Carbon (DIC) measured variable from continuous autonomous... |  no  |
-| [DiscreteTAVariable](DiscreteTAVariable.md) | Total Alkalinity (TA) measured variable from discrete bottle samples |  no  |
-| [DiscreteDICVariable](DiscreteDICVariable.md) | Dissolved Inorganic Carbon (DIC) measured variable from discrete bottle sampl... |  no  |
-| [ContinuousCO2Variable](ContinuousCO2Variable.md) | CO2 continuous (sensor) measured variable (xCO2/pCO2/fCO2) |  no  |
-| [ContinuousPHVariable](ContinuousPHVariable.md) | pH measured variable from continuous autonomous sensor |  no  |
 | [DiscreteCO2Variable](DiscreteCO2Variable.md) | CO2 discrete (bottle) measured variable (pCO2/fCO2) |  no  |
-| [MeasuredDICFields](MeasuredDICFields.md) | Fields applied to all measured DIC variable types (discrete and continuous) |  no  |
-| [DiscretePHVariable](DiscretePHVariable.md) | pH measured variable with dye-based spectrophotometric measurement |  no  |
+| [MeasuredTAFields](MeasuredTAFields.md) | Fields applied to all measured TA variable types (discrete and continuous) |  no  |
 | [MeasuredPHFields](MeasuredPHFields.md) | Fields applied to all measured pH variable types (discrete and continuous) |  no  |
+| [ContinuousDICVariable](ContinuousDICVariable.md) | Dissolved Inorganic Carbon (DIC) measured variable from continuous autonomous... |  no  |
+| [ContinuousTAVariable](ContinuousTAVariable.md) | Total Alkalinity (TA) measured variable from continuous autonomous sensor |  no  |
+| [DiscreteDICVariable](DiscreteDICVariable.md) | Dissolved Inorganic Carbon (DIC) measured variable from discrete bottle sampl... |  no  |
+| [MeasuredDICFields](MeasuredDICFields.md) | Fields applied to all measured DIC variable types (discrete and continuous) |  no  |
+| [ContinuousPHVariable](ContinuousPHVariable.md) | pH measured variable from continuous autonomous sensor |  no  |
+| [ContinuousCO2Variable](ContinuousCO2Variable.md) | CO2 continuous (sensor) measured variable (xCO2/pCO2/fCO2) |  no  |
+| [DiscretePHVariable](DiscretePHVariable.md) | pH measured variable with dye-based spectrophotometric measurement |  no  |
 | [MeasuredCO2Fields](MeasuredCO2Fields.md) | Fields applied to all measured CO2 variable types (discrete and continuous) |  no  |
+| [DiscreteTAVariable](DiscreteTAVariable.md) | Total Alkalinity (TA) measured variable from discrete bottle samples |  no  |
 
 
 

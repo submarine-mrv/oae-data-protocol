@@ -3,7 +3,7 @@
 # Slot: metadata_builder_version
 
 
-_Version of the Metadata Builder that wrote the file, in the same form as version._
+_Version of the Metadata Builder that wrote the file, in the same form as schema_version._
 
 
 
@@ -71,7 +71,7 @@ URI: [oae:metadata_builder_version](https://schema.oaedata.org/metadata_builder_
 ```yaml
 name: metadata_builder_version
 description: Version of the Metadata Builder that wrote the file, in the same form
-  as version.
+  as schema_version.
 from_schema: https://schema.oaedata.org/OAEDataSchema
 rank: 1000
 alias: metadata_builder_version
