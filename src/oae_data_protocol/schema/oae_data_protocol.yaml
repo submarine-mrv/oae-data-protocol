@@ -40,7 +40,6 @@ classes:
     attributes:
       project:
         range: Project
-      # TODO: Decide if version & git hashes should be required
       experiments:
         range: Any
         # Listed by hand; tests/test_top_level_unions.py checks the list against the class tree.
@@ -62,13 +61,12 @@ classes:
         multivalued: true
       version:
         range: string
-        description: "Version of the oae-data-protocol"
+        description: >-
+          Version of the oae-data-protocol the file follows, such as 0.7.0. A file built from an
+          unreleased commit reads 0.6.1+dev.3c014f7: the last release, then the commit.
         required: false
-      protocol_git_hash:
+      metadata_builder_version:
         range: string
-        description: "Git commit hash of the oae-data-protocol"
-        required: false
-      metadata_builder_git_hash:
-        range: string
-        description: "Git commit hash of the metadata-builder UI"
+        description: >-
+          Version of the Metadata Builder that wrote the file, in the same form as version.
         required: false

@@ -3799,9 +3799,8 @@ class Container(ConfiguredBaseModel):
                     {'range': 'FieldDataset'},
                     {'range': 'ModelOutputDataset'}],
          'domain_of': ['Container']} })
-    version: Optional[str] = Field(default=None, description="""Version of the oae-data-protocol""", json_schema_extra = { "linkml_meta": {'alias': 'version', 'domain_of': ['ModelComponent', 'Container']} })
-    protocol_git_hash: Optional[str] = Field(default=None, description="""Git commit hash of the oae-data-protocol""", json_schema_extra = { "linkml_meta": {'alias': 'protocol_git_hash', 'domain_of': ['Container']} })
-    metadata_builder_git_hash: Optional[str] = Field(default=None, description="""Git commit hash of the metadata-builder UI""", json_schema_extra = { "linkml_meta": {'alias': 'metadata_builder_git_hash', 'domain_of': ['Container']} })
+    version: Optional[str] = Field(default=None, description="""Version of the oae-data-protocol the file follows, such as 0.7.0. A file built from an unreleased commit reads 0.6.1+dev.3c014f7: the last release, then the commit.""", json_schema_extra = { "linkml_meta": {'alias': 'version', 'domain_of': ['ModelComponent', 'Container']} })
+    metadata_builder_version: Optional[str] = Field(default=None, description="""Version of the Metadata Builder that wrote the file, in the same form as version.""", json_schema_extra = { "linkml_meta": {'alias': 'metadata_builder_version', 'domain_of': ['Container']} })
 
 
 # Model rebuild

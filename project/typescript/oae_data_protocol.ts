@@ -1957,12 +1957,10 @@ export interface Container {
     project?: Project,
     experiments?: Any[],
     datasets?: Any[],
-    /** Version of the oae-data-protocol */
+    /** Version of the oae-data-protocol the file follows, such as 0.7.0. A file built from an unreleased commit reads 0.6.1+dev.3c014f7: the last release, then the commit. */
     version?: string,
-    /** Git commit hash of the oae-data-protocol */
-    protocol_git_hash?: string,
-    /** Git commit hash of the metadata-builder UI */
-    metadata_builder_git_hash?: string,
+    /** Version of the Metadata Builder that wrote the file, in the same form as version. */
+    metadata_builder_version?: string,
 }
 
 

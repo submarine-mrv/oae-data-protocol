@@ -612,19 +612,15 @@
                     },
                     "type": "array"
                 },
-                "metadata_builder_git_hash": {
-                    "description": "Git commit hash of the metadata-builder UI",
+                "metadata_builder_version": {
+                    "description": "Version of the Metadata Builder that wrote the file, in the same form as version.",
                     "type": "string"
                 },
                 "project": {
                     "$ref": "#/$defs/Project"
                 },
-                "protocol_git_hash": {
-                    "description": "Git commit hash of the oae-data-protocol",
-                    "type": "string"
-                },
                 "version": {
-                    "description": "Version of the oae-data-protocol",
+                    "description": "Version of the oae-data-protocol the file follows, such as 0.7.0. A file built from an unreleased commit reads 0.6.1+dev.3c014f7: the last release, then the commit.",
                     "type": "string"
                 }
             },
@@ -7283,19 +7279,15 @@
             },
             "type": "array"
         },
-        "metadata_builder_git_hash": {
-            "description": "Git commit hash of the metadata-builder UI",
+        "metadata_builder_version": {
+            "description": "Version of the Metadata Builder that wrote the file, in the same form as version.",
             "type": "string"
         },
         "project": {
             "$ref": "#/$defs/Project"
         },
-        "protocol_git_hash": {
-            "description": "Git commit hash of the oae-data-protocol",
-            "type": "string"
-        },
         "version": {
-            "description": "Version of the oae-data-protocol",
+            "description": "Version of the oae-data-protocol the file follows, such as 0.7.0. A file built from an unreleased commit reads 0.6.1+dev.3c014f7: the last release, then the commit.",
             "type": "string"
         }
     },
