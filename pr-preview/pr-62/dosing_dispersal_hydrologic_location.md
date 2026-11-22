@@ -24,9 +24,9 @@ URI: [oae:dosing_dispersal_hydrologic_location](https://schema.oaedata.org/dosin
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
 | [Intervention](Intervention.md) | Additional metadata that applies to experiments where an intervention, such a... |  no  |
-| [InterventionWithTracer](InterventionWithTracer.md) | Additional metadata that applies to hybrid experiments where an intervention ... |  no  |
 | [Tracer](Tracer.md) | Additional metadata that applies to experiments where a tracer study was cond... |  no  |
 | [DosingDetails](DosingDetails.md) | An abstract class (used as a mixin, not implemented directly) for detailing t... |  no  |
+| [InterventionWithTracer](InterventionWithTracer.md) | Additional metadata that applies to hybrid experiments where an intervention ... |  no  |
 
 
 
