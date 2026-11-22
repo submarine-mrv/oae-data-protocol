@@ -26,8 +26,8 @@ URI: [oae:alkalinity_feedstock](https://schema.oaedata.org/alkalinity_feedstock)
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
 | [InterventionDetails](InterventionDetails.md) | An abstract class (used as a mixin, not implemented directly) for detailing t... |  no  |
-| [InterventionWithTracer](InterventionWithTracer.md) | Additional metadata that applies to hybrid experiments where an intervention ... |  no  |
 | [Intervention](Intervention.md) | Additional metadata that applies to experiments where an intervention, such a... |  no  |
+| [InterventionWithTracer](InterventionWithTracer.md) | Additional metadata that applies to hybrid experiments where an intervention ... |  no  |
 
 
 
