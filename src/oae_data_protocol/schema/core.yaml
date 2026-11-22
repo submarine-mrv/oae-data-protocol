@@ -30,7 +30,11 @@ slots:
 
       Project ID + Experiment type + Optional numerical indicator to differentiate between various experiments of
       the same type for a project. A two digit consecutive number beginning with 01
+
+      Up to 64 characters: letters, numbers, hyphens (-), underscores (_) and periods (.), starting with a letter
+      or number.
     range: string
+    pattern: "^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$"
   project_id:
     title: Project ID
     description: >-
@@ -41,7 +45,11 @@ slots:
       initial or company, a unique date, and location.
 
       Any method that creates a unique ID that will link all project data is acceptable.
+
+      Up to 64 characters: letters, numbers, hyphens (-), underscores (_) and periods (.), starting with a letter
+      or number.
     range: string
+    pattern: "^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$"
   temporal_coverage:
     title: Temporal Coverage
     slot_uri: schema:temporalCoverage
