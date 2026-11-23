@@ -418,17 +418,17 @@ def version_status(current, urls=LATEST_VERSION_URLS):
         newer = parsed > _version(current)
     except Exception:  # noqa: BLE001
         return (
-            f"Version: not checked. This copy has OAE Data Protocol {current} and could not reach "
+            f"Version: not checked. This copy has OAE Data Protocol schema {current} and could not reach "
             f"schema.oaedata.org or its copy on GitHub, so a newer version may exist. Say so on the report's first line."
         )
     if newer:
         return (
-            f"Version: OUT OF DATE. OAE Data Protocol {latest} is published; this copy of the skill has {current}. "
+            f"Version: OUT OF DATE. OAE Data Protocol schema {latest} is published; this copy of the skill has {current}. "
             f"Do not draft or validate with this copy. Work from the current files at {LIVE_SKILL} "
             f"(if that address is blocked, the same folder is at {MIRROR}skill/) "
             f"and tell the researcher to replace their saved copy: {UPDATE_PAGE}"
         )
-    return f"Version: OAE Data Protocol {current} is the latest published version."
+    return f"Version: OAE Data Protocol schema {current} is the latest published version."
 
 
 def main(argv=None):

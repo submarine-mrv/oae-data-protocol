@@ -23,8 +23,8 @@ URI: [oae:blank_correction](https://schema.oaedata.org/blank_correction)
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
-| [DiscreteTAVariable](DiscreteTAVariable.md) | Total Alkalinity (TA) measured variable from discrete bottle samples |  no  |
 | [DiscreteDICVariable](DiscreteDICVariable.md) | Dissolved Inorganic Carbon (DIC) measured variable from discrete bottle sampl... |  no  |
+| [DiscreteTAVariable](DiscreteTAVariable.md) | Total Alkalinity (TA) measured variable from discrete bottle samples |  no  |
 
 
 

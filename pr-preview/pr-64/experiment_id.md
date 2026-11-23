@@ -25,14 +25,14 @@ URI: [oae:experiment_id](https://schema.oaedata.org/experiment_id)
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
-| [FieldDataset](FieldDataset.md) | A field or observational dataset related to an OAE experiment |  no  |
-| [Tracer](Tracer.md) | Additional metadata that applies to experiments where a tracer study was cond... |  no  |
-| [Dataset](Dataset.md) | Abstract base class for all dataset types |  yes  |
-| [ModelOutputDataset](ModelOutputDataset.md) | A model simulation output dataset |  no  |
-| [Intervention](Intervention.md) | Additional metadata that applies to experiments where an intervention, such a... |  no  |
-| [InSituExperiment](InSituExperiment.md) | Experiment metadata for in-situ studies (interventions, tracer studies, etc |  no  |
 | [InterventionWithTracer](InterventionWithTracer.md) | Additional metadata that applies to hybrid experiments where an intervention ... |  no  |
+| [ModelOutputDataset](ModelOutputDataset.md) | A model simulation output dataset |  no  |
+| [Tracer](Tracer.md) | Additional metadata that applies to experiments where a tracer study was cond... |  no  |
 | [Experiment](Experiment.md) | Abstract base class for all experiment types |  yes  |
+| [Dataset](Dataset.md) | Abstract base class for all dataset types |  yes  |
+| [FieldDataset](FieldDataset.md) | A field or observational dataset related to an OAE experiment |  no  |
+| [InSituExperiment](InSituExperiment.md) | Experiment metadata for in-situ studies (interventions, tracer studies, etc |  no  |
+| [Intervention](Intervention.md) | Additional metadata that applies to experiments where an intervention, such a... |  no  |
 | [Model](Model.md) | A computational model experiment related to OAE |  no  |
 
 
