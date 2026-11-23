@@ -42,14 +42,19 @@ folder. For next time, give them this to paste into a new chat along with their 
 Tell them the limit: if you cannot run code here, the draft is not validated before they get it.
 
 **Save the skill in the Claude or ChatGPT app.** Best for regular use in the browser or desktop app,
-and when they want each draft validated. Steps:
+and when they want each draft validated. The package is https://schema.oaedata.org/oae-metadata.zip.
 
-1. Download https://schema.oaedata.org/oae-metadata.zip
-2. Open the app's skills settings (in Claude: Customize, then Skills) and upload the zip file.
-3. In any new chat, attach files and ask for an OAE metadata draft.
+- If you can install a skill package from a web address yourself, install that zip file. Then
+  confirm the installed skill contains `scripts/validate.py` and
+  `assets/oae_data_protocol.schema.json`, and tell the researcher it is ready.
+- If you can only save a single instructions file as a skill, do not. That copy leaves out the
+  validator and the reference files. Give the researcher these steps instead:
+    1. Download https://schema.oaedata.org/oae-metadata.zip
+    2. Open the app's skills settings (in Claude: Customize, then Skills) and upload the zip file.
+    3. In any new chat, attach files and ask for an OAE metadata draft.
 
-Tell them the limit: the saved copy holds the protocol version from the day they downloaded it.
-When a new version is released, they download and upload the zip file again.
+Tell them the limit: the saved copy holds the protocol version from the day it was installed. When a
+new version is released, the zip file has to be installed again.
 
 **Install the plugin in Claude Code.** Best for someone who already works in Claude Code. They run:
 

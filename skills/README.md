@@ -84,7 +84,9 @@ recommends the link, the zip or the plugin. The docs build publishes it at
 `https://schema.oaedata.org/skill/install.md`, outside the zip. The docs page's quick-start prompt
 points to it.
 
-The zip also uploads as a skill on chatgpt.com (tested 2026-11-22). No other OpenAI packaging is set
+The zip also uploads as a skill on chatgpt.com, and ChatGPT installed it from its address when asked
+(tested 2026-11-22). Claude, asked the same, saved only `SKILL.md`, which is why the setup guide
+tells an AI tool not to do that. No other OpenAI packaging is set
 up.
 
 ## Evaluation

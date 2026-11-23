@@ -70,15 +70,17 @@ This approach requires no installation. Start a new chat, attach your files and 
       Builder.
     - The AI tool has to open each of the skill's reference files itself, and some open fewer than
       the instructions ask for.
-    - If your AI tool offers to save the instructions as a skill, the saved copy will no longer stay
-      up to date with the protocol. It behaves like the zip file in the next approach.
+    - If your AI tool offers to save the instructions as a skill, the saved copy may hold only the
+      instructions, without the validator and the reference files. Upload the zip file instead, as
+      described in the next approach.
 
 ### 2. Upload the skill to Claude or ChatGPT
 
 Download [oae-metadata.zip](https://schema.oaedata.org/oae-metadata.zip) and upload it in your AI
 tool's skills settings. In Claude (in the browser or the desktop app), open Customize, then Skills.
-In ChatGPT, open the skills page in your settings. From then on you can attach your files to any
-chat and ask for a draft of OAE metadata from them.
+In ChatGPT, open the skills page in your settings, or ask ChatGPT to install the skill from the zip
+file's address. From then on you can attach your files to any chat and ask for a draft of OAE
+metadata from them.
 
 The zip file contains the version of the protocol that was current when you downloaded it. Download
 and upload it again whenever a new version of the protocol is released.
