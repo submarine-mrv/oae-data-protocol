@@ -90,6 +90,16 @@ def test_zip_holds_the_skill_folder(skill):
     assert "oae-metadata/assets/oae_data_protocol.schema.json" in names
 
 
+def test_plugin_file_holds_a_manifest_and_the_skill(skill):
+    with zipfile.ZipFile(skill.parent / "oae-metadata.plugin") as archive:
+        names = archive.namelist()
+        manifest = json.loads(archive.read(".claude-plugin/plugin.json"))
+    assert manifest["name"] == "oae-metadata"
+    assert manifest["version"] == (skill / "version.txt").read_text().strip()
+    assert "skills/oae-metadata/SKILL.md" in names
+    assert "skills/oae-metadata/scripts/validate.py" in names
+
+
 def test_version_file_holds_the_schema_version(skill):
     schema = json.loads((skill / "assets" / bs.JSON_SCHEMA.name).read_text())
     assert (skill / "version.txt").read_text().strip() == schema["version"]

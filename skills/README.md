@@ -79,6 +79,10 @@ The build writes the schema version to `version.txt` in the skill. `validate.py 
 compares an installed copy's schema version with `https://schema.oaedata.org/skill/version.txt`, and
 `SKILL.md` asks the AI tool to run it first. It prints nothing alarming when there is no network.
 
+The build also writes `https://schema.oaedata.org/oae-metadata.plugin`: the same skill under
+`skills/oae-metadata/` with a `.claude-plugin/plugin.json`. Claude in the apps can offer that file
+for a one-click install; it cannot add a marketplace to the user's account from a chat.
+
 `skills/install.md` is a setup guide written for an AI tool: it asks the researcher what they need and
 recommends the link, the zip or the plugin. The docs build publishes it at
 `https://schema.oaedata.org/skill/install.md`, outside the zip. The docs page's quick-start prompt

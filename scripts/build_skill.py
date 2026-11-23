@@ -107,7 +107,7 @@ def absolute_links(text, page):
 
 
 def build(out):
-    """Write the complete skill folder to `out`, replacing it, and oae-metadata.zip beside it."""
+    """Write the complete skill folder to `out`, replacing it, with oae-metadata.zip and .plugin beside it."""
     out = Path(out)
     if out.exists():
         shutil.rmtree(out)
@@ -125,6 +125,19 @@ def build(out):
     with zipfile.ZipFile(out.parent / f"{SKILL.name}.zip", "w", zipfile.ZIP_DEFLATED) as archive:
         for path in sorted(p for p in out.rglob("*") if p.is_file()):
             archive.write(path, f"{SKILL.name}/{path.relative_to(out).as_posix()}")
+    # The same skill as a plugin file, which the Claude apps install from a chat with one click.
+    manifest = {
+        "name": SKILL.name,
+        "version": (out / "version.txt").read_text().strip(),
+        "description": "Draft OAE Data Protocol metadata from project documents and data files",
+        "author": {"name": "OAE Data Commons"},
+        "homepage": f"{SITE}ai-skill/",
+        "repository": "https://github.com/submarine-mrv/oae-data-protocol",
+    }
+    with zipfile.ZipFile(out.parent / f"{SKILL.name}.plugin", "w", zipfile.ZIP_DEFLATED) as archive:
+        archive.writestr(".claude-plugin/plugin.json", json.dumps(manifest, indent=2) + "\n")
+        for path in sorted(p for p in out.rglob("*") if p.is_file()):
+            archive.write(path, f"skills/{SKILL.name}/{path.relative_to(out).as_posix()}")
     return out
 
 

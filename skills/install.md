@@ -47,11 +47,17 @@ and when they want each draft validated. The package is https://schema.oaedata.o
 - If you can install a skill package from a web address yourself, install that zip file. Then
   confirm the installed skill contains `scripts/validate.py` and
   `assets/oae_data_protocol.schema.json`, and tell the researcher it is ready.
+- If you are Claude and can offer a plugin file for the researcher to install, download
+  https://schema.oaedata.org/oae-metadata.plugin and offer that file unchanged. It holds the same
+  skill with a plugin manifest. The researcher presses Install on its card.
 - If you can only save a single instructions file as a skill, do not. That copy leaves out the
   validator and the reference files. Give the researcher these steps instead:
     1. Download https://schema.oaedata.org/oae-metadata.zip
     2. Open the app's skills settings (in Claude: Customize, then Skills) and upload the zip file.
     3. In any new chat, attach files and ask for an OAE metadata draft.
+
+Saved skills depend on the researcher's plan and on code execution being turned on. If the app has
+no skills page or refuses the upload, use "Try it now" instead.
 
 Tell them the limit: the saved copy holds the protocol version from the day it was installed. When a
 new version is released, the zip file has to be installed again.

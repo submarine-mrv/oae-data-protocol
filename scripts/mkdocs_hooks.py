@@ -3,7 +3,7 @@
 After the HTML build it adds, to the built site:
 
 - every page's source markdown at the same path (`/FieldDataset.md` beside `/FieldDataset/`)
-- the assembled oae-metadata skill as plain files under `/skill/` with an index page, and `/oae-metadata.zip`
+- the assembled oae-metadata skill as plain files under `/skill/` with an index page, `/oae-metadata.zip` and `/oae-metadata.plugin`
 - `/llms.txt`, an index of both
 """
 
@@ -28,6 +28,7 @@ INTRO = """\
 - [JSON Schema]({base}skill/assets/oae_data_protocol.schema.json): the schema a metadata file must follow.
 - [Validator]({base}skill/scripts/validate.py): `python3 validate.py file.json`, standard library only.
 - [The skill as a zip]({base}oae-metadata.zip)
+- [The skill as a Claude plugin file]({base}oae-metadata.plugin)
 """
 
 

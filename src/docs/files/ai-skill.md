@@ -82,6 +82,9 @@ In ChatGPT, open the skills page in your settings, or ask ChatGPT to install the
 file's address. From then on you can attach your files to any chat and ask for a draft of OAE
 metadata from them.
 
+Saved skills depend on your plan and on code execution being turned on. If you do not see a skills
+page in your settings, use the first approach.
+
 The zip file contains the version of the protocol that was current when you downloaded it. Download
 and upload it again whenever a new version of the protocol is released.
 
