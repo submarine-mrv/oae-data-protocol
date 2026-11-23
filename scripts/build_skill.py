@@ -4,7 +4,7 @@
     python scripts/build_skill.py --vocabulary-page FILE
 
 The repo holds only what is specific to drafting (skills/oae-metadata). The build adds what the
-assistant should read from the same sources people do: the JSON Schema, the hand-written docs pages
+AI tool should read from the same sources people do: the JSON Schema, the hand-written docs pages
 on choosing classes, and a page of enum value meanings generated from the schema.
 """
 
