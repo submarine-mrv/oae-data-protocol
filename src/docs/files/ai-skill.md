@@ -1,11 +1,16 @@
 # Drafting Metadata with AI
 
-More often than not, the information you'll be filling out in the Metadata Builder is already
-available in existing project documentation (e.g. a project plan, monitoring reports, or data files).
-An AI tool such as Claude or ChatGPT can read this project documentation and these data files to
-write a first draft of your [metadata file](metadata-format.md), with sufficient guidance. An
-AI-drafted metadata file can then be imported directly into the
-[Metadata Builder](metadata-builder.md), for further refining and validating its contents.
+Most of what a metadata file asks for is already written down somewhere: in a project plan, a
+monitoring report, or the data files themselves. An AI tool such as Claude or ChatGPT can read this
+project documentation and these data files and, with sufficient guidance, write a first draft of
+your [metadata file](metadata-format.md). You then import the draft into the
+[Metadata Builder](metadata-builder.md) to review, complete and validate it.
+
+!!! tip "Quick start"
+    Paste this into Claude or ChatGPT, and it will walk you through the setup that fits you:
+
+    > Help me set up the oae-metadata skill so that we can draft metadata files together that
+    > follow the OAE Data Protocol. See https://schema.oaedata.org/skill/install.md
 
 For AI to effectively draft OAE metadata, it needs to know how the OAE Data Protocol is structured,
 which types of values each field in the metadata accepts, and when to leave a field empty. To make
@@ -46,7 +51,7 @@ start with the first.
 | | Works with | Stays up to date with the protocol | Validates its own draft |
 |---|---|---|---|
 | [1. Share a link in a chat](#1-share-a-link-in-a-chat) | Any AI tool that can open web pages | Yes | Sometimes |
-| [2. Upload the skill to Claude](#2-upload-the-skill-to-claude) | Claude (browser or desktop app) | No, it needs to be downloaded again for each new version | Yes |
+| [2. Upload the skill to Claude or ChatGPT](#2-upload-the-skill-to-claude-or-chatgpt) | Claude or ChatGPT (browser or desktop app) | No, it needs to be downloaded again for each new version | Yes |
 | [3. Install the skill in Claude Code](#3-install-the-skill-in-claude-code) | Claude Code | Yes, when the skill is updated | Yes |
 
 "Validates its own draft" means the AI tool runs the [validator](#validating-a-draft-yourself)
@@ -65,14 +70,20 @@ This approach requires no installation. Start a new chat, attach your files and 
       Builder.
     - The AI tool has to open each of the skill's reference files itself, and some open fewer than
       the instructions ask for.
-    - If your AI tool offers to save the instructions as a skill, the saved copy will no longer stay
-      up to date with the protocol. It behaves like the zip file in the next approach.
+    - If your AI tool offers to save the instructions as a skill, the saved copy may hold only the
+      instructions, without the validator and the reference files. Upload the zip file instead, as
+      described in the next approach.
 
-### 2. Upload the skill to Claude
+### 2. Upload the skill to Claude or ChatGPT
 
-Download [oae-metadata.zip](https://schema.oaedata.org/oae-metadata.zip). In Claude (in the browser
-or the desktop app), open Customize, then Skills, and upload the zip file. From then on you can
-attach your files to any chat and ask Claude to draft OAE metadata from them.
+Download [oae-metadata.zip](https://schema.oaedata.org/oae-metadata.zip) and upload it in your AI
+tool's skills settings. In Claude (in the browser or the desktop app), open Customize, then Skills.
+In ChatGPT, open the skills page in your settings, or ask ChatGPT to install the skill from the zip
+file's address. From then on you can attach your files to any chat and ask for a draft of OAE
+metadata from them.
+
+Saved skills depend on your plan and on code execution being turned on. If you do not see a skills
+page in your settings, use the first approach.
 
 The zip file contains the version of the protocol that was current when you downloaded it. Download
 and upload it again whenever a new version of the protocol is released.
@@ -94,9 +105,16 @@ terminal.
 ### Staying up to date with the protocol
 
 An uploaded or installed copy of the skill (approaches 2 and 3) checks this site each time it is
-used. If a newer version of the protocol has been released, your AI tool will let you know, and will
-still draft with the copy it has. Claude in the browser usually cannot reach this site from where it
-runs code, in which case the check is skipped.
+used, and again each time it validates a draft. There are three outcomes:
+
+- Your copy is current: nothing changes.
+- A newer version of the protocol has been released: your AI tool tells you, drafts from the current
+  files on this site instead of your copy, and asks you to replace your copy.
+- The check could not reach this site, which is common for AI tools in the browser: the report's
+  first line says the version could not be confirmed.
+
+In every case the Metadata Builder validates a draft against the current protocol when you import
+it.
 
 ## Validating a draft yourself
 

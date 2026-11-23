@@ -75,11 +75,29 @@ Its one plugin is the `skill/` folder on the `gh-pages` branch, with no version 
 deploy is a new plugin version. Auto-update is off for third-party marketplaces until the user turns
 it on.
 
-The build writes the schema version to `version.txt` in the skill. `validate.py --check-update`
-compares an installed copy's schema version with `https://schema.oaedata.org/skill/version.txt`, and
-`SKILL.md` asks the AI tool to run it first. It prints nothing alarming when there is no network.
+The build writes the schema version to `version.txt` in the skill. `validate.py` compares an
+installed copy's schema version with `https://schema.oaedata.org/skill/version.txt` and prints one
+of three lines: latest, out of date, or not checked (no network). If the site is blocked it reads
+the same file from the `gh-pages` branch on raw.githubusercontent.com, which Claude's code sandbox
+could reach when the site was not (one test, 2026-11-23). It does so for `--check-update`,
+which `SKILL.md` asks the AI tool to run first, and at the end of every validation run, so the result
+does not depend on that first step. On "out of date" the AI tool drafts from the live files on the
+site and tells the researcher to replace their copy; on "not checked" the report says so. A saved
+copy with no network access cannot know it is stale; the Metadata Builder's import is the backstop.
 
-OpenAI packaging is not set up.
+The build also writes `https://schema.oaedata.org/oae-metadata.plugin`: the same skill under
+`skills/oae-metadata/` with a `.claude-plugin/plugin.json`. Claude in the apps can offer that file
+for a one-click install; it cannot add a marketplace to the user's account from a chat.
+
+`skills/install.md` is a setup guide written for an AI tool: it asks the researcher what they need and
+recommends the link, the zip or the plugin. The docs build publishes it at
+`https://schema.oaedata.org/skill/install.md`, outside the zip. The docs page's quick-start prompt
+points to it.
+
+The zip also uploads as a skill on chatgpt.com, and ChatGPT installed it from its address when asked
+(tested 2026-11-22). Claude, asked the same, saved only `SKILL.md`, which is why the setup guide
+tells an AI tool not to do that. No other OpenAI packaging is set
+up.
 
 ## Evaluation
 

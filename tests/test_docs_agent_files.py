@@ -60,3 +60,12 @@ def test_skill_folder_has_an_index_and_llms_txt_lists_its_files(tmp_path):
     for path in ("SKILL.md", "references/builder-handoff.md", "references/docs/variables.md", "scripts/validate.py"):
         assert f'href="{path}"' in index
         assert f"https://schema.example.org/skill/{path}" in llms
+
+
+def test_setup_guide_is_published_beside_the_skill_and_left_out_of_the_zip(tmp_path):
+    import zipfile
+
+    site = build(tmp_path)
+    assert (site / "skill" / "install.md").read_text() == (ROOT / "skills" / "install.md").read_text()
+    assert "https://schema.example.org/skill/install.md" in (site / "llms.txt").read_text()
+    assert not any(name.endswith("install.md") for name in zipfile.ZipFile(site / "oae-metadata.zip").namelist())

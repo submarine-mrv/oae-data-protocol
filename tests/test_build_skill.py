@@ -42,7 +42,7 @@ def test_schema_is_bundled_and_the_validator_finds_it(skill):
 
     draft = skill.parent / "draft.json"
     draft.write_text(json.dumps({"project": {"name": "x"}}))
-    done = subprocess.run([sys.executable, str(skill / "scripts" / "validate.py"), str(draft)], capture_output=True, text=True)
+    done = subprocess.run([sys.executable, str(skill / "scripts" / "validate.py"), str(draft), "--latest-url", (skill.parent / "none.txt").as_uri()], capture_output=True, text=True)
     assert done.stdout.startswith("Status:")
 
 
@@ -88,6 +88,16 @@ def test_zip_holds_the_skill_folder(skill):
         names = archive.namelist()
     assert "oae-metadata/SKILL.md" in names
     assert "oae-metadata/assets/oae_data_protocol.schema.json" in names
+
+
+def test_plugin_file_holds_a_manifest_and_the_skill(skill):
+    with zipfile.ZipFile(skill.parent / "oae-metadata.plugin") as archive:
+        names = archive.namelist()
+        manifest = json.loads(archive.read(".claude-plugin/plugin.json"))
+    assert manifest["name"] == "oae-metadata"
+    assert manifest["version"] == (skill / "version.txt").read_text().strip()
+    assert "skills/oae-metadata/SKILL.md" in names
+    assert "skills/oae-metadata/scripts/validate.py" in names
 
 
 def test_version_file_holds_the_schema_version(skill):
