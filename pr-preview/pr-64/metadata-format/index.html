@@ -1736,8 +1736,9 @@
 its experiments and its datasets in a single document.</p>
 <p>To create a file, use the <strong><a href="https://metadata.oaedata.org">OAE Metadata Builder</a></strong>. It exports files
 that validate against the schema. The <a href="https://www.carbontosea.org/oae-data-protocol#metadata-and-templates">Excel templates</a>
-on the protocol website are still available, but they aren't checked against the schema, so you have
-to get vocabulary values and field formats right by hand.</p>
+on the protocol website are still available, but they won't be updated for future versions of the
+protocol. The LinkML schema on <a href="https://github.com/submarine-mrv/oae-data-protocol">GitHub</a> is now the
+single source of truth for the protocol's metadata requirements.</p>
 <h2 id="the-container">The Container</h2>
 <table>
 <thead>
@@ -1766,11 +1767,20 @@ to get vocabulary values and field formats right by hand.</p>
 </tbody>
 </table>
 <h3 id="versioning">Versioning</h3>
+<p>A metadata file records three versions: which protocol the project follows, which schema the file
+was validated against, and which tool wrote it.</p>
 <ul>
-<li><code>protocol_version</code>: the version of the OAE Data Management Protocol the schema is based on, <code>1.0.0</code></li>
-<li><code>schema_version</code>: the version of this schema the file follows, such as <code>0.8.0</code></li>
-<li><code>metadata_builder_version</code>: optional; the Metadata Builder version that wrote the file</li>
+<li><code>protocol_version</code>: the version of the OAE Data Management Protocol the schema is based on, which
+  protocol compliance is checked against</li>
+<li><code>schema_version</code>: the version of this schema the file follows, matching a
+  <a href="https://github.com/submarine-mrv/oae-data-protocol/releases">release of oae-data-protocol</a></li>
+<li><code>metadata_builder_version</code>: optional; the
+  <a href="https://github.com/submarine-mrv/oae-metadata-builder/releases">Metadata Builder release</a> that
+  wrote the file</li>
 </ul>
+<p>The protocol and the schema are versioned separately. Each protocol version is published on Zenodo
+with its own DOI, and one protocol version can span many schema releases. The table shows which
+schema versions are based on each protocol version.</p>
 <table>
 <thead>
 <tr>
@@ -1783,7 +1793,7 @@ to get vocabulary values and field formats right by hand.</p>
 <tr>
 <td>1.0.0</td>
 <td><a href="https://doi.org/10.5281/zenodo.17154989">10.5281/zenodo.17154989</a></td>
-<td>0.8.0 and later</td>
+<td>0.1.0 and later</td>
 </tr>
 </tbody>
 </table>

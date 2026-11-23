@@ -18,8 +18,8 @@ URI: [oae:country](https://schema.oaedata.org/country)
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
-| [Organization](Organization.md) |  |  no  |
 | [Platform](Platform.md) |  |  no  |
+| [Organization](Organization.md) |  |  no  |
 
 
 
