@@ -49,7 +49,8 @@ def run_cli(tmp_path, content, *args):
     path = tmp_path / "draft.json"
     path.write_text(content if isinstance(content, str) else json.dumps(content))
     return subprocess.run(
-        [sys.executable, str(SCRIPT), str(path), "--schema", str(SCHEMA_PATH), *args],
+        # No network in tests: the version check reads a file that is not there.
+        [sys.executable, str(SCRIPT), str(path), "--schema", str(SCHEMA_PATH), "--latest-url", (tmp_path / "none.txt").as_uri(), *args],
         capture_output=True,
         text=True,
     )
@@ -383,19 +384,38 @@ def published(tmp_path, text):
     return path.as_uri()
 
 
-def test_update_notice_names_both_versions_when_a_newer_one_is_published(tmp_path):
-    notice = v.update_notice("0.9.0", published(tmp_path, "0.10.0\n"))
-    assert "0.10.0" in notice and "0.9.0" in notice
-    assert v.UPDATE_PAGE in notice
+def test_version_status_says_out_of_date_and_points_to_the_live_skill(tmp_path):
+    line = v.version_status("0.9.0", published(tmp_path, "0.10.0\n"))
+    assert line.startswith("Version: OUT OF DATE")
+    assert "0.10.0" in line and "0.9.0" in line
+    assert v.LIVE_SKILL in line and v.UPDATE_PAGE in line
 
 
-@pytest.mark.parametrize("latest", ["0.6.1", "0.6.0", "not a version", ""])
-def test_no_update_notice_without_a_newer_version(tmp_path, latest):
-    assert v.update_notice("0.6.1", published(tmp_path, latest)) is None
+@pytest.mark.parametrize("latest", ["0.6.1", "0.6.0"])
+def test_version_status_says_latest_when_nothing_newer_is_published(tmp_path, latest):
+    assert v.version_status("0.6.1", published(tmp_path, latest)) == "Version: OAE Data Protocol 0.6.1 is the latest published version."
 
 
-def test_no_update_notice_when_the_published_version_is_unreachable(tmp_path):
-    assert v.update_notice("0.6.1", (tmp_path / "missing.txt").as_uri()) is None
+@pytest.mark.parametrize("latest", ["not a version", ""])
+def test_version_status_says_not_checked_when_the_published_version_is_unreadable(tmp_path, latest):
+    assert v.version_status("0.6.1", published(tmp_path, latest)).startswith("Version: not checked")
+
+
+def test_version_status_says_not_checked_when_the_site_is_unreachable(tmp_path):
+    assert v.version_status("0.6.1", (tmp_path / "missing.txt").as_uri()).startswith("Version: not checked")
+
+
+def test_cli_validation_output_ends_with_the_version_status(tmp_path):
+    draft = tmp_path / "draft.json"
+    draft.write_text('{"project": {"name": "Probe"}}')
+    done = subprocess.run(
+        [sys.executable, str(SCRIPT), str(draft), "--schema", str(SCHEMA_PATH), "--latest-url", published(tmp_path, "99.0.0")],
+        capture_output=True,
+        text=True,
+    )
+    lines = done.stdout.splitlines()
+    assert lines[0].startswith("Status:")
+    assert lines[-1].startswith("Version: OUT OF DATE")
 
 
 def test_cli_check_update_needs_no_draft_and_exits_zero(tmp_path):

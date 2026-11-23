@@ -28,6 +28,7 @@ _SCHEMA_PATHS = [
 ]
 LATEST_VERSION_URL = "https://schema.oaedata.org/skill/version.txt"
 UPDATE_PAGE = "https://schema.oaedata.org/ai-skill/"
+LIVE_SKILL = "https://schema.oaedata.org/skill/SKILL.md"
 DEFAULT_SCHEMA = next((path for path in _SCHEMA_PATHS if path.exists()), _SCHEMA_PATHS[0])
 
 SUPPORTED_KEYWORDS = {
@@ -390,22 +391,27 @@ def _version(text):
     return tuple(int(part) for part in text.strip().split("."))
 
 
-def update_notice(current, url=LATEST_VERSION_URL):
-    """A sentence to pass on when a newer protocol version is published, else None.
+def version_status(current, url=LATEST_VERSION_URL):
+    """One line saying whether `current` is the latest published protocol version.
 
-    Returns None on any failure: many sandboxes have no network.
+    Three outcomes: latest, out of date, or not checked (no network in many sandboxes).
     """
     try:
         with urllib.request.urlopen(url, timeout=5) as response:
             latest = response.read(32).decode("ascii").strip()
-        if _version(latest) > _version(current):
-            return (
-                f"OAE Data Protocol {latest} is published; this copy of the skill has {current}. "
-                f"A draft made now may miss fields or vocabulary values added since. To update: {UPDATE_PAGE}"
-            )
+        newer = _version(latest) > _version(current)
     except Exception:  # noqa: BLE001
-        pass
-    return None
+        return (
+            f"Version: not checked. This copy has OAE Data Protocol {current} and could not reach "
+            f"schema.oaedata.org, so a newer version may exist. Say so on the report's first line."
+        )
+    if newer:
+        return (
+            f"Version: OUT OF DATE. OAE Data Protocol {latest} is published; this copy of the skill has {current}. "
+            f"Do not draft or validate with this copy. Work from the current files at {LIVE_SKILL} "
+            f"and tell the researcher to replace their saved copy: {UPDATE_PAGE}"
+        )
+    return f"Version: OAE Data Protocol {current} is the latest published version."
 
 
 def main(argv=None):
@@ -413,7 +419,7 @@ def main(argv=None):
     parser.add_argument("file", nargs="?")
     parser.add_argument("--schema", default=str(DEFAULT_SCHEMA))
     parser.add_argument("--json", action="store_true", help="print findings as JSON")
-    parser.add_argument("--check-update", action="store_true", help="say whether a newer protocol version is published, then exit")
+    parser.add_argument("--check-update", action="store_true", help="say whether this copy has the latest published protocol version, then exit")
     parser.add_argument("--latest-url", default=LATEST_VERSION_URL, help=argparse.SUPPRESS)
     args = parser.parse_args(argv)
 
@@ -422,7 +428,7 @@ def main(argv=None):
             current = json.loads(Path(args.schema).read_text(encoding="utf-8"))["version"]
         except (OSError, ValueError, KeyError) as problem:
             return fail(f"Cannot read the version of the schema at {args.schema}: {problem}")
-        print(update_notice(current, args.latest_url) or f"No newer version found (this copy has OAE Data Protocol {current}). Nothing to pass on.")
+        print(version_status(current, args.latest_url))
         return 0
     if not args.file:
         parser.error("give the draft file to validate")
@@ -441,11 +447,12 @@ def main(argv=None):
         return fail(f"Cannot load the schema at {args.schema}: {problem}")
 
     result = validate(doc, schema)
+    version = version_status(schema["version"], args.latest_url) if schema.get("version") else None
     if args.json:
         as_dicts = lambda findings: [f._asdict() for f in findings]  # noqa: E731
-        print(json.dumps({"status": status_line(result), "structural": as_dicts(result.structural), "gaps": as_dicts(result.gaps), "notes": result.notes}, indent=2))
+        print(json.dumps({"version": version, "status": status_line(result), "structural": as_dicts(result.structural), "gaps": as_dicts(result.gaps), "notes": result.notes}, indent=2))
     else:
-        print(render(result))
+        print("\n\n".join(filter(None, [render(result), version])))
     return 1 if result.structural else 0
 
 

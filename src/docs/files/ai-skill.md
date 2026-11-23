@@ -105,9 +105,16 @@ terminal.
 ### Staying up to date with the protocol
 
 An uploaded or installed copy of the skill (approaches 2 and 3) checks this site each time it is
-used. If a newer version of the protocol has been released, your AI tool will let you know, and will
-still draft with the copy it has. AI tools in the browser often cannot reach this site from where
-they run code, in which case the check is skipped.
+used, and again each time it validates a draft. There are three outcomes:
+
+- Your copy is current: nothing changes.
+- A newer version of the protocol has been released: your AI tool tells you, drafts from the current
+  files on this site instead of your copy, and asks you to replace your copy.
+- The check could not reach this site, which is common for AI tools in the browser: the report's
+  first line says the version could not be confirmed.
+
+In every case the Metadata Builder validates a draft against the current protocol when you import
+it.
 
 ## Validating a draft yourself
 

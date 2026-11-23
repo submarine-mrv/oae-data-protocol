@@ -42,7 +42,7 @@ def test_schema_is_bundled_and_the_validator_finds_it(skill):
 
     draft = skill.parent / "draft.json"
     draft.write_text(json.dumps({"project": {"name": "x"}}))
-    done = subprocess.run([sys.executable, str(skill / "scripts" / "validate.py"), str(draft)], capture_output=True, text=True)
+    done = subprocess.run([sys.executable, str(skill / "scripts" / "validate.py"), str(draft), "--latest-url", (skill.parent / "none.txt").as_uri()], capture_output=True, text=True)
     assert done.stdout.startswith("Status:")
 
 
