@@ -166,7 +166,7 @@ attributes:
   schema_version:
     name: schema_version
     description: 'Version of this schema the file follows, such as 0.7.0. A file built
-      from an unreleased commit reads 0.6.1+dev.3c014f7: the last release, then the
+      from an unreleased commit reads 0.6.1+dev.3c014f73: the last release, then the
       commit.'
     from_schema: https://schema.oaedata.org/OAEDataSchema
     rank: 1000
@@ -254,7 +254,7 @@ attributes:
   schema_version:
     name: schema_version
     description: 'Version of this schema the file follows, such as 0.7.0. A file built
-      from an unreleased commit reads 0.6.1+dev.3c014f7: the last release, then the
+      from an unreleased commit reads 0.6.1+dev.3c014f73: the last release, then the
       commit.'
     from_schema: https://schema.oaedata.org/OAEDataSchema
     rank: 1000
