@@ -495,10 +495,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#in-claude-code" class="md-nav__link">
+  <a href="#from-a-plugin-marketplace" class="md-nav__link">
     <span class="md-ellipsis">
       
-        In Claude Code
+        From a plugin marketplace
       
     </span>
   </a>
@@ -1729,10 +1729,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#in-claude-code" class="md-nav__link">
+  <a href="#from-a-plugin-marketplace" class="md-nav__link">
     <span class="md-ellipsis">
       
-        In Claude Code
+        From a plugin marketplace
       
     </span>
   </a>
@@ -1856,15 +1856,20 @@ chat and ask for a draft of OAE metadata from them.</p>
 <p>In Claude you can also ask for the plugin file in a chat: "Download
 https://schema.oaedata.org/oae-metadata.plugin and offer it to me to install", then press Install.</p>
 <p>Saved skills depend on your plan and on code execution being turned on.</p>
-<h3 id="in-claude-code">In Claude Code</h3>
-<p><a href="https://code.claude.com/docs">Claude Code</a> is Anthropic's tool for working with Claude directly on
-the files in a folder on your computer. If you use it, run these two commands in a session:</p>
+<h3 id="from-a-plugin-marketplace">From a plugin marketplace</h3>
+<p>The protocol's GitHub repository is a plugin marketplace for coding tools that work directly on the
+files in a folder on your computer.</p>
+<p>In <a href="https://code.claude.com/docs">Claude Code</a>, run these two commands in a session:</p>
 <div class="highlight"><pre><span></span><code>/plugin marketplace add submarine-mrv/oae-data-protocol
 /plugin install oae-metadata@oae-data
 </code></pre></div>
 <p>To receive new versions automatically, type <code>/plugin</code>, choose Marketplaces, then <code>oae-data</code>, then
 Enable auto-update. To update manually, run <code>claude plugin update oae-metadata@oae-data</code> in a
 terminal.</p>
+<p>In <a href="https://developers.openai.com/codex">Codex</a>, run these two commands in a terminal:</p>
+<div class="highlight"><pre><span></span><code>codex plugin marketplace add submarine-mrv/oae-data-protocol
+codex plugin add oae-metadata@oae-data
+</code></pre></div>
 <h2 id="staying-up-to-date-with-the-protocol">Staying up to date with the protocol</h2>
 <p>An installed copy of the skill holds the version of the protocol that was current when you
 installed it. It checks for a newer version each time it is used, and again each time it validates a

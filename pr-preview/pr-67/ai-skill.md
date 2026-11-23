@@ -69,10 +69,12 @@ https://schema.oaedata.org/oae-metadata.plugin and offer it to me to install", t
 
 Saved skills depend on your plan and on code execution being turned on.
 
-### In Claude Code
+### From a plugin marketplace
 
-[Claude Code](https://code.claude.com/docs) is Anthropic's tool for working with Claude directly on
-the files in a folder on your computer. If you use it, run these two commands in a session:
+The protocol's GitHub repository is a plugin marketplace for coding tools that work directly on the
+files in a folder on your computer.
+
+In [Claude Code](https://code.claude.com/docs), run these two commands in a session:
 
 ```
 /plugin marketplace add submarine-mrv/oae-data-protocol
@@ -82,6 +84,13 @@ the files in a folder on your computer. If you use it, run these two commands in
 To receive new versions automatically, type `/plugin`, choose Marketplaces, then `oae-data`, then
 Enable auto-update. To update manually, run `claude plugin update oae-metadata@oae-data` in a
 terminal.
+
+In [Codex](https://developers.openai.com/codex), run these two commands in a terminal:
+
+```
+codex plugin marketplace add submarine-mrv/oae-data-protocol
+codex plugin add oae-metadata@oae-data
+```
 
 ## Staying up to date with the protocol
 
