@@ -27,6 +27,7 @@ Field names on the right of the tables are OAE fields; check each against the cl
 | `investigators`, `authors` | `author_list_for_citation`; project or experiment leads if in scope | |
 | `platforms` | dataset `platform_info` | |
 | `dataLicense`, `useLimitation` | `license`, `fair_use_data_request` | |
+| The package is archived at NCEI under an open license (`dataLicense` names CC0 or CC BY) | dataset `data_accessibility`: `open_access` | List it in the report as an inference. With no license stated, leave it out |
 | `fundingInfo`, `researchProjects` | project fields, if a project is in scope | |
 | `expocodes`, `cruiseIds` | no field | Mention in the description or the report |
 | `references`, `supplementalInfo` | no field | Report under "Not used" unless a variable's method cites them |

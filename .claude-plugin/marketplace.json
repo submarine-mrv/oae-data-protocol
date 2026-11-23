@@ -1,0 +1,18 @@
+{
+  "name": "oae-data",
+  "description": "Skills for Ocean Alkalinity Enhancement (OAE) data",
+  "owner": { "name": "OAE Data Commons" },
+  "plugins": [
+    {
+      "name": "oae-metadata",
+      "description": "Draft OAE Data Protocol metadata from project documents and data files",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/submarine-mrv/oae-data-protocol.git",
+        "path": "skill",
+        "ref": "gh-pages"
+      },
+      "skills": ["./"]
+    }
+  ]
+}

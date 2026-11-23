@@ -31,6 +31,7 @@ column header names, see the [published protocol](https://www.carbontosea.org/oa
 ### Published Artifacts & Resources
 
 - [OAE Metadata Builder](https://metadata.oaedata.org): web app for creating and managing JSON metadata files
+- [Agent skill](ai-skill.md): for drafting metadata files from project documentation with an AI tool
 - [JSON Schema](https://github.com/submarine-mrv/oae-data-protocol/blob/main/project/jsonschema/oae_data_protocol.schema.json): for validating metadata files
 - [LinkML source schema](https://github.com/submarine-mrv/oae-data-protocol/tree/main/src/oae_data_protocol/schema): the source every other artifact and these docs are generated from
 - [Pydantic models](https://github.com/submarine-mrv/oae-data-protocol/blob/main/src/oae_data_protocol/datamodel/oae_data_protocol_pydantic.py): for working with metadata in Python

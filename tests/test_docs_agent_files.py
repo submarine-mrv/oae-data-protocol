@@ -51,3 +51,12 @@ def test_llms_txt_lists_the_skill_and_the_nav_pages(tmp_path):
     assert "https://schema.example.org/skill/SKILL.md" in text
     assert "[FieldDataset](https://schema.example.org/FieldDataset.md)" in text
     assert "[Datasets](https://schema.example.org/Datasets/index.md)" in text
+
+
+def test_skill_folder_has_an_index_and_llms_txt_lists_its_files(tmp_path):
+    site = build(tmp_path)
+    index = (site / "skill" / "index.html").read_text()
+    llms = (site / "llms.txt").read_text()
+    for path in ("SKILL.md", "references/builder-handoff.md", "references/docs/variables.md", "scripts/validate.py"):
+        assert f'href="{path}"' in index
+        assert f"https://schema.example.org/skill/{path}" in llms
