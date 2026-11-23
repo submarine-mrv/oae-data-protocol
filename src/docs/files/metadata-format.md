@@ -5,8 +5,9 @@ its experiments and its datasets in a single document.
 
 To create a file, use the **[OAE Metadata Builder](https://metadata.oaedata.org)**. It exports files
 that validate against the schema. The [Excel templates](https://www.carbontosea.org/oae-data-protocol#metadata-and-templates)
-on the protocol website are still available, but they aren't checked against the schema, so you have
-to get vocabulary values and field formats right by hand.
+on the protocol website are still available, but they won't be updated for future versions of the
+protocol. The LinkML schema on [GitHub](https://github.com/submarine-mrv/oae-data-protocol) is now the
+single source of truth for the protocol's metadata requirements.
 
 ## The Container
 
@@ -19,13 +20,24 @@ to get vocabulary values and field formats right by hand.
 
 ### Versioning
 
-- `protocol_version`: the version of the OAE Data Management Protocol the schema is based on, `1.0.0`
-- `schema_version`: the version of this schema the file follows, such as `0.8.0`
-- `metadata_builder_version`: optional; the Metadata Builder version that wrote the file
+A metadata file records three versions: which protocol the project follows, which schema the file
+was validated against, and which tool wrote it.
+
+- `protocol_version`: the version of the OAE Data Management Protocol the schema is based on, which
+  protocol compliance is checked against
+- `schema_version`: the version of this schema the file follows, matching a
+  [release of oae-data-protocol](https://github.com/submarine-mrv/oae-data-protocol/releases)
+- `metadata_builder_version`: optional; the
+  [Metadata Builder release](https://github.com/submarine-mrv/oae-metadata-builder/releases) that
+  wrote the file
+
+The protocol and the schema are versioned separately. Each protocol version is published on Zenodo
+with its own DOI, and one protocol version can span many schema releases. The table shows which
+schema versions are based on each protocol version.
 
 | Protocol version | DOI | Schema versions |
 |---|---|---|
-| 1.0.0 | [10.5281/zenodo.17154989](https://doi.org/10.5281/zenodo.17154989) | 0.8.0 and later |
+| 1.0.0 | [10.5281/zenodo.17154989](https://doi.org/10.5281/zenodo.17154989) | 0.1.0 and later |
 
 All versions of the protocol are at [10.5281/zenodo.17154988](https://doi.org/10.5281/zenodo.17154988).
 
