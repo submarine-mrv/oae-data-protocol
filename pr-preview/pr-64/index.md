@@ -4,7 +4,8 @@ The [OAE Data Management Protocol](https://www.carbontosea.org/oae-data-protocol
 producing consistent data and metadata across Ocean Alkalinity Enhancement projects, developed by [Carbon To Sea](https://carbontosea.org) and [Submarine Scientific](https://submarine.earth) in collaboration with NOAA and the broader OAE community.
 
 This schema is based on version 1.0.0 of the protocol
-([doi:10.5281/zenodo.17154989](https://doi.org/10.5281/zenodo.17154989)). Creating a machine-readable
+([doi:10.5281/zenodo.17154988](https://doi.org/10.5281/zenodo.17154988); see
+[Versioning](metadata-format.md#versioning)). Creating a machine-readable
 version of the protocol that software can validate meant going further than the original v1.0.0
 document in some places: the schema adds, renames or restructures some fields and controlled
 vocabularies. Where the two differ,

@@ -391,6 +391,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="The Container">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#versioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versioning
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1631,6 +1648,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="The Container">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#versioning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versioning
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1726,19 +1760,34 @@ to get vocabulary values and field formats right by hand.</p>
 <td>The datasets those experiments produced, either <a href="../FieldDataset/">FieldDataset</a> or <a href="../ModelOutputDataset/">ModelOutputDataset</a></td>
 </tr>
 <tr>
-<td><code>protocol_version</code></td>
-<td>The <a href="https://doi.org/10.5281/zenodo.17154989">OAE Data Management Protocol</a> version the schema is based on: <code>1.0.0</code></td>
-</tr>
-<tr>
-<td><code>schema_version</code></td>
-<td>The schema version the file follows</td>
-</tr>
-<tr>
-<td><code>metadata_builder_version</code></td>
-<td>Optional. The Metadata Builder version that wrote the file</td>
+<td><code>protocol_version</code>, <code>schema_version</code>, <code>metadata_builder_version</code></td>
+<td>See <a href="#versioning">Versioning</a></td>
 </tr>
 </tbody>
 </table>
+<h3 id="versioning">Versioning</h3>
+<ul>
+<li><code>protocol_version</code>: the version of the OAE Data Management Protocol the schema is based on, <code>1.0.0</code></li>
+<li><code>schema_version</code>: the version of this schema the file follows, such as <code>0.8.0</code></li>
+<li><code>metadata_builder_version</code>: optional; the Metadata Builder version that wrote the file</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Protocol version</th>
+<th>DOI</th>
+<th>Schema versions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.0.0</td>
+<td><a href="https://doi.org/10.5281/zenodo.17154989">10.5281/zenodo.17154989</a></td>
+<td>0.8.0 and later</td>
+</tr>
+</tbody>
+</table>
+<p>All versions of the protocol are at <a href="https://doi.org/10.5281/zenodo.17154988">10.5281/zenodo.17154988</a>.</p>
 <h2 id="how-the-pieces-relate">How the Pieces Relate</h2>
 <ul>
 <li>The <strong>project</strong> describes the overall field trial or modeling effort: who, where, when and why.</li>

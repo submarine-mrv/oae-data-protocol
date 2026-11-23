@@ -23,8 +23,8 @@ URI: [oae:concentration](https://schema.oaedata.org/concentration)
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
-| [StandardGas](StandardGas.md) | Standard gas used for CO2 calibration |  no  |
 | [ContinuousStandardGas](ContinuousStandardGas.md) | Standard gas used for continuous CO2 calibration, with additional traceabilit... |  no  |
+| [StandardGas](StandardGas.md) | Standard gas used for CO2 calibration |  no  |
 
 
 

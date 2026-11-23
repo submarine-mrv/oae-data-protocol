@@ -15,9 +15,19 @@ to get vocabulary values and field formats right by hand.
 | `project` | One [Project](https://schema.oaedata.org/Project.md) |
 | `experiments` | The project's [experiments](https://schema.oaedata.org/projects-experiments/index.md#experiments) |
 | `datasets` | The datasets those experiments produced, either [FieldDataset](https://schema.oaedata.org/FieldDataset.md) or [ModelOutputDataset](https://schema.oaedata.org/ModelOutputDataset.md) |
-| `protocol_version` | The [OAE Data Management Protocol](https://doi.org/10.5281/zenodo.17154989) version the schema is based on: `1.0.0` |
-| `schema_version` | The schema version the file follows |
-| `metadata_builder_version` | Optional. The Metadata Builder version that wrote the file |
+| `protocol_version`, `schema_version`, `metadata_builder_version` | See [Versioning](#versioning) |
+
+### Versioning
+
+- `protocol_version`: the version of the OAE Data Management Protocol the schema is based on, `1.0.0`
+- `schema_version`: the version of this schema the file follows, such as `0.8.0`
+- `metadata_builder_version`: optional; the Metadata Builder version that wrote the file
+
+| Protocol version | DOI | Schema versions |
+|---|---|---|
+| 1.0.0 | [10.5281/zenodo.17154989](https://doi.org/10.5281/zenodo.17154989) | 0.8.0 and later |
+
+All versions of the protocol are at [10.5281/zenodo.17154988](https://doi.org/10.5281/zenodo.17154988).
 
 ## How the Pieces Relate
 
