@@ -78,7 +78,7 @@ For a dataset built from a table:
 
 Things extraction loses: maps and figures. If a document shows locations only on a map, the coordinates are missing. Do not estimate them from place names.
 
-A bounding `box` is one string, `"south west north east"`: latitude before longitude, southwest corner first. Sources often give longitude first or list the four edges separately, so reorder deliberately. The validator prints how it read each box; compare that with the source. A box covers an area: when the sources give one point and nothing that sets an extent, leave the box out and list it as a gap. Never repeat the point as both corners.
+A bounding `box` is one string, `"south west north east"`: latitude before longitude, southwest corner first. Sources often give longitude first or list the four edges separately, so reorder deliberately. The validator prints how it read each box; compare that with the source. `spatial_coverage` is always a box with an area, never a point: when the sources give one point and nothing that sets an extent, leave `spatial_coverage` out and list it as a gap. Do not write the point there as coordinates or repeat it as both corners.
 
 ## 4. Validate
 
