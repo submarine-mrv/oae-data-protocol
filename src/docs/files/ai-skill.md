@@ -74,8 +74,8 @@ Download [oae-metadata.zip](https://schema.oaedata.org/oae-metadata.zip). In Cla
 or the desktop app), open Customize, then Skills, and upload the zip file. From then on you can
 attach your files to any chat and ask Claude to draft OAE metadata from them.
 
-The zip file contains the version of the protocol that was current when you downloaded it. Download
-and upload it again whenever a new version of the protocol is released.
+The zip file contains the version of the schema that was current when you downloaded it. Download
+and upload it again whenever a new version of the schema is released.
 
 ### 3. Install the skill in Claude Code
 
@@ -94,7 +94,7 @@ terminal.
 ### Staying up to date with the protocol
 
 An uploaded or installed copy of the skill (approaches 2 and 3) checks this site each time it is
-used. If a newer version of the protocol has been released, your AI tool will let you know, and will
+used. If a newer version of the schema has been released, your AI tool will let you know, and will
 still draft with the copy it has. Claude in the browser usually cannot reach this site from where it
 runs code, in which case the check is skipped.
 

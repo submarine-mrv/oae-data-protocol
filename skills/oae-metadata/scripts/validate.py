@@ -393,7 +393,7 @@ def _version(text):
 
 
 def update_notice(current, url=LATEST_VERSION_URL):
-    """A sentence to pass on when a newer protocol version is published, else None.
+    """A sentence to pass on when a newer schema version is published, else None.
 
     Returns None on any failure: many sandboxes have no network.
     """
@@ -402,7 +402,7 @@ def update_notice(current, url=LATEST_VERSION_URL):
             latest = response.read(32).decode("ascii").strip()
         if _version(latest) > _version(current):
             return (
-                f"OAE Data Protocol {latest} is published; this copy of the skill has {current}. "
+                f"OAE Data Protocol schema {latest} is published; this copy of the skill has {current}. "
                 f"A draft made now may miss fields or vocabulary values added since. To update: {UPDATE_PAGE}"
             )
     except Exception:  # noqa: BLE001
@@ -415,7 +415,7 @@ def main(argv=None):
     parser.add_argument("file", nargs="?")
     parser.add_argument("--schema", default=str(DEFAULT_SCHEMA))
     parser.add_argument("--json", action="store_true", help="print findings as JSON")
-    parser.add_argument("--check-update", action="store_true", help="say whether a newer protocol version is published, then exit")
+    parser.add_argument("--check-update", action="store_true", help="say whether a newer schema version is published, then exit")
     parser.add_argument("--latest-url", default=LATEST_VERSION_URL, help=argparse.SUPPRESS)
     args = parser.parse_args(argv)
 
@@ -424,7 +424,7 @@ def main(argv=None):
             current = json.loads(Path(args.schema).read_text(encoding="utf-8"))["version"]
         except (OSError, ValueError, KeyError) as problem:
             return fail(f"Cannot read the version of the schema at {args.schema}: {problem}")
-        print(update_notice(current, args.latest_url) or f"No newer version found (this copy has OAE Data Protocol {current}). Nothing to pass on.")
+        print(update_notice(current, args.latest_url) or f"No newer version found (this copy has OAE Data Protocol schema {current}). Nothing to pass on.")
         return 0
     if not args.file:
         parser.error("give the draft file to validate")
