@@ -26,7 +26,10 @@ _SCHEMA_PATHS = [
     _HERE.parent / "assets" / "oae_data_protocol.schema.json",
     _HERE.parent.parent.parent / "project" / "jsonschema" / "oae_data_protocol.schema.json",
 ]
+# The site, then the same file on GitHub: some sandboxes can reach GitHub but not the site.
+MIRROR = "https://raw.githubusercontent.com/submarine-mrv/oae-data-protocol/gh-pages/"
 LATEST_VERSION_URL = "https://schema.oaedata.org/skill/version.txt"
+LATEST_VERSION_URLS = (LATEST_VERSION_URL, MIRROR + "skill/version.txt")
 UPDATE_PAGE = "https://schema.oaedata.org/ai-skill/"
 LIVE_SKILL = "https://schema.oaedata.org/skill/SKILL.md"
 DEFAULT_SCHEMA = next((path for path in _SCHEMA_PATHS if path.exists()), _SCHEMA_PATHS[0])
@@ -391,24 +394,36 @@ def _version(text):
     return tuple(int(part) for part in text.strip().split("."))
 
 
-def version_status(current, url=LATEST_VERSION_URL):
+def _published_version(urls):
+    """The first published version that can be fetched and parsed, as (text, tuple), else None."""
+    for url in [urls] if isinstance(urls, str) else urls:
+        try:
+            with urllib.request.urlopen(url, timeout=5) as response:
+                text = response.read(32).decode("ascii").strip()
+            return text, _version(text)
+        except Exception:  # noqa: BLE001
+            continue
+    return None
+
+
+def version_status(current, urls=LATEST_VERSION_URLS):
     """One line saying whether `current` is the latest published protocol version.
 
     Three outcomes: latest, out of date, or not checked (no network in many sandboxes).
     """
     try:
-        with urllib.request.urlopen(url, timeout=5) as response:
-            latest = response.read(32).decode("ascii").strip()
-        newer = _version(latest) > _version(current)
+        latest, parsed = _published_version(urls)
+        newer = parsed > _version(current)
     except Exception:  # noqa: BLE001
         return (
             f"Version: not checked. This copy has OAE Data Protocol {current} and could not reach "
-            f"schema.oaedata.org, so a newer version may exist. Say so on the report's first line."
+            f"schema.oaedata.org or its copy on GitHub, so a newer version may exist. Say so on the report's first line."
         )
     if newer:
         return (
             f"Version: OUT OF DATE. OAE Data Protocol {latest} is published; this copy of the skill has {current}. "
             f"Do not draft or validate with this copy. Work from the current files at {LIVE_SKILL} "
+            f"(if that address is blocked, the same folder is at {MIRROR}skill/) "
             f"and tell the researcher to replace their saved copy: {UPDATE_PAGE}"
         )
     return f"Version: OAE Data Protocol {current} is the latest published version."
@@ -420,7 +435,7 @@ def main(argv=None):
     parser.add_argument("--schema", default=str(DEFAULT_SCHEMA))
     parser.add_argument("--json", action="store_true", help="print findings as JSON")
     parser.add_argument("--check-update", action="store_true", help="say whether this copy has the latest published protocol version, then exit")
-    parser.add_argument("--latest-url", default=LATEST_VERSION_URL, help=argparse.SUPPRESS)
+    parser.add_argument("--latest-url", default=LATEST_VERSION_URLS, help=argparse.SUPPRESS)
     args = parser.parse_args(argv)
 
     if args.check_update:
