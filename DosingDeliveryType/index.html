@@ -382,7 +382,7 @@
   <span class="md-ellipsis">
     
   
-    Drafting with an AI Assistant
+    Drafting Metadata with AI
   
 
     
@@ -1613,12 +1613,12 @@
 <tr>
 <td>static_point_source</td>
 <td>None</td>
-<td>A single dosing location such as an outflow from a static platform with a pip...</td>
+<td>A single dosing location that does not move, such as an outfall pipe from a s...</td>
 </tr>
 <tr>
 <td>variable_point_source</td>
 <td>None</td>
-<td>A mobile dosing regimen described by a single location at each time step, suc...</td>
+<td>A dosing location that moves: a single location at each time step, such as an...</td>
 </tr>
 <tr>
 <td>static_distributed</td>
@@ -1661,13 +1661,14 @@
 <span class="nt">permissible_values</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">static_point_source</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">static_point_source</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A single dosing location such as an outflow from a static platform</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">with a pipe</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A single dosing location that does not move, such as an outfall pipe</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">from a static platform. The dosing rate may change over time.</span>
 <span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Static Point Source</span>
 <span class="w">  </span><span class="nt">variable_point_source</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">variable_point_source</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A mobile dosing regimen described by a single location at each time</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">step, such as an outflow from a mobile platform such as a ship or surface vessel.</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;A</span><span class="nv"> </span><span class="s">dosing</span><span class="nv"> </span><span class="s">location</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">moves:</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">single</span><span class="nv"> </span><span class="s">location</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">each</span><span class="nv"> </span><span class="s">time</span><span class="nv"> </span><span class="s">step,</span>
+<span class="w">      </span><span class="s">such</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">outflow</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">mobile</span><span class="nv"> </span><span class="s">platform</span><span class="nv"> </span><span class="s">such</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">ship</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">surface</span><span class="nv"> </span><span class="s">vessel.</span>
+<span class="w">      </span><span class="s">&quot;Variable&quot;</span><span class="nv"> </span><span class="s">refers</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">location,</span><span class="nv"> </span><span class="s">not</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">dosing</span><span class="nv"> </span><span class="s">rate.&#39;</span>
 <span class="w">    </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Variable Point Source</span>
 <span class="w">  </span><span class="nt">static_distributed</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">static_distributed</span>

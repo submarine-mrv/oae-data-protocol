@@ -12,6 +12,9 @@ It covers the guidelines behind this schema, including
 Use the **[OAE Metadata Builder](https://metadata.oaedata.org)**. It has a form for each part of the
 schema and exports a JSON file that validates against it. See [Metadata Builder](../metadata-builder.md).
 
+If your project is already described in existing documentation and data files, an AI tool can write
+a first draft for you to import. See [Drafting Metadata with AI](../ai-skill.md).
+
 ## Working with metadata files
 
 A metadata file is a JSON document with one project, its experiments and its datasets. The

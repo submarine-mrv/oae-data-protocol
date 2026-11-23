@@ -187,7 +187,7 @@
 <span class="md-ellipsis">
     
   
-    Drafting with an AI Assistant
+    Drafting Metadata with AI
   
 
     
@@ -758,7 +758,7 @@
     click Any href "../Any"
 
 
-      Container : metadata_builder_git_hash
+      Container : metadata_builder_version
 
       Container : project
 
@@ -768,8 +768,6 @@
     Container --&gt; "0..1" Project : project
     click Project href "../Project"
 
-
-      Container : protocol_git_hash
 
       Container : version
 
@@ -807,19 +805,13 @@
 <tr>
 <td><a href="../version/">version</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Version of the oae-data-protocol</td>
+<td>Version of the oae-data-protocol the file follows, such as 0</td>
 <td>direct</td>
 </tr>
 <tr>
-<td><a href="../protocol_git_hash/">protocol_git_hash</a></td>
+<td><a href="../metadata_builder_version/">metadata_builder_version</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Git commit hash of the oae-data-protocol</td>
-<td>direct</td>
-</tr>
-<tr>
-<td><a href="../metadata_builder_git_hash/">metadata_builder_git_hash</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Git commit hash of the metadata-builder UI</td>
+<td>Version of the Metadata Builder that wrote the file, in the same form as vers...</td>
 <td>direct</td>
 </tr>
 </tbody>
@@ -891,7 +883,9 @@
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ModelOutputDataset</span>
 <span class="w">  </span><span class="nt">version</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">version</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Version of the oae-data-protocol</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Version</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">oae-data-protocol</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">file</span><span class="nv"> </span><span class="s">follows,</span><span class="nv"> </span><span class="s">such</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">0.7.0.</span>
+<span class="w">      </span><span class="s">A</span><span class="nv"> </span><span class="s">file</span><span class="nv"> </span><span class="s">built</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">unreleased</span><span class="nv"> </span><span class="s">commit</span><span class="nv"> </span><span class="s">reads</span><span class="nv"> </span><span class="s">0.6.1+dev.3c014f7:</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">last</span><span class="nv"> </span><span class="s">release,</span>
+<span class="w">      </span><span class="s">then</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">commit.'</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.oaedata.org/OAEDataSchema</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
@@ -899,18 +893,10 @@
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ModelComponent</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">  </span><span class="nt">protocol_git_hash</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">protocol_git_hash</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Git commit hash of the oae-data-protocol</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.oaedata.org/OAEDataSchema</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">  </span><span class="nt">metadata_builder_git_hash</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">metadata_builder_git_hash</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Git commit hash of the metadata-builder UI</span>
+<span class="w">  </span><span class="nt">metadata_builder_version</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">metadata_builder_version</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Version of the Metadata Builder that wrote the file, in the same</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">form as version.</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.oaedata.org/OAEDataSchema</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
@@ -967,7 +953,9 @@
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ModelOutputDataset</span>
 <span class="w">  </span><span class="nt">version</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">version</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Version of the oae-data-protocol</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Version</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">oae-data-protocol</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">file</span><span class="nv"> </span><span class="s">follows,</span><span class="nv"> </span><span class="s">such</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">0.7.0.</span>
+<span class="w">      </span><span class="s">A</span><span class="nv"> </span><span class="s">file</span><span class="nv"> </span><span class="s">built</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">unreleased</span><span class="nv"> </span><span class="s">commit</span><span class="nv"> </span><span class="s">reads</span><span class="nv"> </span><span class="s">0.6.1+dev.3c014f7:</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">last</span><span class="nv"> </span><span class="s">release,</span>
+<span class="w">      </span><span class="s">then</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">commit.'</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.oaedata.org/OAEDataSchema</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">version</span>
@@ -977,23 +965,13 @@
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ModelComponent</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">  </span><span class="nt">protocol_git_hash</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">protocol_git_hash</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Git commit hash of the oae-data-protocol</span>
+<span class="w">  </span><span class="nt">metadata_builder_version</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">metadata_builder_version</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Version of the Metadata Builder that wrote the file, in the same</span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">form as version.</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.oaedata.org/OAEDataSchema</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">protocol_git_hash</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
-<span class="w">  </span><span class="nt">metadata_builder_git_hash</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">metadata_builder_git_hash</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Git commit hash of the metadata-builder UI</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.oaedata.org/OAEDataSchema</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">metadata_builder_git_hash</span>
+<span class="w">    </span><span class="nt">alias</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">metadata_builder_version</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Container</span>

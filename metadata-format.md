@@ -16,7 +16,7 @@ to get vocabulary values and field formats right by hand.
 | `experiments` | The project's [experiments](projects-experiments/index.md#experiments) |
 | `datasets` | The datasets those experiments produced, either [FieldDataset](FieldDataset.md) or [ModelOutputDataset](ModelOutputDataset.md) |
 | `version` | The schema version the file follows |
-| `protocol_git_hash`, `metadata_builder_git_hash` | Optional. The schema and Metadata Builder commits the file was made with |
+| `metadata_builder_version` | Optional. The Metadata Builder version that wrote the file |
 
 ## How the Pieces Relate
 

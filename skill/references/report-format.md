@@ -5,7 +5,10 @@ Write the report as markdown beside the JSON. A researcher reads it with the Bui
 ```markdown
 # Metadata draft report: <project or dataset name>
 
-Drafted <date> against OAE Data Protocol <version>.
+Drafted <date> against OAE Data Protocol <version>. <one of>
+- This is the latest published version.
+- Version not confirmed: this copy of the skill could not check for a newer one. The Metadata Builder is the final check.
+- Your saved copy of the skill is out of date (<its version>); this draft used the current files from schema.oaedata.org. Replace your copy: https://schema.oaedata.org/ai-skill/
 
 ## What was drafted
 - Project: yes | no (existing project <project_id>)
@@ -16,7 +19,7 @@ Drafted <date> against OAE Data Protocol <version>.
 <one of>
 - Validated: no structural errors. <n> required fields are missing (listed under Gaps).
 - Not clean: <n> structural errors remain after three rounds (listed below).
-- Not run: <why>. The Builder will show errors after import.
+- Not run: <why>. The Metadata Builder will show errors after import.
 
 ## Gaps
 Required fields with no supporting source. Grouped where the same field is missing on many items.

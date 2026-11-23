@@ -24,8 +24,8 @@ URI: [schema:identifier](http://schema.org/identifier)
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
 | [Organization](Organization.md) |  |  yes  |
-| [MonetaryGrant](MonetaryGrant.md) |  |  yes  |
 | [Person](Person.md) | Information about a researcher or investigator involved in the experiment |  no  |
+| [MonetaryGrant](MonetaryGrant.md) |  |  yes  |
 
 
 

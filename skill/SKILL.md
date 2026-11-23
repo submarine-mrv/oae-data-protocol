@@ -14,6 +14,12 @@ The draft is worth having only if two things hold:
 
 Paths below are relative to this skill's folder. Read each reference at the step that names it.
 
+Before you start, make sure this is the current protocol version. If you are reading this file from `https://schema.oaedata.org/skill/`, it is; go to step 1. Otherwise run `python3 scripts/validate.py --check-update` and act on the line it prints:
+
+- **latest published version**: carry on.
+- **OUT OF DATE**: do not draft from this copy. Tell the researcher in your first message that their saved copy is out of date and how to replace it, using the link the line gives. Then do this draft from the current skill: read `https://schema.oaedata.org/skill/SKILL.md` and follow it, taking every file it names from that folder, and download its `scripts/validate.py` and `assets/oae_data_protocol.schema.json` to validate with. If that address is blocked where you run code, use the copy the line names on GitHub.
+- **not checked**, or you cannot run the script: carry on with this copy, and say on the report's first line that the version could not be confirmed.
+
 ## 1. Agree the scope
 
 A metadata file has up to three levels:
@@ -60,10 +66,12 @@ For each item:
 
 - Use only the properties in its definition, spelled as shown. A fact with no field goes in the report under "Not used".
 - For an enum field, use one of the values the schema lists, chosen by its meaning in `references/docs/vocabulary-values.md`, not by its name.
+- For `sea_names`, the list holds seas and ocean regions, not every bay or strait. When the water body the sources name is not listed, use the listed sea or ocean region that contains it and record that in the report as an inference.
 - Set `schema_class` on every variable to its class name.
 - `project_id` and `experiment_id` are free text. If the sources give none, coin one from names in the sources and list it in the report as coined. A dataset's `experiment_id` must equal its experiment's, character for character.
 - Fill a field only when a source states the value, or states enough that a specialist would call the inference safe. Record every inference in the report.
 - Leave a field out when the sources don't give it. No `null`, no empty string, no "unknown", no placeholder.
+- A person or organisation the sources name goes in with what the sources give, even when a required detail such as the email is missing. The missing detail is a gap.
 - Draft every experiment the sources describe in detail, as `references/docs/projects-experiments.md` defines one. A planned or earlier campaign described in detail counts; say in its description that it is planned or historical. An experiment that is only mentioned in passing gets a line in the report, not an entry.
 - Go through the class's properties one by one. For each one you have not filled, search the sources once more for it before leaving it out. Permits, funding, co-located operations and nearby research are easy to miss because documents discuss them far from the methods.
 
@@ -74,7 +82,7 @@ For a dataset built from a table:
 
 Things extraction loses: maps and figures. If a document shows locations only on a map, the coordinates are missing. Do not estimate them from place names.
 
-A bounding `box` is one string, `"south west north east"`: latitude before longitude, southwest corner first. Sources often give longitude first or list the four edges separately, so reorder deliberately. The validator prints how it read each box; compare that with the source.
+A bounding `box` is one string, `"south west north east"`: latitude before longitude, southwest corner first. Sources often give longitude first or list the four edges separately, so reorder deliberately. The validator prints how it read each box; compare that with the source. `spatial_coverage` is always a box with an area, never a point: when the sources give one point and nothing that sets an extent, leave `spatial_coverage` out and list it as a gap. Do not write the point there as coordinates or repeat it as both corners.
 
 ## 4. Validate
 
@@ -84,7 +92,7 @@ Run:
 python3 scripts/validate.py <draft.json>
 ```
 
-It needs only Python 3. It reports **structural errors** (unknown field, wrong type, value outside its vocabulary, wrong class) and **gaps** (required field absent).
+It needs only Python 3. Its last line repeats the version check; act on it as above. It reports **structural errors** (unknown field, wrong type, value outside its vocabulary, wrong class) and **gaps** (required field absent).
 
 - Fix every structural error, then run it again. Stop after three rounds and report what remains.
 - Do not fix a gap by inventing a value. Gaps go in the report.

@@ -13,8 +13,8 @@ URI: [DosingDeliveryType](DosingDeliveryType.md)
 
 | Value | Meaning | Description |
 | --- | --- | --- |
-| static_point_source | None | A single dosing location such as an outflow from a static platform with a pip... |
-| variable_point_source | None | A mobile dosing regimen described by a single location at each time step, suc... |
+| static_point_source | None | A single dosing location that does not move, such as an outfall pipe from a s... |
+| variable_point_source | None | A dosing location that moves: a single location at each time step, such as an... |
 | static_distributed | None | A set location or locations of dosing that is not a point source, such as a d... |
 | variable_distributed | None | A distributed dosing area that varies in time, such as manually placed alkali... |
 
@@ -61,13 +61,14 @@ rank: 1000
 permissible_values:
   static_point_source:
     text: static_point_source
-    description: A single dosing location such as an outflow from a static platform
-      with a pipe
+    description: A single dosing location that does not move, such as an outfall pipe
+      from a static platform. The dosing rate may change over time.
     title: Static Point Source
   variable_point_source:
     text: variable_point_source
-    description: A mobile dosing regimen described by a single location at each time
-      step, such as an outflow from a mobile platform such as a ship or surface vessel.
+    description: 'A dosing location that moves: a single location at each time step,
+      such as an outflow from a mobile platform such as a ship or surface vessel.
+      "Variable" refers to the location, not the dosing rate.'
     title: Variable Point Source
   static_distributed:
     text: static_distributed

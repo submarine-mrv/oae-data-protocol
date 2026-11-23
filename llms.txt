@@ -5,11 +5,31 @@
 
 ## Drafting metadata
 
+- [Setting up the skill](https://schema.oaedata.org/skill/install.md): how to help a researcher choose between using the
+  skill by link, saving it in the Claude or ChatGPT app, and installing it in Claude Code.
 - [oae-metadata skill](https://schema.oaedata.org/skill/SKILL.md): step-by-step instructions for drafting an OAE metadata
   file from project documents and data files. Its reference files and validator are in the same folder.
 - [JSON Schema](https://schema.oaedata.org/skill/assets/oae_data_protocol.schema.json): the schema a metadata file must follow.
 - [Validator](https://schema.oaedata.org/skill/scripts/validate.py): `python3 validate.py file.json`, standard library only.
 - [The skill as a zip](https://schema.oaedata.org/oae-metadata.zip)
+- [The skill as a Claude plugin file](https://schema.oaedata.org/oae-metadata.plugin)
+
+Every file in the skill folder:
+
+- https://schema.oaedata.org/skill/SKILL.md
+- https://schema.oaedata.org/skill/assets/oae_data_protocol.schema.json
+- https://schema.oaedata.org/skill/install.md
+- https://schema.oaedata.org/skill/references/builder-handoff.md
+- https://schema.oaedata.org/skill/references/docs/datasets.md
+- https://schema.oaedata.org/skill/references/docs/instruments-calibration.md
+- https://schema.oaedata.org/skill/references/docs/metadata-format.md
+- https://schema.oaedata.org/skill/references/docs/projects-experiments.md
+- https://schema.oaedata.org/skill/references/docs/variables.md
+- https://schema.oaedata.org/skill/references/docs/vocabulary-values.md
+- https://schema.oaedata.org/skill/references/oap-xml-mapping.md
+- https://schema.oaedata.org/skill/references/report-format.md
+- https://schema.oaedata.org/skill/scripts/validate.py
+- https://schema.oaedata.org/skill/version.txt
 
 ## Documentation
 
@@ -20,7 +40,7 @@
 - [Getting Started](https://schema.oaedata.org/getting-started/index.md)
 - [Metadata File Format](https://schema.oaedata.org/metadata-format.md)
 - [Metadata Builder](https://schema.oaedata.org/metadata-builder.md)
-- [Drafting with an AI Assistant](https://schema.oaedata.org/ai-skill.md)
+- [Drafting Metadata with AI](https://schema.oaedata.org/ai-skill.md)
 - [Contributing](https://schema.oaedata.org/contributing.md)
 
 ## Projects & Experiments
