@@ -20,7 +20,7 @@ always matches the latest release, which is what the public Metadata Builder use
 
 The schema version is `version:` in `oae_data_protocol.yaml`, copied to the root `version` key of
 the generated JSON Schema. It names the latest release and changes only in a release. Metadata files record it as `schema_version`,
-and a file built from an unreleased commit says so: `0.6.1+dev.3c014f7`. Files also record
+and a file built from an unreleased commit says so: `0.6.1+dev.3c014f73`. Files also record
 `protocol_version`, the version of the OAE Data Management Protocol document the schema is based on
 (1.0.0, [doi:10.5281/zenodo.17154989](https://doi.org/10.5281/zenodo.17154989)). See [RELEASE_PROCESS.md](RELEASE_PROCESS.md).
 
