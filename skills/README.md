@@ -77,7 +77,9 @@ it on.
 
 The build writes the schema version to `version.txt` in the skill. `validate.py` compares an
 installed copy's schema version with `https://schema.oaedata.org/skill/version.txt` and prints one
-of three lines: latest, out of date, or not checked (no network). It does so for `--check-update`,
+of three lines: latest, out of date, or not checked (no network). If the site is blocked it reads
+the same file from the `gh-pages` branch on raw.githubusercontent.com, which Claude's code sandbox
+could reach when the site was not (one test, 2026-11-23). It does so for `--check-update`,
 which `SKILL.md` asks the AI tool to run first, and at the end of every validation run, so the result
 does not depend on that first step. On "out of date" the AI tool drafts from the live files on the
 site and tells the researcher to replace their copy; on "not checked" the report says so. A saved

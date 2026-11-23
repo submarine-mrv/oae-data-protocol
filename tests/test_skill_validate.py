@@ -405,6 +405,11 @@ def test_version_status_says_not_checked_when_the_site_is_unreachable(tmp_path):
     assert v.version_status("0.6.1", (tmp_path / "missing.txt").as_uri()).startswith("Version: not checked")
 
 
+def test_version_status_falls_back_to_the_second_address(tmp_path):
+    line = v.version_status("0.9.0", ((tmp_path / "missing.txt").as_uri(), published(tmp_path, "0.10.0")))
+    assert line.startswith("Version: OUT OF DATE")
+
+
 def test_cli_validation_output_ends_with_the_version_status(tmp_path):
     draft = tmp_path / "draft.json"
     draft.write_text('{"project": {"name": "Probe"}}')

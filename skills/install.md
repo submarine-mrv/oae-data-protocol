@@ -19,6 +19,11 @@ Before asking anything, note what you already know:
 - whether you can run Python code in this conversation
 - whether the researcher has already attached files
 
+Some tools can open schema.oaedata.org in a chat but not from where they run code. Everything on
+the site is also at `https://raw.githubusercontent.com/submarine-mrv/oae-data-protocol/gh-pages/`:
+`oae-metadata.zip`, `oae-metadata.plugin` and the `skill/` folder. Use that copy when the site is
+blocked.
+
 ## 2. Ask at most two questions
 
 Ask only what you could not work out, in one message:
