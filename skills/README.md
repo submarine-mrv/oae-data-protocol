@@ -79,7 +79,13 @@ The build writes the schema version to `version.txt` in the skill. `validate.py 
 compares an installed copy's schema version with `https://schema.oaedata.org/skill/version.txt`, and
 `SKILL.md` asks the AI tool to run it first. It prints nothing alarming when there is no network.
 
-OpenAI packaging is not set up.
+`skills/install.md` is a setup guide written for an AI tool: it asks the researcher what they need and
+recommends the link, the zip or the plugin. The docs build publishes it at
+`https://schema.oaedata.org/skill/install.md`, outside the zip. The docs page's quick-start prompt
+points to it.
+
+The zip also uploads as a skill on chatgpt.com (tested 2026-11-22). No other OpenAI packaging is set
+up.
 
 ## Evaluation
 
