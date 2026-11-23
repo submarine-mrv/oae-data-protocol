@@ -1,15 +1,15 @@
 
 
-# Slot: metadata_builder_git_hash
+# Slot: metadata_builder_version
 
 
-_Git commit hash of the metadata-builder UI_
+_Version of the Metadata Builder that wrote the file, in the same form as version._
 
 
 
 
 
-URI: [oae:metadata_builder_git_hash](https://schema.oaedata.org/metadata_builder_git_hash)
+URI: [oae:metadata_builder_version](https://schema.oaedata.org/metadata_builder_version)
 
 
 
@@ -59,8 +59,8 @@ URI: [oae:metadata_builder_git_hash](https://schema.oaedata.org/metadata_builder
 
 | Mapping Type | Mapped Value |
 | ---  | ---  |
-| self | oae:metadata_builder_git_hash |
-| native | oae:metadata_builder_git_hash |
+| self | oae:metadata_builder_version |
+| native | oae:metadata_builder_version |
 
 
 
@@ -69,11 +69,12 @@ URI: [oae:metadata_builder_git_hash](https://schema.oaedata.org/metadata_builder
 
 <details>
 ```yaml
-name: metadata_builder_git_hash
-description: Git commit hash of the metadata-builder UI
+name: metadata_builder_version
+description: Version of the Metadata Builder that wrote the file, in the same form
+  as version.
 from_schema: https://schema.oaedata.org/OAEDataSchema
 rank: 1000
-alias: metadata_builder_git_hash
+alias: metadata_builder_version
 owner: Container
 domain_of:
 - Container

@@ -23,12 +23,12 @@ URI: [oae:concentration_basis](https://schema.oaedata.org/concentration_basis)
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
-| [ContinuousDICVariable](ContinuousDICVariable.md) | Dissolved Inorganic Carbon (DIC) measured variable from continuous autonomous... |  no  |
 | [MeasuredDICFields](MeasuredDICFields.md) | Fields applied to all measured DIC variable types (discrete and continuous) |  no  |
-| [MeasuredTAFields](MeasuredTAFields.md) | Fields applied to all measured TA variable types (discrete and continuous) |  no  |
-| [DiscreteTAVariable](DiscreteTAVariable.md) | Total Alkalinity (TA) measured variable from discrete bottle samples |  no  |
-| [DiscreteDICVariable](DiscreteDICVariable.md) | Dissolved Inorganic Carbon (DIC) measured variable from discrete bottle sampl... |  no  |
 | [ContinuousTAVariable](ContinuousTAVariable.md) | Total Alkalinity (TA) measured variable from continuous autonomous sensor |  no  |
+| [DiscreteTAVariable](DiscreteTAVariable.md) | Total Alkalinity (TA) measured variable from discrete bottle samples |  no  |
+| [ContinuousDICVariable](ContinuousDICVariable.md) | Dissolved Inorganic Carbon (DIC) measured variable from continuous autonomous... |  no  |
+| [DiscreteDICVariable](DiscreteDICVariable.md) | Dissolved Inorganic Carbon (DIC) measured variable from discrete bottle sampl... |  no  |
+| [MeasuredTAFields](MeasuredTAFields.md) | Fields applied to all measured TA variable types (discrete and continuous) |  no  |
 
 
 

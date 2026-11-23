@@ -329,7 +329,7 @@ def validate(doc, schema):
             class_name = pick(item)
             add(item, class_name, _label(collection, index, item, class_name))
 
-    for key in ("version", "protocol_git_hash", "metadata_builder_git_hash"):
+    for key in ("version", "metadata_builder_version"):
         if key in doc and not isinstance(doc[key], str):
             structural.append(Finding("file", key, f"expected string, got {_type_name(doc[key])}"))
 

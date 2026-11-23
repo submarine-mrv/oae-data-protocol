@@ -17,7 +17,7 @@ Drafted <date> against OAE Data Protocol <version>.
 <one of>
 - Validated: no structural errors. <n> required fields are missing (listed under Gaps).
 - Not clean: <n> structural errors remain after three rounds (listed below).
-- Not run: <why>. The Builder will show errors after import.
+- Not run: <why>. The Metadata Builder will show errors after import.
 
 ## Gaps
 Required fields with no supporting source. Grouped where the same field is missing on many items.

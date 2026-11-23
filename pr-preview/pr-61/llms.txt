@@ -36,7 +36,7 @@ Every file in the skill folder:
 - [Getting Started](https://schema.oaedata.org/getting-started/index.md)
 - [Metadata File Format](https://schema.oaedata.org/metadata-format.md)
 - [Metadata Builder](https://schema.oaedata.org/metadata-builder.md)
-- [Drafting with an AI Assistant](https://schema.oaedata.org/ai-skill.md)
+- [Drafting Metadata with AI](https://schema.oaedata.org/ai-skill.md)
 - [Contributing](https://schema.oaedata.org/contributing.md)
 
 ## Projects & Experiments

@@ -2354,7 +2354,9 @@ slots:
     - range: ModelOutputDataset
   container__version:
     name: container__version
-    description: Version of the oae-data-protocol
+    description: 'Version of the oae-data-protocol the file follows, such as 0.7.0.
+      A file built from an unreleased commit reads 0.6.1+dev.3c014f7: the last release,
+      then the commit.'
     from_schema: https://schema.oaedata.org/OAEDataSchema
     slot_uri: oae:version
     alias: version
@@ -2363,23 +2365,13 @@ slots:
     - Container
     range: string
     required: false
-  container__protocol_git_hash:
-    name: container__protocol_git_hash
-    description: Git commit hash of the oae-data-protocol
+  container__metadata_builder_version:
+    name: container__metadata_builder_version
+    description: Version of the Metadata Builder that wrote the file, in the same
+      form as version.
     from_schema: https://schema.oaedata.org/OAEDataSchema
-    slot_uri: oae:protocol_git_hash
-    alias: protocol_git_hash
-    owner: Container
-    domain_of:
-    - Container
-    range: string
-    required: false
-  container__metadata_builder_git_hash:
-    name: container__metadata_builder_git_hash
-    description: Git commit hash of the metadata-builder UI
-    from_schema: https://schema.oaedata.org/OAEDataSchema
-    slot_uri: oae:metadata_builder_git_hash
-    alias: metadata_builder_git_hash
+    slot_uri: oae:metadata_builder_version
+    alias: metadata_builder_version
     owner: Container
     domain_of:
     - Container
@@ -6800,8 +6792,7 @@ classes:
     - container__experiments
     - container__datasets
     - container__version
-    - container__protocol_git_hash
-    - container__metadata_builder_git_hash
+    - container__metadata_builder_version
     attributes:
       project:
         name: project
@@ -6827,17 +6818,15 @@ classes:
         - range: ModelOutputDataset
       version:
         name: version
-        description: Version of the oae-data-protocol
+        description: 'Version of the oae-data-protocol the file follows, such as 0.7.0.
+          A file built from an unreleased commit reads 0.6.1+dev.3c014f7: the last
+          release, then the commit.'
         range: string
         required: false
-      protocol_git_hash:
-        name: protocol_git_hash
-        description: Git commit hash of the oae-data-protocol
-        range: string
-        required: false
-      metadata_builder_git_hash:
-        name: metadata_builder_git_hash
-        description: Git commit hash of the metadata-builder UI
+      metadata_builder_version:
+        name: metadata_builder_version
+        description: Version of the Metadata Builder that wrote the file, in the same
+          form as version.
         range: string
         required: false
     class_uri: oae:Container
@@ -10767,7 +10756,7 @@ classes:
     class_uri: oae:ContinuousStandardGas
 metamodel_version: 1.7.0
 source_file: oae_data_protocol.yaml
-source_file_date: '2026-11-13T21:45:37'
-source_file_size: 2246
-generation_date: '2026-11-13T21:45:51'
+source_file_date: '2026-11-23T00:41:42'
+source_file_size: 2249
+generation_date: '2026-11-23T00:41:51'
 

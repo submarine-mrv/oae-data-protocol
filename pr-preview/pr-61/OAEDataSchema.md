@@ -237,7 +237,7 @@ Name: OAEDataSchema
 | [measurement_researcher](measurement_researcher.md) | The name of the PI whose research team measured or derived this parameter |
 | [measurement_temperature](measurement_temperature.md) | Temperature at which pH was measured |
 | [memory](memory.md) | Memory available (e |
-| [metadata_builder_git_hash](metadata_builder_git_hash.md) | Git commit hash of the metadata-builder UI |
+| [metadata_builder_version](metadata_builder_version.md) | Version of the Metadata Builder that wrote the file, in the same form as vers... |
 | [meteorological_and_tidal_data](meteorological_and_tidal_data.md) | Include links to relevant open datasets if referenced in the experiment but n... |
 | [method_reference](method_reference.md) | Citation or reference for the calibration method |
 | [min_depth_in_m](min_depth_in_m.md) | Minimum depth of observation in meters |
@@ -280,7 +280,6 @@ Name: OAEDataSchema
 | [project](project.md) |  |
 | [project_id](project_id.md) | The project to which the submitted data belong |
 | [project_leads](project_leads.md) | Provide details for each project lead / principal investigator (PI) including... |
-| [protocol_git_hash](protocol_git_hash.md) | Git commit hash of the oae-data-protocol |
 | [public_comments](public_comments.md) | Public comment documents, each with a link or DOI and an optional description |
 | [qc_flag_scheme](qc_flag_scheme.md) | Describe what the quality control flags stand for, e |
 | [qc_researcher](qc_researcher.md) | The name of the PI whose research team QCed this parameter |
@@ -350,7 +349,7 @@ Name: OAEDataSchema
 | [variable_type](variable_type.md) | High-level classification of the variable |
 | [variables](variables.md) | The variables in this dataset, each with its own metadata |
 | [vented](vented.md) | Is the equilibrator vented or not? |
-| [version](version.md) | Version of the oae-data-protocol |
+| [version](version.md) | Version of the oae-data-protocol the file follows, such as 0 |
 | [vertical_coordinate_type](vertical_coordinate_type.md) | The vertical grid coordinate type (e |
 | [vertical_coverage](vertical_coverage.md) | Minimum and maximum depths of observation in meters |
 | [vertical_resolution_range](vertical_resolution_range.md) | Description of vertical resolution (e |

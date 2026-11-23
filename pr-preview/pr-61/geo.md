@@ -24,8 +24,8 @@ URI: [oae:geo](https://schema.oaedata.org/geo)
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
 | [DosingLocation](DosingLocation.md) | A specific location of dosing for an OAE intervention and/or tracer study |  no  |
-| [Place](Place.md) | A geospatial area of interest, defined by a bounding box, polygon/line, or a ... |  no  |
 | [SpatialCoverage](SpatialCoverage.md) | A bounding box defined by latitude and longitude coordinates |  yes  |
+| [Place](Place.md) | A geospatial area of interest, defined by a bounding box, polygon/line, or a ... |  no  |
 
 
 
