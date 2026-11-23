@@ -243,9 +243,9 @@ class DosingDeliveryType(str, Enum):
     """
     Types of dosing delivery methods
     """
-    # A single dosing location such as an outflow from a static platform with a pipe
+    # A single dosing location that does not move, such as an outfall pipe from a static platform. The dosing rate may change over time.
     Static_Point_Source = "static_point_source"
-    # A mobile dosing regimen described by a single location at each time step, such as an outflow from a mobile platform such as a ship or surface vessel.
+    # A dosing location that moves: a single location at each time step, such as an outflow from a mobile platform such as a ship or surface vessel. "Variable" refers to the location, not the dosing rate.
     Variable_Point_Source = "variable_point_source"
     # A set location or locations of dosing that is not a point source, such as a distributed area over the seafloor or a diffusor.
     Static_Distributed = "static_distributed"

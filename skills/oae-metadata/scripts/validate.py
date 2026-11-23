@@ -2,6 +2,7 @@
 """Validate an OAE metadata draft against the OAE Data Protocol JSON Schema.
 
     python3 validate.py draft.json [--schema PATH] [--json]
+    python3 validate.py --check-update
 
 Standard library only. Exit 0: no structural errors (gaps allowed). Exit 1:
 structural errors. Exit 2: the file is missing, not JSON, or not a JSON object.
@@ -15,6 +16,7 @@ import copy
 import json
 import re
 import sys
+import urllib.request
 from collections import namedtuple
 from pathlib import Path
 
@@ -24,6 +26,8 @@ _SCHEMA_PATHS = [
     _HERE.parent / "assets" / "oae_data_protocol.schema.json",
     _HERE.parent.parent.parent / "project" / "jsonschema" / "oae_data_protocol.schema.json",
 ]
+LATEST_VERSION_URL = "https://schema.oaedata.org/skill/version.txt"
+UPDATE_PAGE = "https://schema.oaedata.org/ai-skill/"
 DEFAULT_SCHEMA = next((path for path in _SCHEMA_PATHS if path.exists()), _SCHEMA_PATHS[0])
 
 SUPPORTED_KEYWORDS = {
@@ -382,12 +386,46 @@ def fail(message):
     return 2
 
 
+def _version(text):
+    return tuple(int(part) for part in text.strip().split("."))
+
+
+def update_notice(current, url=LATEST_VERSION_URL):
+    """A sentence to pass on when a newer protocol version is published, else None.
+
+    Returns None on any failure: many sandboxes have no network.
+    """
+    try:
+        with urllib.request.urlopen(url, timeout=5) as response:
+            latest = response.read(32).decode("ascii").strip()
+        if _version(latest) > _version(current):
+            return (
+                f"OAE Data Protocol {latest} is published; this copy of the skill has {current}. "
+                f"A draft made now may miss fields or vocabulary values added since. To update: {UPDATE_PAGE}"
+            )
+    except Exception:  # noqa: BLE001
+        pass
+    return None
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description="Validate an OAE metadata draft.")
-    parser.add_argument("file")
+    parser.add_argument("file", nargs="?")
     parser.add_argument("--schema", default=str(DEFAULT_SCHEMA))
     parser.add_argument("--json", action="store_true", help="print findings as JSON")
+    parser.add_argument("--check-update", action="store_true", help="say whether a newer protocol version is published, then exit")
+    parser.add_argument("--latest-url", default=LATEST_VERSION_URL, help=argparse.SUPPRESS)
     args = parser.parse_args(argv)
+
+    if args.check_update:
+        try:
+            current = json.loads(Path(args.schema).read_text(encoding="utf-8"))["version"]
+        except (OSError, ValueError, KeyError) as problem:
+            return fail(f"Cannot read the version of the schema at {args.schema}: {problem}")
+        print(update_notice(current, args.latest_url) or f"No newer version found (this copy has OAE Data Protocol {current}). Nothing to pass on.")
+        return 0
+    if not args.file:
+        parser.error("give the draft file to validate")
 
     try:
         doc = json.loads(Path(args.file).read_text(encoding="utf-8"), parse_constant=_reject_constant)

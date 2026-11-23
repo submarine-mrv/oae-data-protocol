@@ -157,12 +157,14 @@ enums:
     permissible_values:
       static_point_source:
         title: "Static Point Source"
-        description: "A single dosing location such as an outflow from a static platform with a pipe"
+        description: >-
+          A single dosing location that does not move, such as an outfall pipe from a static platform. The dosing rate
+          may change over time.
       variable_point_source:
         title: "Variable Point Source"
         description: >-
-          A mobile dosing regimen described by a single location at each time step, such as an outflow from a mobile
-          platform such as a ship or surface vessel.
+          A dosing location that moves: a single location at each time step, such as an outflow from a mobile
+          platform such as a ship or surface vessel. "Variable" refers to the location, not the dosing rate.
       static_distributed:
         title: "Static Distributed"
         description: >-
