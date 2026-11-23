@@ -1959,7 +1959,7 @@ export interface Container {
     datasets?: Any[],
     /** Version of the OAE Data Management Protocol the schema is based on: 1.0.0, https://doi.org/10.5281/zenodo.17154989. */
     protocol_version?: string,
-    /** Version of this schema the file follows, such as 0.7.0. A file built from an unreleased commit reads 0.6.1+dev.3c014f73: the last release, then the commit. */
+    /** Version of this schema the file follows, such as 0.7.0. A file built from an unreleased commit reads 0.7.0+dev.3c014f73: the last release, then the commit. */
     schema_version?: string,
     /** Version of the Metadata Builder that wrote the file, in the same form as schema_version. */
     metadata_builder_version?: string,

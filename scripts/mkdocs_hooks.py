@@ -3,7 +3,7 @@
 After the HTML build it adds, to the built site:
 
 - every page's source markdown at the same path (`/FieldDataset.md` beside `/FieldDataset/`)
-- the assembled oae-metadata skill as plain files under `/skill/` with an index page, and `/oae-metadata.zip`
+- the assembled oae-metadata skill as plain files under `/skill/` with an index page, `/oae-metadata.zip` and `/oae-metadata.plugin`
 - `/llms.txt`, an index of both
 """
 
@@ -21,11 +21,14 @@ INTRO = """\
 
 ## Drafting metadata
 
+- [Setting up the skill]({base}skill/install.md): how to help a researcher choose between using the
+  skill by link, saving it in the Claude or ChatGPT app, and installing it in Claude Code.
 - [oae-metadata skill]({base}skill/SKILL.md): step-by-step instructions for drafting an OAE metadata
   file from project documents and data files. Its reference files and validator are in the same folder.
 - [JSON Schema]({base}skill/assets/oae_data_protocol.schema.json): the schema a metadata file must follow.
 - [Validator]({base}skill/scripts/validate.py): `python3 validate.py file.json`, standard library only.
 - [The skill as a zip]({base}oae-metadata.zip)
+- [The skill as a Claude plugin file]({base}oae-metadata.plugin)
 """
 
 
@@ -58,6 +61,8 @@ def on_post_build(config, **kwargs):
         shutil.copyfile(source, target)
 
     build_skill.build(site / "skill")
+    # Setup guide for an AI tool. Published beside the skill, not shipped inside it.
+    shutil.copyfile(Path(__file__).resolve().parent.parent / "skills" / "install.md", site / "skill" / "install.md")
     files = sorted(p.relative_to(site / "skill").as_posix() for p in (site / "skill").rglob("*") if p.is_file())
     # A folder URL would otherwise be a 404 for an agent looking for the files SKILL.md names.
     links = "\n".join(f'<li><a href="{f}">{f}</a></li>' for f in files)

@@ -14,7 +14,11 @@ The draft is worth having only if two things hold:
 
 Paths below are relative to this skill's folder. Read each reference at the step that names it.
 
-Before you start, run `python3 scripts/validate.py --check-update`. If it says a newer schema version is published, pass that on to the researcher in your first message and at the top of the report, then carry on with this copy. If you cannot run it, skip the check.
+Before you start, make sure this is the current schema version. If you are reading this file from `https://schema.oaedata.org/skill/`, it is; go to step 1. Otherwise run `python3 scripts/validate.py --check-update` and act on the line it prints:
+
+- **latest published version**: carry on.
+- **OUT OF DATE**: do not draft from this copy. Tell the researcher in your first message that their saved copy is out of date and how to replace it, using the link the line gives. Then do this draft from the current skill: read `https://schema.oaedata.org/skill/SKILL.md` and follow it, taking every file it names from that folder, and download its `scripts/validate.py` and `assets/oae_data_protocol.schema.json` to validate with. If that address is blocked where you run code, use the copy the line names on GitHub.
+- **not checked**, or you cannot run the script: carry on with this copy, and say on the report's first line that the version could not be confirmed.
 
 ## 1. Agree the scope
 
@@ -78,7 +82,7 @@ For a dataset built from a table:
 
 Things extraction loses: maps and figures. If a document shows locations only on a map, the coordinates are missing. Do not estimate them from place names.
 
-A bounding `box` is one string, `"south west north east"`: latitude before longitude, southwest corner first. Sources often give longitude first or list the four edges separately, so reorder deliberately. The validator prints how it read each box; compare that with the source.
+A bounding `box` is one string, `"south west north east"`: latitude before longitude, southwest corner first. Sources often give longitude first or list the four edges separately, so reorder deliberately. The validator prints how it read each box; compare that with the source. `spatial_coverage` is always a box with an area, never a point: when the sources give one point and nothing that sets an extent, leave `spatial_coverage` out and list it as a gap. Do not write the point there as coordinates or repeat it as both corners.
 
 ## 4. Validate
 
@@ -88,7 +92,7 @@ Run:
 python3 scripts/validate.py <draft.json>
 ```
 
-It needs only Python 3. It reports **structural errors** (unknown field, wrong type, value outside its vocabulary, wrong class) and **gaps** (required field absent).
+It needs only Python 3. Its last line repeats the version check; act on it as above. It reports **structural errors** (unknown field, wrong type, value outside its vocabulary, wrong class) and **gaps** (required field absent).
 
 - Fix every structural error, then run it again. Stop after three rounds and report what remains.
 - Do not fix a gap by inventing a value. Gaps go in the report.
