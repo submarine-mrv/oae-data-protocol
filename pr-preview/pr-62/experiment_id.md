@@ -7,7 +7,7 @@ _The experiment to which the data belong. Any naming convention that produces a 
 
 _Project ID + Experiment type + Optional numerical indicator to differentiate between various experiments of the same type for a project. A two digit consecutive number beginning with 01_
 
-_Up to 64 characters: letters, numbers, hyphens (-) and underscores (_), starting with a letter or number._
+_Letters, numbers, hyphens (-) and underscores (_) only, starting with a letter or number, up to 64 characters._
 
 
 
@@ -27,15 +27,15 @@ URI: [oae:experiment_id](https://schema.oaedata.org/experiment_id)
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
-| [ModelOutputDataset](ModelOutputDataset.md) | A model simulation output dataset |  no  |
-| [FieldDataset](FieldDataset.md) | A field or observational dataset related to an OAE experiment |  no  |
 | [Experiment](Experiment.md) | Abstract base class for all experiment types |  yes  |
-| [Tracer](Tracer.md) | Additional metadata that applies to experiments where a tracer study was cond... |  no  |
-| [InterventionWithTracer](InterventionWithTracer.md) | Additional metadata that applies to hybrid experiments where an intervention ... |  no  |
-| [InSituExperiment](InSituExperiment.md) | Experiment metadata for in-situ studies (interventions, tracer studies, etc |  no  |
-| [Model](Model.md) | A computational model experiment related to OAE |  no  |
-| [Intervention](Intervention.md) | Additional metadata that applies to experiments where an intervention, such a... |  no  |
 | [Dataset](Dataset.md) | Abstract base class for all dataset types |  yes  |
+| [InterventionWithTracer](InterventionWithTracer.md) | Additional metadata that applies to hybrid experiments where an intervention ... |  no  |
+| [Model](Model.md) | A computational model experiment related to OAE |  no  |
+| [FieldDataset](FieldDataset.md) | A field or observational dataset related to an OAE experiment |  no  |
+| [InSituExperiment](InSituExperiment.md) | Experiment metadata for in-situ studies (interventions, tracer studies, etc |  no  |
+| [ModelOutputDataset](ModelOutputDataset.md) | A model simulation output dataset |  no  |
+| [Tracer](Tracer.md) | Additional metadata that applies to experiments where a tracer study was cond... |  no  |
+| [Intervention](Intervention.md) | Additional metadata that applies to experiments where an intervention, such a... |  no  |
 
 
 
@@ -91,8 +91,8 @@ description: 'The experiment to which the data belong. Any naming convention tha
   various experiments of the same type for a project. A two digit consecutive number
   beginning with 01
 
-  Up to 64 characters: letters, numbers, hyphens (-) and underscores (_), starting
-  with a letter or number.'
+  Letters, numbers, hyphens (-) and underscores (_) only, starting with a letter or
+  number, up to 64 characters.'
 title: Experiment ID
 from_schema: https://schema.oaedata.org/OAEDataSchema
 rank: 1000

@@ -572,8 +572,8 @@ attributes:
 
       Any method that creates a unique ID that will link all project data is acceptable.
 
-      Up to 64 characters: letters, numbers, hyphens (-) and underscores (_), starting
-      with a letter or number.'
+      Letters, numbers, hyphens (-) and underscores (_) only, starting with a letter
+      or number, up to 64 characters.'
     title: Project ID
     from_schema: https://schema.oaedata.org/OAEDataSchema
     rank: 1000
@@ -595,8 +595,8 @@ attributes:
       between various experiments of the same type for a project. A two digit consecutive
       number beginning with 01
 
-      Up to 64 characters: letters, numbers, hyphens (-) and underscores (_), starting
-      with a letter or number.'
+      Letters, numbers, hyphens (-) and underscores (_) only, starting with a letter
+      or number, up to 64 characters.'
     title: Experiment ID
     from_schema: https://schema.oaedata.org/OAEDataSchema
     rank: 1000
