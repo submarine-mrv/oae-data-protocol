@@ -23,15 +23,15 @@ URI: [schema:spatialCoverage](http://schema.org/spatialCoverage)
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
-| [ExternalProject](ExternalProject.md) | A research project that is not directly managed by the OAE project, but whose... |  no  |
+| [ModelGrid](ModelGrid.md) | Details about a model grid |  no  |
+| [Tracer](Tracer.md) | Additional metadata that applies to experiments where a tracer study was cond... |  no  |
 | [Experiment](Experiment.md) | Abstract base class for all experiment types |  yes  |
+| [ExternalProject](ExternalProject.md) | A research project that is not directly managed by the OAE project, but whose... |  no  |
+| [Intervention](Intervention.md) | Additional metadata that applies to experiments where an intervention, such a... |  no  |
+| [Project](Project.md) | A project conducting OAE field trials or modeling |  yes  |
 | [InterventionWithTracer](InterventionWithTracer.md) | Additional metadata that applies to hybrid experiments where an intervention ... |  no  |
 | [Model](Model.md) | A computational model experiment related to OAE |  no  |
 | [InSituExperiment](InSituExperiment.md) | Experiment metadata for in-situ studies (interventions, tracer studies, etc |  no  |
-| [ModelGrid](ModelGrid.md) | Details about a model grid |  no  |
-| [Project](Project.md) | A project conducting OAE field trials or modeling |  yes  |
-| [Tracer](Tracer.md) | Additional metadata that applies to experiments where a tracer study was cond... |  no  |
-| [Intervention](Intervention.md) | Additional metadata that applies to experiments where an intervention, such a... |  no  |
 
 
 

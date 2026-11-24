@@ -1939,8 +1939,8 @@ slots:
       between various experiments of the same type for a project. A two digit consecutive
       number beginning with 01
 
-      Letters, numbers, hyphens (-) and underscores (_) only, starting with a letter
-      or number, up to 64 characters.'
+      Letters, numbers, hyphens (`-`) and underscores (`_`) only, starting with a
+      letter or number, up to 64 characters.'
     title: Experiment ID
     from_schema: Core
     slot_uri: oae:experiment_id
@@ -1962,8 +1962,8 @@ slots:
 
       Any method that creates a unique ID that will link all project data is acceptable.
 
-      Letters, numbers, hyphens (-) and underscores (_) only, starting with a letter
-      or number, up to 64 characters.'
+      Letters, numbers, hyphens (`-`) and underscores (`_`) only, starting with a
+      letter or number, up to 64 characters.'
     title: Project ID
     from_schema: Core
     slot_uri: oae:project_id
@@ -5597,8 +5597,8 @@ slots:
 
       Any method that creates a unique ID that will link all project data is acceptable.
 
-      Letters, numbers, hyphens (-) and underscores (_) only, starting with a letter
-      or number, up to 64 characters.'
+      Letters, numbers, hyphens (`-`) and underscores (`_`) only, starting with a
+      letter or number, up to 64 characters.'
     title: Project ID
     from_schema: Core
     is_a: project_id
@@ -5687,8 +5687,8 @@ slots:
 
       Any method that creates a unique ID that will link all project data is acceptable.
 
-      Letters, numbers, hyphens (-) and underscores (_) only, starting with a letter
-      or number, up to 64 characters.'
+      Letters, numbers, hyphens (`-`) and underscores (`_`) only, starting with a
+      letter or number, up to 64 characters.'
     title: Project ID
     from_schema: Core
     is_a: project_id
@@ -5713,8 +5713,8 @@ slots:
       between various experiments of the same type for a project. A two digit consecutive
       number beginning with 01
 
-      Letters, numbers, hyphens (-) and underscores (_) only, starting with a letter
-      or number, up to 64 characters.'
+      Letters, numbers, hyphens (`-`) and underscores (`_`) only, starting with a
+      letter or number, up to 64 characters.'
     title: Experiment ID
     from_schema: Core
     is_a: experiment_id
@@ -6528,8 +6528,8 @@ slots:
 
       Any method that creates a unique ID that will link all project data is acceptable.
 
-      Letters, numbers, hyphens (-) and underscores (_) only, starting with a letter
-      or number, up to 64 characters.'
+      Letters, numbers, hyphens (`-`) and underscores (`_`) only, starting with a
+      letter or number, up to 64 characters.'
     title: Project ID
     from_schema: Core
     is_a: project_id
@@ -6554,8 +6554,8 @@ slots:
       between various experiments of the same type for a project. A two digit consecutive
       number beginning with 01
 
-      Letters, numbers, hyphens (-) and underscores (_) only, starting with a letter
-      or number, up to 64 characters.'
+      Letters, numbers, hyphens (`-`) and underscores (`_`) only, starting with a
+      letter or number, up to 64 characters.'
     title: Experiment ID
     from_schema: Core
     is_a: experiment_id
@@ -10784,7 +10784,7 @@ classes:
     class_uri: oae:ContinuousStandardGas
 metamodel_version: 1.7.0
 source_file: oae_data_protocol.yaml
-source_file_date: '2026-11-24T00:42:16'
+source_file_date: '2026-11-24T02:04:51'
 source_file_size: 2249
-generation_date: '2026-11-24T00:42:27'
+generation_date: '2026-11-24T02:05:00'
 

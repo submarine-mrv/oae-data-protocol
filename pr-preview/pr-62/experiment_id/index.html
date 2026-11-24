@@ -1611,7 +1611,7 @@
 <h1 id="slot-experiment-id-experiment_id">Slot: Experiment ID (experiment_id)</h1>
 <p><em>The experiment to which the data belong. Any naming convention that produces a unique ID is usable. The recommended naming convention is:</em></p>
 <p><em>Project ID + Experiment type + Optional numerical indicator to differentiate between various experiments of the same type for a project. A two digit consecutive number beginning with 01</em></p>
-<p><em>Letters, numbers, hyphens (-) and underscores (</em>) only, starting with a letter or number, up to 64 characters._</p>
+<p><em>Letters, numbers, hyphens (<code>-</code>) and underscores (<code>_</code>) only, starting with a letter or number, up to 64 characters.</em></p>
 <p>URI: <a href="https://schema.oaedata.org/experiment_id">oae:experiment_id</a></p>
 <!-- no inheritance hierarchy -->
 
@@ -1626,33 +1626,8 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../Experiment/">Experiment</a></td>
-<td>Abstract base class for all experiment types</td>
-<td>yes</td>
-</tr>
-<tr>
-<td><a href="../Dataset/">Dataset</a></td>
-<td>Abstract base class for all dataset types</td>
-<td>yes</td>
-</tr>
-<tr>
-<td><a href="../InterventionWithTracer/">InterventionWithTracer</a></td>
-<td>Additional metadata that applies to hybrid experiments where an intervention ...</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../Model/">Model</a></td>
-<td>A computational model experiment related to OAE</td>
-<td>no</td>
-</tr>
-<tr>
 <td><a href="../FieldDataset/">FieldDataset</a></td>
 <td>A field or observational dataset related to an OAE experiment</td>
-<td>no</td>
-</tr>
-<tr>
-<td><a href="../InSituExperiment/">InSituExperiment</a></td>
-<td>Experiment metadata for in-situ studies (interventions, tracer studies, etc</td>
 <td>no</td>
 </tr>
 <tr>
@@ -1666,8 +1641,33 @@
 <td>no</td>
 </tr>
 <tr>
+<td><a href="../Experiment/">Experiment</a></td>
+<td>Abstract base class for all experiment types</td>
+<td>yes</td>
+</tr>
+<tr>
 <td><a href="../Intervention/">Intervention</a></td>
 <td>Additional metadata that applies to experiments where an intervention, such a...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../InterventionWithTracer/">InterventionWithTracer</a></td>
+<td>Additional metadata that applies to hybrid experiments where an intervention ...</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Model/">Model</a></td>
+<td>A computational model experiment related to OAE</td>
+<td>no</td>
+</tr>
+<tr>
+<td><a href="../Dataset/">Dataset</a></td>
+<td>Abstract base class for all dataset types</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><a href="../InSituExperiment/">InSituExperiment</a></td>
+<td>Experiment metadata for in-situ studies (interventions, tracer studies, etc</td>
 <td>no</td>
 </tr>
 </tbody>
@@ -1715,8 +1715,8 @@
 <span class="w">  </span><span class="s">various</span><span class="nv"> </span><span class="s">experiments</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">same</span><span class="nv"> </span><span class="s">type</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">project.</span><span class="nv"> </span><span class="s">A</span><span class="nv"> </span><span class="s">two</span><span class="nv"> </span><span class="s">digit</span><span class="nv"> </span><span class="s">consecutive</span><span class="nv"> </span><span class="s">number</span>
 <span class="w">  </span><span class="s">beginning</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">01</span>
 
-<span class="w">  </span><span class="s">Letters,</span><span class="nv"> </span><span class="s">numbers,</span><span class="nv"> </span><span class="s">hyphens</span><span class="nv"> </span><span class="s">(-)</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">underscores</span><span class="nv"> </span><span class="s">(_)</span><span class="nv"> </span><span class="s">only,</span><span class="nv"> </span><span class="s">starting</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">letter</span><span class="nv"> </span><span class="s">or</span>
-<span class="w">  </span><span class="s">number,</span><span class="nv"> </span><span class="s">up</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">64</span><span class="nv"> </span><span class="s">characters.&#39;</span>
+<span class="w">  </span><span class="s">Letters,</span><span class="nv"> </span><span class="s">numbers,</span><span class="nv"> </span><span class="s">hyphens</span><span class="nv"> </span><span class="s">(`-`)</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">underscores</span><span class="nv"> </span><span class="s">(`_`)</span><span class="nv"> </span><span class="s">only,</span><span class="nv"> </span><span class="s">starting</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">letter</span>
+<span class="w">  </span><span class="s">or</span><span class="nv"> </span><span class="s">number,</span><span class="nv"> </span><span class="s">up</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">64</span><span class="nv"> </span><span class="s">characters.&#39;</span>
 <span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Experiment ID</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://schema.oaedata.org/OAEDataSchema</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
