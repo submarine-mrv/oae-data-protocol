@@ -23,23 +23,23 @@ URI: [schema:name](http://schema.org/name)
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
-| [Model](Model.md) | A computational model experiment related to OAE |  no  |
+| [InSituExperiment](InSituExperiment.md) | Experiment metadata for in-situ studies (interventions, tracer studies, etc |  no  |
+| [ExternalProject](ExternalProject.md) | A research project that is not directly managed by the OAE project, but whose... |  no  |
+| [Organization](Organization.md) |  |  yes  |
+| [ModelOutputDataset](ModelOutputDataset.md) | A model simulation output dataset |  no  |
 | [Project](Project.md) | A project conducting OAE field trials or modeling |  yes  |
+| [Platform](Platform.md) |  |  yes  |
+| [Intervention](Intervention.md) | Additional metadata that applies to experiments where an intervention, such a... |  no  |
+| [FieldDataset](FieldDataset.md) | A field or observational dataset related to an OAE experiment |  no  |
+| [Experiment](Experiment.md) | Abstract base class for all experiment types |  yes  |
+| [Model](Model.md) | A computational model experiment related to OAE |  no  |
+| [MonetaryGrant](MonetaryGrant.md) |  |  yes  |
 | [NamedLink](NamedLink.md) | A link to a resource with a name and URL |  no  |
 | [Tracer](Tracer.md) | Additional metadata that applies to experiments where a tracer study was cond... |  no  |
-| [Platform](Platform.md) |  |  yes  |
+| [InterventionWithTracer](InterventionWithTracer.md) | Additional metadata that applies to hybrid experiments where an intervention ... |  no  |
 | [ModelComponent](ModelComponent.md) | A component of a model (e |  no  |
-| [FieldDataset](FieldDataset.md) | A field or observational dataset related to an OAE experiment |  no  |
 | [Person](Person.md) | Information about a researcher or investigator involved in the experiment |  no  |
 | [Dataset](Dataset.md) | Abstract base class for all dataset types |  yes  |
-| [ModelOutputDataset](ModelOutputDataset.md) | A model simulation output dataset |  no  |
-| [Organization](Organization.md) |  |  yes  |
-| [ExternalProject](ExternalProject.md) | A research project that is not directly managed by the OAE project, but whose... |  no  |
-| [InSituExperiment](InSituExperiment.md) | Experiment metadata for in-situ studies (interventions, tracer studies, etc |  no  |
-| [Experiment](Experiment.md) | Abstract base class for all experiment types |  yes  |
-| [Intervention](Intervention.md) | Additional metadata that applies to experiments where an intervention, such a... |  no  |
-| [InterventionWithTracer](InterventionWithTracer.md) | Additional metadata that applies to hybrid experiments where an intervention ... |  no  |
-| [MonetaryGrant](MonetaryGrant.md) |  |  yes  |
 
 
 

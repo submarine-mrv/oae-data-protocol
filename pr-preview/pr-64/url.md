@@ -18,8 +18,8 @@ URI: [oae:url](https://schema.oaedata.org/url)
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
-| [NamedLink](NamedLink.md) | A link to a resource with a name and URL |  no  |
 | [PublicComment](PublicComment.md) | A public comment document associated with a consultation for this experiment |  no  |
+| [NamedLink](NamedLink.md) | A link to a resource with a name and URL |  no  |
 
 
 

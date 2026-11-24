@@ -7,6 +7,8 @@ _The experiment to which the data belong. Any naming convention that produces a 
 
 _Project ID + Experiment type + Optional numerical indicator to differentiate between various experiments of the same type for a project. A two digit consecutive number beginning with 01_
 
+_Letters, numbers, hyphens (`-`) and underscores (`_`) only, starting with a letter or number, up to 64 characters._
+
 
 
 
@@ -25,15 +27,15 @@ URI: [oae:experiment_id](https://schema.oaedata.org/experiment_id)
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
+| [InSituExperiment](InSituExperiment.md) | Experiment metadata for in-situ studies (interventions, tracer studies, etc |  no  |
+| [ModelOutputDataset](ModelOutputDataset.md) | A model simulation output dataset |  no  |
+| [Intervention](Intervention.md) | Additional metadata that applies to experiments where an intervention, such a... |  no  |
+| [Experiment](Experiment.md) | Abstract base class for all experiment types |  yes  |
 | [Model](Model.md) | A computational model experiment related to OAE |  no  |
 | [Tracer](Tracer.md) | Additional metadata that applies to experiments where a tracer study was cond... |  no  |
 | [FieldDataset](FieldDataset.md) | A field or observational dataset related to an OAE experiment |  no  |
-| [ModelOutputDataset](ModelOutputDataset.md) | A model simulation output dataset |  no  |
-| [Dataset](Dataset.md) | Abstract base class for all dataset types |  yes  |
-| [InSituExperiment](InSituExperiment.md) | Experiment metadata for in-situ studies (interventions, tracer studies, etc |  no  |
-| [Experiment](Experiment.md) | Abstract base class for all experiment types |  yes  |
-| [Intervention](Intervention.md) | Additional metadata that applies to experiments where an intervention, such a... |  no  |
 | [InterventionWithTracer](InterventionWithTracer.md) | Additional metadata that applies to hybrid experiments where an intervention ... |  no  |
+| [Dataset](Dataset.md) | Abstract base class for all dataset types |  yes  |
 
 
 
@@ -44,6 +46,8 @@ URI: [oae:experiment_id](https://schema.oaedata.org/experiment_id)
 ## Properties
 
 * Range: [String](String.md)
+
+* Regex pattern: `^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$`
 
 
 
@@ -85,7 +89,10 @@ description: 'The experiment to which the data belong. Any naming convention tha
 
   Project ID + Experiment type + Optional numerical indicator to differentiate between
   various experiments of the same type for a project. A two digit consecutive number
-  beginning with 01'
+  beginning with 01
+
+  Letters, numbers, hyphens (`-`) and underscores (`_`) only, starting with a letter
+  or number, up to 64 characters.'
 title: Experiment ID
 from_schema: https://schema.oaedata.org/OAEDataSchema
 rank: 1000
@@ -94,6 +101,7 @@ domain_of:
 - Experiment
 - Dataset
 range: string
+pattern: ^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$
 
 ```
 </details>

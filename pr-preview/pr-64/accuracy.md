@@ -18,14 +18,14 @@ URI: [oae:accuracy](https://schema.oaedata.org/accuracy)
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
-| [ContinuousCO2GasDetector](ContinuousCO2GasDetector.md) | CO2 gas detector for continuous measurements, with measurement frequency |  no  |
-| [AnalyzingInstrument](AnalyzingInstrument.md) | Base class for scientific instruments used in analyzing samples for measureme... |  no  |
-| [PressureSensor](PressureSensor.md) | Pressure sensor used in continuous CO2 measurements |  yes  |
-| [CRMInstrument](CRMInstrument.md) | Instrument calibrated with Certified Reference Materials, used for DIC and TA... |  no  |
-| [CO2GasDetector](CO2GasDetector.md) | CO2 gas detector with standard gas calibration |  no  |
-| [GenericSensor](GenericSensor.md) | Generic sensor base class used in continuous CO2 measurements |  no  |
 | [TemperatureSensor](TemperatureSensor.md) | Temperature sensor used in continuous CO2 measurements |  yes  |
+| [CO2GasDetector](CO2GasDetector.md) | CO2 gas detector with standard gas calibration |  no  |
+| [AnalyzingInstrument](AnalyzingInstrument.md) | Base class for scientific instruments used in analyzing samples for measureme... |  no  |
+| [GenericSensor](GenericSensor.md) | Generic sensor base class used in continuous CO2 measurements |  no  |
+| [ContinuousCO2GasDetector](ContinuousCO2GasDetector.md) | CO2 gas detector for continuous measurements, with measurement frequency |  no  |
+| [CRMInstrument](CRMInstrument.md) | Instrument calibrated with Certified Reference Materials, used for DIC and TA... |  no  |
 | [PHInstrument](PHInstrument.md) | pH measurement instrument with dye-based calibration |  no  |
+| [PressureSensor](PressureSensor.md) | Pressure sensor used in continuous CO2 measurements |  yes  |
 
 
 
