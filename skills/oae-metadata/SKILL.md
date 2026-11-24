@@ -68,7 +68,7 @@ For each item:
 - For an enum field, use one of the values the schema lists, chosen by its meaning in `references/docs/vocabulary-values.md`, not by its name.
 - For `sea_names`, the list holds seas and ocean regions, not every bay or strait. When the water body the sources name is not listed, use the listed sea or ocean region that contains it and record that in the report as an inference.
 - Set `schema_class` on every variable to its class name.
-- `project_id` and `experiment_id` are free text. If the sources give none, coin one from names in the sources and list it in the report as coined. A dataset's `experiment_id` must equal its experiment's, character for character.
+- `project_id` and `experiment_id` use only letters, numbers, `-` and `_`, start with a letter or number, and run up to 64 characters. If the sources give none, coin one from names in the sources and list it in the report as coined. A dataset's `experiment_id` must equal its experiment's, character for character.
 - Fill a field only when a source states the value, or states enough that a specialist would call the inference safe. Record every inference in the report.
 - Leave a field out when the sources don't give it. No `null`, no empty string, no "unknown", no placeholder.
 - A person or organisation the sources name goes in with what the sources give, even when a required detail such as the email is missing. The missing detail is a gap.
