@@ -71,8 +71,8 @@ classes:
       schema_version:
         range: string
         description: >-
-          Version of this schema the file follows, such as 0.7.0. A file built from an unreleased
-          commit reads 0.7.0+dev.3c014f73: the last release, then the commit.
+          Version of the OAE Data Schema the file follows, such as 0.7.0, numbered separately from
+          protocol_version. A file built from an unreleased commit reads 0.7.0+dev.3c014f73: the last release, then the commit.
         required: false
       metadata_builder_version:
         range: string

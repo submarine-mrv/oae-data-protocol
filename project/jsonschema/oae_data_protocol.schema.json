@@ -625,7 +625,7 @@
                     "type": "string"
                 },
                 "schema_version": {
-                    "description": "Version of this schema the file follows, such as 0.7.0. A file built from an unreleased commit reads 0.7.0+dev.3c014f73: the last release, then the commit.",
+                    "description": "Version of the OAE Data Schema the file follows, such as 0.7.0, numbered separately from protocol_version. A file built from an unreleased commit reads 0.7.0+dev.3c014f73: the last release, then the commit.",
                     "type": "string"
                 }
             },
@@ -7316,7 +7316,7 @@
             "type": "string"
         },
         "schema_version": {
-            "description": "Version of this schema the file follows, such as 0.7.0. A file built from an unreleased commit reads 0.7.0+dev.3c014f73: the last release, then the commit.",
+            "description": "Version of the OAE Data Schema the file follows, such as 0.7.0, numbered separately from protocol_version. A file built from an unreleased commit reads 0.7.0+dev.3c014f73: the last release, then the commit.",
             "type": "string"
         }
     },
