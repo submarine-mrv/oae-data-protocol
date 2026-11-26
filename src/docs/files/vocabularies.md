@@ -21,6 +21,7 @@ section of the protocol website.
 
 | Area | Vocabularies |
 |------|--------------|
+| Metadata files | [Protocol Version](ProtocolVersion.md) |
 | Projects | [mCDR Pathway](MCDRPathway.md) |
 | Experiments | [Experiment Type](ExperimentType.md), [Public Comment Type](PublicCommentType.md) |
 | Interventions and tracers | [Feedstock Type](FeedstockType.md), [Alkalinity Feedstock Processing](AlkalinityFeedstockProcessing.md), [Alkalinity Feedstock Form](AlkalinityFeedstockForm.md), [Equilibration Status](EquilibrationStatus.md), [Tracer Form](TracerForm.md), [Dosing Delivery Type](DosingDeliveryType.md), [Hydrologic Location](HydrologicLocation.md) |

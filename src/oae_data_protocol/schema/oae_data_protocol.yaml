@@ -60,13 +60,12 @@ classes:
           - range: ModelOutputDataset
         multivalued: true
       protocol_version:
-        range: string
-        equals_string: "1.0.0"
+        range: ProtocolVersion
         description: >-
           Version of the OAE Data Management Protocol the schema is based on.
         see_also:
           - https://doi.org/10.5281/zenodo.17154988
-        required: false
+        required: true
       schema_version:
         range: string
         description: >-

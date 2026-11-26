@@ -1,4 +1,12 @@
 /**
+* Versions of the OAE Data Management Protocol this schema can follow.
+*/
+export enum ProtocolVersion {
+    
+    /** First release of the OAE Data Management Protocol */
+    number_1FULL_STOP0FULL_STOP0 = "1.0.0",
+};
+/**
 * Type of dataset being submitted. This usually 
 */
 export enum DatasetType {
@@ -1963,7 +1971,7 @@ export interface Container {
     experiments?: Any[],
     datasets?: Any[],
     /** Version of the OAE Data Management Protocol the schema is based on. */
-    protocol_version?: string,
+    protocol_version: string,
     /** Version of the OAE Data Schema the file follows, such as 0.7.0, numbered separately from protocol_version. A file built from an unreleased commit reads 0.7.0+dev.3c014f73: the last release, then the commit. */
     schema_version?: string,
     /** Version of the Metadata Builder that wrote the file, in the same form as schema_version. */

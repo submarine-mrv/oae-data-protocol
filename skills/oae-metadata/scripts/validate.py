@@ -310,6 +310,9 @@ def validate(doc, schema):
             (gaps if kind == "required" else structural).append(finding)
 
     allowed = set(schema.get("properties", {}))
+    for key in schema.get("required", []):
+        if key not in doc:
+            structural.append(Finding("file", "", f"missing required top-level field '{key}'"))
     for key in doc:
         if key not in allowed:
             structural.append(Finding("file", "", f"unknown top-level field '{key}' (allowed: {', '.join(sorted(allowed))})"))

@@ -23,8 +23,9 @@ single source of truth for the protocol's metadata requirements.
 A metadata file records three versions: which protocol the project follows, which schema the file
 was validated against, and which tool wrote it.
 
-- `protocol_version`: the version of the OAE Data Management Protocol the schema is based on, which
-  protocol compliance is checked against
+- `protocol_version`: required; the version of the OAE Data Management Protocol the schema is
+  based on, which protocol compliance is checked against. The
+  [Protocol Version](ProtocolVersion.md) list gives the accepted values.
 - `schema_version`: the version of the schema the file follows. It is numbered separately from
   `protocol_version` and changes more often; schema versions are published as
   [releases in the schema's GitHub repository](https://github.com/submarine-mrv/oae-data-protocol/releases)

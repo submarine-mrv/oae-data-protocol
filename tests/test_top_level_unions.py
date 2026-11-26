@@ -36,7 +36,9 @@ def test_json_schema_has_the_union(cls, slot, base):
     assert refs == concrete_family(base)
 
 
-@pytest.mark.parametrize("doc", [{}, {"experiments": [], "datasets": []}])
+@pytest.mark.parametrize(
+    "doc", [{"protocol_version": "1.0.0"}, {"protocol_version": "1.0.0", "experiments": [], "datasets": []}]
+)
 def test_empty_project_file_validates(doc):
     assert not list(Draft201909Validator(SCHEMA).iter_errors(doc))
 

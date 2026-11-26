@@ -6,6 +6,12 @@ prefixes:
 default_prefix: oae
 
 enums:
+  ProtocolVersion:
+    description: Versions of the OAE Data Management Protocol this schema can follow.
+    permissible_values:
+      1.0.0:
+        description: First release of the OAE Data Management Protocol
+        meaning: https://doi.org/10.5281/zenodo.17154989
   DatasetType:
     description: "Type of dataset being submitted. This usually "
     permissible_values:
