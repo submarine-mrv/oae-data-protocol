@@ -620,15 +620,19 @@
                     "$ref": "#/$defs/Project"
                 },
                 "protocol_version": {
-                    "const": "1.0.0",
-                    "description": "Version of the OAE Data Management Protocol the schema is based on.",
-                    "type": "string"
+                    "$ref": "#/$defs/ProtocolVersion",
+                    "description": "Version of the OAE Data Management Protocol the schema is based on."
                 },
                 "schema_version": {
                     "description": "Version of the OAE Data Schema the file follows, such as 0.7.0, numbered separately from protocol_version. A file built from an unreleased commit reads 0.7.0+dev.3c014f73: the last release, then the commit.",
+                    "pattern": "^\\d+\\.\\d+\\.\\d+(\\+dev\\.[0-9a-f]{7,40})?$",
                     "type": "string"
                 }
             },
+            "required": [
+                "protocol_version",
+                "schema_version"
+            ],
             "title": "Container",
             "type": "object"
         },
@@ -6497,6 +6501,14 @@
             "title": "PropertyValue",
             "type": "object"
         },
+        "ProtocolVersion": {
+            "description": "Versions of the OAE Data Management Protocol this schema can follow.",
+            "enum": [
+                "1.0.0"
+            ],
+            "title": "ProtocolVersion",
+            "type": "string"
+        },
         "PublicComment": {
             "additionalProperties": false,
             "description": "A public comment document associated with a consultation for this experiment.",
@@ -7311,15 +7323,19 @@
             "$ref": "#/$defs/Project"
         },
         "protocol_version": {
-            "const": "1.0.0",
-            "description": "Version of the OAE Data Management Protocol the schema is based on.",
-            "type": "string"
+            "$ref": "#/$defs/ProtocolVersion",
+            "description": "Version of the OAE Data Management Protocol the schema is based on."
         },
         "schema_version": {
             "description": "Version of the OAE Data Schema the file follows, such as 0.7.0, numbered separately from protocol_version. A file built from an unreleased commit reads 0.7.0+dev.3c014f73: the last release, then the commit.",
+            "pattern": "^\\d+\\.\\d+\\.\\d+(\\+dev\\.[0-9a-f]{7,40})?$",
             "type": "string"
         }
     },
+    "required": [
+        "protocol_version",
+        "schema_version"
+    ],
     "title": "OAE Data Protocol - Technical Documentation",
     "type": "object",
     "version": "0.7.0"

@@ -4,12 +4,12 @@ The researcher finishes the draft in the Metadata Builder at https://metadata.oa
 
 ## What a file may contain
 
-A metadata file is one JSON object. Every key is optional:
+A metadata file is one JSON object. `protocol_version` and `schema_version` are required; every other key is optional:
 
 - `project`: one project object
 - `experiments`: a list of experiments
 - `datasets`: a list of datasets, each with its `variables`
-- `protocol_version`: `1.0.0`, the OAE Data Management Protocol version the schema is based on
+- `protocol_version`: the OAE Data Management Protocol version the schema is based on: the last value of `$defs.ProtocolVersion.enum` in `assets/oae_data_protocol.schema.json`
 - `schema_version`: the schema version you drafted against (the `version` at the top of `assets/oae_data_protocol.schema.json`)
 
 Use `[]` or leave a key out when there is nothing for it. Never write `null`.
