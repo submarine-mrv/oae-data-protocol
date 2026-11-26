@@ -63,10 +63,9 @@ classes:
         range: string
         equals_string: "1.0.0"
         description: >-
-          Version of the OAE Data Management Protocol the schema is based on: 1.0.0,
-          https://doi.org/10.5281/zenodo.17154989.
+          Version of the OAE Data Management Protocol the schema is based on.
         see_also:
-          - https://doi.org/10.5281/zenodo.17154989
+          - https://doi.org/10.5281/zenodo.17154988
         required: false
       schema_version:
         range: string
