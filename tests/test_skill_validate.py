@@ -73,6 +73,12 @@ def test_partial_file_validates(container, keep):
     assert messages(result.gaps) == []
 
 
+def test_unsupported_protocol_version_is_structural(container):
+    container["protocol_version"] = "2.0.0"
+    result = v.validate(container, SCHEMA)
+    assert any('must be "1.0.0"' in m for m in messages(result.structural))
+
+
 def test_unknown_top_level_key_is_structural(container):
     container["notes"] = "x"
     result = v.validate(container, SCHEMA)
@@ -393,7 +399,7 @@ def test_version_status_says_out_of_date_and_points_to_the_live_skill(tmp_path):
 
 @pytest.mark.parametrize("latest", ["0.6.1", "0.6.0"])
 def test_version_status_says_latest_when_nothing_newer_is_published(tmp_path, latest):
-    assert v.version_status("0.6.1", published(tmp_path, latest)) == "Version: OAE Data Protocol 0.6.1 is the latest published version."
+    assert v.version_status("0.6.1", published(tmp_path, latest)) == "Version: OAE Data Protocol schema 0.6.1 is the latest published version."
 
 
 @pytest.mark.parametrize("latest", ["not a version", ""])

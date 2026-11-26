@@ -14,7 +14,7 @@ The draft is worth having only if two things hold:
 
 Paths below are relative to this skill's folder. Read each reference at the step that names it.
 
-Before you start, make sure this is the current protocol version. If you are reading this file from `https://schema.oaedata.org/skill/`, it is; go to step 1. Otherwise run `python3 scripts/validate.py --check-update` and act on the line it prints:
+Before you start, make sure this is the current schema version. If you are reading this file from `https://schema.oaedata.org/skill/`, it is; go to step 1. Otherwise run `python3 scripts/validate.py --check-update` and act on the line it prints:
 
 - **latest published version**: carry on.
 - **OUT OF DATE**: do not draft from this copy. Tell the researcher in your first message that their saved copy is out of date and how to replace it, using the link the line gives. Then do this draft from the current skill: read `https://schema.oaedata.org/skill/SKILL.md` and follow it, taking every file it names from that folder, and download its `scripts/validate.py` and `assets/oae_data_protocol.schema.json` to validate with. If that address is blocked where you run code, use the copy the line names on GitHub.

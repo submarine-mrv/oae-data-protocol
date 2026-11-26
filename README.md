@@ -18,9 +18,11 @@ from the protocol's v1.0 launch (August 25, 2025) are in [`templates/excel`](./t
 deploys [schema.oaedata.org](https://schema.oaedata.org), the AI skill included. The docs site
 always matches the latest release, which is what the public Metadata Builder uses.
 
-The version is the `version` field of `oae_data_protocol.yaml` and of the generated JSON Schema. It
-names the latest release and changes only in a release. A metadata file built from an unreleased
-commit says so in its `version`: `0.6.1+dev.3c014f7`. See [RELEASE_PROCESS.md](RELEASE_PROCESS.md).
+The schema version is `version:` in `oae_data_protocol.yaml`, copied to the root `version` key of
+the generated JSON Schema. It names the latest release and changes only in a release. Metadata files record it as `schema_version`,
+and a file built from an unreleased commit says so: `0.7.0+dev.3c014f73`. Files also record
+`protocol_version`, the version of the OAE Data Management Protocol document the schema is based on
+(1.0.0; all versions at [doi:10.5281/zenodo.17154988](https://doi.org/10.5281/zenodo.17154988)). See [RELEASE_PROCESS.md](RELEASE_PROCESS.md).
 
 ## Generated artifacts
 

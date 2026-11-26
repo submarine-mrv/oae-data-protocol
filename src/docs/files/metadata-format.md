@@ -5,8 +5,9 @@ its experiments and its datasets in a single document.
 
 To create a file, use the **[OAE Metadata Builder](https://metadata.oaedata.org)**. It exports files
 that validate against the schema. The [Excel templates](https://www.carbontosea.org/oae-data-protocol#metadata-and-templates)
-on the protocol website are still available, but they aren't checked against the schema, so you have
-to get vocabulary values and field formats right by hand.
+on the protocol website are still available, but they won't be updated for future versions of the
+protocol. The LinkML schema on [GitHub](https://github.com/submarine-mrv/oae-data-protocol) is now the
+single source of truth for the protocol's metadata requirements.
 
 ## The Container
 
@@ -15,8 +16,33 @@ to get vocabulary values and field formats right by hand.
 | `project` | One [Project](Project.md) |
 | `experiments` | The project's [experiments](projects-experiments/index.md#experiments) |
 | `datasets` | The datasets those experiments produced, either [FieldDataset](FieldDataset.md) or [ModelOutputDataset](ModelOutputDataset.md) |
-| `version` | The schema version the file follows |
-| `metadata_builder_version` | Optional. The Metadata Builder version that wrote the file |
+| `protocol_version`, `schema_version`, `metadata_builder_version` | See [Versioning](#versioning) |
+
+### Versioning
+
+A metadata file records three versions: which protocol the project follows, which schema the file
+was validated against, and which tool wrote it.
+
+- `protocol_version`: the version of the OAE Data Management Protocol the schema is based on, which
+  protocol compliance is checked against
+- `schema_version`: the version of the schema the file follows. It is numbered separately from
+  `protocol_version` and changes more often; schema versions are published as
+  [releases in the schema's GitHub repository](https://github.com/submarine-mrv/oae-data-protocol/releases)
+- `metadata_builder_version`: optional; the version corresponding to the
+  [Metadata Builder release](https://github.com/submarine-mrv/oae-metadata-builder/releases) that
+  wrote the file
+
+The protocol and the schema are versioned separately. Each protocol version is published on Zenodo
+with its own DOI, and one protocol version can span many schema releases. The table below shows
+which schema versions correspond to which protocol versions.
+
+| Protocol version | DOI | Schema versions |
+|---|---|---|
+| 1.0.0 | [10.5281/zenodo.17154989](https://doi.org/10.5281/zenodo.17154989) | 0.1.0 and later |
+
+Zenodo also publishes a DOI for citing all versions of the protocol:
+[10.5281/zenodo.17154988](https://doi.org/10.5281/zenodo.17154988). It always resolves to the
+latest version.
 
 ## How the Pieces Relate
 
@@ -34,7 +60,8 @@ A minimal file that validates against the schema:
 <!-- validate: Container -->
 ```json
 {
-  "version": "0.5.0",
+  "protocol_version": "1.0.0",
+  "schema_version": "0.7.0",
   "project": {
     "project_id": "EXAMPLE-001",
     "name": "North Atlantic OAE pilot",

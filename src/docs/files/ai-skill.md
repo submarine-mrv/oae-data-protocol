@@ -85,8 +85,8 @@ metadata from them.
 Saved skills depend on your plan and on code execution being turned on. If you do not see a skills
 page in your settings, use the first approach.
 
-The zip file contains the version of the protocol that was current when you downloaded it. Download
-and upload it again whenever a new version of the protocol is released.
+The zip file contains the version of the schema that was current when you downloaded it. Download
+and upload it again whenever a new version of the schema is released.
 
 ### 3. Install the skill in Claude Code
 
@@ -108,12 +108,12 @@ An uploaded or installed copy of the skill (approaches 2 and 3) checks this site
 used, and again each time it validates a draft. There are three outcomes:
 
 - Your copy is current: nothing changes.
-- A newer version of the protocol has been released: your AI tool tells you, drafts from the current
+- A newer version of the schema has been released: your AI tool tells you, drafts from the current
   files on this site instead of your copy, and asks you to replace your copy.
 - The check could not reach this site, which is common for AI tools in the browser: the report's
   first line says the version could not be confirmed.
 
-In every case the Metadata Builder validates a draft against the current protocol when you import
+In every case the Metadata Builder validates a draft against the current schema when you import
 it.
 
 ## Validating a draft yourself

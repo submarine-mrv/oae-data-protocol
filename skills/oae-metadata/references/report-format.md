@@ -5,7 +5,7 @@ Write the report as markdown beside the JSON. A researcher reads it with the Bui
 ```markdown
 # Metadata draft report: <project or dataset name>
 
-Drafted <date> against OAE Data Protocol <version>. <one of>
+Drafted <date> against OAE Data Protocol <protocol_version>, schema <schema_version>. <one of>
 - This is the latest published version.
 - Version not confirmed: this copy of the skill could not check for a newer one. The Metadata Builder is the final check.
 - Your saved copy of the skill is out of date (<its version>); this draft used the current files from schema.oaedata.org. Replace your copy: https://schema.oaedata.org/ai-skill/

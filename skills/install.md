@@ -64,7 +64,7 @@ and when they want each draft validated. The package is https://schema.oaedata.o
 Saved skills depend on the researcher's plan and on code execution being turned on. If the app has
 no skills page or refuses the upload, use "Try it now" instead.
 
-Tell them the limit: the saved copy holds the protocol version from the day it was installed. When a
+Tell them the limit: the saved copy holds the schema version from the day it was installed. When a
 new version is released, the zip file has to be installed again.
 
 **Install the plugin in Claude Code.** Best for someone who already works in Claude Code. They run:

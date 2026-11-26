@@ -333,9 +333,11 @@ def validate(doc, schema):
             class_name = pick(item)
             add(item, class_name, _label(collection, index, item, class_name))
 
-    for key in ("version", "metadata_builder_version"):
-        if key in doc and not isinstance(doc[key], str):
-            structural.append(Finding("file", key, f"expected string, got {_type_name(doc[key])}"))
+    # Top-level fields other than the three collections, such as the version fields.
+    for key in sorted(doc.keys() - {"project", "experiments", "datasets"}):
+        if key in schema["properties"]:
+            for error in errors(doc[key], schema["properties"][key], schema.get("$defs", {})):
+                structural.append(Finding("file", key, error.message))
 
     for path, box in boxes(doc):
         problem, reading = check_box(box)
@@ -344,8 +346,8 @@ def validate(doc, schema):
         else:
             notes.append(f'{path} "{box}" reads as {reading}. Check this against the source.')
 
-    if isinstance(doc.get("version"), str) and schema.get("version") and doc["version"] != schema["version"]:
-        notes.append(f"The file says version {doc['version']}; this schema is {schema['version']}.")
+    if isinstance(doc.get("schema_version"), str) and schema.get("version") and doc["schema_version"] != schema["version"]:
+        notes.append(f"The file says schema_version {doc['schema_version']}; this schema is {schema['version']}.")
 
     return Result(structural, gaps, notes)
 
@@ -407,7 +409,7 @@ def _published_version(urls):
 
 
 def version_status(current, urls=LATEST_VERSION_URLS):
-    """One line saying whether `current` is the latest published protocol version.
+    """One line saying whether `current` is the latest published schema version.
 
     Three outcomes: latest, out of date, or not checked (no network in many sandboxes).
     """
@@ -416,17 +418,17 @@ def version_status(current, urls=LATEST_VERSION_URLS):
         newer = parsed > _version(current)
     except Exception:  # noqa: BLE001
         return (
-            f"Version: not checked. This copy has OAE Data Protocol {current} and could not reach "
+            f"Version: not checked. This copy has OAE Data Protocol schema {current} and could not reach "
             f"schema.oaedata.org or its copy on GitHub, so a newer version may exist. Say so on the report's first line."
         )
     if newer:
         return (
-            f"Version: OUT OF DATE. OAE Data Protocol {latest} is published; this copy of the skill has {current}. "
+            f"Version: OUT OF DATE. OAE Data Protocol schema {latest} is published; this copy of the skill has {current}. "
             f"Do not draft or validate with this copy. Work from the current files at {LIVE_SKILL} "
             f"(if that address is blocked, the same folder is at {MIRROR}skill/) "
             f"and tell the researcher to replace their saved copy: {UPDATE_PAGE}"
         )
-    return f"Version: OAE Data Protocol {current} is the latest published version."
+    return f"Version: OAE Data Protocol schema {current} is the latest published version."
 
 
 def main(argv=None):
@@ -434,7 +436,7 @@ def main(argv=None):
     parser.add_argument("file", nargs="?")
     parser.add_argument("--schema", default=str(DEFAULT_SCHEMA))
     parser.add_argument("--json", action="store_true", help="print findings as JSON")
-    parser.add_argument("--check-update", action="store_true", help="say whether this copy has the latest published protocol version, then exit")
+    parser.add_argument("--check-update", action="store_true", help="say whether this copy has the latest published schema version, then exit")
     parser.add_argument("--latest-url", default=LATEST_VERSION_URLS, help=argparse.SUPPRESS)
     args = parser.parse_args(argv)
 

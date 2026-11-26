@@ -90,8 +90,8 @@ The project uses LinkML (Linked Data Modeling Language) with a modular schema ar
 5. Documentation is generated from schema annotations + hand-written pages
 
 Versioning: `version:` in `oae_data_protocol.yaml` names the latest release and flows into the
-JSON Schema as the root `version` field. PRs don't change it; only a release does (see
-`RELEASE_PROCESS.md`). The Python package version comes from git tags via uv-dynamic-versioning.
+JSON Schema as the root `version` key; metadata files record it as `schema_version`. PRs don't
+change it; only a release does (see `RELEASE_PROCESS.md`). The Python package version comes from git tags via uv-dynamic-versioning.
 
 ## Development Workflow
 
