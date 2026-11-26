@@ -46,7 +46,7 @@ def test_empty_project_file_validates(doc):
 @pytest.mark.parametrize("slot", ["experiments", "datasets"])
 def test_null_collection_is_rejected(slot):
     """An empty project omits the key or uses []."""
-    assert list(Draft201909Validator(SCHEMA).iter_errors({slot: None}))
+    assert list(Draft201909Validator(SCHEMA).iter_errors({"protocol_version": "1.0.0", slot: None}))
 
 
 def test_nested_slots_stay_strict():
