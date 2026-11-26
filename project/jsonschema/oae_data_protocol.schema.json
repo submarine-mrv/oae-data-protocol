@@ -621,7 +621,7 @@
                 },
                 "protocol_version": {
                     "const": "1.0.0",
-                    "description": "Version of the OAE Data Management Protocol the schema is based on: 1.0.0, https://doi.org/10.5281/zenodo.17154989.",
+                    "description": "Version of the OAE Data Management Protocol the schema is based on.",
                     "type": "string"
                 },
                 "schema_version": {
@@ -7312,7 +7312,7 @@
         },
         "protocol_version": {
             "const": "1.0.0",
-            "description": "Version of the OAE Data Management Protocol the schema is based on: 1.0.0, https://doi.org/10.5281/zenodo.17154989.",
+            "description": "Version of the OAE Data Management Protocol the schema is based on.",
             "type": "string"
         },
         "schema_version": {
