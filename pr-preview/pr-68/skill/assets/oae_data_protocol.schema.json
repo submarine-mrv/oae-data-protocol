@@ -625,11 +625,13 @@
                 },
                 "schema_version": {
                     "description": "Version of the OAE Data Schema the file follows, such as 0.7.0, numbered separately from protocol_version. A file built from an unreleased commit reads 0.7.0+dev.3c014f73: the last release, then the commit.",
+                    "pattern": "^\\d+\\.\\d+\\.\\d+(\\+dev\\.[0-9a-f]{7,40})?$",
                     "type": "string"
                 }
             },
             "required": [
-                "protocol_version"
+                "protocol_version",
+                "schema_version"
             ],
             "title": "Container",
             "type": "object"
@@ -7326,11 +7328,13 @@
         },
         "schema_version": {
             "description": "Version of the OAE Data Schema the file follows, such as 0.7.0, numbered separately from protocol_version. A file built from an unreleased commit reads 0.7.0+dev.3c014f73: the last release, then the commit.",
+            "pattern": "^\\d+\\.\\d+\\.\\d+(\\+dev\\.[0-9a-f]{7,40})?$",
             "type": "string"
         }
     },
     "required": [
-        "protocol_version"
+        "protocol_version",
+        "schema_version"
     ],
     "title": "OAE Data Protocol - Technical Documentation",
     "type": "object",

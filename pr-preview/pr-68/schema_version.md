@@ -35,6 +35,10 @@ URI: [oae:schema_version](https://schema.oaedata.org/schema_version)
 
 * Range: [String](String.md)
 
+* Required: True
+
+* Regex pattern: `^\d+\.\d+\.\d+(\+dev\.[0-9a-f]{7,40})?$`
+
 
 
 
@@ -80,7 +84,8 @@ owner: Container
 domain_of:
 - Container
 range: string
-required: false
+required: true
+pattern: ^\d+\.\d+\.\d+(\+dev\.[0-9a-f]{7,40})?$
 
 ```
 </details>

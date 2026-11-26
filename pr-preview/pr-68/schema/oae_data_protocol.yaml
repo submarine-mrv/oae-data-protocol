@@ -2395,7 +2395,8 @@ slots:
     domain_of:
     - Container
     range: string
-    required: false
+    required: true
+    pattern: ^\d+\.\d+\.\d+(\+dev\.[0-9a-f]{7,40})?$
   container__metadata_builder_version:
     name: container__metadata_builder_version
     description: Version of the Metadata Builder that wrote the file, in the same
@@ -6882,7 +6883,8 @@ classes:
           numbered separately from protocol_version. A file built from an unreleased
           commit reads 0.7.0+dev.3c014f73: the last release, then the commit.'
         range: string
-        required: false
+        required: true
+        pattern: ^\d+\.\d+\.\d+(\+dev\.[0-9a-f]{7,40})?$
       metadata_builder_version:
         name: metadata_builder_version
         description: Version of the Metadata Builder that wrote the file, in the same
@@ -10816,7 +10818,7 @@ classes:
     class_uri: oae:ContinuousStandardGas
 metamodel_version: 1.7.0
 source_file: oae_data_protocol.yaml
-source_file_date: '2026-11-26T06:57:15'
-source_file_size: 2555
-generation_date: '2026-11-26T06:57:23'
+source_file_date: '2026-11-26T17:19:04'
+source_file_size: 2630
+generation_date: '2026-11-26T17:19:13'
 

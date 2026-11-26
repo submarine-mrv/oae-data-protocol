@@ -4,7 +4,7 @@ The researcher finishes the draft in the Metadata Builder at https://metadata.oa
 
 ## What a file may contain
 
-A metadata file is one JSON object. `protocol_version` is required; every other key is optional:
+A metadata file is one JSON object. `protocol_version` and `schema_version` are required; every other key is optional:
 
 - `project`: one project object
 - `experiments`: a list of experiments
