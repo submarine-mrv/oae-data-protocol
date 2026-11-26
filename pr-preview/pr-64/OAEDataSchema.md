@@ -280,7 +280,7 @@ Name: OAEDataSchema
 | [project](project.md) |  |
 | [project_id](project_id.md) | The project to which the submitted data belong |
 | [project_leads](project_leads.md) | Provide details for each project lead / principal investigator (PI) including... |
-| [protocol_version](protocol_version.md) | Version of the OAE Data Management Protocol the schema is based on: 1 |
+| [protocol_version](protocol_version.md) | Version of the OAE Data Management Protocol the schema is based on |
 | [public_comments](public_comments.md) | Public comment documents, each with a link or DOI and an optional description |
 | [qc_flag_scheme](qc_flag_scheme.md) | Describe what the quality control flags stand for, e |
 | [qc_researcher](qc_researcher.md) | The name of the PI whose research team QCed this parameter |

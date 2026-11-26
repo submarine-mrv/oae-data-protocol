@@ -23,8 +23,8 @@ URI: [oae:dataset_type](https://schema.oaedata.org/dataset_type)
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
-| [ModelOutputDataset](ModelOutputDataset.md) | A model simulation output dataset |  no  |
 | [Dataset](Dataset.md) | Abstract base class for all dataset types |  no  |
+| [ModelOutputDataset](ModelOutputDataset.md) | A model simulation output dataset |  no  |
 | [FieldDataset](FieldDataset.md) | A field or observational dataset related to an OAE experiment |  no  |
 
 

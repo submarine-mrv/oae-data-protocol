@@ -23,9 +23,9 @@ URI: [oae:species_identification_code](https://schema.oaedata.org/species_identi
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
+| [DiscretePhysiologicalVariable](DiscretePhysiologicalVariable.md) | Physiological response variable from discrete field samples (e |  no  |
 | [ContinuousPhysiologicalVariable](ContinuousPhysiologicalVariable.md) | Physiological response variable from continuous autonomous field sensors (e |  no  |
 | [MeasuredPhysiologicalFields](MeasuredPhysiologicalFields.md) | Fields applied to all measured physiological variable types (discrete and con... |  no  |
-| [DiscretePhysiologicalVariable](DiscretePhysiologicalVariable.md) | Physiological response variable from discrete field samples (e |  no  |
 
 
 
