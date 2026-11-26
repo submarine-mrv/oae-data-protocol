@@ -24,8 +24,8 @@ URI: [schema:temporalCoverage](http://schema.org/temporalCoverage)
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
 | [FieldDataset](FieldDataset.md) | A field or observational dataset related to an OAE experiment |  no  |
-| [Project](Project.md) | A project conducting OAE field trials or modeling |  yes  |
 | [ExternalProject](ExternalProject.md) | A research project that is not directly managed by the OAE project, but whose... |  no  |
+| [Project](Project.md) | A project conducting OAE field trials or modeling |  yes  |
 
 
 
