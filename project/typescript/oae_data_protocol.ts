@@ -1973,7 +1973,7 @@ export interface Container {
     /** Version of the OAE Data Management Protocol the schema is based on. */
     protocol_version: string,
     /** Version of the OAE Data Schema the file follows, such as 0.7.0, numbered separately from protocol_version. A file built from an unreleased commit reads 0.7.0+dev.3c014f73: the last release, then the commit. */
-    schema_version?: string,
+    schema_version: string,
     /** Version of the Metadata Builder that wrote the file, in the same form as schema_version. */
     metadata_builder_version?: string,
 }

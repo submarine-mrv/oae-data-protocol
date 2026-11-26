@@ -4057,8 +4057,20 @@ class Container(ConfiguredBaseModel):
     protocol_version: ProtocolVersion = Field(default=..., description="""Version of the OAE Data Management Protocol the schema is based on.""", json_schema_extra = { "linkml_meta": {'alias': 'protocol_version',
          'domain_of': ['Container'],
          'see_also': ['https://doi.org/10.5281/zenodo.17154988']} })
-    schema_version: Optional[str] = Field(default=None, description="""Version of the OAE Data Schema the file follows, such as 0.7.0, numbered separately from protocol_version. A file built from an unreleased commit reads 0.7.0+dev.3c014f73: the last release, then the commit.""", json_schema_extra = { "linkml_meta": {'alias': 'schema_version', 'domain_of': ['Container']} })
+    schema_version: str = Field(default=..., description="""Version of the OAE Data Schema the file follows, such as 0.7.0, numbered separately from protocol_version. A file built from an unreleased commit reads 0.7.0+dev.3c014f73: the last release, then the commit.""", json_schema_extra = { "linkml_meta": {'alias': 'schema_version', 'domain_of': ['Container']} })
     metadata_builder_version: Optional[str] = Field(default=None, description="""Version of the Metadata Builder that wrote the file, in the same form as schema_version.""", json_schema_extra = { "linkml_meta": {'alias': 'metadata_builder_version', 'domain_of': ['Container']} })
+
+    @field_validator('schema_version')
+    def pattern_schema_version(cls, v):
+        pattern=re.compile(r"^\d+\.\d+\.\d+(\+dev\.[0-9a-f]{7,40})?$")
+        if isinstance(v,list):
+            for element in v:
+                if isinstance(v, str) and not pattern.match(element):
+                    raise ValueError(f"Invalid schema_version format: {element}")
+        elif isinstance(v,str):
+            if not pattern.match(v):
+                raise ValueError(f"Invalid schema_version format: {v}")
+        return v
 
 
 # Model rebuild

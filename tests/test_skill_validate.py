@@ -67,7 +67,7 @@ def test_docs_example_has_no_findings(container):
 
 @pytest.mark.parametrize("keep", [["project"], ["datasets"], ["experiments"], []])
 def test_partial_file_validates(container, keep):
-    doc = {k: container[k] for k in [*keep, "protocol_version"]}
+    doc = {k: container[k] for k in [*keep, "protocol_version", "schema_version"]}
     result = v.validate(doc, SCHEMA)
     assert messages(result.structural) == []
     assert messages(result.gaps) == []
@@ -77,6 +77,12 @@ def test_unsupported_protocol_version_is_structural(container):
     container["protocol_version"] = "2.0.0"
     result = v.validate(container, SCHEMA)
     assert any("not an allowed value" in m for m in messages(result.structural))
+
+
+def test_malformed_schema_version_is_structural(container):
+    container["schema_version"] = "v0.7"
+    result = v.validate(container, SCHEMA)
+    assert any("schema_version" in m for m in messages(result.structural))
 
 
 def test_missing_protocol_version_is_structural(container):
