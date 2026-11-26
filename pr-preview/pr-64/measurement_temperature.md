@@ -18,8 +18,8 @@ URI: [oae:measurement_temperature](https://schema.oaedata.org/measurement_temper
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
-| [DiscretePHVariable](DiscretePHVariable.md) | pH measured variable with dye-based spectrophotometric measurement |  no  |
 | [DiscreteCO2Variable](DiscreteCO2Variable.md) | CO2 discrete (bottle) measured variable (pCO2/fCO2) |  no  |
+| [DiscretePHVariable](DiscretePHVariable.md) | pH measured variable with dye-based spectrophotometric measurement |  no  |
 
 
 

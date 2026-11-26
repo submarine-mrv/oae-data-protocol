@@ -3,7 +3,7 @@
 # Slot: schema_version
 
 
-_Version of this schema the file follows, such as 0.7.0. A file built from an unreleased commit reads 0.7.0+dev.3c014f73: the last release, then the commit._
+_Version of the OAE Data Schema the file follows, such as 0.7.0, numbered separately from protocol_version. A file built from an unreleased commit reads 0.7.0+dev.3c014f73: the last release, then the commit._
 
 
 
@@ -70,8 +70,9 @@ URI: [oae:schema_version](https://schema.oaedata.org/schema_version)
 <details>
 ```yaml
 name: schema_version
-description: 'Version of this schema the file follows, such as 0.7.0. A file built
-  from an unreleased commit reads 0.7.0+dev.3c014f73: the last release, then the commit.'
+description: 'Version of the OAE Data Schema the file follows, such as 0.7.0, numbered
+  separately from protocol_version. A file built from an unreleased commit reads 0.7.0+dev.3c014f73:
+  the last release, then the commit.'
 from_schema: https://schema.oaedata.org/OAEDataSchema
 rank: 1000
 alias: schema_version

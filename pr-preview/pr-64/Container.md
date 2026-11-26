@@ -65,7 +65,7 @@ URI: [oae:Container](https://schema.oaedata.org/Container)
 | [experiments](experiments.md) | * <br/> [Any](Any.md)&nbsp;or&nbsp;<br />[Experiment](Experiment.md)&nbsp;or&nbsp;<br />[InSituExperiment](InSituExperiment.md)&nbsp;or&nbsp;<br />[Model](Model.md)&nbsp;or&nbsp;<br />[Intervention](Intervention.md)&nbsp;or&nbsp;<br />[Tracer](Tracer.md)&nbsp;or&nbsp;<br />[InterventionWithTracer](InterventionWithTracer.md) |  | direct |
 | [datasets](datasets.md) | * <br/> [Any](Any.md)&nbsp;or&nbsp;<br />[Dataset](Dataset.md)&nbsp;or&nbsp;<br />[FieldDataset](FieldDataset.md)&nbsp;or&nbsp;<br />[ModelOutputDataset](ModelOutputDataset.md) |  | direct |
 | [protocol_version](protocol_version.md) | 0..1 <br/> [String](String.md) | Version of the OAE Data Management Protocol the schema is based on: 1 | direct |
-| [schema_version](schema_version.md) | 0..1 <br/> [String](String.md) | Version of this schema the file follows, such as 0 | direct |
+| [schema_version](schema_version.md) | 0..1 <br/> [String](String.md) | Version of the OAE Data Schema the file follows, such as 0 | direct |
 | [metadata_builder_version](metadata_builder_version.md) | 0..1 <br/> [String](String.md) | Version of the Metadata Builder that wrote the file, in the same form as sche... | direct |
 
 
@@ -165,9 +165,9 @@ attributes:
     equals_string: 1.0.0
   schema_version:
     name: schema_version
-    description: 'Version of this schema the file follows, such as 0.7.0. A file built
-      from an unreleased commit reads 0.7.0+dev.3c014f73: the last release, then the
-      commit.'
+    description: 'Version of the OAE Data Schema the file follows, such as 0.7.0,
+      numbered separately from protocol_version. A file built from an unreleased commit
+      reads 0.7.0+dev.3c014f73: the last release, then the commit.'
     from_schema: https://schema.oaedata.org/OAEDataSchema
     rank: 1000
     domain_of:
@@ -253,9 +253,9 @@ attributes:
     equals_string: 1.0.0
   schema_version:
     name: schema_version
-    description: 'Version of this schema the file follows, such as 0.7.0. A file built
-      from an unreleased commit reads 0.7.0+dev.3c014f73: the last release, then the
-      commit.'
+    description: 'Version of the OAE Data Schema the file follows, such as 0.7.0,
+      numbered separately from protocol_version. A file built from an unreleased commit
+      reads 0.7.0+dev.3c014f73: the last release, then the commit.'
     from_schema: https://schema.oaedata.org/OAEDataSchema
     rank: 1000
     alias: schema_version

@@ -300,7 +300,7 @@ Name: OAEDataSchema
 | [sampling_instrument_type_custom](sampling_instrument_type_custom.md) |  |
 | [sampling_method](sampling_method.md) | Method used to collect samples |
 | [schema_class](schema_class.md) | The schema class name for this variable (e |
-| [schema_version](schema_version.md) | Version of this schema the file follows, such as 0 |
+| [schema_version](schema_version.md) | Version of the OAE Data Schema the file follows, such as 0 |
 | [sea_names](sea_names.md) | Names of the seas where the data collection takes place, See Controlled Vocab... |
 | [seawater_intake_depth](seawater_intake_depth.md) | Water depth of the seawater intake |
 | [seawater_intake_location](seawater_intake_location.md) | Whereabouts of the seawater intake |

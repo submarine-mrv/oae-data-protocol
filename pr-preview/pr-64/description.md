@@ -23,20 +23,20 @@ URI: [schema:description](http://schema.org/description)
 
 | Name | Description | Modifies Slot |
 | --- | --- | --- |
+| [InterventionWithTracer](InterventionWithTracer.md) | Additional metadata that applies to hybrid experiments where an intervention ... |  no  |
+| [PublicComment](PublicComment.md) | A public comment document associated with a consultation for this experiment |  yes  |
 | [InSituExperiment](InSituExperiment.md) | Experiment metadata for in-situ studies (interventions, tracer studies, etc |  no  |
+| [Experiment](Experiment.md) | Abstract base class for all experiment types |  yes  |
+| [FieldDataset](FieldDataset.md) | A field or observational dataset related to an OAE experiment |  no  |
+| [ModelComponent](ModelComponent.md) | A component of a model (e |  yes  |
+| [Project](Project.md) | A project conducting OAE field trials or modeling |  yes  |
+| [Tracer](Tracer.md) | Additional metadata that applies to experiments where a tracer study was cond... |  no  |
 | [ExternalProject](ExternalProject.md) | A research project that is not directly managed by the OAE project, but whose... |  no  |
 | [ModelOutputDataset](ModelOutputDataset.md) | A model simulation output dataset |  no  |
-| [Project](Project.md) | A project conducting OAE field trials or modeling |  yes  |
-| [VocabularyItemReference](VocabularyItemReference.md) |  |  no  |
 | [Intervention](Intervention.md) | Additional metadata that applies to experiments where an intervention, such a... |  no  |
-| [FieldDataset](FieldDataset.md) | A field or observational dataset related to an OAE experiment |  no  |
-| [Experiment](Experiment.md) | Abstract base class for all experiment types |  yes  |
-| [Model](Model.md) | A computational model experiment related to OAE |  no  |
-| [PublicComment](PublicComment.md) | A public comment document associated with a consultation for this experiment |  yes  |
-| [ModelComponent](ModelComponent.md) | A component of a model (e |  yes  |
-| [Tracer](Tracer.md) | Additional metadata that applies to experiments where a tracer study was cond... |  no  |
-| [InterventionWithTracer](InterventionWithTracer.md) | Additional metadata that applies to hybrid experiments where an intervention ... |  no  |
 | [Dataset](Dataset.md) | Abstract base class for all dataset types |  yes  |
+| [VocabularyItemReference](VocabularyItemReference.md) |  |  no  |
+| [Model](Model.md) | A computational model experiment related to OAE |  no  |
 
 
 

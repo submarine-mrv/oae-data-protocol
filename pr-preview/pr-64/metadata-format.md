@@ -25,8 +25,9 @@ was validated against, and which tool wrote it.
 
 - `protocol_version`: the version of the OAE Data Management Protocol the schema is based on, which
   protocol compliance is checked against
-- `schema_version`: the version of this schema the file follows, matching a
-  [release of oae-data-protocol](https://github.com/submarine-mrv/oae-data-protocol/releases)
+- `schema_version`: the version of the OAE Data Schema the file follows, such as `0.7.0`. It is
+  numbered separately from `protocol_version` and changes more often; each version is a
+  [release of the schema repository](https://github.com/submarine-mrv/oae-data-protocol/releases)
 - `metadata_builder_version`: optional; the
   [Metadata Builder release](https://github.com/submarine-mrv/oae-metadata-builder/releases) that
   wrote the file

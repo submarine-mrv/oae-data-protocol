@@ -2377,9 +2377,9 @@ slots:
     equals_string: 1.0.0
   container__schema_version:
     name: container__schema_version
-    description: 'Version of this schema the file follows, such as 0.7.0. A file built
-      from an unreleased commit reads 0.7.0+dev.3c014f73: the last release, then the
-      commit.'
+    description: 'Version of the OAE Data Schema the file follows, such as 0.7.0,
+      numbered separately from protocol_version. A file built from an unreleased commit
+      reads 0.7.0+dev.3c014f73: the last release, then the commit.'
     from_schema: https://schema.oaedata.org/OAEDataSchema
     slot_uri: oae:schema_version
     alias: schema_version
@@ -6871,9 +6871,9 @@ classes:
         equals_string: 1.0.0
       schema_version:
         name: schema_version
-        description: 'Version of this schema the file follows, such as 0.7.0. A file
-          built from an unreleased commit reads 0.7.0+dev.3c014f73: the last release,
-          then the commit.'
+        description: 'Version of the OAE Data Schema the file follows, such as 0.7.0,
+          numbered separately from protocol_version. A file built from an unreleased
+          commit reads 0.7.0+dev.3c014f73: the last release, then the commit.'
         range: string
         required: false
       metadata_builder_version:
@@ -10809,7 +10809,7 @@ classes:
     class_uri: oae:ContinuousStandardGas
 metamodel_version: 1.7.0
 source_file: oae_data_protocol.yaml
-source_file_date: '2026-11-24T04:07:51'
-source_file_size: 2585
-generation_date: '2026-11-24T04:08:00'
+source_file_date: '2026-11-26T01:56:25'
+source_file_size: 2636
+generation_date: '2026-11-26T01:56:34'
 
